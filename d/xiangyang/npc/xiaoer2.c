@@ -24,17 +24,15 @@ void create()
 }
 
 void init()
-{        
-        object ob; 
-        mapping myfam; 
-
+{
+        object ob;
         ob = this_player();
 
         ::init();
         if( interactive(ob) && !is_fighting() ) {
 /*
                 if( (myfam=query("family", ob) )
-                && myfam["family_name"] == "丐幫" 
+                && myfam["family_name"] == "丐幫"
                 && ob->query_skill("begging",1) > 10 )
                 {
                         remove_call_out("saying");
@@ -42,7 +40,7 @@ void init()
                 }
                 else
 */
-                { 
+                {
                         remove_call_out("greeting");
                         call_out("greeting", 1, ob);
                 }
@@ -74,7 +72,7 @@ void saying(object ob)
         say("\n店小二大喝一聲：你這臭要飯的進來幹什麼？ 給我滾出去！\n\n");
         remove_call_out("kicking");
         call_out("kicking", 1, ob);
-        
+
 }
 
 void kicking(object ob)

@@ -5,7 +5,7 @@ mapping fam_info = ([
 
       "武當派"    :     ([ "shen_type"     :    1,                               // 門派神類型1為正神，-1為負神
                            "master_id"     :    "zhang sanfeng",                 // 門派最高Master ID
-                           "master_name"   :    "張三丰",                        // 門派最高Master name
+                           "master_name"   :    "張三豐",                        // 門派最高Master name
                            "master_rank"   :    "張真人",                        // 門派最高Master rank
                            "master_file"   :    CLASS_D("wudang") + "/zhang",    // 門派最高Master所屬文件
                            "master_room"   :    "/d/wudang/xiaoyuan",            // 門派最高Master起始房間

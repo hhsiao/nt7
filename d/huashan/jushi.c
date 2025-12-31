@@ -6,7 +6,7 @@ void create()
 {
         set("short", "居室");
         set("long", @LONG
-這裡是嶽夫人的寢室，嶽夫人在江湖上人稱「淑女劍」，為人極
+這裡是岳夫人的寢室，岳夫人在江湖上人稱「淑女劍」，為人極
 有骨氣，她的居室卻相當樸素，床椅之外，靠窗(window)處有個梳妝
 臺(tai)，牆上掛著一口寶劍(sword)， 蛇皮吞口看來很是鋒利。
 LONG );
@@ -48,7 +48,7 @@ int do_move(string arg)
 
         if( query("family/master_id", me) != query("id", yue) )
         {
-                write("嶽夫人喝道：這位" +
+                write("岳夫人喝道：這位" +
                       RANK_D->query_respect(me) +
                       "，你不能隨便翻人家東西。\n");
                 return 1;
@@ -56,7 +56,7 @@ int do_move(string arg)
 
         if( query("combat_exp", me)<20000 )
         {
-                write("嶽夫人看了看你，皺眉道：“你好好給我"
+                write("岳夫人看了看你，皺眉道：“你好好給我"
                       "練功去，瞎翻什麼？”\n");
                 return 1;
         }
@@ -91,14 +91,14 @@ int do_pick(string arg)
 
         if( query("family/master_id", me) != query("id", yue) )
         {
-                write("嶽夫人喝道：這位" + RANK_D->query_respect(me) +
+                write("岳夫人喝道：這位" + RANK_D->query_respect(me) +
                       "，你不能隨便翻人家東西。\n");
                 return 1;
         }
 
         if( query("combat_exp", me)<20000 )
         {
-                write("嶽夫人看了看你，皺眉道：“你好好給我"
+                write("岳夫人看了看你，皺眉道：“你好好給我"
                       "練功去，亂動什麼？”\n");
                 return 1;
         }

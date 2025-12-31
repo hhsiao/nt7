@@ -77,15 +77,15 @@ void check_opinion(object me) {
         {
             message_vision(CYN "\n$N" CYN "淡淡一笑，對$n"
                 CYN "道：“你的" OPINION_TYPE
-                            + NOR + CYN "不行啊！好好努力"
-                            "吧！”\n" NOR, this_object(),
+                + NOR + CYN "不行啊！好好努力"
+                "吧！”\n" NOR, this_object(),
                 me);
             return;
         }
         message_vision(CYN "\n$N" CYN "對$n" CYN "搖搖頭道："
             "“不怎麼樣，我發現你的" OPINION_TYPE
-                    + NOR + CYN "比上次沒什麼太大的進步。"
-                    "”\n" NOR, this_object(), me);
+            + NOR + CYN "比上次沒什麼太大的進步。"
+            "”\n" NOR, this_object(), me);
         return;
     }
 
@@ -99,8 +99,8 @@ void check_opinion(object me) {
         message_vision(CYN "\n$N" CYN "對$n" CYN "笑道：“恭"
             "喜！" + RANK_D->query_respect(me) +
             "的" OPINION_TYPE + NOR + CYN "已然到"
-                    "了宗師境界！武道無窮，閣下自重！”\n"
-                    NOR, this_object(), me);
+            "了宗師境界！武道無窮，閣下自重！”\n"
+            NOR, this_object(), me);
         set("opinions/master", 1, me);
         check_ultra(me);
         return;
@@ -108,8 +108,8 @@ void check_opinion(object me) {
 
     message_vision(CYN "\n$N" CYN "沉思片刻，對$n" CYN "道：“就"
         "目前來看，你的" OPINION_TYPE + NOR + CYN "已"
-            "經可以算得上是" + opinions_rank[ks[i]] + NOR
-            + CYN "了。”\n" NOR, this_object(), me);
+        "經可以算得上是" + opinions_rank[ks[i]] + NOR
+        + CYN "了。”\n" NOR, this_object(), me);
 }
 
 void check_ultra(object me) {

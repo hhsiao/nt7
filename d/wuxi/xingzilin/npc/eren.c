@@ -1,5 +1,5 @@
-// This program is a part of NITAN MudLIB 
-// redl 2012/11/1 
+// This program is a part of NITAN MudLIB
+// redl 2012/11/1
 #include <ansi.h>
 #include "../cnpc.h"
 
@@ -13,7 +13,7 @@ inherit NPC;
 
 mapping wushi_names = ([
         1 : "雲中鶴",
-        2 : "嶽老三",
+        2 : "岳老三",
         3 : "葉二孃",
         4 : "段延慶",
 ]);
@@ -40,23 +40,23 @@ mixed es_die(object me) //超時自毀
 
 void create()
 {
-        object ob; 
+        object ob;
         int lv, ntmp;
-        
+
         lv = random(1000);
         if (lv < 1) lv = 4;
                 else if (lv < 10) lv = 3;
                 else if (lv < 100) lv = 2;
                 else lv = 1;
 //        lv = 1 + random(4);
-     
+
         set_name(HIR + wushi_names[lv] + NOR, ({ id_names[lv], "e ren" }));
         set("nickname", HIY +nick_names[lv]+ NOR);
-        set("long", 
+        set("long",
 "西夏國有個講武館，叫做一品堂，是該國國王所立，堂中招聘武功高強之士，優禮供養。\n"
 "這是一品堂中的一品高手四大惡人之一，據說受赫連大將軍帶領，此來不知道對中原有什麼圖謀......\n"
         );
-        
+
         set("age", 40);
         set("str", 45);
         set("dex", 45);
@@ -74,7 +74,7 @@ void create()
         set("neili", ntmp);
         set("max_jingli", ntmp);
         set("jingli", ntmp);
-        
+
         set("level", EREN_LEVEL + WU2345_LEVEL_INCREASE * (lv-1));
         set("combat_exp", 1000000000);
                 set("jiali", 6000 + 1000 * lv);
@@ -91,7 +91,7 @@ void create()
 
                 //比同品武士高500級sk
                 ntmp = to_int(500 + WU2345_SKILL_LV + (lv-1) * WU2345_SKILL_INCREASE);
-        
+
         if (!random(3))
         {
                 set_skill("count", ntmp / 10 * 8);
@@ -102,7 +102,7 @@ void create()
                 set_skill("count", ntmp / 10 * 1);
                 set_skill("martial-cognize", ntmp / 10 * 6);
         }
-        
+
                         set_skill("force", ntmp);
                                 if (lv >= 3 && random(6) == 0)
                                 {
@@ -111,12 +111,12 @@ void create()
                                 }
                                 else if (random(2))
                                 {
-                                        set_skill("biyun-xinfa", ntmp + 100);        
+                                        set_skill("biyun-xinfa", ntmp + 100);
                                 map_skill("force", "biyun-xinfa");
                                 }
                                 else
                                 {
-                                        set_skill("riyue-xinfa", ntmp + 100);        
+                                        set_skill("riyue-xinfa", ntmp + 100);
                                 map_skill("force", "riyue-xinfa");
                                 }
                         set_skill("dodge", ntmp);
@@ -160,7 +160,7 @@ void create()
                         map_skill("finger", "tougu-zhen");
                         set_skill("parry", ntmp);
                         map_skill("parry", "tougu-zhen");
-                                prepare_skill("finger", "tougu-zhen"); 
+                                prepare_skill("finger", "tougu-zhen");
                         set("chat_chance_combat", 100);
                         set("chat_msg_combat", ({
                         (: perform_action, "finger.feng" :),
@@ -193,7 +193,7 @@ void create()
                         map_skill("strike", "yinlong-shou");
                         set_skill("parry", ntmp);
                         map_skill("parry", "yinlong-shou");
-                                prepare_skill("strike", "yinlong-shou"); 
+                                prepare_skill("strike", "yinlong-shou");
                         set("chat_chance_combat", 100);
                         set("chat_msg_combat", ({
                         (: perform_action, "strike.duo" :),
@@ -205,29 +205,29 @@ void create()
                         }) );
                         break;
         }
-        
-        
 
- 
+
+
+
                 ntmp = to_int(EREN_GIFT_EXP * (1 + (lv - 1) * N_GIFT_EXP_INCREASE));
         set("gift/exp", ntmp);
         set("gift/pot", ntmp / 5);
         setup();
-        
+
         switch (lv)
         {
                 case 4:
                                 ob = new("/clone/weapon/staff/muzhang");
-                                ob->move(this_object()); 
-                                ob->wield(); 
+                                ob->move(this_object());
+                                ob->wield();
                         break;
                 case 2:
                                 ob = new("/clone/weapon/blade/zhadao");
-                                ob->move(this_object()); 
-                                ob->wield(); 
+                                ob->move(this_object());
+                                ob->wield();
                         break;
         }
-        
+
         call_out("es_die", 120 + random(60), this_object());//避免主id搶太多大米的
 }
 
@@ -275,7 +275,7 @@ void die(object killer)
 
         // 定義獎勵物品列表
                 mixed oblist;
-                
+
                 object env;
 
                 oblist = query("oblist");
@@ -299,7 +299,7 @@ void die(object killer)
                 addn_temp("xzz/nkill2", 1, dob);
 
                 message_vision(NOR"$N輕輕一揮手，割下$n的項上首級。\n"NOR, dob, this_object());
-                new(__DIR__"obj/head")->move(dob); 
+                new(__DIR__"obj/head")->move(dob);
 
         t = dob->query_team();
 
@@ -307,8 +307,8 @@ void die(object killer)
         {
                 exp = query("gift/exp");
                 pot = query("gift/pot");
-       
-                                if( query("level", dob) <= query("level") ) 
+
+                                if( query("level", dob) <= query("level") )
                                 {
                                 }
                                 else if( query("level", dob) <= query("level")*1.5 )
@@ -321,16 +321,16 @@ void die(object killer)
                                         exp /= 4;
                                         pot /= 4;
                                 }
-                                else 
+                                else
                                 {
                                         exp = 100;
                                         pot = 100;
                                 }
-                                
+
                 exp = to_int(exp * (random(100)+950) / 1000);
-                showexp = exp;                
-                                
-                                CHANNEL_D->channel_broadcast(CHANL_NAME, 
+                showexp = exp;
+
+                                CHANNEL_D->channel_broadcast(CHANL_NAME,
                                         query("name", dob) + "於無錫杏子林擊殺"+HIY+"「一品堂高手」"+HIR+query_temp("rename")+NOR+YEL+"，獲得"+chinese_number(get_show_giftexp(dob, showexp))+"點經驗獎勵。"
                                         );
 
@@ -348,7 +348,7 @@ void die(object killer)
                                 }
 
                                 if (n)
-                                {                                
+                                {
                                         foreach(tob in t)
                                         {
                                                    if (objectp(tob) && living(tob) && environment(tob) == environment(this_object()))
@@ -375,6 +375,3 @@ void die(object killer)
 
         return;
 }
-
-
-

@@ -104,7 +104,7 @@ int accept_kill(object ob)
 {
         command("say 怎麼說？你也來欺負我？");
         command("cry");
-        return notify_fail("剎那間你只覺得下不了手。\n"); 
+        return notify_fail("剎那間你只覺得下不了手。\n");
 }
 
 int accept_hit(object ob)
@@ -116,18 +116,17 @@ int accept_hit(object ob)
 
 int accept_touxi(object ob)
 {
-        tell_object(ob,"你剛想偷襲，突然發現" + this_object()->name() + "防備很嚴謹。\n"); 
+        tell_object(ob,"你剛想偷襲，突然發現" + this_object()->name() + "防備很嚴謹。\n");
         return 1;
 }
 
-int accept_ansuan(object who) 
+int accept_ansuan(object who)
 {
-        return notify_fail("你剛想暗算，可是發現" + this_object()->name() + "非常小心謹慎，讓你無從下手。\n"); 
-} 
+        return notify_fail("你剛想暗算，可是發現" + this_object()->name() + "非常小心謹慎，讓你無從下手。\n");
+}
 
 void heart_beat()
 {
-       mapping msg;
        string msg1,msg2;
 
         if (time() - query_temp("born_time") > 900)
@@ -137,9 +136,9 @@ void heart_beat()
                 return;
         }
 
-       if (!objectp(jiufen_object) || 
+       if (!objectp(jiufen_object) ||
            !living(jiufen_object) ||
-           !environment(this_object()) || 
+           !environment(this_object()) ||
            !environment(jiufen_object) ||
            environment(this_object()) != environment(jiufen_object))
         {
@@ -149,7 +148,7 @@ void heart_beat()
         }
 
        //如果已經開始調節糾紛，則停止吵架
-       if (query_temp("on_tiaojie")) 
+       if (query_temp("on_tiaojie"))
        {
               message_vision("$N對著$n哼了一聲。\n",this_object(),jiufen_object);
               message_vision("$n惱怒的瞪著$N，看上去正在強忍著心頭的怒氣。\n",this_object(),jiufen_object);
@@ -181,8 +180,8 @@ int accept_object(object who,object ob)
                 // 不接受人物和自造的兵器
                 return 0;
 
-       if( !query("bunch_quest", who) || 
-           query("bunch_quest/type", who) != "調解糾紛" || 
+       if( !query("bunch_quest", who) ||
+           query("bunch_quest/type", who) != "調解糾紛" ||
            query("bunch_quest/ob", who) != this_object() )
                return notify_fail("你小子送我這個東西幹什麼？蒙我？\n");
 
@@ -225,11 +224,11 @@ string ask_me()
 {
        object who;
        who = this_player();
-       if( !query("bunch_quest", who) || 
-           query("bunch_quest/type", who) != "調解糾紛" || 
+       if( !query("bunch_quest", who) ||
+           query("bunch_quest/type", who) != "調解糾紛" ||
            query("bunch_quest/ob", who) != this_object() )
                return "你是誰？在一邊JJYY的煩不煩，給我滾遠點，這裡沒你的事！";
-       
+
        set_temp("on_tiaojie", 1, this_object());
        return "調解？用什麼來調解？莫非你還能幫我把" + quest_ob + "找回來啊！";
 }

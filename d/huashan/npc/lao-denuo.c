@@ -11,7 +11,7 @@ void create()
         set("nickname", "老好人");
         set("gender", "男性");
         set("age", 61);
-        set("long", "勞德諾是嶽不群的二弟子。\n");
+        set("long", "勞德諾是岳不群的二弟子。\n");
         set("attitude", "peaceful");
 
         set("str", 26);
@@ -77,7 +77,7 @@ int permit_pass(object me, string dir)
         if (! living(this_object()))
                 return 1;
 
-        if( query("family/family_name", me) == "華山劍宗" && 
+        if( query("family/family_name", me) == "華山劍宗" &&
             dir == "southup")
         {
                 if( query_temp("beg_huashan", me) )
@@ -108,9 +108,9 @@ int permit_pass(object me, string dir)
                 }
         }
 
-        if( query("family/family_name", me) && 
-            query("family/family_name", me) != "華山派" || 
-            !query("family/family_name", me) && 
+        if( query("family/family_name", me) &&
+            query("family/family_name", me) != "華山派" ||
+            !query("family/family_name", me) &&
             query("combat_exp", me)>20000 )
         {
                 message_vision("$N對$n道：對不起，不是我們華山派的人"

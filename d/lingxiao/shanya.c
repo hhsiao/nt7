@@ -40,8 +40,6 @@ void init()
 
 int do_open(string arg)
 {
-        object me=this_player();
-
         if (! arg || arg != "bridge" )
                 return notify_fail("你要幹嘛？\n");
 

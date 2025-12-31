@@ -4,31 +4,30 @@ void init()
 {
         object me, ob;
         string t_name;
-        mapping fam;
-        
+
         ::init();
 
         ob = this_player();
         me = this_object();
                 if (ob != query("target")) return;
         t_name=query("name", ob);
-        
-        if( interactive(ob) && query_temp("songxin_ok", ob) && 
+
+        if( interactive(ob) && query_temp("songxin_ok", ob) &&
                 !(query_temp("zuji_target", me) != t_name) )
         {
                 call_out("dest",1);
         }
 
-        if( query("no_fight", environment(ob)) && 
-                !(query_temp("zuji_target", me) != t_name) && 
+        if( query("no_fight", environment(ob)) &&
+                !(query_temp("zuji_target", me) != t_name) &&
                 query_temp("songxin_zuji", ob) )
         {
                 remove_call_out("dest");
                 call_out("dest2",1);
         }
-        if( interactive(ob) && !query("no_fight", environment(ob)) && 
-                query_temp("songxin_zuji", ob) && 
-                (!query_temp("songxin_zuji1", me) || 
+        if( interactive(ob) && !query("no_fight", environment(ob)) &&
+                query_temp("songxin_zuji", ob) &&
+                (!query_temp("songxin_zuji1", me) ||
                 !(query_temp("zuji_target", me) != t_name)) )
         {
                 set_temp("apply/attack", random(40), me);
@@ -52,15 +51,14 @@ void init()
                         remove_call_out("dest");
                         call_out("dest",300);
                         remove_call_out("kill_ob");
-                        call_out("kill_ob", 0, ob); 
+                        call_out("kill_ob", 0, ob);
                 }
         }
 }
 int do_clone(object me, object ob)
 {
-        object weapon;
         mapping killerskill1;
-        int number,k_qi,k_neili,k_jing,i;
+        int number,k_qi,k_neili,k_jing;
         string t_force,t_dodge;
         number=query("max_pot", ob);
         number = number-100;
@@ -72,7 +70,7 @@ int do_clone(object me, object ob)
         {
                 killerskill1 = skill2[random(sizeof(skill2))];
                 number = (int)(number*(8+random(2))/10);
-        } 
+        }
         if( query("combat_exp", ob)<800000 && query("combat_exp", ob)>600000 )
         {
                 killerskill1 = skill2[random(sizeof(skill2))];
@@ -94,10 +92,10 @@ int do_clone(object me, object ob)
                 number = (int)(number*(5+random(3))/10) ;
         }
         if (number>200) number = 200;
-     
+
 /*set killer's skill*/
         t_force = k_force[random(sizeof(k_force))];
-        t_dodge = k_dodge[random(sizeof(k_dodge))];       
+        t_dodge = k_dodge[random(sizeof(k_dodge))];
 
         me->set_skill("force",number);
         me->set_skill("dodge",number);
@@ -137,7 +135,7 @@ int do_clone(object me, object ob)
         set_temp("zuji", 1, ob);
         me->set_leader(ob);
         remove_call_out("kill_ob");
-        call_out("kill_ob", 0, ob); 
+        call_out("kill_ob", 0, ob);
         return 1;
 }
 void dest()
@@ -148,7 +146,7 @@ void dest()
 
         write(query("name", me)+"道：這次算你命大！\n",me);
         write(query("name", me)+"匆匆離開。\n",me);
-      
+
         destruct(this_object());
 }
 void dest2()

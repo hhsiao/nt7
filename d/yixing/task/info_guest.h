@@ -228,7 +228,7 @@ mapping *info_guest = ({
 ]),
 
 ([      "name"  : "南海鱷神",
-        "title" : "嶽老三",
+        "title" : "岳老三",
         "file" : "/d/xixia/dawu",
         "area"  : "西夏",
         "bonus" : 250,

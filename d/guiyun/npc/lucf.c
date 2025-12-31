@@ -73,7 +73,7 @@ void create()
                 "大英雄": "你先看看詞再說，難道你沒有讀過這首詞嗎？",
                 "大豪傑": "你先看看詞再說，難道你沒有讀過這首詞嗎？",
                 "岳飛"  : (: ask_yue :),
-                "嶽武穆" : (: ask_yue :),
+                "岳武穆" : (: ask_yue :),
                 "東邪": "那是恩師呀，雖然他打斷我們的雙腿，還逐我們出島，但一日為師，終生為父呀！",
                 "黃藥師": "那是恩師呀，雖然他打斷我們的雙腿，還逐我們出島，但一日為師，終生為父呀！",
                 "恩師" : "就是桃花島主黃藥師了，他聰明絕頂，文才武學，書畫琴棋，算數韜略，醫卜星相，奇門五行，無一不精。",
@@ -209,7 +209,7 @@ int ask_ci()
 {
         object ob = this_player();
 
-        command("say 寫這首詞的大英雄、大豪傑就是嶽武穆。\n");
+        command("say 寫這首詞的大英雄、大豪傑就是岳武穆。\n");
         if( !query_temp("guiyun_lutemp", ob) )
                 set_temp("guiyun_lutemp", 1, ob);
         return 1;
@@ -220,11 +220,11 @@ int ask_yue()
         object ob = this_player();
 
         if( query_temp("guiyun_lutemp", ob) >= 1){
-                command("say 可惜我的字意有一句與嶽武穆原意不太相符，不知" + RANK_D->query_respect(ob) + "能否看出來？\n");
+                command("say 可惜我的字意有一句與岳武穆原意不太相符，不知" + RANK_D->query_respect(ob) + "能否看出來？\n");
                 set_temp("guiyun_lutemp", 2, ob);
         }
         else {
-                command("say 嶽武穆是我非常敬重的一位大英雄。\n");
+                command("say 岳武穆是我非常敬重的一位大英雄。\n");
         }
         return 1;
 }
@@ -235,7 +235,7 @@ int do_answer(string arg)
 
         if( query_temp("guiyun_lutemp", ob) == 2){
                 tell_room(environment(ob), ob->name() + "向著陸乘風侃侃而談。\n", ({ob}));
-                if (arg == "知音少,絃斷有誰聽?" || arg == "知音少，絃斷有誰聽？" 
+                if (arg == "知音少,絃斷有誰聽?" || arg == "知音少，絃斷有誰聽？"
                 || arg == "知音少,絃斷有誰聽" || arg == "知音少，絃斷有誰聽") {
                         if (!present("tuifa tujie", ob) && query_temp("tuifa_give") < 5) {
                                 say("陸乘風長噓一聲：我這番心情，今日才被你看破，可謂平生一知已，這本腿法就送給你吧。\n");

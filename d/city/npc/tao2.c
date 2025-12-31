@@ -15,7 +15,7 @@ string *rnd_say = ({
         "風兒和仙子這兩個小渾蛋幹嘛去了？",
         "快打酒來！愣什麼！",
         "快把老頭子和祖千秋拉成一堆爛肉！",
-        "嶽不群就是偽君子．．．",
+        "岳不群就是偽君子．．．",
         "你是任盈盈？",
         "嗨..",
 });
@@ -123,7 +123,7 @@ void relay_emote(object ob, string verb)
         case "mo":
         case "18mo":
         case "nocloth":
-        if( query("gender", ob) == "男性" || 
+        if( query("gender", ob) == "男性" ||
              query("gender", ob) == "無性" )
         {
                 command("chat這算啥，"+query("name", ob)+"！我就喜歡這個調調兒！\n");
@@ -233,7 +233,8 @@ void reset()
         delete("memory");
 }
 
-int accept_object()
+int accept_object(object who, object ob)
 {
+        message_vision("$N接過$n遞來的" + ob->name() + "，哈哈大笑起來。\n", this_object(), who);
         return 1;
 }

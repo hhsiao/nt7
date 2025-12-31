@@ -106,7 +106,7 @@ int accept_kill(object ob)
                       command("say 哼！我目前有要事要辦，等下再來取你性命。");
                       return notify_fail("看來，別人不屑與你交手。\n");
                 }
-                else 
+                else
                 {
                       command("heng");
                       return notify_fail("看來，別人不屑與你交手。\n");
@@ -125,7 +125,7 @@ int accept_kill(object ob)
 
                 foreach(killer in t)
                 {
-                      if (objectp(killer) && 
+                      if (objectp(killer) &&
                           living(killer) && ! killer->is_fighting(this_object()))
                                killer->kill_ob(this_object());
 
@@ -134,13 +134,13 @@ int accept_kill(object ob)
                 our = filter_array(all_inventory(environment()), (: objectp($1) &&
                                                                  ! wizardp($1) &&
                                                                  environment($1) &&
-                                                                 query("team_num", $1) && 
-                                                                 living($1) &&                  
-                                                                 ! playerp($1) :));               
+                                                                 query("team_num", $1) &&
+                                                                 living($1) &&
+                                                                 ! playerp($1) :));
                killer = 0;
                foreach(killer in our)
                {
-                      if (objectp(killer) && 
+                      if (objectp(killer) &&
                           living(killer) && ! killer->is_fighting(ob))
                                killer->kill_ob(ob);
                }
@@ -170,13 +170,12 @@ void die(object killer)
         int gongxian;           //
         object *t;              // 殺死我的人的隊伍列表
         object tob;
-        int i;
 
         // 找到殺了我(NPC)或是打暈我的人
         if (! objectp(dob = killer))
                 dob = query_defeated_by();
 
-        if (! pointerp(t = dob->query_team())) 
+        if (! pointerp(t = dob->query_team()))
         {
                 ::die();
                 return;
@@ -210,8 +209,8 @@ void die(object killer)
 
                                 if( query("family/family_name", tob) == fam_info["family"] )
                                           gongxian = 100 + random(300);
-         
-                                else 
+
+                                else
                                           gongxian = 0;
 
                                 GIFT_D->delay_bonus(tob,
@@ -219,7 +218,7 @@ void die(object killer)
                                             "pot"      : pot + ((tob == dob) ? 500 : 0),
                                             "weiwang"  : weiwang + ((tob == dob) ? 1000 : 0),
                                             "score"    : score + ((tob == dob) ? 1000 : 0),
-                                            "gongxian" : (n < 4 ? gongxian / 3 : gongxian), 
+                                            "gongxian" : (n < 4 ? gongxian / 3 : gongxian),
                                             "prompt"  : (pointerp(t) ? "你的隊伍擊斃" + name() + "之後" :
                                                         "擊斃" + name() + "之後") ]));
 
@@ -238,7 +237,6 @@ void random_move()
 {
         string dir;
         string* route;
-        object master;
         object *listeners;
 
         if (time() > query_temp("dest_time") ||
@@ -261,12 +259,12 @@ void random_move()
                 listeners = filter_array(users(), (: filter_listener :));
 
                 if (query("is_leader") && random(3) == 0)
-                         message_vision(HIW "$N" HIW "說道：“弟兄們，不要著急，等下咱們攻入" + 
+                         message_vision(HIW "$N" HIW "說道：“弟兄們，不要著急，等下咱們攻入" +
                                         fam_info["family"] + "，大開殺戒~！”\n" NOR, this_object());
                 else if (random(10) == 0)
-                         message_vision(HIC "$N" HIC "嚷嚷道：“怎麼首領還不下令攻打" + 
-                                        fam_info["family"] + "我都等得不耐煩了！”\n" NOR, this_object());                
-   
+                         message_vision(HIC "$N" HIC "嚷嚷道：“怎麼首領還不下令攻打" +
+                                        fam_info["family"] + "我都等得不耐煩了！”\n" NOR, this_object());
+
                 return;
         }
         fam_info = query("fam_info");
@@ -281,8 +279,8 @@ void random_move()
                       if (! this_object()->is_fighting())
                       {
 
-                             CHANNEL_D->do_channel(this_object(), "rumor", 
-                                        "聽說神秘組織攻到" + fam_info["family"] + "的" + fam_info["tar_room_nm"] + 
+                             CHANNEL_D->do_channel(this_object(), "rumor",
+                                        "聽說神秘組織攻到" + fam_info["family"] + "的" + fam_info["tar_room_nm"] +
                                         "，" + fam_info["family"] + "自此元氣大傷。\n");
 
                              "/adm/daemons/story/familywar"->change_status(OVER);
@@ -300,7 +298,7 @@ void random_move()
 
               else if (stringp(fam_info["spe_cmds"]))
                            command(fam_info["spe_cmds"]);
-              
+
               else return;
         }
 }
@@ -311,13 +309,12 @@ void init()
 
         fam_info = query("fam_info");
 
-        if (! living(me) || 
+        if (! living(me) ||
             playerp(me) ||
-            query("team_num", me) || 
+            query("team_num", me) ||
             query("family/family_name", me) != fam_info["family"] )
                  return;
 
         if( !"/cmds/std/kill"->main(this_object(),query("id", me)) )
                  kill_ob(me);
 }
-

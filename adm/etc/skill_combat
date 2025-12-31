@@ -1,5 +1,5 @@
-#技能/攻击/躲闪/招架/伤害/内功/难度/级别/属性
-#终极前四项COMBAT之和1100
+#技能/攻擊/躲閃/招架/傷害/內功/難度/級別/屬性
+#終極前四項COMBAT之和1100
 yinyang-shiertian/600/600/600/600/600/6000/ultimate/public
 lunhui-sword/400/400/400/400/400/4000/ultimate/public
 badao/400/400/400/400/400/4000/ultimate/public
@@ -12,7 +12,7 @@ never-defeated/200/170/180/170/180/1300/ultimate/public
 kuihua-mogong/190/190/170/180/170/1600/ultimate/public
 bluesea-force/180/170/180/200/180/1400/ultimate/public
 jiuyin-shengong/190/170/170/180/190/1400/ultimate/public
-#公共/不参与调整
+#公共/不參與調整
 taixuan-gong/180/130/140/180/170/1200/ultimate/public
 mingyu-gong/170/170/130/180/170/1200/ultimate/public
 wuming-jianfa/160/0/140/150/0/900/ultimate/public
@@ -367,7 +367,7 @@ sixiang-bufa/0/30/0/0/0/0/normal/hu
 moshen-bufa/0/30/0/0/0/0/normal/mojiao
 shenghuo-bu/0/30/0/0/0/0/normal/mingjiao
 #force
-#内功
+#內功
 yijinjing/0/0/0/0/200/800/ultimate/shaolin
 beiming-shengong/0/0/0/0/190/600/ultimate/xiaoyao
 chiyou-kuangzhanjue/0/0/0/0/180/600/ultimate/mojiao

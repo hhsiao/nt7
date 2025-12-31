@@ -23,7 +23,6 @@ void init()
 
 int do_halt()
 {
-        object me;
 
         if (this_player() == query_temp("punish_ob"))
         {
@@ -120,7 +119,7 @@ void start_punish(object ob, string fam)
 
         command("yun powerup");
         kill_ob(ob);
-        ob->unconcious(this_object()); 
+        ob->unconcious(this_object());
 }
 
 void punish_ob(object ob)
@@ -217,4 +216,3 @@ void scan()
 
         ::scan();
 }
-

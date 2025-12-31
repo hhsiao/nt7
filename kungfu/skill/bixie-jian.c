@@ -120,7 +120,7 @@ int practice_bonus() { return 0; }
 int success() { return 5; }
 int power_point(object me)
 {
-        if(me->query_skill("kuihua-xinfa",1) > 10) return 1.0; 
+        if(me->query_skill("kuihua-xinfa",1) > 10) return 1.0;
         else return 0.6;
 }
 
@@ -137,17 +137,17 @@ void double_attack(object me, object victim)
         if (objectp(other)) victim = other;
 
         i = me->query_skill("bixie-jian",1)/15; // taiji lian的每招遞增 sword/15
-        j = (me->query_skill("bixie-jian",1)-1)/100; // 100 = 0 101 = 1 200 = 1 201 = 2 
+        j = (me->query_skill("bixie-jian",1)-1)/100; // 100 = 0 101 = 1 200 = 1 201 = 2
 
   if( j>1 && !query_temp("bixie/guimei", me) && userp(me))j=1;
-  
+
         if (userp(me))
         j = 1; //多於平時的double attack改成pfm出招
                                  //注意變量 query_temp("bixie_hit")表示即將出手的是第多少招
          //不如這樣，對於npc直接在單招中使用 對於玩家在pfm中使用
-        if( query_temp("bixie_hit", me)<j && 
-  objectp(query_temp("weapon", me)) && 
-  (query_temp("weapon",query("skill_type",  me))) == "sword" && 
+        if( query_temp("bixie_hit", me)<j &&
+  objectp(query_temp("weapon", me)) &&
+  (query_temp("weapon",query("skill_type",  me))) == "sword" &&
   me->query_skill_mapped("sword") == "bixie-jian" &&
   me->is_fighting(victim) )
         {
@@ -178,7 +178,7 @@ int help(object me)
 所載武功才是。但他研究多年，直到逝世，始終沒有起始練寶典中
 的武功。
 
-    一日華山派的嶽肅和蔡子峰到莆田少林寺作客，偷看到《葵花
+    一日華山派的岳肅和蔡子峰到莆田少林寺作客，偷看到《葵花
 寶典》。其時匆匆之際，二人不及同時閱遍全書，當下二人分讀，
 一人讀一半，後來回到華山，共同叄悟研討。不料二人將書中功夫
 一加印證，竟然牛頭不對馬嘴，全然合不上來。二人都深信對方讀
@@ -187,24 +187,24 @@ int help(object me)
     紅葉禪師不久發現此事，他知道這部寶典所載武學不僅博大精
 深，且蒹兇險之極。這最難的還是第一關，只消第一關能打通，到
 後來也沒什麼。第一關只要有半點岔差，立時非死即傷。紅葉當下
-派遣得意弟子渡元禪師前往華山，勸論嶽蔡二位，不可修習寶典中
+派遣得意弟子渡元禪師前往華山，勸論岳蔡二位，不可修習寶典中
 的武學。
 
-    渡元禪師上得華山，嶽蔡二人對他好生相敬，承認私閱《葵花
+    渡元禪師上得華山，岳蔡二人對他好生相敬，承認私閱《葵花
 寶典》，一面深致歉意，一面卻以經中所載武學向他請教。殊不知
 渡元雖是紅葉的得意弟子，寶典中的武學卻未蒙傳授。當下渡元禪
 師並不點明，聽他們背誦經文，隨口加以解釋，心中卻暗自記下。
 渡元禪師武功本極高明，又是絕頂機智之人，聽到一句經文，便己
 意演繹幾句，居然也說來頭頭是道。
 
-    不過嶽蔡二人所記的本已不多，經過這麼一轉述，不免又打了
+    不過岳蔡二人所記的本已不多，經過這麼一轉述，不免又打了
 折扣。渡元禪師在華山上住了八日，這才作別，但從此卻也沒再回
 到莆田少林寺去。不久紅葉禪師就收到渡元禪師的一通書信，說道
 他凡心難抑，決意還俗，無面目再見師父云云。
 
     由於這一件事，華山派弟子偷窺《葵花寶典》之事也流傳於外。
 過不多時，魔教十長老來攻華山，在華山腳下一場大戰。魔教十長
-老多身受重傷，大敗而去。但嶽肅和蔡子峰兩人均在這一役中斃命，
+老多身受重傷，大敗而去。但岳肅和蔡子峰兩人均在這一役中斃命，
 而二人所錄《葵花寶典》也被魔教奪了去。
 
     渡元禪師還俗之後，復了原姓，將法名顛倒過來取名遠圖，娶

@@ -4,7 +4,6 @@
 inherit ROOM;
 void create()
 {
-        object con,item;
         set("short", "黃山劍廬");
         set("long", @LONG
 好不容易過鐵索，眼前一亮，居然有間茅屋，屋上居然也有牌匾上
@@ -12,7 +11,7 @@ void create()
 稀疏地插著幾隻狼毫，西牆一柄長劍，上書“蒼穹”二字。
 LONG
         );
-        set("exits", ([ 
+        set("exits", ([
                 "west" : __DIR__"tiesuo",
         ]));
         set("no_clean_up", 0);
@@ -25,7 +24,6 @@ init()
 int do_climb(string arg)
 {
         object         me;
-        int mlvl;
 
         if(!arg || arg != "down")
         {

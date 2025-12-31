@@ -29,7 +29,7 @@ string* sn_msg = ({
     "南海神尼低頭想了想，說道：“",
     "南海神尼拍了拍手，說道：“",
     "南海神尼微微笑了笑道：“"
-    });
+});
 
 string* qin_msg1 = ({
     "動物是人們的朋友，就算name嚴重影響了生態環境，關起來也就可以了，",
@@ -39,7 +39,7 @@ string* qin_msg1 = ({
     "在空閒的時候，看看動物的生活能夠放鬆情緒，name其實挺可愛的，",
     "獨孤求敗是一個很喜歡動物的人，尤其是name，用來送給他做禮物最好不過，",
     "江湖上打打殺殺的，少不了讓name也遭受無辜連累，我有心保護它，"
-    });
+});
 
 string* qin_msg2 = ({
     "你去把它帶到這裡來吧。”",
@@ -47,7 +47,7 @@ string* qin_msg2 = ({
     "你能把它帶我這裡來麼？”",
     "你就辛苦一趟去幫我把它找來吧。”",
     "把它弄來給我。”"
-    });
+});
 
 string *my_opinions = ({ "force" });
 
@@ -79,11 +79,11 @@ void create() {
     set("inquiry", ([
         "彈指神通" : "那是我碧海神功關於指法方面的變化，當年我到東海，曾經傳授給一人。",
         "評價"     : (: ask_opinion :),
-        "opinion"  : (: ask_opinion :),
+        "opinion": (: ask_opinion :),
         "武學修養" : "好好提高自己的武學修養(martial-cognize)，到時候什麼武功都如小兒科！",
         "任務" : "本性兇狠但是立身正派的人，可以在我這裡領任務(quest)。\n",
         "迷宮"      : (: ask_maze :),
-        "maze"      : (: ask_maze :)
+        "maze": (: ask_maze :)
         ]));
 
     set_skill("strike", 500);
@@ -266,7 +266,7 @@ int accept_fight(object me) {
 
     message_combatd("$N右掌伸出，正和$n手掌相對，兩人同時運起內力，"
         "不一會兒只見二人頭上生起騰騰霧氣。\n忽然$N手掌"
-            "一撤、收回功力，沒有一點阻滯，不禁讓$n大為愕然。\n",
+        "一撤、收回功力，沒有一點阻滯，不禁讓$n大為愕然。\n",
         this_object(), me);
     if(query("neili", me)<3000 )
     {
@@ -366,7 +366,7 @@ void die() {
 int give_quest() {
     mapping quest, qgood;
     object me, thing, npc;
-    int i, giveup, tag, want, time;
+    int i, giveup, tag, want;
     int exp;
     int lvl, all_lvl;
     string msg;
@@ -452,15 +452,15 @@ int give_quest() {
         +"\n你想法弄一批"+qgood["name"] + "來，大約要 "+want + " "+qgood["unit"] + "，有多少可以先交多少。去罷！”\n"NOR;
         write(msg);
         quest = ([
-            "id"         : qgood["id"],
-            "name"       : qgood["name"],
-            "msg"        : msg,
-            "want"       : want,
-            "type"       : "收",
-            "check_file" : qgood["check_file"],
-            "level"      : tag,
-            "bonus"      : 0,
-            "all_bonus"  : 0
+            "id": qgood["id"],
+            "name": qgood["name"],
+            "msg": msg,
+            "want": want,
+            "type": "收",
+            "check_file": qgood["check_file"],
+            "level": tag,
+            "bonus": 0,
+            "all_bonus": 0
             ]),
             set("quest_sn", quest, me);
         return 1;
@@ -487,17 +487,17 @@ int give_quest() {
 
         set("shen", -query("combat_exp", npc) / 2000, npc);
         msg = "南海神尼正容對你說：“"+npc->name(1)+
-              "這個惡棍多次危害武林，聽說他最近躲在一個迷宮中，你去除掉他吧！”\n";
+            "這個惡棍多次危害武林，聽說他最近躲在一個迷宮中，你去除掉他吧！”\n";
 
         quest = ([
-            "maze" : maze_object,
-            "name" : npc->name(1),
-            "id":query("id", npc),
+            "maze": maze_object,
+            "name": npc->name(1),
+            "id": query("id", npc),
             "bonus": (200 + random(51)),
-            "type" : "殺",
+            "type": "殺",
             "level": 8,
             "where": maze_target,
-            "msg":   msg,
+            "msg": msg,
             "object": base_name(npc)
             ]);
         tell_object(me, quest["msg"] + "\n");
@@ -774,8 +774,8 @@ int accept_object(object me, object ob) {
             pot /= 2;
             mar /= 2;
             weiwang /= 2;
-            QUEST_D->bonus(me, ([ "exp" : exp, "pot" : pot, "mar" : mar,
-                "weiwang" : weiwang, "score" : score]), 1);
+            QUEST_D->bonus(me, ([ "exp": exp, "pot": pot, "mar": mar,
+                "weiwang": weiwang, "score": score]), 1);
             addn("quest_sn/all_bonus", exp, me);
             destruct(ob);
             return 1;
@@ -802,11 +802,11 @@ int accept_object(object me, object ob) {
             message_vision("但是$N身上東西太重，黃金一下子從手中滑到了地上。\n", me);
             gold->move(environment());
         }
-        GIFT_D->bonus(me, ([ "exp" : exp, "pot" : pot, "mar" : mar,
-            "weiwang" : weiwang, "score" : score, "percent" : 100 ]), 1);
+        GIFT_D->bonus(me, ([ "exp": exp, "pot": pot, "mar": mar,
+            "weiwang": weiwang, "score": score, "percent": 100 ]), 1);
     }
-    else GIFT_D->bonus(me, ([ "exp" : exp, "pot" : pot, "mar" : mar, "percent" : 100,
-        "weiwang" : weiwang, "score" : score ]), 1);
+    else GIFT_D->bonus(me, ([ "exp": exp, "pot": pot, "mar": mar, "percent": 100,
+        "weiwang": weiwang, "score": score ]), 1);
 
     /*
      * if ( times < 1 )
@@ -824,62 +824,62 @@ int accept_object(object me, object ob) {
     if (total_count == 50)
     {
         msg = "$N呵呵笑了兩聲道：“你還可以，連著"+chinese_number(quest_count)+
-              "次任務都完成的漂漂亮亮，繼續努力！”\n";
+            "次任務都完成的漂漂亮亮，繼續努力！”\n";
         special = 1;
     } else
     if (total_count == 100)
     {
         msg = "$N笑的合不攏嘴，看了你一眼道：“有志氣！"+chinese_number(quest_count)+
-              "次任務幹得乾淨利索！”\n";
+            "次任務幹得乾淨利索！”\n";
         special = "/clone/gift/puti-zi";
     } else
     if (total_count == 150)
     {
         msg = "$N嘆道：“真是長江後浪推前浪，想不到你接連"+chinese_number(quest_count)+
-              "次任務都無一疏漏，不易，不易！”\n";
+            "次任務都無一疏漏，不易，不易！”\n";
         money = 1;
     } else
     if (total_count == 200)
     {
         msg = "$N嘆道：“真是長江後浪推前浪，想不到你接連"+chinese_number(quest_count)+
-              "次任務都無一疏漏，不易，不易！”\n";
+            "次任務都無一疏漏，不易，不易！”\n";
         money = 1;
     } else
     if (total_count == 250)
     {
         msg = "$N嘆道：“真是長江後浪推前浪，想不到你接連"+chinese_number(quest_count)+
-              "次任務都無一疏漏，不易，不易！”\n";
+            "次任務都無一疏漏，不易，不易！”\n";
         money = 1;
     } else
 
     if (total_count == 300)
     {
         msg = "$N嘆道：“真是長江後浪推前浪，想不到你接連"+chinese_number(quest_count)+
-              "次任務都無一疏漏，不易，不易！”\n";
+            "次任務都無一疏漏，不易，不易！”\n";
         special = "/clone/gift/tianxiang";
     } else
     if (total_count == 350)
     {
         msg = "$N嚇了一跳：“看來你真的很適合學武，竟接連"+chinese_number(quest_count)+
-              "次任務都無一疏漏，不易，不易！”\n";
+            "次任務都無一疏漏，不易，不易！”\n";
         special = "/clone/gift/tianxiang";
     } else
     if (total_count == 400)
     {
         msg = "$N嘆道：“真是一個武學天才啊，想不到你接連"+chinese_number(quest_count)+
-              "次任務都無一疏漏，不易，不易！”\n";
+            "次任務都無一疏漏，不易，不易！”\n";
         special = "/clone/gift/jiuzhuan";
     } else
     if (total_count == 450)
     {
         msg = "$N大聲叫起來：“天才！真是天才，真有人連續"+chinese_number(quest_count)+
-              "次任務都無一疏漏，不易，不易！”\n";
+            "次任務都無一疏漏，不易，不易！”\n";
         special = "/clone/gift/jiuzhuan";
     } else
     if (total_count == 0)
     {
         msg = "$N深深嘆了口氣，道：“沒想到你連著"+chinese_number(quest_count)+
-              "次任務無一失手，看來以後就是你們這些人挑大樑啦！”\n";
+            "次任務無一失手，看來以後就是你們這些人挑大樑啦！”\n";
         special = "/clone/gift/jiuzhuan";
 #ifdef DB_SAVE
         if(MEMBER_D->is_valid_member(query("id", me)) )
@@ -905,7 +905,7 @@ int accept_object(object me, object ob) {
     if ((total_count % 10) == 0)
     {
         msg = "$N微微點頭：“乾的不錯，居然連著"+chinese_number(quest_count)+
-              "次都沒有失手，接著來，別放鬆！”\n";
+            "次都沒有失手，接著來，別放鬆！”\n";
     }
 
     set("questsn_times", quest_count, me);
@@ -1035,93 +1035,93 @@ int accept_ask(object me, string topic) {
     {
     case "碧海清波" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/bo",
-        "name"    : "碧海清波",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "force"   : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/bo",
+        "name": "碧海清波",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "force": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "苦海無邊" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/hai",
-        "name"    : "苦海無邊",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "finger"  : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/hai",
+        "name": "苦海無邊",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "finger": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "絕仙決" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/jue",
-        "name"    : "絕仙決",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "force"   : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/jue",
+        "name": "絕仙決",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "force": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "戮仙決" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/lu",
-        "name"    : "戮仙決",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "force"   : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/lu",
+        "name": "戮仙決",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "force": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "五陰焚滅" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/mie",
-        "name"    : "五陰焚滅",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "strike"  : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/mie",
+        "name": "五陰焚滅",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "strike": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "南海無影杖" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/nan",
-        "name"    : "南海無影杖",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "staff"   : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/nan",
+        "name": "南海無影杖",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "staff": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "玄黃連環掌" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/xuan",
-        "name"    : "玄黃連環掌",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "strike"  : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/xuan",
+        "name": "玄黃連環掌",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "strike": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "斬仙決" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/zhan",
-        "name"    : "斬仙決",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "force"   : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/zhan",
+        "name": "斬仙決",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "force": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     case "誅仙決" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform" : "can_perform/bluesea-force/zhu",
-        "name"    : "誅仙決",
-        "sk1"     : "bluesea-force",
-        "lv1"     : 120,
-        "force"   : 120,
-        "free"    : 1,
-        "shen"    : 38000, ]));
+        ([ "perform": "can_perform/bluesea-force/zhu",
+        "name": "誅仙決",
+        "sk1": "bluesea-force",
+        "lv1": 120,
+        "force": 120,
+        "free": 1,
+        "shen": 38000, ]));
         break;
     default:
         return 0;

@@ -148,7 +148,7 @@ int main(object me, string arg)
                        query("liquid/name", ob)+"。\n",me);
         addn("water", 30, me);
 
-        ob->do_effect();
+        ob->do_effect(me);
         if( !query("liquid/remaining", ob) )
         {
                 write("你已經將"+ob->name()+"裡的"+query("liquid/name", ob )

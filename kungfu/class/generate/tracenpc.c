@@ -54,7 +54,6 @@ void give_intercession()
 {
         mixed ob;
         object me;
-        string msg;
 
         if (! query_temp("trace"))
                 return;

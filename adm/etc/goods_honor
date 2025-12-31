@@ -18,15 +18,15 @@
 符文18:6000:symbol:/clone/tessera/rune18
 符文19:6000:symbol:/clone/tessera/rune19
 符文20:8000:symbol:/clone/tessera/rune20
-#锻造石:500:object:/clone/goods/forging-stone
+#鍛造石:500:object:/clone/goods/forging-stone
 玉清散:200:pill:/clone/medicine/yuqing
-无名小铜人:1000:object:/clone/tongren/tongren1
-无名大铜人:1000:object:/clone/tongren/tongren2
-青龙:10000:object:/clone/tessera/qinglong:装备10LV镶嵌物品
-白虎:10000:object:/clone/tessera/baihu:装备10LV镶嵌物品
-朱雀:10000:object:/clone/tessera/zhuque:装备10LV镶嵌物品
-玄武:10000:object:/clone/tessera/xuanwu:装备10LV镶嵌物品
-麒麟:10000:object:/clone/tessera/qilin:装备10LV镶嵌物品
-水晶:10000:object:/clone/tessera/mcrystal:装备10LV镶嵌物品
+無名小銅人:1000:object:/clone/tongren/tongren1
+無名大銅人:1000:object:/clone/tongren/tongren2
+青龍:10000:object:/clone/tessera/qinglong:裝備10LV鑲嵌物品
+白虎:10000:object:/clone/tessera/baihu:裝備10LV鑲嵌物品
+朱雀:10000:object:/clone/tessera/zhuque:裝備10LV鑲嵌物品
+玄武:10000:object:/clone/tessera/xuanwu:裝備10LV鑲嵌物品
+麒麟:10000:object:/clone/tessera/qilin:裝備10LV鑲嵌物品
+水晶:10000:object:/clone/tessera/mcrystal:裝備10LV鑲嵌物品
 
 

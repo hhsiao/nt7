@@ -285,7 +285,7 @@ int receive_damage(string type, int damage, object who)
         object *ppl;
 
         if( !who ) who = this_object()->query_last_damage_from();
-        if( !who ) return;
+        if( !who ) return 0;
         ppl = query_temp("damage_from");
         if( !arrayp(ppl) || !sizeof(ppl) ) ppl = ({});
         if( userp(who) && member_array(who, ppl) == -1 )
@@ -357,7 +357,7 @@ void die(object killer)
         ob->move(where);
         message_vision(HIC "叮~~一聲，從$N" HIC "身上掉出" + ob->name() + NOR + HIC "，落在地上。\n" NOR, this_object());
 
-        if( MEMBER_D->is_valid_member(killer) && query("quest_tuteng/start", killer) && random(100) < 2 ) 
+        if( MEMBER_D->is_valid_member(killer) && query("quest_tuteng/start", killer) && random(100) < 2 )
         {
                 ob = new("/clone/tuteng/diwang-suipian"+(47+random(3)));
                 message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR

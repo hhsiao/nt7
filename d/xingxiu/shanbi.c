@@ -36,20 +36,20 @@ void init()
 int do_za(string arg)
 {
         object  weapon, me = this_player();
-        int ging_cost, qi_cost, jingli_cost;
+        int ging_cost, qi_cost;
         weapon=query_temp("weapon", me);
         ging_cost=150/query("int", me);
         qi_cost=200/query("con", me);
- 
+
         if (!living(me)) return 0;
         if ( arg != "bi" ) return notify_fail("你要撞擊什麼？\n");
-        if (!weapon) return notify_fail("你用什麼砸山壁來練功？\n");  
+        if (!weapon) return notify_fail("你用什麼砸山壁來練功？\n");
         if( query("skill_type", weapon) == "staff" )
-                if ((int)me->query_skill("staff", 1) >= 120) 
-                        return notify_fail("你已經不用再在這裡費功夫了。\n");  
+                if ((int)me->query_skill("staff", 1) >= 120)
+                        return notify_fail("你已經不用再在這裡費功夫了。\n");
         if( query("skill_type", weapon) == "hammer" )
-                if ((int)me->query_skill("hammer", 1) >= 120) 
-                        return notify_fail("你已經不用再在這裡費功夫了。\n");  
+                if ((int)me->query_skill("hammer", 1) >= 120)
+                        return notify_fail("你已經不用再在這裡費功夫了。\n");
         if( random(query("kar", me))<3 )
         {
                 message_vision("$N一不小心砸到自己腳上，痛得暈了過去。\n",me);
@@ -69,5 +69,5 @@ int do_za(string arg)
         me->improve_skill("hammer", me->query_skill("hammer", 1));
         me->receive_damage("jing", ging_cost );
         me->receive_damage("qi", qi_cost );
-        return 1;     
+        return 1;
 }

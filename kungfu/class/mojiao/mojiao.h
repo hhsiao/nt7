@@ -1,18 +1,17 @@
 // mojiao.h
 
-int permit_recruit(object ob)
-{
-        object me;
+int permit_recruit(object ob) {
+    object me;
 
-        me = this_object();
+    me = this_object();
 
-        if( query("detach/魔教", ob) || 
-            query("betrayer/times", ob) )
-        {
-                command("say 哈哈！想來想去都是我們魔教好吧！"); 
-                //message_vision("$N大怒道：我魔教豈能由你要來便來，要走便走？\n",me);
-                return 1;
-        }
-
+    if(query("detach/魔教", ob) ||
+        query("betrayer/times", ob) )
+    {
+        command("say 哈哈！想來想去都是我們魔教好吧！");
+        //message_vision("$N大怒道：我魔教豈能由你要來便來，要走便走？\n",me);
         return 1;
+    }
+
+    return 1;
 }

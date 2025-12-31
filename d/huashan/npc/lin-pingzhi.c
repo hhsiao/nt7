@@ -7,7 +7,7 @@ void create()
         set_name("林平之", ({ "lin pingzhi","lin","pingzhi"}));
         set("gender", "男性");
         set("age", 18);
-        set("long", "林平之是嶽不群最小的一個弟子，"
+        set("long", "林平之是岳不群最小的一個弟子，"
                     "也是他的東床快婿。\n");
         set("attitude", "peaceful");
 

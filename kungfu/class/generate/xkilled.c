@@ -216,7 +216,6 @@ void die(object killer)
         object dob;             // 打暈這個NPC的人
         object hob;             // 協助者
         object aob;             // 被協助者
-        int qlevel;             // 本次任務的等級
         int lvl;                // NPC的等級
         int scale;              // NPC呼叫的幫手和逃跑的次數
         int n;                  // 可以獎勵的人的數目
@@ -289,7 +288,7 @@ void die(object killer)
                         HIY "由於你的卓越表現，成功的解救了當地的百姓！\n" NOR);
         }
 
-        if( query("id", dob) == query_temp("quester") && 
+        if( query("id", dob) == query_temp("quester") &&
             query("slough/succeed", dob) != 1 )
         {
                 tell_object(dob,

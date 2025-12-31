@@ -15,12 +15,12 @@ void create() {
     );
     set("outdoors", "yangzhou");
     set("exits", ([ /* sizeof() == 1 */
-        "out" : __DIR__"teleport",
-        "wiz"   : __DIR__"yuanjiang/jiaban"
-    ]));
+        "out": __DIR__"teleport",
+        "wiz": __DIR__"yuanjiang/jiaban"
+        ]));
     set("objects", ([
         __DIR__"yuanjiang/npc/zheng" : 1
-    ]));
+        ]));
     set("no_dazuo", 1);
     set("no_kill", 1);
     set("no_fight", 1);
@@ -172,7 +172,7 @@ int c_niuren(object me) {
 int deploy() {
     string msg;
     object book, box, door, ds, room, usr, *allusrs;
-    int booki, yca, addnneili, cint, uc, tsi, si, blv = query("blv", this_object());
+    int booki, yca, addnneili, cint, uc, si, blv = query("blv", this_object());
     if (!blv) { //開新船
         if (query("cusr_name")) {
             CHANNEL_D->channel_broadcast("rumor", "聽說" + query("cusr_name") + "借金蛛給鄭顛仙，獨自登上了元江的廣成金船。\n");
@@ -259,7 +259,7 @@ int deploy() {
             //              DEBUG_CHANNEL("廣成金丹已分配給玩家：" + query("id", usr));
             tell_object(usr, HIW "船艙裡爆發空氣震盪，一點金星掙脫了漩渦飛進你的手裡，你趕緊張嘴往喉嚨裡一倒。\n" NOR);
             CHANNEL_D->channel_broadcast("news", HIG "聽說" + HIC + query("name", usr) + HIG + "在金船裡得到了一顆" HIY "廣成金丹"HIG"。");
-            GIFT_D->delay_bonus(usr, ([ "exp" : 15000000, "pot" : 5000000, "mar" : 2000000, "prompt" : "你在吞下廣成金丹之後"]));
+            GIFT_D->delay_bonus(usr, ([ "exp": 15000000, "pot": 5000000, "mar": 2000000, "prompt": "你在吞下廣成金丹之後"]));
             cint = query("gift/gcjindan", usr);
             if (cint<6) {
                 if (random(8<<(cint - 1))==0) {

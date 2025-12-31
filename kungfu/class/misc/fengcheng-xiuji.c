@@ -37,17 +37,17 @@ LONG);
 
         set("jing", 12000000);
         set("max_jing", 12000000);
-        set("jingli", 12000000); 
-        set("max_jingli", 12000000); 
+        set("jingli", 12000000);
+        set("max_jingli", 12000000);
 
-        set("neili", 100000); 
-        set("max_neili", 100000); 
-        set("jiali", 4000); 
+        set("neili", 100000);
+        set("max_neili", 100000);
+        set("jiali", 4000);
         set("combat_exp", 540000000);
 
 	set("scborn/ok", 1);
 	set("special_skill/guimai", 1);
-	
+
         set_skill("force", 1800);
         set_skill("pixie-jian", 1800);
         set_skill("surge-force", 1800);
@@ -112,7 +112,7 @@ int accept_kill(object ob)
 int accept_hit(object ob)
 {
         kill_ob(ob);
-        return -1;	
+        return -1;
         return 1;
 }
 
@@ -125,7 +125,7 @@ mixed hit_ob(object me, object ob, int damage_bouns)
 
 void heart_beat()
 {
-	if (query("neili") < 1 && random(50) == 1)						
+	if (query("neili") < 1 && random(50) == 1)
 		set("neili", query("max_neili"));
 
 	return ::heart_beat();
@@ -154,13 +154,11 @@ void die(object killer)
         int score;              // 需要瓜分的閱歷
         object *t;              // 殺死我的人的隊伍列表
         object tob;
-        int ysg;
-        int i;
 
         // 定義獎勵物品列表
 	// 幾率  MAX_POINT 分之 X
 	mixed oblist = ([
-			"/clone/misc/boss_item/anshouge-tu"               :         240,			
+			"/clone/misc/boss_item/anshouge-tu"               :         240,
 			"/clone/armor/qianshou-guanyin"                   :         100,
 			"/clone/armor/qiancao-guanyin"                    :         100,
 		]);
@@ -204,20 +202,20 @@ void die(object killer)
 	                       pot /= 3;
 	                       weiwang /= 3;
 	                       score /= 3;
-	                       tihui = 0;	                       
+	                       tihui = 0;
 	                }
 
 			if (n >= 3)
 			{
 				exp /= n;
-				pot /= n;			
+				pot /= n;
 			}
-	
+
 			if (n)
-			{				
+			{
 				foreach(tob in t)
 				{
-					
+
 					if (objectp(tob) && living(tob))
 					{
 						if (tob->query("combat_exp") >= MAX_EXP)continue;
@@ -228,7 +226,7 @@ void die(object killer)
 								   "mar"      : tihui + ((tob == dob) ? 3000 : 0),
 								   //"gongxian" : tob->query("family/family_name") == "崑崙派" ? gongxian : 0,
 								   "prompt"   : "你的隊伍打敗" + name() + "之後"]), 999);
-	
+
 					}
 				}
 			}
@@ -240,11 +238,11 @@ void die(object killer)
 					    	    "pot"      : pot,
 					    	    "prompt"   : "你在打敗" + name() + "之後"]), 999);
 			}
-	
+
 	        }
-		
+
 	        // 一定幾率掉物品在殺我的人身上dob
-		if (objectp(dob) && environment(dob) == environment(this_object()) && 
+		if (objectp(dob) && environment(dob) == environment(this_object()) &&
 		    dob->query("combat_exp") < MAX_EXP)
 		{
 			key_s_gift = keys(oblist);
@@ -252,19 +250,19 @@ void die(object killer)
 			gift_point = oblist[s_gift];
 
 			// 判斷幾率
-			if (MEMBER_D->is_valib_member(dob->query("id")) 
+			if (MEMBER_D->is_valib_member(dob->query("id"))
 			    && random(MAX_POINT / ITEM_D->gift_point()) < gift_point)
 			{
 				// 獲得物品--爆出物品直接放在dob身上
 				gift_ob = new(s_gift);
 				if (objectp(gift_ob))
 				{
-					message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR 
+					message_vision(HIR "叮~~一聲，從$N" HIR "掉出一樣東西，$n" HIR
 						       "趕緊揀了起來。\n" NOR, this_object(), dob);
 					tell_object(dob, BLINK + HIG "你得到了" + gift_ob->name() + BLINK + HIG "。\n" NOR);
 					gift_ob->move(dob, 1);
 				}
-				else // 紀錄之 
+				else // 紀錄之
 				{
 					log_file("killed-gift-none", s_gift + "\n");
 				}
@@ -278,7 +276,7 @@ void die(object killer)
 		}/*
 		else
 		{
-			message_vision(HIG "猛然間，$N " HIG " 向後一跳，隨手仍出一顆黑色小丸，頓時騰起一片煙霧 ...\n" NOR, 
+			message_vision(HIG "猛然間，$N " HIG " 向後一跳，隨手仍出一顆黑色小丸，頓時騰起一片煙霧 ...\n" NOR,
 			               this_object());
 			command("chat 哼，雕蟲小技，不陪你們玩了，告辭！");
 			CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + name() + HIM "從古墓中盜得珍寶後，奪路而逃。" NOR);
@@ -290,18 +288,18 @@ void die(object killer)
 		if (random(500) < 1)
 		{
 			object ob_tongren;
-			ob_tongren = new("/clone/fam/item/wuming-tongren");			
+			ob_tongren = new("/clone/fam/item/wuming-tongren");
 			message_vision(HIR "當~~一聲，從$N" HIR "身上掉出" + ob_tongren->name() + HIR "，落在地上。\n" NOR, this_object());
 			ob_tongren->set("who_get/id", "NONE");
-			ob_tongren->set("who_get/time", time() + 30); // 30秒內都不能撿取		
+			ob_tongren->set("who_get/time", time() + 30); // 30秒內都不能撿取
 			ob_tongren->move(environment(this_object()));
 		}
-		
+
 		// 特殊活動爆物品，統一調用giftd接口
-		GIFT_D->fuben_boss_gift(this_object());	
-				
+		GIFT_D->fuben_boss_gift(this_object());
+
 		destruct(this_object());
-	
+
 	        return;
 }
 

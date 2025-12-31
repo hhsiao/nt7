@@ -14,7 +14,7 @@ void create()
                 set_default_object(__FILE__);
         else*/ {
                 set("unit", "杆");
-                set("long","這是武穆遺物。當年嶽武穆捻靈蛇而得神兵，百戰功成，多賴此槍。\n");
+                set("long","這是武穆遺物。當年岳武穆捻靈蛇而得神兵，百戰功成，多賴此槍。\n");
                 set("material", "steel");
                 set("no_drop", 1);
                 set("value", 100);

@@ -20,7 +20,7 @@ void create()
                 set("unit", "本");
                 set("long",
                         GRN
-                        "\n這就是嶽武穆臨死前留下的“破金要訣”。\n"
+                        "\n這就是岳武穆臨死前留下的“破金要訣”。\n"
                         "只見第一頁上寫了十八個大字：\n"
                         "“重搜選，謹訓習”\n"
                         "“公賞罰，明號令”\n"
@@ -44,7 +44,7 @@ int do_du(string arg)
         if (!present(this_object(), this_player()))
                 return 0;
 
-//if( me->query("wumu+int")) 
+//if( me->query("wumu+int"))
         if( query("mark/+int", this_player()) )
         {
                 write("這可真是一部兵法奇書呀！！！\n");

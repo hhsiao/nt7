@@ -15,17 +15,17 @@ void create()
 面。
 LONG );
 
-        set("item_desc", ([ 
+        set("item_desc", ([
                 "bian"       :       (: look_bian :),
         ]));
 
-        set("exits", ([ 
+        set("exits", ([
                 "east" : __DIR__"zoulang-1",
                 "southdown" : __DIR__"guangchang",
                 "west" : __DIR__"zoulang-2",
                 "north" : __DIR__"hxfang",
         ]));
-        set("objects", ([ 
+        set("objects", ([
                 CLASS_D("tiezhang") + "/qiuqianren" : 1,
                 __DIR__"npc/xiaotong" : 2,
         ]));
@@ -41,8 +41,7 @@ string look_bian()
     "\n"
               HIY "          ####################################\n"
                   "          ####                            ####\n"
-                  "          ####    五    指    擎    天    ####\n"  
+                  "          ####    五    指    擎    天    ####\n"
                   "          ####                            ####\n"
                   "          ####################################\n\n\n\n\n\n\n" NOR;
-    "\n";
 }

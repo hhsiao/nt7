@@ -78,7 +78,7 @@ void set_from_me(object me)
 
 void init()
 {
-        object ob, baixing, env;
+        object ob;
         object killer = this_object();
 
         ob = this_player();
@@ -86,7 +86,7 @@ void init()
         if( !query_temp("quester", this_object()) )
                 return;
 
-        if( query("id", ob) == query_temp("quester") && 
+        if( query("id", ob) == query_temp("quester") &&
             query("slough/check", ob) )
         {
                 killer->fight_ob(ob);
@@ -104,7 +104,7 @@ void init()
                 place_npc(killer, ob);
                 set("slough/inquiry", 1, ob);
         } else
-        if( query("slough/chased", ob) && 
+        if( query("slough/chased", ob) &&
             !query("baixing", killer) && query("id", ob) == query_temp("quester") )
         {
                 message_vision(
@@ -117,7 +117,7 @@ void init()
                 remove_call_out("kill_baixing");
                 call_out("kill_baixing", 1, ob);
         } else
-        if( query("slough/chased", ob) && 
+        if( query("slough/chased", ob) &&
             query("baixing", killer) && query("id", ob) == query_temp("quester") )
         {
                 message_sort(
@@ -272,7 +272,6 @@ void die(object killer)
         object dob;             // 打暈這個NPC的人
         object hob;             // 協助者
         object aob;             // 被協助者
-        int qlevel;             // 本次任務的等級
         int lvl;                // NPC的等級
         int scale;              // NPC呼叫的幫手和逃跑的次數
         int n;                  // 可以獎勵的人的數目
@@ -345,7 +344,7 @@ void die(object killer)
                         HIY "由於你的卓越表現，成功的解救了當地的百姓！\n" NOR);
         }
 
-        if( query("id", dob) == query_temp("quester") && 
+        if( query("id", dob) == query_temp("quester") &&
             query("slough/succeed", dob) != 1 )
         {
                 tell_object(dob,

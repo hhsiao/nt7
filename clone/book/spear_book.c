@@ -11,7 +11,7 @@ void create()
         else*/
         {
                 set("unit", "本");
-                set("long","這是一本岳家槍法殘本，是嶽武穆送給上官幫主的。可惜年深月久，書以有些殘破了。\n");
+                set("long","這是一本岳家槍法殘本，是岳武穆送給上官幫主的。可惜年深月久，書以有些殘破了。\n");
                 set("value", 100);
                 set("material", "paper");
                 set("skill", ([

@@ -4,26 +4,25 @@
 
 inherit "/inherit/char/punisher";
 
-void create()
-{
-        set_name("長老", ({ "zhang lao", "zhang", "lao" }));
-        set("long",  "日月神教開山鼻祖方臘手下第一貼身侍衛，無人知曉其真實姓名。\n");
-        set("gender", "男性");
-        set("age", 145);
-        set("attitude", "peaceful");
-        set("shen_type", 0);
-        set("str", 32);
-        set("int", 33);
-        set("con", 32);
-        set("dex", 31);
-        
-        set("max_qi", 99999);
-        set("max_jing", 99999);
-        set("neili", 99999);
-        set("max_neili", 99999);
-        set("jiali", 300);
-        set("combat_exp", 50000000);
-        set("score", 10000000);
+void create() {
+    set_name("長老", ({ "zhang lao", "zhang", "lao" }));
+    set("long", "日月神教開山鼻祖方臘手下第一貼身侍衛，無人知曉其真實姓名。\n");
+    set("gender", "男性");
+    set("age", 145);
+    set("attitude", "peaceful");
+    set("shen_type", 0);
+    set("str", 32);
+    set("int", 33);
+    set("con", 32);
+    set("dex", 31);
+
+    set("max_qi", 99999);
+    set("max_jing", 99999);
+    set("neili", 99999);
+    set("max_neili", 99999);
+    set("jiali", 300);
+    set("combat_exp", 50000000);
+    set("score", 10000000);
 
     set_skill("force", 2500);
     set_skill("riyue-xinfa", 2500);
@@ -33,7 +32,7 @@ void create()
     set_skill("pixie-jian", 2700);
     set_skill("dodge", 2600);
     set_skill("piaomiao-shenfa", 2600);
-    set_skill("parry",2690);
+    set_skill("parry", 2690);
     set_skill("cuff", 2690);
     set_skill("xuwu-piaomiao", 2690);
     set_skill("hand", 2690);

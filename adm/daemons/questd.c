@@ -1366,7 +1366,6 @@ int remote_bonus(object me)
 {
         mapping q;              // WHO的任務
         string msg;             // 掌門說的消息
-        object dob;             // 打暈敵人的人
         object who;
         int bonus;              // 獎勵(正整數，1是正常)
         int t;                  // 用來計算時間的變量

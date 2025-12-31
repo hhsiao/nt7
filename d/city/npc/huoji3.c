@@ -2,7 +2,7 @@
 #include <ansi.h>
 #include <dbase.h>
 
-inherit BUNCHER; 
+inherit BUNCHER;
 int ask_me();
 int ask_send();
 int do_send(string arg);
@@ -112,7 +112,7 @@ string price_string(int v)
 }
 int do_buy(string what)
 {
-        int i, amount, value, val_factor;
+        int i, amount, val_factor;
         string ob_file;
         object ob, me = this_player();
         mapping goods;
@@ -153,7 +153,7 @@ int do_buy(string what)
                                 else if(goods[name[i]]<50)
                                 {
                                         val_factor=15;
-                                       tell_object(this_player(), "紫茵說：現在這"+query("name",ob)+"喜歡的人很多，價格上漲一半，合"+MONEY_D->price_str(query("value",ob)*val_factor/10)+"一"+query("unit", get_object(name[i]))+"。\n"); 
+                                       tell_object(this_player(), "紫茵說：現在這"+query("name",ob)+"喜歡的人很多，價格上漲一半，合"+MONEY_D->price_str(query("value",ob)*val_factor/10)+"一"+query("unit", get_object(name[i]))+"。\n");
                                 }
                                 switch(MONEY_D->player_pay(me,query("value", ob)*amount*val_factor/10) )
                                 {
@@ -193,7 +193,7 @@ int do_check(string arg)
         list = "你可以購買下列這些東西：\n";
         for(i=0; i<sizeof(name); i++)
                 list += sprintf("%-30s：\t%s\t還剩%s%s\n",
-                        makeup_space(query("name",get_object(name[i]))+"("+ 
+                        makeup_space(query("name",get_object(name[i]))+"("+
                         query("id", get_object(name[i]))+")"),
                         MONEY_D->price_str(query("value", get_object(name[i]))),
                         CHINESE_D->chinese_number(goods[name[i]]),
@@ -243,9 +243,9 @@ int ask_send()
 }
 int do_send(string arg)
 {
-        object tar, ob_flower, send_flower, me=this_player();
-        int i, k, money_amount;
-        mapping flower, *flowers;
+        object ob_flower, send_flower, me=this_player();
+        int money_amount;
+        mapping flower;
         string flower_name, who;
 
         if( !arg || sscanf(arg, "%s to %s", flower_name, who)!=2 )
@@ -419,7 +419,7 @@ mixed ask_back()
         message_sort("$N猛然抬起頭來，上上下下打量了一會"
                      "兒$n，眼角微微一動，立刻放下手中的"
                      "活計，從內室領出一隻白雕，說道：你"
-                     "乘坐這隻白雕回桃花島吧。\n", 
+                     "乘坐這隻白雕回桃花島吧。\n",
                      this_object(), me);
 
         tell_object(me, HIW "你坐上白雕飛了很久，越過大海，忽然眼前一亮，"
@@ -427,4 +427,3 @@ mixed ask_back()
         me->move("/d/taohua/jingshe");
         return -1;
 }
-

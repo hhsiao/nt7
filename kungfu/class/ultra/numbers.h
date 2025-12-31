@@ -4,7 +4,7 @@ string *zhiku = ({
     "/adm/etc/language/zhiku3",
     "/adm/etc/language/zhiku4",
     "/adm/etc/language/zhiku5",
-    "/adm/etc/language/zhiku6",
+    "/adm/etc/language/zhiku6"
 });
 
 string *chn_num = ({
@@ -12,7 +12,7 @@ string *chn_num = ({
     "金魏陶姜戚謝鄒喻柏水章雲蘇葛奚彭郎魯韋馬苗鳳花方任喬",
     "袁柳鄧鮑史唐費岑薛雷賀倪禹羅華安常樂時付皮齊康伍龍文",
     "餘元卜顧平黃和肖尹邵毛米貝明計伏成談宋茅龐紀舒屈易司",
-    "項祝胡萬支柯管盧英仇候嶽帥寧谷楚晉法欽段歸商佘徒木百",
+    "項祝胡萬支柯管盧英仇候岳帥寧谷楚晉法欽段歸商佘徒木百",
     "哈年陽佟言鍾宗林石劉徐程傅曾丁葉杜夏田陸白崔江史侯孟",
     "馬上官歐陽夏東方連皇甫遲臺公冶於單太申公孫仲令鍾宇文",
     "長孫容司裡東南呼門宮阿艾哀安諳奧敖昂罷白佰班般邦北超朝",
@@ -34,282 +34,282 @@ string *chn_num = ({
     "拙捉酌自子孜梓宗足祖卒作左佐愛嬪玢春純丹芳菲妃芬鳳楓紅虹",
     "嬌姣皎娟絹涓可珂蘭藍麗莉梨儷俐蓮憐玲琳鈴靈苓綾曼媚妹美玫",
     "納琪琦芹芩倩纖芊青清蘋柔婷雯紋瑕仙香湘欣繡袖秀雪豔燕煙妍",
-    "英瑛穎鶯玉妤瑜月珍真貞珠",
+    "英瑛穎鶯玉妤瑜月珍真貞珠"
 });
 
 string *numbers = ({
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                }),
-        ({
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●BJ●"NOR,
-                "QJ●BJ●BJ●BJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●BJ●"NOR,
-                "QJ●BJ●BJ●BJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●BJ●"NOR,
-                "QJ●BJ●BJ●BJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                }),
-        ({
-                "QJ●QJ●QJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "BJ●BJ●BJ●QJ●"NOR,
-                "QJ●QJ●QJ●QJ●"NOR,
-                }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR
+    }),
+    ({
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR
+    }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●BJ●"NOR,
+        "QJ●BJ●BJ●BJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR
+    }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR
+    }),
+    ({
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR
+    }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●BJ●"NOR,
+        "QJ●BJ●BJ●BJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR
+    }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●BJ●"NOR,
+        "QJ●BJ●BJ●BJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR
+    }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR
+    }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR
+    }),
+    ({
+        "QJ●QJ●QJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "BJ●BJ●BJ●QJ●"NOR,
+        "QJ●QJ●QJ●QJ●"NOR
+})
 });
 
-mapping *the_color=({
-        ([
-                "bj":BCYN,
-                "bf":CYN,
-                "qj":RED,
-        ]),
-        ([
-                "bj":BCYN,
-                "bf":CYN,
-                "qj":HIR,
-        ]),
-        ([
-                "bj":BCYN,
-                "bf":CYN,
-                "qj":HIG,
-        ]),
-        ([
-                "bj":BCYN,
-                "bf":CYN,
-                "qj":MAG,
-        ]),
-        ([
-                "bj":BCYN,
-                "bf":CYN,
-                "qj":HIW,
-        ]),
-        ([
-                "bj":BCYN,
-                "bf":CYN,
-                "qj":HIW,
-        ]),
-        ([
-                "bj":BRED,
-                "bf":RED,
-                "qj":YEL,
-        ]),
-        ([
-                "bj":BRED,
-                "bf":RED,
-                "qj":HIY,
-        ]),
-        ([
-                "bj":BRED,
-                "bf":RED,
-                "qj":HIW,
-        ]),
-        ([
-                "bj":BRED,
-                "bf":RED,
-                "qj":HIC,
-        ]),
-        ([
-                "bj":BRED,
-                "bf":RED,
-                "qj":WHT,
-        ]),
-        ([
-                "bj":BRED,
-                "bf":RED,
-                "qj":HIG,
-        ]),
-        ([
-                "bj":BRED,
-                "bf":RED,
-                "qj":CYN,
-        ]),
-        ([
-                "bj":BGRN,
-                "bf":GRN,
-                "qj":RED,
-        ]),
-        ([
-                "bj":BGRN,
-                "bf":GRN,
-                "qj":HIY,
-        ]),
-        ([
-                "bj":BGRN,
-                "bf":GRN,
-                "qj":WHT,
-        ]),
-        ([
-                "bj":BGRN,
-                "bf":GRN,
-                "qj":HIC,
-        ]),
-        ([
-                "bj":BYEL,
-                "bf":YEL,
-                "qj":HIR,
-        ]),
-        ([
-                "bj":BYEL,
-                "bf":YEL,
-                "qj":HIC,
-        ]),
-        ([
-                "bj":BYEL,
-                "bf":YEL,
-                "qj":RED,
-        ]),
-        ([
-                "bj":BYEL,
-                "bf":YEL,
-                "qj":HIW,
-        ]),
-        ([
-                "bj":BYEL,
-                "bf":YEL,
-                "qj":HIB,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":HIR,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":HIW,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":WHT,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":YEL,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":HIW,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":HIC,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":HIM,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":HIG,
-        ]),
-        ([
-                "bj":BBLU,
-                "bf":BLU,
-                "qj":GRN,
-        ]),
-        ([
-                "bj":BMAG,
-                "bf":MAG,
-                "qj":HIW,
-        ]),
-        ([
-                "bj":BMAG,
-                "bf":MAG,
-                "qj":WHT,
-        ]),
-        ([
-                "bj":BMAG,
-                "bf":MAG,
-                "qj":HIY,
-        ]),
-        ([
-                "bj":BMAG,
-                "bf":MAG,
-                "qj":HIG,
-        ]),
+mapping *the_color = ({
+    ([
+        "bj": BCYN,
+        "bf": CYN,
+        "qj": RED
+    ]),
+    ([
+        "bj": BCYN,
+        "bf": CYN,
+        "qj": HIR
+    ]),
+    ([
+        "bj": BCYN,
+        "bf": CYN,
+        "qj": HIG
+    ]),
+    ([
+        "bj": BCYN,
+        "bf": CYN,
+        "qj": MAG
+    ]),
+    ([
+        "bj": BCYN,
+        "bf": CYN,
+        "qj": HIW
+    ]),
+    ([
+        "bj": BCYN,
+        "bf": CYN,
+        "qj": HIW
+    ]),
+    ([
+        "bj": BRED,
+        "bf": RED,
+        "qj": YEL
+    ]),
+    ([
+        "bj": BRED,
+        "bf": RED,
+        "qj": HIY
+    ]),
+    ([
+        "bj": BRED,
+        "bf": RED,
+        "qj": HIW
+    ]),
+    ([
+        "bj": BRED,
+        "bf": RED,
+        "qj": HIC
+    ]),
+    ([
+        "bj": BRED,
+        "bf": RED,
+        "qj": WHT
+    ]),
+    ([
+        "bj": BRED,
+        "bf": RED,
+        "qj": HIG
+    ]),
+    ([
+        "bj": BRED,
+        "bf": RED,
+        "qj": CYN
+    ]),
+    ([
+        "bj": BGRN,
+        "bf": GRN,
+        "qj": RED
+    ]),
+    ([
+        "bj": BGRN,
+        "bf": GRN,
+        "qj": HIY
+    ]),
+    ([
+        "bj": BGRN,
+        "bf": GRN,
+        "qj": WHT
+    ]),
+    ([
+        "bj": BGRN,
+        "bf": GRN,
+        "qj": HIC
+    ]),
+    ([
+        "bj": BYEL,
+        "bf": YEL,
+        "qj": HIR
+    ]),
+    ([
+        "bj": BYEL,
+        "bf": YEL,
+        "qj": HIC
+    ]),
+    ([
+        "bj": BYEL,
+        "bf": YEL,
+        "qj": RED
+    ]),
+    ([
+        "bj": BYEL,
+        "bf": YEL,
+        "qj": HIW
+    ]),
+    ([
+        "bj": BYEL,
+        "bf": YEL,
+        "qj": HIB
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": HIR
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": HIW
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": WHT
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": YEL
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": HIW
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": HIC
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": HIM
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": HIG
+    ]),
+    ([
+        "bj": BBLU,
+        "bf": BLU,
+        "qj": GRN
+    ]),
+    ([
+        "bj": BMAG,
+        "bf": MAG,
+        "qj": HIW
+    ]),
+    ([
+        "bj": BMAG,
+        "bf": MAG,
+        "qj": WHT
+    ]),
+    ([
+        "bj": BMAG,
+        "bf": MAG,
+        "qj": HIY
+    ]),
+    ([
+        "bj": BMAG,
+        "bf": MAG,
+        "qj": HIG
+    ]),
 
-        ([
-                "bj":BMAG,
-                "bf":MAG,
-                "qj":HIC,
-        ]),
+    ([
+        "bj": BMAG,
+        "bf": MAG,
+        "qj": HIC
+    ])
 });

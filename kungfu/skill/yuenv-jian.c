@@ -138,7 +138,7 @@ int practice_skill(object me)
 {
         object weapon;
 
-        if( !objectp(weapon=query_temp("weapon", me)) || 
+        if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
                 return notify_fail("你使用的武器不對。\n");
 
@@ -156,7 +156,6 @@ int practice_skill(object me)
 mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
 {
         object weapon;
-        string name;
         int ap, dp;
 
         weapon=query_temp("weapon", me);
@@ -166,7 +165,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
         if (attack_time > 7)
                 attack_time = 7;
 
-        ap = me->query_skill("sword"); 
+        ap = me->query_skill("sword");
         dp = victim->query_skill("dodge");
 
         if (me->is_busy()
@@ -178,7 +177,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
            || me->query_skill_mapped("parry") != "yuenv-jian"
            || me->query_skill("yuenv-jian", 1) < 120)
                 return 0;
-        
+
         message_vision(HIW "\n霎那間，只見$N" HIW "手中" + weapon->name() + HIW "輕盈靈動"
                        "，優美華麗，不帶一絲塵俗之氣，卻將$n" HIW "攻得無暇反擊！\n"
                        NOR, me, victim);

@@ -36,7 +36,7 @@ mapping eff_heal = ([
         "yijinjing"             : 9,
         "hunyuan-yiqi"          : 8,    // 鑑於易筋經以及九陽神功在療傷方面的效果。
         "zixia-shengong"        : 8,    // 紫霞神功及混元功在自療方面沒有什麼提及，但是有鑑
-                                        // 於其療人的效果，以及嶽不群曾經想讓令狐沖自習紫霞
+                                        // 於其療人的效果，以及岳不群曾經想讓令狐沖自習紫霞
                                         // 神功來治療內傷，可見於自療方面的效果，或許可以與
                                         // 易筋經相媲美。就算是有所不及，考慮到當今紫霞神功
                                         // 沒有什麼特別的 exert，也應當讓紫霞神功在治療方面
@@ -88,26 +88,26 @@ int exert(object me, object target)
 
         if( query("eff_qi", me)<query("max_qi", me)/5 )
                 return notify_fail("你已經受傷過重，只怕一運真氣便有生命危險！\n");
-        
+
         msg = SKILL_D(force)->heal_msg(me);
-                
+
         if (! msg || undefinedp(msg["start_self"]))
                 write(HIW "你全身放鬆，坐下來開始運功療傷。\n" NOR);
-        else 
-                write(msg["start_self"]);               
+        else
+                write(msg["start_self"]);
 
         set_temp("pending/healing", 1, me);
-        
+
         if (! msg || undefinedp(msg["apply_short"]))
-                me->set_short_desc("正坐在地下運功療傷。");                
-        else    
+                me->set_short_desc("正坐在地下運功療傷。");
+        else
                 me->set_short_desc(msg["apply_short"]);
 
         if (! msg || undefinedp(msg["start_other"]))
                 tell_room(environment(me), HIW + me->name() + "盤膝坐下，開始運功療傷。\n" NOR, me);
         else
-                tell_room(environment(me), msg["start_other"], me); 
-                                
+                tell_room(environment(me), msg["start_other"], me);
+
         me->start_busy((:call_other, __FILE__, "healing" :),
                        (:call_other, __FILE__, "halt_healing" :));
 
@@ -131,7 +131,7 @@ int healing(object me)
                 message_vision("$N嘆了口氣，搖搖晃晃的站了起來。\n", me);
                 return 0;
         }
-        
+
         msg = SKILL_D(force)->heal_msg(me);
 
         if( query("eff_qi", me)<query("max_qi", me) )
@@ -141,20 +141,20 @@ int healing(object me)
                 {
                         if (! msg || undefinedp(msg["unfinish_self"]))
                                 tell_object(me, "你覺得真氣不濟，難以在經脈中繼續運轉療傷，只得暫緩療傷，站起身來。\n");
-                        else    
+                        else
                                 tell_object(me, msg["unfinish_self"]);
-                                
+
                         set_temp("pending/healing", 0, me);
                         me->set_short_desc(0);
-                        
+
                         if (! msg || undefinedp(msg["unfinish_other"]))
                                 tell_room(environment(me), me->name() + "嘆了口氣，搖搖晃晃的站了起來。\n", me);
-                        else    
+                        else
                                 tell_room(environment(me), msg["unfinish_other"], me);
-                                
+
                         return 0;
                 }
-                
+
                 //lvl = (int)me->query_skill("force") / 10;
                 lvl = (int)me->query_skill("force");
                 con = (int)me->query_con();
@@ -167,9 +167,9 @@ int healing(object me)
                 if( query("yuanshen_level", me) )
                         recover_points *= 2;
                 if (recover_points < 1) recover_points = 1;
-                me->receive_curing("qi", recover_points);                                
+                me->receive_curing("qi", recover_points);
                 addn("neili", -50, me);
-                
+
                 if (! msg || undefinedp(msg["heal_msg"]))
                 {
                         switch (random(10))
@@ -200,14 +200,14 @@ int healing(object me)
         me->set_short_desc(0);
         if (! msg || undefinedp(msg["finish_self"]))
                 tell_object(me, HIY "你運功完畢，吐出一口瘀血，自覺經脈順暢，內傷盡去，神元氣足地站了起來。\n" NOR);
-        else    
-                tell_room(me, msg["finish_self"]); 
-                
+        else
+                tell_room(me, msg["finish_self"]);
+
         if (! msg || undefinedp(msg["finish_other"]))
                 tell_room(environment(me), HIY + me->name() + "運功完畢，吐出一口瘀血，站起身來，臉色看起來好多了。\n" NOR, me);
         else
-                tell_room(environment(me), msg["finish_other"], me);      
-                
+                tell_room(environment(me), msg["finish_other"], me);
+
         return 0;
 }
 
@@ -216,20 +216,20 @@ int halt_healing(object me)
 {
         string force;
         mapping msg;
-        
-        if (stringp(force = me->query_skill_mapped("force"))) 
+
+        if (stringp(force = me->query_skill_mapped("force")))
                 msg = SKILL_D(force)->heal_msg(me);
-        
+
         if (! msg || undefinedp(msg["halt_self"]))
                 tell_object(me, "你將真氣收回丹田，微微喘息，站了起來。\n");
-        else    
+        else
                 tell_object(me, msg["halt_self"]);
-                
+
         if (! msg || undefinedp(msg["halt_other"]))
                 tell_room(environment(me), me->name() + "猛的吸一口氣，突然站了起來。\n", me);
-        else    
+        else
                 tell_room(environment(me), msg["halt_other"], me);
-                
+
         set_temp("pending/healing", 0, me);
         me->set_short_desc(0);
         if( query("neili", me)>100 )

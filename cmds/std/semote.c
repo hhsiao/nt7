@@ -57,7 +57,7 @@ int main(object me, string arg)
 #ifdef  __PACKAGE_ARITH_OPERATOR__
                 emotions = sort_array(emotions, (: count( $(emotion_sort)[$1],">",$(emotion_sort)[$2] )? -1:1:));
 #else
-                emotions = sort_array(emotions, (: emotion_sort[$1]>emotion_sort[$2]? -1:1:));
+                emotions = sort_array(emotions, (: $(emotion_sort)[$1]>$(emotion_sort)[$2]? -1:1:));
 #endif
 
                 msg = "表情指令使用排名:\n";

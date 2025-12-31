@@ -10,7 +10,7 @@ void create() {
     set("age", 10000);
     set("long", "蚩尤，與黃帝涿鹿中原的一代大神，鬢如劍戟，頭有利角，銅頭鐵額，誅殺
         無道，乃古往今來睥睨天下之第一兇魔！他的頭頂，有一根放射出萬道金華
-            的[37m法杖[32m沒頂而插\n");
+        的[37m法杖[32m沒頂而插\n");
     set("title", "不世戰神");
     set("nickname", HIR"萬古兇魔"NOR);
 
@@ -73,10 +73,10 @@ void create() {
 
     set("chat_chance_combat", 120);
     set("chat_msg_combat", ({
-            (: perform_action, "blade.ting" :),
+        (: perform_action, "blade.ting" :),
         (: perform_action, "blade.yue" :),
         (: exert_function, "recover": )
-        }) );
+    }) );
 
     set("rewards", ([
         "exp": 800000,
@@ -127,7 +127,7 @@ string staff() {
     if(query("staff")){
         tell_object(me, YEL"\n
             一柄由萬載菩提木製成的法杖，一大半已深深插入蚩尤巨像頭頂，但露出的一部分
-                    依舊光華奪目，不知道是否能拔出來（pull)；據傳上古時黃帝斬殺蚩尤巨兇後，
+            依舊光華奪目，不知道是否能拔出來（pull)；據傳上古時黃帝斬殺蚩尤巨兇後，
         唯恐其亡魂不散，特向佛祖借來這萬年菩提杖插入蚩尤石像，以鎮住這不世之兇，
         萬世不得翻身。\n\n"NOR);
     } else {
@@ -341,9 +341,10 @@ void new_life() {
 
 void die(object killer) {
     object ob;
-    /*string *apply = ({ "reduce_busy", "avoid_busy", "def_damage", "avoid_weak",
-        "add_locked", "reduce_damage", "add_busy", "add_weak", "avoid_locked",
-        "add_damage", "add_skill" });*/
+    /*
+     * string *apply = ({ "reduce_busy", "avoid_busy", "def_damage", "avoid_weak",
+     * "add_locked", "reduce_damage", "add_busy", "add_weak", "avoid_locked",
+     * "add_damage", "add_skill" });*/
 
     if(objectp(ob = previous_object(0)) && sscanf(base_name(ob), "/kungfu/skill/%*s") )
     {

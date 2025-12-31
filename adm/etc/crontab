@@ -1,38 +1,38 @@
-# falg 为 0 说明以下定时是依照现实生活中的时间
-# falg 为 1 说明以下定时是依照游戏中的时间
+# falg 為 0 說明以下定時是依照現實生活中的時間
+# falg 為 1 說明以下定時是依照遊戲中的時間
 #
-# day_in_month 一个月中的第几天，范围 1-31
+# day_in_month 一個月中的第幾天，範圍 1-31
 #
-# day_in_week  星期几 范围 0-6 ( 0 为星期日 )
+# day_in_week  星期幾 範圍 0-6 ( 0 為星期日 )
 #
-# month_in_year 月份 范围 0-11
+# month_in_year 月份 範圍 0-11
 #
-# hour  小时    范围 0-23
+# hour  小時    範圍 0-23
 #
-# minute 分钟   范围 0-59
+# minute 分鐘   範圍 0-59
 #
-# object、function 是条件满足时触发 object->function
+# object、function 是條件滿足時觸發 object->function
 #
-# 没有用的项用 '*' 星号 填补
-# 每一项中可以用 ',' 逗号来分割多条件
+# 沒有用的項用 '*' 星號 填補
+# 每一項中可以用 ',' 逗號來分割多條件
 #
 # 以下是格式：
 #flag:minute:hour:day_in_week:day_in_month:month_in_year:year object function string *args
 #
 
 
-#每分钟检测排程心跳情况
+#每分鐘檢測排程心跳情況
 0:*:*:*:*:*:* /adm/daemons/scheduled start_events
 
-#每10分钟清理系统内存
+#每10分鐘清理系統內存
 0:*/30:*:*:*:*:* /adm/daemons/timed auto_relaim
 
-#每 30 分钟更新 MUDLIST 纪录
+#每 30 分鐘更新 MUDLIST 紀錄
 # 0:*/30:*:*:*:*:* /adm/daemons/mudlistd distributed_connect
 # 0:0:*:*:*:*:* /adm/daemons/mudlistd reset_maxuser
 # 0:*/18:*:*:*:*:* /adm/daemons/mysql_schedule_d refresh_mudlist
 
-#开放战场报名
+#開放戰場報名
 #0:20:14:*:*:*:* /adm/daemons/battlefieldd start_join battle1
 #0:10:15:*:*:*:* /adm/daemons/battlefieldd start_join battle2
 0:50:15:*:*:*:* /adm/daemons/battlefieldd2 start_join
@@ -42,19 +42,19 @@
 #0:50:22:*:*:*:* /adm/daemons/battlefieldd start_join battle1
 #0:40:23:*:*:*:* /adm/daemons/battlefieldd start_join battle2
 
-#门派仇杀每个小时一次
+#門派仇殺每個小時一次
 0:1:10:*:*:*:* /adm/daemons/battlefieldd3 start_join
 0:1:13:*:*:*:* /adm/daemons/battlefieldd3 start_join
 0:1:16:*:*:*:* /adm/daemons/battlefieldd3 start_join
 0:1:20:*:*:*:* /adm/daemons/battlefieldd3 start_join
 0:1:23:*:*:*:* /adm/daemons/battlefieldd3 start_join
-# 天下第一大帮争斗战
+# 天下第一大幫爭鬥戰
 0:10:20:*:*:*:* /adm/daemons/bunchd start_join
 
-# 游戏时间每月1日帮派盘点
+# 遊戲時間每月1日幫派盤點
 1:11:11:*:1:*:* /adm/daemons/bunchd manage_areas
 
-#定时出现的BOSS
+#定時出現的BOSS
 0:1:*:*:*:*:* /adm/daemons/boss_d place_boss huashan-pantu
 0:6:*:*:*:*:* /adm/daemons/boss_d place_boss chaoting-taofan
 0:8:*/3:*:*:*:* /adm/daemons/boss_d place_boss god_dragon 1
@@ -81,7 +81,7 @@
 0:35:*/2:*:*:*:* /adm/daemons/boss_d place_boss fusang-wushi
 0:38:*:*:*:*:* /adm/daemons/boss_d place_boss qicai-liulishou
 
-#开放蓬莱岛
+#開放蓬萊島
 0:15:20:0:*:*:* /adm/daemons/timed alloate_boat 1
 0:15:20:5:*:*:* /adm/daemons/timed alloate_boat 1
 0:15:20:6:*:*:* /adm/daemons/timed alloate_boat 1
@@ -90,25 +90,25 @@
 0:15:20:3:*:*:* /adm/daemons/timed alloate_boat 1
 0:15:20:4:*:*:* /adm/daemons/timed alloate_boat 1
 
-#持续馈赠nt
+#持續饋贈nt
 0:1:20:*:*:*:* /adm/daemons/timed give_money 3
 0:1:21:*:*:*:* /adm/daemons/timed give_money 3
 0:1:22:*:*:*:* /adm/daemons/timed give_money 3
 0:0:*:*:31:1:2015 /adm/daemons/timed give_money 10
 
-#新手导师薪水
+#新手導師薪水
 0:1:23:6:*:*:* /adm/daemons/timed pay_tutor_money 300
 
-#灵感塔开启
+#靈感塔開啟
 0:1:12:*:*:*:* /d/kaifeng/linggt/lgtd set_can_up
 
-#每周末商城打折
+#每週末商城打折
 #0:1:*:6:*:*:* /adm/daemons/goodsd set_rate 90
 #0:1:*:0:*:*:* /adm/daemons/goodsd set_rate 90
 #0:1:*:1:*:*:* /adm/daemons/goodsd set_rate 100
 0:1:8:*:*:*:* /adm/daemons/goodsd init_actions
 
-#每60分钟开启和移动一个洞天
+#每60分鐘開啟和移動一個洞天
 0:35:*:*:*:*:* /d/dongtian/create_d start
 
 #福利彩票
@@ -116,7 +116,7 @@
 #0:0:17:*:*:*:* /adm/daemons/caipiaod do_run end
 #0:0:18:*:*:*:* /adm/daemons/caipiaod do_run kaijiang
 
-#华山论剑，新人场每月2次，老鸟场每月1次
+#華山論劍，新人場每月2次，老鳥場每月1次
 0:1:18:*:*:*:* /u/redl/cangku do_start_hslj 
 0:2:19:*:*:*:* /u/redl/cangku do_start_hslj 
 0:3:20:*:5,20:*:* /u/redl/cangku do_start_hslj 1
@@ -124,7 +124,7 @@
 0:4:20:*:6:*:* /u/redl/cangku do_start_hslj 3
 0:4:22:*:6:*:* /u/redl/cangku do_start_hslj 5
 
-# 现实时间每月1日下午14点重启
+# 現即時間每月1日下午14點重啟
 #0:59:13:*:1:*:* /cmds/arch/reboot aboot
 
 #牛人三部曲
@@ -136,5 +136,5 @@
 0:25:15:0:*:*:* /u/redl/teleport/18niuren set_pkd
 0:45:*:*:*:*:* /u/redl/teleport/18niuren set23
 
-#元江宝船
+#元江寶船
 0:01:20:*:*:*:* /u/redl/teleport/ailao deploy

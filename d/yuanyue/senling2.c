@@ -3,7 +3,7 @@
 inherit ROOM;
 void create()
 {
-        set("short", "松林"); 
+        set("short", "松林");
         set("long", @LONG
 這裡是圓月山莊後園一片密密的松木林，四周一片寂靜。松針落
 的遍地都是，幾乎把整個小路鋪成了條軟軟的松毯，不知名的野兔偷
@@ -33,25 +33,24 @@ LONG );
         set("coor/y",250);
         set("coor/z",80);
         setup();
-        
-}  
+
+}
 void init()
 {
         add_action("do_fillwater", "fill");
-} 
+}
 int do_fillwater(string arg)
 {
         object *list, ob;
         int i, can_fillwater;
-        string dir;
-        function f; 
-        if( !arg || arg=="" ) return 0; 
-        if( arg=="skin" || arg=="wineskin" ) 
+        function f;
+        if( !arg || arg=="" ) return 0;
+        if( arg=="skin" || arg=="wineskin" )
         {
                 list = all_inventory(this_player());
                 i = sizeof(list);
                 can_fillwater = 0;
-                for (i=0;i<sizeof(list);i++) 
+                for (i=0;i<sizeof(list);i++)
                 {
                   if( (query("liquid/type", list[i]) == "alcohol") || (query("liquid/type", list[i]) == "water") )
                   {
@@ -69,20 +68,20 @@ int do_fillwater(string arg)
                         return 1;
                    }
                 }
-                if (can_fillwater ==0) 
+                if (can_fillwater ==0)
                 {
                         write("你沒有裝水的東西啊....\n");
                         return 1;
                 }
         }
-        else 
+        else
         {
                 write("你要往什麼東西里灌水？\n");
         }
         return 1;
-} 
+}
 int drink_drug(object ob)
 {
         set_temp("fugui_liquan", 1, this_player());
         return 0;
-} 
+}

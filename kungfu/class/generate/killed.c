@@ -97,7 +97,7 @@ int do_nod(string arg)
         object ob = this_object();
         int amount;
 
-        if( !arg || arg != query("id", ob) || 
+        if( !arg || arg != query("id", ob) ||
             !query_temp("family_quest/waiting", me) )
                 return 0;
 
@@ -546,7 +546,6 @@ void die(object killer)
         object dob;             // 打暈這個NPC的人
         object hob;             // 協助者
         object aob;             // 被協助者
-        int qlevel;             // 本次任務的等級
         int lvl;                // NPC的等級
         int scale;              // NPC呼叫的幫手和逃跑的次數
         int n;                  // 可以獎勵的人的數目
@@ -584,19 +583,19 @@ void die(object killer)
                 "/clone/fam/item/leihuo",
                 "/clone/fam/item/lihuo",
                 "/clone/fam/item/zhenlong",
-                "/clone/tessera/rune16", 
-                "/clone/tessera/rune17", 
-                "/clone/tessera/rune18", 
-                "/clone/tessera/rune19", 
-                "/clone/tessera/rune20", 
-                "/clone/herb/blood", 
-                "/clone/herb/xuelian2", 
-                "/clone/herb/yulu", 
-                "/clone/herb/sheli4", 
-                "/clone/herb/renshen2", 
-                "/clone/herb/puti4", 
-                "/clone/herb/lingzhi2", 
-                "/clone/herb/dimai", 
+                "/clone/tessera/rune16",
+                "/clone/tessera/rune17",
+                "/clone/tessera/rune18",
+                "/clone/tessera/rune19",
+                "/clone/tessera/rune20",
+                "/clone/herb/blood",
+                "/clone/herb/xuelian2",
+                "/clone/herb/yulu",
+                "/clone/herb/sheli4",
+                "/clone/herb/renshen2",
+                "/clone/herb/puti4",
+                "/clone/herb/lingzhi2",
+                "/clone/herb/dimai",
         });
 
         // 找到殺了我(NPC)或是打暈我的人
@@ -604,7 +603,7 @@ void die(object killer)
                 dob = query_defeated_by();
 
         if (! objectp(dob))
-                dob = query_temp("last_damage_from"); 
+                dob = query_temp("last_damage_from");
 
         if( objectp(dob) && query_temp("owner", dob) )
                 dob=query_temp("owner", dob);
@@ -859,4 +858,3 @@ void random_move()
         }
         NPC_D->random_move(this_object());
 }
-

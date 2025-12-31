@@ -14,7 +14,7 @@ string* names = ({
 "和","穆","肖","尹","姚","邵","湛","汪","祁","毛","禹","狄",
 "米","貝","明","藏","計","伏","成","戴","談","宋","茅","龐",
 "熊","紀","舒","屈","項","祝","董","梁","樊","胡","凌","霍",
-"虞","萬","支","柯","昝","管","盧","英","仇","候","嶽","帥",
+"虞","萬","支","柯","昝","管","盧","英","仇","候","岳","帥",
 "司馬","上官","歐陽","夏候","諸葛","聞人","東方","赫連","皇甫",
 "尉遲","公羊","澹臺","公治","宗政","濮陽","淳于","單于","太叔",
 "申屠","公孫","仲孫","轅軒","令狐","鍾離","宇文","長孫","幕容",
@@ -79,7 +79,7 @@ void create()
         set("nickname", HIG"大清官兵"NOR);
         set("gender", "男性");
         set("age", 22);
-        set("long", 
+        set("long",
                 "他是一個大清官兵。\n");
         set("attitude", "peaceful");
         set("age", random(10) + 25);
@@ -88,7 +88,7 @@ void create()
         set("con", 26);
         set("int", 20);
         set("dex", 23);
-        set("combat_exp", 1080000 + random(4000000)); 
+        set("combat_exp", 1080000 + random(4000000));
         set("attitude", "friendly");
         set_skill("force", 50);
         set_skill("sword", 50);
@@ -111,9 +111,9 @@ void create()
     map_skill("sword","shenghuo-ling");
     map_skill("parry","shenghuo-ling");
     map_skill("blade","taiji-dao");
-        set("max_qi", 1450); 
-        set("eff_jingli", 1400); 
-        set("neili", 1700); 
+        set("max_qi", 1450);
+        set("eff_jingli", 1400);
+        set("neili", 1700);
         set("max_neili", 1700);
         set("jiali", 30);
         set("chat_chance_combat", 30);
@@ -121,17 +121,17 @@ void create()
                 (: perform_action, "sword.can" :),
                 (: perform_action, "sword.lian" :),
                 (: perform_action, "sword.xi" :),
-                (: perform_action, "sword.hua" :),                
+                (: perform_action, "sword.hua" :),
                 (: command("unwield jian") :),
                 (: command("unwield jian") :),
                 (: command("wield jian") :),
                 (: command("wield jian") :),
-                (: perform_action, "cuff.fei" :),                
-                (: perform_action, "cuff.shang" :),                
-                (: perform_action, "cuff.fei" :),                
-                (: perform_action, "cuff.shang" :),                
-                (: perform_action, "dodge.yi" :),                                
-                (: perform_action, "dodge.yi" :),                                
+                (: perform_action, "cuff.fei" :),
+                (: perform_action, "cuff.shang" :),
+                (: perform_action, "cuff.fei" :),
+                (: perform_action, "cuff.shang" :),
+                (: perform_action, "dodge.yi" :),
+                (: perform_action, "dodge.yi" :),
         }) );
         weapon = "/clone/weapon/gangjian";
         setup();
@@ -165,7 +165,7 @@ int do_copy(object me)
                  }
         message_vision(HIR"突然從附近竄出一個$N，二話不說就撲向了$n！\n"NOR, ob, me);
         addn_temp("biaoshi", 1, me);
-        
+
         set("combat_exp",query("combat_exp",  me)*4/5, ob);
         set("max_qi",query("max_qi",  me), ob);
         set("eff_qi",query("max_qi",  me), ob);
@@ -180,15 +180,15 @@ int do_copy(object me)
         ob->set_skill("qiankun-danuoyi", me->query_skill("force")* 4 / 5);
         ob->set_skill("qishang-quan", me->query_skill("force")* 4 / 5);
         ob->set_skill("shenghuo-shengong",me->query_skill("force")* 4 / 5);
-        ob->set_skill("dodge", me->query_skill("force")* 4 / 5); 
-        ob->set_skill("sword", me->query_skill("force")* 4 / 5); 
-        ob->set_skill("taiji-quan", me->query_skill("force")* 4 / 5); 
-        ob->set_skill("parry",me->query_skill("force")* 4 / 5); 
+        ob->set_skill("dodge", me->query_skill("force")* 4 / 5);
+        ob->set_skill("sword", me->query_skill("force")* 4 / 5);
+        ob->set_skill("taiji-quan", me->query_skill("force")* 4 / 5);
+        ob->set_skill("parry",me->query_skill("force")* 4 / 5);
         ob->set_skill("shenghuo-ling", me->query_skill("force")* 4 / 5);
         set("shen", -1000, ob);
         ob->kill_ob(me);
         me->kill_ob(ob);
-        checking(ob, me);    
-        call_out("do_back", 350,  ob);  
+        checking(ob, me);
+        call_out("do_back", 350,  ob);
         return 1;
 }

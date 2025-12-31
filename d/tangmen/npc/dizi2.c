@@ -1,4 +1,4 @@
-inherit SMITH; 
+inherit SMITH;
 #include <ansi.h>;
 
 void create()
@@ -23,14 +23,13 @@ void create()
 }
 
 void init()
-{       
-        object ob; 
-        mapping myfam; 
+{
+        object ob;
 
         ob = this_player();
 
         ::init();
-        if( interactive(ob) && !is_fighting() ) 
+        if( interactive(ob) && !is_fighting() )
         {
                 remove_call_out("greeting");
                 call_out("greeting", 1, ob);
@@ -43,7 +42,7 @@ void init()
 void greeting(object ob)
 {
         if( !ob || environment(ob) != environment() ) return;
-        switch( random(2) ) 
+        switch( random(2) )
         {
                 case 0:
                         say( HIC"唐兵兵笑咪咪地說道：這位" + RANK_D->query_respect(ob)

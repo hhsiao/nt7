@@ -8,8 +8,7 @@ inherit F_MASTER;
 
 mixed ask_pfm();
 
-void create()
-{
+void create() {
     set_name("趙鶴", ({"zhao he", "zhao", "he"}));
     set("nickname", HIC "飛天神魔" NOR );
     set("title", "日月神教長老");
@@ -47,8 +46,8 @@ void create()
     set_skill("xuwu-piaomiao", 150);
     set_skill("parry", 150);
     set_skill("literate", 110);
-    set_skill("sword",150);
-    set_skill("riyue-jian",150);
+    set_skill("sword", 150);
+    set_skill("riyue-jian", 150);
 
     map_skill("force", "riyue-xinfa");
     map_skill("dodge", "piaomiao-shenfa");
@@ -61,53 +60,51 @@ void create()
 
     set("inquiry", ([
         "催魂"  : (: ask_pfm :),
-        "絕招"  : (: ask_pfm :),
-    ]));
+        "絕招"  : (: ask_pfm :)
+        ]));
 
-    set("master_ob",3);
-        setup();
+    set("master_ob", 3);
+    setup();
     carry_object("/d/heimuya/npc/obj/leizhendang");
     carry_object("/clone/misc/cloth")->wear();
     carry_object("/d/heimuya/npc/obj/yancao");
 }
 
-void attempt_apprentice(object ob)
-{
+void attempt_apprentice(object ob) {
     if(! permit_recruit(ob))  return;
 
     if((int)ob->query_skill("riyue-xinfa", 1) < 120)
     {
-         command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
-         return;
+        command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
+        return;
     }
 
     command("recruit "+query("id", ob));
     set("title", HIM"日月神教"HIC"飛天護法"NOR, ob);
 }
 
-mixed ask_pfm()
-{
-      object me = this_player();
+mixed ask_pfm() {
+    object me = this_player();
 
-      if( query("can_perform/tianmo-shou/cui", me) )
-              return "你是不是想和我切磋一下？";
+    if(query("can_perform/tianmo-shou/cui", me) )
+        return "你是不是想和我切磋一下？";
 
-      if( query("family/family_name", me) != query("family/family_name") )
-              return "我神教武功獨步武林，這位" + RANK_D->query_respect(me) +
-                     "既然想學，不如入我神教如何？";
+    if(query("family/family_name", me) != query("family/family_name") )
+        return "我神教武功獨步武林，這位" + RANK_D->query_respect(me) +
+        "既然想學，不如入我神教如何？";
 
-      if (me->query_skill("tianmo-shou", 1) < 150)
-              return "你的天魔手還練不到家，讓我怎麼教你呢！";
+    if (me->query_skill("tianmo-shou", 1) < 150)
+        return "你的天魔手還練不到家，讓我怎麼教你呢！";
 
-      message_vision(HIC "$n" HIC "對$N" HIC "點了點頭：注意看好了。\n" HIC
-                     "只見$n" HIC "左跨一步，右跨一步，瞬間便來到$N" HIC
-                     "的面前，“呼”地拍出一掌。\n" HIC
-                     "$N" HIC "一楞，頓時豁然貫通。\n" NOR,
-                     me, this_object());
-      command("say 看懂沒有？");
-      tell_object(me, HIR "你學會了「催魂」這一招。\n" NOR);
-      if (me->can_improve_skill("hand"))
-            me->improve_skill("hand", 160000);
-      set("can_perform/tianmo-shou/cui", 1, me);
-      return 1;
+    message_vision(HIC "$n" HIC "對$N" HIC "點了點頭：注意看好了。\n" HIC
+        "只見$n" HIC "左跨一步，右跨一步，瞬間便來到$N" HIC
+        "的面前，“呼”地拍出一掌。\n" HIC
+        "$N" HIC "一楞，頓時豁然貫通。\n" NOR,
+        me, this_object());
+    command("say 看懂沒有？");
+    tell_object(me, HIR "你學會了「催魂」這一招。\n" NOR);
+    if (me->can_improve_skill("hand"))
+        me->improve_skill("hand", 160000);
+    set("can_perform/tianmo-shou/cui", 1, me);
+    return 1;
 }

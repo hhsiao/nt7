@@ -12,8 +12,6 @@ int  is_stay_in_room();
 
 void create()
 {
-        mapping my;
-
         ::create();
         set("gender", "男性" );
         set("age", 30 + random(30));

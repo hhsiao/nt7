@@ -350,7 +350,7 @@ int query_effect_parry(object attacker, object me)
 }
 
 
-mixed hit_ob(object me, object victim, int damage_bonus)
+mixed hit_ob(object me, object victim, int damage_bonus, int factor)
 {
 
         string *desc;

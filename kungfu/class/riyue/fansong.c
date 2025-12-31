@@ -8,8 +8,7 @@ inherit F_MASTER;
 
 mixed ask_pfm();
 
-void create()
-{
+void create() {
     set_name("範松", ({"fan song", "fan", "song"}));
     set("nickname", HIW "大力神魔" NOR );
     set("title", "日月神教長老");
@@ -46,8 +45,8 @@ void create()
     set_skill("xuwu-piaomiao", 150);
     set_skill("parry", 150);
     set_skill("literate", 110);
-    set_skill("sword",150);
-    set_skill("riyue-jian",150);
+    set_skill("sword", 150);
+    set_skill("riyue-jian", 150);
     set_skill("claw", 180);
     set_skill("shiying-shenzhao", 180);
 
@@ -63,55 +62,53 @@ void create()
 
     set("inquiry", ([
         "絕命"  : (: ask_pfm :),
-        "絕招"  : (: ask_pfm :),
-    ]));
+        "絕招"  : (: ask_pfm :)
+        ]));
 
-    set("master_ob",3);
-        setup();
+    set("master_ob", 3);
+    setup();
     carry_object("/d/heimuya/npc/obj/dafu");
     carry_object("/clone/misc/cloth")->wear();
 }
 
-void attempt_apprentice(object ob)
-{
+void attempt_apprentice(object ob) {
     if(! permit_recruit(ob))  return;
 
     if((int)ob->query_skill("riyue-xinfa", 1) < 120)
     {
-         command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
-         return;
+        command("say 本教的內功心法你還沒練好，還要多下苦功才行！");
+        return;
     }
 
     command("recruit "+query("id", ob));
     set("title", HIM"日月神教"HIG"大力護法"NOR, ob);
 }
 
-mixed ask_pfm()
-{
-      object me = this_player();
+mixed ask_pfm() {
+    object me = this_player();
 
-      if( query("can_perform/shiying-shenzhao/jueming", me) )
-              return "你是不是想和我切磋一下？";
+    if(query("can_perform/shiying-shenzhao/jueming", me) )
+        return "你是不是想和我切磋一下？";
 
-      if( query("family/family_name", me) != query("family/family_name") )
-              return "我神教武功獨步武林，這位" + RANK_D->query_respect(me) +
-                     "既然想學，不如入我神教如何？";
+    if(query("family/family_name", me) != query("family/family_name") )
+        return "我神教武功獨步武林，這位" + RANK_D->query_respect(me) +
+        "既然想學，不如入我神教如何？";
 
-      if (me->query_skill("shiying-shenzhao", 1) < 150)
-              return "你的弒鷹神爪還練不到家，讓我怎麼教你呢！";
+    if (me->query_skill("shiying-shenzhao", 1) < 150)
+        return "你的弒鷹神爪還練不到家，讓我怎麼教你呢！";
 
-      message_vision(HIC "$n" HIC "對$N" HIC "點了點頭：注意看清楚了。\n" HIC
-                     "只見$n" HIC "手臂青筋暴起，左手微拳，右手成爪，" HIC
-                     "挾一股勁風直向$N" HIC "前胸抓來。\n" HIR
-                     "$N" HIR "一楞，欲避不及，只聽“嗤啦”一聲，" HIR
-                     "前胸已被抓出五條血痕。\n" NOR,
-                     me, this_object());
-      command("say 哈哈，果然不錯。你若是閃開，這招恐怕就再也難以領悟了。");
-      me->receive_damage("qi",query("eff_qi", me)/4);
-      me->receive_wound("qi",query("eff_qi", me)/6);
-      tell_object(me, HIY "你學會了"HIR"「絕命」"HIY"這一招。\n" NOR);
-      if (me->can_improve_skill("claw"))
-            me->improve_skill("claw", 160000);
-      set("can_perform/shiying-shenzhao/jueming", 1, me);
-      return 1;
+    message_vision(HIC "$n" HIC "對$N" HIC "點了點頭：注意看清楚了。\n" HIC
+        "只見$n" HIC "手臂青筋暴起，左手微拳，右手成爪，" HIC
+        "挾一股勁風直向$N" HIC "前胸抓來。\n" HIR
+        "$N" HIR "一楞，欲避不及，只聽“嗤啦”一聲，" HIR
+        "前胸已被抓出五條血痕。\n" NOR,
+        me, this_object());
+    command("say 哈哈，果然不錯。你若是閃開，這招恐怕就再也難以領悟了。");
+    me->receive_damage("qi", query("eff_qi", me) / 4);
+    me->receive_wound("qi", query("eff_qi", me) / 6);
+    tell_object(me, HIY "你學會了"HIR"「絕命」"HIY"這一招。\n" NOR);
+    if (me->can_improve_skill("claw"))
+        me->improve_skill("claw", 160000);
+    set("can_perform/shiying-shenzhao/jueming", 1, me);
+    return 1;
 }

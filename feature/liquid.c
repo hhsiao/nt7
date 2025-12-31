@@ -24,7 +24,7 @@ mixed query_effect() {
     return func;
 }
 
-int do_effect() {
+int do_effect(object me) {
     int i;
 
     if(functionp(func) )

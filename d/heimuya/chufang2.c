@@ -11,7 +11,7 @@ LONG );
       "west" : __DIR__"chitang",
   ]));
   set("item_desc",([
-      "note" : "最難消受女人福，紅顏禍水。----->嶽不群題\n",
+      "note" : "最難消受女人福，紅顏禍水。----->岳不群題\n",
   ]));
 
   set("objects",([

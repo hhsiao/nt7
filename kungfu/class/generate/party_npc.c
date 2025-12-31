@@ -44,7 +44,7 @@ void set_from_me(object me,int arg)
         string *snameb;
         object npc,weapon;
 
-        int i, temp, mylvl, k, count, point;
+        int i, temp, mylvl, k, count;
         int myexp;
 
         npc = this_object();

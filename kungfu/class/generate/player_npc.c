@@ -63,7 +63,7 @@ void set_from_me(object me,int arg)
         string *snameb;
         object npc,weapon,punisher;
 
-        int i, temp, myexp, mylvl, k, count, point, jieti;
+        int i, temp, mylvl, k, count, jieti;
         int skl_lvl;
 
         npc = this_object();
@@ -500,7 +500,6 @@ int accept_kill(object ob)
 
 void random_move()
 {
-        object me,target;
         if (time() - query_temp("born_time") > 900)
         {
               remove_call_out("destruct_me");

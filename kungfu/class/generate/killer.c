@@ -9,8 +9,6 @@ int  is_stay_in_room();
 
 void create()
 {
-        mapping my;
-
         ::create();
         set("gender", "男性" );
         set("age", 30 + random(30));
@@ -24,7 +22,7 @@ void create()
         set_temp("born_time", time());
 
         setup();
-        add_money("silver", 10 + random(20)); 
+        add_money("silver", 10 + random(20));
         if (clonep()) keep_heart_beat();
 }
 
@@ -111,4 +109,3 @@ void destruct_me()
         message_vision("$N急急忙忙的走了。\n", this_object());
         destruct(this_object());
 }
-

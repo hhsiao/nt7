@@ -1,5 +1,5 @@
 // bishuijian.c
-// for 嶽靈珊
+// for 岳靈珊
 
 #include <weapon.h>
 inherit HAMMER;

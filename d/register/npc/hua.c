@@ -39,7 +39,7 @@ void greeting(object me)
         command("look"+query("id", me));
         command("say 這位" + RANK_D->query_respect(me) +
                 "，這年頭做那種什麼正人君子太吃虧啦，看看\n"
-                "我？看看嶽不群老哥，那才是做人的道理，別猶豫啦！");
+                "我？看看岳不群老哥，那才是做人的道理，別猶豫啦！");
 }
 
 void check_leave(object me, string dir)

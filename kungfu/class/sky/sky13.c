@@ -1,10 +1,9 @@
 #include <ansi.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", HIW "【天外天】" NOR);
-        set("long", HIW @LONG
+void create() {
+    set("short", HIW "【天外天】" NOR);
+    set("long", HIW @LONG
 
                 天         外         天
 
@@ -16,33 +15,32 @@ void create()
 
 LONG NOR );
 
-        set("sleep_room", 1);
-        set("no_fight", 1);
-        set("objects", ([
-                __DIR__"npc/tongtian": 1,
-                __DIR__"npc/tianshen": 1,
+    set("sleep_room", 1);
+    set("no_fight", 1);
+    set("objects", ([
+        __DIR__"npc/tongtian": 1,
+        __DIR__"npc/tianshen": 1
         ]));
 
-        set("exits", ([
-                "out" : "/d/city/wumiao",
+    set("exits", ([
+        "out": "/d/city/wumiao"
         ]));
-        set("sky", 1);
-        setup();
+    set("sky", 1);
+    setup();
 }
 
-void init()
-{
-        object me = this_player();
-        
-        if (! me->query("sky12/tianmen") && userp(me))
-        {
-                tell_object(me, HIG "通天老仙對你說道：你沒有使用過東皇鍾，是怎麼到天界來的，哼！\n" NOR);
+void init() {
+    object me = this_player();
 
-                me->delete("sky12");
-                me->save();
-                me->move("/d/city/wumiao");
-                
-                //destruct(me);                
-        }
-        return ;        
+    if (! me->query("sky12/tianmen") && userp(me))
+    {
+        tell_object(me, HIG "通天老仙對你說道：你沒有使用過東皇鍾，是怎麼到天界來的，哼！\n" NOR);
+
+        me->delete("sky12");
+        me->save();
+        me->move("/d/city/wumiao");
+
+        //destruct(me);
+    }
+    return;
 }

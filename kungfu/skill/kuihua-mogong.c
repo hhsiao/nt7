@@ -288,10 +288,11 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
 }
 
 
-mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
+mixed hit_ob(object me, object victim, int damage_bonus, int i)
 {
         object weapon;
         string name;
+        int attack_time;
 
         weapon=query_temp("weapon", me);
 

@@ -31,7 +31,7 @@ LONG NOR );
 void init()
 {
         object me = this_player();
-        
+
         if (! me->query("sky12/tianmen") && userp(me))
         {
                 tell_object(me, HIG "鐵傳甲對你說道：你沒有使用過東皇鍾，是怎麼到天界來的，哼！\n" NOR);
@@ -39,10 +39,10 @@ void init()
                 me->delete("sky12");
                 me->save();
                 me->move("/d/city/wumiao");
-                
-                //destruct(me);                
+
+                //destruct(me);
         }
-        
+
         add_action("do_move", "jump");
         add_action("do_move", "move");
         add_action("do_move", "tiao");
@@ -52,8 +52,7 @@ void init()
 
 int do_move(string arg)
 {
-        object paper,
-        me = this_player();
+        object me = this_player();
 
         if (! arg || arg == "")
                 return 0;
@@ -71,9 +70,8 @@ int do_move(string arg)
                 message_vision(HIW "\n$N" HIW "順著雲梯輕輕一"
                                "縱，身體便隨著氣流飄了上去……\n"
                                NOR, this_player());
-                me->move("/kungfu/class/sky/sky2"); 
+                me->move("/kungfu/class/sky/sky2");
                 return 1;
         }
         return 0;
 }
-

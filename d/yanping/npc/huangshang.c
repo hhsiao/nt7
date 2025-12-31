@@ -11,7 +11,7 @@ void create()
         set("long","
 　　黃裳，劍浦人，字冕仲、號演山。生卒年不詳。
 　　黃裳為書生時，常有魁天下之志。自敘門狀，予家劍潭之濱，鬥牛之
-光，上下相照，風雷之信，時有變現。又題黃龍州雲：“看取黃龍沙鬥起， 
+光，上下相照，風雷之信，時有變現。又題黃龍州雲：“看取黃龍沙鬥起，
 滿城風雨入豐年。”元豐四年（1081），郡之譙門，忽為風雷所擊，黃裳
 聞之，賦詩道：“風雷昨夜破枯枝，借問天公有意無，莫是臥龍蹤跡困，
 放教頭角入亨衢。”次年，黃裳對策，果為天下第一。宋神宗對黃裳之文
@@ -33,7 +33,7 @@ void create()
         set("int", 28);
         set("con", 28);
         set("dex", 28);
-        
+
         set("max_jing", 3000);
         set("max_qi", 5000);
         set("neili", 5000);
@@ -55,7 +55,6 @@ void create()
 
 string ask_book()
 {
-        mapping fam; 
         object ob, me = this_player();
 
         if (query("book_count") < 1)
@@ -77,11 +76,10 @@ string ask_book()
 
 string ask_jing()
 {
-        mapping fam; 
         object ob, me = this_player();
         mixed sks;
         string skl;
-        
+
         if (query("jing_count") < 1)
                 return "《九陰真經》是我幾十年心血所駐，豈能輕給？";
         if( !query("xkd/skill", me) )
@@ -90,7 +88,7 @@ string ask_jing()
                 return "萬事隨緣，學習武功也是這樣的，你看，很不巧，你要的《九陰真經》給人借閱未還。";
         addn("jing_count", -1);
         ob = new(BOOK_DIR"9book");
-        if (ob->violate_unique()) 
+        if (ob->violate_unique())
         {
                 destruct(ob);
                 return "《九陰真經》是我幾十年心血所駐，豈能輕給？";

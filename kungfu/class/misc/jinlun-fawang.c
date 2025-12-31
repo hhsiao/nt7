@@ -8,241 +8,235 @@
 
 inherit BOSS;
 
-void create()
-{
-        object ob1, ob2;
-        set_name("金輪法王", ({ "jinlun fawang", "jinlun", "fawang" }));
-        set("long", @LONG
+void create() {
+    object ob1, ob2;
+    set_name("金輪法王", ({ "jinlun fawang", "jinlun", "fawang" }));
+    set("long", @LONG
 他便是大輪寺的護教法王。貴為蒙古國師，極
 受成吉思汗重用，常年來隨軍隊征戰，擾亂中
 原武林，地位顯赫尊崇無比。金輪法王踏足中
 原後罕逢敵手，藐視中原群雄。其武道之高深
 當可謂西域第一人。
 LONG);
-        set("nickname", HIY "蒙古國師" NOR);
-        set("gender", "男性");
-        set("class", "bonze");
-        set("age", 58);
-        set("attitude", "peaceful");
-        set("shen_type", -1);
+    set("nickname", HIY "蒙古國師" NOR);
+    set("gender", "男性");
+    set("class", "bonze");
+    set("age", 58);
+    set("attitude", "peaceful");
+    set("shen_type", -1);
 
-        set("str", 70);
-        set("int", 70);
-        set("con", 70);
-        set("dex", 70);
+    set("str", 70);
+    set("int", 70);
+    set("con", 70);
+    set("dex", 70);
 
-        set("max_jing", 30000000);
-        set("max_jingli", 30000000);
-        set("jingli", 30000000);
-        set("qi", 8000000);
-        set("max_qi", 8000000);
+    set("max_jing", 30000000);
+    set("max_jingli", 30000000);
+    set("jingli", 30000000);
+    set("qi", 8000000);
+    set("max_qi", 8000000);
 
-        set("neili", 300000);
-        set("max_neili", 300000);
-        set("jiali", 4200);
-        set("combat_exp", 120000000);
-        set("score", 500000);
+    set("neili", 300000);
+    set("max_neili", 300000);
+    set("jiali", 4200);
+    set("combat_exp", 120000000);
+    set("score", 500000);
 
-        set_skill("force", 900);
-        set_skill("mizong-neigong", 900);
-        set_skill("unarmed", 900);
-        set_skill("longxiang-gong", 900);
-        set_skill("dodge", 900);
-        set_skill("shenkong-xing", 900);
-        set_skill("hammer", 900);
-        set_skill("riyue-lun", 900);
-        set_skill("dali-chu", 900);
-        set_skill("xiangmo-chu", 900);
-        set_skill("sword", 900);
-        set_skill("mingwang-jian", 900);
-        set_skill("dagger", 900);
-        set_skill("finger", 900);
-        set_skill("poxu-daxuefa", 900);
-        set_skill("hand", 900);
-        set_skill("dashou-yin", 900);
-        set_skill("cuff", 900);
-        set_skill("yujiamu-quan", 900);
-        set_skill("parry", 900);
-        set_skill("lamaism", 900);
-        set_skill("literate", 900);
-        set_skill("sanscrit", 900);
-        set_skill("martial-cognize", 900);
-        set_skill("mizong-zhenyan", 1500);
+    set_skill("force", 900);
+    set_skill("mizong-neigong", 900);
+    set_skill("unarmed", 900);
+    set_skill("longxiang-gong", 900);
+    set_skill("dodge", 900);
+    set_skill("shenkong-xing", 900);
+    set_skill("hammer", 900);
+    set_skill("riyue-lun", 900);
+    set_skill("dali-chu", 900);
+    set_skill("xiangmo-chu", 900);
+    set_skill("sword", 900);
+    set_skill("mingwang-jian", 900);
+    set_skill("dagger", 900);
+    set_skill("finger", 900);
+    set_skill("poxu-daxuefa", 900);
+    set_skill("hand", 900);
+    set_skill("dashou-yin", 900);
+    set_skill("cuff", 900);
+    set_skill("yujiamu-quan", 900);
+    set_skill("parry", 900);
+    set_skill("lamaism", 900);
+    set_skill("literate", 900);
+    set_skill("sanscrit", 900);
+    set_skill("martial-cognize", 900);
+    set_skill("mizong-zhenyan", 1500);
 
-        map_skill("force", "longxiang-gong");
-        map_skill("dodge", "shenkong-xing");
-        map_skill("parry", "longxiang-gong");
-        map_skill("unarmed", "longxiang-gong");
-        map_skill("hammer", "riyue-lun");
-        map_skill("dagger", "poxu-daxuefa");
-        map_skill("sword", "mingwang-jian");
-        map_skill("finger", "poxu-daxuefa");
-        map_skill("hand", "dashou-yin");
-        map_skill("cuff", "yujiamu-quan");
+    map_skill("force", "longxiang-gong");
+    map_skill("dodge", "shenkong-xing");
+    map_skill("parry", "longxiang-gong");
+    map_skill("unarmed", "longxiang-gong");
+    map_skill("hammer", "riyue-lun");
+    map_skill("dagger", "poxu-daxuefa");
+    map_skill("sword", "mingwang-jian");
+    map_skill("finger", "poxu-daxuefa");
+    map_skill("hand", "dashou-yin");
+    map_skill("cuff", "yujiamu-quan");
 
-        prepare_skill("unarmed", "longxiang-gong");
+    prepare_skill("unarmed", "longxiang-gong");
 
-        set("chat_chance_combat", 120);
-        set("chat_msg_combat", ({
-                (: perform_action, "hammer.po" :),
-                (: perform_action, "hammer.yuan" :),
-                (: perform_action, "hammer.lian" :),
-                (: perform_action, "unarmed.tun" :),
-                (: perform_action, "unarmed.die" :),
-                (: perform_action, "unarmed.ji" :),
-                (: exert_function, "recover" :),
-                (: exert_function, "shield" :),
-                (: exert_function, "powerup" :),
-        }));
+    set("chat_chance_combat", 120);
+    set("chat_msg_combat", ({
+        (: perform_action, "hammer.po" :),
+        (: perform_action, "hammer.yuan" :),
+        (: perform_action, "hammer.lian" :),
+        (: perform_action, "unarmed.tun" :),
+        (: perform_action, "unarmed.die" :),
+        (: perform_action, "unarmed.ji" :),
+        (: exert_function, "recover": ),
+        (: exert_function, "shield": ),
+        (: exert_function, "powerup": )
+    }));
 
-        create_family("大輪寺", 1, "住持");
+    create_family("大輪寺", 1, "住持");
 
-        //set("end_time", 1200);  // 必須戰鬥不少於1200秒後死亡
-        set("rewards", ([
-                "exp"   : 100000,
-                "pot"   : 50000,
-                "mar"   : 10000,
-                "weiwang" : 500,
-                "score" : 500,
-                "gold"  : 100,
+    //set("end_time", 1200);  // 必須戰鬥不少於1200秒後死亡
+    set("rewards", ([
+        "exp": 100000,
+        "pot": 50000,
+        "mar": 10000,
+        "weiwang": 500,
+        "score": 500,
+        "gold": 100
         ]));
 
-        set("drops", ([
-                "RA&RANDOM40"    :       100,   // 低級普通裝備
-                "RA&RANDOM50"    :       40,    // 低級普通裝備
-                "FI&/clone/goods/enchant-scroll" :   20,
-                "FI&/clone/goods/sun"    :   20,
-                "FI&/clone/goods/moon"   :   20,
-                "FI&/clone/money/gold"                     :              200,
-                "FI&/clone/money/yuanbao"                  :              100,
-                "FI&/clone/fam/item/stone5"                :              30,
-                "FI&/clone/armor/zijinhua-erhuan3"         :              30,
-                "FI&/clone/tuteng/diwang-suipian4"         :              120,
-                "FI&/clone/tongren/tongren" + (1+random(2)):              1,
-                "FI&/clone/tessera/rune08"  :   1,
-                "FI&/clone/misc/baoxiang" : 100,
+    set("drops", ([
+        "RA&RANDOM40"    :       100,   // 低級普通裝備
+        "RA&RANDOM50"    :       40,    // 低級普通裝備
+        "FI&/clone/goods/enchant-scroll" :   20,
+        "FI&/clone/goods/sun"    :   20,
+        "FI&/clone/goods/moon"   :   20,
+        "FI&/clone/money/gold"                     :              200,
+        "FI&/clone/money/yuanbao"                  :              100,
+        "FI&/clone/fam/item/stone5"                :              30,
+        "FI&/clone/armor/zijinhua-erhuan3"         :              30,
+        "FI&/clone/tuteng/diwang-suipian4"         :              120,
+        "FI&/clone/tongren/tongren" + (1 + random(2)):              1,
+        "FI&/clone/tessera/rune08"  :   1,
+        "FI&/clone/misc/baoxiang" : 100
         ]));
 
-        setup();
+    setup();
 
-        set_temp("apply/damage", 1500);
-        set_temp("apply/unarmed_damage", 1500);
-        set_temp("apply/armor", 14000);
+    set_temp("apply/damage", 1500);
+    set_temp("apply/unarmed_damage", 1500);
+    set_temp("apply/armor", 14000);
 
-        set_temp("apply/reduce_damage", 70);
-        set_temp("apply/reduce_busy", 36);
-        set_temp("apply/add_busy", 15);
+    set_temp("apply/reduce_damage", 70);
+    set_temp("apply/reduce_busy", 36);
+    set_temp("apply/add_busy", 15);
 
-        if (clonep())
+    if (clonep())
+    {
+        ob1 = find_object(JINLUN);
+        if (! ob1) ob1 = load_object(JINLUN);
+        if (! environment(ob1))
         {
-                ob1 = find_object(JINLUN);
-                if (! ob1) ob1 = load_object(JINLUN);
-                if (! environment(ob1))
-                {
-                        ob1->move(this_object());
-                        ob1->wield();
-                }
+            ob1->move(this_object());
+            ob1->wield();
         }
+    }
 
-        if (clonep())
+    if (clonep())
+    {
+        ob2 = find_object(JIASHA);
+        if (! ob2) ob2 = load_object(JIASHA);
+        if (! environment(ob2))
         {
-                ob2 = find_object(JIASHA);
-                if (! ob2) ob2 = load_object(JIASHA);
-                if (! environment(ob2))
-                {
-                        ob2->move(this_object());
-                        ob2->wear();
-                } else
-                {
-                        ob2 = new("/d/xueshan/obj/p-jiasha");
-                        ob2->move(this_object());
-                        ob2->wear();
-                }
+            ob2->move(this_object());
+            ob2->wear();
+        } else
+        {
+            ob2 = new("/d/xueshan/obj/p-jiasha");
+            ob2->move(this_object());
+            ob2->wear();
         }
-        //if (clonep()) keep_heart_beat();
+    }
+    //if (clonep()) keep_heart_beat();
 }
 
-int accept_fight(object ob)
-{
-        kill_ob(ob);
-        return -1;
+int accept_fight(object ob) {
+    kill_ob(ob);
+    return -1;
 }
 
-int accept_kill(object ob)
-{
-        return 1;
+int accept_kill(object ob) {
+    return 1;
 }
 
-int accept_hit(object ob)
-{
-        kill_ob(ob);
-        return -1;
-        return 1;
+int accept_hit(object ob) {
+    kill_ob(ob);
+    return -1;
+    return 1;
 }
 
-mixed hit_ob(object me, object ob, int damage_bouns)
-{
-        ob->start_busy(5 + random(6));
-        me->receive_wound("qi", 1500 + random(1500), ob);
-        return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
+mixed hit_ob(object me, object ob, int damage_bouns) {
+    ob->start_busy(5 + random(6));
+    me->receive_wound("qi", 1500 + random(1500), ob);
+    return HIY "$N" HIY "大喝一聲，拼死反抗，竟逼得$n" HIY "手忙腳亂。\n" NOR;
 }
 
-void heart_beat()
-{
-        if (query("neili") < 1 && random(50) == 1)
-                set("neili", query("max_neili"));
+void heart_beat() {
+    if (query("neili") < 1 && random(50) == 1)
+        set("neili", query("max_neili"));
 
-        ::heart_beat();
+    ::heart_beat();
 }
 
 varargs void die(object killer)
 {
-        object ob;
+    object ob;
 
-        if( objectp(ob = previous_object(0)) && sscanf(base_name(ob), "/kungfu/skill/%*s") )
-        {
-                full_self();
-                return;
-        }
+    if(objectp(ob = previous_object(0)) && sscanf(base_name(ob), "/kungfu/skill/%*s") )
+    {
+        full_self();
+        return;
+    }
 
-        if( time() < query_temp("end_time") ) // 時間沒有到，死亡不了
-        {
-                addn("jing", query("max_jing") / 10);
-                if( query("jing") > query("max_jing") ) set("jing", query("max_jing"));
-                addn("eff_jing", query("max_jing") / 10);
-                if( query("eff_jing") > query("max_jing") ) set("eff_jing", query("max_jing"));
-                addn("qi", query("max_qi") / 10);
-                if( query("qi") > query("max_qi") ) set("qi", query("max_qi"));
-                addn("eff_qi", query("max_qi") / 10);
-                if( query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
-                message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
-                return;
-        }
+    if(time() < query_temp("end_time") )    // 時間沒有到，死亡不了
+    {
+        addn("jing", query("max_jing") / 10);
+        if(query("jing") > query("max_jing") ) set("jing", query("max_jing"));
+        addn("eff_jing", query("max_jing") / 10);
+        if(query("eff_jing") > query("max_jing") ) set("eff_jing", query("max_jing"));
+        addn("qi", query("max_qi") / 10);
+        if(query("qi") > query("max_qi") ) set("qi", query("max_qi"));
+        addn("eff_qi", query("max_qi") / 10);
+        if(query("eff_qi") > query("max_qi") ) set("eff_qi", query("max_qi"));
+        message_vision(HIR "\n$N" HIR "大喝一聲，運用秘法，氣血有所回升！\n\n" NOR, this_object());
+        return;
+    }
 
 
-        if (! objectp(killer))
+    if (! objectp(killer))
         killer = query_last_damage_from();
 
-        if (! killer)
-        {
-                destruct(this_object());
-                return;
-        }
+    if (! killer)
+    {
+        destruct(this_object());
+        return;
+    }
 
-        // 戰勝金輪獲取小龍女線索
-        if (query("can_perform/surge-force/quest/step", killer) == 1)
-        {
-                message_vision(HIR "$N" HIR "眼見$n" HIR "快要支持不住，趕緊上前一步喝道：快說，小龍女何在？"
-                                   "否則，取你老命！\n$n" HIR "怒道：小龍女已經被那公孫止捉去，困於絕情山莊內，關"
-                                   "我何事？\n\n正說話間，$n" HIR "已趁機殺出一條血路...\n\n" NOR, killer, this_object());
+    // 戰勝金輪獲取小龍女線索
+    if (query("can_perform/surge-force/quest/step", killer) == 1)
+    {
+        message_vision(HIR "$N" HIR "眼見$n" HIR "快要支持不住，趕緊上前一步喝道：快說，小龍女何在？"
+            "否則，取你老命！\n$n" HIR "怒道：小龍女已經被那公孫止捉去，困於絕情山莊內，關"
+            "我何事？\n\n正說話間，$n" HIR "已趁機殺出一條血路...\n\n" NOR, killer, this_object());
 
-                tell_object(killer, HIM "看來，還是趕快去絕情山莊一趟吧！\n\n" NOR);
-                set("can_perform/surge-force/quest/step", 2, killer);
-                killer->save();
-        }
+        tell_object(killer, HIM "看來，還是趕快去絕情山莊一趟吧！\n\n" NOR);
+        set("can_perform/surge-force/quest/step", 2, killer);
+        killer->save();
+    }
 
-        //command("chat* haha");
-        command("mess 天下間竟有武功如此了得的人物，老衲甘拜下風！");
+    //command("chat* haha");
+    command("mess 天下間竟有武功如此了得的人物，老衲甘拜下風！");
 
-        return ::die();
+    return ::die();
 }

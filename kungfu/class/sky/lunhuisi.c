@@ -1,10 +1,9 @@
 #include <ansi.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", HIR "【輪迴司】" NOR);
-        set("long", HIR @LONG
+void create() {
+    set("short", HIR "【輪迴司】" NOR);
+    set("long", HIR @LONG
 
                  輪        回        司
 
@@ -12,11 +11,11 @@ void create()
 
 LONG NOR );
 
-        set("sleep_room", 1);
+    set("sleep_room", 1);
 
-        set("sky", 1);
-        // 在此演練lunhui-sword
-        set("lunhui", 1);
-        set("valid_startroom", 1);
-        setup();
+    set("sky", 1);
+    // 在此演練lunhui-sword
+    set("lunhui", 1);
+    set("valid_startroom", 1);
+    setup();
 }

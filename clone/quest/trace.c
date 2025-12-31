@@ -95,7 +95,6 @@ void init_quest()
 void cancel_quest()
 {
         mapping my = query_entire_dbase();
-        object env;
 
         if (! mapp(my))
                 return;
@@ -113,8 +112,6 @@ void cancel_quest()
 // 詢問NPC1有關NPC2的事情
 string ask_1_for_2()
 {
-        mapping my = query_entire_dbase();
-
         if (! objectp(NPC2))
                 return "天啊，我兄弟他…他怎麼了？";
 
@@ -133,7 +130,6 @@ string ask_1_for_2()
 mixed ask_2_for_1(object npc2, object npc1, string npc1_name)
 {
         object me, follow;
-        string msg;
 
         me = this_player();
 
@@ -202,8 +198,6 @@ void cancel_follow(object npc2, object me)
 // 詢問NPC1的狀況
 string ask_npc1(object knower, object me)
 {
-        mapping my = query_entire_dbase();
-
         if( (query("score", me)<500
             || !query("quest/freequest", me) )
             && !query_temp("trace/have_ask", me) )
@@ -238,8 +232,6 @@ string ask_npc1(object knower, object me)
 // 詢問NPC2的狀況
 string ask_npc2(object knower, object me)
 {
-        mapping my = query_entire_dbase();
-
         if( (query("score", me)<500
             || !query("quest/freequest", me) )
             && !query_temp("trace/have_ask", me) )
@@ -289,8 +281,6 @@ void do_whisper(object knower, object me)
 // 任務介紹
 string query_introduce(object knower)
 {
-        mapping my = query_entire_dbase();
-
         if (! objectp(NPC1) && ! objectp(NPC2))
         {
                 call_out("cancel_quest", 1);
