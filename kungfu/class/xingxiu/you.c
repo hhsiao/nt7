@@ -173,8 +173,8 @@ void die() {
     if (objectp(player ) )
     {
         message("vision", "遊坦之面目猙獰之極，手突然揚起，滿是鮮血的
-            臉上居然露出了一絲詭異的笑容，這下用盡了他
-            所有的力氣，終於緩緩的倒了下去。\n",environment(player));
+臉上居然露出了一絲詭異的笑容，這下用盡了他
+所有的力氣，終於緩緩的倒了下去。\n",environment(player));
         message("vision", "遊坦之大叫一聲，死了！\n", environment(player));
         tell_object(player,
             "你覺得臉上似乎沾上了什麼東西，伸手一摸卻什麼也沒有。\n");

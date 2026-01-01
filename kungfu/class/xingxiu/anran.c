@@ -31,8 +31,8 @@ void create() {
     set("age", 31);
     set("location", 1);
     set("unique", 1);
-    set("long", "黯然子在星宿二代十弟子中排行第六，
-        但他對星宿派武功有些獨創，功力不淺。\n");
+set("long", "黯然子在星宿二代十弟子中排行第六，
+但他對星宿派武功有些獨創，功力不淺。\n");
     set("env/wimpy", 40);
     set("str", 29);
     set("dex", 26);

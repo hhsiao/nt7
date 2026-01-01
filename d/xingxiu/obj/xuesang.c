@@ -11,7 +11,7 @@ void create() {
     set_name("雪桑", ({"xue sang", "sang"}));
     set_weight(900000);
     set("long", "這是一棵天山特有的生長在雪峰的雪桑樹。
-        傳說有一種雪蠶最喜歡生長在這雪桑之上，經常有人來尋找(xunzhao)?\n");
+傳說有一種雪蠶最喜歡生長在這雪桑之上，經常有人來尋找(xunzhao)?\n");
     set("unit", "棵");
     set("value", 8);
     set("no_get", 1);
