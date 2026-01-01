@@ -8,21 +8,17 @@ void create()
 {
         set_name(YEL "洗髓丹" NOR, ({ "xisui dan", "dan", "xisuidan" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆黑不溜秋的丹藥，據說吃了可以增強根骨。增加先天屬性至五點\n");
+        set("long", "一顆黑不溜秋的丹藥，據說吃了可以增強根骨。增加先天屬性至五點\n");
                 set("value", 10000);
                 set("unit", "顆");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)
 {
         message_vision("$N一仰脖，吞下了一顆" + this_object()->name() +
                        "。\n", me);
-        if( query("gift/xisuidan", me) >= 5 || 
+        if( query("gift/xisuidan", me) >= 5 ||
             query("gift/con/succeed", me) >= 5 )
         {
                 message_vision("$N突然放了一個奇臭無比的響屁。\n", me);

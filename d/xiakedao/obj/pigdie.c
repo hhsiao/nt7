@@ -16,12 +16,8 @@ void create()
         set_temp("forleg", 1);
         set_temp("backleg", 1);
         set_weight(5000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("value", 300);
-        }
         setup();
 }
 

@@ -5,11 +5,7 @@ void create()
 {
         set_name(YEL"「說律」"NOR, ({ "literateb7", "shu7", "book7" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這本書封皮有點舊，上面寫著「說律」幾個字。\n");
                 set("value", 5000);
                 set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "max_skill":    19,
                         "min_skill":    1,
                 ]) );
-        }
 }

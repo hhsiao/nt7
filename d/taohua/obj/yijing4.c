@@ -7,10 +7,7 @@ void create()
 {
         set_name( "易經《繫辭篇》", ({ "jing", "yi jing" }));
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一冊易經。上面寫著：\n
 　　天尊地卑，乾坤定矣。卑高以陳，貴賤位矣。 動靜有常，剛柔斷矣。
 方以類聚，物以群分，吉凶生矣。 在天成象，在地成形，變化見矣。
@@ -36,5 +33,4 @@ void create()
                         "difficulty":        30,        // the base int to learn this skill
                         "max_skill":        120,        // the maximum level you can learn
                 ]) );
-        }
 }

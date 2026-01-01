@@ -4,22 +4,18 @@ void create()
 {
         set_name(HIY "元神五行丹" NOR, ({"yuanshenwuxingdan"}));
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {  
-        	set("long", HIY "使用（changewx 五行）元神五行丹後可指定更換元神五行屬性一次。\n" + HIC
+        set("long", HIY "使用（changewx 五行）元神五行丹後可指定更換元神五行屬性一次。\n" + HIC
         			/*"擁有者：擁有者ID*/"\n" NOR);
                 set("unit", "顆");
                 set("owner", "擁有者ID"); // 綁定擁有者
 	        set("no_drop", 1);set("no_store", 1);set("no_sell", 1);
-        }
         setup();
 }
 
 /*
 void init()
 {
-        add_action("do_use", "changewx");       
+        add_action("do_use", "changewx");
 }
 */
 
@@ -27,7 +23,7 @@ int do_use(string arg)
 {
 	object ob, me;
 	string wuxing;
-	
+
 	mapping wx = ([
 	   "金" : 0,
 	   "木" : 1,
@@ -46,7 +42,7 @@ int do_use(string arg)
 	    	return notify_fail("五行輸入錯誤，範圍：金木水火土！\n");
 
 	wuxing = arg;
-	
+
 	arg = "yuanshenwuxingdan";
 
 	if( query("yuanshen/wuxing", me) == wx[wuxing] )
@@ -58,10 +54,10 @@ int do_use(string arg)
 /*
 	if( query("owner", ob) != query("id", me) )
 		return notify_fail(ob->name() + NOR "已經於其他玩家綁定！\n");
-*/	
+*/
 
 	tell_object(me, HIG "恭喜！你服下" + ob->name() + HIG "後，元神五行變更為：" HIC + wuxing + HIG "！\n");
-	
+
 	log_file("super/"+"dugu_"+filter_color(query("name")),query("id", me)+"at"+ctime(time())+"使用"+ob->name()+
 	                                                "元神五行變更為：" + wuxing + "！\n");
 
@@ -69,8 +65,8 @@ set("yuanshen/wuxing", wx[wuxing], 	me);
 set("yuanshen/last_change_wuxing", time(), 	me);
 
 	me->save();
-	
+
 	destruct(ob);
-	
+
 	return 1;
 }

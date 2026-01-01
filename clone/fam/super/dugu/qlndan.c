@@ -4,29 +4,25 @@ void create()
 {
         set_name(HIY "麒麟內丹" NOR, ({"qilinneidan"}));
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {  
-        	set("long", HIC "傳說麒麟內丹乃修煉千年火麒麟的內丹，擁有無邊的力量。\n" + 
+        set("long", HIC "傳說麒麟內丹乃修煉千年火麒麟的內丹，擁有無邊的力量。\n" +
         	                "服食(fushi qilinneidan 技能id)後可永久提升非知識類技能1級。\n" HIC
         	                /*"擁有者：擁有者ID*/"\n" NOR);
                 set("unit", "顆");
                 set("owner", "擁有者ID"); // 綁定擁有者
 	        set("no_drop", 1);set("no_store", 1);set("no_sell", 1);
-        }
         setup();
 }
 
 void init()
 {
-        add_action("do_use", "fushi");       
+        add_action("do_use", "fushi");
 }
 
 int do_use(string arg)
 {
 	object ob, me;
 	string skid;
-	
+
 	me = this_player();
 
 	if (! arg )
@@ -42,10 +38,10 @@ int do_use(string arg)
 /*
 	if( query("owner", ob) != query("id", me) )
 		return notify_fail(ob->name() + NOR "已經於其他玩家綁定！\n");
-*/	
+*/
 	if (! me->query_skill(skid, 1))
 		return notify_fail("你沒有這個技能，請確認輸入是否正確！\n");
-	
+
 	if (skid == "zuoyou-hubo")
 		return notify_fail("左右互博不能提升！\n");
 
@@ -58,11 +54,11 @@ int do_use(string arg)
    me->add_skill(skid, 1);
 
 	tell_object(me, HIG "恭喜！你服下" + ob->name() + HIG "後，" + to_chinese(skid) + "提升1級！\n");
-	
+
 
 	me->save();
-	
+
 	destruct(ob);
-	
+
 	return 1;
 }

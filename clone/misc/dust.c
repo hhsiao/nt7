@@ -6,15 +6,11 @@ inherit ITEM;
 void create()
 {
         set_name(NOR + WHT "化屍粉" NOR, ({ "dust" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", NOR + WHT "這是一包用毀屍滅跡的化屍粉，只"
                             "要一丁點就可以化去(" HIW "dissolve" NOR +
                             WHT ")一具屍體。\n" NOR);
                 set("value", 50000);
-        }
         setup();
 }
 

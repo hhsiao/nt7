@@ -6,11 +6,7 @@ void create()
 {
         set_name(HIR "包裹" NOR, ({ "bag" }) );
         set_weight(1);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");                
-        }
+        set("unit", "個");
         setup();
 }
 
@@ -54,7 +50,7 @@ int do_open(string arg)
                "/clone/food/peanut",
                "/clone/food/xia",
                "/clone/money/gold",
-               "/clone/gift/jinkuai",                
+               "/clone/gift/jinkuai",
                "/clone/tattoo/face1",
                "/clone/tattoo/face2",
                "/clone/fam/gift/int2",
@@ -67,7 +63,7 @@ int do_open(string arg)
                "/clone/fam/etc/va5",
                "/clone/fam/item/stone3",
                "/clone/fam/item/stone4",
-               "/clone/fam/item/stone5",                                   
+               "/clone/fam/item/stone5",
         });
 
         me = this_player();
@@ -75,7 +71,7 @@ int do_open(string arg)
         if (environment(this_object()) != me)return 0;
 
         if (random(10) < 3)
-        {                
+        {
                 write("你打開包裹一看，裡面盡是一些不值錢的東西，隨手將之仍在一邊。\n");
                 destruct(this_object());
                 return 1;

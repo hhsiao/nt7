@@ -8,17 +8,13 @@ void create()
 {
         set_name( HIR "結婚禮服" NOR, ({ "jiehun lifu", "lifu", "jiehun" }) );
         set_weight(700);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "件");
+        set("unit", "件");
                 set("value", 20000);
                 set("material", "cloth");
                 set("armor_type", "cloth");
                 set("armor_prop/armor", 3);
                 set("wear_msg","$N穿上一件$n。\n");
                 set("remove_msg","$N將$n脫了下來。\n");
-        }
 
         setup();
 }

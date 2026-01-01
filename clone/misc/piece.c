@@ -10,11 +10,7 @@ void create()
 {
         set_name("碎片", ({ "piece" }) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "堆");
+        set("unit", "堆");
                                         set("long", "一堆不知道什麼東西的碎片。\n");
-        }
         setup();
 }

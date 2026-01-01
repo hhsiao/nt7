@@ -6,10 +6,7 @@
 void create()
 {
         set_name(CYN "跌打傷愈膏" NOR, ({"dieda gao", "gao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", CYN "這是一塊膠狀的東西，療傷效果比金創藥要好一些。\n" NOR);
+        set("long", CYN "這是一塊膠狀的東西，療傷效果比金創藥要好一些。\n" NOR);
                 set("base_unit", "包");
                 set("base_value", 1500);
                 set("base_weight", 50);
@@ -27,7 +24,6 @@ void create()
                         "min_level" : 50,
                         "medical" : 80,
                 ]));
-        }
         setup();
 }
 

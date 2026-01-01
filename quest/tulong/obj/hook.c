@@ -5,14 +5,10 @@ void create()
 {
         set_name("小鉤子", ({ "hook" , "gou zi"}) );
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "一個小小的鉤子，看起來很象用來釣魚的鉤子，也許你可以用
 它來做一個釣魚杆。(make) \n");
                 set("value", 10);
-        }
 }
 
 void init()

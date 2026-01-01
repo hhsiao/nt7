@@ -13,13 +13,9 @@ void init()
 void create()
 {
         set_name("養心丸", ({"yangxin wan", "wan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆暗紅發亮的養心丸。\n");
                 set("value", 10000);
-        }
         setup();
 }
 

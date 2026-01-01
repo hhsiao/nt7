@@ -7,10 +7,7 @@ void create()
 {
         set_name( HIC "『天下旅遊圖』" NOR, ({ "luyou tu", "tu" }) );
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", @TEXT
                  『天下旅遊圖』
                                                                          天池
@@ -32,8 +29,8 @@ void create()
                              漢中ｏ ｏ         ▲嵩山       揚州    \_  ～
                                   函谷關            ｏ南陽   ◎ ≈蘇州\_～
   青   藏   高   原                         ▲    ◎      無錫◎≈◎≈|_～
-                    ∧                    武當山 襄陽       ≈≈   嘉興♀| ～～ 
-∧                   ∧   青城山  成都     荊州ｏ≈      ≈≈  杭州◎--_『～¤ 
+                    ∧                    武當山 襄陽       ≈≈   嘉興♀| ～～
+∧                   ∧   青城山  成都     荊州ｏ≈      ≈≈  杭州◎--_『～¤
   _∧∧             大雪山   ▲     ◎       ≈≈  ≈≈≈≈        ●   / 桃花島
    \___∧∧           ∧       峨嵋山     ≈≈ 長      江         西湖  | ～
        \____∧∧       ∧≈      ▲    ≈≈                            _/ ～
@@ -55,6 +52,5 @@ void create()
 TEXT);
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }

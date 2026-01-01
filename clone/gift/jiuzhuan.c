@@ -6,19 +6,15 @@
 void create()
 {
         set_name(HIY "九轉金丹" NOR, ({ "jiuzhuan jindan", "dan" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆金色的仙丹，傳說是太上老君"
+        set("long", "一顆金色的仙丹，傳說是太上老君"
                               "精心修煉的靈丹妙藥。成功幾率100%"
                             "增加先天各四點\n");
                 set("base_value", 150000);
                 set("base_weight", 200);
                 set("base_unit", "顆");
                 set("only_do_effect", 1);
-        }       
+        }
         setup();
-}
 
 int do_effect(object me)
 {

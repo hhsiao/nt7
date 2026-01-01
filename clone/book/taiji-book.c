@@ -6,11 +6,7 @@ void create()
 {
         set_name("太極拳經", ({ "taiji book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", @LONG
 這是一本發黃的手抄典籍。是張三丰親手抄錄的。翻開首頁，每頁都有招式圖譜。
 
@@ -31,5 +27,4 @@ LONG);
                         "max_skill":        30,// the maximum level you can learn
                         "min_skill":        0        // the maximum level you can learn
                 ]) );
-        }
 }

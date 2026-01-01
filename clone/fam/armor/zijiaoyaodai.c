@@ -7,10 +7,7 @@ void create()
 {
         set_name(NOR + MAG "紫蛟腰帶" NOR, ({ "zijiao belt", "belt", "zijiao" }));
         set_weight(4000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", NOR + MAG "一根用南海惡蛟之筋做成的腰帶，隱隱地透著邪氣。\n" NOR
+        set("long", NOR + MAG "一根用南海惡蛟之筋做成的腰帶，隱隱地透著邪氣。\n" NOR
                             HIC "有效招架修正：+ 15        有效輕功修正： + 5\n" NOR
                             HIC "抗毒效果修正：+ 5%        防禦效果等級：  40\n" NOR
                             HIC "抗毒迴避修正：+ 5%\n" NOR);
@@ -25,7 +22,6 @@ void create()
                     NOR + MAG "系在腰間。\n" NOR);
                 set("remove_msg", HIC "$N" HIC "輕輕地把$n"
                     HIC "從腰間取了下來。\n" NOR);
-        }
         setup();
 }
 

@@ -14,10 +14,6 @@ void create()
 {
         set_name(HIY"三黃寶蠟丸"NOR, ({"sanhuang wan","wan"}));
         set_weight(50);
-        /*if (clonep())
-            set_default_object(__FILE__);
-    else*/
-    {
         set("unit", "顆");
         set("no_sell",1);
         set("no_get",1);
@@ -26,7 +22,6 @@ void create()
 "一顆黃澄澄的藥丸，由牛黃、雄黃、雌黃這三黃為主，輔以其它藥物\n煉製而成，是武當派療傷、療毒的靈藥。對蟲毒有奇效。\n");
                 set("value", 20000);
                 set("medicine", 1);
-    }
         setup();
 }
 
@@ -43,7 +38,7 @@ int cure_ob(object me)
         destruct(this_object());
         return 1;
         }
-           
+
         message_vision(HIM"$N服下一顆"+query("name")+HIM"，只覺通體舒泰，精神煥發，傷勢大有好轉。\n"NOR, me);
         me->receive_heal("qi", 400+random(200));
         me->apply_condition("hot_drug", 15);

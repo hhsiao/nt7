@@ -10,15 +10,11 @@ int cure_ob(string);
 void create()
 {
         set_name("何首烏", ({"heshou wu", "wu"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "棵");
+        set("unit", "棵");
                 set("long", "這是一棵初具人形的何首烏。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
         setup();
 }
 
@@ -42,7 +38,7 @@ int cure_ob(object me)
         addn("max_neili", 1, me);
         message_vision(HIG"$N吃下一棵何首烏，頓時間覺得全身充滿了活力 !\n"NOR, me);
         }
-        me->apply_condition("bonze_drug", 
+        me->apply_condition("bonze_drug",
         this_player()->query_condition("bonze_drug")+30);
         destruct(this_object());
         return 1;

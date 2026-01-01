@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIR "血脈丹方" NOR, ({ "xuemai danfang", "miben", "xuemai", "danfang" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本泛黃的書籍，上面用小篆書"
                             "寫著“血脈丹方”幾個字。\n",
 
@@ -28,18 +24,16 @@ void create()
                 ]));
 
                 set("can_make", ([
-                        "xuemai1"   : 2700,        
-                        "xuemai2"   : 2700,       
-                        "xuemai3"   : 2700,      
-                        "xuemai4"   : 3000,      
-                        "xuemai5"   : 3000, 
-                        "xuemai6"   : 3000,     
-                        "xuemai7"   : 3300,     
-                        "xuemai8"   : 3300,     
-                        "xuemai9"   : 3600,     
-                        "xuemai10"  : 3900,     
+                        "xuemai1"   : 2700,
+                        "xuemai2"   : 2700,
+                        "xuemai3"   : 2700,
+                        "xuemai4"   : 3000,
+                        "xuemai5"   : 3000,
+                        "xuemai6"   : 3000,
+                        "xuemai7"   : 3300,
+                        "xuemai8"   : 3300,
+                        "xuemai9"   : 3600,
+                        "xuemai10"  : 3900,
                 ]));
-        }
         setup();
 }
-

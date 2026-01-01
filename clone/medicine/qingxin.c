@@ -7,10 +7,7 @@ void create()
 {
         set_name(HIG "清心定神散" NOR, ({"qingxin san", "san"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "這是一包淡綠色的粉末，具有非常不錯的鎮定效果。\n" NOR);
+        set("long", HIG "這是一包淡綠色的粉末，具有非常不錯的鎮定效果。\n" NOR);
                 set("base_unit", "包");
                 set("base_value", 3000);
                 set("base_weight", 60);
@@ -29,7 +26,6 @@ void create()
                         "min_level" : 80,
                         "medical" : 100,
                 ]));
-        }
         setup();
 }
 

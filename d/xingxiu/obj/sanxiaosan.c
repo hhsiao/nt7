@@ -7,10 +7,7 @@ inherit ITEM;
 void create()
 {
         set_name("三笑逍遙散", ({"sanxiao san", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", NOR + WHT "一包無色的粉末, 看樣子不是尋常物品. \n" NOR);
+        set("long", NOR + WHT "一包無色的粉末, 看樣子不是尋常物品. \n" NOR);
                 set("unit", "包");
                 set("poison_type", "sanxiao_poison");
                 set("can_pour", 1);
@@ -25,7 +22,6 @@ void create()
                 set("value", 2000);
                 // set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

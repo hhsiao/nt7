@@ -8,10 +8,7 @@ void create()
 {
         set_name("陽教主遺信", ({"yi xin", "xin", "letter"}));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "封");
+        set("unit", "封");
                 set("long", @LONG
 夫人親啟：
 
@@ -43,7 +40,6 @@ void create()
 誠可笑也。
 LONG );
                 set("material", "paper");
-        }
 }
 
 string long()

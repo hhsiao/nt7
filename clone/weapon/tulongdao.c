@@ -7,10 +7,7 @@ void create()
 {
         set_name(NOR + CYN "屠龍刀" NOR, ({ "tulong dao", "tulong", "dao", "blade" }) );
         set_weight(32000);
-        /*if (clonep())
-                set_default_object(__FILE__);  
-        else*/ {
-                set("long", NOR + CYN "這便是號稱武林至尊的屠龍寶刀，四尺來長"
+        set("long", NOR + CYN "這便是號稱武林至尊的屠龍寶刀，四尺來長"
                             "的單刀，竟達一百多斤之重。\n相傳其中藏有曠世的大"
                             "秘密。\n" NOR);
                 set("unit", "柄");
@@ -21,7 +18,6 @@ void create()
                                  HIR "武林至尊" HIY "」的屠龍寶刀高高舉起。\n" NOR);
                 set("unwield_msg", HIY "$N" HIY "哈哈一笑，將屠龍寶刀插回背後。\n" NOR);
                 set("stable", 100);
-        }
         init_blade(250);
         setup();
 }

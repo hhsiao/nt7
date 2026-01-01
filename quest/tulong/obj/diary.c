@@ -4,13 +4,9 @@ void create()
 {
     set_name(YEL "夜辰日記" NOR, ({ "night's diary","diary" }) );
     set_weight(1);
-    /*if( clonep() )
-            set_default_object(__FILE__);
-    else*/ {
-            set("unit", "本");
+    set("unit", "本");
             set("material", "paper");
             set("long", "一本巫師夜辰以前的日記，你可以讀一讀（ｒｅａｄ），說不定會有什麼發現。\n");
-          }
 
     setup();
 }

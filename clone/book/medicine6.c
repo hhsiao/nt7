@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIC"胡青牛醫經"NOR, ({ "huqingniu yijing", "yijing", "jing"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是蝶谷醫仙胡青牛一生心血彙集成的醫書。\n");
                 set("value", 1500);
                 set("material", "paper");
@@ -25,5 +21,4 @@ void create()
                         "min_skill":    100,
                         "max_skill":    200
                 ]) );
-        }
 }

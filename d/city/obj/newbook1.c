@@ -1,5 +1,5 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 
 #include <ansi.h>
@@ -20,20 +20,16 @@ void create()
 {
         set_name("紙稿", ({"book"}));
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一本空白的書，你可以在上面寫字。(write)\n");
+        set("long", "一本空白的書，你可以在上面寫字。(write)\n");
                 set("unit", "本");
                 set("material", "paper");
                 set("value", 100000);
-        }
 }
 int init()
 {
         add_action("do_title","title");
         add_action("do_write", "write");
-        add_action("do_read", "read");   
+        add_action("do_read", "read");
 }
 
 int do_title(string arg)
@@ -44,7 +40,7 @@ int do_title(string arg)
           me = this_player();
                   this_book = this_object();
 
-          if (arg != "book") 
+          if (arg != "book")
               return  notify_fail("你要寫什麼？\n");
 
           if( !query("titled", this_book) )
@@ -86,14 +82,14 @@ void get_book_title(string book_title, object ob)
                 new_book["title"] = book_title;
         new_book["arthur"]=me->name(1)+"("+query("id", me)+")";
         new_book["arthur_id"]=query("id", me);
- 
+
         set("titled", 1, this_book);
         set("set_data", 1);
         this_book->set_name(book_title, ({"book"}));
                 set("long", "一本未寫完的書，你可以在上面接著寫。(writebook)\n", this_book);
         set("book_content", new_book, this_book);
 
-        return;        
+        return;
 }
 
 int do_write(string arg)
@@ -108,13 +104,13 @@ int do_write(string arg)
 
               if( !arg || sscanf(arg, "%s %d", msg, page_no)!=2 ) return help(me);
 
-          if (msg != "page") 
+          if (msg != "page")
               return  notify_fail("寫書用 (write page #) 。\n");
-                  if (page_no > 20 || page_no < 1) 
+                  if (page_no > 20 || page_no < 1)
               return  notify_fail("寫書在 1 到 20 頁之間。\n");
           if( !query("titled", this_book) )
                       return  notify_fail("你還沒有給書題名呢，先想個書名再說把 (title book)。\n");
-                  else 
+                  else
                   {
               message_vision("$N拿出一支筆，鋪開書本，開始寫作.....\n"NOR,me);
                           start_book_text(me, page_no);
@@ -143,7 +139,7 @@ void get_book_text(int p_no, string str)
         set("text_written", 1, this_object());
         set("publishable", 1, this_object());
         return;
-        
+
 }
 
 int do_read(string arg)
@@ -157,9 +153,9 @@ int do_read(string arg)
 
         if( !arg || sscanf(arg, "%s %d", msg, page_no)!=2 ) return help(me);
 
-        if (msg != "page") 
+        if (msg != "page")
              return  notify_fail("讀書用 (read page #) 。\n");
-            if (page_no > 20) 
+            if (page_no > 20)
               return  notify_fail("書不超過 20 頁。\n");
 
         if( !query("text_written", this_book) )
@@ -172,7 +168,7 @@ int do_read(string arg)
                 new_book["title"],new_book["arthur"]);
                 this_player()->start_more(this_page);
 
-        
+
         return 1;
 }
 

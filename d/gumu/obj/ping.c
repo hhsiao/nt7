@@ -11,16 +11,12 @@ void create()
 {
         set_name("蜂漿瓶", ({ "fengjiang ping", "ping" }) );
         set_weight(4500);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
         set("unit", "個");
         set("value", 0);
         set("jian",5) ;
         set("material", "玉");
         set("long", "這是一個用上古美玉雕成的小瓶，還未拔開瓶塞，就可以聞到\n"
                     "一股濃郁的香味，可以用來驅蜂。\n") ;
-        }
         setup();
 }
 int do_qufeng(string arg)

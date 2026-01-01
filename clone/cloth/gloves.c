@@ -8,13 +8,9 @@ void create()
 {
         set_name("手套", ({ "shou tao", "gloves" }) );
         set_weight(800);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "雙");
+        set("unit", "雙");
                 set("material", "cloth");
                 set("value", 100);
                 set("armor_prop/armor", 2);
-        }
         setup();
 }

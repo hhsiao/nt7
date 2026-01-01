@@ -7,10 +7,7 @@ void create()
 {
         set_name(HIR "鳳凰披風" NOR, ({ "fenghuang pifeng", "fenghuang", "pifeng" }));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "件");
+        set("unit", "件");
                 set("long", HIR"\n一件用鳳凰羽毛織成的披風，乃稀世珍。\n" NOR
                             HIC "有效招架修正：+ 20        有效輕功修正：+ 30\n" NOR
                             HIC "抗毒效果修正：+ 15%       防禦效果等級：  70\n" NOR
@@ -31,7 +28,6 @@ void create()
                 set("armor_prop/parry", 20);
                 set("armor_prop/reduce_poison", 15);
                 set("armor_prop/avoid_poison", 15);
-        }
         setup();
 }
 

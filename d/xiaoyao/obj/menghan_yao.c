@@ -6,16 +6,12 @@ void create()
 {
 
         set_name("蒙汗藥", ({ "menghan yao", "yao" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long",
+        set("long",
                         "這是極普通的蒙汗藥\n" );
                 set("unit", "包");
                 set("base_value", 700);
                 set("base_unit", "");
                 set("base_weight", 30);
-        }
         set_amount(1);
 }
 
@@ -43,7 +39,7 @@ int do_pour(string arg)
         f = (: call_other, __FILE__, "drink_drug" :);
         set("liquid/drink_func", bind(f,ob), ob);
         addn("liquid/slumber_effect", 100, ob);
-        message_vision("$N將一些" + name() + "倒進" + ob->name() 
+        message_vision("$N將一些" + name() + "倒進" + ob->name()
                 + "搖晃了幾下。\n", this_player());
         add_amount(-1);
         return 1;
@@ -52,7 +48,7 @@ int do_pour(string arg)
 int drink_drug(object ob)
 {
         this_player()->apply_condition("slumber_drug",
-                (int)this_player()->query_condition("slumber_drug") 
+                (int)this_player()->query_condition("slumber_drug")
                 +query("liquid/slumber_effect", ob));
         return 0;
 }

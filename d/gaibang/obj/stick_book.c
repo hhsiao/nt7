@@ -7,10 +7,7 @@ void create()
 {
         set_name("棒法圖解", ({ "staff book", "book" }));
         set_weight(600);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "冊");
+        set("unit", "冊");
                 set("long", "這是一本線裝書，裡面密密麻麻的畫了不少舞棒的姿勢。\n");
                 set("value", 200);
                 set("material", "paper");
@@ -21,5 +18,4 @@ void create()
                         "difficulty":        10,        // the base int to learn this skill
                         "max_skill":        30        // the maximum level you can learn
                 ]) );
-        }
 }

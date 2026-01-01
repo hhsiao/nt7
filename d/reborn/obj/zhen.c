@@ -6,14 +6,10 @@ inherit ITEM;
 void create()
 {
         set_name(YEL "黃梁枕" NOR, ({ "huangliang zhen", "zhen" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "據說帶著這個枕頭睡覺(dream)可以進入夢境。\n" NOR);
+        set("long", HIW "據說帶著這個枕頭睡覺(dream)可以進入夢境。\n" NOR);
                 set("unit", "個");
                 set("value", 10);
-                set("weight", 10);                
-             }
+                set("weight", 10);
         setup();
 }
 
@@ -32,11 +28,11 @@ int have_dream()
       return 1;
    }
 
-   foreach (ob in deep_inventory(me)) 
-   { 
-      if (ob->is_character()) 
-      {   
-         write("你身上帶著個大活物怎麼做夢呀?\n"); 
+   foreach (ob in deep_inventory(me))
+   {
+      if (ob->is_character())
+      {
+         write("你身上帶著個大活物怎麼做夢呀?\n");
          return 1;
       }
    }

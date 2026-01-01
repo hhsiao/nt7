@@ -7,10 +7,7 @@ void create()
 {
         set_name(WHT "貫氣通脈丹" NOR, ({"tongmai dan", "dan"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", WHT "這是一粒藥丸，看上去銀光閃閃，實是效果極佳療傷"
+        set("long", WHT "這是一粒藥丸，看上去銀光閃閃，實是效果極佳療傷"
                             "聖藥。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 3000);
@@ -33,7 +30,6 @@ void create()
                         "min_level" : 120,
                         "medical" : 150,
                 ]));
-        }
         setup();
 }
 

@@ -10,14 +10,10 @@ void create()
 {
         set_name(HIC"青光劍"NOR, ({ "qingguang jian", "jian", "sword" }) );
         set_weight(2000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "把");
+        set("unit", "把");
                 set("long",HIC"這把劍長約四尺，青光閃閃，的確是把利器。\n"NOR);
                 set("value", 10000);
                 set("material", "steel");
-        }
         init_sword(120);
         set("no_drop", "這樣東西不能離開你。\n");
         set("no_put","如此寶劍如何能亂放？\n");

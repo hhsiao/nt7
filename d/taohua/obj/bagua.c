@@ -5,10 +5,7 @@ void create()
 {
         set_name(NOR + CYN "鐵八卦" NOR, ({ "tie bagua", "tie", "bagua" }));
         set_weight(2000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", NOR + CYN "這是一個生鐵所鑄的八卦盤，盤上雕"
+        set("long", NOR + CYN "這是一個生鐵所鑄的八卦盤，盤上雕"
                             "滿了太極八卦\n紋樣，製作得非常精緻。風水師"
                             "常常藉此來觀測風\n水和卜卦，也可以用來破除"
                             "(" HIW "break" NOR + CYN ")各種奇門陣法。\n"
@@ -17,7 +14,6 @@ void create()
                 set("value", 300000);
                 set("no_sell", 1);
                 set("material", "steel");
-        }
         setup();
 }
 
@@ -103,7 +99,7 @@ int do_break(string arg)
                 me->receive_damage("jing", 100);
                 addn("jingli", -150, me);
                 me->start_busy(3);
-        }        
+        }
         set("long",query("org_desc",  env), env);
         set("exits",query("org_exits",  env), env);
         set("cost",query("org_cost",  env), env);

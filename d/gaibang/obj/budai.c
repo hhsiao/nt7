@@ -62,10 +62,7 @@ void create()
         set_amount(1);
         set_weight(500);
         set_max_encumbrance(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("base_unit", "個");
                 set("base_weight", 500);
         set("consistence", 21);
@@ -76,7 +73,6 @@ void create()
                 set("no_drop", "身為丐幫弟子，袋在則人在，袋亡則人亡。\n");
         set("no_get",  "這個布袋緊緊地綁在他身上，你拿不到手。\n");
                 set("no_steal", "這個布袋緊緊地綁在他身上，你偷不到手。\n");
-        }
 
         setup();
 }

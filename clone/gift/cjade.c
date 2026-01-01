@@ -11,10 +11,7 @@ void create()
 {
         set_name(HIG "翡翠殘片" NOR, ({ "chipped jade" }) );
         set_weight(25);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "一片晶瑩剔透粒的翡翠碎片。\n" NOR);
+        set("long", HIG "一片晶瑩剔透粒的翡翠碎片。\n" NOR);
                 set("value", 20000);
                 set("unit", "片");
                 set("armor_prop/per", 3);
@@ -23,6 +20,5 @@ void create()
                     HIC "戴在頭上。\n" NOR);
                 set("remove_msg", HIC "$N" HIC "輕輕地把$n"
                     HIC "從頭上摘了下來。\n" NOR);
-        }
         setup();
 }

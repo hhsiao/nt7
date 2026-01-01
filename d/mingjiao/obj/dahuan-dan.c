@@ -15,13 +15,9 @@ void init()
 void create()
 {
         set_name("大還丹", ({"dahuan dan", "dahuan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆紫紅晶亮的大還丹。此丹乃少林珍藥，提高功力，靈效無比。\n");
                 set("value", 10000);
-        }
 
         set("shaolin",1);
         setup();
@@ -56,7 +52,7 @@ int do_eat(string arg)
         }
 
         me->apply_condition("bonze_drug", 60);
-        
+
         destruct(this_object());
         return 1;
 }

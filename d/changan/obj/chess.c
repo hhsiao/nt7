@@ -409,16 +409,12 @@ void create()
         set_name("中國象棋盤", ({ "chinese chess board","ccb","board" }) );
         set_weight(3000000);
         set_max_encumbrance(0);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", "這是一張中國象棋盤，用來下象棋的。\n");
                 set("value", 0);
                 set("material", "wood");
                 set("no_get",1);
                 set("no_drop",1);
-        }
         setup();
 }
 void init()

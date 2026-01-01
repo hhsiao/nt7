@@ -8,22 +8,17 @@ void create()
         set_name(HIW "銀針" NOR, ({ "yin zhen" , "yin", "zhen" }) );
         set_weight(200);
 
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "枚");
+        set("unit", "枚");
                 set("long", HIW "這是一枚三寸長的銀針，細而柔韌，多為醫家"
                             "刺穴療傷之用。能運用這種銀針的醫者多為曠世\n"
                             "神醫，並有深厚的內功。你可以試著用它來針灸"
                             "(zhenjiu)療傷。\n" NOR);
-                set("value", 0);              
+                set("value", 0);
                 set("yingdu", 50);
                 set("base_unit", "枚");
                 set("base_weight", 10);
                 set("base_value", 0);
                 set("material","crimsonsteel");
-        }
         set_amount(1);
         init_throwing(30);
         setup();
@@ -54,7 +49,7 @@ int do_heal(string arg)
                 return notify_fail("你想對誰施行針灸術？\n");
 
         if( !ob->is_character() || query("not_living", ob) )
-                return notify_fail("看清楚了，那不是活人！\n"); 
+                return notify_fail("看清楚了，那不是活人！\n");
 
         if (! living(ob))
                 return notify_fail("你還是等他醒了之後再治療吧。\n");
@@ -101,7 +96,7 @@ int do_heal(string arg)
                 return notify_fail("人家內功深厚，不指望你替他療傷。\n");
 
         if( (query("max_qi", ob)*5/100>query("eff_qi", ob)) )
-                return notify_fail("現在此人受傷過重，施行針灸太危險了！\n");   
+                return notify_fail("現在此人受傷過重，施行針灸太危險了！\n");
 
         if( query("max_qi", ob) == query("eff_qi", ob) )
         {
@@ -152,7 +147,7 @@ int do_heal(string arg)
                                 + s + RED "「哇」的噴出了一口鮮血！" NOR;
                 }
 
-                ob->receive_wound("qi", damage);                
+                ob->receive_wound("qi", damage);
                 damage = i;
         } else
         {
@@ -161,7 +156,7 @@ int do_heal(string arg)
 
                 damage = -1;
 
-                if( me != ob && query("combat_exp", me)<500000 && 
+                if( me != ob && query("combat_exp", me)<500000 &&
                     ! flag)
                 {
                         exp = 100 + random(300);
@@ -179,7 +174,7 @@ int do_heal(string arg)
         }
 
         msg += "\n";
-        
+
         if (me == ob)
                 message_vision(msg, me);
         else

@@ -12,11 +12,7 @@ void create()
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
         set_name(HIW "水晶鑽" NOR, ({ "diamond" }) );           /* NAME_EXIT  */
         set_weight(20);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-//**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
                 set("long", HIW "一粒精光閃閃的鑽石。\n" NOR);  /* DBASE_EXIT  */
                 set("value", 50000);
                 set("unit", "顆");
@@ -26,10 +22,8 @@ void create()
                 set("magic/type", "metal");
                 set("magic/power", 120);
                 set("auto_load", 1);
-        }
         set("enchase/weapon_prop/add_metal", 2);
         set("enchase/rings_prop/add_metal", 2);
         set("enchase/armor_prop/reduce_wood", 1);
         setup();
 }
-

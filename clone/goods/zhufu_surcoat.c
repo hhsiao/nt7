@@ -1,33 +1,28 @@
-// This program is a part of NT MudLIB 
+// This program is a part of NT MudLIB
 // Written by Lonely@nitan.org
- 
+
 #include <ansi.h>
 #include <armor.h>
- 
+
 inherit SURCOAT;
- 
+
 void create()
 {
         set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "披風" NOR, ({ "zhufu surcoat", "surcoat", "pi feng", "pifeng" }) );
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "雙");
-                set("long", "這是一件布質的披風。\n"); 
-                set("value", 1000); 
+        set("unit", "雙");
+                set("long", "這是一件布質的披風。\n");
+                set("value", 1000);
                 set("material", "cloth");
                 set("armor_prop/armor", 20);
-        }
-        
-        set("auto_load", 1); 
-        set("mark", "A2016");  
-        set("mod_mark", "A2016");  
-        set("mod_level", "M2010");  
-        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套裝"NOR); 
 
-        set("enchase", ([ 
+        set("auto_load", 1);
+        set("mark", "A2016");
+        set("mod_mark", "A2016");
+        set("mod_level", "M2010");
+        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套裝"NOR);
+
+        set("enchase", ([
                 "flute" : 1,
                 "used" : 1,
                 "apply_prop" : ([ /* sizeof() == 2 */
@@ -46,12 +41,11 @@ void create()
                         ]),
                 ]),
         }));
-        
+
         set("require", ([
                 "max_level" : 40,
                 "max_age"   : 30,
         ]));
-        set("quality_level", 2); 
+        set("quality_level", 2);
         setup();
 }
-

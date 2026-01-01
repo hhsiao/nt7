@@ -6,11 +6,7 @@ void create()
 {
         set_name( "胡家刀譜殘篇",({ "blade book","book"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本胡家刀譜的幾頁殘篇。\n");
                 set("value", 500);
                 set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "min_skill":        30,           // the minimum level you can learn
                         "max_skill":        99            // the maximum level you can learn
                 ]) );
-        }
 }

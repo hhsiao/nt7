@@ -7,11 +7,7 @@ void create()
 {
         set_name(HIG "碧玉釵" NOR, ({ "biyu chai", "biyu", "chai" }));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "只");
+        set("unit", "只");
                 set("value", 200000);
                 set("material", "stone");
                 set("armor_prop/armor", 1);
@@ -19,9 +15,8 @@ void create()
                 set("limit", ([
                         "sex" : 1, // 1 為女性
                 ]));
-        }
         setup();
-}        
+}
 
 int query_autoload()
 {

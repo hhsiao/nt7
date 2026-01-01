@@ -8,16 +8,11 @@ void create()
         set_name(HIR "清師令" NOR, ({ "qingshi ling", "qingshi", "ling" }) );
         set_weight(100);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", HIG "可使用他用來清除(qingshi <門派>)脫離師門不良記錄一個。\n" NOR);
+        set("long", HIG "可使用他用來清除(qingshi <門派>)脫離師門不良記錄一個。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                 set("unit", "塊");
                 set("auto_load", 1);
-        }
 
         setup();
 }
@@ -48,4 +43,3 @@ int do_qingshi(string arg)
 
         return 1;
 }
-

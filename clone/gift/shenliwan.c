@@ -8,21 +8,17 @@ void create()
 {
         set_name(HIG "神力丸" NOR, ({ "shenli wan", "wan"}) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆圓圓的神力丸，據說吃了可以增強臂力。增加先天屬性至五點\n");
+        set("long", "一顆圓圓的神力丸，據說吃了可以增強臂力。增加先天屬性至五點\n");
                 set("value", 10000);
                 set("unit", "顆");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)
 {
         message_vision("$N一仰脖，吞下了一顆" + this_object()->name() +
                        "。\n", me);
-        if( query("gift/shenliwan", me) >= 5 || 
+        if( query("gift/shenliwan", me) >= 5 ||
             query("gift/str/succeed", me) >= 5 )
         {
                 message_vision("$N眨眨眼。\n", me);

@@ -7,13 +7,9 @@ inherit ITEM;
 void create()
 {
         set_name(HIC "黑玉斷續膏" NOR, ({ "heiyugao" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "粒");
+        set("unit", "粒");
                 set("long", "這是一粒千年極其難配製的的黑玉斷續膏,據說能起死回生。\n");
                 set("only_do_effect", 1);
-        }
 
         setup();
 }

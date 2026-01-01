@@ -6,11 +6,7 @@ void create()
 {
 set_name( "雲龍劍譜",({ "jian book","book"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本劍譜總訣。\n");
                 set("value", 5000);
                 set("material", "paper");
@@ -22,5 +18,4 @@ set_name( "雲龍劍譜",({ "jian book","book"}));
                         "max_skill":        119,        // the maximum level you can learn
                         "min_skill":        80        // the minimum level you can learn
                 ]) );
-        }
 }

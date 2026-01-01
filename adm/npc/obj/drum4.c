@@ -1,5 +1,5 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 
 #include <ansi.h>
@@ -31,16 +31,12 @@ nosave object *total = ({ });
 
 void create()
 {
-        seteuid(ROOT_UID); 
+        seteuid(ROOT_UID);
         set_name(HIR "武林英雄鼓" NOR, ({ "drum" }) );
         set_weight(5000000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("no_get", 1);
                 set("long", "這是一隻牛皮製成的巨鼓，武林人士在華山論劍時敲響(knock)它開始比武。\n");
-        }
 }
 
 int init()
@@ -53,11 +49,11 @@ int do_knock(string arg)
         object ob, me, *env, *fighters;
         int i, j;
         string msg;
-        
+
         me = this_player();
         ob = environment(me);
         if (! arg || arg != "drum")    return notify_fail("你要敲什麼？\n");
-        
+
         if (query("is_drum_knocked"))
                 return notify_fail("比武大會已經開始了，不必再擊鼓了。\n");
 
@@ -67,17 +63,17 @@ int do_knock(string arg)
         env = all_inventory(ob);
         j = 0;
         fighters = ({ });
-        for (i = 0; i < sizeof(env); i++) 
+        for (i = 0; i < sizeof(env); i++)
         {
                 if (! playerp(env[i]) || wizardp(env[i]))
                         continue;
-                /*        
+                /*
                 if( query("mud_age", env[i])<86400*2 )
                         continue;
-                */        
+                */
                 if (wizardp(me))
                         set("title", clear_title(query("title", env[i])), env[i]);
-                        
+
                 fighters += ({ env[i] });
                 j++;
         }
@@ -90,7 +86,7 @@ if (query("id", me)=="lazy cat") me->command("say 喵喵喵，人數不夠，取
         // message_vision(BOLD "\n\n\t$N敲響了華山絕頂比武場上的大鼓，鼓聲咚咚，令人熱血沸騰。\n\n" NOR, me);
         msg=BOLD"\n\n\t"+query("name", me)+"敲響了華山絕頂比武場上的大鼓，鼓聲咚咚，令人熱血沸騰。\n\n"NOR;
         message("channel:news", msg, users());
-        
+
         if ((wizardp(me) && wiz_level(me) >= 4) || query("id", me)=="lazy cat")
                 set("drum_knocked",query("name", me));
         else
@@ -132,7 +128,7 @@ int check_out(object me)
         object ob;
         mapping my;
         string msg;
-        
+
         my = me->query_entire_dbase();
         my["eff_qi"] = my["max_qi"];
         my["eff_jing"] = my["max_jing"];
@@ -221,7 +217,7 @@ void auto_check()
         foreach (ob in lost)
                 check_out(ob);
 
-        total -= ({ 0 }); 
+        total -= ({ 0 });
 }
 
 int sort_user(object ob1, object ob2)
@@ -251,12 +247,12 @@ void de_group(object *fighters)
         object *list, no1, no2, no3, no4, no5;
         mapping arena;
         object room = environment();
-    
+
         if (sizeof(fighters) <= 1)       return;
         for (i = 0; i < 100; i++)
         if (query("group" + i)) delete("group" + i);
         //while (query("group" + i)) delete("group" + i);
-        
+
         if (sizeof(fighters) < 8)
         {
                 if (query("loop"))
@@ -299,7 +295,7 @@ void de_group(object *fighters)
                                 no5 = list[i];
                                 break;
                         }
-                                                
+
                         if (no1)
                         {
                                 overmsg = HIW "\n\n本次武林比武大會的結果:\n" + HIM + "          第一名是" +
@@ -334,12 +330,12 @@ void de_group(object *fighters)
                                         query("name", no5)+"("+query("id", no5)+")。\n"NOR;
                                 message("channel:news", overmsg, users());
                                 file+=query("name", no5)+"("+query("id", no5)+")\n";
-                        }  
-                                                                      
+                        }
+
                         if (stringp(query("drum_knocked")))
                         {
                                 log_file("static/lunjian4", file);
-                                
+
                                 if (no1)
                                 {
                                         addn("experience", 5000, no1);
@@ -354,9 +350,9 @@ void de_group(object *fighters)
                                         if( query("combat/PKS", no1)>10 )
                                                 addn("combat/PKS", -10, no1);
                                         else delete("combat/PKS", no1);
-                                        
-                                        HISTORY_D->add_history("華山論劍", query("id", no1), sprintf("戰神組 %s(%s)，年齡 %d、等級 %d，榮獲名次 1.\n", 
-                                                query("name", no1), query("id", no1), query("age", no1), query("level",no1))); 
+
+                                        HISTORY_D->add_history("華山論劍", query("id", no1), sprintf("戰神組 %s(%s)，年齡 %d、等級 %d，榮獲名次 1.\n",
+                                                query("name", no1), query("id", no1), query("age", no1), query("level",no1)));
                                 }
                                 if (no2)
                                 {
@@ -372,9 +368,9 @@ void de_group(object *fighters)
                                         if( query("combat/PKS", no1)>7 )
                                                 addn("combat/PKS", -7, no1);
                                         else delete("combat/PKS", no1);
-                                        
-                                        HISTORY_D->add_history("華山論劍", query("id", no2), sprintf("戰神組 %s(%s)，年齡 %d、等級 %d，榮獲名次 2.\n", 
-                                                query("name", no2), query("id", no2), query("age", no2), query("level", no2)));    
+
+                                        HISTORY_D->add_history("華山論劍", query("id", no2), sprintf("戰神組 %s(%s)，年齡 %d、等級 %d，榮獲名次 2.\n",
+                                                query("name", no2), query("id", no2), query("age", no2), query("level", no2)));
                                 }
                                 if (no3)
                                 {
@@ -390,9 +386,9 @@ void de_group(object *fighters)
                                         if( query("combat/PKS", no1)>5 )
                                                 addn("combat/PKS", -5, no1);
                                         else delete("combat/PKS", no1);
-                                        
-                                        HISTORY_D->add_history("華山論劍", query("id", no3), sprintf("戰神組 %s(%s)，年齡 %d、等級 %d，榮獲名次 3.\n", 
-                                                query("name", no3), query("id", no3), query("age", no3), query("level", no3)));    
+
+                                        HISTORY_D->add_history("華山論劍", query("id", no3), sprintf("戰神組 %s(%s)，年齡 %d、等級 %d，榮獲名次 3.\n",
+                                                query("name", no3), query("id", no3), query("age", no3), query("level", no3)));
                                 }
                                 if (no4)
                                 {
@@ -456,7 +452,7 @@ void de_group(object *fighters)
                                         arena = ([ fighters[i] : 0 ]);
                         }
                 }
-        } else 
+        } else
         {
                 msg = BOLD "\n\n比武大會第" + chinese_number((int)query("lunshu")+  1) + "輪(淘汰賽)賽程：\n\n" NOR;
                 set("loop", 0);
@@ -467,7 +463,7 @@ void de_group(object *fighters)
                                 arena += ([ list[i] : 0 ]);
                         else
                                 arena = ([ list[i] : 0 ]);
-                
+
                 }
                 i = 0;
                 if (sizeof(list)%2)
@@ -513,7 +509,7 @@ void start_fight()
         mapping fighters, arena = query("arena");
         object room = environment();
         object ob1, ob2, *list;
-        
+
         if (mapp(fighters = query("group" + round)))
         {
                 if (sizeof(keys(fighters)))
@@ -537,7 +533,7 @@ void start_fight()
                 if (ob2 && ! ob1)
                 {
                         arena[ob2] += 1;
-                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" + 
+                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" +
                                 chinese_number(round) + "回合：  " +
                                 query("name", ob2)+"("+query("id", ob2)+")"+HIY+"---------免戰!\n"NOR);
                         remove_call_out("start_fight");
@@ -546,14 +542,14 @@ void start_fight()
                 }
                 if (! ob1 && ! ob2)
                 {
-                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" + 
+                        tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" +
                                 chinese_number(round) + "回合：  " +
                                 HIY + "-----------SKIP----------\n" NOR);
                         remove_call_out("start_fight");
                         call_out("start_fight", 1);
                         return;
                 }
-                tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" + 
+                tell_room(room, BOLD "\n第" + chinese_number((int)query("lunshu")+1) + "輪第" +
                         chinese_number(round) + "回合：  " +
                         query("name", ob1)+"("+query("id", ob1)+")"+HIY+"---V.S.---"+NOR+BOLD+
                         query("name", ob2)+"("+query("id", ob2)+")\n"NOR);
@@ -562,7 +558,7 @@ void start_fight()
                 recover(ob1);
                 recover(ob2);
                 message_vision(HIW "\n$N和$n施展輕功,雙雙躍上擂臺。\n\n" NOR, ob1, ob2);
-                
+
                 if (! arrayp(total))
                         total = ({ ob1 });
                 else
@@ -571,7 +567,7 @@ void start_fight()
                 ob1->move(room);
                 init_player(ob1);
                 set_heart_beat(1);
-                
+
                 if (! arrayp(total))
                         total = ({ ob2 });
                 else
@@ -580,7 +576,7 @@ void start_fight()
                 ob2->move(room);
                 init_player(ob2);
                 //set_heart_beat(1);
-                
+
                 message("vision", HIW "\n" + ob1->name() + "和" + ob2->name() + "一前一後，躍了上來。\n\n" NOR,
                         room, ({ob1, ob2}));
                 set("time", 3);
@@ -593,7 +589,7 @@ void start_fight()
                 addn("lunshu", 1);
                 list = filter_array(keys(query("arena")), "filter_user", this_object());
                 de_group(list);
-        }    
+        }
 }
 
 
@@ -624,34 +620,34 @@ void checking(object ob1, object ob2)
                 message("vision", HIC + ob2->name() + "哈哈大笑幾聲，跳了下去。\n" NOR, room, ({ob2}));
         } else
                 tell_room(environment(), BOLD "由於雙方棄權,繼續下一輪比賽。\n" NOR);
-        if (winner) 
+        if (winner)
         {
                 arena = query("arena");
                 arena[winner] += 1;
                 if (ob1)
-                { 
+                {
                         restore_status(ob1);
                         total -= ({ ob1 });
 
-                        ob1->move(environment()); 
+                        ob1->move(environment());
                         delete("total_hatred", ob1);
                         if (! living(ob1))
-                                ob1->revive();                  
+                                ob1->revive();
                 }
                 if (ob2)
-                { 
+                {
                         restore_status(ob2);
                         total -= ({ ob2 });
-                        
+
                         ob2->move(environment());
                         delete("total_hatred", ob2);
                         if (! living(ob2))
                                 ob2->revive();
-                }               
+                }
                 message_vision(HIC "$N哈哈大笑，從擂臺上跳了下來。\n" NOR, winner);
                 tell_room(environment(),BOLD"這一回合的結果是："+query("name", winner)+"勝。\n"NOR);
                 total = ({ });
-                recover(ob1);    
+                recover(ob1);
                 recover(ob2);
                 set("arena", arena);
         }
@@ -743,7 +739,7 @@ int give_money(object *players,object *fighters)
                                 new("/clone/tessera/rune10")->move(user);
                                 new("/clone/tessera/rune11")->move(user);
                                 new("/clone/tessera/rune12")->move(user);
-         new("/u/redl/npc/obj/penny")->move(user); 
+         new("/u/redl/npc/obj/penny")->move(user);
                         }
                 }
                 message("vision", query("drum_knocked") + "給參賽的江湖人士每人一點禮物：“小小意思，笑納，笑納。”\n",

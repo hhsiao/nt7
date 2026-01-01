@@ -8,15 +8,11 @@ void create()
 {
         set_name(HIM "玄黃紫清丹" NOR, ({ "xuanhuang dan", "dan" }) );
         set_weight(300);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆紫中泛黃的精緻奇丹，具有這神話般的功效，"
+        set("long", "一顆紫中泛黃的精緻奇丹，具有這神話般的功效，"
                             "是練武人夢寐以求的妙藥。\n");
                 set("value", 2500000);
                 set("unit", "粒");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)

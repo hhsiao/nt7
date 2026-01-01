@@ -6,10 +6,7 @@ void create()
 {
         set_name("鷹爪手法", ({ "yingzhua shoufa", "shoufa", "book" }));
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本講述基本手法要領的書籍。\n");
                 set("value", 100);
                 set("material", "paper");
@@ -25,5 +22,4 @@ void create()
                         "max_skill": 30       // the maximum level you can learn
                                               // from this object.
                 ]));
-        }
 }

@@ -14,7 +14,7 @@ void init(object me)
         string* players;
 
         if( !me ) me = this_player();
-        if( !userp(me) ) 
+        if( !userp(me) )
                 return;
 
         if( !BATTLEFIELD2_D->in_battle(me) )
@@ -55,14 +55,8 @@ void create()
 {
         set_name(RED"戰爭恐懼石碑"NOR, ({ "battlefield fear statue", "statue" }) );
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "使用這個石碑的人可以大幅降低另一位戰場中玩家的能力。");
+        set("long", "使用這個石碑的人可以大幅降低另一位戰場中玩家的能力。");
                 set("value", 1000000);
                 set("unit", "個");
                 set("no_get", 1);
-        }
 }
-

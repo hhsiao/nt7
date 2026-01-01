@@ -12,11 +12,7 @@ void create()
 {
         set_name(HIW "符文" NOR, ({"rune35", "rune"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "符文：玉清清微符，可以放入凹槽物品。\n");
+        set("long", "符文：玉清清微符，可以放入凹槽物品。\n");
                 set("unit", "個");
                 set("enchase/SN", 35);
                 set("enchase/type", "all");
@@ -32,7 +28,6 @@ void create()
                         "avoid_blind" : 3,
                 ]));
                 set("value", 20000);
-        }
         setup();
 }
 

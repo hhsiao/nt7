@@ -20,10 +20,7 @@ void create()
         set_name(HIR"魚腸劍"NOR, ({"yuchang jian", "jian", "sword"}) );
         set_weight(10000);
 
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/{
-                set("unit", "柄");
+        set("unit", "柄");
                 set("long", "這就是傳說中的魚腸劍，沒想到會在這裡出現！\n"
                 "你忍不住想把它撿(jian)起來！！！\n");
                 set("material", "steel");
@@ -32,7 +29,6 @@ void create()
                 set("count",3);
     set("wield_msg", HIR "一道暗紅血光劃過，魚腸劍已落入$N" HIR "手中。\n" NOR);
     set("unwield_msg", HIR "天地忽暗，$N" HIR "手中的魚腸劍已悄然隱沒 。\n" NOR);
-        }
         init_sword(1);
         setup();
 }
@@ -48,7 +44,7 @@ int do_jian(string arg)
         if (me->query_dex()>40)
         addn("count",-1);
         me->unconcious();
-        me->move("/d/tiezhang/shanlu-6"); 
+        me->move("/d/tiezhang/shanlu-6");
         }
         else
         {

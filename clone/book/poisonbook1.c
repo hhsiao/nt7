@@ -6,11 +6,7 @@ void create()
 {
         set_name("毒經上篇", ({ "jing", "book" }));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本薄薄的小冊，上面密密麻麻的寫滿了各種用毒的基本方法和毒藥的配方。\n你可以用(see)看一看。\n");
                 set("value", 0);
                 set("material", "silk");
@@ -21,7 +17,6 @@ void create()
                         "difficulty":   20,     // the base int to learn this skill
                         "max_skill":    50      // the maximum level you can learn
                 ]) );
-        }
 }
 void init()
 {

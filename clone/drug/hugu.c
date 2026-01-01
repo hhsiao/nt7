@@ -13,14 +13,10 @@ void create()
 {
         set_name("虎骨", ({ "hu gu", "gu" }) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "支");
+        set("unit", "支");
                 set("long", "這是一支老虎的脛骨，乃是極為珍貴的藥材。\n");
                 set("value", 10000);
                 set("medicine", 1);
-        }
         setup();
 }
 
@@ -29,7 +25,7 @@ int cure_ob(object me)
         if( query("food", me) >= me->max_food_capacity() )
           return notify_fail("你已經吃太飽了，再也塞不下任何東西了。\n");
         else
- 
+
         addn("food", 40, me);
 
         if ( (int)me->query_condition("bonze_drug" ) > 0 ){
@@ -52,7 +48,7 @@ int cure_ob(object me)
         me->receive_curing("qi", 200);
         set("qi",query("max_qi",  me), me);
 
-        me->apply_condition("bonze_drug", 
+        me->apply_condition("bonze_drug",
         me->query_condition("bonze_drug")+30);
         message_vision(HIY "$N吃下一支虎骨，只覺得全身冒汗，爽快淋漓。\n" NOR, me);
         //this_object()->move("/u/aln/workroom");

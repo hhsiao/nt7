@@ -4,10 +4,6 @@ void create()
 {
        set_name("基本內功", ({ "force book"}));
         set_weight(600);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
         set("unit", "本");
         set("long",
 "這本書上面只有一些字跡模糊的字句，似乎\n"
@@ -21,6 +17,5 @@ void create()
         "difficulty":   20,      // 參看 /cmds/std/study.c
         "max_skill":    60,      // 能讀到的最高等級.
 ]) );
-        }
 }
 int is_yaowang_book() { return 1; }

@@ -2,23 +2,22 @@
 inherit ROOM;
 
 
-void create ()
-{
-  set ("short","沙石路");
-  set ("long", @LONG
+void create () {
+    set ("short", "沙石路");
+    set ("long", @LONG
 這裡是條沙石路。一陣風吹過，捲起漫天的沙土。不時有人騎馬從
 你身旁馳過。
 LONG);
 
-  set("exits", ([ 
+    set("exits", ([
 
-  "northeast":__DIR__"wguanlu1",
-  "southwest":__DIR__"shalu2",
-       ]));
+        "northeast": __DIR__"wguanlu1",
+        "southwest": __DIR__"shalu2"
+        ]));
 
-set("outdoors","annan");
-  
-  set("valid_startroom", 1);
-  setup();
- 
+    set("outdoors", "annan");
+
+    set("valid_startroom", 1);
+    setup();
+
 }

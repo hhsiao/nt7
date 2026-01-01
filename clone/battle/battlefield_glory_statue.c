@@ -34,14 +34,8 @@ void create()
 {
         set_name(WHT"戰爭榮耀石碑"NOR, ({ "battlefield glory statue", "statue" }) );
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "第一個看到這個石碑的人可以獲得極強大的能力。");
+        set("long", "第一個看到這個石碑的人可以獲得極強大的能力。");
                 set("value", 1000000);
                 set("unit", "個");
                 set("no_get", 1);
-        }
 }
-

@@ -4,15 +4,11 @@ inherit ITEM;
 void create()
 {
         set_name(HIM "地脈血泉" NOR, ({ "dimai xuequan", "dimai", "xuequan", "herb_dimai" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("base_unit", "塊");
+        set("base_unit", "塊");
                 set("unit", "塊");
                 set("long", HIM "這是一塊散發著血色光澤的晶體，世間罕有。\n" NOR);
                 set("value", 30000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

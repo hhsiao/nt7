@@ -11,16 +11,12 @@ void create()
 {
         set_name(HIY"越王"HIR"勾踐"HIB"劍"NOR, ({ "yuewang jian", "goujian jian", "jian", "sword" }) );
         set_weight(20000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "柄");
+        set("unit", "柄");
                 set("value", 30000);
                 set("material", "iron");
                 set("long", "這是越王勾踐佩戴過的寶劍，寒光閃閃，冷氣逼人。\n");
                 set("wield_msg","寒芒一閃，冷森森的$n已在$N手中。\n");
                 set("unwield_msg", "$N手腕輕抖，$n倏忽間已然不見。\n");
-        }
             init_sword(180);
         setup();
 }

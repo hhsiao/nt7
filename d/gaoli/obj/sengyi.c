@@ -6,13 +6,9 @@ void create()
 {
    set_name("僧衣", ({ "cloth"}) );
    set_weight(5000);
-   /*if( clonep() )
-     set_default_object(__FILE__);
-   else*/ {
-     set("material", "cloth");
+   set("material", "cloth");
      set("unit", "件");
      set("value", 40);
      set("armor_prop/armor", 2);
-   }
    setup();
 }

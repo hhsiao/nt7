@@ -6,11 +6,7 @@ void create()
 {
         set_name( HIR"一陽指訣"NOR,({ "sunfinger book","book"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本一陽指密訣。封面上有一位中年秀士右手中指指向天空的背影。\n");
                 set("value", 500);
                 set("material", "paper");
@@ -23,5 +19,4 @@ void create()
                         "min_skill":   0, // the minimum level you can learn
                         "max_skill":  99  // the maximum level you can learn
                 ]) );
-        }
 }

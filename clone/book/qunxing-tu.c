@@ -5,11 +5,7 @@ void create()
 {
         set_name("群星璀璨圖", ({ "qunxing tu" ,"tu" ,"book"}));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本描寫著天上群星運動的書。\n"
                         "但似乎並沒有那麼簡單。\n");
                 set("value", 1000);
@@ -21,5 +17,4 @@ void create()
                         "difficulty":  20,                          // the base int to learn this skill
                         "max_skill":  1000
                 ]) );
-        }
 }

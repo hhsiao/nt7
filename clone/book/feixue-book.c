@@ -8,11 +8,7 @@ void create()
 {
         set_name(HIC"飛雪掌譜"NOR, ({ "feixue-book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本學飛雪映梅掌的書。\n");
                 set("value", 1000);
                 set("material", "paper");
@@ -25,5 +21,4 @@ void create()
                         "max_skill":    80,
                         "min_skill":    20
                 ]) );
-        }
 }

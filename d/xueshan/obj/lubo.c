@@ -8,17 +8,13 @@ void create()
 {
         set_name( BLU "顱缽" NOR, ({"lubo"}));
         set_weight(700);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個用顱骨製成的缽。\n");
+        set("long", "一個用顱骨製成的缽。\n");
                 set("unit", "個");
                 set("value", 100);
                 set("max_liquid", 10);
                 set("regidity", 1000);
                 set("wield_msg", "$N從腰間抽出一個$n，端在手裡。\n");
                 set("unequip_msg", "$N將$n收起來，掛回腰間。\n");
-        }
 
         // because a container can contain different liquid
         // we set it to contain water at the beginning
@@ -30,6 +26,3 @@ void create()
         ]));
         init_hammer(30);
 }
-
-
-

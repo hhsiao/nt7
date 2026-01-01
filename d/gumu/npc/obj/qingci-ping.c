@@ -12,15 +12,11 @@ void create()
 {
         set_name(CYN "青瓷瓶" NOR, ({"qingci ping", "ping", "bottle" }));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "古墓派用來裝玉蜂蜜的青瓷小瓶。\n");
+        set("long", "古墓派用來裝玉蜂蜜的青瓷小瓶。\n");
                 set("unit", "個");
                 set("base_unit", "個");
                 set("max_liquid", 10);
                 set("no_give",0);
-        }
 
         set("liquid", ([
                 "type": "mi",
@@ -70,7 +66,7 @@ int do_drink(string arg)
                 }
         }
         else if( !id(arg) ) return 0;
-        
+
         if( !query("liquid/remaining", ping) )
                 return notify_fail(name()+(query("liquid/name", ping)?"已經被喝得一滴也不剩了。\n":"是空的。\n"));
 
@@ -103,17 +99,17 @@ int do_drink(string arg)
                                 {
                                         addn("max_jingli", 1, pl);
                                         addn("eff_jingli", 1, pl);
-                                }        
+                                }
                         }
                         else if( query("jingli", pl)<query("max_jingli", pl) )
                                 set("jingli",query("max_jingli",  pl), pl);
-                        if ((int)pl->query_condition("yufengdu")>=20) 
+                        if ((int)pl->query_condition("yufengdu")>=20)
                                 pl->apply_condition("yufengdu", 20);
                         else
-                                pl->apply_condition("yufengdu", 
+                                pl->apply_condition("yufengdu",
                                         (int)pl->query_condition("yufengdu") + 2);
                 }
-                else pl->apply_condition("yufengdu", 
+                else pl->apply_condition("yufengdu",
                         (int)pl->query_condition("yufengdu") + 20);
         }
         if( query("liquid/name", ping) == "古墓玉漿"){
@@ -127,13 +123,13 @@ int do_drink(string arg)
                         }
                         else if( query("neili", pl)<query("max_neili", pl) )
                                 set("neili",query("max_neili",  pl), pl);
-                        if ((int)pl->query_condition("yufengdu")>=30) 
+                        if ((int)pl->query_condition("yufengdu")>=30)
                                 pl->apply_condition("yufengdu", 30);
                         else
-                            pl->apply_condition("yufengdu", 
+                            pl->apply_condition("yufengdu",
                                         (int)pl->query_condition("yufengdu") + 3);
                 }
-                else pl->apply_condition("yufengdu", 
+                else pl->apply_condition("yufengdu",
                         (int)pl->query_condition("yufengdu") + 30);
         }
         if( query("liquid/name", ping) == "古墓聖漿"){
@@ -145,22 +141,22 @@ int do_drink(string arg)
                                 if( query("max_neili", pl)<pl->query_current_neili_limit() )
                                         addn("max_neili", 1, pl);
                         }
-                        else 
+                        else
                         if( query("max_jingli", pl)<pl->query_current_jingli_limit()){
                                 addn("max_jingli", 1, pl);
                                 addn("eff_jingli", 1, pl);
                         }
-                        if ((int)pl->query_condition("yufengdu")>=30) 
+                        if ((int)pl->query_condition("yufengdu")>=30)
                                 pl->apply_condition("yufengdu", 30);
                         else
-                            pl->apply_condition("yufengdu", 
+                            pl->apply_condition("yufengdu",
                                         (int)pl->query_condition("yufengdu") + 3);
                 }
-                else pl->apply_condition("yufengdu", 
+                else pl->apply_condition("yufengdu",
                         (int)pl->query_condition("yufengdu") + 30);
         }
 
-//        if( pl->query("jingli") > pl->query("max_jingli")) 
+//        if( pl->query("jingli") > pl->query("max_jingli"))
 //        this_player()->set("jingli", this_player()->query("max_jingli"));
 
         if( pl->is_fighting() ) pl->start_busy(2);
@@ -176,11 +172,11 @@ int do_drink(string arg)
         switch(query("liquid/type", ping)){
                 case "alcohol":
                         pl->apply_condition("drunk",
-                                (int)pl->query_condition("drunk") 
+                                (int)pl->query_condition("drunk")
                                 +query("liquid/drunk_apply", ping));
                         break;
         }
-        
+
         return 1;
 }
 
@@ -251,6 +247,6 @@ int do_addn(string arg)
         remaining = query("liquid/remaining");
         max = query("max_liquid");        //*query_amount();
         tell_object(me, "滿瓶"+chinese_number(max)+"，現在"        + chinese_number(remaining)+"。\n");
-        
+
         return 1;
 }

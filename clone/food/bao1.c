@@ -1,6 +1,6 @@
 // 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // dumpling.c
 
 inherit ITEM;
@@ -10,13 +10,9 @@ void create()
 {
         set_name("豬肉餡包子", ({"zhurou bao", "bao"}));
         set_weight(80);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個香噴噴、熱騰騰的豬肉餡灌湯包子。\n");
+        set("long", "一個香噴噴、熱騰騰的豬肉餡灌湯包子。\n");
                 set("unit", "個");
                 set("value", 25);
                 set("food_remaining", 2);
                 set("food_supply", 40);
-        }
 }

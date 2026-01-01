@@ -6,11 +6,7 @@ void create()
 {
         set_name("說劍", ({ "sword book", "shu", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是莊子中的說劍篇，似乎對基本劍術有所裨益。\n");
                 set("value", 100);
                 set("material", "paper");
@@ -21,5 +17,4 @@ void create()
                         "difficulty":        20,
                         "max_skill":        20
                 ]) );
-        }
 }

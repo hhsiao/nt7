@@ -4,10 +4,7 @@
 void create()
 {
         set_name(HIY "三黃寶臘丹" NOR, ({"baola dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIY "武當派的療傷聖藥，具有極佳的解毒功效。\n" NOR);
+        set("long", HIY "武當派的療傷聖藥，具有極佳的解毒功效。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 8000);
                 set("base_weight", 55);
@@ -30,7 +27,6 @@ void create()
                         "min_level" : 150,
                         "wudang-yaoli" : 220,
                 ]));
-        }
         setup();
 }
 

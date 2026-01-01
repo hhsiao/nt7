@@ -7,14 +7,10 @@ void create()
 {
           set_name(HIR "蟠桃" NOR, ({"pan tao", "pan", "tao"}));
           set_weight(150);
-          /*if (clonep())
-                    set_default_object(__FILE__);
-          else*/ {
-                    set("long", HIR "一個火紅色的大蟠桃，正散發著撲鼻的清香。\n" NOR);
+          set("long", HIR "一個火紅色的大蟠桃，正散發著撲鼻的清香。\n" NOR);
                     set("value", 3000);
                 set("only_do_effect", 1);
                     set("unit", "個");
-          }
           setup();
 }
 
@@ -35,7 +31,7 @@ int do_effect(object me)
 
         message_vision(HIR "\n$N" HIR "三兩口將手中的蟠桃嚼爛吞下，一張臉頓時脹"
                        "得通紅。\n" NOR, me);
-        write(NOR " (你的額外內力上限已經達到了"+(string)query("drug_addneili", me)+"點。) \n\n" NOR);               
+        write(NOR " (你的額外內力上限已經達到了"+(string)query("drug_addneili", me)+"點。) \n\n" NOR);
         me->start_busy(random(2) + 2);
 
           if( query("max_neili", me)<=neili_limit-i )

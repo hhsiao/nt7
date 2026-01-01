@@ -7,15 +7,11 @@ inherit ITEM;
 void create()
 {
         set_name("大還丹", ({"dahuan dan", "dahuan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆紫紅晶亮的大還丹。此丹乃少林珍藥，提"
                             "高功力，靈效無比。\n");
                 set("value", 10000);
                 set("only_do_effect", 1);
-        }
 
         setup();
 }
@@ -26,7 +22,7 @@ int do_effect(object me)
 
         force_limit = me->query_skill("force")*10;
         neili_limit=query("max_neili", me);
-        
+
         me->start_busy(2);
         if ((int)me->query_condition("bonze_drug" ) > 0)
         {

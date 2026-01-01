@@ -8,10 +8,7 @@ void create()
 {
         set_name( HIY "繡花小方巾" NOR, ({ "scarf" }) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "條");
+        set("unit", "條");
                 set("value", 300);
                 set("material", "cloth");
                 set("armor_type", "head");
@@ -21,5 +18,4 @@ void create()
                 set("female_only", 1);
                 set("wear_msg","$N戴上一條$n。\n");
                 set("remove_msg","$N將$n解了下來。\n");
-        }
 }

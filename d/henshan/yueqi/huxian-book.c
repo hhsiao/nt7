@@ -5,15 +5,11 @@ void create()
 {
         set_name(HIM "「狐仙」" NOR, ({ "huxian book", "huxian", "book" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", HIM "一本破舊的書，也不知道這是誰寫的。沒"
                             "事可以看看(read)。\n" NOR);
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }
 
@@ -27,7 +23,7 @@ int do_read(string arg)
 {
         if (arg == "huxian book" || arg == "huxian" || arg == "book")
         {
-                set("lunhui-sword_quest/read_huxian_book", 1, this_player()); 
+                set("lunhui-sword_quest/read_huxian_book", 1, this_player());
                 return notify_fail(WHT "\n"
 "---------------------------------------------------------\n\n"
 "                       狐    仙\n\n"

@@ -8,18 +8,14 @@ inherit ITEM;
 void create()
 {
         set_name("天王保命丹", ({"baoming dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("value", 4000);
-                set("long", 
+                set("long",
 "這天王保命丹是由三百年老山人參、白熊膽、雪蓮等物煉成的靈丹\n");
                 set("medicine", 1);
                 set("no_sell", 1);
-                set("only_do_effect", 1);  
+                set("only_do_effect", 1);
                 set("no_drop", "天王保命丹煉製不易，哪能亂扔！\n");
-        }
 
         setup();
 }

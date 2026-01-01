@@ -8,14 +8,10 @@ void create()
 {
         set_name( "繡花小鞋", ({ "xiuhua xie", "xie", "shoes" }) );
         set_weight(900);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("material", "cloth");
+        set("material", "cloth");
                 set("unit", "雙");
                 set("value", 300);
                 set("armor_prop/armor", 1 );
                 set("female_only", 1);
-        }
         setup();
 }

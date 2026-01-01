@@ -7,13 +7,9 @@ inherit ITEM;
 void create()
 {
         set_name("腐心草", ({"fuxin cao", "cao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "根");
+        set("unit", "根");
                 set("long", "這是一朵無根小草，長得很小，卻給人一種欣欣向榮的感覺。\n");
                 set("only_do_effect", 1);
-        }
 
         setup();
 }

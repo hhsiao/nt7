@@ -6,11 +6,7 @@ void create()
 {
         set_name("『星宿毒經〖下冊〗』", ({ "du jing2", "book2" }) );
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "\n                 『星宿毒經〖下冊〗』\n\n");
                 set("value", 50);
                 set("material", "paper");
@@ -22,6 +18,5 @@ void create()
                         "max_skill":    99,        // the maximum level you can learn
                         "min_skill":    50,         // minimun level required
                 ]) );
-        }
         setup();
 }

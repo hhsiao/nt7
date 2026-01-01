@@ -13,13 +13,9 @@ void create()
 {
         set_name("鐵箱", ({"tie xiang", "xiang", "box"}));
         set_weight(200000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一隻有大又笨的鐵箱子，有些生鏽了。\n");
+        set("long", "一隻有大又笨的鐵箱子，有些生鏽了。\n");
                 set("unit", "只");
                 set("material", "steal");
-        }
         setup();
 }
 

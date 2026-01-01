@@ -12,10 +12,7 @@ void create()
 {
         set_name(HIG + PARTY + "權杖" NOR, ({ "mace" }) );
         set_weight(30);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "一根晶瑩剔透的權杖，好像是丐幫的玉竹杖哦！\n"
+        set("long", HIG "一根晶瑩剔透的權杖，好像是丐幫的玉竹杖哦！\n"
                                 "你仔細一看，不是，原來是冒牌貨，是" + PARTY + "的權杖。\n"
                                 "幫主通過它發號司令，邀請(author)他人入幫或是開除(expell)不聽話的人。\n" NOR);
                 set("value", 1);
@@ -24,7 +21,6 @@ void create()
                 set("wield_msg", HIG "$N" HIG "亮出一個晶瑩剔透的小棍棍，神氣"
                                  "活現的喝道：“還不拜見...本...幫主？”\n" NOR);
                 set("unwield_msg", HIG "$N" HIG "鬼鬼祟祟的把權杖收好。\n" NOR);
-        }
 
         set("admin", ADMIN);
         init_staff(1);

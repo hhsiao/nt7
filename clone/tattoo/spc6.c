@@ -6,10 +6,7 @@ void create()
 {
         set_name(NOR + WHT "千手觀音圖" NOR, ({ "guanyin tu", "guanyin", "tu" }));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
+        set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
                 set("unit", "張");
                 set("value", 16500);
                 set("material", "paper");
@@ -19,5 +16,4 @@ void create()
                 set("tattoo_int", 4);
                 set("tattoo_special", "clever");
                 set("tattoo_spcname", "天賦聰穎");
-        }
 }

@@ -12,15 +12,11 @@ void create()
 {
         set_name( GRN "大血藤" NOR , ({"da xueteng", "xueteng"}));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "棵");
+        set("unit", "棵");
                 set("long", "這是一棵南詔特產的大血藤，看起來是黑乎乎的枯木，但有補血振氣的神效。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
         setup();
 }
 
@@ -33,7 +29,7 @@ int cure_ob(object me)
         message_vision(HIR "$N吃下一顆大血藤，只覺得肝腸寸斷，五臟欲裂，原來服食太多藥物，藥效適得其反！\n" NOR, this_player());
                 destruct(this_object());
         }
-        
+
         set("qi",query("max_qi",  me), me);
         addn("max_neili", 1, me);
         set("neili",query("max_neili",  me), me);

@@ -7,18 +7,14 @@ void create()
 {
         set_name(HIG "劍靈之力" NOR, ({ "jianling zhili2", "zhili2"}) );
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("material", "paper");
+        set("material", "paper");
                 set("unit", "張");
                 set("long", HIG "這是一張淡藍色的護符，其外形有如蝴蝶翅膀一般。\n" NOR);
                 set("value", 10000000);
                 set("limit", ([
                         "exp"    :   50000000,
                 ]));
-                set("armor_prop/int", 60);              
+                set("armor_prop/int", 60);
                 set("armor_prop/qy", 4);
                 set("armor_prop/fy", 4);
 
@@ -31,7 +27,6 @@ void create()
                          "thborn" : 1,
                          "jianling": 1, // equip.c裡限制，必須要調整成功劍靈1次後才能裝備
                 ]));
-        }
         setup();
 }
 

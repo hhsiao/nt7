@@ -8,14 +8,10 @@ void create()
 {
         set_name(HIM "美容丸" NOR, ({ "per wan", "wan", "per" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆園園的丹丸，據說吃了可以越來越美麗，是每個女子夢寐以求的好東西。\n");
+        set("long", "一顆園園的丹丸，據說吃了可以越來越美麗，是每個女子夢寐以求的好東西。\n");
                 set("value", 10000);
                 set("unit", "粒");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)

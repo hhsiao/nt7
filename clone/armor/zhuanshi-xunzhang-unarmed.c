@@ -8,11 +8,7 @@ void create()
         set_name(HIM "轉世勳章（空明）" NOR, ({ "kongming xunzhang", "kongming", "xunzhang" }));
         set("long", HIM "轉世後獲得的勳章，上繪千手觀音空明靜思圖，閃閃發亮，甚是精緻。\n" NOR);
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "枚");
+        set("unit", "枚");
                 set("value", 200000);
                 set("material", "bronze");
                 set("armor_prop/damage", 500);
@@ -24,11 +20,10 @@ void create()
                 set("armor_prop/hand", "apply_armor() * 3");
                 set("armor_prop/cuff", "apply_armor() * 3");
                 set("armor_prop/claw", "apply_armor() * 3");
-                set("special/desc", HIR "用莫邪聖符升級後可鑲嵌提高所有空手技能有效等級。" NOR); 
+                set("special/desc", HIR "用莫邪聖符升級後可鑲嵌提高所有空手技能有效等級。" NOR);
                 set("limit", ([
-                        "scborn" : 1, 
+                        "scborn" : 1,
                 ]));
-        }
         setup();
 }
 

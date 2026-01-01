@@ -1,15 +1,12 @@
 //Cracked by Kafei
-// 
+//
 inherit ITEM;
 
 void create()
 {
         set_name("黃藥師手諭", ({"shou yu", "yu", "letter"}));
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "封");
+        set("unit", "封");
                 set("long","\n
 =================================
 |                                |
@@ -28,5 +25,4 @@ void create()
 |                                |
 =================================\n");
                 set("material", "paper");
-        }
 }

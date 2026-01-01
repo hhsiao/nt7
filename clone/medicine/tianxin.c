@@ -6,10 +6,7 @@
 void create()
 {
         set_name(HIW "天心解毒丹" NOR, ({"tianxin dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一粒白色的藥丸，具有相當好的解毒效果。\n");
+        set("long", "這是一粒白色的藥丸，具有相當好的解毒效果。\n");
                 set("base_unit", "粒");
                 set("base_value", 5000);
                 set("base_weight", 50);
@@ -31,7 +28,6 @@ void create()
                         "min_level" : 120,
                         "yaowang-miaoshu" : 120,
                 ]));
-        }
         setup();
 }
 

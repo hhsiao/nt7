@@ -4,13 +4,9 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIY "九皇補心丹" NOR, ({ "buxin dan", "dan" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("base_unit", "粒");
+        set("base_unit", "粒");
                 set("base_value", 150);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }

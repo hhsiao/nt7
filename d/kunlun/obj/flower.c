@@ -1,7 +1,7 @@
 // Room: flower.c
 // Last Modified by Lonely on Nov. 15 2000
 
-#include <ansi.h>                     
+#include <ansi.h>
 #include <armor.h>
 inherit HEAD;
 
@@ -9,10 +9,7 @@ void create()
 {
         set_name(HIG"青陀羅花"NOR,({ "flower", "hua" }) );
         set_weight(500);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "朵");
+        set("unit", "朵");
                 set("value", 0);
                 set("material", "plant");
                 set("long", "這是一朵青陀羅花。\n"
@@ -21,7 +18,6 @@ void create()
                 set("wear_msg", "");
                 set("unequip_msg", "$N摘下胸前的$n。\n");
                 set("armor_prop/armor", 0);
-        }
         setup();
 }
 

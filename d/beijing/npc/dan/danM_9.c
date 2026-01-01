@@ -5,10 +5,7 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIW"嫦娥仙丹"NOR, ({"change dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("base_unit", "粒");
+        set("base_unit", "粒");
                 set("no_drop", "這樣東西不能離開你。\n");
                 set("no_sell", "這樣東西不能離開你。\n");
                 set("no_put", "這樣東西不能放在那兒。\n");
@@ -17,7 +14,6 @@ void create()
                 set("no_beg", "這樣東西不能離開那兒。\n");
                 set("base_value", 0);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }

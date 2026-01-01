@@ -22,16 +22,12 @@ void create()
 {
         set_name(WHT "包裹" NOR, ({ "bag", "baoguo", "bao", "guo" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", WHT "這是一個灰布包裹，裡面脹鼓鼓的，不知裝"
                             "了些什麼。\n" NOR);
                 set("no_sell", 1);
                 set("value", 500);
                 set("material", "cloth");
-        }
         set("gift_count", 1);
 }
 

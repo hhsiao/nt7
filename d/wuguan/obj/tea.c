@@ -6,14 +6,10 @@ void create()
 {
         set_name(HIY "花茶" NOR, ({ "tea" }));
         set_weight(700);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIY "一杯茶杯，裡面盛有清香濃郁的花茶。\n" NOR);
+        set("long", HIY "一杯茶杯，裡面盛有清香濃郁的花茶。\n" NOR);
                 set("unit", "杯");
                 set("value", 0);
                 set("max_liquid", 5);
-        }
         set("liquid", ([
                 "type": "water",
                 "name": "花茶",

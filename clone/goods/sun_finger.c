@@ -9,11 +9,7 @@ void create()
 {
         set_name(RED "日魂" NOR, ({ "sun soul", "sun" }) );
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", RED "太陽真火凝聚而成，烏金色，能破邪怯魔，千軍辟易。。\n" NOR);
+        set("long", RED "太陽真火凝聚而成，烏金色，能破邪怯魔，千軍辟易。。\n" NOR);
                 set("value", 50000);
                 set("unit", "塊");
                 set("can_enchant", "weapon");
@@ -21,7 +17,6 @@ void create()
                 set("magic/type", "magic");
                 set("magic/power", 500);
                 set("auto_load", 1);
-        }
 
         set("enchase",  ([ /* sizeof() == 5 */
                 "weapon_prop" : ([ /* sizeof() == 3 */
@@ -38,4 +33,3 @@ void create()
         set("set_data", 1);
         setup();
 }
-

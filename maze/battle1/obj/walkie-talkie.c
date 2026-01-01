@@ -8,14 +8,10 @@ inherit ITEM;
 
 void create() {
     set_name("對講機", ({ "walkie-talkie","phone" }) );
-    /*if( clonep() )
-        set_default_object(__FILE__);
-    else*/ {
-        set("unit", "部");
+    set("unit", "部");
         set("long", "這是一部無線對講機，可以多人同時通話。\n");
         set("material", "steel");
         set("value", 10000);
-    }
     if( !wizardp(this_player()) ) {
         set("no_get", 1);
         set("no_drop", 1);

@@ -11,17 +11,13 @@ void init()
 void create()
 {
         set_name(CYN"藍呢官轎"NOR, ({"jiao",}));
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一頂蘭呢大官轎，是揚州知府和成都提督共同出資設立的，往返兩地的快轎。\n");
+        set("long", "這是一頂蘭呢大官轎，是揚州知府和成都提督共同出資設立的，往返兩地的快轎。\n");
                 set("unit", "頂");
                 set("no_get", 1);
                 set("no_steal", 1);
                 set("no_beg", 1);
                 set("no_drop", 1);
                 set("no_put", 1);
-        }
         setup();
 }
 int do_enter(string arg)
@@ -31,13 +27,13 @@ int do_enter(string arg)
         message_vision("$N一哈腰掀開轎簾往轎裡鑽進去。\n\n", me ) ;
         if( !(room = find_object("/d/city/obj/jiaonei")) )
             room = load_object("/d/city/obj/jiaonei");
-        if( room = find_object("/d/city/obj/jiaonei") ) 
+        if( room = find_object("/d/city/obj/jiaonei") )
         me->move(room);
         message("vision", me->name() + "從轎外鑽了進來。\n\n",
                 environment(me), ({me}) );
         call_out("reach", 20, me);
         return 1;
-}        
+}
 
 void reach(object me)
 {

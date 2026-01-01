@@ -6,16 +6,12 @@ void create()
 {
         set_name("玉蜂蜜", ({ "yufeng mi", "yufeng", "mi"}));
         set_weight(750);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIY "這是一罐玉蜂釀成的蜜，可解玉蜂毒。\n" NOR);
+        set("long", HIY "這是一罐玉蜂釀成的蜜，可解玉蜂毒。\n" NOR);
                 set("unit", "罐");
                 set("value", 500);
                 set("no_sell", 1);
                 set("mi_count", 5);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

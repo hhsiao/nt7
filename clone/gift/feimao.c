@@ -8,15 +8,11 @@ void create()
 {
         set_name(WHT "飛毛腿導彈" NOR, ({ "missile" }));
         set_weight(20000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一枚中程飛彈，價格便宜，"
+        set("long", "這是一枚中程飛彈，價格便宜，"
                             "適用於發展中人士購買。\n");
                 set("value", 20000000);
                 set("no_sell", 1);
                 set("unit", "枚");
-        }
 }
 
 void init()

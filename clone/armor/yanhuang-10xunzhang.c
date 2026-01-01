@@ -8,11 +8,7 @@ void create()
         set_name(HIY "炎黃風雨十年紀念勳章" NOR, ({ "yhhero year10", "yhhero", "year10" }));
         set("long", HIY "為紀念炎黃運營十週年，“風雨十年”活動特別限量發行的紀念勳章！\n" NOR);
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "枚");
+        set("unit", "枚");
                 set("value", 200000);
                 set("material", "bronze");
                 set("armor_prop/year10", 1);
@@ -27,10 +23,8 @@ void create()
                 set("armor_prop/dex", 40);
                 set("armor_prop/str", 40);
                 set("armor_prop/int", 40);
-
-        }
         setup();
-}        
+}
 
 int query_autoload()
 {

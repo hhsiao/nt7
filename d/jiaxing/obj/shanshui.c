@@ -18,11 +18,7 @@ void create()
 山好水看不足，馬蹄催趁月明歸。”
 ");
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "幅");
-        }
+        set("unit", "幅");
         setup();
 }
 

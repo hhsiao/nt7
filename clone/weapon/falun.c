@@ -26,7 +26,7 @@ void set_amount(int v)
 
 void add_amount(int v) { set_amount((int)query_amount()+v); }
 
-int wield() 
+int wield()
 {
         object me = environment();
         if (query_amount() > 1 && me && userp(me)){
@@ -36,7 +36,7 @@ int wield()
         || me->query_skill("longxiang", 1) < 101)
                 return notify_fail("你使不了那麼多法輪。\n");
         }
-        
+
         return ::wield();
 }
 
@@ -44,10 +44,7 @@ void create()
 {
         set_name("法輪", ({ "fa lun", "fa", "lun" }) );
 //      set_weight(5000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "副");
+        set("unit", "副");
                 set("base_unit", "只");
                 set("base_weight", 6000);
                 set("base_speed", -2);
@@ -60,7 +57,6 @@ void create()
                 set("base_weapon", 25);
                 set("wield_msg", "$N拿出一副$n，試了試重量，然後握在手中。\n");
                 set("unwield_msg", "$N放下手中的$n。\n");
-        }
 
         init_hammer(25);
         set_amount(1);

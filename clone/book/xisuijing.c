@@ -15,15 +15,10 @@ void create()
 {
         set_name(YEL"洗髓經"NOR, ({ "xisuijing" }));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "卷");
+        set("unit", "卷");
                 set("long","這本破紙筒就是少林最高武學典籍，是達摩老祖面壁九年與易筋經一起\n參悟出來的絕世典籍。\n");
                 set("value", 5000);
                 set("material", "paper");
-        }
 }
 
 void init()
@@ -51,7 +46,7 @@ int do_study(string arg)
                 return notify_fail("洗髓經只能在達摩院裡參悟！\n");
         if (!me->query_skill("literate",1)||me->query_skill("literate",1)<100)
         {
-                write("你把紙筒翻來翻去，就是什麼都讀不懂。\n");                
+                write("你把紙筒翻來翻去，就是什麼都讀不懂。\n");
                 return 1;
         }
         if (!me->query_skill("yijinjing",1)||me->query_skill("yijinjing",1)<100)
@@ -61,9 +56,9 @@ int do_study(string arg)
         }
         if( query("kar", me)<25 )
         {
-                write("你把紙筒翻來翻去，看來你與這絕世典籍無緣。\n");                
+                write("你把紙筒翻來翻去，看來你與這絕世典籍無緣。\n");
                 return 1;
-        }  
+        }
         if (me->is_busy())
                 return notify_fail("你現在正忙著呢。\n");
         if (me->is_fighting() )

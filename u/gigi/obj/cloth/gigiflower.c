@@ -7,14 +7,10 @@ void create()
 {
         set_name(HIW"月朦朧"NOR, ({ "pear flower", "head" }) );
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "朵");
-                 set("long","這是一朵潔白的梨花，花瓣皎潔如月，\n正如詩中所吟:“月朧朧，一樹梨花細雨中。”\n"); 
+        set("unit", "朵");
+                 set("long","這是一朵潔白的梨花，花瓣皎潔如月，\n正如詩中所吟:“月朧朧，一樹梨花細雨中。”\n");
                 set("value",0);
                 set("material", "cloth");
                 set("armor_prop/armor", 1);
-        }
         setup();
 }

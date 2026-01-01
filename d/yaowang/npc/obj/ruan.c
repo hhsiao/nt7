@@ -7,10 +7,7 @@ void create()
 {
 
         set_name(WHT"軟骨散"NOR, ({ "ruangu san", "san" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一包白色的藥粉。\n" );
+        set("long", "這是一包白色的藥粉。\n" );
                 set("unit", "包");
                 set("base_value", 700);
                 set("base_unit", "包");
@@ -20,7 +17,6 @@ void create()
                 set("no_give", 1);
                 set("no_get", 1);
                 set("value", 0);
-        }
         set_amount(1);
 }
 
@@ -70,7 +66,7 @@ int do_pour(string arg)
         f = (: call_other, __FILE__, "drink_drug" :);
         set("liquid/drink_func", bind(f,ob), ob);
         addn("liquid/slumber_effect", 100, ob);
-        message_vision("$N將一些" + name() + "倒進" + ob->name() 
+        message_vision("$N將一些" + name() + "倒進" + ob->name()
                 + "搖晃了幾下。\n", this_player());
         add_amount(-1);
         return 1;
@@ -79,7 +75,7 @@ int do_pour(string arg)
 int drink_drug(object ob)
 {
         this_player()->apply_condition("slumber_drug",
-                (int)this_player()->query_condition("slumber_drug") 
+                (int)this_player()->query_condition("slumber_drug")
                 +query("liquid/slumber_effect", ob));
         return 0;
 }

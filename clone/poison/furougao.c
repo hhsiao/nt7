@@ -5,10 +5,7 @@ void create()
 {
         set_weight(100);
         set_name(HIM "腐肉膏" NOR, ({"furou gao", "furou", "gao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "盒");
+        set("unit", "盒");
                 set("long", HIM "這是一盒五彩斑斕的劇毒藥膏，可殺人於無形。\n" NOR);
                 set("value", 50);
                 set("poison_type", "poison");
@@ -23,7 +20,6 @@ void create()
                 ]));
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

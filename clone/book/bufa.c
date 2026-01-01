@@ -5,11 +5,7 @@ void create()
 {
         set_name( "意形步法",({ "bufa book","bufa","shu","book"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本意形步步法。\n");
                 set("value", 5000);
                 set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "max_skill":        60,        // the maximum level you can learn
                         "min_skill":    10,
                 ]) );
-        }
 }

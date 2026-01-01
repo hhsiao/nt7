@@ -2,16 +2,12 @@
 
 inherit BOOK;
 inherit F_UNIQUE;
- 
+
 void create()
 {
         set_name("「明玉神功」", ({ "mingyu shengong", "mingyu", "shengong" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "這是一本薄薄的密集，記載著無敵於天下的明玉功秘訣。\n",
         );
@@ -28,7 +24,6 @@ void create()
                         "difficulty"  :  40,
                         "max_skill"   :  400,
                 ]) );
-        }
 }
 
 int query_autoload() { return 1; }

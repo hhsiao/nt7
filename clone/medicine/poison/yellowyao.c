@@ -7,17 +7,13 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIY"黃色藥粉"NOR, ({ "yellow yao","yao"}) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一包五毒教精煉的毒藥。\n你可以用(ypour)命令試試。\n" );
+        set("long", "這是一包五毒教精煉的毒藥。\n你可以用(ypour)命令試試。\n" );
                 set("unit", "些");
                 set("base_value", 200);
                 set("base_unit", "包");
                 set("base_weight", 30);
                 set("pour_type", "wugong_poison");
                 set("value", 200);
-        }
         set_amount(1);
 }
 

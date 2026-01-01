@@ -10,10 +10,7 @@ void create()
 {
         set_name( "字帖", ({ "zitie", "tie" }));
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
                         RED
                         "\n“滿江紅”\n"
@@ -33,5 +30,4 @@ void create()
                 set("material", "paper");
                 set("no_drop", "這樣東西不能離開你。\n");
                 set("no_get", "這樣東西不能離開那兒。\n");
-        }
 }

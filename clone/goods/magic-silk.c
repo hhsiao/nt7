@@ -13,17 +13,12 @@ void create()
 {
         set_name(MAG "魔法絲帶" NOR, ({"magic silk", "silk"}));
         set_weight(4000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "這是一條魔法絲帶，閃耀著詭異的光芒，傳說可以用它製成" MAG "勳章掛帶。\n" NOR);
+        set("long", "這是一條魔法絲帶，閃耀著詭異的光芒，傳說可以用它製成" MAG "勳章掛帶。\n" NOR);
                 set("unit", "塊");
                 //set("material_attrib", "x");
                 set("power_point", 1000);
                 set("value", 10000000);
                 set("no_sell", 1);
-        }
 }
 
-int query_autoload() { return 1; } 
+int query_autoload() { return 1; }

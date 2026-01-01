@@ -7,25 +7,21 @@ inherit F_CUTABLE;
 int decayed;
 nosave int not_cut = 0;
 
-int equip(object ob, int ref status) 
+int equip(object ob, int ref status)
 {
-        ob->set_equipping(this_object()); 
+        ob->set_equipping(this_object());
         return 1;
 }
 
 string query_idname()
 {
-        return query("name") + "(" + query("id") + ")"; 
+        return query("name") + "(" + query("id") + ")";
 }
 
 void create()
 {
         set_name("無名屍體", ({ "corpse" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("default_clone", "/clone/misc/part");
+        set("default_clone", "/clone/misc/part");
                 set("parts", ([
                         "left arm" : ({ 0, "條", "左臂", "手臂", "arm",
                                         ([ "left hand": "hand" ]),
@@ -112,8 +108,7 @@ void create()
                 set("no_store", 1);
                 set("unit", "具" );
                 set("main_part_level", 0);
-        }
-        
+
         set("long", "這是一具無名屍體。\n");
         decayed = 0;
         if( clonep(this_object()) ) call_out("decay", 45, 1);
@@ -266,7 +261,7 @@ int make_corpse(object victim, object killer)
                 // can not cut can_speak object
                 not_cut = 1;
         }
- 
+
         if( query("class", victim) == "bonze" )
                 set("no_cut/hair", "它沒有頭髮啊，等它再長出來好像來不及了。\n");
 
@@ -309,7 +304,7 @@ int make_corpse(object victim, object killer)
                         } else
                         */
                                 inv[i]->move(this_object());
-                } 
+                }
         }
         delete_temp("tianshi_charm", victim);
         return 1;

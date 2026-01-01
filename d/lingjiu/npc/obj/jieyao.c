@@ -6,14 +6,10 @@ void create()
 {
         set_name(HIC "藥丸" NOR, ({"yao wan", "yao", "wan"}));
         set_weight(20);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIC "一顆渾圓的藥丸，乃是烏老大所配製的獨門解藥。\n" NOR);
+        set("long", HIC "一顆渾圓的藥丸，乃是烏老大所配製的獨門解藥。\n" NOR);
                 set("unit", "顆");
                 set("value", 300);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

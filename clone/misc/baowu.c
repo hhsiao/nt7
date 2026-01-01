@@ -53,15 +53,11 @@ void create()
         int i = random(sizeof(titles));
         set_name(titles[i], ({"bao wu"}));
         set_weight(80);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "你挖出來的寶物，不知道有什麼作用。\n");
+        set("long", "你挖出來的寶物，不知道有什麼作用。\n");
                 set("unit", "個");
                 set("no_sell", 1);
                 set("no_put",1);
 //                set("value", 50);
                 set("no_beg",1);
                 set("no_steal",1);
-        }
 }

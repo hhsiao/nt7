@@ -1,4 +1,4 @@
-#include <ansi.h> 
+#include <ansi.h>
 inherit ITEM;
 
 void create()
@@ -8,15 +8,11 @@ void create()
         set("no_get", 1);
         set("no_put", 1);
         set("value",10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "錄音帶。\n");
                 set("value", 1);
-        }
         setup();
-} 
+}
 
 void play_sound_0(object speaker,int index) {
         if(!environment())
@@ -52,7 +48,7 @@ void play_sound_0(object speaker,int index) {
                         tell_room(environment(),CYN"丁一說道：你可願意幫我們對付血魔？(accept yes/no)\n"NOR);
                         set_temp("開場白結束", 1, speaker);
                         break;
-                default: 
+                default:
                         delete_temp("in_speech", speaker);
                         destruct(this_object());
                         return;
@@ -81,7 +77,7 @@ void play_sound_1(object speaker,int index) {
                         tell_room(environment(),CYN"丁一說道：完成後再來找我(report)。\n"NOR);
                         set_temp("任務", 1, speaker);
                         break;
-                default: 
+                default:
                         mazeobj = FUBEN_D->query_maze_mainobj(speaker);
                         if(mazeobj) {
                                 set("quest/maze_code", "necropolis", mazeobj);
@@ -123,7 +119,7 @@ void play_sound_2(object speaker,int index) {
                         tell_room(environment(),CYN"丁一說道：完成後再來找我(report)。\n"NOR);
                         set_temp("任務", 2, speaker);
                         break;
-                default: 
+                default:
                         mazeobj = FUBEN_D->query_maze_mainobj(speaker);
                         if(mazeobj) {
                                 delete("quest/to_kill", mazeobj);
@@ -166,7 +162,7 @@ void play_sound_3(object speaker,int index) {
                         tell_room(environment(),CYN"丁一說道：完成後再來找我(report)。\n"NOR);
                         set_temp("任務", 3, speaker);
                         break;
-                default: 
+                default:
                         mazeobj = FUBEN_D->query_maze_mainobj(speaker);
                         if(mazeobj) {
                                 delete("quest/to_kill", mazeobj);
@@ -205,7 +201,7 @@ void play_sound_4(object speaker,int index) {
                         tell_room(environment(),CYN"丁一說道：完成後再來找我(report)。\n"NOR);
                         set_temp("任務", 4, speaker);
                         break;
-                default: 
+                default:
                         mazeobj = FUBEN_D->query_maze_mainobj(speaker);
                         if(mazeobj) {
                                 delete("quest/to_kill", mazeobj);
@@ -248,7 +244,7 @@ void play_sound_5(object speaker,object leader,int index) {
                         tell_room(environment(),CYN"丁一說道：法陣那裡可能還有些血魔的手下......你從前面帶路吧！\n"NOR);
                         set_temp("任務", 5, speaker);
                         break;
-                default: 
+                default:
                         mazeobj = FUBEN_D->query_maze_mainobj(speaker);
                         if(mazeobj) {
                                 delete("quest/to_find", mazeobj);
@@ -289,7 +285,7 @@ void play_sound_6(object speaker,int index) {
                         tell_room(environment(),HIY"丁一拿出聚靈塔，大聲的念著咒語......\n"NOR);
                         set_temp("任務", 6, speaker);
                         break;
-                default: 
+                default:
                         mazeobj = FUBEN_D->query_maze_mainobj(speaker);
                         if(mazeobj) {
                                 set("quest/maze_code", "necropolis", mazeobj);
@@ -344,7 +340,7 @@ void play_sound_7(object speaker,int index) {
                         moon->move(environment());
                         set("short", "聚靈法陣", environment());
                         objs = all_inventory(environment());
-                        foreach(obj in objs) 
+                        foreach(obj in objs)
                                         if(obj && userp(obj))
                                                         obj->ccommand("look");
                         set("short", HIY"聚靈法陣"NOR, environment());
@@ -373,12 +369,12 @@ void play_sound_7(object speaker,int index) {
                         set("eff_sen",query("max_sen",  speaker), speaker);
 */
                         objs = all_inventory(environment());
-                        foreach(obj in objs) 
+                        foreach(obj in objs)
                                         if(obj && obj->is_character() && !obj->is_corpse() && obj!=speaker && !obj->is_undead()) {
                                                         speaker->kill_ob(obj);
                                                         obj->kill_ob(speaker);
                                         }
-                        
+
                         delete_temp("in_speech", speaker);
                         destruct(this_object());
                         return;
@@ -404,7 +400,7 @@ void play_sound_8(string dir,int index) {
                         call_out("play_sound_8",60,dir,++index);
                         break;
                 case(2):
-                        FUBEN_D->remove_virtual_maze(killer, "necropolis") 
+                        FUBEN_D->remove_virtual_maze(killer, "necropolis")
                         destruct(this_object());
                         return;
                         break;

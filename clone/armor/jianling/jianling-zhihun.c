@@ -8,11 +8,7 @@ void create()
 {
         set_name(HIG "劍靈之魂" NOR, ({ "jianling zhihun", "zhihun" }) );
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "件");
+        set("unit", "件");
                 set("long", HIG "這是一件由藍蝶仙子幻化而成並附身在愛人身上的寶衣，淡淡的藍色光芒中隱現一隻蝴蝶。\n" NOR);
                 set("material", "steel");
                 set("value", 80000000);
@@ -26,7 +22,6 @@ void create()
                          "thborn" : 1,
                          "jianling": 1, // equip.c裡限制，必須要調整成功劍靈1次後才能裝備
                 ]));
-        }
         setup();
 }
 

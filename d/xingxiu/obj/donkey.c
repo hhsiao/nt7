@@ -15,13 +15,9 @@ void create()
         set_name("小毛驢", ({"mao lv"}));
         set_weight(15000);
         set_max_encumbrance(20000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "匹");
+        set("unit", "匹");
                 set("long", "一匹黑色的小毛驢，可以騎，也可以馱東西。\n");
                 set("value", 400);
-        }
 }
 
 int do_ride(string arg)

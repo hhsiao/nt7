@@ -1,4 +1,4 @@
-// qingshui-hulu.c 
+// qingshui-hulu.c
 
 inherit ITEM;
 inherit F_LIQUID;
@@ -7,14 +7,10 @@ void create()
 {
         set_name("清水葫蘆", ({"qingshui hulu", "hulu", "bottle"}));
         set_weight(700);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個用葫蘆製成的水壺。\n");
+        set("long", "一個用葫蘆製成的水壺。\n");
                 set("unit", "個");
                 set("value", 100);
                 set("max_liquid", 10);
-        }
 
         // because a container can contain different liquid
         // we set it to contain water at the beginning

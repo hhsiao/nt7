@@ -3,20 +3,16 @@ inherit ITEM;
 
 void create()
 {
-                
+
         set_name(HIB"副本傳送門"NOR, ({ "fuben door", "door" }) );
         set_weight(5);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIB"目前的功能有：\n"+
+        set("long", HIB"目前的功能有：\n"+
                             "enter <迷宮代碼>：創建一個屬於自己或隊伍的迷宮副本。\n"
                             "迷宮代碼：forest-原始森林，jiutoushe-九頭蛇領域，desert-無盡大漠，necropolis-詭異墓園，prison-地下天牢，temple-失落神廟，mausoleum-秦皇陵墓。\n"
-                            "\n"NOR); 
+                            "\n"NOR);
                 set("unit", "個");
                 set("no_get",1);
                 set("value", 20);
-        }
         setup();
 }
 
@@ -25,17 +21,17 @@ void init()
         add_action("do_enter","enter");
 }
 
-int do_enter(string arg) 
+int do_enter(string arg)
 {
         int valid;
-                
+
         if( !arg || arg == "" )
                 return 0;
-        
+
         if( arg == "zijin" && !present("tongxing ling", this_player()) )
                 return notify_fail("你沒有地宮通行令，無法進入紫金地宮副本。\n");
-                
-        valid = FUBEN_D->valid_enter(this_player(), arg); 
+
+        valid = FUBEN_D->valid_enter(this_player(), arg);
         if( valid >=1 )
                 FUBEN_D->enter_fuben(this_player(), arg);
         else {
@@ -57,6 +53,6 @@ int do_enter(string arg)
                         write("你的隊伍人數超過該副本規定的上限。\n");
                 else if( valid == -8 )
                         write("該副本是單人副本，您必須解散隊伍方可進入。\n");
-        }        
+        }
         return 1;
 }

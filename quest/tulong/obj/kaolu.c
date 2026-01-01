@@ -3,14 +3,10 @@ void create()
 {
     set_name("紅泥小烤爐", ({ "kaolu" }) );
     set_weight(10000);
-    /*if( clonep() )
-            set_default_object(__FILE__);
-    else*/ {
-            set("unit", "個");
+    set("unit", "個");
             set("value", 100);
             set("material", "stone");
             set("long", "一個紅泥製成的小烤爐，你似乎可以用它烤（ｆｒｙ）些什麼\n");
-          }
 
     setup();
 }
@@ -18,7 +14,7 @@ void init()
 {
  add_action("do_kao","kao");
  add_action("do_kao","fry");
-}                             
+}
 
 int do_kao(string arg)
 {
@@ -41,7 +37,7 @@ int do_kao(string arg)
            name=query("name", tar);
            name=replace_string(name,"一具","");
            name=replace_string(name,"的屍體","");
-           if (name!="腐爛")         
+           if (name!="腐爛")
            {
               decayed=0;
               name="烤"+name+"肉";

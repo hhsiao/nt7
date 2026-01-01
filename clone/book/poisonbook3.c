@@ -6,16 +6,11 @@ void create()
 {
         set_name("毒經下篇", ({ "jing", "book" }));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本薄薄的小冊，上面密密麻麻的記滿了各種用毒的法門，可以用(kan)看一看。\n");
                 set("no_drop", "這樣東西不能離開你。\n");
                 set("value", 0);
                 set("material", "silk");
-        }
 }
 void init()
 {

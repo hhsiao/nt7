@@ -6,10 +6,7 @@ void create()
 {
         set_name( HIC "『少林旅遊圖』" NOR, ({ "luyou tu", "tu" }) );
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long",
 "\n                 『少林旅遊圖』\n\n"
 "+----------------------+-----------------------+-----------------------+\n"
@@ -117,6 +114,5 @@ void create()
 "    X    關著的門\n");
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }

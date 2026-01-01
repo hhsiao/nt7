@@ -1,5 +1,5 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 // gongji.c 公雞
 
@@ -16,15 +16,11 @@ void create()
 {
         set_name("公雞", ({"gong ji", "ji", "chicken"}));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一隻肥大的公雞。\n");
+        set("long", "一隻肥大的公雞。\n");
                 set("unit", "只");
                 set("value", 50);
                 set("food_remaining", 2);
                 set("food_supply", 40);
-        }
 
         setup();
 }
@@ -50,13 +46,13 @@ int do_cut(string arg)
         object weapon=query_temp("weapon", me);
 
         if ( !arg || arg == "") return 0;
-        
+
         if (me->query_skill("cooking", 1) < 100)
                 return notify_fail("你的基本廚藝太低了。\n");
 
         if ( arg == "公雞" || arg == "chicken" ) {
 
-                if ( objectp(weapon) 
+                if ( objectp(weapon)
                  && (query("skill_type", weapon) != "sword"
                  || query("skill_type", weapon) != "blade")){
                         message_vision("$N用"+query("name", weapon)+"剖開"+query("name", ji)+"肚子。\n",me);
@@ -69,7 +65,7 @@ int do_cut(string arg)
                         message_vision( "$N用手扯開一隻大公雞。\n", me);
                         set("fake", 1, ji);
                         return 1;
-                } 
+                }
         }
         tell_object( me, "你要切什麼？\n");
         return 1;
@@ -114,12 +110,12 @@ int do_wrap(string arg)
                         message_vision("$N取出身上的溼泥，裹在"+query("name", ji)+"外。\n",me);
                         destruct(ni);
                 }
-                        
+
                 set("long", "一隻裹在溼泥裡的公雞。\n", ji);
 
                 if( query("step", ji) != 2 )
                         set("fake", 1, ji);
-                else 
+                else
                         set("step", 3, ji);
                 return 1;
         }
@@ -140,8 +136,8 @@ int do_bake(string arg)
                 if ( !objectp(present("fire", me)) ) {
                         tell_object( me, "你身上沒有火折，生不了火。\n");
                         return 1;
-                } 
- 
+                }
+
                 else {
                         fire = present("fire", me);
                         message_vision("$N生火烤起"+query("name", ji)+"來。\n",me);
@@ -191,7 +187,7 @@ int cooking(object me, object ji, int cook_time)
         return 1;
 }
 
-// step6 剝幹泥 
+// step6 剝幹泥
 int do_clean(string arg)
 {
         object ji = this_object(), me = this_player();
@@ -209,7 +205,7 @@ int do_clean(string arg)
                 tell_object(me, "你要剝什麼？\n");
                 return 1;
         }
-                        
+
         if ( arg == "幹泥" || arg == "mud" ) {
                 message_vision( "$N剝去幹泥，雞毛隨泥而落。\n", me);
                 ob->move(me);

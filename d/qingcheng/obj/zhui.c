@@ -1,4 +1,4 @@
-// zhui.c 
+// zhui.c
 #include <weapon.h>
 #include <ansi.h>
 
@@ -7,17 +7,13 @@ inherit DAGGER;
 void create()
 {
         set_name(HIC"鐵錐"NOR, ({ "tie zhui", "zhui" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "柄");
+        set("unit", "柄");
                 set("count", 12);
                 set("value", 100);
                 set("material", "iron");
                 set("long", HIC"此鐵錐長六七寸許，錐尖曲了兩曲。裡面共有"+chinese_number(query("count"))+"支青蜂釘可以射出(shoot)。\n"NOR);
                 set("wield_msg", HIC"$N將左手伸入右手衣袖，隨即將手伸出，手中已握了一柄鐵錐！\n"NOR);
                 set("unwield_msg",HIC"$N將手裡鐵錐往袖中一塞就不見了。\n"NOR);
-        }
         init_dagger(5);
         setup();
 }

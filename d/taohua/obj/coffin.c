@@ -10,17 +10,13 @@ void create()
         set_name(HIW"白玉棺"NOR, ({ "coffin", "guan cai", "guan" }) );
         set_weight(3000);
         set_max_encumbrance(50000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "口");
+        set("unit", "口");
                 set("long", "這是一具由整塊白玉雕成的石棺，晶瑩光潔，實是曠世難尋的珍物。\n");
                 set("value", 1000);
 //                set("material", "stone");
                 set("no_get",1);
 //                set("no_drop",1);
                 set("arrow_count", 3);
-        }
         set("opened", 0);
         setup();
 }
@@ -43,14 +39,14 @@ int do_open(string arg)
                 return notify_fail("什麼？\n");
 
         set_temp("th_tomb_thief", 1, me);
-        
+
         if ( query("opened") )
                 return notify_fail("白玉石棺蓋已經是開的了。\n");
 
         message_vision("$N運足氣，雙手用力去搬白玉石棺蓋。\n", me);
         if (query("arrow_count") > 0) {
                 remove_call_out("shoot_arrow");
-                call_out("shoot_arrow", 1, me);        
+                call_out("shoot_arrow", 1, me);
                 return 1;
         }
 
@@ -66,7 +62,7 @@ int do_open(string arg)
         set("opened", 1, ob);
               set("long", "這是一具由整塊白玉雕成的石棺，晶瑩光潔，實是曠世難尋的珍物，棺中躺著一具骸骨。\n", ob);
         book = new("/clone/book/jiuyin3");
-        if (book) book->move(ob); 
+        if (book) book->move(ob);
         book1 = new(__DIR__"hetu");
         book2 = new(__DIR__"luoshu");
         if (book1) book1->move(ob);

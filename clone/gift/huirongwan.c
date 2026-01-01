@@ -8,14 +8,10 @@ void create()
 {
         set_name(HIG "毀容丸" NOR, ({ "huirong wan", "wan", "huirong" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆園園的丹丸，據說吃了可以變的越來越醜，真不知道誰還要這個東西耶。\n");
+        set("long", "一顆園園的丹丸，據說吃了可以變的越來越醜，真不知道誰還要這個東西耶。\n");
                 set("value", 10000);
                 set("unit", "粒");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)

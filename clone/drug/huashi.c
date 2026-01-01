@@ -7,10 +7,7 @@ void create()
 {
 
         set_name("化屍粉", ({ "huashi fen", "fen" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long",
+        set("long",
                         "這是一包江湖中人聞而色變的化屍粉，發出熒熒的黃光。\n" );
                 set("unit", "包");
                 set("base_value", 1000);
@@ -18,7 +15,6 @@ void create()
                 set("no_sell", 1);
                 set("base_weight", 30);
                 set("medicine", 1);
-        }
         set_amount(1);
 }
 
@@ -34,7 +30,6 @@ int do_pour(string arg)
 {
         string me, what;
         object ob;
-        function f;
 
         if( !arg
         ||        sscanf(arg, "%s in %s", me, what)!=2
@@ -56,7 +51,6 @@ int do_cast(string arg)
 {
         string me, what;
         object ob;
-        function f;
 
         if( !arg
         ||      sscanf(arg, "%s on %s", me, what)!=2

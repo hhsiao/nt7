@@ -16,15 +16,11 @@ int cure_ob(string);
 void create()
 {
         set_name("歸元丹", ({"guiyuan dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆瑩白溜圓的歸元丹。\n");
                 set("value", 5000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
         setup();
 }
 
@@ -69,14 +65,14 @@ int effect_in_liquid(object ob)
 {
         object me = this_player();
         if (this_player()->query_condition("bonze_drug" ) > 0 )
-        {        
+        {
         addn("neili", -50, me);
         message_vision(HIR "$N喝下一口藥酒，發現原來體內藥性過猛，適得其反。\n" NOR, this_player());
         this_player()->apply_condition("bonze_drug",
         this_player()->query_condition("bonze_drug")+10);
         return 1;
         }
-        
+
         if( query("neili", this_player())>query("max_neili", this_player())*2 )
         set("neili",query("max_neili",  this_player())*2-1, this_player());
         if( query("liquid/type", ob) == "alcohol" && !query("zuixian", ob)){

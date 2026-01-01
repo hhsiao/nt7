@@ -14,13 +14,9 @@ void init()
 void create()
 {
         set_name(YEL"黃芪"NOR, ({"huang qi", "yao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "株");
+        set("unit", "株");
                 set("long", YEL"這是一株毛茸茸的開著淡黃色小花的黃芪。\n"NOR);
                 set("value", 2500);
-        }
         setup();
 }
 

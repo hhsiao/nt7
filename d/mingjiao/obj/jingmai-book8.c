@@ -4,10 +4,7 @@ inherit ITEM;
 void create()
 {
         set_name(HIW"華陀內昭圖"NOR, ({ "jingmai book", "book", "shu" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set_weight(10);
                 set("material", "paper");
                 set("no_get", 1);
@@ -19,6 +16,5 @@ void create()
                         "min_skill":    170,
                         "max_skill":    180
                 ]) );
-        }
         setup();
 }

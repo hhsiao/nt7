@@ -9,10 +9,7 @@ void create()
 {
         set_name(HIG "冷月寶刀" NOR, ({ "moon blade", "blade" }));
         set_weight(7000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "柄");
+        set("unit", "柄");
                 set("value", 1000000);
                 set("no_sell", "這...這玩藝怪嚇人的...\n");
                 set("material", "steel");
@@ -22,7 +19,6 @@ void create()
                                  HIG "，刀光如水，流轉不定。\n" NOR);
                 set("unwield_msg", HIW "$N" HIW "彈刀清嘯，心中感慨，將$n"
                                    HIW "插回刀鞘。\n");
-        }
         init_blade(180);
         setup();
 }

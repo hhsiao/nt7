@@ -1,6 +1,6 @@
 // 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // xueli.c 雪梨
 
 inherit ITEM;
@@ -10,13 +10,9 @@ void create()
 {
         set_name("雪梨", ({"xue li", "xueli","li"}));
    set_weight(40);
-   /*if (clonep())
-     set_default_object(__FILE__);
-   else*/ {
-                set("long", "這種雪梨只生長於雪山極寒之地。\n");
+   set("long", "這種雪梨只生長於雪山極寒之地。\n");
                 set("unit", "顆");
      set("value", 80);
      set("food_remaining", 4);
      set("food_supply", 30);
-   }
 }

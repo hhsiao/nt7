@@ -6,10 +6,7 @@ void create()
 {
         set_name(NOR + WHT "雷獸圖騰" NOR, ({ "leishou tu", "leishou", "tu" }));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
+        set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
                 set("unit", "張");
                 set("value", 9000);
                 set("material", "paper");
@@ -18,5 +15,4 @@ void create()
                 set("tattoo_type", ({ "膂力", "根骨" }));
                 set("tattoo_str", 1);
                 set("tattoo_con", 2);
-        }
 }

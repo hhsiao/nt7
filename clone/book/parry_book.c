@@ -6,11 +6,7 @@ void create()
 {
         set_name( "招架入門",({ "parry book","book"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本走江湖武師寫的關於趨避招架的書籍。\n");
                 set("value", 1500);
                 set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "min_skill":        0,            // the minimum level you can learn
                         "max_skill":        19            // the maximum level you can learn
                 ]) );
-        }
 }

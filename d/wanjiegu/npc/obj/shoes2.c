@@ -8,10 +8,7 @@ void create()
 {
         set_name( "繡花鞋", ({ "shoes" }) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "雙");
+        set("unit", "雙");
                 set("value", 0);
                 set("zhongling",1);
                 set("zhong",1);
@@ -24,5 +21,4 @@ void create()
                 set("female_only", 1);
                 set("wear_msg","$N穿上一雙$n。\n");
                 set("remove_msg","$N將$n脫了下來。\n");
-        }
 }

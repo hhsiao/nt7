@@ -13,15 +13,11 @@ void create()
 {
         set_name("狐狸皮", ({ "huli pi", "pi" }) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", "這是一張毛長寸許，柔軟光滑的狐狸皮。\n");
                 set("value", 3000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
 
         setup();
 }
@@ -48,7 +44,7 @@ int cure_ob(object me)
         }
 
         addn("jingli", 300, me);
-        me->apply_condition("bonze_drug", 
+        me->apply_condition("bonze_drug",
         me->query_condition("bonze_drug")+30);
         message_vision(HIY "$N吃下一張狐狸皮，只覺全身的精力都恢復了。\n" NOR, me);
         call_out("destroy", 31);

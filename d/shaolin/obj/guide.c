@@ -6,10 +6,7 @@ void create()
 {
         set_name( HIC "『少林拜師必讀』" NOR, ({ "bidu", "guide" }) );
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "\n                 『少林拜師必讀』\n\n"
 "少林位於揚州城北少室山，新玩家由南麓北上山道，沿途攀\n"
@@ -46,6 +43,5 @@ void create()
 "不必細表。\n");
                 set("value", 100);
                 set("material", "paper");
-        }
         setup();
 }

@@ -7,17 +7,13 @@ void create()
 {
         set_name("菜餚", ({ "dish" }));
         set_weight(40);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "份");
+        set("unit", "份");
                 set("remaining", 5);
                 set("drink_supply", 15);
-        }
-             set("liquid", ([ 
-                     "type": "soup", 
-                     "name": "湯", 
-                     "remaining": 15, 
-                     "drunk_apply": 3, 
-             ])); 
+             set("liquid", ([
+                     "type": "soup",
+                     "name": "湯",
+                     "remaining": 15,
+                     "drunk_apply": 3,
+             ]));
 }

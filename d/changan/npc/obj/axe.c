@@ -8,17 +8,12 @@ void create()
 {
         set_name("板斧", ({ "axe", "axe" }));
         set_weight(6000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "把");
+        set("unit", "把");
                 set("material", "steel");
                 set("long", "這是一把沉重的大板斧，砍起東西來非常順手。\n");
                 set("value", 500);
                 set("wield_msg", "$N拿出一把$n，握在手中當作武器。\n");
                 set("unwield_msg", "$N放下手中的$n。\n");
-        }
         init_axe(25, TWO_HANDED);
 
         setup();

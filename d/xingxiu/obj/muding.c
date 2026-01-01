@@ -5,14 +5,10 @@ void create()
 {
         set_name(HIY"神木王鼎"NOR,({ "shenmu wangding", "wangding", "shenmu" }) );
         set_weight(3000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("long", "一隻雕琢而成的暗黃色小木鼎, 木理之間隱隱泛出紅絲。鼎側有五個銅錢大的圓孔，木鼎齊頸出有一道細縫，似乎上下分為兩截。\n");
                 set("value", 5);
-                set("muding/remaining", 0);                
-        }
+                set("muding/remaining", 0);
 }
 
 void init()
@@ -32,8 +28,8 @@ int do_suck(string arg)
         if ( me->is_fighting())
         return notify_fail("你在戰鬥中不能運功練毒。\n");
 
-        if (me->query_skill("huagong-dafa", 1) < 80) 
-                return notify_fail("你的化功大法火候不夠，不能製毒。\n"); 
+        if (me->query_skill("huagong-dafa", 1) < 80)
+                return notify_fail("你的化功大法火候不夠，不能製毒。\n");
 
         if(query("muding/remaining") < 1)
                 return notify_fail("木鼎中沒有血水了。\n");

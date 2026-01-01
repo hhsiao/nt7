@@ -6,15 +6,11 @@ int cure_ob(string);
 void create()
 {
    set_name("雄黃丸", ({"xionghuang wan", "xionghuang", "wan"}));
-   /*if (clonep())
-      set_default_object(__FILE__);
-   else*/ {
-      set("unit", "顆");
+   set("unit", "顆");
       set("value", 4000);
                 set("no_sell", 1);
       set("long", "這是一顆丐幫特製能解百毒的雄黃丸，尤其對蛇嗤蟲咬之傷更見神效。\n");
       set("medicine", 1);
-   }
    setup();
 }
 
@@ -30,7 +26,7 @@ int cure_ob(object me)
         tell_object(me, HIR "你沒傷胡亂服食丹藥，反有大害！\n\n" NOR);
         destruct(this_object());
           return 1;
-   }        
+   }
 
    if ( (int)me->query_condition("snake_poison") ) {
       me->apply_condition("snake_poison", (int)me->query_condition("snake_poison") - 10);
@@ -62,7 +58,7 @@ int cure_ob(object me)
    }
 
    message_vision(YEL "$N只覺毒傷大為好轉，可見此丹靈效。\n\n" NOR, me);
-   
+
    delete_temp("xhwan", me);
    destruct(this_object());
    return 1;

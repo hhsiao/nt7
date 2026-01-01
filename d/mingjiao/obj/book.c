@@ -6,10 +6,7 @@ void create()
 {
         set_name( HIC "明教簡史" NOR, ({ "mingjiao jianshi", "jianshi", "book" }));
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "\n                 『明教簡史』\n\n"
 "明教源於波斯國，唐時傳至中土。當時稱為襖教。唐皇在各\n"
@@ -36,6 +33,5 @@ void create()
 "有恩，與正派人等盡前嫌，成為一個正派的教。\n");
                 set("value", 100);
                 set("material", "paper");
-        }
         setup();
 }

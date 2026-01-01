@@ -1,6 +1,6 @@
  // labazhou.c
  // By Plzw 2004-08-29
- 
+
 #include <ansi.h>
 
 inherit ITEM;
@@ -9,14 +9,10 @@ void create()
 {
         set_name(HIG "臘八粥" NOR, ({ "laba zhou", "zhou" }) );
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "只見熱粥蒸氣上冒，兀自在一個個氣泡從粥底鑽將上來，一碗粥盡作深綠之色，瞧上去說不出的詭異。\n" NOR);
+        set("long", HIG "只見熱粥蒸氣上冒，兀自在一個個氣泡從粥底鑽將上來，一碗粥盡作深綠之色，瞧上去說不出的詭異。\n" NOR);
                 set("value", 1);
                 set("unit", "碗");
-                set("only_do_effect", 1); 
-        }
+                set("only_do_effect", 1);
 }
 
 int do_effect(object me)
@@ -32,7 +28,7 @@ int do_effect(object me)
         if( query("story/labazhou", me) )
         {
                 message_vision(HIY "$N" HIY "端起粥碗，只覺藥氣刺鼻，入口卻甜甜的並不難吃，頃刻間便喝了個碗底朝天。\n" NOR, me);
-                if (random(10) == 1) 
+                if (random(10) == 1)
                 {
                         message_vision(HIC "$N" HIC "覺得這粥甜甜的，非常好喝。\n"NOR, me);
                         destruct(this_object());

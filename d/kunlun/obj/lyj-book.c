@@ -10,9 +10,6 @@ void create()
 {
                   set_name(titles[random(sizeof(titles))], ({ "shu", "book" }));
                   set_weight(200);
-                  /*if( clonep() )
-                                         set_default_object(__FILE__);
-                  else*/ {
                   set("unit", "本");
                   set("long", "這是崑崙派前人所總結的正兩儀劍法的秘籍。\n");
                   set("value", 500);
@@ -24,7 +21,6 @@ void create()
                   "difficulty":   30,     // the base int to learn this skill
                   "max_skill":    180      // the maximum level you can learn
                                          ]) );*/
-                  }
 }
 
 void init()

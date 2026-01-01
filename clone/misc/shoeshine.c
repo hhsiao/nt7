@@ -8,13 +8,8 @@ void create()
 {
         set_name(YEL "鞋油" NOR, ({"shoeshine", "xie you"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "支");
+        set("unit", "支");
                 set("value", 90);
-        }
         set("count", 10);
         setup();
 }

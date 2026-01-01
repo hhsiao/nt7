@@ -6,11 +6,7 @@ void create()
 {
         set_name("玉女劍譜", ({ "yunu book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "封面上寫著「玉女劍法 」\n");
                 set("value", 100);
                 set("material", "paper");
@@ -25,5 +21,4 @@ void create()
                         "max_skill":        40                        // the maximum level you can learn
                                                                 // from this object.
                 ]) );
-        }
 }

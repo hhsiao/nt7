@@ -8,16 +8,11 @@ void create()
         set_name(HIY "高級清師令" NOR, ({ "qingshi ling2", "qingshi", "ling2" }) );
         set_weight(100);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", HIG "可使用他用來無損脫離師門一次，必須脫離前使用(use ling2)才有效。\n" NOR);
+        set("long", HIG "可使用他用來無損脫離師門一次，必須脫離前使用(use ling2)才有效。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                 set("unit", "塊");
                 set("auto_load", 1);
-        }
 
         setup();
 }
@@ -43,4 +38,3 @@ int do_qingshi(string arg)
 
         return 1;
 }
-

@@ -11,15 +11,10 @@ void create()
 {
         set_name("松樹", ({ "pine", "song shu", "tree" }) );
         set_weight(40000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一棵密林裡常見的松樹。\n");
+        set("long", "這是一棵密林裡常見的松樹。\n");
                 set("unit", "棵");
                 set("no_get", 1);
                 set("tree_str", 100);
-
-        }
 
 }
 
@@ -38,11 +33,11 @@ int do_chop(string arg)
 
         if (me->is_busy() || me->is_fighting() )
                 return notify_fail("你正忙著呢。\n");
-        
+
         if (arg != "tree" && arg != "pine")
                 return notify_fail("你要砍什麼？\n");
-        
-        if( !objectp(weapon=query_temp("weapon", me)) || 
+
+        if( !objectp(weapon=query_temp("weapon", me)) ||
                 query("id", weapon) != "axe" )
                 return notify_fail("你需要一把大斧子。\n");
 

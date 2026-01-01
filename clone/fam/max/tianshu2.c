@@ -5,13 +5,9 @@ void create()
 {
         set_name(HIW "「無字天書」" NOR, ({ "wuzi tianshu", "wuzi", "tianshu" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "傳說中蛋生獲仙人所贈的奇書，整本書不見一字。\n" NOR);
+        set("long", HIW "傳說中蛋生獲仙人所贈的奇書，整本書不見一字。\n" NOR);
                 set("value", 500000);
                 set("unit", "本");
-        }
 }
 
 void init()

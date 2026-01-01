@@ -15,13 +15,8 @@ void create()
         set("long",@LONG
 此乃當年雄霸留下的寶藏圖,快看看(kan)吧！
 LONG );
-        /*if( clonep() )
-                        set_default_object(__FILE__);
-        else*/
-       {
-                set("unit", "本");
+        set("unit", "本");
                 set("material", "unknow");
-        }
 }
 
 void init()
@@ -42,6 +37,3 @@ int kan_tu()
     "傳說中的絕世好劍就在五當山上！\n");
         return 1;
 }
-
-
-

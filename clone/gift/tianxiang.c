@@ -7,18 +7,14 @@
 void create()
 {
         set_name(HIG "天香玉露" NOR, ({"magic water", "yvlu", "lu"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "些");
+        set("unit", "些");
                 set("base_unit", "滴");
                 set("long", HIG "這是附著在靈芝上的一滴晶瑩剔透的玉露，傳說採自\n"
                                 "靈山，千年來以靈芝為母，不斷的吸取著日精月華，\n"
                                 "具有著無比神奇的功效。\n");
-                set("base_value", 100000); 
+                set("base_value", 100000);
                 set("base_weight", 200);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 
@@ -56,6 +52,6 @@ int do_effect(object me)
         add_amount(-1);
         if (query_amount() < 1)
                 destruct(this_object());
-        
+
         return 1;
 }

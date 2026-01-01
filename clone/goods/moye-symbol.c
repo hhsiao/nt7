@@ -6,14 +6,9 @@ void create()
 {
         set_name(HIM "莫邪聖符" NOR, ({ "moye symbol", "symbol" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", HIM "莫邪聖符可以將普通道具升級(into)為下線不掉物品。\n" NOR);
+        set("long", HIM "莫邪聖符可以將普通道具升級(into)為下線不掉物品。\n" NOR);
                 set("unit", "張");
                 set("value", 500000);
-        }
         setup();
 }
 
@@ -34,10 +29,10 @@ int do_integrate(string arg)
         if (! objectp(ob = present(arg, me)) &&
             ! objectp(ob = present(arg, environment(me))))
                 return notify_fail("你身上和附近沒有這樣道具啊。\n");
-        
+
         if (ob == this_object() || ob->is_character())
                 return notify_fail("你想要幹什麼?\n");
-                
+
         if (ob->query_autoload())
                 return notify_fail(ob->name() + "已經是下線不掉物品了，沒有這個必要吧！\n");
 

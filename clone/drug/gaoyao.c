@@ -8,10 +8,7 @@ void create()
 {
         set_name("狗皮膏藥", ({ "goupi gaoyao", "gaoyao" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("value", 20);
+        set("value", 20);
                 set("unit", "張");
                 set("no_sell", 1);
                 set("material", "cloth");
@@ -19,7 +16,6 @@ void create()
                 set("armor_prop/attack", -10);
                 set("armor_prop/defense", -10);
                 set("armor_prop/unarmed", -10);
-        }
 }
 
 void init()
@@ -85,8 +81,6 @@ string query_autoload()
 
 void autoload(string arg)
 {
-        int i;
-
         set("name", arg);
         set("blood_soaked", 3);
         ::wear();

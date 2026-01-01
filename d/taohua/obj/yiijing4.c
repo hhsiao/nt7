@@ -7,10 +7,7 @@ void create()
 {
         set_name( "易經《繫辭篇》", ({ "jing", "yi jing" }));
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一冊易經。\n");
                 set("value", 200);
                 set("material", "paper");
@@ -21,5 +18,4 @@ void create()
                         "difficulty":        40,        // the base int to learn this skill
                         "max_skill":        120,        // the maximum level you can learn
                 ]) );
-        }
 }

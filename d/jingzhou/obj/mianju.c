@@ -7,14 +7,10 @@ void create()
 {
         set_name("面具", ({ "mian ju", "mask" }) );
         set_weight(3000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "這似乎是一個由人皮製成的面具。\n");
                 set("no_drop", "這樣東西不能離開你。\n");
                 set("no_get", "這樣東西不能離開那兒。\n");
-        }
         setup();
 }
 
@@ -36,7 +32,7 @@ int do_pretend(string arg)
                 message_vision("$N從臉上取下了一個人皮面具。\n", this_player());
                 return 1;
         }
-        if(!objectp(who = present(arg, environment(this_player()))) || 
+        if(!objectp(who = present(arg, environment(this_player()))) ||
                 !living(who))
                 return notify_fail("你想假裝誰？\n");
         write("你開使假裝" + who->name() + "。\n");

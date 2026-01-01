@@ -6,11 +6,7 @@ void create()
 {
         set_name("『星宿毒經〖上冊〗』", ({ "du jing1", "book1" }) );
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "張");
+        set("unit", "張");
                 set("long",
 "\n                 『星宿毒經〖上冊〗』\n\n"
 "　　毒經為星宿寶典，凡以此經及經內所載藥物私與他人，即視為欺師滅祖、\n"
@@ -32,6 +28,5 @@ void create()
 "    \n");
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }

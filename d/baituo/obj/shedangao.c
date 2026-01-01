@@ -5,14 +5,10 @@ inherit ITEM;
 void create()
 {
         set_name("蛇膽膏", ({"shedan gao", "gao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", "這是珍貴補品『蛇膽膏』。\n");
                 set("value", 100);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

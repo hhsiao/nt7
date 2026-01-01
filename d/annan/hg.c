@@ -2,10 +2,9 @@
 inherit ROOM;
 
 
-void create ()
-{
-  set ("short",HIY"安南皇宮"NOR);
-  set ("long", @LONG
+void create () {
+    set ("short", HIY"安南皇宮"NOR);
+    set ("long", @LONG
 安南皇宮採用了北京故宮的圖紙，所以你會發現自己進入
 了一個縮小版的北京故宮。內有紫禁城，紫禁城裡又分為兩部
 分，前面有皇帝平處理政務的勤政殿，後面有皇帝居住的乾成
@@ -14,17 +13,16 @@ void create ()
 殿和廟宇。。
 LONG);
 
-  set("exits", ([ 
-"east":__DIR__"suishilu2",        
+    set("exits", ([
+        "east": __DIR__"suishilu2",
+        ]));
+    set("objects", ([
+        __DIR__"npc/bing":4
+        ]));
 
-       ]));
-  set("objects",([
-          __DIR__"npc/bing":4,
-          ]));
+    set("outdoors", "annan");
 
-set("outdoors","annan");
-  
-  set("valid_startroom", 1);
-  setup();
- 
+    set("valid_startroom", 1);
+    setup();
+
 }

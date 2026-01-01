@@ -1,7 +1,7 @@
 // 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
-// xianzhi.c        
+
+// xianzhi.c
 
 inherit ITEM;
 inherit F_LIQUID;
@@ -24,16 +24,12 @@ void create()
 
   set_name(names[i],({ids[i]}));
   set_weight(300);
-  /*if (clonep())
-    set_default_object(__FILE__);
-  else*/ {
-    set("unit", "玉壺");
+  set("unit", "玉壺");
     set("value", 10000);
     set("max_liquid", 5000);
     set("no_get",1);
     set("no_drop",1);
     set("no_sell",1);
-  }
   set("liquid", ([
         "type": "wine",
         "name": names[i],

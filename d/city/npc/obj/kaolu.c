@@ -7,23 +7,18 @@ void create()
 {
         set_name("小烤爐", ({ "kaolu" }) );
         set_weight(10000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "個");
+        set("unit", "個");
                 set("value", 100000);
                 set("material", "stone");
                 set("long", "一個紅泥製成的小烤爐，你似乎可以用它烤（ｆｒｙ）些什麼\n");
-        }
-        
+
         setup();
 }
 void init()
 {
         add_action("do_kao","kao");
         add_action("do_kao","fry");
-}                             
+}
 
 int do_kao(string arg)
 {
@@ -44,22 +39,22 @@ int do_kao(string arg)
                 return notify_fail("這是你不可以烤的東西．\n");
 
         supply = me->query_skill("cooking");
-        if ( supply < 30) 
-                return notify_fail("你的炒菜手藝太差，還是先學點廚藝吧？\n"); 
-                
+        if ( supply < 30)
+                return notify_fail("你的炒菜手藝太差，還是先學點廚藝吧？\n");
+
         if( tar->is_corpse())
         {
                 name=query("name", tar);
                 name=replace_string(name,"一具","");
                 name=replace_string(name,"的屍體","");
-                if (name=="腐爛")         
+                if (name=="腐爛")
                         return notify_fail("都臭成這樣了，還烤什麼烤？\n");
                 else
                         name="烤"+name+"肉";
 
                 supply = supply/20;
                 if(supply<=0) supply = 1;
-                        
+
                 meat = new("/d/city/npc/obj/meat");
                 meat->set_name(name, ({"kaorou", "rou", "fried meat", "meat" }) );
                 set("food_remaining", supply, meat);

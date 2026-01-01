@@ -10,24 +10,20 @@ void create()
 {
         set_name("木桶", ({"mu tong", "tong", "bucket"}));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個用來裝水的木桶。\n");
+        set("long", "一個用來裝水的木桶。\n");
                 set("unit", "個");
                 set("amount", 0);
                 set("no_drop",1);
-        }
 
 }
 
 string extra_long()
-{        
+{
         string str;
 
         switch(query("amount"))
         {
-                case 0: 
+                case 0:
                         str="裡面什麼也沒有。\n";
                         break;
                 case 1:
@@ -40,7 +36,7 @@ string extra_long()
                         str="裡面裝滿了冰水。\n";
                         break;
         }
-        
+
         return str;
 }
 
@@ -105,7 +101,7 @@ int do_pour(string arg)
 
         if (!(gang=present("shui gang",environment(me))))
                 return notify_fail("這裡沒有水缸。\n");
-        
+
         if (!(amount = query("amount")))
                 return notify_fail("木桶裡什麼都沒有。\n");
 

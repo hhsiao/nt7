@@ -7,13 +7,9 @@ void create()
         set_max_encumbrance(80000);
         set("no_get", 1);
         set("no_shown", 1);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "座");
+        set("unit", "座");
                 set("long", "一座碩大的假山。\n");
                 set("value", 1);
-        }
 }
 
 int is_container() { return 1; }

@@ -11,15 +11,11 @@ int cure_ob(string);
 void create()
 {
         set_name("人參", ({"ren shen", "shen"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "株");
+        set("unit", "株");
                 set("long", "這是一株沾滿山泥的長白山人參。\n");
                 set("value", 10000);
                 set("medicine", 1);
                 set("no_sell", 1);
-        }
         setup();
 }
 
@@ -45,7 +41,7 @@ int cure_ob(object me)
 
         message_vision(HIG"$N吃下一株人參，只覺得渾身一股熱氣兜底冒了上來 !\n" NOR, me);
 
-        me->apply_condition("bonze_drug", 
+        me->apply_condition("bonze_drug",
                 this_player()->query_condition("bonze_drug")+30);
 
         this_object()->move("/u/aln/workroom");

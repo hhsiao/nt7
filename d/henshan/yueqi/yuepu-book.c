@@ -6,15 +6,11 @@ void create()
         set_name(HIW "「古樂譜篇」" NOR, ({ "yuepu book", "yuepu", "book" }));
         set_weight(200);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", HIW "記載著古代樂譜的筆記，你閒著沒事兒"
                             "可以看看(read)。\n" NOR);
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }
 

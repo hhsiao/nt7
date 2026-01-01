@@ -7,14 +7,10 @@ void create()
 {
         set_name( "匕首" , ({ "bi shou", "blade", "bishou" }) );
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "把");
+        set("unit", "把");
                 set("long", "這是一把邊緣鋒利的匕首，好象可以斬(zhan)東西。\n");
                 set("value", 0);
                 set("material", "iron");
-        }
         setup();
 }
 
@@ -28,8 +24,8 @@ int mark_success(string arg)
         object target, ob,name1, me = this_player();
 
         name1=query("id", me);
-        if(!arg) return notify_fail("你要斬什麼？\n");  
-        target = present(arg, environment(me));  
+        if(!arg) return notify_fail("你要斬什麼？\n");
+        target = present(arg, environment(me));
         if(!target)
                 return notify_fail("找不到這個東西。\n");
         if(!target->is_corpse())

@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIC"金雁圖譜" NOR, ({ "jinyan tu","tu", }));
         set_weight(800);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
                 "這是本很普通的書，書裡面好象有一些小人飛舞的圖形。\n",
                 );
@@ -27,5 +23,4 @@ void create()
                         "difficulty": 18,
                         "max_skill":  60
                 ]) );
-        }
 }

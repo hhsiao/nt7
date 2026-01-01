@@ -1,5 +1,5 @@
 // Code of ShenZhou
-//By haowen  1/15/1999 
+//By haowen  1/15/1999
 
 inherit ITEM;
 #include <ansi.h>;
@@ -8,15 +8,11 @@ void create()
         set_name("雪蠶絲", ({"xuecan si", "can si","cansi"}));
         set_weight(80);
         set_max_encumbrance(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-         set("long", "這是一根雪蠶絲，是星宿海旁的雪蠶所吐之絲。雪蠶形體遠較冰蠶為小，也無毒性，
+        set("long", "這是一根雪蠶絲，是星宿海旁的雪蠶所吐之絲。雪蠶形體遠較冰蠶為小，也無毒性，
 吐出來的蠶絲卻韌力大得異乎尋常，一根單絲便已不易拉斷。\n");
                 set("unit", "根");
                 set("value", 0);
                 set("busy_source", random(5)+1);
-        }
 }
 void init()
 {
@@ -38,15 +34,15 @@ int do_shou(string arg)
                 if( query("id", inv[i]) == arg )
                         target=inv[i];
                 }
-        if (!target) 
+        if (!target)
                 return notify_fail("你想收誰？\n");
-        
+
         if(target==me)
                 return notify_fail("你不能收自己！\n");
 
 //      if(!userp(target))
 //              return notify_fail("你只能收玩家！\n");
-        
+
         if(me->is_busy())
                 return notify_fail("你上一個動作還沒有完成！\n");
 
@@ -61,7 +57,7 @@ int do_shou(string arg)
 
         if(target->is_busy())
                 return notify_fail(query("name", target)+"正自顧不暇，放手攻擊吧！\n");
-   
+
         message_vision( HIY "$N狂笑幾聲，手中似乎有什麼東西向$n撒去。\n" NOR,me,target);
         if(random(me->query_skill("feixing-shu",1)) > random(target->query_skill("dodge",1)))
                 {
@@ -74,7 +70,7 @@ int do_shou(string arg)
                 message_vision(HIY "$n閃身一躍，避開了$N手中的東西！\n" NOR,me,target);
                 tell_object(me,HIG "你趕緊反手一扣，收回了雪蠶絲。\n" NOR);
                 me->start_busy(2);
-             }          
+             }
         addn("neili", -50, me);
         return 1;
 }

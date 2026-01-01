@@ -1,34 +1,29 @@
 //rune16.c
 
-// Io 
+// Io
 
 #include <ansi.h>
 
 inherit TESSERA;
 
 int is_rune() { return 1; }
- 
+
 void create()
 {
         set_name(HIW "符文" NOR, ({"rune16", "rune"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "符文：太煥極瑤符，可以放入凹槽物品。\n");
+        set("long", "符文：太煥極瑤符，可以放入凹槽物品。\n");
                 set("unit", "個");
                 set("enchase/SN", 16);
                 set("enchase/type", "all");
-                set("enchase/consistence", 100); 
+                set("enchase/consistence", 100);
                 set("enchase/weapon_prop", ([
-                        "con"   : 15,               
+                        "con"   : 15,
                 ]));
                 set("enchase/armor_prop", ([
                         "con"   : 10,
                 ]));
                 set("value", 20000);
-        }
         setup();
 }
 

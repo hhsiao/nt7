@@ -11,17 +11,10 @@ void create()
         set_weight(200000);
         set_max_encumbrance(1000000);
         set("running", 1);
-        /*if (clonep())
-        {
-                set_default_object(__FILE__);
-        }
-        else*/
-        {
-                set("value", 1);
+        set("value", 1);
                 set("long", "你正在快馬上奔跑 ……\n");
                 set("unit", "次");
                 set("material", "air");
                 set("no_get", "!@#$!@#%%^@!^\n");
-        }
         setup();
 }

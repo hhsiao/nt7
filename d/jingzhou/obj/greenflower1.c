@@ -6,11 +6,8 @@ inherit HEAD;
 void create()
 {
         set_name(GRN"綠玉如意"NOR, ({"green flower", "flower"}));
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "朵");
-                set("long", 
+        set("unit", "朵");
+                set("long",
 "一株罕見之極的綠菊花。\n");
                 set("value", 80);
                 set("material", "plant");
@@ -19,6 +16,5 @@ void create()
                 set("armor_prop/per", 3);
                 set("wear_msg", "$N輕輕地把一朵$n戴在頭上。\n");
                 set("unequip_msg", "$N輕輕地把$n從頭上摘了下來。\n");
-        }
         setup();
 }

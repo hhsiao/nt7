@@ -2,10 +2,9 @@
 inherit ROOM;
 
 
-void create ()
-{
-  set ("short","獨柱寺");
-  set ("long", @LONG
+void create () {
+    set ("short", "獨柱寺");
+    set ("long", @LONG
 獨柱寺是安南獨具一格的古蹟之一，位於河內巴亭廣場西南，到這
 個南亞國家旅遊是不能不在她面前駐足的。相傳李太宗年高無嗣，一天
 夜裡，夢見觀世音菩薩手託嬰兒，立於水池中的蓮花臺上，不久，李太宗
@@ -13,16 +12,16 @@ void create ()
 建有延佑寺，供養諸佛。後經仁宗（1105年）等李氏皇帝多次重修，規模
 一度相當大。每年陽曆4月8日，皇帝蒞寺行浴禮佛，各地僧眾雲集此地，
 聲勢浩大。現在的延佑寺、白塔、畫廊和龜田鍾（覺世鍾）都蕩然無存了
-，惟有獨柱寺掩映在蔥蘢茂綠之中。 
+，惟有獨柱寺掩映在蔥蘢茂綠之中。
 LONG);
 
-  set("exits", ([ 
-"west":__DIR__"center",        
+    set("exits", ([
+        "west": __DIR__"center",
 
-       ]));
-set("outdoors","annan");
-  
-  set("valid_startroom", 1);
-  setup();
- 
+        ]));
+    set("outdoors", "annan");
+
+    set("valid_startroom", 1);
+    setup();
+
 }

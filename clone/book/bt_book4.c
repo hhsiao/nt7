@@ -7,11 +7,7 @@ void create()
 {
         set_name("蛇經", ({ "she jing", "jing"}));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本西毒歐陽鋒手書的蛇經。\n");
                 set("value", 10000);
                 set("material", "paper");
@@ -23,5 +19,4 @@ void create()
                         "max_skill":    151,  // the maximum level you can learn
                         "min_skill":    110  // the maximum level you can learn
                 ]) );
-        }
 }

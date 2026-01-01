@@ -9,10 +9,7 @@ string query_autoload()
 void create()
 {
         set_name(HIY "仙丹" NOR, ({ "gift" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIY "這是一顆增加容貌的仙丹。\n" NOR);
+        set("long", HIY "這是一顆增加容貌的仙丹。\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 10000);
                 set("base_weight", 50);
@@ -29,7 +26,6 @@ void create()
 
                 // 成功的描述
                 set("gift_msg", HIC "突然間你的皮膚透過一道光澤。\n" NOR);
-        }
         setup();
 }
 
@@ -82,7 +78,7 @@ int do_effect(object me)
 
         // 記錄入吃丹的總量
         /*
-        if( !query("gift/" + query("gift_type") + "/all", me) ) 
+        if( !query("gift/" + query("gift_type") + "/all", me) )
                 addn("gift/"+query("gift_type")+"/all", 1, me);
         */
 

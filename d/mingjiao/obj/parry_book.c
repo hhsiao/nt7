@@ -6,17 +6,13 @@ void create()
 {
         set_name("羊皮", ({ "yang pi", "pi" }));
         set_weight(600);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("unique", 1);
                 set("long", "這是一張羊皮，上面寫著密密麻麻的文字，好象很難看(read)懂。\n");
                 set("value", 2000);
                 set("material", "paper");
                 set("no_drop", "這樣東西不能離開你。\n");
                 set("treasure",1);
-        }
 }
 void init()
 {

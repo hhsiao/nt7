@@ -5,14 +5,10 @@ void create()
 {
         set_name(HIR "赤龍之瞳" NOR, ({ "dragon eye", "dragon", "eye" }));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIR "傳説中赤龍的眼珠，似乎可以服用。\n" NOR);
+        set("long", HIR "傳説中赤龍的眼珠，似乎可以服用。\n" NOR);
                 set("unit", "顆");
                 set("value", 500000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

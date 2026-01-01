@@ -8,11 +8,7 @@ void create()
 {
         set_name( "道德經「第十八章」", ({ "jing", "daode jing" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
                         CYN "\n"
                         "\n\t\t\t第十八章\n\n"
@@ -29,5 +25,4 @@ void create()
                         "difficulty"  : 15,
                         "max_skill"   : 29,
                 ]) );
-        }
 }

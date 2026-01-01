@@ -12,14 +12,10 @@ void create()
 {
         set_name(HIR"熔爐"NOR, ({ "rong lu", "lu" }) );
         set_weight(9000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是座大熔爐，裡面烈火燃燒，是用來打造火槍的。\n");
+        set("long", "這是座大熔爐，裡面烈火燃燒，是用來打造火槍的。\n");
                 set("unit", "座");
                 set("value", 1);
                 set("no_get", 1);
-        }
 }
 
 void init()
@@ -31,11 +27,11 @@ void init()
 int do_fang(string arg)
 {
         object me, ob, jingtie;
-        string item, target; 
+        string item, target;
 
         me = this_player();
         ob = this_object();
-        
+
         if( me->is_busy() || query_temp("pending/job_busy", me) )
                 return notify_fail("你正忙著呢。\n");
 
@@ -54,7 +50,7 @@ int do_fang(string arg)
         message_vision("$N把一"+query("unit", jingtie)+query("name", jingtie)+"放進熔爐。\n",me);
         destruct(jingtie);
         message_vision(HIR"$N放進燃料，拉起風箱，頃刻間就生起一爐熊熊大火！\n"NOR,me);
-        
+
         set_temp("in_use",1);
         set_temp("pending/job_busy", 1, me);
         set_temp("gun_making", 1, me);
@@ -76,7 +72,7 @@ void burning(object me, int stage)
         });
 
         message_vision(burning_msg[stage],me);
-        
+
         if (stage != 3)
         {
                 remove_call_out("burning");
@@ -93,7 +89,7 @@ void burning(object me, int stage)
 }
 
 int do_pour(string arg)
-{        
+{
         string item, target;
         int busy_time=0;
         object me=this_player();
@@ -138,7 +134,7 @@ int do_pour(string arg)
 }
 
 int add_xiaohuang(string arg)
-{        
+{
         string item, target;
         object xiaohuang;
         object me=this_player();

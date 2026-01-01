@@ -4,28 +4,24 @@ void create()
 {
         set_name(HIG "仙魂草" NOR, ({"xianhuncao"}));
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {  
-        	set("long", HIG "仙魂草長於崑崙山溶洞之中，傳說吸收了修仙之人的魂魄！\n" + 
+        set("long", HIG "仙魂草長於崑崙山溶洞之中，傳說吸收了修仙之人的魂魄！\n" +
         	                "服食(fushi xianhuncao)後可永久提升武學修養1級。\n" HIC
         	                /*"擁有者：擁有者ID*/"\n" NOR);
                 set("unit", "束");
                 set("owner", "擁有者ID"); // 綁定擁有者
 	        set("no_drop", 1);set("no_store", 1);set("no_sell", 1);
-        }
         setup();
 }
 
 void init()
 {
-        add_action("do_use", "fushi");       
+        add_action("do_use", "fushi");
 }
 
 int do_use(string arg)
 {
 	object ob, me;
-	
+
 	me = this_player();
 
 	if (! arg || arg != query("id"))
@@ -37,14 +33,14 @@ int do_use(string arg)
 /*
 	if( query("owner", ob) != query("id", me) )
 		return notify_fail(ob->name() + NOR "已經於其他玩家綁定！\n");
-*/	
+*/
    me->add_skill("martial-cognize", 1);
 
 	tell_object(me, HIG "恭喜！你服下" + ob->name() + HIG "後，武學修養提升1級！\n");
-	
+
 	me->save();
-	
+
 	destruct(ob);
-	
+
 	return 1;
 }

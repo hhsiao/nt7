@@ -8,13 +8,9 @@ void create()
 {
         set_name("皮鞭", ({"whip"}));
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long","一條長長的皮鞭，上面沾滿了血．\n");
+        set("long","一條長長的皮鞭，上面沾滿了血．\n");
                 set("unit", "條");
                 set("value", 500);
-        }
         init_whip(10);
         setup();
 }

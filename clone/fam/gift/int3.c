@@ -5,10 +5,7 @@ void create()
 {
         set_name(HIW "神恩通慧仙丹" NOR, ({ "tonghui xiandan", "tonghui",
                                                   "xiandan", "dan" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "傳說此丹乃是天宮中的神品，凡人吃了可以平增悟性。增加先天屬性至六點\n" NOR);
+        set("long", HIW "傳說此丹乃是天宮中的神品，凡人吃了可以平增悟性。增加先天屬性至六點\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 100000);
                 set("base_weight", 50);
@@ -19,6 +16,5 @@ void create()
                 set("gift_name", "先天悟性");
                 set("gift_point", 85);
                 set("gift_msg", HIG "突然間你只覺靈臺處一片空明，舒泰無比。\n" NOR);
-        }
         setup();
 }

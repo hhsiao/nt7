@@ -6,13 +6,9 @@ int cure_ob(string);
 void create()
 {
    set_name("蛇藥", ({"she yao", "yao"}));
-   /*if (clonep())
-      set_default_object(__FILE__);
-   else*/ {
-      set("unit", "包");
+   set("unit", "包");
       set("value", 200);
                 set("no_sell", 1);
-   }
    setup();
 }
 

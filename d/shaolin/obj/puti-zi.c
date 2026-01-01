@@ -11,16 +11,12 @@ void setup()
 void create()
 {
         set_name(HIG "菩提子" NOR, ({"puti zi", "zi"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", HIG "這是一顆晶瑩如玉的菩提子，採自靈山佛祖座"
                             "前，珍稀無比，\n乃萬年菩提樹之實，功能化百劫"
                             "，渡千災，與天地同壽。\n");
                 set("value", 50000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

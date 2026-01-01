@@ -8,14 +8,10 @@ void create()
 {
         set_name(HIR "核子飛彈" NOR, ({ "nucleus bomb" }));
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是高科技產品，是" RED "血滴子" NOR "的2000版本。\n");
+        set("long", "這是高科技產品，是" RED "血滴子" NOR "的2000版本。\n");
                 set("value", 50000000);
                 set("no_sell", 1);
                 set("unit", "枚");
-        }
 }
 
 void init()

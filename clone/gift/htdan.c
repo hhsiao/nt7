@@ -8,14 +8,10 @@ void create()
 {
         set_name(YEL "糊塗丹" NOR, ({ "hutu dan", "dan", "hutu" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆園園很髒的丹藥，據說吃了可以降低智力。\n");
+        set("long", "一顆園園很髒的丹藥，據說吃了可以降低智力。\n");
                 set("value", 10000);
                 set("unit", "顆");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)

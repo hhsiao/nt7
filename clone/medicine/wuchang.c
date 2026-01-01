@@ -7,10 +7,7 @@ void create()
 {
         set_name(HIR "無常丹" NOR, ({"wuchang dan", "dan"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIR "這是一顆晶瑩火紅的無常丹，是桃花島精心練制的奇"
+        set("long", HIR "這是一顆晶瑩火紅的無常丹，是桃花島精心練制的奇"
                             "藥。\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 8000);
@@ -33,7 +30,6 @@ void create()
                         "min_level" : 150,
                         "taohua-yaoli" : 250,
                 ]));
-        }
         setup();
 }
 

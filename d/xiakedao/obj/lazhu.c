@@ -5,13 +5,9 @@ void create()
 {
         set_name( "蠟燭", ({ "zhu", "lazhu" }) );
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("long", "這是一隻普通的蠟燭，上面鏤著一些花紋，還比較精緻。\n");
                 set("value", 0);
-        }
         setup();
 }
 void init()

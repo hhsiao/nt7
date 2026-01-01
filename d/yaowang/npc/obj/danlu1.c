@@ -6,16 +6,12 @@ void create()
         set_name(CYN"煉丹爐"NOR, ({ "liandan lu", "liandan", "lu" }) );
         set_weight(300000);
         set_max_encumbrance(500000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "這是一個青銅鑄成的煉丹爐。\n");
                 set("value", 1000);
                 set("no_get",1);
                 set("amount",10);
                 set("container",1);
-        }
         setup();
 }
 int is_container() { return 1; }
@@ -91,7 +87,7 @@ int do_lian(string arg)
                         destruct(ob5);
                 if(arg=="bigu wan") { obj=new(__DIR__"biguwan"); }
         message_vision(HIR"$N關上丹爐的爐門，催動火力開始煉丹。\n\n"NOR, me);
-        call_out("lian_over", 5, me);   
+        call_out("lian_over", 5, me);
                 return 1;
                 }
         else
@@ -118,7 +114,7 @@ int lian_over(object me)
         {
                 message_vision(HIR"$N的丹藥練失敗了。\n"NOR, me);
                 return 1;
-                
+
         }
 
 }

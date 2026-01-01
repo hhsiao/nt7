@@ -11,10 +11,7 @@ void create()
 {
         set_name(HIG "神之翡翠" NOR, ({ "magic jade" }) );
         set_weight(50);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "一顆煥發著奇異的光彩的翡翠，"
+        set("long", HIG "一顆煥發著奇異的光彩的翡翠，"
                     "給人以不同尋常的感覺。\n" NOR);
                 set("value", 200000);
                 set("unit", "顆");
@@ -27,6 +24,5 @@ void create()
                     HIC "戴在頭上。\n" NOR);
                 set("remove_msg", HIC "$N" HIC "輕輕地把$n"
                     HIC "從頭上摘了下來。\n" NOR);
-        }
         setup();
 }

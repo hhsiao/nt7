@@ -9,15 +9,11 @@ void create()
 {
         set_name(HIM "麝香粉" NOR, ({ "shexiang fen" }) );
         set_weight(80);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一包散發出異香的藥粉。它可以用(apply)來散發香味，藉機逃走。\n");
+        set("long", "一包散發出異香的藥粉。它可以用(apply)來散發香味，藉機逃走。\n");
                 set("unit", "包");
                 set("value", 100000);
                 set("no_sell", 1);
                 set("can_apply_for_wimpy", 1);
-        }
         setup();
 }
 

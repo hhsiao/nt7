@@ -14,7 +14,7 @@ mapping *long_desc = ({
 
 ([ "name":YEL"虎溪三笑圖"NOR,
    "long": "\n
-                   《虎溪三笑圖》 
+                   《虎溪三笑圖》
 虎溪三笑故事，廬山記雲：“遠法師居廬阜三十餘年，影不出山，
 跡不入俗，送客過虎溪，虎輒鳴號。昔陶元亮居栗裡，山南陸修靜
 亦有道之士。遠師嘗送此二人，與語道合，不覺過之，因相與大笑。\n",]),
@@ -68,19 +68,15 @@ mapping *long_desc = ({
 });
 
 void create()
-{        
+{
          mapping i = long_desc[random(sizeof(long_desc))];
 
          set_name(i["name"], ({ "tu juan", "tu", "juan"}));
          set("long", i["long"]);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {               
-//                set("value", 1);
+        //                set("value", 1);
                 set("unit", "張");
                 set("weight", 100);
                 set("material", "paper");
-                }
         setup();
 }

@@ -1,6 +1,6 @@
 // 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 
 inherit ITEM;
 inherit F_FOOD;
@@ -38,15 +38,11 @@ void create()
   string name = "火雞";
   set_name(name, ({"turkey"}));
   set_weight(1000);
-  /*if (clonep())
-    set_default_object(__FILE__);
-  else*/ {
-    set("long", "一隻碩大的感恩節火雞。\n");
+  set("long", "一隻碩大的感恩節火雞。\n");
     set("unit", "只");
     set("value", 950);
     set("food_remaining", 30);
     set("food_supply", 10);
-  }
   setup();
 }
 

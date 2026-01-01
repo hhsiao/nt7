@@ -13,15 +13,11 @@ int cure_ob(string);
 void create()
 {
         set_name("養心丸", ({"yangxin wan", "wan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆暗紅發亮的養心丸。\n");
                 set("value", 5000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
         setup();
 }
 
@@ -29,7 +25,7 @@ int cure_ob(object me)
 {
         message_vision(HIR "$N吃下一棵養心丹，只覺得頭重腳輕，火氣翻騰，原來服食過猛，藥效適得其反！\n" NOR, this_player());
         addn("jingli", -200, this_player());
-        this_player()->apply_condition("bonze_drug", 
+        this_player()->apply_condition("bonze_drug",
                 this_player()->query_condition("bonze_drug")+10);
         destruct(this_object());
         return 1;

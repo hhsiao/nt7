@@ -7,10 +7,7 @@ void create()
 {
         set_name( "易經《序卦篇》", ({ "jing", "yi jing" }));
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一冊易經。上面寫著：\n
 　　有天地，然後有萬物； 有萬物，然後有男女； 有男女，然後有夫婦；
 有夫婦，然後有父子；有父子然後有君臣；有君臣，然後有上下；有上下，
@@ -26,5 +23,4 @@ void create()
                         "difficulty":        20,        // the base int to learn this skill
                         "max_skill":        30,        // the maximum level you can learn
                 ]) );
-        }
 }

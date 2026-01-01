@@ -7,14 +7,10 @@ inherit ITEM;
 void create()
 {
         set_name("臘八粥", ({ "zhou"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "碗");
+        set("unit", "碗");
                 set("long", "這是一碗珍貴的補品臘八粥。\n");
                 set("value", 20000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

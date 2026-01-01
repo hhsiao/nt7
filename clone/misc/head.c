@@ -14,17 +14,13 @@ void create()
 {
         set_name(NOR + RED "頭顱" NOR, ({ "head" }));
         set_weight(1500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("value", 1);
                 set("no_store", 1);
                 set("no_sell", "我的天…這…這你也拿來賣…官…官府呢？");
                 set("food_supply", 10);
                 set("food_remaining", 4);
                 set("long", RED "這是一顆鮮血淋淋的首級，鮮血正緩緩滲出。\n" NOR);
-        }
 }
 
 int set_from(object owner)

@@ -1,6 +1,6 @@
 // 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 
 inherit ITEM;
 inherit F_FOOD;
@@ -35,16 +35,12 @@ void create()
 {   string name = "婚禮大菜";
      set_name(name, ({"food"}));
      set_weight(1000);
-     /*if (clonep())
-         set_default_object(__FILE__);
-     else*/ {
-         set("long", "一盤令人垂涎的婚禮大菜。\n");
+     set("long", "一盤令人垂涎的婚禮大菜。\n");
          set("unit", "盤");
      set("eat_msg", "$N拿起玉筷夾了些" + name + "，放到嘴中吃了起來。\n");
          set("value", 250);
          set("food_remaining", 5);
          set("food_supply", 20);
-     }
 }
 
 int do_get (string arg)

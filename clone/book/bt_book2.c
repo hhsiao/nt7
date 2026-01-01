@@ -7,11 +7,7 @@ void create()
 {
         set_name("草藥經", ({ "caoyao jing", "jing", "caoyao" }));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本講述各類草藥的書。\n");
                 set("value", 2500);
                 set("material", "paper");
@@ -23,5 +19,4 @@ void create()
                         "max_skill":    71,  // the maximum level you can learn
                         "min_skill":    30   // the maximum level you can learn
                 ]) );
-        }
 }

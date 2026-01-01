@@ -6,11 +6,7 @@ void create()
 {
         set_name(MAG"紫霞密芨"NOR, ({ "zixia_book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
 //                set("no_drop",1);
                 set("long",
 HIM"天下武功，以練氣為正。浩然正氣，原為天授，惟常人不善
@@ -33,6 +29,5 @@ HIM"天下武功，以練氣為正。浩然正氣，原為天授，惟常人不�
                         "min_skill":    0                        // the maximum level you can learn
                                                                 // from this object.
                 ]) );
-        }
 }
 int query_autoload() { return 1; }

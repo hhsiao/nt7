@@ -10,10 +10,7 @@ void create()
 {
         set_name(HIR + GIFT_NAME + NOR, ({"gift allocate"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "件");
+        set("unit", "件");
                 set("long", @LONG
 可以把mygift獲得的先天天賦分（fen）到你想要的先天屬性上
 格式為 fen 悟性 1 這種格式。
@@ -27,7 +24,6 @@ LONG );
                 set("no_sell", 1);
                 set("no_drop", 1);
                 */
-        }
         setup();
 }
 

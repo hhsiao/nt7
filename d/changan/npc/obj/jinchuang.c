@@ -14,14 +14,9 @@ void init()
 void create()
 {
         set_name(HIY"金創藥"NOR, ({"jinchuang yao", "jinchuang", "yao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "包");
+        set("unit", "包");
                 set("long", "這是一包武林人士必備的金創藥。\n");
                 set("value", 5000);
-        }
         setup();
 }
 
@@ -34,7 +29,7 @@ int do_eat(string arg)
                 return notify_fail("別急，慢慢吃，小心別噎著了。\n");
         if( query("eff_qi", me) == query("max_qi", me) )
                 return notify_fail("你現在不需要用金創藥。\n");
-        else 
+        else
         {
                 me->receive_curing("qi", 50);
                 message_vision("$N吃下一包金創藥，氣色看起來好多了。\n", me);

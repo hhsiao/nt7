@@ -3,14 +3,10 @@ inherit ITEM;
 void create()
 {
         set_name(WHT "虎骨" NOR, ({"hu gu", "hu", "gu"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "根");
+        set("unit", "根");
                 set("long", WHT "\n一根新鮮的虎骨，從神獸白虎的身體裡取出，可以入藥。\n" NOR);
                 set("value", 6000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

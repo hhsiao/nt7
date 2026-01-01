@@ -10,14 +10,10 @@ void create()
 {
         set_name(HIR "現形炸彈" NOR, ({ "visible bomb", "bomb" }));
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "聽說這是可以讓人原形畢露的炸彈。\n");
+        set("long", "聽說這是可以讓人原形畢露的炸彈。\n");
                 set("value", 1);
                 set("no_sell", 1);
                 set("unit", "顆");
-        }
 }
 
 void init()

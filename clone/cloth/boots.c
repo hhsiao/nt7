@@ -6,10 +6,7 @@ void create()
 {
         set_name(YEL "羊皮靴" NOR, ({ "yangpi xue", "yangpi", "xue" }) );
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "雙");
+        set("unit", "雙");
                 set("value", 800);
                 set("material", "leather");
                 set("armor_type", "feet");
@@ -17,8 +14,6 @@ void create()
                 set("armor_prop/dodge", 2);
                 set("wear_msg","$N穿上一雙$n。\n");
                 set("remove_msg","$N將$n脫了下來。\n");
-
-        }
 
         setup();
 }

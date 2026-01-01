@@ -7,11 +7,7 @@ void create()
 {
         set_name(HIY "天降·醒世環" NOR, ({ "xingshi huan2" }));
         set_weight(30);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "枚");
+        set("unit", "枚");
                 set("long", HIY "傳說中狐仙所佩帶的指環。\n" NOR);
                 set("value", 200000);
                 set("material", "gold");
@@ -24,12 +20,10 @@ void create()
                                     "有效掌法等級提高100級。\n"+
                                     "有效指法等級提高100級。\n"
                 );
-                set("limit", ([ 
+                set("limit", ([
                          "exp" : 100000000,
                          "scborn" : 1,
                 ]));
-
-        }
         setup();
 }
 

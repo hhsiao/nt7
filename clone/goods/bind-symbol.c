@@ -5,14 +5,9 @@ void create()
 {
         set_name(MAG "綁定符" NOR, ({ "bind symbol", "bind", "symbol" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", MAG "該符文可以將物品設置(bind)擁有直接綁定屬性。\n" NOR);
+        set("long", MAG "該符文可以將物品設置(bind)擁有直接綁定屬性。\n" NOR);
                 set("unit", "塊");
                 set("value", 500000);
-        }
         setup();
 }
 
@@ -58,5 +53,3 @@ int query_autoload()
 {
         return 1;
 }
-
-

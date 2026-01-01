@@ -1,6 +1,6 @@
 // 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 
 inherit ITEM;
 inherit F_FOOD;
@@ -9,13 +9,9 @@ void create()
 {
         set_name("水晶葡萄", ({"pu tao", "grape","putao"}));
    set_weight(40);
-   /*if (clonep())
-     set_default_object(__FILE__);
-   else*/ {
-                set("long", "水靈靈的葡萄象一顆顆紫色的水晶球。\n");
+   set("long", "水靈靈的葡萄象一顆顆紫色的水晶球。\n");
                 set("unit", "把");
      set("value", 80);
      set("food_remaining", 4);
      set("food_supply", 30);
-   }
 }

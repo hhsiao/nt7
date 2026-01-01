@@ -7,12 +7,8 @@ void create()
 {
         set_name( "上等菸草", ({ "shangdeng yancao", "yancao" }) );
         set_weight(800);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "包");
+        set("unit", "包");
                 set("value", 1000);
-                set("material", "leather");           
-        }
+                set("material", "leather");
         setup();
 }

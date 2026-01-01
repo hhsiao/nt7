@@ -5,17 +5,13 @@ void create()
 {
         set_name(HIG "碧海殘钁" NOR, ({"bihai canjue", "bihai", "canjue" }));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("value", 500000);
                 set("enchase/name", "碧海殘钁");
                 set("enchase/point", 5);
                 set("enchase/type", "medal2");
                 set("enchase/cur_firm", 100);
-                set("enchase/spe_data", ([]) );  
-        }
+                set("enchase/spe_data", ([]) );
         setup();
 }
 

@@ -12,16 +12,11 @@ void create()
 {
         set_name("紅綢", ({"hong chou", "chou"}));
         set_weight(800);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一塊很完整的紅綢，但已經開始變色了。\n");
+        set("long", "一塊很完整的紅綢，但已經開始變色了。\n");
                 set("unit", "件");
                 set("material", "cloth");
                 set("no_get", "這塊紅綢已經被牢牢的釘住了。\n");
                 set("cloth_count",1);
-
-        }
         setup();
 }
 

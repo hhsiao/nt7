@@ -5,11 +5,7 @@ void create()
 {
         set_name(YEL"「百家姓」"NOR, ({ "literateb2", "shu2", "book2" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);                                   
-        else*/
-        { 
-               set("unit", "本");
+        set("unit", "本");
                 set("long","讀書人必讀的百家姓。\n");
                 set("value", 200000);
                 set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "max_skill":    79,
                         "min_skill":    50,
                 ]) );
-        }
 }

@@ -4,10 +4,7 @@ inherit ITEM;
 void create()
 {
         set_name(HIW"子午針灸經"NOR, ({ "jingmai book", "book", "shu" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set_weight(10);
                 set("no_get", 1);
                 set("no_drop", 1);
@@ -21,6 +18,5 @@ void create()
                         "min_skill":    190,
                         "max_skill":    200
                 ]) );
-        }
         setup();
 }

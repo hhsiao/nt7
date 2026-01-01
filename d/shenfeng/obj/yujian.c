@@ -7,14 +7,10 @@ void create()
 {
             set_name(HIW "玉劍" NOR, ({ "yu jian", "yu", "jian", "sword" }));
             set_weight(500);
-            /*if (clonep())
-                set_default_object(__FILE__);
-            else*/ {
-                set("unit", "柄");
+            set("unit", "柄");
                 set("long", HIW "一柄用白玉做成的長劍，相當的精美。\n" NOR);
                 set("value", 5000);
                 set("material", "jade");
-              }
             init_sword(10);
             setup();
 }

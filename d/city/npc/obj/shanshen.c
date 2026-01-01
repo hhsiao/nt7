@@ -13,13 +13,9 @@ void init()
 void create()
 {
         set_name("老山叄", ({"laoshan shen", "shen"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "株");
+        set("unit", "株");
                 set("long", "這是一株沾滿山泥的長白老山叄。\n");
                 set("value", 10000);
-        }
         setup();
 }
 

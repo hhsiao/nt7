@@ -9,15 +9,10 @@ void create()
 {
         set_name(WHT "面具" NOR, ({ "mian ju", "mask" }) );
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "個");
+        set("unit", "個");
                 set("super_mask", 1);
                 set("long", "這似乎是一個由人皮製成的面具。\n");
                 set("value", 10000);
-        }
         set("auto_load", 1);
         setup();
 }
@@ -54,7 +49,7 @@ int do_pretend(string arg)
         if (me->query_skill("pretending", 1) < 100)
                 return notify_fail("你拿著面具摸來摸去，就是不會使用。\n");
 
-        if( query("age", me) >= 60 && 
+        if( query("age", me) >= 60 &&
             !query("special_skill/youth", me) )
                 return notify_fail("你太老了，難以扮得像。\n");
 
@@ -64,7 +59,7 @@ int do_pretend(string arg)
         if( sscanf(base_name(environment(me)), "/maze/battle%*s") )
                 return notify_fail("戰場裡無法戴面具。\n");
 
-        if (! objectp(who = present(arg, environment(me))) || 
+        if (! objectp(who = present(arg, environment(me))) ||
             ! living(who))
                 return notify_fail("你想假裝誰？\n");
 
@@ -106,7 +101,7 @@ int move(mixed dest)
 
         return ::move(dest);
 }
-void remove(string euid) 
+void remove(string euid)
 {
         object me;
 

@@ -9,10 +9,6 @@ void create()
 一面做成八卦形狀的鐵牌，翻過來看，背面寫著一個“曲”字。
 ");
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "面");
-        }
+        set("unit", "面");
         setup();
 }

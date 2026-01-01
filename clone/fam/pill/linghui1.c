@@ -4,16 +4,11 @@
 void create()
 {
         set_name(HIY "昊天果" NOR, ({ "haotian guo", "haotian", "guo" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIY "這是一枚金黃色的果實，服用後能增加人的靈慧。\n" NOR);
+        set("long", HIY "這是一枚金黃色的果實，服用後能增加人的靈慧。\n" NOR);
                 set("base_unit", "枚");
                 set("base_value", 6000);
                 set("base_weight", 80);
                 set("only_do_effect", 1);
-
-        }
         setup();
 }
 

@@ -19,11 +19,7 @@ void create()
 {
         set_name(HIR "洗天賦丹" NOR, ({"wash gift", "gift"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", @LONG
 這是提供給那些出生時候選錯天賦的人一次重新分配先天天賦的洗天賦丹。
 洗天賦丹每人只能使用一次，格式為 washto <膂力> <悟性> <根骨> <身法>
@@ -32,7 +28,6 @@ void create()
 LONG );
                 set("value", 1);
                 set("no_sell", 1);
-        }
         setup();
 }
 

@@ -7,17 +7,13 @@ void create()
         set_name("香爐", ({ "xiang lu", "lu" }) );
         set_weight(3000);
         set_max_encumbrance(5000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "這是一個廟裡常見的香爐，用來讓善男信女們插香(pushin)進願。\n");
                 set("value", 1000);
                 set("material", "gold");
                 set("no_get",1);
                 set("no_drop",1);
                 set("amount",30);
-        }
         setup();
 }
 
@@ -29,7 +25,7 @@ void init()
 int do_pushin(string arg)
 {
         object me, ob;
-        
+
         me = this_player();
 
         if(!arg&&arg!="xiang") return notify_fail("你要插什麼東西？\n");

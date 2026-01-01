@@ -11,13 +11,9 @@ void create()
 {
         set_name(HIB"四十二章經"HIR"三"NOR, ({"book3"}));
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "\n一本鑲藍旗的經書，封皮(binding)很精緻。\n");
+        set("long", "\n一本鑲藍旗的經書，封皮(binding)很精緻。\n");
                 set("unit", "本");
                 set("material", "paper");
-        }
         setup();
 }
 
@@ -40,7 +36,7 @@ int do_tear(string arg)
 
         if( sscanf(arg, "book3 %s", dir)==1 )
         {
-                if( dir=="binding" ) 
+                if( dir=="binding" )
                 {
                         if( query("hasgot", this_object()) )
                                 message_vision("$N將封皮撕開，發現羊皮已經被取走了。\n", me);
@@ -58,5 +54,5 @@ int do_tear(string arg)
                         destruct(this_object());
                 }
                 return 1;
-        }        
+        }
 }

@@ -6,10 +6,7 @@
 void create()
 {
         set_name(CYN "玉真散" NOR, ({"yuzhen san", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一包玉真散，非常珍貴的療傷藥品。\n");
+        set("long", "這是一包玉真散，非常珍貴的療傷藥品。\n");
                 set("base_unit", "包");
                 set("base_value", 20000);
                 set("base_weight", 50);
@@ -29,7 +26,6 @@ void create()
                         "min_level" : 100,
                         "medical" : 150,
                 ]));
-        }
         setup();
 }
 

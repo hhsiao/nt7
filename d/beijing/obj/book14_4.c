@@ -11,13 +11,9 @@ void create()
 {
         set_name(HIB"四十二章經四"NOR, ({"book4"}));
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "\n一本正藍旗的經書，封皮(binding)很精緻。\n");
+        set("long", "\n一本正藍旗的經書，封皮(binding)很精緻。\n");
                 set("unit", "本");
                 set("material", "paper");
-        }
         setup();
 }
 
@@ -59,5 +55,5 @@ int do_tear(string arg)
                         destruct(this_object());
                 }
                 return 1;
-        }        
+        }
 }

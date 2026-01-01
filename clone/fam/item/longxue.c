@@ -7,14 +7,10 @@ void create()
         set_name(HIR "龍血" NOR, ({ "dragon blood", "dragon", "blood" }) );
         set_weight(30);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIR "一瓶龍之血液，可以用來修復鑲嵌物(指令 rehab)。\n "
+        set("long", HIR "一瓶龍之血液，可以用來修復鑲嵌物(指令 rehab)。\n "
                             HIY "下線丟失    ：   否\n"NOR);
                 set("value", 2000000);
                 set("unit", "瓶");
-        }
 
         setup();
 }
@@ -47,8 +43,8 @@ int do_rehab(string arg)
                 return notify_fail("指令格式：rehab <鑲嵌物品ID> in <道具ID>\n");
 
         if (! objectp(ob = present(obid, me)))
-                return notify_fail("你身上沒有這樣道具。\n");         
-        
+                return notify_fail("你身上沒有這樣道具。\n");
+
         if (! ob->query("enchase"))
                 return notify_fail(ob->name() + "好象沒有鑲嵌什麼吧！\n" NOR);
 

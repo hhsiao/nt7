@@ -4,10 +4,7 @@ inherit ITEM;
 void create()
 {
         set_name(HIW"進階經脈學"NOR, ({ "jingmai book", "book", "shu" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("value", 8000);
                 set_weight(10);
                 set("material", "paper");
@@ -18,6 +15,5 @@ void create()
                         "min_skill":    40,
                         "max_skill":    80
                 ]) );
-        }
         setup();
 }

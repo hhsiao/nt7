@@ -7,11 +7,7 @@ void create()
 {
         set_name(YEL"易筋經"NOR, ({ "yijinjing" }));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "卷");
+        set("unit", "卷");
                 set("long",
                 "易筋經\n"
                 "這是一卷古樸絲織經軸，看來很有年月了，上面文字堅深，不知你識
@@ -25,6 +21,4 @@ void create()
                         "difficulty":   30,     // the base int to learn this skill
                         "max_skill":    380     // the maximum level you can learn
                 ]) );
-        }
 }
-

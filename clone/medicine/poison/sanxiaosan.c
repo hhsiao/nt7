@@ -5,14 +5,10 @@ inherit ITEM;
 void create()
 {
         set_name("三笑逍遙散", ({"sanxiaoxiaoyao san", "xiaoyao san", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一包無色的粉末, 看樣子不是尋常物品. \n");
+        set("long", "一包無色的粉末, 看樣子不是尋常物品. \n");
                 set("unit", "包");
                 set("pour_type", "sanxiao_poison");
                 set("value", 20000);
-        }
         setup();
 }
 

@@ -5,15 +5,11 @@ void create()
 {
         set_name(HIC "「扇賞」" NOR, ({ "shanshang book", "shanshang", "book" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", HIC "這是一本介紹扇的小冊，沒事可以"
                             "看看(read)。\n" NOR);
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }
 

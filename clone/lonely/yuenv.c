@@ -7,10 +7,7 @@ void create()
 {
         set_name(HIR"越女"+HIY"朝陽"+HIC"劍"NOR, ({ "yuenv chaoyang jian", "yuenv jian","jian", "sword" }) );
         set_weight(8000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("weapon_prop/kar", 15);
+        set("weapon_prop/kar", 15);
                 set("weapon_prop/int", 3);
                 set("weapon_prop/str", 5);
                 set("weapon_prop/sword", 50);
@@ -22,7 +19,6 @@ void create()
                 set("wield_msg", HIR"空氣突然變得沉悶..,但聽...\n"
                                  HIB"鏘........鏹........嗆................\n"
                                  HIY"陣陣清越龍吟聲不斷響起...連綿不絕,$N手裡已多了把"HIR"赤紅軟劍.\n"NOR);
-        }
 
         init_sword(500,2);
         setup();

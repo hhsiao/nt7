@@ -6,14 +6,9 @@ void create()
 {
         set_name(HIM "歐冶子火符" NOR, ({ "ouyezi fire", "symbol" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", HIM "歐冶子火符可以將普通自造防具升級(upd)為準開孔狀態，擁有火屬性。\n" NOR);
+        set("long", HIM "歐冶子火符可以將普通自造防具升級(upd)為準開孔狀態，擁有火屬性。\n" NOR);
                 set("unit", "張");
                 set("value", 500000);
-        }
         setup();
 }
 
@@ -41,13 +36,13 @@ int do_integrate(string arg)
 
         if (ob->is_weapon() || ob->is_unarmed_weapon())
                 return notify_fail("你只能在防具上使用該聖符。\n");
-                
+
         ownerid = ob->item_owner();
-        
+
         set("magic/imbue_ok", 1, ob);
         set("magic/type", "fire", ob);
         ob->save();
-  
+
         tell_object(me, "你把" + name() + "蓋在" + ob->name() + "上，然後口中唸唸有詞，\n"
                         "只見聖符化作一道紅光飛入" + ob->name() + "體內！\n");
 

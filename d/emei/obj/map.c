@@ -7,10 +7,7 @@ void create()
 {
         set_name( HIC "『峨嵋旅遊圖』" NOR, ({ "luyou tu","tu","map"}) );
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long",
 "\n                 『峨嵋旅遊圖』\n\n"
 "　　　【地圖一】　　　　　　　　　＾　　　＜　ｕｐ\n"
@@ -86,6 +83,5 @@ void create()
 "　　　　　　∽∽∽∽∽∽∽∽∽\n");
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }

@@ -6,10 +6,7 @@
 void create()
 {
         set_name(HIG "九花玉露丸" NOR, ({"jiuhua wan", "wan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "這是一顆晶瑩剔透的九花玉露丸，具有神奇的療效。\n" NOR);
+        set("long", HIG "這是一顆晶瑩剔透的九花玉露丸，具有神奇的療效。\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 8000);
                 set("base_weight", 80);
@@ -34,7 +31,6 @@ void create()
                         "taohua-yaoli" : 200,
                         "liandan-shu" : 1900,
                 ]));
-        }
         setup();
 }
 
@@ -63,10 +59,10 @@ int do_effect(object me)
                 break;
         case 6:
                 time = time - time * 6 / 10;
-                break;  
+                break;
         case 7:
                 time = time - time * 7 / 10;
-                break;                  
+                break;
         }
         if( time < 10 ) time = 10;
 

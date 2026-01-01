@@ -5,14 +5,10 @@ inherit ITEM;
 void create()
 {
         set_name(HIR "大回丹" NOR, ({"dahui dan", "dahui", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", HIR "一顆黑色的藥丸。恢復600點氣血和最大氣血。\n" NOR);
                 set("value", 10000);
                 set("only_do_effect", 1);
-        }
 
         setup();
 }
@@ -33,13 +29,13 @@ int do_effect(object me)
                  set("eff_qi",query("max_qi",  me), me);
                  if( query("max_qi", me)-query("qi", me) <= 600 )
                         set("qi",query("max_qi",  me), me);
-                 
-                 else 
+
+                 else
                         addn("qi", 600, me);
         }
 
 
-        else 
+        else
         {
                 addn("eff_qi", 600, me);
                 addn("qi", 600, me);

@@ -6,11 +6,7 @@ void create()
 {
         set_name("辟邪劍譜", ({ "bixie_sword_book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本辟邪劍譜, 供自我修習辟邪劍法。\n不過這本書並不要求自宮, 真有點怪。\n");
                 set("value", 1000);
                 set("material", "paper");
@@ -25,6 +21,5 @@ void create()
                         "min_skill":    0                        // the maximum level you can learn
                                                                                 // from this object.
                 ]) );
-        }
 }
 int query_autoload() { return 1; }

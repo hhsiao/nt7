@@ -8,14 +8,9 @@ void create()
 {
         set_name(WHT "木材" NOR, ({ "wood", "mu cai", "mu", "cai" }) );
         set_weight(5000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("value", 10);
+        set("value", 10);
                 set("unit", "捆");
                 set("long", "這是一小捆木材。\n");
-        }
         setup();
 }
 

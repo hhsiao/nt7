@@ -6,10 +6,7 @@ void create()
 {
         set_name(HIC"青焰刀"NOR, ({ "qingyan dao", "dao", "blade" }) );
           set_weight(20000);
-        /*if( clonep() )
-              set_default_object(__FILE__);
-        else*/ {
-           set("value", 1000);
+        set("value", 1000);
            set("rigidity", 3);
         set("long",HIC"這柄刀重約四十餘斤，但見青光閃爍，背厚刃薄，刃鋒上刻有古樸花紋，顯是一件歷時已久的珍品。\n"NOR);
            set("sharpness", 3);
@@ -22,7 +19,6 @@ void create()
            set("unit", "把");
         set("wield_msg", HIB"$N由背後取下寶刀，雙手一分，將青焰刀抽出刀鞘，四周頓時佈滿凌厲的殺氣。\n"NOR);
         set("unwield_msg",HIB" 只聽見倉啷一聲響，$N將沉重的青焰刀插進刀鞘，背在背上。\n"NOR);
-        }
         init_blade(80);
         setup();
 }

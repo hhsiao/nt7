@@ -7,15 +7,12 @@ void create()
 {
         set_name( "易經《雜卦篇》", ({ "jing", "yi jing" }));
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一冊易經。上面寫著：\n
 　　乾剛，坤柔。
 　　震起也，艮止也。
 　　兌見，而巽伏也。
-　　離上，而坎下也。 
+　　離上，而坎下也。
 \n");
                 set("value", 200);
                 set("material", "paper");
@@ -26,5 +23,4 @@ void create()
                         "difficulty":        30,        // the base int to learn this skill
                         "max_skill":        90,        // the maximum level you can learn
                 ]) );
-        }
 }

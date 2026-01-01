@@ -9,20 +9,15 @@ void create()
 {
         set_name(NOR + WHT "人皮面具" NOR, ({ "renpi mask", "renpi", "mask" }) );
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "這似乎是一個由人皮製成的面具。\n"
                             "使用方法：pretend <人物ID>\n"
                             "取消方法：pretend cancel\n");
-                
+
                 set("value", 10000);
                 set("armor_prop/dex", 5);
                 set("armor_prop/int", 5);
                 set("no_upd", 1);// 不能用莫邪符升級，以免丟失特殊功能
-        }
         setup();
 }
 
@@ -59,7 +54,7 @@ int do_pretend(string arg)
                 message_vision("$N從臉上取下了一個人皮面具。\n", me);
                 return 1;
         }
-        
+
 /*
         if (me->query_skill("pretending", 1) < 100)
                 return notify_fail("你拿著面具摸來摸去，就是不會使用。\n");
@@ -68,7 +63,7 @@ int do_pretend(string arg)
             ! me->query("special_skill/youth"))
                 return notify_fail("你太老了，難以扮得像。\n");
 */
-        if (! objectp(who = present(arg, environment(me))) || 
+        if (! objectp(who = present(arg, environment(me))) ||
             ! living(who))
                 return notify_fail("你想假裝誰？\n");
 
@@ -110,4 +105,3 @@ int move(mixed dest)
 
         return ::move(dest);
 }
-

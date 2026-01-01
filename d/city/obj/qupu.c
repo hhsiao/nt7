@@ -8,10 +8,7 @@ void create()
 {
         set_name(YEL "曲譜" NOR, ({ "qu pu", "pu"}));
         set_weight(10000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/{
-                set("unit", "冊");
+        set("unit", "冊");
                 set("long", "
 一冊裱釘精美的曲譜，你可以唱(chang)裡面的曲子：
 
@@ -37,7 +34,6 @@ void create()
 \n");
                 set("value", 10000);
                 set("material", "silk");
-             }
         setup();
 }
 
@@ -51,8 +47,8 @@ int do_halt()
 {
         if (find_call_out("sing_stage") < 0) return 0;
         delete_temp("qupu", this_player());
-        
-message_vision(HIR"\n$N發現大家一臉痛苦的表情，尷尬地咳嗽了兩聲，停下了噪音。\n"NOR, 
+
+message_vision(HIR"\n$N發現大家一臉痛苦的表情，尷尬地咳嗽了兩聲，停下了噪音。\n"NOR,
 this_player());
         remove_call_out("sing_stage");
               return 1;
@@ -65,7 +61,7 @@ int do_sing(string arg)
        stage = 0;
        me = this_player();
        ob = this_object();
-       if (find_call_out("sing_stage") >= 0) return 
+       if (find_call_out("sing_stage") >= 0) return
 notify_fail("你能同時唱兩首曲子嗎？\n");
        if(!arg) return notify_fail("你想唱什麼？\n");
         while (i--) if (arg == qupu[i]["name"]) break;
@@ -79,15 +75,15 @@ notify_fail("你能同時唱兩首曲子嗎？\n");
 "$N輕捻$n"MAG"，起身盈盈拜起，玉唇含簫，只聽：
 曲調柔媚宛轉，簫聲緩緩盪漾，猶似微風起處，荷塘水波輕響。
 接著$N微微一笑，曼聲開始唱道：\n\n"NOR, me, ob);
-          else 
+          else
 message_vision("$N輕捻$n，起身盈盈一拜，然後曼聲開始唱道：\n\n"NOR, me, ob);
           }
         else {
           if(present("yao qin", me))
-             
-message_vision(BLU"$N翻開$n"BLU"，盤膝坐下，將瑤琴放在膝上，理弦調韻，按節捻弦，彈唱起來：\n\n"NOR, 
+
+message_vision(BLU"$N翻開$n"BLU"，盤膝坐下，將瑤琴放在膝上，理弦調韻，按節捻弦，彈唱起來：\n\n"NOR,
 me, ob);
-          else message_vision("$N翻開$n，放開歌喉，呀呀呀唱了起來：\n\n"NOR, 
+          else message_vision("$N翻開$n，放開歌喉，呀呀呀唱了起來：\n\n"NOR,
 me, ob);
           }
       set_temp("qupu", 1, me);
@@ -107,18 +103,18 @@ void sing_stage(object me, int stage, int i, int size)
     if( query("gender", me) != "男性"){
 
       if(present("dong xiao", me))
-          
+
 message_vision(MAG"\n過了一會，$N簫聲漸緩漸輕，似乎流水汩汩遠去，終於歌完曲終，寂然無聲。\n"NOR,me);
-      else 
-message_vision("\n$N聲調轉高，唱完最後一字，歌聲卻依然曼長不絕，在空中來回盪漾。。。\n", 
+      else
+message_vision("\n$N聲調轉高，唱完最後一字，歌聲卻依然曼長不絕，在空中來回盪漾。。。\n",
 me);
           }
     else {
       if(present("yao qin", me))
-         
-message_vision(BLU"\n只聽簫鳴止歇，$N唱完一曲，站起身來，恭身做了個鞠。\n"NOR, 
+
+message_vision(BLU"\n只聽簫鳴止歇，$N唱完一曲，站起身來，恭身做了個鞠。\n"NOR,
 me);
-      else 
+      else
 message_vision("\n$N唱完最後一字，仰天一聲長嘯，嘯聲遠遠傳了開去。\n", me);
           }
     }

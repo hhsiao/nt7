@@ -6,10 +6,7 @@
 void create()
 {
         set_name(MAG "活筋舒血丸" NOR, ({"huojin wan", "wan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", MAG "這是一粒藥丸，呈現出淡淡的粉色，療傷效果頗為不錯。\n" NOR);
+        set("long", MAG "這是一粒藥丸，呈現出淡淡的粉色，療傷效果頗為不錯。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 3000);
                 set("base_weight", 60);
@@ -29,7 +26,6 @@ void create()
                         "min_level" : 80,
                         "medical" : 100,
                 ]));
-        }
         setup();
 }
 

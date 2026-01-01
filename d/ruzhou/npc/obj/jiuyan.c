@@ -7,11 +7,7 @@ inherit ITEM;
 void create()
 {
         set_name("酒席", ({ "jiuxi" }));
-   /*if( clonep() )
-       set_default_object(__FILE__);
-   else*/
-   {
-                set("long", "這是一桌五色齊全、香味四溢、豐盛的酒席。\n"
+   set("long", "這是一桌五色齊全、香味四溢、豐盛的酒席。\n"
    HIG"八味拼盤(pingpan)  珍品杲羹(guogeng)  紅燒蹄膀(tipang)\n"
       "松子桂魚(guiyu)    香菇菜心(caixing)  清燉甲魚(jiayu)\n"
       "人參雞湯(jitang)   翠玉豆腐(doufu)    海參青蟹(qingxie)\n"NOR);
@@ -19,7 +15,6 @@ void create()
                 set("value",1000);
 set("no_drop",1);
       set("no_get","你也太黑心了吧？竟想扛走這一桌的酒席？弄得動嗎？\n");
-   }
    setup();
 }
 

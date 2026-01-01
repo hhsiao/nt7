@@ -9,14 +9,9 @@ void create()
         set_name("心有千千鏢" NOR, ({"biao"}));
         set_weight(50);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "枚");
+        set("unit", "枚");
                 set("long", "這是一枚四川唐門秘製的暗器，威力無比。\n");
                 set("value", 0);
-        }
         setup();
 }
 
@@ -31,16 +26,16 @@ int do_perform(string arg)
         string msg;
 
         me = this_player();
-        
+
         me->clean_up_enemy();
         target = me->select_opponent();
 
         if ( !arg || arg != "qian")
                 return 0;
-        
+
         if ( !(me->is_fighting()) )
                 return notify_fail("心有千千鏢只能在戰鬥中使用。\n");
- 
+
         if( (int)me->query_skill("tangmen-throwing", 1) < 180 )
                 return notify_fail("你的唐門暗器手法不夠嫻熟，無法使用心有千千鏢。\n");
 
@@ -52,9 +47,9 @@ int do_perform(string arg)
 
         if( query("neili", me)<1500 )
                 return notify_fail("你的內力不夠。\n");
-        
+
         if( query("yanli", me)<100 )
-                return notify_fail("你的眼力太差了，目標不精確！\n");       
+                return notify_fail("你的眼力太差了，目標不精確！\n");
 
         msg = HIR"\n$N突然身行一止，從懷中摸出一枚手掌大小的暗器，一揚手向$n擲去。\n只見$n的周身飛舞著無數的光影，卻聽不到一絲聲音。\n"NOR;
         message_vision(msg, me, target);
@@ -75,8 +70,8 @@ int effect_biao(object me, object target)
         int myskill, trskill;
         string msg;
 
-        myskill = (int) (2 * (int)me->query_skill("dodge") + (query("combat_exp",me) / 1000) + (int)me->query_skill("tangmen-biaofa", 1)); 
-        trskill = (int) (2 * (int)target->query_skill("dodge") + (query("combat_exp",target) / 1000)); 
+        myskill = (int) (2 * (int)me->query_skill("dodge") + (query("combat_exp",me) / 1000) + (int)me->query_skill("tangmen-biaofa", 1));
+        trskill = (int) (2 * (int)target->query_skill("dodge") + (query("combat_exp",target) / 1000));
 
         if ( ( myskill >= trskill ) && ( random(100) != 0 ) )
                 {

@@ -4,15 +4,11 @@
 void create()
 {
         set_name(NOR + YEL "活骨靈藥" NOR, ({ "huogu lingyao", "huogu", "lingyao", "yao" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", YEL "這是一粒燦金色的藥丸，在武林中被喻為是療傷聖藥。\n" NOR);
+        set("long", YEL "這是一粒燦金色的藥丸，在武林中被喻為是療傷聖藥。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 10000);
                 set("base_weight", 55);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 
@@ -45,10 +41,10 @@ int do_effect(object me)
                 break;
         case 6:
                 time = time - time * 6 / 10;
-                break;  
+                break;
         case 7:
                 time = time - time * 7 / 10;
-                break;                  
+                break;
         }
         if( time < 10 ) time = 10;
 

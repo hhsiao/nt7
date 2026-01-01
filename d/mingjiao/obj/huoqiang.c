@@ -7,15 +7,11 @@ void create()
 {
         set_name("噴火筒", ({ "huo qiang", "qiang", "gun" }) );
         set_weight(4000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一把噴火筒，顏色黑中透紫，是用烏金煉出的
+        set("long", "這是一把噴火筒，顏色黑中透紫，是用烏金煉出的
 精鐵打造而成。後邊還連著一個鐵箱。\n"
 );
                 set("unit", "把");
                 set("bullet", 5);
-        }
 
 }
 
@@ -48,7 +44,7 @@ int do_load()
         message_vision("$N給噴火筒裡上了一些石油。\n",me);
         set_temp("loaded",1);
         me->start_busy(3+random(3));
-        
+
         return 1;
 }
 
@@ -85,7 +81,7 @@ int do_aim(string target)
 
         set_temp("aimed",target);
         me->start_busy(3+random(3));
-        
+
         return 1;
 }
 
@@ -117,7 +113,7 @@ int do_fire()
                 return notify_fail("你的目標已經死了。\n");
 
         message_vision(HIY"$N嘿嘿一聲奸笑，扣動機關，一條火焰向$n直噴過去。\n"NOR,me,ob);
-        
+
         addn("bullet",-1);
         remove_call_out("shoot_target");
         call_out("shoot_target",1,me,target);
@@ -157,7 +153,7 @@ int shoot_target(object me, string target)
 
         ob->kill_ob(me);
         me->start_busy(random(5));
-        
+
         delete_temp("aimed");
         delete_temp("loaded");
 

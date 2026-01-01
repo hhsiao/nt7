@@ -7,10 +7,7 @@ inherit THROWING;
 void create()
 {
         set_name(HIB"毒蒺藜"NOR, ({ "du jili", "jili" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "袋");
+        set("unit", "袋");
                 set("value", 0);
                 set("base_unit", "枚");
                 set("base_weight", 300);
@@ -19,7 +16,6 @@ void create()
                 set("long", HIG"毒蒺藜是淬毒暗器，寸許大小，發出詭異的光。\n"NOR);
                 set("wield_msg", HIC"$N迅速地從身上摸出一些毒蒺藜，捏在手中就待發出！\n"NOR);
                 set("unwield_msg",HIC"$N將手裡剩下的毒蒺藜一抖就不見了。\n"NOR);
-        }
         set_amount(50);
         init_throwing(50);
         setup();

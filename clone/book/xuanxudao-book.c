@@ -6,11 +6,7 @@ void create()
 {
         set_name("玄虛刀法", ({ "xuanxu book", "book" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本薄薄的絲織小冊子，上面寫著玄虛刀法四個小字。\n");
                 set("no_sell", 1);
                 set("material", "silk");
@@ -23,5 +19,4 @@ void create()
                         "max_skill": 200,       // the maximum level you can learn
                         "min_skill": 0,        // the minimum level you can learn
                 ]) );
-        }
 }

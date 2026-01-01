@@ -8,20 +8,15 @@ void create()
 {
     set_name(HIY"西瓜皮"NOR,({"xigua pi","pi"}));
     set_weight(200);
-    /*if(clonep())
-        set_default_object(__FILE__);
-    else*/
-    {
-        set("unit","塊");
+    set("unit","塊");
         set("long","一塊西瓜皮。\n");
         set("no_get","一塊西瓜皮，都給人踩爛了，你也不嫌惡心？\n");
         set("value",1);
         set("env/invisible",1);
         set("pi_gone",10+random(10));
-    }
     setup();
 }
- 
+
 
 void init()
 {
@@ -34,12 +29,12 @@ void init()
     age=60-query("age", me);
     if (age < 0) age = 0;
     chance = (me->query_dex() + age)/2;
-    
-    if(interactive(me) && living(me) && random(chance) == 1) 
+
+    if(interactive(me) && living(me) && random(chance) == 1)
     {
         msg = HIY""+me->name()+"不小心踩在西瓜皮上，“咕咚”一聲摔了個大馬趴";
         me->start_busy(2);
-        
+
         if( query("pi_gone", ob) <= 0 )
         {
             msg += "，西瓜皮卻不知飛哪去了。\n";

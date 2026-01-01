@@ -10,14 +10,10 @@ void create()
         set_name(HIW"缺口的"HIC"青花瓷碗"NOR,({"qinghua ciwan","wan","ciwan"}));
         set("taskobj", 1);
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個缺了口的粗瓷碗。\n");
+        set("long", "一個缺了口的粗瓷碗。\n");
                 set("unit", "個");
                 set("value", 0);
                 set("max_liquid", 15);
-        }
         // because a container can contain different liquid
         // we set it to contain wine at the beginning
         set("liquid", ([

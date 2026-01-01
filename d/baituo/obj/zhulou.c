@@ -11,14 +11,10 @@ void create()
         set_name("竹簍", ({ "zhu lou", "lou", "basket"}) );
         set_weight(1000);
         set_max_encumbrance(100000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "一個竹條編成的簍子，是歐陽世家的人專門用來捕蛇的。\n");
                 set("material", "bamboo");
                 set("value", 100);
-        }
         setup();
 }
 
@@ -49,7 +45,7 @@ int do_catch(string arg)
 
         snake = present(arg, environment(me));
 
-        if( !objectp(snake = present(arg, me)) && !objectp(snake = present(arg, environment(me)))) 
+        if( !objectp(snake = present(arg, me)) && !objectp(snake = present(arg, environment(me))))
                 return notify_fail("你要捕捉什麼？\n" );
 
         if( query("race", snake) != "蛇類" )
@@ -61,14 +57,14 @@ int do_catch(string arg)
         if( query("who_breed", snake) )
                 return notify_fail("這條"+snake->name()+"是歐陽世家培養出來的，即使捉了，也不能進行育種。\n");
 
-        if( snake->query_lord() != me && living(snake) 
+        if( snake->query_lord() != me && living(snake)
          && query("caught", snake) != query("id", me) )
                 return notify_fail(snake->name()+"並非你所馴養，直接動手捉相當危險。\n");
 
         if( !query("bt_snake", snake) )
                 return notify_fail("這不是歐陽世家蛇谷的品種。\n");
 
-        if( snake->move(obj) ) 
+        if( snake->move(obj) )
         {
                 message_vision("$N將"+snake->name()+"捉了起來，從尾巴起慢慢放進竹簍。\n", me, snake);
                 delete("frightened", snake);

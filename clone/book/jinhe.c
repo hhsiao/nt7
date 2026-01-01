@@ -5,11 +5,7 @@ void create()
 {
         set_name( HIR"錦盒"NOR,({ "jinhe","he"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("treasure",1);set("unit", "個");
+        set("treasure",1);set("unit", "個");
                 set("long","這是一個錦盒。\n");
                 set("value", 0);
                 set("no_put", 1);
@@ -23,5 +19,4 @@ void create()
                         "min_skill":    120,           // the minimum level you can learn
                         "max_skill":    250            // the maximum level you can learn
                 ]) );
-        }
 }

@@ -13,17 +13,12 @@ void create()
 {
         set_name(YEL "地藏之石" NOR, ({"dizang zhishi", "shi"}));
         set_weight(4000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "這是一塊來自地府的石頭，亮晶晶的，閃耀著詭異的光芒，傳說可以用它製成" HIY "如意乾坤袋。\n" NOR);
+        set("long", "這是一塊來自地府的石頭，亮晶晶的，閃耀著詭異的光芒，傳說可以用它製成" HIY "如意乾坤袋。\n" NOR);
                 set("unit", "塊");
                 //set("material_attrib", "x");
                 set("power_point", 1000);
                 set("value", 10000000);
                 set("no_sell", 1);
-        }
 }
 
-int query_autoload() { return 1; } 
+int query_autoload() { return 1; }

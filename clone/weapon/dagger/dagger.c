@@ -8,14 +8,10 @@ void create()
 {
          set_name("匕首", ({"bi shou", "bishou", "dagger" }) );
          set_weight(1000);
-         /*if( clonep() )
-                 set_default_object(__FILE__);
-         else*/ {
-                 set("unit", "把");
+         set("unit", "把");
                  set("long", "這是一把看起相當普通的匕首。\n");
                  set("value", 50);
                  set("material", "steel");
-         }
          init_dagger(4);
 // These properties are optional, if you don't set them, it will use the
 // default values.

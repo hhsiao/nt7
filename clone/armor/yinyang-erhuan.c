@@ -7,11 +7,7 @@ void create()
 {
         set_name(HIW "陰陽耳環" NOR, ({ "yinyang erhuan", "yinyang", "erhuan" }));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "副");
+        set("unit", "副");
                 set("value", 200000);
                 set("material", "silver");
                 set("armor_prop/armor", 1);
@@ -20,9 +16,8 @@ void create()
                 set("limit", ([
                         "sex" : 3, // 1 為無性
                 ]));
-        }
         setup();
-}        
+}
 
 int query_autoload()
 {

@@ -6,16 +6,12 @@ void create()
 {
         set_name(NOR + HIM "帝王符圖碎片-50" NOR, ({ "diwang suipian50", "diwang", "suipian" }) );
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", NOR + WHT "傳說乃上古黃帝，炎帝及蚩尤留下的圖騰碎片，大道五十，天衍四十九，遁去其一。\n"
                             "可以用這個遁去的一來重置(reset)你的圖騰技能。\n" NOR);
                 set("value", 0);
                 set("no_give", 1);
                 set("no_drop", 1);
-        }
         set("auto_load", 1);
         setup();
 }
@@ -31,11 +27,11 @@ int do_reset(string arg)
         object ob = this_player();
         string spk1, spk2;
         string *spks = ({
-                "zhuque", 
-                "tianshen", 
-                "qijin", 
-                "taxue", 
-                "diwang", 
+                "zhuque",
+                "tianshen",
+                "qijin",
+                "taxue",
+                "diwang",
         });
 
         if( !arg || sscanf(arg, "%s to %s", spk1, spk2) != 2 )
@@ -60,7 +56,7 @@ int do_reset(string arg)
                 addn("con", -2, ob);
                 addn("dex", -2, ob);
         }
-        
+
         if( spk2 == "diwang" )
         {
                 addn("int", 2, ob);
@@ -75,5 +71,3 @@ int do_reset(string arg)
         destruct(this_object());
         return 1;
 }
-
-

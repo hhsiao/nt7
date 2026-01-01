@@ -4,16 +4,12 @@ inherit ITEM;
 void create()
 {
         set_name(NOR + WHT "何首烏" NOR, ({ "he shouwu", "he", "shouwu" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", NOR + WHT "這是一支已成人形的何首"
+        set("long", NOR + WHT "這是一支已成人形的何首"
                             "烏，看來可以入藥。\n" NOR);
                 set_weight(800);
                 set("value", 10000);
                 set("unit", "支");
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

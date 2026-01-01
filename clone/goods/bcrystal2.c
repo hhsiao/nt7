@@ -10,16 +10,11 @@ void create()
 {
         set_name("超級黑水晶", ({ "black crystal2", "crystal" }) );
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", HIC "一塊黑色的水晶，可以抽取(extract)動態裝備的屬性，用來鑲嵌或強化自造裝備。\n" NOR);
+        set("long", HIC "一塊黑色的水晶，可以抽取(extract)動態裝備的屬性，用來鑲嵌或強化自造裝備。\n" NOR);
                 set("value", 50000);
                 set("can_extract", 1);
                 set("unit", "塊");
                 set("autoload", 1);
-        }
         setup();
 }
 

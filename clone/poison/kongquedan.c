@@ -5,10 +5,7 @@ void create()
 {
         set_weight(100);
         set_name(GRN "孔雀膽" NOR, ({"kongque dan", "kongque", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "瓶");
+        set("unit", "瓶");
                 set("long", GRN "這是一瓶碧綠色的劇毒粉末，可殺人於無形。\n" NOR);
                 set("value", 50);
                 set("poison_type", "poison");
@@ -23,7 +20,6 @@ void create()
                 ]));
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

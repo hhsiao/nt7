@@ -6,11 +6,7 @@ void create()
 {
         set_name("嵩山劍譜", ({ "sword book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "當年五嶽劍派與魔教十長老兩度會戰華山，五派好手死傷殆盡，五派
 劍派的許多精世絕招，隨五派高手而逝。左冷禪會集本派殘存的耆宿，
@@ -28,5 +24,4 @@ void create()
                         "difficulty"  : 20,
                         "max_skill"   : 120
                 ]) );
-        }
 }

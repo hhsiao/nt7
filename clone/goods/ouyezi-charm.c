@@ -6,14 +6,9 @@ void create()
 {
         set_name(HIM "歐冶子聖符" NOR, ({ "ouyezi symbol", "symbol" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", HIM "歐冶子聖符可以將普通自造兵器升級(upd)為準10LVL兵器。\n" NOR);
+        set("long", HIM "歐冶子聖符可以將普通自造兵器升級(upd)為準10LVL兵器。\n" NOR);
                 set("unit", "張");
                 set("value", 500000);
-        }
         setup();
 }
 
@@ -50,14 +45,14 @@ int do_integrate(string arg)
         else
         {
         ownerid = ob->item_owner();
-        
+
         addn("combat/MKS", 2100, ob);
         addn("owner/"+ownerid, 21000000, ob);
         set("magic/imbue_ok", 1, ob);
         addn("magic/blood", 21000, ob);
         }
         ob->save();
-  
+
         tell_object(me, "你把" + name() + "蓋在" + ob->name() + "上，然後口中唸唸有詞，\n"
                         "只見聖符化作一道紅光飛入" + ob->name() + "體內！\n");
 

@@ -9,11 +9,7 @@ void create()
 {
         set_name(RED"大嵩陽掌譜" NOR, ({ "songyang zhangpu","zhangpu", }));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit","本");
+        set("unit","本");
                 set("long","這是一張麻紙小冊，上面好象還有一些小人揮舞拳腳的圖形。\n",
          );
          set("value", 0);
@@ -26,5 +22,4 @@ void create()
                         "difficulty"   : 20,
                         "max_skill"    : 80
                 ]) );
-        }
 }

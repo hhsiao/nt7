@@ -13,22 +13,16 @@ void create()
 {
         set_name(HIW"補陰丸"NOR, ({"buyin wan","wan"}));
         set_weight(5);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "粒");
+        set("unit", "粒");
                 set("long","這是一粒補陰丸，滋補陰柔之氣有奇效，不過常人服食恐有異常 。\n");
                 set("value", 0);
                 set("no_sell", 1);
                 set("no_drop","這樣東西不能離開你。\n");
                 set("value", 2000);
                 set("medicine", 1);
-
-        }
         setup();
 }
- 
+
 int do_eat(string arg)
 {
 
@@ -57,8 +51,8 @@ int do_eat(string arg)
                          && query("drug_list/4", me) == query("drug_list/4" )
                          && query("drug_list/5", me) == query("drug_list/5" )
                         )
-                
-                
+
+
                 {
 
                         if( query("pixie/buyin-wan/lvl", me) >= skill && query("pixie/buyin-wan/lvl", me)>0 )
@@ -75,13 +69,13 @@ int do_eat(string arg)
                         }
                         else
                         {
-                        
+
                                 message_vision(HIG"$N吃下一粒補陰丸，只覺得渾身一陣冰涼，一股陰寒之氣之丹田串向全身，剎那間陽氣銳減，陰氣陡增。\n"NOR, this_player());
                                 addn("eff_jingli", 5+random(2), me);
                                 addn("max_jingli", 5+random(2), me);
                                 set("pixie/buyin-wan/lvl", skill, me);
                         }
-                
+
                 }
                 else
                 {
@@ -89,12 +83,12 @@ int do_eat(string arg)
                 message_vision(HIR"不料此藥劑量與你身體不符，剎那間$N心神失首，經脈受損。\n"NOR, this_player());
                 addn("max_jingli", -20, me);
                 me->unconcious();
-        
+
                 }
 
         }
-        
-        
+
+
         destruct(this_object());
         return 1;
 }

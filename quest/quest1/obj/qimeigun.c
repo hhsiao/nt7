@@ -1,23 +1,19 @@
 // qimeigun.c 齊眉棍
 // modified by xingyun 22/5/2001
 #include <weapon.h>
-inherit CLUB; 
+inherit CLUB;
 
 void create()
 {
         set_name("齊眉棍" , ({ "qimeigun" }));
         set_weight(5000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "根");
+        set("unit", "根");
                 set("long", "這是一根齊眉棍，少林弟子多攜帶此行走江湖。\n");
                 set("value", 1500);
                 set("rigidity",100);
                 set("material", "steel");
                 set("wield_msg", "$N抽出一根$n握在手中。\n");
                 set("unwield_msg", "$N將手中的$n插回腰間。\n");
-        }
         init_club(100, TWO_HANDED);
         setup();
 }

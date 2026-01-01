@@ -5,14 +5,10 @@ inherit ITEM;
 void create()
 {
         set_name(HIR "天王保命丹" NOR, ({"baoming dan", "baoming", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", HIR "一顆紅色的藥丸。恢復全部氣血和最大氣血。\n" NOR);
                 set("value", 100000);
                 set("only_do_effect", 1);
-        }
 
         setup();
 }

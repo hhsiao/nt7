@@ -10,15 +10,11 @@ int cure_ob(string);
 void create()
 {
         set_name("老山參", ({"laoshan shen", "shen"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "株");
+        set("unit", "株");
                 set("long", "這是一株沾滿山泥的長白老山參。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
         setup();
 }
 
@@ -42,7 +38,7 @@ int cure_ob(object me)
                 addn("max_jingli", 1, me);
         message_vision(HIG"$N吃下一株老山參，只覺得渾身一股熱氣兜底冒了上來 !\n" NOR, me);
         }
-        me->apply_condition("bonze_drug", 
+        me->apply_condition("bonze_drug",
         this_player()->query_condition("bonze_drug")+30);
         destruct(this_object());
         return 1;

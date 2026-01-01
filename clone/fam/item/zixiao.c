@@ -6,10 +6,7 @@ void create()
 {
         set_name(NOR + MAG "紫宵觖" NOR, ({"zixiao jue", "zixiao", "jue"}));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", MAG "韌性極強的綢緞，其中混有部分天蠶絲。\n" NOR);
+        set("long", MAG "韌性極強的綢緞，其中混有部分天蠶絲。\n" NOR);
                 set("unit", "張");
                 set("value", 8000);
                 set("item_origin", 1);
@@ -17,7 +14,6 @@ void create()
                 set("material_name", NOR + MAG "紫宵觖" NOR);
                 set("can_make", ({ "戰衣", "腰帶", "護腕", "靴子" }));
                 set("power_point", 50);
-        }
 }
 
 int query_autoload()

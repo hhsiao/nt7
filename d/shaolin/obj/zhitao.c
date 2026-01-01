@@ -9,11 +9,7 @@ void create()
 {
         set_name("鐵指套", ({ "zhitao", "zhi tao" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "副");
+        set("unit", "副");
                 set("long", "這是五個環環相鏈的鐵指套，前端鋒利如"
                             "刃，既可暗藏掌中傷人，又可保護指關節。\n");
                 set("value", 6000);
@@ -22,6 +18,5 @@ void create()
                 set("armor_prop/finger", 5);
                 set("armor_prop/unarmed_damage", 20);
                 set("shaolin",1);
-        }
         setup();
 }

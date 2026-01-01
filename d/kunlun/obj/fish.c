@@ -8,16 +8,12 @@ void create()
 {
         set_name("大白魚", ({ "fish" }) );
         set_weight(350);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一尾大白魚，長達一尺。\n");
+        set("long", "這是一尾大白魚，長達一尺。\n");
                 set("unit", "尾");
                 set("value", 30);
                 set("food_remaining", 4);
                 set("food_supply", 40);
                 set("material", "bone");
-        }
         setup();
 }
 

@@ -6,10 +6,7 @@
 void create()
 {
         set_name(WHT "六合返精散" NOR, ({"liuhe san", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", WHT "這是一小包白色的粉末，具有鎮定養精的效果。\n" NOR);
+        set("long", WHT "這是一小包白色的粉末，具有鎮定養精的效果。\n" NOR);
                 set("base_unit", "包");
                 set("base_value", 2000);
                 set("base_weight", 40);
@@ -27,7 +24,6 @@ void create()
                         "min_level" : 50,
                         "medical" : 80,
                 ]));
-        }
         setup();
 }
 

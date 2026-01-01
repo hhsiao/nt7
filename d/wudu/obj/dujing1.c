@@ -5,10 +5,7 @@ void create()
 {
         set_name(NOR + CYN "「毒經上篇」" NOR, ({ "du jing1", "jing1", "book1" }));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", CYN "這是一本薄薄的小冊，上面密密麻麻的寫滿了各種用毒\n"
                             "的基本方法和毒藥的配方。你可以用讀(read)一讀。\n" NOR);
                 set("value", 100);
@@ -21,7 +18,6 @@ void create()
                         "difficulty"   : 20,
                         "max_skill"    : 49,
                 ]));
-        }
 }
 
 void init()

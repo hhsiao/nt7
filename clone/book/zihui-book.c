@@ -8,11 +8,7 @@ void create()
 {
         set_name(MAG "紫徽心法" NOR, ({ "zihui book", "zihui", "book" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("no_sell", 1);
                 set("long", "這是一本記載了慕容家紫徽心法的秘籍。\n");
                 set("value", 1000);
@@ -29,5 +25,4 @@ void create()
                         "min_skill":    100             // the maximum level you can learn
                                                         // from this object.
                 ]) );
-        }
 }

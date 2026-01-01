@@ -6,12 +6,8 @@ void create()
 {
         set_name("海松子", ({ "hai song zi" }) );
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆小指甲蓋大的棕色果子。\n");
-        }
 }
 
 void init()
@@ -22,7 +18,7 @@ void init()
 int do_eat(string arg)
 {
         object me = this_player();
-        
+
         if(!id(arg))
                 return 0;
 

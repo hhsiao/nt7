@@ -8,13 +8,9 @@ void create()
 {
         set_name(HIR "胭脂" NOR, ({ "yan zhi","yanzhi"}) );
         set_weight(50);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "盒");
+        set("unit", "盒");
                 set("long", "這是一盒用上好玫瑰花瓣層層疊燻細濾而成的胭脂，豔如雲霞，香氣襲人。這是女\n孩子化妝(makeup)的必備品。\n");
                 set("value", 1);
-        }
 }
 
 void init()
@@ -27,14 +23,14 @@ int do_makeup()
         object me;
         object huafen, you;
         string str;
-        
+
         me = this_player();
         if( query_temp("makeuped", me) )
         {
                 write("你剛剛化過妝，不用再化了，妝化太濃效果會適得其反的。\n");
                 return 0;
         }
-        
+
         str=query("gender", me);
         if( (str != "女性") && (str != "無性"))
         {
@@ -50,14 +46,14 @@ int do_makeup()
                 }
         }
 
-        huafen = present("huafen dai",me); 
-        if(!huafen) 
+        huafen = present("huafen dai",me);
+        if(!huafen)
         {
                 write("買袋花粉吧，沒有花粉耶。\n");
                 return 1;
         }
-        you = present("baohua you",me); 
-        if(!you) 
+        you = present("baohua you",me);
+        if(!you)
         {
                 write("買樽刨花油吧，沒有刨花油耶。\n");
                 return 1;
@@ -81,7 +77,7 @@ int do_makeup()
         destruct(this_object());
         return 1;
 }
-        
+
 void remove_effect(object me)
 {
         if( query_temp("makeuped", me) )

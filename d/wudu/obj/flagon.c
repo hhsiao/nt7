@@ -7,14 +7,10 @@ void create()
 {
         set_name("酒壺", ({"jiu hu", "hu", "flagon"}));
         set_weight(700);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個用來裝燒酒的大酒壺。\n");
+        set("long", "一個用來裝燒酒的大酒壺。\n");
                 set("unit", "個");
                 set("value", 100);
                 set("max_liquid", 15);
-        }
 
         set("liquid", ([
                 "type": "alcohol",

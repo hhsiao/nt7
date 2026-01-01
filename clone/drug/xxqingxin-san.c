@@ -6,14 +6,10 @@ int cure_ob(string);
 void create()
 {
    set_name("清心散", ({"qingxin san", "san"}));
-   /*if (clonep())
-      set_default_object(__FILE__);
-   else*/ {
-      set("unit", "包");
+   set("unit", "包");
       set("value", 400);
                 set("no_sell", 1);
       set("medicine", 1);
-   }
    setup();
 }
 

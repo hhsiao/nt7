@@ -4,13 +4,9 @@ void create()
 {
     set_name( HIR "紅包" NOR, ({ "hongbao" }) );
     set_weight(1);
-    /*if( clonep() )
-            set_default_object(__FILE__);
-    else*/ {
-            set("unit", "個");
+    set("unit", "個");
             set("material", "cloth");
             set("long", "一個小小的紅包，上面繡著：新年快樂，恭喜發財\n");
-          }
     setup();
 }
 
@@ -22,7 +18,7 @@ void init()
 int do_open(string arg)
 {
         object gold;
-        if(arg != "hongbao" && arg != "紅包") 
+        if(arg != "hongbao" && arg != "紅包")
                 return 0;
         if(query("opened"))
                 return notify_fail("你打開小紅包，但裡面是空的！\n");

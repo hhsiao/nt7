@@ -16,16 +16,12 @@ void create()
         set_weight(5000);
         set("no_drop","劍在人在,劍亡人亡！\n\n");
         set("no_get",1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "口");
+        set("unit", "口");
                 set("long", "一代名鑄劍師歐冶子親手為你鍛鑄的寶劍。\n");
                 set("value", 1000);
                 set("material", "steel");
                 set("wield_msg", "$N「唰」的一聲抽出一口$n握在手中。\n");
                 set("unwield_msg", "$N將手中的$n插回劍鞘。\n");
-        }
         init_sword(i);
         setup();
 }

@@ -1,7 +1,7 @@
 // 神話世界·西遊記·版本（世紀）
 /* <SecCrypt CPL V3R05> */
 
-//by night 
+//by night
 string test_name(string);
 
 #include <ansi.h>
@@ -41,15 +41,11 @@ void create()
 {
         int i = random(sizeof(names));
         set_name(names[i], ({ids[i],"fa qi"}));
-        set("unit", units[i]);   
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {      
-                set("no_drop","這是佛家法器，不可隨便丟棄。\n");
+        set("unit", units[i]);
+        set("no_drop","這是佛家法器，不可隨便丟棄。\n");
                 set("no_put",1);
                 set("long", "這是佛家法器，你可以用它來佈道（budao）。\n");
                 set("value", 0);
-             }
         setup();
 }
 
@@ -57,7 +53,7 @@ void init()
 {
         add_action("do_budao", "budao");
         add_action("do_check", "kan");
-        add_action("do_check", "chakan");                
+        add_action("do_check", "chakan");
 }
 
 int do_budao(string arg)
@@ -67,7 +63,7 @@ int do_budao(string arg)
         int j = 0;
         string people = "";
         object *obs = all_inventory(environment(me));
-        
+
         nforce=query("force", me)/4;
         nmana=query("mana", me)/4;
         skl = random(60) + 140 - (int)me->query_skill("chanting", 1);
@@ -106,9 +102,9 @@ int do_budao(string arg)
           tell_object(me,"這兒不久前有人來布過道，現在恐怕來得不是時候。\n");
           return 1;
         }
-        else          
+        else
         if( (query("sen", me)<20) )
-        {  
+        {
           tell_object(me,"你的精力不能集中，不可以佈道！\n");
           return 1;
         }
@@ -118,7 +114,7 @@ int do_budao(string arg)
           tell_object(me,"你的身體狀態太差，不能傳經佈道！\n");
           return 1;
         }
-        else          
+        else
         if (j == 0 || !me)
         {
           tell_object(me,"這兒人都沒有，布什麼道？\n");
@@ -132,23 +128,23 @@ int do_budao(string arg)
         }
         else
         if (!arg || arg == "" )
-        { 
+        {
           tell_object(me,"你要用什麼道具進行佈道？\n");
           return 1;
         }
         else
         if ( arg == "fa ling" || arg == "mu yu")
         {
-          if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");        
+          if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");
           if( nforce<30 || (query("force", me)<nforce) )
             return notify_fail("唱梵曲需要內息悠長，你的內力不足，力不能及。\n");
-          
-          message_vision(HIW"$N清了清噪子，法像莊嚴，吟出一曲梵唱。\n"NOR,me);          
+
+          message_vision(HIW"$N清了清噪子，法像莊嚴，吟出一曲梵唱。\n"NOR,me);
           me->start_busy(skl);
           addn("force", -nforce, me);
         remove_call_out ("reacting");
         call_out ("reacting",1+random(3),me,people,j);
-          remove_call_out("fanchang");             
+          remove_call_out("fanchang");
           call_out("fanchang",skl,me);
           return 1;
         }
@@ -158,30 +154,30 @@ int do_budao(string arg)
           if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");
           if( nmana<30 || (query("mana", me)<nmana) )
             return notify_fail("講經必須法力充盈，你法力不足，神思難以集中。\n");
-            
-          message_vision(HIW"$N垂目低首，合什於胸，講起了《法華經》。\n"NOR,me);          
+
+          message_vision(HIW"$N垂目低首，合什於胸，講起了《法華經》。\n"NOR,me);
           me->start_busy(skl);
           addn("mana", -nmana, me);
         remove_call_out ("reacting");
         call_out ("reacting",1+random(3),me,people,j);
-          remove_call_out("jiangjing");                       
+          remove_call_out("jiangjing");
           call_out("jiangjing",skl,me);
           return 1;
         }
         else
         if ( arg == "chan zhang" || arg == "jing lun" || arg == "nian zhu")
         {
-          if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");        
+          if(!present(arg,me)) return notify_fail("你身上沒有這樣東西。\n");
           if( (nmana<30 || nforce<30) || (query("mana", me)<nmana) || (query("force", me)<nforce) )
             return notify_fail("開設祭壇必須內力法力融而為一，天地交匯，你的狀態還不允許。\n");
 
-          message_vision(HIW"$N開設祭壇，祈天默禱，為百姓降福。\n"NOR,me);          
-          me->start_busy(skl); 
+          message_vision(HIW"$N開設祭壇，祈天默禱，為百姓降福。\n"NOR,me);
+          me->start_busy(skl);
           addn("mana", -nmana, me);
           addn("force", -nforce, me);
         remove_call_out ("reacting");
         call_out ("reacting",1+random(3),me,people,j);
-          remove_call_out("kaitan");                                         
+          remove_call_out("kaitan");
           call_out("kaitan",skl,me);
           return 1;
         }
@@ -201,7 +197,7 @@ int jiangjing(object me)
         set_temp("obj/done", 1, me);
         set_temp("budao", 1, environment(me));
         return 1;
-} 
+}
 
 int kaitan(object me)
 {
@@ -209,7 +205,7 @@ int kaitan(object me)
         set_temp("obj/done", 1, me);
         set_temp("budao", 1, environment(me));
         return 1;
-}  
+}
 
 string test_name(string arg)
 {

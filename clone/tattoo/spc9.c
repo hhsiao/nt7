@@ -6,10 +6,7 @@ void create()
 {
         set_name(NOR + WHT "九儀天尊圖" NOR, ({ "tianzun tu", "tianzun", "tu" }));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
+        set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
                 set("unit", "張");
                 set("value", 16500);
                 set("material", "paper");
@@ -20,5 +17,4 @@ void create()
                 set("tattoo_con", 2);
                 set("tattoo_special", "divine");
                 set("tattoo_spcname", "移經易脈");
-        }
 }

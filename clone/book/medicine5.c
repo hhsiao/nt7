@@ -14,16 +14,11 @@ void create()
 {
         set_name(HIY"孫思邈千金方"NOR,({"qianjin fang","qianjingfang","fang"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "\n這是一本『孫思邈千金方』，你可以好好看看(watch)。\n");
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }
 int do_kan(string arg)

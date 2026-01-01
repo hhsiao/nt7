@@ -7,17 +7,13 @@ void create()
 {
         set_name( HIW"手絹"NOR, ({ "shou juan", "piece"}) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "方");
+        set("unit", "方");
                 set("material", "cloth");
-                set("long", "這是一方雪白的手絹。\n");               
+                set("long", "這是一方雪白的手絹。\n");
                 set("armor_type", "bandage");
                 set("armor_prop/attack", -10);
                 set("armor_prop/defense", -10);
                 set("armor_prop/unarmed", -10);
-        }
 }
 
 void init()
@@ -32,14 +28,14 @@ int do_look(string arg)
 {
         object me;
         me = this_player();
- 
+
         if(!arg) return 0;
-       
+
         if(id(arg)){
         if(query("blood_soaked") >= 2 && random(query("kar,me")) < 10 && !query("blooded"))
            {
             message_vision("$N正拿著張手絹仔細地端詳著。\n", me);
-            if(!query_temp("blooded")){            
+            if(!query_temp("blooded")){
                  tell_object(me, HIY "\n你突然發現這張手絹有點奇怪，被染過血的地方有了點變化！\n\n"NOR);
                  set_temp("blooded", 1);
                  return 1;
@@ -49,7 +45,7 @@ int do_look(string arg)
                  addn_temp("blooded", 1);
                  return 1;
                  }
-            else {                 
+            else {
                  tell_object(me, HIY "\n你仔細研究了一下，才發現這是張地圖，被血浸了後才慢慢現出圖案來！\n\n"NOR);
                  set("blooded", 1);
                  delete_temp("blooded");
@@ -64,7 +60,7 @@ int do_look(string arg)
              return 1;
              }
       }
-        
+
 }
 
 int do_bandage(string arg)
@@ -103,7 +99,7 @@ int do_bandage(string arg)
         ::wear();
         ob->apply_condition("bandaged", 40);
         addn("blood_soaked", 1);
-        
+
         return 1;
 }
 

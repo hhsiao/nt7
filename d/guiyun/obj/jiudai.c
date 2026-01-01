@@ -8,14 +8,10 @@ void create()
 {
         set_name("皮酒袋", ({"jiudai"}));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個用來裝甜酒的大酒袋，大概裝得四、五升的酒。\n");
+        set("long", "一個用來裝甜酒的大酒袋，大概裝得四、五升的酒。\n");
                 set("unit", "個");
                 set("value", 60);
                 set("max_liquid", 10);
-        }
 
         // because a container can contain different liquid
         // we set it to contain wine at the beginning

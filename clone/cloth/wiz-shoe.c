@@ -1,6 +1,6 @@
 // wiz-shoe.c
 // Last Modified by Lonely on May. 25 2001
- 
+
 #include <armor.h>;
 #include <ansi.h>;
 
@@ -29,14 +29,10 @@ void create()
         set_name(shoename[i], ({ shoeid[i], "shoe" }));
         set_weight(900);
         set("long", shoelong[i]);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("material", "cloth");
+        set("material", "cloth");
                 set("unit", "雙");
        //         set("long", shoelong[i]);
                 set("value", 0);
                 set("armor_prop/armor", 100);
-        }
         setup();
 }

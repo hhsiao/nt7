@@ -5,14 +5,10 @@ inherit ITEM;
 void create()
 {
         set_name("白雲熊膽丸", ({"baiyunxiudan wan", "wan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆武林人士夢寐以求的療傷聖藥。\n");
                 set("value", 50000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

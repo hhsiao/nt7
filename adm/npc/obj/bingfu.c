@@ -7,425 +7,407 @@
 inherit ITEM;
 
 mapping bingfa = ([
-        "fenzhan"    : "奮戰",
-        "fendou"     : "奮鬥",
-        "fenxun"     : "奮迅",
-        "qishe"      : "騎射",
-        "benshe"     : "奔射",
-        "feishe"     : "飛射",
-        "tupo"       : "突破",
-        "tujin"      : "突進",
-        "tuji"       : "突擊",
+    "fenzhan": "奮戰",
+    "fendou": "奮鬥",
+    "fenxun": "奮迅",
+    "qishe": "騎射",
+    "benshe": "奔射",
+    "feishe": "飛射",
+    "tupo": "突破",
+    "tujin": "突進",
+    "tuji": "突擊",
 /*
-        "crossbow" : ([ "qishe"      : "齊射",
-                        "lianshe"    : "連射",
-                        "liannu"     : "連弩",
-                     ]),
-                     
-        "siegecity": ([ "jinglan"    : "井闌",
-                        "chongche"   : "衝車",
-                        "fashi"      : "發石",
-                        "xiangbing"  : "象兵",
-                        "luoshi"     : "落石",
-                        "leimu"      : "擂木",
-                        "shetai"     : "射臺",
-                        "jianchui"   : "尖錘",
-                     ]),
-        "ruse"     : ([ "hunluan"    : "混亂",
-                        "xianjing"   : "陷阱",
-                        "gongxin"    : "攻心",
-                        "huanshu"    : "幻術",
-                        "yingzao"    : "營造",
-                        "poxian"     : "破陷",
-                        "jiaoyu"     : "教諭",
-                        "ruma"       : "辱罵",
-                     ]),
-        "resource" : ([ "guwu"       : "鼓舞",
-                        "zhiliao"    : "治療",
-                        "yaoshu"     : "妖術",
-                     ]),
-*/                     
-]);
+ * "crossbow" : ([ "qishe"      : "齊射",
+ * "lianshe"    : "連射",
+ * "liannu"     : "連弩",
+ * ]),
+
+ * "siegecity": ([ "jinglan"    : "井闌",
+ * "chongche"   : "衝車",
+ * "fashi"      : "發石",
+ * "xiangbing"  : "象兵",
+ * "luoshi"     : "落石",
+ * "leimu"      : "擂木",
+ * "shetai"     : "射臺",
+ * "jianchui"   : "尖錘",
+ * ]),
+ * "ruse"     : ([ "hunluan"    : "混亂",
+ * "xianjing"   : "陷阱",
+ * "gongxin"    : "攻心",
+ * "huanshu"    : "幻術",
+ * "yingzao"    : "營造",
+ * "poxian"     : "破陷",
+ * "jiaoyu"     : "教諭",
+ * "ruma"       : "辱罵",
+ * ]),
+ * "resource" : ([ "guwu"       : "鼓舞",
+ * "zhiliao"    : "治療",
+ * "yaoshu"     : "妖術",
+ * ]),
+ */
+    ]);
 
 mapping zhenfa = ([
-        "putong"   : "普通陣",
-        "yulin"    : "魚鱗陣",
-        "fengshi"  : "鋒矢陣",
-        "heyi"     : "鶴翼陣",
-        "yanyue"   : "偃月陣",
-        "fangyuan" : "方圓陣",
-        "yanxing"  : "雁行陣",
-        "changshe" : "長蛇陣",
-        "yunlong"  : "雲龍陣",
-]);
+    "putong": "普通陣",
+    "yulin": "魚鱗陣",
+    "fengshi": "鋒矢陣",
+    "heyi": "鶴翼陣",
+    "yanyue": "偃月陣",
+    "fangyuan": "方圓陣",
+    "yanxing": "雁行陣",
+    "changshe": "長蛇陣",
+    "yunlong": "雲龍陣"
+    ]);
 
-void create()
-{
-        set_name(HIY "兵符" NOR, ({"bing fu", "fu"}));
-        set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "枚");
-                set("long",HIY"一枚大宋元帥調兵遣將的虎頭兵符。\n"NOR);
-                set("material", "copper");
-                set("no_get", 1);
-                set("no_steal", 1);
-                set("no_put", 1);
-                set("no_drop", 1);
-                set("no_sell", 1);
-                set("no_store", 1);
-        }
-        set("master", "高處不勝寒");
-        set("owner", "lonely");
-        setup();
+void create() {
+    set_name(HIY "兵符" NOR, ({"bing fu", "fu"}));
+    set_weight(10);
+    set("unit", "枚");
+    set("long", HIY"一枚大宋元帥調兵遣將的虎頭兵符。\n"NOR);
+    set("material", "copper");
+    set("no_get", 1);
+    set("no_steal", 1);
+    set("no_put", 1);
+    set("no_drop", 1);
+    set("no_sell", 1);
+    set("no_store", 1);
+    set("master", "高處不勝寒");
+    set("owner", "lonely");
+    setup();
 }
 
-void init()
-{
-        object me, ob;
+void init() {
+    object me, ob;
 
-        me = this_player();
-        ob = this_object();
+    me = this_player();
+    ob = this_object();
 
-        if( query("id", me) == query("owner", ob) )
-        {
-                add_action("do_stock", ({ "stock", "gouzhi" }));
-                add_action("do_move", ({ "move", "yidong" }));
-                add_action("do_train", ({ "drill", "xunlian", "train" }));
-                add_action("do_attack", ({ "assault", "gongji", "attack", "tuji" }));
-                add_action("do_order",  ({ "order", "mingling" }));
-                add_action("do_inquiry", ({ "inquiry", "chakan" }));
-                // add_action("do_exert", ({ "exert", "yun", "touch" }));
-                add_action("do_exert", ({ "touch" }));
-                add_action("do_kill",
-                        ({ "team kill", "array kill", "touxi", "kill",
-                           "hit", "fight", "steal", "beg", "persuade",
-                           "perform", "yong", "exert", "yun", "throw",
-                           "ansuan", "conjure", "recall" }));        
-        }
+    if(query("id", me) == query("owner", ob) )
+    {
+        add_action("do_stock", ({ "stock", "gouzhi" }));
+        add_action("do_move", ({ "move", "yidong" }));
+        add_action("do_train", ({ "drill", "xunlian", "train" }));
+        add_action("do_attack", ({ "assault", "gongji", "attack", "tuji" }));
+        add_action("do_order", ({ "order", "mingling" }));
+        add_action("do_inquiry", ({ "inquiry", "chakan" }));
+        // add_action("do_exert", ({ "exert", "yun", "touch" }));
+        add_action("do_exert", ({ "touch" }));
+        add_action("do_kill",
+            ({ "team kill", "array kill", "touxi", "kill",
+                "hit", "fight", "steal", "beg", "persuade",
+                "perform", "yong", "exert", "yun", "throw",
+                "ansuan", "conjure", "recall" }));
+    }
 }
 
-int do_kill(string arg)
-{
-        string what, who;
+int do_kill(string arg) {
+    string what, who;
 
-        if (! arg) return 0;
+    if (! arg) return 0;
 
-        if (this_object()->id(arg))
+    if (this_object()->id(arg))
+    {
+        write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
+        return 1;
+    } else
+    if ((sscanf(arg, "%s from %s", what, who) == 2 ||
+        sscanf(arg, "%s at %s", what, who) == 2 ||
+        sscanf(arg, "%s on %s", what, who) == 2 ||
+        sscanf(arg, "%s %s", what, who) == 2) &&
+        this_object()->id(who)) {
+        write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
+        return 1;
+    } else
+    if (arg == "roar" || arg == "hou")
+    {
+        write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
+        return 1;
+    }
+
+    return 0;
+}
+
+void attack_over(object me) {
+    if (objectp(me))
+    {
+        message_vision(HIW "$N手中令旗一揮，三軍攻勢一緩，重新"
+            + "開始列陣，準備發起新一輪的攻擊！！\n" NOR, me);
+        delete_temp("warquest/attack", me);
+    }
+    return;
+}
+
+int do_attack(string arg) {
+    object me, ob;
+    object env;
+    string who, dir;
+    string zhen, craft;
+
+    me = this_player();
+    env = environment(me);
+
+    if (! arg) return notify_fail("你要指揮部隊朝誰發起進攻？\n");
+
+    // if (me->query("env/auto_contruel"))
+    if(query("env/auto_war", me) )
+        return notify_fail("你已經設置為由系統自動指揮作戰！如想自己操作，請修改設置。\n");
+
+    if(query_temp("warquest/attack", me) )
+        return notify_fail("你的隊伍正在列陣進攻，不要亂髮號令了！\n");
+
+    if(!query_temp("warquest/train", me) )
+        return notify_fail("你未帶一兵一卒，指揮個什麼呀？\n");
+
+    if(query_temp("warquest/group", me)<1 )
+        return notify_fail("你的隊伍已經損失殆盡，無法列陣衝鋒了！\n");
+
+    if(query("no_fight", env) )
+        return notify_fail("這裡不許戰鬥！！\n");
+
+    if (sscanf(arg, "%s with %s & %s", who, zhen, craft, dir) < 3)
+        return notify_fail("指令格式錯誤，請用 attack <sb.> with <array> & <craft> 指揮你的隊伍！\n");
+
+    if (! objectp(ob = present(who, env)))
+        return notify_fail("無法找到目標，請用 attack <sb.> with <array> & <craft> 指揮你的隊伍！\n");
+
+    if(!query_temp("warquest", ob) || query_temp("warquest/party", ob) != "meng" )
+        return notify_fail("你軍務在身，還是不要輕易招惹是非的好！\n");
+
+    if(!query("array/"+zhen, me) && zhen != "putong" )
+        return notify_fail("你目前還沒有通曉「" + zhenfa[zhen] + "」這種陣法！\n");
+
+    if(!query("craft/infantry/"+craft, me) )
+        return notify_fail("你目前還沒有通曉「" + bingfa[craft] + "」這種兵法！\n");
+
+    message_vision(HIY "$N將手中寶劍一揮，大喝道：三軍列陣「" + zhenfa[zhen] +
+        "」，準備向敵軍發起衝鋒——>" + bingfa[craft] + "！！\n" NOR, me, ob);
+
+    set_temp("warquest/attack", 1, me);
+    set_temp("warquest/array", zhenfa[zhen], me);
+    // me->start_call_out((: call_other, WAR_D, "attack_over", me :), 10);
+    call_out("attack_over", 10, me);
+    WAR_D->do_attack(me, ob, zhenfa[zhen], bingfa[craft], env);
+    return 1;
+}
+
+int do_exert(string arg) {
+    tell_object(this_player(),
+        "你現在是三軍之統帥了，一舉一動請三思！\n");
+    return 1;
+}
+
+int do_stock(string arg) {
+    object me;
+
+    me = this_player();
+
+    if (base_name(environment(me)) != "/d/city2/sying1")
+        return notify_fail("請先回你的帳營調派軍馬，否則將有礙行程！\n");
+
+    if (! arg || arg == "")
+        return notify_fail("你想要命令部隊去幹什麼?\n");
+
+    set_temp("warquest/purchase", arg, me);
+
+    if(query_temp("warquest/move", me) )
+        return notify_fail("號令已經發佈下去了！\n");
+
+    switch(query_temp("warquest/purchase", me) )
+    {
+    case "weapon":
+        message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
+        "開赴襄陽城購置兵甲，不得有誤！！\n" NOR, me);
+        break;
+    case "horse":
+        message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
+        "開赴襄陽城購買戰馬，不得有誤！！\n" NOR, me);
+        break;
+    case "stone":
+        message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
+        "開赴襄陽城購置石木，不得有誤！！\n" NOR, me);
+        break;
+    case "arrow":
+        message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
+        "開赴襄陽城購置羽箭，不得有誤！！\n" NOR, me);
+        break;
+    case "enlist":
+        message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
+        "開赴襄陽城招募新兵，不得有誤！！\n" NOR, me);
+        break;
+    case "forage":
+        message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
+        "開赴京師押解糧草，不得有誤！！\n" NOR, me);
+        break;
+    default :
+        tell_object(me, "你想要命令部隊去幹什麼?\n");
+        delete_temp("warquest/purchase", me);
+        return 1;
+        break;
+    }
+
+    set_temp("warquest/move", "forward", me);
+    set_temp("warquest/move_from", "/d/city2/sying1", me);
+
+    return 1;
+}
+
+int do_train(string arg) {
+    object me, env;
+
+    me = this_player();
+    env = environment(me);
+
+    if (base_name(environment(me)) != "/d/city2/sying1")
+        return notify_fail("請先回你的帳營才能調派訓練的軍馬！\n");
+
+    if(query_temp("warquest/train_begin", me) )
+        return notify_fail("你不是正在訓練隊伍嗎？！\n");
+
+    message_vision(HIW "$N大聲喝道：左右軍馬，即刻隨本帥" +
+        "前去操練人馬，不得有誤！！\n" NOR, me);
+
+    set_temp("warquest/train", "infantry", me);
+    me->move("/d/city2/sying2");
+    set_temp("warquest/train_begin", 1, me);
+    return 1;
+}
+
+
+int do_order(string arg) {
+    object me, env, ob;
+    string who, what, dir;
+
+    me = this_player();
+    env = environment(me);
+    if (! arg || sscanf(arg, "%s to %s", who, what) != 2)
+        return notify_fail("請用 order sb to do sth. 來發布號令！\n");
+
+    if (! objectp(ob = present(who, env)))
+        return notify_fail("這裡沒有你可以調度的這名將領！\n");
+
+    if(query_temp("warquest/party", ob) != "song" )
+        return notify_fail("對方不是宋軍，如何供你調度？！\n");
+
+    if(!query_temp("warquest/train", ob) ||
+        query_temp("warquest/group", ob)<1 )
+        return notify_fail("這支隊伍尚未訓練嫻熟，難堪大用！\n");
+
+    if(query_temp("warquest/purchase", ob) )
+        return notify_fail("對方正在進行軍備工作，最好不要調動他的軍隊！！\n");
+
+    if (ob == me) return notify_fail("自己命令自己？你不嫌累啊你？！\n");
+
+    if (userp(ob)) notify_fail("你不能命令玩家將領！\n");
+
+    switch(what)
+    {
+    case "follow":
+        message_vision(HIY "$N略一沉思，而後果敢的下令道：“$n，" +
+        "本帥決定迎戰蒙古大軍，\n將軍請即刻調派人馬隨同本帥出征！\n" NOR, me, ob);
+        message_vision(HIW "$N大聲應道：末將遵命！願為將軍效犬馬之勞！\n" NOR, ob);
+        ob->set_leader(me);
+        break;
+
+    case "stop":
+        message_vision(HIY "$N仔細查看了四周的地形，而後果敢的下令道：“$n聽令，" +
+        "立即停止隊伍行進！！\n" NOR, me, ob);
+        message_vision(HIW "$N大聲應道：末將遵命！！\n" NOR, ob);
+        ob->command("move stop");
+        break;
+
+    default:
+        if (sscanf(what, "guard %s", dir) == 1
+            && query("exits/"+dir, env) )
         {
-                write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
-                return 1;
+            message_vision(HIY "$N仔細查看了四周的地形，而後果敢的下令道：“$n聽令，" +
+            "此處地勢險要，\n易守難攻，還煩請將軍在此處加以扼守！\n" NOR, me, ob);
+            message_vision(HIW "$N大聲應道：末將遵命！但存一兵一卒，決不失陣地！\n" NOR, ob);
+            ob->set_leader(0);
+            ob->command("guard " + dir);
         } else
-        if ((sscanf(arg, "%s from %s",what, who) == 2 ||
-             sscanf(arg, "%s at %s", what, who) == 2 ||
-             sscanf(arg, "%s on %s", what, who) == 2 ||
-             sscanf(arg, "%s %s", what, who) == 2) &&
-             this_object()->id(who)) {
-                write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
-                return 1;
-        } else
-        if (arg == "roar" || arg == "hou")
+        if (sscanf(what, "move %s", dir) == 1
+            && query("exits/"+dir, env) )
         {
-                write("有沒有搞錯，那是軍隊耶，還不快跑？！\n");
-                return 1;
-        }
-
-        return 0;
+            message_vision(HIY "$N仔細查看了四周的地形，而後果敢的下令道：“$n聽令，" +
+            "立即率領部隊\n火速行進，不得有誤！！\n" NOR, me, ob);
+            message_vision(HIW "$N大聲應道：末將遵命！！\n" NOR, ob);
+            ob->set_leader(0);
+            ob->command("move " + dir);
+        } else
+        if(query("exits/"+what, env) )
+        {
+            ob->set_leader(0);
+            GO_CMD->main(ob, what);
+        } else
+        return notify_fail("身為一軍之帥，請不要濫用你的軍權！\n");
+        break;
+    }
+    set_temp("warquest/battle", 1, ob);
+    set_temp("warquest/quest", "軍隊出征，迎戰蒙軍", ob);
+    return 1;
 }
 
-void attack_over(object me)
-{
-        if (objectp(me))
-        {
-                message_vision(HIW "$N手中令旗一揮，三軍攻勢一緩，重新"
-                        + "開始列陣，準備發起新一輪的攻擊！！\n" NOR, me); 
-                delete_temp("warquest/attack", me);
-        }
+int do_inquiry(string arg) {
+    object me = this_player();
+
+    return WAR_D->do_inquiry(me, arg);
+}
+
+int do_move(string dir) {
+    object me, env;
+
+    me = this_player();
+    env = environment(me);
+
+    if (! dir || dir == "stop")
+    {
+        remove_call_out("on_move");
+        write("部隊行進終止！\n");
+        return 1;
+    }
+
+    if(query("exits/"+dir, env) )
+    {
+        remove_call_out("on_move");
+        call_out("on_move", 2, me, dir);
+        write("部隊開始行進！\n");
+        return 1;
+    }
+    else
+        write("無法移動，沒有指定方向的出口！\n");
+
+    return 1;
+}
+
+void on_move(object me, string dir) {
+    object env;
+
+    if (! me) return;
+
+    env = environment(me);
+    if(!query("exits/"+dir, env) )
+    {
+        write("無法移動，沒有指定方向的出口！\n");
         return;
-}      
+    }
 
-int do_attack(string arg)
-{
-        object me, ob;
-        object env, room;
-        string who, dir;
-        string zhen, craft;
-
-        me = this_player();
-        env = environment(me);
-
-        if (! arg) return notify_fail("你要指揮部隊朝誰發起進攻？\n");
-
-        // if (me->query("env/auto_contruel"))
-        if( query("env/auto_war", me) )
-                return notify_fail("你已經設置為由系統自動指揮作戰！如想自己操作，請修改設置。\n");
-
-        if( query_temp("warquest/attack", me) )
-                return notify_fail("你的隊伍正在列陣進攻，不要亂髮號令了！\n");
-
-        if( !query_temp("warquest/train", me) )
-                return notify_fail("你未帶一兵一卒，指揮個什麼呀？\n");
-
-        if( query_temp("warquest/group", me)<1 )
-                return notify_fail("你的隊伍已經損失殆盡，無法列陣衝鋒了！\n");
-
-        if( query("no_fight", env) )
-                return notify_fail("這裡不許戰鬥！！\n");
-
-        if (sscanf(arg, "%s with %s & %s", who, zhen, craft, dir) < 3)
-                return notify_fail("指令格式錯誤，請用 attack <sb.> with <array> & <craft> 指揮你的隊伍！\n");
-
-        if (! objectp(ob = present(who, env)))
-                return notify_fail("無法找到目標，請用 attack <sb.> with <array> & <craft> 指揮你的隊伍！\n");
-
-        if( !query_temp("warquest", ob) || query_temp("warquest/party", ob) != "meng" )
-                return notify_fail("你軍務在身，還是不要輕易招惹是非的好！\n");
-
-        if( !query("array/"+zhen, me) && zhen != "putong" )
-                return notify_fail("你目前還沒有通曉「" + zhenfa[zhen] + "」這種陣法！\n");
-
-        if( !query("craft/infantry/"+craft, me) )
-                return notify_fail("你目前還沒有通曉「" + bingfa[craft] + "」這種兵法！\n");
-
-        message_vision(HIY "$N將手中寶劍一揮，大喝道：三軍列陣「" + zhenfa[zhen] +
-                "」，準備向敵軍發起衝鋒——>" + bingfa[craft] + "！！\n" NOR, me, ob);
-
-        set_temp("warquest/attack", 1, me);
-        set_temp("warquest/array", zhenfa[zhen], me);
-        // me->start_call_out((: call_other, WAR_D, "attack_over", me :), 10);
-        call_out("attack_over", 10, me);    
-        WAR_D->do_attack(me, ob, zhenfa[zhen], bingfa[craft], env);
-        return 1;
-}
-
-int do_exert(string arg)
-{
-        tell_object(this_player(),
-                "你現在是三軍之統帥了，一舉一動請三思！\n");
-        return 1;
-}
-
-int do_stock(string arg)
-{
-        object me;
-        
-        me = this_player();
-
-        if (base_name(environment(me)) != "/d/city2/sying1")
-                return notify_fail("請先回你的帳營調派軍馬，否則將有礙行程！\n");
-
-        if (! arg || arg == "")
-                return notify_fail("你想要命令部隊去幹什麼?\n");
-              
-        set_temp("warquest/purchase", arg, me);
-                                
-        if( query_temp("warquest/move", me) )
-                return notify_fail("號令已經發佈下去了！\n");
-                
-        switch(query_temp("warquest/purchase", me) )
-        {
-        case "weapon" :
-                message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
-                        "開赴襄陽城購置兵甲，不得有誤！！\n" NOR, me);
-                break;
-        case "horse"  :
-                message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
-                        "開赴襄陽城購買戰馬，不得有誤！！\n" NOR, me);
-                break;
-        case "stone"  :
-                message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
-                        "開赴襄陽城購置石木，不得有誤！！\n" NOR, me);
-                break;
-        case "arrow"  :
-                message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
-                        "開赴襄陽城購置羽箭，不得有誤！！\n" NOR, me);
-                break;
-        case "enlist" :
-                message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
-                        "開赴襄陽城招募新兵，不得有誤！！\n" NOR, me);
-                break;
-        case "forage" :
-                message_vision(HIW "$N大聲喝道：左右軍馬即刻隨本帥" +
-                        "開赴京師押解糧草，不得有誤！！\n" NOR, me);
-                break;
-        default :
-                tell_object(me, "你想要命令部隊去幹什麼?\n");
-                delete_temp("warquest/purchase", me);
-                return 1;
-                break;
-        }
-
-        set_temp("warquest/move", "forward", me);
-        set_temp("warquest/move_from", "/d/city2/sying1", me);
-                
-        return 1;
-}
-
-int do_train(string arg)
-{
-        object me, env;
-
-        me = this_player();
-        env = environment(me);
-
-        if (base_name(environment(me)) != "/d/city2/sying1")
-                return notify_fail("請先回你的帳營才能調派訓練的軍馬！\n");
-
-        if( query_temp("warquest/train_begin", me) )
-                return notify_fail("你不是正在訓練隊伍嗎？！\n");
-
-        message_vision(HIW "$N大聲喝道：左右軍馬，即刻隨本帥" +
-                "前去操練人馬，不得有誤！！\n" NOR, me);
-
-        set_temp("warquest/train", "infantry", me);
-        me->move("/d/city2/sying2");
-        set_temp("warquest/train_begin", 1, me);
-        return 1;
-}
-
-
-int do_order(string arg)
-{
-        object me, env, ob, ling, obb;
-        string who, what, dir;
-        int i, n, flag;
-        mapping jiang;
-
-        me = this_player();
-        env = environment(me);
-        if (! arg || sscanf(arg, "%s to %s", who, what) != 2)
-                return notify_fail("請用 order sb to do sth. 來發布號令！\n");
-
-        if (! objectp(ob = present(who, env)))
-                return notify_fail("這裡沒有你可以調度的這名將領！\n");
-
-        if( query_temp("warquest/party", ob) != "song" )
-                return notify_fail("對方不是宋軍，如何供你調度？！\n");
-
-        if( !query_temp("warquest/train", ob) || 
-            query_temp("warquest/group", ob)<1 )
-                return notify_fail("這支隊伍尚未訓練嫻熟，難堪大用！\n");
-
-        if( query_temp("warquest/purchase", ob) )
-                return notify_fail("對方正在進行軍備工作，最好不要調動他的軍隊！！\n");
-                        
-        if (ob == me) return notify_fail("自己命令自己？你不嫌累啊你？！\n");
-        
-        if (userp(ob)) notify_fail("你不能命令玩家將領！\n");
-
-        switch(what)
-        {
-        case "follow":
-                message_vision(HIY "$N略一沉思，而後果敢的下令道：“$n，" +
-                        "本帥決定迎戰蒙古大軍，\n將軍請即刻調派人馬隨同本帥出征！\n" NOR, me, ob);
-                message_vision(HIW "$N大聲應道：末將遵命！願為將軍效犬馬之勞！\n" NOR, ob);
-                ob->set_leader(me);
-                break;
-
-        case "stop":               
-                message_vision(HIY "$N仔細查看了四周的地形，而後果敢的下令道：“$n聽令，" +
-                        "立即停止隊伍行進！！\n" NOR, me, ob);
-                message_vision(HIW "$N大聲應道：末將遵命！！\n" NOR, ob);
-                ob->command("move stop");
-                break;
-
-        default:                
-                if (sscanf(what, "guard %s", dir) == 1
-                 && query("exits/"+dir, env) )
-                {
-                        message_vision(HIY "$N仔細查看了四周的地形，而後果敢的下令道：“$n聽令，" +
-                                "此處地勢險要，\n易守難攻，還煩請將軍在此處加以扼守！\n" NOR, me, ob);
-                        message_vision(HIW "$N大聲應道：末將遵命！但存一兵一卒，決不失陣地！\n" NOR, ob);
-                        ob->set_leader(0);
-                        ob->command("guard " + dir);
-                } else
-                if (sscanf(what, "move %s", dir) == 1
-                 && query("exits/"+dir, env) )
-                {
-                        message_vision(HIY "$N仔細查看了四周的地形，而後果敢的下令道：“$n聽令，" +
-                                "立即率領部隊\n火速行進，不得有誤！！\n" NOR, me, ob);
-                        message_vision(HIW "$N大聲應道：末將遵命！！\n" NOR, ob);
-                        ob->set_leader(0);
-                        ob->command("move " + dir);
-                } else
-                if( query("exits/"+what, env) )
-                {
-                        ob->set_leader(0);
-                        GO_CMD->main(ob, what);
-                } else
-                        return notify_fail("身為一軍之帥，請不要濫用你的軍權！\n");
-                break;
-        }
-        set_temp("warquest/battle", 1, ob);
-        set_temp("warquest/quest", "軍隊出征，迎戰蒙軍", ob);
-        return 1;
-}
-
-int do_inquiry(string arg)
-{
-        object me = this_player();
-        
-        return WAR_D->do_inquiry(me, arg);
-}
-
-int do_move(string dir)
-{
-        object me, env;
-
-        me = this_player();
-        env = environment(me);
-
-        if (! dir || dir == "stop")
-        {
-                remove_call_out("on_move");
-                write("部隊行進終止！\n");
-                return 1;
-        }
-
-        if( query("exits/"+dir, env) )
-        {
-                remove_call_out("on_move");
-                call_out("on_move", 2, me, dir);
-                write("部隊開始行進！\n");
-                return 1;
-        }
-        else
-                write("無法移動，沒有指定方向的出口！\n");
-
-        return 1;
-}
-
-void on_move(object me, string dir)
-{
-        object env;
-
-        if (! me) return;
-
-        env = environment(me);
-        if( !query("exits/"+dir, env) )
-        {
-                write("無法移動，沒有指定方向的出口！\n");
-                return;
-        }
-
-        if (me->is_fighting() ||
-            query_temp("warquest/attack", me) )
-        {
-                remove_call_out("on_move");
-                call_out("on_move", 4, me, dir);
-                return;
-        } else
-        if (GO_CMD->main(me, dir))
-        {
-                remove_call_out("on_move");
-                call_out("on_move", 2, me, dir);
-                return;
-        } else
-        {
-                write("無法移動，行進終止！\n");
-                return;
-        }
+    if (me->is_fighting() ||
+        query_temp("warquest/attack", me) )
+    {
+        remove_call_out("on_move");
+        call_out("on_move", 4, me, dir);
+        return;
+    } else
+    if (GO_CMD->main(me, dir))
+    {
+        remove_call_out("on_move");
+        call_out("on_move", 2, me, dir);
+        return;
+    } else
+    {
+        write("無法移動，行進終止！\n");
+        return;
+    }
 }
 
 void owner_is_killed() { destruct(this_object()); }

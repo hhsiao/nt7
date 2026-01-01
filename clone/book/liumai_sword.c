@@ -4,11 +4,7 @@ void create()
 {
         set_name( "六脈神劍譜", ({ "pu", "jian pu" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "\n這是用來學習六脈神劍的圖譜。\n");
                 set("value", 1000);
                 set("material", "paper");
@@ -21,5 +17,4 @@ void create()
                 ]) );
                 set("no_drop", "這樣東西不能離開你。\n");
                 set("no_give", "這樣東西不能給人。\n");
-        }
 }

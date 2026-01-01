@@ -7,10 +7,7 @@ void create()
 {
         set_name( HIC "『長白山旅遊圖』" NOR, ({ "luyou tu","tu","map"}) );
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long",
 "\n                 『長白山導遊圖』\n\n"
 "　　　【地圖一】　　　　　　　　　   ＾\n"
@@ -65,6 +62,5 @@ void create()
 "\n");
                 set("value", 50);
                 set("material", "paper");
-        }
         setup();
 }

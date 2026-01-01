@@ -14,13 +14,9 @@ void init()
 void create()
 {
         set_name("天山雪蓮", ({"xuelian", "lian", "lotus"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "支");
+        set("unit", "支");
                 set("long", "這是一支只有在寒冷的地方才能生長的雪蓮。\n");
                 set("value", 100);
-        }
         setup();
 }
 
@@ -30,7 +26,7 @@ int do_eat(string arg)
                 return notify_fail("你要吃什麼？\n");
 
 // function of this medicine needed here
-       if( query("eff_qi", this_player()) == 
+       if( query("eff_qi", this_player()) ==
            this_player(query("max_qi", )) )
                 return notify_fail("你現在不用吃這寶貝!\n");
        this_player()->receive_curing("qi",200);

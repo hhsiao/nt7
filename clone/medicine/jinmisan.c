@@ -6,14 +6,11 @@
 void create()
 {
         set_name(HIW "金蜜散" NOR, ({"jinmi san", "jinmi", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一包金蜜散，據說可以解玉蜂針毒。\n");                
+        set("long", "這是一包金蜜散，據說可以解玉蜂針毒。\n");
                 set("base_unit", "包");
                 set("base_value", 8000);
                 set("base_weight", 80);
-                set("only_do_effect", 1); 
+                set("only_do_effect", 1);
                 set("mixture", ([
                         "herb" : ([ "shanju"   : 1,
                                     "muxiang"  : 1,
@@ -24,8 +21,7 @@ void create()
                         "time"  : 5,
                         "min_level" : 60,
                         "yunv-xinjing" : 60,
-                ]));                
-        }
+                ]));
 
     setup();
 }

@@ -4,24 +4,19 @@ inherit ARMOR;
 
 void create()
 {
-        set_name(HIG "文曲星甲" NOR, ({ "wisdom armor", "armor", }));  
+        set_name(HIG "文曲星甲" NOR, ({ "wisdom armor", "armor", }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "蘊含了文曲星的精元和無上智慧(神)。\n"); 
+        set("long", "蘊含了文曲星的精元和無上智慧(神)。\n");
                 set("unit", "件");
                 set("value", 2000000);
                 set("material", "cloth");
                 set("armor_prop/armor", 100);
-        }
-        set("auto_load", 1); 
-        set("mod_mark", "A2000");  
-        set("mod_level", "M2000");  
-        set("mod_name", HBGRN"文曲星學習套裝(神)"NOR); 
+        set("auto_load", 1);
+        set("mod_mark", "A2000");
+        set("mod_level", "M2000");
+        set("mod_name", HBGRN"文曲星學習套裝(神)"NOR);
 
-        set("enchase", ([ 
+        set("enchase", ([
                 "flute" : 2,
                 "used"  : 2,
                 "apply_prop" : ([ /* sizeof() == 4 */
@@ -50,8 +45,8 @@ void create()
                         ]),
                 ]),
         }));
-        
-        set("quality_level", 2);  
-       
+
+        set("quality_level", 2);
+
         setup();
 }

@@ -6,11 +6,7 @@ void create()
 {
         set_name("武僧棍法", ({ "clubbook", "shu", "book" }));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","此書相傳為唐初少林十三棍僧所著\n是一本薄卷，上面有一些人形持棍棒戰鬥的畫頁，下面寫了許多口訣。\n");
                 set("treasure", 1);
                 set("value", 200);                set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "difficulty" :        20, // the base int to learn this skill
                         "max_skill"  :  100 // the maximum level you can learn
                 ]) );
-        }
 }

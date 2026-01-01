@@ -8,15 +8,11 @@ void create()
 {
         set_name(HIW"官靴"NOR, ({ "guan xue", "xue","shoes" }));
         set_weight(150);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long","這是一雙朝廷官員慣用的官靴。\n");
+        set("long","這是一雙朝廷官員慣用的官靴。\n");
                 set("unit", "雙");
                 set("no_transfer",1);
                 set("material", "cloth");
                 set("armor_type", "feet");
                 set("armor_prop/dodge", 2);
-        }
-        setup(); 
+        setup();
 }

@@ -7,17 +7,13 @@ void create()
 {
         set_name(YEL "水煙筒" NOR, ({"yan tong", "yan", "tong"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", YEL "這是一支雲南人喜愛的水煙筒。你可"
+        set("long", YEL "這是一支雲南人喜愛的水煙筒。你可"
                             "以用(fire)來吸菸。\n" NOR);
                 set("unit", "個");
                 set("value", 100);
                 set("material", "steel");
                 set("wield_msg", "$N從身後抽出$n握在手中當做武器。\n");
                 set("unwield_msg", "$N將手中的$n放了回去。\n");
-        }
         init_staff(10);
         setup();
 }
@@ -28,7 +24,7 @@ int init()
 }
 
 int do_fire(string arg)
-{        
+{
         object me = this_player();
         object ob = present("shui yan", me);
 
@@ -51,5 +47,3 @@ int do_fire(string arg)
 
         return 1;
 }
-
-        

@@ -7,15 +7,11 @@ inherit F_FOOD;
 void create()
 {
         set_name(RED"櫻桃火腿"NOR, ({ "yingtao huotui", "huotui" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一盆香噴噴熱氣騰騰的櫻桃火腿。\n");
+        set("long", "一盆香噴噴熱氣騰騰的櫻桃火腿。\n");
                 set("unit", "盆");
                 set("value", 200);
                 set("food_remaining", 10);
                 set("food_supply", 20);
                 set("material", "meat");
-        }
         setup();
 }

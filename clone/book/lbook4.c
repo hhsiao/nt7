@@ -5,11 +5,7 @@ void create()
 {
         set_name(YEL"「九章算術」"NOR, ({ "literateb4", "shu4", "book4"}));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","一本讀得很破舊的《九章算術》。\n");
                 set("value", 5000);
                 set("material", "paper");
@@ -21,5 +17,4 @@ void create()
                         "max_skill":   119,
                         "min_skill":   110,
                 ]) );
-        }
 }

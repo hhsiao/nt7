@@ -9,11 +9,7 @@ void create()
 {
         set_name(WHT "月魄" NOR, ({ "moon soul", "moon" }) );
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", WHT "太陰真火凝聚而成，月白色，能攝心定神，百邪不侵。。\n" NOR);
+        set("long", WHT "太陰真火凝聚而成，月白色，能攝心定神，百邪不侵。。\n" NOR);
                 set("value", 50000);
                 set("unit", "塊");
                 set("can_enchant", "armor");
@@ -21,7 +17,6 @@ void create()
                 set("magic/type", "magic");
                 set("magic/power", 500);
                 set("auto_load", 1);
-        }
         setup();
 }
 
@@ -93,7 +88,7 @@ int do_extract(object me, object obj)
                 set("enchase/armor_prop", enchase_prop, ob);
                 set("enchase/armor_prop/reduce_magic", 1, ob);
         }
-                
+
         set("enchase/type", type, ob);
         set("enchase/SN", 1+random(9), ob);
         set("enchase/level",query("require/level",  obj), ob);
@@ -103,4 +98,3 @@ int do_extract(object me, object obj)
 
         return 1;
 }
-

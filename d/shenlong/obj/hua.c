@@ -7,13 +7,9 @@ inherit ITEM;
 void create()
 {
 	set_name(HIG"百香花"NOR, ({"baixiang hua", "baixiang"}));
-	/*if (clonep())
-		set_default_object(__FILE__);
-	else*/ {
-		set("unit", "朵");
+	set("unit", "朵");
 		set("long", "這是一朵鮮豔的花，花香濃郁異常。\n");
 		set("only_do_effect", 1);
-	}
 	setup();
 }
 

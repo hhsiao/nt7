@@ -7,10 +7,7 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(BLK"黑色藥粉"NOR, ({ "black yao","yao"}) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long",
+        set("long",
                         "這是一包五毒教精煉的毒藥。\n你可以用(bpour)命令試試。\n" );
                 set("unit", "些");
                 set("base_value", 200);
@@ -18,7 +15,6 @@ void create()
                 set("base_weight", 30);
                 set("pour_type", "chanchu_poison");
                 set("value", 200);
-        }
         set_amount(1);
 }
 

@@ -8,14 +8,10 @@ void create()
 {
         set_name("油布包", ({ "bag", "bao" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", "這是一個油布包裹。\n");
                 set("value", 500);
                 set("material", "cloth");
-        }
         set("book_count", 0);
 }
 
@@ -39,8 +35,8 @@ int do_open(string arg)
 
         if( !query("jiuyang/zhang", me) )
         {
-                write("什麼？\n"); 
-                return 1; 
+                write("什麼？\n");
+                return 1;
         }
 
         if (query("book_count") < 1)

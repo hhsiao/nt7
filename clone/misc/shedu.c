@@ -6,10 +6,7 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIG "蛇毒" NOR, ({ "she du", "she", "du", "shedu" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "這是一粒由蛇的毒液精製而成的毒藥，可置人於死地。\n" NOR);
+        set("long", HIG "這是一粒由蛇的毒液精製而成的毒藥，可置人於死地。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 100);
                 set("base_weight", 10);
@@ -25,7 +22,6 @@ void create()
                 ]));
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }

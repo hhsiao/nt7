@@ -6,10 +6,7 @@
 void create()
 {
         set_name(CYN "玉靈散" NOR, ({"yuling san", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一包玉靈散，用來恢復你的精力。\n");
+        set("long", "這是一包玉靈散，用來恢復你的精力。\n");
                 set("base_unit", "包");
                 set("base_value", 20000);
                 set("base_weight", 50);
@@ -29,7 +26,6 @@ void create()
                         "min_level" : 100,
                         "medical" : 150,
                 ]));
-        }
         setup();
 }
 
@@ -60,9 +56,9 @@ int do_effect(object me)
 
         me->start_busy(1);
 
-        add_amount(-1); 
-        if (query_amount() < 1) 
-                destruct(this_object()); 
+        add_amount(-1);
+        if (query_amount() < 1)
+                destruct(this_object());
 
         return 1;
 }

@@ -5,19 +5,15 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(WHT "龜苓丹" NOR, ({"guiling dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("base_unit", "粒");
-                set("no_drop", "這樣東西不能離開你。\n"); 
-                set("no_sell", "這樣東西不能離開你。\n"); 
-                set("no_put", "這樣東西不能放在那兒。\n"); 
-                set("no_get", "這樣東西不能離開那兒。\n"); 
-                set("no_steal", "這樣東西不能離開那兒。\n"); 
-                set("no_beg", "這樣東西不能離開那兒。\n"); 
+        set("base_unit", "粒");
+                set("no_drop", "這樣東西不能離開你。\n");
+                set("no_sell", "這樣東西不能離開你。\n");
+                set("no_put", "這樣東西不能放在那兒。\n");
+                set("no_get", "這樣東西不能離開那兒。\n");
+                set("no_steal", "這樣東西不能離開那兒。\n");
+                set("no_beg", "這樣東西不能離開那兒。\n");
                 set("base_value", 0);
                 set("only_do_effect", 2);
-        }
         setup();
         set_amount(1);
 }
@@ -51,7 +47,7 @@ int do_effect(object me)
         return 1;
 }
 
-void owner_is_killed() 
+void owner_is_killed()
 {
-        destruct(this_object()); 
+        destruct(this_object());
 }

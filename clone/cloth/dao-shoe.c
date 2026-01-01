@@ -32,14 +32,10 @@ void create()
         set_name(shoename[i], ({ shoeid[i], "shoe" }));
         set_weight(1000);
         set("long", shoelong[i]);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "雙");
+        set("unit", "雙");
 //                set("long", shoelong[i]);
                 set("value", 0);
                 set("material", "boots");
                 set("armor_prop/dodge", 5);
-        }
         setup();
 }

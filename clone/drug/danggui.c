@@ -13,15 +13,11 @@ void create()
 {
         set_name( GRN "當歸" NOR , ({"dang gui", "danggui"}));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "棵");
+        set("unit", "棵");
                 set("long", "這是一棵百年的老當歸，雖然已經乾癟，但其養精鎮神的藥效甚佳。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
         setup();
 }
 

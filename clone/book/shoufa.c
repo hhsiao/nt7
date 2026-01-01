@@ -1,15 +1,11 @@
-// shoufa.c 
+// shoufa.c
 inherit ITEM;
 
 void create()
 {
         set_name( "神龍八式手法",({ "shoufa book","shoufa","shu","book"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是一本神龍八式手法。\n");
                 set("value", 5000);
                 set("material", "paper");
@@ -21,5 +17,4 @@ void create()
                         "difficulty":        20,        // the base int to learn this skill
                         "max_skill":        60        // the maximum level you can learn
                 ]) );
-        }
 }

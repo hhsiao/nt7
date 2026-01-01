@@ -8,13 +8,9 @@ void create()
 {
         set_name("麻婆豆腐", ({"mapo doufu", "doufu"}));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一盆顏色紅亮，細中帶嫩，香辣可口的麻婆豆腐。\n");
+        set("long", "一盆顏色紅亮，細中帶嫩，香辣可口的麻婆豆腐。\n");
                 set("unit", "盆");
                 set("value", 150);
                 set("food_remaining", 4);
                 set("food_supply", 40);
-        }
 }

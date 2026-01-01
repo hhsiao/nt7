@@ -16,14 +16,10 @@ void init(){
 void create(){
     set_name( HIY "內丹" NOR , ({"nei dan", "dan"}));
   set_weight(90);
-  /*if (clonep())
-    set_default_object(__FILE__);
-  else*/ {
-    set("unit", "顆");
+  set("unit", "顆");
     set("long", "一顆金黃色的丹丸，略微能聞到些許香氣。\n");
     set("value", 0);
     set("drug_type", "補品");
-  }
   set("is_monitored",1);
   setup();
 }

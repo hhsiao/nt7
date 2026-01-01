@@ -7,14 +7,10 @@ void create()
 {
         set_name( GRN "嫩綠綢衫" NOR, ({ "nenlv choushan", "cloth" }) );
         set_weight(800);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "件");
+        set("unit", "件");
                 set("value", 1000);
                 set("armor_prop/armor", 1);
                 set("material", "cloth");
                 set("female_only", 1);
-        }
         setup();
 }

@@ -7,14 +7,10 @@ void create()
 {
         set_name(HIY "田七鯊膽散" NOR, ({"tianqi san", "san"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "包");
+        set("unit", "包");
                 set("long", "：這是一包田七鯊膽散，可解化屍粉毒。\n");
                 set("value", 10000);
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)

@@ -8,11 +8,7 @@ void create()
 {
         set_name(HIY"子午針灸經"NOR,({"ziwu zhenjiujing","ziwu","jing"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是蝶谷醫仙胡青牛所著醫書。\n");
                 set("value", 15000);
                 set("material", "paper");
@@ -23,5 +19,4 @@ void create()
                         "difficulty":   20,
                         "max_skill":    50
                 ]) );
-        }
 }

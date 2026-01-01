@@ -7,10 +7,7 @@ void create()
 {
         set_name(NOR + MAG "紫蛟鱗甲" NOR, ({ "zijiao linjia", "zijiao", "linjia" }));
         set_weight(9000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "副");
+        set("unit", "副");
                 set("long", NOR + MAG "\n一副充滿著神奇力量的鱗甲，散發著攝人心魄的寒芒。\n" NOR
                             HIC "有效招架修正：+ 50        有效輕功修正：+ 30\n" NOR
                             HIC "抗毒效果修正：+ 30%       防禦效果等級： 200\n" NOR
@@ -33,7 +30,6 @@ void create()
                 set("armor_prop/avoid_poison", 15);
                 set("avoid_msg", NOR + MAG "一道寒芒閃過，紫蛟鱗甲將毒質全部吸收。\n" NOR);
                 set("reduce_msg", HIR "一道寒芒劃過，紫蛟鱗甲吸收了部分毒質。" NOR);
-        }
         setup();
 }
 

@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIW"天長掌法譜" NOR, ({ "tianchang zhangpu","zhangpu", }));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-             set("unit", "本");
+        set("unit", "本");
              set("long",
         "這是一本很破舊的小冊，上面好象還有一些小人揮舞拳腳的圖形。\n",
          );
@@ -21,11 +17,10 @@ void create()
          set("material", "paper");
          set("skill", ([
                         "name":       "tianchang-zhang",
-                        "family_name" : "關外胡家", 
+                        "family_name" : "關外胡家",
                         "exp_required" : 10000,
                         "jing_cost":  30,
                         "difficulty": 20,
                         "max_skill":  80
                 ]) );
-        }
 }

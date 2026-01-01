@@ -5,13 +5,9 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIW"羅剎"NOR+HIR"無常"NOR+HIY"丹"NOR, ({"luosha dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("base_unit", "粒");
+        set("base_unit", "粒");
                 set("base_value", 150);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }

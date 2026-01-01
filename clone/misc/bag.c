@@ -7,7 +7,7 @@ inherit ITEM;
 // 貴重物品列表
 string *VA_LIST = ({ "jiuzhuan", "puti-zi", "tianxiang", });
 
-// 普通物品列表  
+// 普通物品列表
 string *NORMAL_LIST = ({ "xuantie", "wujins", "butian",
                          "tiancs", });
 
@@ -20,16 +20,12 @@ void create()
 {
         set_name(WHT "包裹" NOR, ({ "bag", "baoguo", "bao", "guo" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", WHT "這是一個灰布包裹，裡面脹鼓鼓的，不知裝"
                             "了些什麼。\n" NOR);
                 set("no_sell", 1);
                 set("value", 500);
                 set("material", "cloth");
-        }
         set("no_store", 1);
         set("gift_count", 1);
 }

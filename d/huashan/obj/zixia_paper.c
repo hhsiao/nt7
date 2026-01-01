@@ -6,10 +6,7 @@ void create()
 {
         set_name("紙箋", ({"zixia paper", "zixia"}));
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "頁");
+        set("unit", "頁");
 
                 set("long",
 "紫霞千變，萬氣歸宗。紫氤正氣，相輔相承。聚龍虎，暢筋脈。開玄關，\n"
@@ -26,5 +23,4 @@ void create()
                 set("value", 10000000);
                 set("material", "paper");
 //                set("no_drop","這樣東西不能離開你。\n");
-        }
 }

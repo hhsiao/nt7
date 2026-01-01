@@ -10,15 +10,11 @@ void create()
 {
         set_name(HIG "礦泉水" NOR, ({ "water" }));
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一瓶礦泉水，可以治療口乾舌"
+        set("long", "這是一瓶礦泉水，可以治療口乾舌"
                             "燥，遭受飛彈襲擊以後感覺格外良好。\n");
                 set("value", 8000);
                 set("no_sell", 1);
                 set("unit", "瓶");
-        }
 }
 
 void init()

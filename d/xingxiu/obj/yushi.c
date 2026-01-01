@@ -15,14 +15,10 @@ void create()
                 case 6 : set_name(YEL "黃斑玉" NOR, ({ "yushi"})); break;
                 case 7 : set_name(CYN "青蘭玉" NOR, ({ "yushi"})); break;
         }
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("value", 300000);
+        set("value", 300000);
                 set("unit", "塊");
                 set("weight", 100);
                 set("long", "這是一小塊玉石，好象還能值幾個錢。\n");
                 set("material", "stone");
-                }
         setup();
 }

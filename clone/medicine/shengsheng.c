@@ -6,10 +6,7 @@
 void create()
 {
         set_name(HIR "生生造化丹" NOR, ({"shengsheng dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一顆紅色的藥丸，具有神奇的療效。\n");
+        set("long", "這是一顆紅色的藥丸，具有神奇的療效。\n");
                 set("base_unit", "顆");
                 set("base_value", 8000);
                 set("base_weight", 80);
@@ -35,7 +32,6 @@ void create()
                         "yaowang-miaoshu" : 220,
                         "liandan-shu" : 1900,
                 ]));
-        }
         setup();
 }
 
@@ -64,10 +60,10 @@ int do_effect(object me)
                 break;
         case 6:
                 time = time - time * 6 / 10;
-                break;  
+                break;
         case 7:
                 time = time - time * 7 / 10;
-                break;                  
+                break;
         }
         if( time < 10 ) time = 10;
 

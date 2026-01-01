@@ -9,13 +9,9 @@ void create()
 {
         set_name(YEL"茯苓"NOR, ({"fu ling"}));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", "這是一塊成型的茯苓，看來可以入藥。\n");
                 set("only_do_effect", 1);
-        }
 
         setup();
 }

@@ -12,10 +12,7 @@ int auto_check(object me, object ob);
 void create()
 {
         set_name(HIW "玉蜂箱" NOR, ({ "feng xiang", "beehive", "box", "xiang" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("long", HIW "這是古墓派木製的玉蜂箱。裡面嗡嗡的，不知道有多少玉蜂。\n" NOR);
                 set("base_unit", "個");
                 set("value", 1000);
@@ -24,7 +21,6 @@ void create()
                 set("no_give",0);
                 set("no_get",1);
                 set("base_weight",5000);
-        }
 
         set("no_refresh", 1);
 
@@ -74,7 +70,7 @@ int do_fang(string arg)
 
         set("down", 1, ob);
         ob->move(environment(me));
-        remove_call_out("auto_check"); 
+        remove_call_out("auto_check");
         call_out("auto_check", 5+random(5),me,ob);
         return 1;
 }
@@ -82,7 +78,6 @@ int do_fang(string arg)
 int do_open(string arg){
         object me = this_player();
         object ob = this_object();
-        string descrp;
 
         if(!arg || (arg != "feng xiang" && arg != "beehive" && arg != "box" && arg != "xiang"))
                 return 0;
@@ -108,7 +103,6 @@ int do_open(string arg){
 int do_close(string arg){
         object me = this_player();
         object ob = this_object();
-        string descrp;
 
         if(!arg || (arg != "feng xiang" && arg != "beehive" && arg != "box" && arg != "xiang"))
                 return 0;
@@ -151,7 +145,7 @@ int auto_check(object me,object ob)
         }
         if( query("mi", ob)<40 )
                 addn("mi", 10, ob);
-        if( query("mi", ob)>25 && random(2) == 0 || 
+        if( query("mi", ob)>25 && random(2) == 0 ||
             query("mi", ob) >= 40 )
         {
                 message_vision(HIW"玉蜂團團打轉，看樣子蜂箱的蜜已經採滿了,你應該回去了。\n"NOR,me);
@@ -292,7 +286,6 @@ int do_cai(string arg)
 {
         object me = this_player();
         object here = environment(me);
-        int i;
         object yaocai;
 
         if ( !arg && arg != "yao" ) return 0;

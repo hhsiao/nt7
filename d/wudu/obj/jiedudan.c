@@ -4,14 +4,10 @@ inherit ITEM;
 void create()
 {
         set_name(HIW "凝冰丹" NOR, ({"ningbing dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "粒");
+        set("unit", "粒");
                 set("value", 3000);
                 set("long", HIW "五毒教的神丹，能解蟾毒及砂毒。\n" NOR);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

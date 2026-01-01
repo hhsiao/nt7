@@ -6,13 +6,9 @@ void create()
 {
 	set_name(YEL + GRN "竹葉" NOR, ({ "penglai zhuye" }) );
 	set_weight(100);
-	/*if( clonep() )
-		set_default_object(__FILE__);
-	else*/ {
-		set("unit", "片");
+	set("unit", "片");
 		set("value", 1);
 		set("long", YEL + GRN "這是一片竹葉，還帶著仙氣。\n" NOR);
-	}
 
 	setup();
 }

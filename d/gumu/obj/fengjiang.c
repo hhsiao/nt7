@@ -9,15 +9,11 @@ void create()
 {
         set_name("玉蜂漿", ({"jiang", "feng jiang"}));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一瓶用玉蜂巢搗成的漿。\n");
+        set("long", "一瓶用玉蜂巢搗成的漿。\n");
                 set("unit", "瓶");
                 set("value", 30);
-                set("only_do_effect", 1); 
+                set("only_do_effect", 1);
                 set("can_fulan",1);
-        }
 }
 
 int do_effect(object me)
@@ -32,7 +28,7 @@ int do_effect(object me)
         destruct(this_object());
         return 1;
 }
- void decay(int phase) 
+ void decay(int phase)
 {
         string msg;
         object env;
@@ -64,5 +60,5 @@ int do_effect(object me)
         }
         while (env && env->is_character())
                 env = environment(env);
-        if (env) tell_room(env, msg); 
+        if (env) tell_room(env, msg);
 }

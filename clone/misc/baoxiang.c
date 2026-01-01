@@ -12,7 +12,7 @@ string *gem_list = ({
     "/clone/tessera/ctopaz",
     "/clone/tessera/cdiamond",
     "/clone/tessera/csapphire",
-    "/clone/tessera/cemerald",
+    "/clone/tessera/cemerald"
 });
 
 string *dan_list = ({
@@ -22,7 +22,7 @@ string *dan_list = ({
     "/clone/gift/xisuidan",
     "/d/item/obj/butian",
     "/d/item/obj/tiancs",
-    "/clone/gift/fuyuandan.c",
+    "/clone/gift/fuyuandan.c"
 });
 
 string *jinkuai_list = ({
@@ -31,7 +31,7 @@ string *jinkuai_list = ({
     "/clone/gift/xiaoyuanbao",
     "/clone/gift/dayuanbao",
     "/clone/gift/jinding",
-    "/clone/gift/fuyuandan.c",
+    "/clone/gift/fuyuandan.c"
 });
 
 string *obj_list = ({
@@ -73,34 +73,26 @@ string *obj_list = ({
     "/clone/book/shoufa",
     "/clone/book/zhanyi",
     "/clone/book/bagua0",
-    "/clone/book/bagua1",
+    "/clone/book/bagua1"
 });
 
-void create()
-{
+void create() {
     set_name(HIY "寶箱" NOR, ({ "bao xiang", "xiang" }) );
     set_weight(150000);
     set_max_encumbrance(800000);
     set("no_get", 1);
-    /*if( clonep() )
-        set_default_object(__FILE__);
-    else*/ 
-    {
-        set("unit", "口");
-        set("long", HIY "這是一隻金色的寶箱，裝飾的珠光寶氣，你或許可以打開（open）它。\n" NOR);
-        set("value", 1);
-    }
+    set("unit", "口");
+    set("long", HIY "這是一隻金色的寶箱，裝飾的珠光寶氣，你或許可以打開（open）它。\n" NOR);
+    set("value", 1);
 }
 
 int is_container() { return is_opened; }
 
-void init()
-{
+void init() {
     add_action("do_open", "open");
 }
 
-int do_open(string arg)
-{
+int do_open(string arg) {
     object me, ob;
     int box_type;
     string mazename;
@@ -108,122 +100,121 @@ int do_open(string arg)
     int temp_lvl;
     mapping temp_quest;
     int exp, pot, score;
-    int quest_times = 0;
-        int rate;
-    
-    if (!arg || 
-        (arg != "bao xiang" 
-         && arg != "xiang"
-         && arg != "寶箱"
-         && arg != "箱") )
+    int rate;
+
+    if (!arg ||
+        (arg != "bao xiang"
+        && arg != "xiang"
+        && arg != "寶箱"
+        && arg != "箱") )
     {
         return 0;
     }
-     
+
     me = this_player();
     ob = this_object();
-    
+
     if (is_opened)
     {
         return notify_fail("寶箱已經是開著的，您就不用費勁折騰啦！\n");
     }
-        
+
     message_vision("$N把寶箱打開了。\n", me);
     ob->set_name(HIY "打開的寶箱" NOR, ({ "bao xiang", "xiang" }) );
     set("long", HIY"這是一隻被打開的金色寶箱，裝飾的珠光寶氣，一看就不是尋常地攤貨。\n"NOR, ob);
     is_opened = 1;
 
-        rate = random(5);
-        if( rate == 1 )set("maze/box", GOLD, ob);
-        else if( rate == 2 )set("maze/box", GEM, ob);
-        else set("maze/box", OBJ, ob);
-    box_type=query("maze/box", ob);
-    if ( !box_type ) return 1;
-    
-    mazename=query("maze/mazename", ob);
-        /*
-    if ( !stringp(mazename) ) return 1;
-    
-    temp_quest=query("quest_dg", me);
-    quest_times=query_temp("questdg_times", me);
-    if (!temp_quest || temp_quest["maze"] != mazename)
-    {
-        temp_quest=query("quest_hs", me);
-        quest_times=query_temp("quesths_times", me);
-    }        
-    if (!temp_quest || temp_quest["maze"] != mazename)
-    {
-        temp_quest=query("quest_kh", me);
-        quest_times=query_temp("questkh_times", me);
-    }        
-    if (!temp_quest || temp_quest["maze"] != mazename)
-    {
-        temp_quest=query("quest_sn", me);
-        quest_times=query_temp("questsn_times", me);
-    }        
-    
-    if ( !temp_quest ) return 1;
-    // if ( quest_times < 10 ) return 1;
-        */
+    rate = random(5);
+    if(rate == 1 )set("maze/box", GOLD, ob);
+    else if(rate == 2 )set("maze/box", GEM, ob);
+    else set("maze/box", OBJ, ob);
+    box_type = query("maze/box", ob);
+    if (!box_type ) return 1;
+
+    mazename = query("maze/mazename", ob);
+    /*
+     * if ( !stringp(mazename) ) return 1;
+
+     * temp_quest=query("quest_dg", me);
+     * quest_times=query_temp("questdg_times", me);
+     * if (!temp_quest || temp_quest["maze"] != mazename)
+     * {
+     * temp_quest=query("quest_hs", me);
+     * quest_times=query_temp("quesths_times", me);
+     * }
+     * if (!temp_quest || temp_quest["maze"] != mazename)
+     * {
+     * temp_quest=query("quest_kh", me);
+     * quest_times=query_temp("questkh_times", me);
+     * }
+     * if (!temp_quest || temp_quest["maze"] != mazename)
+     * {
+     * temp_quest=query("quest_sn", me);
+     * quest_times=query_temp("questsn_times", me);
+     * }
+
+     * if ( !temp_quest ) return 1;
+     * // if ( quest_times < 10 ) return 1;
+     */
 
     switch(query("maze/box", ob) )
     {
-        case SPECIAL_MAP:
-            environment(query("mazeobj", ob))->set_display_map(2);
-            message_vision("只見$N中衝出一道白光，迅速投入房間中央的白色石板中，白色石板越發的亮堂起來。\n", ob);
-            break;
-        case SPECIAL_DAN:
-            bonus = new(dan_list[random(sizeof(dan_list))]);
+    case SPECIAL_MAP:
+        environment(query("mazeobj", ob))->set_display_map(2);
+        message_vision("只見$N中衝出一道白光，迅速投入房間中央的白色石板中，白色石板越發的亮堂起來。\n", ob);
+        break;
+    case SPECIAL_DAN:
+        bonus = new(dan_list[random(sizeof(dan_list))]);
+        if (bonus) bonus->move(ob);
+        break;
+    case JINKUAI:
+        bonus = new(jinkuai_list[random(sizeof(jinkuai_list))]);
+        if (bonus) bonus->move(ob);
+        break;
+    case GOLD:
+        bonus = new("/clone/money/gold");
+        bonus->set_amount(2 + random(3));
+        if (bonus) bonus->move(ob);
+        break;
+    case OBJ:
+        temp_lvl = 4 + random(4);
+        temp_quest = QUEST_OBJ_D(temp_lvl)->query_questsn();
+        if (mapp(temp_quest))
+        {
+            bonus = new(temp_quest["object"]);
             if (bonus) bonus->move(ob);
-            break;
-        case JINKUAI:
-            bonus = new(jinkuai_list[random(sizeof(jinkuai_list))]);
-            if (bonus) bonus->move(ob);
-            break;
-        case GOLD:
-            bonus = new("/clone/money/gold");
-            bonus->set_amount(2 + random(3));
-            if (bonus) bonus->move(ob);
-            break;
-        case OBJ:
-            temp_lvl = 4 + random(4);
-            temp_quest = QUEST_OBJ_D(temp_lvl)->query_questsn();
-            if (mapp(temp_quest))
-            {
-                bonus = new(temp_quest["object"]);
-                if (bonus) bonus->move(ob);
-            }
-            break;
-        case SPECIAL_OBJ:
-            bonus = new(obj_list[random(sizeof(obj_list))]);
-            if (bonus) bonus->move(ob);
-            break;
-        case GEM:
-                        bonus = new(gem_list[random(sizeof(gem_list))]);
-                                    if (bonus) bonus->move(ob);
-                                                break;
-        case NPC_SKILL:
-            //FUBEN_D->query_maze_mainobj()->set_npcs_weakly();
-            environment(query("mazeobj", ob))->set_boss_weakly();
-            set("long", HIY "寶箱底部隱約刻著一行字：據說迷宮主人現在狀態很虛弱。\n" NOR);
-            break;
-        default:
-            break;        
+        }
+        break;
+    case SPECIAL_OBJ:
+        bonus = new(obj_list[random(sizeof(obj_list))]);
+        if (bonus) bonus->move(ob);
+        break;
+    case GEM:
+        bonus = new(gem_list[random(sizeof(gem_list))]);
+        if (bonus) bonus->move(ob);
+        break;
+    case NPC_SKILL:
+        //FUBEN_D->query_maze_mainobj()->set_npcs_weakly();
+        environment(query("mazeobj", ob))->set_boss_weakly();
+        set("long", HIY "寶箱底部隱約刻著一行字：據說迷宮主人現在狀態很虛弱。\n" NOR);
+        break;
+    default:
+        break;
     }
 
     delete("maze", ob);
 
-    if ( random(3) == 0 ) return 1;
-    
+    if (random(3) == 0 ) return 1;
+
     // exp = temp_quest["bonus"];
     exp = 50;
     if (exp < 50) exp = 50;
     exp += random(exp*2);
-    pot = exp/2 + random(exp);
-    score = exp/2;
-    
-    GIFT_D->bonus(me, ([ "exp" : exp, "pot" : pot, "score" : score ]), 1);
+    pot = exp / 2 + random(exp);
+    score = exp / 2;
 
-    
+    GIFT_D->bonus(me, ([ "exp": exp, "pot": pot, "score": score ]), 1);
+
+
     return 1;
 }

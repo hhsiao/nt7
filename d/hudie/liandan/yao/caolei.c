@@ -1,7 +1,7 @@
 #include <ansi.h>
 //草類藥材
 
-inherit ITEM; 
+inherit ITEM;
 mapping *ansi= ({
 ([     "yanse":    HIC,]),
 ([     "yanse":    HIG,]),
@@ -10,7 +10,7 @@ mapping *ansi= ({
 ([     "yanse":    HIM,]),
 ([     "yanse":    HIY,]),
 ([     "yanse":    RED,]),
-([     "yanse":    YEL,]), 
+([     "yanse":    YEL,]),
 ([     "yanse":    MAG,]),
 ([     "yanse":    CYN,]),
 
@@ -60,23 +60,19 @@ void create()
 
     yanse = random(sizeof(ansi));
 
-    yaoo = random(sizeof(yao)); 
+    yaoo = random(sizeof(yao));
 
     name = yao[yaoo]["name"];
 
-    id = yao[yaoo]["id"]; 
+    id = yao[yaoo]["id"];
 
-    yaoxing = yao[yaoo]["yaoxing"]; 
+    yaoxing = yao[yaoo]["yaoxing"];
 
-    //set_name(ansi[yanse]["yanse"]+name+NOR,({id}) );  
-    set_name(name,({id}) );  
+    //set_name(ansi[yanse]["yanse"]+name+NOR,({id}) );
+    set_name(name,({id}) );
 
     set_weight(100);
-    /*if( clonep() )
-    set_default_object(__FILE__);
-    else*/ {
-         set("unit", "株");                        
-        }
+    set("unit", "株");
 
    set("yaoxing",yaoxing);
    set("yao",1);

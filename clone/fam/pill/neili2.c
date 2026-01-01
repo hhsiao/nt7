@@ -4,15 +4,11 @@
 void create()
 {
         set_name(HIR "火龍果" NOR, ({ "huolong guo", "huolong", "guo" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIR "這是一枚拳頭大小的火龍果，能起到調息內力的作用。\n" NOR);
+        set("long", HIR "這是一枚拳頭大小的火龍果，能起到調息內力的作用。\n" NOR);
                 set("base_unit", "枚");
                 set("base_value", 8000);
                 set("base_weight", 100);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

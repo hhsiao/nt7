@@ -8,15 +8,11 @@ void create()
 {
         set_name(HIM "魔界佛心果" NOR, ({ "magic fruit", "magic", "fruit" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆同時泛著奇異魔光和佛光的果實，據說吃了以後可以清除吃丹留下的後遺症。\n");
+        set("long", "一顆同時泛著奇異魔光和佛光的果實，據說吃了以後可以清除吃丹留下的後遺症。\n");
                 set("value", 10000);
                 set("unit", "顆");
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)
@@ -65,7 +61,7 @@ int do_effect(object me)
                         addn("gift/xisuidan", -1, me);
                 if( query("gift/con/fail", me)<1 )
                         delete("gift/con/fail", me);
-        } else  
+        } else
         if( query("gift/dex/fail", me) )
         {
                 addn("gift/dex/fail", -1, me);
@@ -79,8 +75,8 @@ int do_effect(object me)
                         addn("gift/unknowdan", -1, me);
                 if( query("gift/dex/fail", me)<1 )
                         delete("gift/dex/fail", me);
-        } 
-        
+        }
+
         tell_object(me, HIG "一股火熱驀然從全身升起，"
                             "你全身欲裂，恰在此時一股舒坦之意"
                             "油然而起，頓感全身舒服多了。\n" NOR);

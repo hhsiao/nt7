@@ -7,13 +7,9 @@ void create()
 {
         set_name(HIY "黃龍劍" NOR, ({ "huanglong jian", "huanglong", "jian", "sword" }) );
         set_weight(4000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "柄");
+        set("unit", "柄");
                 set("value", 700000);
                 set("material", "steel");
-        }
         init_sword(60);
         setup();
 }

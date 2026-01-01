@@ -12,11 +12,7 @@ void create()
                     HIC "有效招架修正：+ 100        有效輕功修正：+ 100\n" NOR
                     HIC "抗毒效果修正：+ 30%        防禦效果等級：  300\n" NOR
                     HIC "抗毒迴避修正：+ 30%\n" NOR);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "件");
+        set("unit", "?");
                 set("material", "steel");
                                 set("value", 800000);
                 set("armor_prop/armor", 300);
@@ -24,7 +20,6 @@ void create()
                                 set("armor_prop/parry", 100);
                         set("armor_prop/reduce_poison", 30);
                                 set("armor_prop/avoid_poison", 30);
-                }
                 set("material", "tian jing");
                 set("wear_msg", HIC "青天甲破空而響，陣陣霧氣隨之而出，卻早已與$N" HIC "合而為一。[2;37;0m\n" NOR);
                 set("remove_msg", HIC "$N" HIC "仰天長嘯，青天甲叮呤做響，剎那間周圍霧氣漸散，但青天甲早已"
@@ -42,7 +37,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
 {
         mapping result;
         int ap, dp;
-        int cost;  
+        int cost;
 
         if ((int)me->query_skill("force", 1) < 260
            || (int)me->query("neili") < 500

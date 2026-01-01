@@ -11,15 +11,10 @@ void create()
 {
         set_name(HIR"金剛大力丸"NOR, ({"dali wan", "wan"}));
         set_weight(100);
-        /*if (clonep())
-        set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long","這是江湖上常見的藥丸，紅色，龍眼大小，服後會力氣大增。\n");
                 set("value", 5000);
                 set("no_sell", 1);
-        }
 set("wposition", "/clone/drug/dali-wan.c");
         setup();
 }

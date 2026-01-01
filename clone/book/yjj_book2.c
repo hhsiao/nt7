@@ -21,16 +21,10 @@ void create()
               set("no_drop",1);
               set("no_get",1);
               set("no_steal",1);
-        /*if (clonep())
-        set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本梵文經書，每一頁上都寫彎彎曲曲的文字，沒一個識得。\n");
                 set("value", 5000);
                 set("material", "paper");
-                
-        }
 }
 
 int do_xiulian()
@@ -41,16 +35,16 @@ int do_xiulian()
         me=this_player();
         if(!me->query_skill("poison",1))
         return notify_fail("你連基本的毒功都不會，還想領略這麼高深的技巧？\n");
-         
+
         poison_lvl = me->query_skill("poison",1);
-               
+
         where_1 = environment(me);
 
         if (!present("yijinjing", me))
                 return 0;
-                
+
         if( me->is_busy() )
-             return notify_fail("你正忙著呢！\n");       
+             return notify_fail("你正忙著呢！\n");
         if( query("pigging", where_1) )
                 return notify_fail("你還是專心拱豬吧！\n");
 
@@ -76,9 +70,9 @@ int do_xiulian()
         if( !stringp(me->query_skill_mapped("force")) || me->query_skill_mapped("force") != "huagong-dafa")
                 return notify_fail("你必須先用 enable 化功大法。\n");
 
-        if (poison_lvl < 250) 
+        if (poison_lvl < 250)
                 return notify_fail("第一頁上面的一些用毒技巧，你怎麼也領略不了，看來你的毒功還有待加強。");
-        
+
         if(present("yijinjing",me) && !present("shenmuwang ding",me))
         {
                 write("你開始按照定春秋教你的獨特練功方法調息打坐。\n");

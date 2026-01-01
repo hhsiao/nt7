@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIR "蚩尤戰袍" NOR, ({ "chiyou zhanpao2", "chiyou", "zhanpao2" }) );
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "件");
+        set("unit", "件");
                 set("long", HIR "一件外型奇異的長袍，上面繪製著魔神蚩尤的標誌。\n" NOR);
                 set("material", "steel");
                 set("value", 800000);
@@ -25,8 +21,6 @@ void create()
                         "int"  :  50,
                         "dex"  :  70,
                 ]));
-                
-        }
         setup();
 }
 

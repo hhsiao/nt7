@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIG "煉丹秘本" NOR, ({ "liandan miben", "miben" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本泛黃的書籍，上面用小篆書"
                             "寫著“煉丹秘本”幾個字。\n",
 
@@ -36,6 +32,5 @@ void create()
                         "yuqing"   : 200,       // 玉清散
                         "sanhuang" : 250,       // 三黃寶臘丹
                 ]));
-        }
         setup();
 }

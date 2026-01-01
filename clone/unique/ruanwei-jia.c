@@ -1,30 +1,26 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 
 #include <armor.h>
 #include <ansi.h>
 inherit CLOTH;
-inherit F_UNIQUE; 
+inherit F_UNIQUE;
 
 void create()
 {
         set_name(YEL"軟蝟甲"NOR, ({ "ruanwei jia", "jia" }));
         set_weight(2000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", MAG"這是一件黑黝黝的甲衣，看上去極輕極軟，但卻生滿倒刺，刀劍不損，正是桃花島鎮島之寶軟蝟甲。\n"NOR);
+        set("long", MAG"這是一件黑黝黝的甲衣，看上去極輕極軟，但卻生滿倒刺，刀劍不損，正是桃花島鎮島之寶軟蝟甲。\n"NOR);
                 set("material", "steel");
                 set("unit", "件");
                 set("value", 500000);
-                set("rigidity", 20000); 
-                set("replica_ob", "/clone/cloth/ruanjia"); 
+                set("rigidity", 20000);
+                set("replica_ob", "/clone/cloth/ruanjia");
                 set("wear_msg", HIY "$N穿上一件軟蝟甲。\n" NOR);
                 set("unequip_msg", HIY "$N將軟蝟甲脫了下來。\n" NOR);
                 set("armor_prop/armor", 260);
                 set("armor_prop/armor_vs_force", 200);
-        }
         setup();
 }
 
@@ -42,4 +38,3 @@ mixed valid_damage(object me, object victim, int damage, object weapon)
                 return ([ "msg": result, "damage": damage+random(damage) ]);
         }
 }
-                

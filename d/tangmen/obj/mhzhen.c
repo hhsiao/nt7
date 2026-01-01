@@ -6,18 +6,13 @@ inherit THROWING;
 void create()
 {
         set_name("梅花針", ({ "meihua zhen", "zhen" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "把");
+        set("unit", "把");
                 set("value", 10000);
                 set("base_unit", "根");
                 set("base_weight", 100);
                 set("base_value", 200);
                 set("material", "steel");
                 set("long", "一根細若牛毛的針。\n");
-                                
-        }
        set_amount(50);
        init_throwing(50);
        setup();

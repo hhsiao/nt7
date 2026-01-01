@@ -5,13 +5,9 @@ void create()
 {
         set_name(HIG "「忘情天書」" NOR, ({ "wangqing tianshu", "wangqing", "tianshu" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "傳說中的奇書，可忘卻塵世間所有煩惱。\n" NOR);
+        set("long", HIG "傳說中的奇書，可忘卻塵世間所有煩惱。\n" NOR);
                 set("value", 500000);
                 set("unit", "本");
-        }
 }
 
 void init()

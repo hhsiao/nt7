@@ -1,8 +1,8 @@
-// jinshe2.c 
+// jinshe2.c
 
 inherit ITEM;
 inherit F_UNIQUE;
-#include <ansi.h>; 
+#include <ansi.h>;
 void setup()
 {}
 void init()
@@ -14,11 +14,7 @@ void create()
 {
         set_name(YEL"「金蛇秘芨」"NOR"中冊", ({ "jinshe book2","book2", }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("material", "paper");
 /*
                 set("no_drop", "這樣東西不能離開你。\n");
@@ -28,16 +24,13 @@ void create()
                 set("long",
         "這是一本用薄紙寫成的書。上書：「金蛇秘芨」。\n"
         "書皮泛黃，看來已經保存很久了。\n", );
-        }
 }
 
 int do_du(string arg)
 {
         object me = this_player();
         object where = environment(me);
-        object ob;
-        mapping skill;
-        int pxlevel; 
+        int pxlevel;
         int neili_lost;
 
         if (!(arg=="jinshe book2" || arg == "book2"))
@@ -56,7 +49,7 @@ int do_du(string arg)
                 write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
-        if (!id(arg)) {        
+        if (!id(arg)) {
                 write("你要讀什麼？\n");
                 return 1;
         }

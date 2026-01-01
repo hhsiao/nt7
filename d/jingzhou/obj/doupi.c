@@ -6,13 +6,9 @@ void create()
 {
         set_name(HIY"豆皮"NOR, ({"doupi"}));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是武漢人愛吃的一種小吃。\n");
+        set("long", "這是武漢人愛吃的一種小吃。\n");
                 set("unit", "碗");
                 set("value", 100);
                 set("food_remaining", 3);
                 set("food_supply", 50);
-        }
 }

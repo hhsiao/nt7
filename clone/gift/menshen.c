@@ -10,13 +10,9 @@ void setup() {}
 void create()
 {
         set_name(HIM "門神" NOR, ({ "men shen", "menshen" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一張畫的五顏六色的門神，常常"
+        set("long", "這是一張畫的五顏六色的門神，常常"
                             "被人貼在門上用來驅除妖邪。\n");
                 set("unit", "張");
-        }
 
         set("no_get", 1);
         setup();
@@ -33,7 +29,7 @@ void init()
         if (! clonep(env) || base_name(env) != CHAT_ROOM)
                 return;
 
-        if( !stringp(query("owner_id", env)) || 
+        if( !stringp(query("owner_id", env)) ||
             !stringp(query("startroom", env)) )
                 return;
 

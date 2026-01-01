@@ -1,30 +1,23 @@
 
-// This program is a part of NT MudLIB 
- 
+// This program is a part of NT MudLIB
+
 #include <ansi.h>
 #include <weapon.h>
 inherit BLADE;
- 
+
 void create()
 {
         set_name(HIY "神" HIW "之" HIM "祝福" NOR HIC "寶刀" NOR, ({ "zhufu blade", "blade", "dao" }) );
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "柄");
+        set("unit", "柄");
                 set("long", HIY "這便是神之祝福寶刀，三尺來長的單刀。\n" NOR);
-                set("value", 3000); 
+                set("value", 3000);
                 set("no_sell", "這樣東西不能賣。\n");
-                set("rigidity",8000);   
+                set("rigidity",8000);
                 set("material", "tian jing");
                 set("no_pawn", 1);
-        }
-        
-        set("quality_level", 2); 
+
+        set("quality_level", 2);
         init_blade(500);
         setup();
 }
-
-

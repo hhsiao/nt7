@@ -7,7 +7,7 @@ void init()
 object me = this_object();
         object who = this_player();
         object where = environment();
-        if (!wizardp(this_player())) 
+        if (!wizardp(this_player()))
         {
         set("no_get","你手裡一鬆"+query("name", this_object())+"從指間滑落！\n");
         set("no_give","這麼珍貴的藥，哪能隨便給人？\n");
@@ -15,7 +15,7 @@ object me = this_object();
         set("no_sell","凡人哪裡知道"+query("name", this_object())+"的價值？還是自己留著吧。\n");
         if( !query("my_owner", me) && interactive(who) )
         set("my_owner",query("id",  who), me);
-   
+
         if (userp(where))
         {
                 if( query("owned", me) )
@@ -31,7 +31,7 @@ object me = this_object();
         }
         }
         call_out("destroy_me",120,where,me);
-        }                                                            
+        }
 
 }
 void destruct_me(object where, object me)
@@ -44,15 +44,11 @@ void create()
 {
         set_name(YEL"丹藥"NOR, ({"dan yao","danyao"}));
         set_weight(20);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
         set("unit", "株");
         set("long", "一顆香氣四溢的丹藥。\n");
         set("canoe",1); // 身份鑑定,防止假藥材
         set("value", 0);
         set("drug_type", "補品");
-        }
-  
+
         setup();
 }

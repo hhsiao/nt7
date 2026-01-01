@@ -8,16 +8,12 @@ void create()
 {
 
         set_name("神仙倒", ({ "shenxiandao","yao"}) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long","這是一包五毒教的聖藥，吃了它連大羅金仙也要倒下。\n你可以用(pour)命令試試。\n" );
+        set("long","這是一包五毒教的聖藥，吃了它連大羅金仙也要倒下。\n你可以用(pour)命令試試。\n" );
                 set("unit", "些");
                 set("base_value", 200);
                 set("base_unit", "包");
                 set("base_weight", 30);
                 set("value", 800);
-        }
         set("pour_type", "1");
         set_amount(1);
 }

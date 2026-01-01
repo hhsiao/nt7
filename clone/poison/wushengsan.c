@@ -5,10 +5,7 @@ void create()
 {
         set_weight(100);
         set_name(HIW "五聖散" NOR, ({"wusheng san", "wusheng", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "盒");
+        set("unit", "盒");
                 set("long", HIW "這便是五毒教的獨門秘藥五聖散，可置人於死地。\n" NOR);
                 set("value", 50);
                 set("poison_type", "poison");
@@ -23,7 +20,6 @@ void create()
                 ]));
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

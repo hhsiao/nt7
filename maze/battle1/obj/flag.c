@@ -27,13 +27,9 @@ HIB"    Ｖ"NOR + "\n";
 void create() {
     set_name("武林大旗", ({ "flag" }) );
     set_weight(200);
-    /*if (clonep())
-        set_default_object(__FILE__);
-    else*/ {
-        set("long", (: long_desc :));
+    set("long", (: long_desc :));
         set("unit", "面");
         set("value", 100000);
-    }
     set("no_store", 1);
     set("no_put", 1);
     setup();

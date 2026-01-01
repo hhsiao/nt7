@@ -10,17 +10,13 @@ void create()
 {
         set_name(HIM"焦尾琴"NOR,({"jiaowei qin","qin"}));
         set_weight(500);
-        /*if(clonep())
-                 set_default_object(__FILE__);
-        else*/{
-                set("unit","張");
+        set("unit","張");
                 set("value",40000);
                 set("material","steel");
                 set("long","相傳這便是當年蔡文姬從火中所救出的焦木做成的美琴，琴的尾端仍可見焦黑色。\n");
                 set("wield_msg",HIY"$N伸手輕輕一揮,一張焦尾琴便已出現在$N手中.\n"NOR);
                 set("unwield_msg",HIY"$N十指一拂，琴聲曳然而止。$N收起焦尾琴，放進揹著的包袱裡。\n"NOR);
 //                set("unequip_msg",HIY"你十指一拂，琴聲曳然而止。你收起焦尾琴，放進揹著的包袱裡。.\n"NOR);
-        }
         init_sword(150);
         setup();
 }

@@ -10,13 +10,9 @@ void create()
         set("no_get", 1);
         set("no_shown", 1);
         set("prep","on");
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "堵");
+        set("unit", "堵");
                 set("long", "一堵牆。\n");
                 set("value", 1);
-        }
 }
 
 int is_container() { return 1; }

@@ -15,13 +15,9 @@ void init()
 void create()
 {
         set_name("小還丹", ({"xiaohuan dan", "xiaohuan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆瑩白溜圓的小還丹。此丹乃少林奇藥，助長內力，靈效無比。\n");
                 set("value", 10000);
-        }
 
         set("shaolin",1);
         setup();

@@ -5,10 +5,7 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIY "龍王丹" NOR, ({"longwang dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("base_unit", "粒");
+        set("base_unit", "粒");
                 set("no_drop", "這樣東西不能離開你。\n");
                 set("no_sell", "這樣東西不能離開你。\n");
                 set("no_put", "這樣東西不能放在那兒。\n");
@@ -17,7 +14,6 @@ void create()
                 set("no_beg", "這樣東西不能離開那兒。\n");
                 set("base_value", 0);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }
@@ -37,11 +33,11 @@ int do_effect(object me)
 //        me->set_temp("last_eat/dan(M)", time());
 
         if(me->improve_neili(3))
-                message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到內力又雄厚了一些。\n" NOR, me); 
+                message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到內力又雄厚了一些。\n" NOR, me);
         else
-                message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到好象沒什麼效果。\n" NOR, me); 
+                message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到好象沒什麼效果。\n" NOR, me);
 
-        me->start_busy(1);  
+        me->start_busy(1);
 
         add_amount(-1);
         if (query_amount() < 1)

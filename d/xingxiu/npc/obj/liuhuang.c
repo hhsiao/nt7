@@ -13,13 +13,9 @@ void create()
 {
         set_name("硫磺" NOR, ({"liu huang", "sulphur", "huang"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", "一塊硫磺，通常用來製作火藥。\n");
                 set("value", 200);
-        }
 }
 
 int do_make(string arg)

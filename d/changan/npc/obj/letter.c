@@ -6,13 +6,8 @@ void create()
 {
         set_name("家書", ({"xin", "letter"}));
         set_weight(100);
-          /*if (clonep())
-                  set_default_object(__FILE__);
-          else*/ 
-        {
-                  set("unit", "封");
+          set("unit", "封");
                   set("long", "一封滴滿淚痕的信．\n");
-        }
 
           set("is_monitored",1);
           setup();

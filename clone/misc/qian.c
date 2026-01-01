@@ -8,14 +8,10 @@ void create()
 {
         set_name( "竹籤", ({ "zhu qian", "qian"}) );
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "根");
+        set("unit", "根");
                 set("long", (:get_long:));
                 set("value", 0);
                 set("material", "wood");
-        }
         setup();
 }
 

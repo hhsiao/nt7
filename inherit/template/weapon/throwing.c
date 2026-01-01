@@ -14,11 +14,7 @@ void create()
 //**    set_name("$name", ({ "$id", }));                /* NAME_ENTRY */
         set_name("暗器", ({ "throwing", }));            /* NAME_EXIT  */
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-//**            set("$dbase_key", "$dbase_value\n");    /* DBASE_ENTRY */
+        //**            set("$dbase_key", "$dbase_value\n");    /* DBASE_ENTRY */
                 set("long", "這是一把普通的暗器。\n");  /* DBASE_EXIT  */
                 set("unit", "把");
                 set("base_unit", "個");
@@ -28,7 +24,6 @@ void create()
                 set("material", "steel");
                 set("wield_msg", "$N「唰」的一聲抽出一把$n握在手中。\n");
                 set("unwield_msg", "$N將手中的$n藏於袖間。\n");
-        }
 
 //**    $function_name($argument);                      /* FUNCTION_ENTRY */
         set_weight(5000);
@@ -36,4 +31,3 @@ void create()
         init_throwing(5, 2);                            /* FUNCTION_EXIT  */
         setup();
 }
-

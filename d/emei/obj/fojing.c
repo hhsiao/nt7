@@ -7,10 +7,7 @@ void create()
 {
         set_name(HIY "大般涅磐經" NOR, ({ "niepan jing", "jing" }));
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一冊佛經。\n");
                 set("value", 500);
                 set("material", "paper");
@@ -22,5 +19,4 @@ void create()
                         "max_skill":    500,    // the maximum level you can learn
                         "min_skill": 100   // the min level you can learn
                 ]) );
-        }
 }

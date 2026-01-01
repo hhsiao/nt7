@@ -10,14 +10,10 @@ void create()
         string *order = ({HIW "五糧液" NOR,HIM "劍南春" NOR, HIY "全興大麴" NOR, HIR "文君" NOR, HIG "古井貢酒" NOR});
         set_name( (order[random(5)]), ({ "wine" }) );
         set_weight(10);
-        /*if( clonep() )
-             set_default_object(__FILE__);
-        else*/ {
         set("long", "一瓶名酒。\n");
                 set("unit", "瓶");
                 set("value", 0);
                 set("max_liquid", 20);
-        }
         // The liquid contained in the container is independent, we set a copy
         // in each cloned copy.
         set("liquid", ([

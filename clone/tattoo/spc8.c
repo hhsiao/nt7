@@ -6,10 +6,7 @@ void create()
 {
         set_name(NOR + WHT "后羿射日圖" NOR, ({ "houyi tu", "houyi", "tu" }));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
+        set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
                 set("unit", "張");
                 set("value", 16500);
                 set("material", "paper");
@@ -19,5 +16,4 @@ void create()
                 set("tattoo_dex", 4);
                 set("tattoo_special", "accuracy");
                 set("tattoo_spcname", "精準射擊");
-        }
 }

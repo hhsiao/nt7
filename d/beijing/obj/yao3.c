@@ -12,13 +12,9 @@ void init()
 void create()
 {
         set_name(HIY"金創藥"NOR, ({"jinchuang yao", "jinchuang", "yao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "包");
+        set("unit", "包");
                 set("long", "這是一包武林人士必備的金創藥。\n");
                 set("value", 5000);
-        }
         setup();
 }
 

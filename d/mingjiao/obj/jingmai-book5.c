@@ -4,10 +4,7 @@ inherit ITEM;
 void create()
 {
         set_name(HIW"孫思邈千斤方"NOR, ({ "jingmai book", "book", "shu" }) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set_weight(10);
                 set("no_give", 1);
                 set("no_get", 1);
@@ -20,6 +17,5 @@ void create()
                         "min_skill":    140,
                         "max_skill":    150
                 ]) );
-        }
         setup();
 }

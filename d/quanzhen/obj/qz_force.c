@@ -35,11 +35,7 @@ void create()
 {
         set_name("玄門內功心法", ({ "neigong xinfa", "xinfa" }));
         set_weight(600);
-        /*if( clonep() )
-        set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本線裝書，上書《玄門內功心法》，原來是全真教的練氣(lianqi)秘籍。\n");
                 set("value", 5000);
                 set("material", "paper");
@@ -50,7 +46,6 @@ void create()
                         "difficulty":        10,                        // the base int to learn this skill
                         "max_skill":        150                        // the maximum level you can learn
                         ]) );
-        }
 }
 
 int do_dazuo(string arg)

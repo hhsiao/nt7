@@ -8,13 +8,9 @@ void create()
 {
         set_name("皮鞭", ({"pi bian", "pibian", "bian", "whip"}));
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long","一條長長的皮鞭．\n");
+        set("long","一條長長的皮鞭．\n");
                 set("unit", "條");
                 set("value", 500);
-        }
         init_whip(15);
         setup();
 }

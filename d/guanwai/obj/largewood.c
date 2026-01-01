@@ -7,16 +7,11 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(WHT "大木材" NOR, ({ "large wood", "wood" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "批");
+        set("unit", "批");
                 set("long", "這是伐自長白山的上好的大木料。\n");
                 set("base_value", 2000);
                 set("base_unit", "根");
                 set("base_weight", 50000);
-        }
         set_amount(1);
 }
 

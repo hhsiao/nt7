@@ -12,11 +12,7 @@ void create()
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
         set_name(HIB "稀世藍寶石" NOR, ({ "flawless sapphire" }) );   /* NAME_EXIT  */
         set_weight(20);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-//**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
                 set("long", HIB "一顆美得無與倫比的大藍寶石。\n" NOR);  /* DBASE_EXIT  */
                 set("value", 100000);
                 set("unit", "顆");
@@ -26,10 +22,8 @@ void create()
                 set("magic/type", "water");
                 set("magic/power", 200);
                 set("auto_load", 1);
-        }
         set("enchase/weapon_prop/add_water", 3);
         set("enchase/rings_prop/add_water", 3);
         set("enchase/armor_prop/reduce_fire", 1);
         setup();
 }
-

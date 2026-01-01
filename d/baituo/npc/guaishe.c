@@ -72,13 +72,13 @@ void create() {
 
     set("chat_chance_combat", 50);
     set("chat_msg_combat", ({
-            (: auto_perform :)
-        }));
+        (: auto_perform :)
+    }));
 
     set("chat_chance", 3);
     set("chat_msg", ({
-            (: auto_check :)
-        }));
+        (: auto_check :)
+    }));
 }
 
 string long_desc() {
@@ -270,7 +270,7 @@ void action(object me, object ob) {
 
 private int is_suitable(object victim, object killer) {
     string *no_kill_list = ({
-                    "mu ren",
+        "mu ren",
         "huang zhen",
         "juexin dashi",
         "fighter dummy",

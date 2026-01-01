@@ -10,16 +10,12 @@ void create()
 {
         set_name(YEL"桃木"NOR,({ "taomu"}) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "根");
+        set("unit", "根");
                 set("value", 0);
                 set("material", "wood");
                 set("long", "這是一根三尺來長，剛砍下的桃木，略加雕琢(cut)既可做成一把桃木劍。\n");
                 set("wield_msg", "$N拿出一跟$n，握在手中。\n");
                 set("unequip_msg", "$N放下手中的$n。\n");
-        }
         init_sword(2);
         setup();
 }
@@ -45,7 +41,7 @@ int do_cut(string arg)
 
         if( !objectp(ob1=query_temp("weapon", me) )
          || query("name", ob1) != "小鐵斧" )
-                return notify_fail("你沒有工具如何雕刻？！\n"); 
+                return notify_fail("你沒有工具如何雕刻？！\n");
 
         message_vision(CYN"$N拿起小鐵斧在桃木上細心的劈削著......\n"NOR, me);
 

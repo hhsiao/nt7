@@ -5,12 +5,8 @@ inherit ITEM;
 void create()
 {
    set_name("養精丹", ({"yangjing dan", "dan"}));
-   /*if (clonep())
-      set_default_object(__FILE__);
-   else*/ {
-      set("unit", "粒");
+   set("unit", "粒");
       set("value", 2000);
-   }
    setup();
 }
 

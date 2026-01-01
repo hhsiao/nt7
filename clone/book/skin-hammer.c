@@ -7,11 +7,7 @@ void create()
 {
         set_name( "羊皮卷軸", ({ "skin" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一張羊皮質地的卷軸，上面畫著一些古怪的符號。\n");
                 set("material", "paper");
                 set("skill", ([
@@ -22,5 +18,4 @@ void create()
                         "max_skill":    180,    // the maximum level you can learn
                         //"min_skill":    20,     // the minimum level you can learn
                 ]) );
-        }
 }

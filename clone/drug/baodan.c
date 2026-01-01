@@ -15,15 +15,11 @@ void create()
 {
                   set_name("豹子膽", ({ "baozi dan", "dan" }) );
                   set_weight(1000);
-                  /*if( clonep() )
-                                         set_default_object(__FILE__);
-                  else*/ {
-                                         set("unit", "顆");
+                  set("unit", "顆");
                                          set("long", CYN"這是一顆象拳頭一樣大的豹子膽，又黑又綠。\n"NOR);
                                          set("value", 10000);
                 set("no_sell", 1);
                                          set("medicine", 1);
-                  }
 set("wposition", "/clone/drug/baodan.c");
                   setup();
 }

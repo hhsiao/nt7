@@ -12,11 +12,7 @@ void create()
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
         set_name(HIG "神之翡翠綠" NOR, ({ "magic emerald" }) );  /* NAME_EXIT  */
         set_weight(20);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-//**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
                 set("long", HIG "一顆煥發著奇異的光彩的翡翠，給人以不同尋常的感覺。\n" NOR);  /* DBASE_EXIT  */
                 set("value", 200000);
                 set("unit", "顆");
@@ -26,7 +22,6 @@ void create()
                 set("magic/type", "wood");
                 set("magic/power", 500);
                 set("auto_load", 1);
-        }
         set("no_identify", 1);
 	setup();
 }

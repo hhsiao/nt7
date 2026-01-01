@@ -6,10 +6,7 @@
 void create()
 {
         set_name(HIC "玉清散" NOR, ({"yuqing san", "san"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一包玉清散，據說是武當派的秘藥，功能強身健體，延年益壽。\n");
+        set("long", "這是一包玉清散，據說是武當派的秘藥，功能強身健體，延年益壽。\n");
                 set("base_unit", "包");
                 set("base_value", 200000);
                 set("base_weight", 80);
@@ -32,7 +29,6 @@ void create()
                         "medical" : 200,
                         "liandan-shu" : 600,
                 ]));
-        }
         setup();
 }
 
@@ -57,9 +53,9 @@ int do_effect(object me)
                 set("max_jingli", me->query_current_jingli_limit(), me);
         // me->start_busy(3);
 
-        add_amount(-1); 
-        if (query_amount() < 1) 
-                destruct(this_object()); 
+        add_amount(-1);
+        if (query_amount() < 1)
+                destruct(this_object());
 
         return 1;
 }

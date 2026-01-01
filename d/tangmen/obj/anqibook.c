@@ -6,10 +6,7 @@ void create()
 {
         set_name("暗器手法入門", ({ "book", "shu"}));
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
                         "暗器手法入門\n"
                         "這是一本暗器使用的入門書。\n");
@@ -22,5 +19,4 @@ void create()
                         "difficulty":        20,        // the base int to learn this skill
                         "max_skill":        60        // the maximum level you can learn
                 ]) );
-        }
 }

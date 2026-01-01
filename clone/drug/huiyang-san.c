@@ -12,18 +12,13 @@ void create()
 {
         set_name(HIY"回陽五龍散"NOR, ({"huiyang san","san"}));
         set_weight(50);
-        /*if (clonep())
-            set_default_object(__FILE__);
-    else*/
-    {
-                set("unit", "包");
-        set("long", 
+        set("unit", "包");
+        set("long",
 "崆峒派常用的療傷靈藥。粉末微細，色澤淡黃，微有辛辣刺鼻的味道\n
 ，對水沖服效果尤佳。\n");
                 set("value", 10000);
                 set("medicine", 1);
                 set("no_sell", 1);
-    }
         setup();
 }
 
@@ -40,13 +35,13 @@ int cure_ob(object me)
                 destruct(this_object());
                 return 1;
         }
-           
+
         message_vision(HIY"$N服下一包"+query("name")+HIY"，只覺通體舒泰，精神煥發，傷勢大有好轉。\n"NOR, me);
         me->receive_heal("qi", 100+random(200));
         addn("jingli", 100+random(200), me);
         me->apply_condition("hot_drug", 30);
 
-        if ((int)me->query_condition("snake_poison") > 0)         
+        if ((int)me->query_condition("snake_poison") > 0)
                     me->apply_condition("snake_poison",0);
           destruct(this_object());
            return 1;

@@ -12,11 +12,7 @@ void create()
 {
         set_name("羊皮", ({ "qiankunbook", "skin" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", @LONG
 這是一張羊皮，一面有毛，一面光滑。第一行是“明教聖
 火心法，乾坤大挪移”十一個字。原來這就是武林第一秘
@@ -32,5 +28,4 @@ LONG );
                         "max_skill"    : 380,
                         "need" : ([ "sanscrit" : 200 ]),
                 ]) );
-        }
 }

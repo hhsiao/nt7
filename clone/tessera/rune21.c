@@ -12,11 +12,7 @@ void create()
 {
         set_name(HIW "符文" NOR, ({"rune21", "rune"}));
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "符文：太黃翁重符，可以放入凹槽物品。\n");
+        set("long", "符文：太黃翁重符，可以放入凹槽物品。\n");
                 set("unit", "個");
                 set("enchase/SN", 21);
                 set("enchase/type", "all");
@@ -28,7 +24,6 @@ void create()
                         "learn_effect"  : 5,
                 ]));
                 set("value", 20000);
-        }
         setup();
 }
 

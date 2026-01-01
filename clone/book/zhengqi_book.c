@@ -6,11 +6,7 @@ void create()
 {
         set_name(HIR"正氣吟"NOR, ({ "zhengqi_book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("treasure",1);set("unit", "本");
+        set("treasure",1);set("unit", "本");
                 set("long",
                         "這是一本薄薄的冊頁。\n");
                 set("value", 1000);
@@ -26,6 +22,4 @@ void create()
                         "min_skill":    0                       // the maximum level you can learn
                                                                 // from this object.
                 ]) );
-        }
 }
-

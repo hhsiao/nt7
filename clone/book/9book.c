@@ -8,18 +8,13 @@ void create()
 {
         set_name(HIY"《九陰真經》"NOR,({ "jiuyin zhenjing", "9jing", "jing" }));
         set_weight(800);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是黃裳手書的《九陰真經》。紙張雖然已經發黃，但筆勢依然可以看出飛灑如雲煙：\n天之道，損有餘而補不足，是故虛勝實，不足勝有餘。\n");
                 set("value", 3000);
                 set("no_get",1);
                 set("no_put",1);
                 set("no_drop",1);
                 set("material", "paper");
-        }
 }
 void init()
 {

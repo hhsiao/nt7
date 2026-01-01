@@ -5,14 +5,10 @@ void create()
         set_name("風箏", ({ "kite" }) );
         set_weight(150);
         set_max_encumbrance(1);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "個");
+        set("unit", "個");
                 set("prep", "on");
                 set("long", "一個蝴蝶風箏，放風箏的線上幫著一個小小的竹哨。 \n");
                 set("value", 2000);
-        }
 }
 
 void init()
@@ -22,7 +18,7 @@ void init()
 
 int do_play(string arg)
 {
-   object me, ob;    
+   object me, ob;
 
    me = this_player();
    ob = this_object();

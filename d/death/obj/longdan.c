@@ -3,14 +3,10 @@ inherit ITEM;
 void create()
 {
         set_name(HIR "龍膽" NOR, ({"long dan", "dan", "long"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("long", HIR "\n一隻血淋淋的新鮮龍膽，從神獸青龍的身體裡取出，可以入藥。\n" NOR);
                 set("value", 8000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

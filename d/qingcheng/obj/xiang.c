@@ -7,16 +7,12 @@ void create()
         set_name("大鐵箱", ({"xiang"}));
         set_max_encumbrance(5000);
         set("weight", 100000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一隻大鐵箱，好象有些什麼東西在裡頭。\n");
+        set("long", "這是一隻大鐵箱，好象有些什麼東西在裡頭。\n");
                 set("unit", "只");
                 set("open_count", 1);
                 set("no_get",1);
                 set("no_drop",1);
                 set("amount",30);
-        }
 }
 
 void init()

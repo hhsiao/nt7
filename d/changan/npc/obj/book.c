@@ -7,11 +7,7 @@ void create()
 {
         set_name(HIB"〖"HIY+"百變神通"HIB+"〗"NOR, ({"book","shu"}));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("value", 1000);
                 set("material", "paper");
                 set("long",
@@ -24,5 +20,4 @@ void create()
                         "difficulty" : 30,
                         "max_skill" : 200,
                 ]));
-        }
 }

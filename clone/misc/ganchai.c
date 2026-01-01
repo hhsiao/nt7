@@ -5,14 +5,10 @@ void create()
 {
         set_name(NOR + WHT "乾柴" NOR, ({ "gan chai", "gan", "chai" }));
         set_weight(10000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "捆");
+        set("unit", "捆");
                 set("long", WHT "這是一捆木柴。\n" NOR);
                 set("value", 10);
                 set("material", "wood");
-        }
 }
 
 int fire(object me, object ob)

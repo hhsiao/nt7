@@ -9,10 +9,7 @@ void create()
         set_name(NOR + YEL "桃木盒" NOR, ({ "taomu he", "taomu", "he" }) );
         set_weight(1);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", NOR + YEL "這是一個用桃木製成的盒子，可以用來存放丹藥，據說，凡是存放\n"
+        set("long", NOR + YEL "這是一個用桃木製成的盒子，可以用來存放丹藥，據說，凡是存放\n"
                                                       "在這個盒子裡的丹藥下線後都不會丟失。\n" HIG
                                                                           "指令格式：存儲丹藥：  store cun 數量 丹藥ID\n"
                                                                           "          取出丹藥：  store qu 數量 丹藥ID\n"
@@ -23,7 +20,6 @@ void create()
                                 set("no_drop", 1);
 
                         set("unit", "個");
-        }
 
         setup();
 }
@@ -53,7 +49,7 @@ int do_store(string arg)
         if (! arg)return notify_fail("\n未輸入參數或輸入參數錯誤。\n");
 
         if (arg == "show")
-        {                
+        {
                 DANSTORE_D->show_player_objects(me->query("id"));
                 return 1;
         }
@@ -71,13 +67,13 @@ int do_store(string arg)
                 if (! wizardp(me))return notify_fail("\n輸入參數過多！\n");
 
                 DANSTORE_D->show_player_objects(para);
-                
+
                 return 1;
         }
 
         if (sscanf(arg, "%s %d %s", para, amount, ob_id) != 3)
                 return notify_fail("\n輸入參數錯誤 。\n");
-        
+
         if (amount < 1)
                 return notify_fail("\n輸入數量不能小於 1 。\n");
 
@@ -89,8 +85,8 @@ int do_store(string arg)
         if (para == "qu")
         {
                 DANSTORE_D->get_player_objects(me, ob_id, amount);
-                return 1;        
+                return 1;
         }
-        
+
         return notify_fail("\n輸入參數錯誤。\n");
 }

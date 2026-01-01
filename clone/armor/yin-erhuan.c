@@ -7,20 +7,15 @@ void create()
 {
         set_name(NOR + WHT "銀耳環" NOR, ({ "yin erhuan", "yin", "erhuan" }));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "副");
+        set("unit", "副");
                 set("value", 200000);
                 set("material", "silver");
                 set("armor_prop/armor", 1);
                 set("limit", ([
                         "sex" : 1, // 1 為女性
                 ]));
-        }
         setup();
-}        
+}
 
 int query_autoload()
 {

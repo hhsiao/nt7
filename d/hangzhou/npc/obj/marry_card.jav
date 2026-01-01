@@ -9,13 +9,8 @@ void create()
         set("no_get",1);
         set("no_steal",1);
         set("no_drop","你的婚約不能丟棄,只能去紅娘莊解除婚約。\n");
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("material", "paper");
-        }
 }
 
 void init()

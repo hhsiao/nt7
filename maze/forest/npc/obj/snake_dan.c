@@ -2,15 +2,11 @@
 void create()
 {
         set_name(NOR + CYN "蛇膽" NOR, ({ "she dan", "she", "dan", "herb_shedan" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", NOR + CYN "這是一顆新鮮的蛇膽，頗具藥力。\n" NOR);
+        set("long", NOR + CYN "這是一顆新鮮的蛇膽，頗具藥力。\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 1200);
                 set("base_weight", 50);
                 set("only_do_effect", 1);
-        }
         set("maze_item", 1);
         setup();
 }

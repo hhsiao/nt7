@@ -6,10 +6,7 @@
 void create()
 {
         set_name(HIG "九花玉露丸" NOR, ({"jiuhua wan", "wan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一顆晶瑩剔透的九花玉露丸，具有神奇的療效。\n");
+        set("long", "這是一顆晶瑩剔透的九花玉露丸，具有神奇的療效。\n");
                 set("base_unit", "顆");
                 set("base_value", 100000);
                 set("base_weight", 80);
@@ -33,7 +30,6 @@ void create()
                         "min_level" : 140,
                         "taohua-yaoli" : 200,
                 ]));
-        }
         setup();
 }
 

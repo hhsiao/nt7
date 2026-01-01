@@ -15,13 +15,9 @@ void create()
         set_name("伊犁馬", ({"horse", "yili ma", "ma"}));
         set_weight(35000);
         set_max_encumbrance(50000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "匹");
+        set("unit", "匹");
                 set("long", "一匹良種的伊犁馬，可以騎(ride)，也可以馱東西。\n");
                 set("value", 1000);
-        }
 }
 
 int do_ride(string arg)

@@ -9,15 +9,11 @@ void create()
         set_name(HIG"綠玉棒"NOR, ({"lvyv bang", "zhu", "stick"}));
         set_weight(5000);
         set("taskobj", 1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "根");
+        set("unit", "根");
                 set("long", "一根泛著淡淡青光的竹棒。\n");
                 set("value", 0);
                 set("material", "bamboo");
                 set("wield_msg", "$N抽出一根青光閃閃的$N抓在手中。\n");
                 set("unwield_msg", "$N把手中的$n插回腰中。\n");
-        }
         setup();
-}        
+}

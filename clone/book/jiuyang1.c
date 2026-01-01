@@ -1,16 +1,12 @@
 // jiuyang1.c
 inherit ITEM;
 inherit F_UNIQUE;
- 
+
 void create()
 {
         set_name("「九陽真經」第一卷", ({ "jiuyang zhenjing1","jiuyang1","zhenjing1" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "這是一本薄薄的經書，只因油布包得緊密，雖長期藏在猿腹之中，書頁仍然完好無損。
 書面上寫著幾個彎彎曲曲的文字，他一個也不識得，翻開來一看，四本書中盡是這些怪
@@ -27,5 +23,4 @@ void create()
                         "max_skill"   :  25,
                         "min_skill"   :  0
                 ]) );
-        }
 }

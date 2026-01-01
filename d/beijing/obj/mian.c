@@ -6,17 +6,13 @@ void create()
 {
         set_name("面", ({ "mian" }));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一碗熱氣騰騰的湯麵。\n");
+        set("long", "一碗熱氣騰騰的湯麵。\n");
                 set("unit", "碗");
                 set("value", 100);
                 set("remaining", 2);
                 set("food_supply", 25);
                 set("water_supply", 10);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 
@@ -36,8 +32,8 @@ int do_effect(object me)
         addn("remaining", -1);
         if (query("remaining"))
                 message_vision("$N端起湯麵，狼吞虎嚥地吃起來。\n", me);
-        else 
-        { 
+        else
+        {
                 message_vision("$N端起碗來，把剩下的面連湯吞了。\n"
                                "$N將碗往後一扔，抹了抹嘴，讚道：好香！\n", me);
                 destruct(this_object());

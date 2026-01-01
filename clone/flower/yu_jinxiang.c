@@ -8,16 +8,12 @@ int value() { return query_amount() * (int)query("base_value"); }
 void create()
 {
         set_name(HIY "鬱金香" NOR, ({"yu jinxiang", "jinxiang"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long","這是一朵金黃色的鬱金香，花朵豐潤美麗，是勝利美好的象徵。\n");
+        set("long","這是一朵金黃色的鬱金香，花朵豐潤美麗，是勝利美好的象徵。\n");
                 set("unit", "束");
                 set("base_value", 25);
                 set("base_unit", "朵");
                 set("base_weight", 100);
                 set("flower",1);
-        }
         set_amount(1);
 }
 #include "flower.h"

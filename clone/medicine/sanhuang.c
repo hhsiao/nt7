@@ -6,10 +6,7 @@
 void create()
 {
         set_name(HIY "三黃" HIR"寶臘丹" NOR, ({"baola dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一顆黃黃的藥丸，是武當派的療傷聖藥，珍貴無比。\n");
+        set("long", "這是一顆黃黃的藥丸，是武當派的療傷聖藥，珍貴無比。\n");
                 set("base_unit", "顆");
                 set("base_value", 50000);
                 set("base_weight", 80);
@@ -34,7 +31,6 @@ void create()
                         "medical" : 250,
                         "liandan-shu" : 1900,
                 ]));
-        }
         setup();
 }
 
@@ -63,10 +59,10 @@ int do_effect(object me)
                 break;
         case 6:
                 time = time - time * 6 / 10;
-                break;  
+                break;
         case 7:
                 time = time - time * 7 / 10;
-                break;                  
+                break;
         }
         if( time < 10 ) time = 10;
 
@@ -95,9 +91,9 @@ int do_effect(object me)
 
         me->start_busy(3);
 
-        add_amount(-1); 
-        if (query_amount() < 1) 
-                destruct(this_object()); 
+        add_amount(-1);
+        if (query_amount() < 1)
+                destruct(this_object());
 
         return 1;
 }

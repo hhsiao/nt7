@@ -11,14 +11,9 @@ void create()
 {
         set_name("刷子", ({ "brush", "shua zi" }) );
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "把");
+        set("unit", "把");
                 set("long", "一把刷子，是專門用來刷鞋用的。\n");
                 set("value", 200);
-        }
         setup();
 }
 
@@ -31,7 +26,7 @@ void init()
 int do_swab(string arg)
 {
         int exp;
-        object ob;      
+        object ob;
         object me;
         object money;
         object shoeshine;
@@ -147,15 +142,15 @@ int do_swab(string arg)
         message_vision("$n看看鞋，哼哼道：好！不錯，這點錢是賞給你的！\n"
                        "$N連忙點頭哈腰，笑眯眯的接了過來。\n", me, ob);
         money->move(me, 1);
-        if (! query("zhufu_mod/boots", me) && random(10) == 1) 
+        if (! query("zhufu_mod/boots", me) && random(10) == 1)
         {
-                message_vision("$n對$N嘿嘿一笑，道：幹得不賴，有點" 
+                message_vision("$n對$N嘿嘿一笑，道：幹得不賴，有點"
                                "意思，這個神之祝福戰衣就算是我送給你的禮物吧。\n",
                                me, ob);
-                money = new("/clone/goods/zhufu_boots"); 
+                money = new("/clone/goods/zhufu_boots");
                 money->move(me, 1);
                 tell_object(me, HIM "\n你獲得了一個" + money->name() + HIM "！\n" NOR);
-                set("zhufu_mod/boots", 1, me); 
+                set("zhufu_mod/boots", 1, me);
         }
         return 1;
 }

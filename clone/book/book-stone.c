@@ -16,11 +16,7 @@ void create()
 
         set_name("石板", ({ "stone", "shu", "book" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", "易筋經拳法篇。\n這是一塊圓圓的石板，似乎用手指刻劃了數個指印。\n");
                 set("value", 500);
                 set("material", "stone");
@@ -31,5 +27,4 @@ void create()
                         "difficulty":        20,        // the base int to learn this skill
                         "max_skill":        29        // the maximum level you can learn
                 ]) );
-        }
 }

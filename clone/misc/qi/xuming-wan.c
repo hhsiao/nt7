@@ -5,14 +5,10 @@ inherit ITEM;
 void create()
 {
         set_name(HIR "續命丸" NOR, ({"xuming wan", "xuming", "wan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", HIR "一顆黑色的藥丸。恢復2000點氣血和最大氣血。\n" NOR);
                 set("value", 50000);
                 set("only_do_effect", 1);
-        }
 
         setup();
 }
@@ -33,12 +29,12 @@ int do_effect(object me)
                  me->set("eff_qi", me->query("max_qi"));
                  if (me->query("max_qi") - me->query("qi") <= 2000)
                         me->set("qi", me->query("max_qi"));
-                 
-                 else 
-                        me->add("qi", 2000);  
+
+                 else
+                        me->add("qi", 2000);
         }
 
-        else 
+        else
         {
                 me->add("eff_qi", 2000);
                 me->add("qi", 2000);

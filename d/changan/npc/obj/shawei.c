@@ -8,14 +8,9 @@ void create()
 {
         set_name("殺威棒", ({"shawei bang", "bang"}));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "把");
+        set("unit", "把");
                 set("value", 200);
                 set("material", "wood");
-        }
 
         init_staff(20);
         setup();

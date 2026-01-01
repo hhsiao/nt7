@@ -6,14 +6,10 @@ int throw_ob(object me, object victim);
 void create()
 {
    set_name(RED"煉心彈"NOR, ({"lianxin dan", "dan", "lianxin"}));
-   /*if (clonep())
-      set_default_object(__FILE__);
-   else*/ {
-      set("unit", "顆");
+   set("unit", "顆");
       set("long", RED"一顆硫磺硝磷所制的火彈，內夾毒藥。\n" NOR);
       set("skill", "feixing-shu");
       set("value", 0);
-   }
    setup();
 }
 
@@ -26,9 +22,9 @@ int throw_ob(object me, object victim)
    dp = (int)victim->query_skill("dodge");
    ap*=query("combat_exp", me)/1000;
    dp*=query("combat_exp", victim)/1000;
-   
+
    ap = random(ap);
-        
+
         if (ap > dp/2){
    message_vision(RED"只聽見一陣嗤嗤聲響，那飛螢已落在$n的肩頭，把$n的肩部燒得焦爛。\n" NOR, me, victim);
    me->improve_skill("feixing-shu", 1);
@@ -53,4 +49,4 @@ int throw_ob(object me, object victim)
         destruct(this_object());
         }
         return 1;
-}    
+}

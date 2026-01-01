@@ -10,16 +10,12 @@ void create()
 {
         set_name("大車", ({ "cart" }) );
         set_weight(200000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("value", 1);
+        set("value", 1);
                 set("long", "這是一輛普通的貨車。\n");
                 set("no_sell", "你還是拿到別地去吧。\n");
                 set("unit", "輛");
                 set("material", "wood");
                 set("no_get", "好傢伙，車你也想扛在肩上？\n");
-        }
         setup();
 }
 

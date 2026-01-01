@@ -7,14 +7,10 @@ void create()
 {
         set_name(HIG "劍靈之痕" NOR, ({ "jianling zhihen2", "zhihen2" }) );
         set_weight(10);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "雙");
+        set("unit", "雙");
                 set("long", HIG "這是由劍靈的真氣結晶而成的寶靴，看上去異常奇特。\n");
                 set("value", 2000000);
-                
+
                 set("armor_prop/dex", 60);
                 set("armor_prop/dodge", 300);
                 set("armor_prop/T_jianling", 1);
@@ -27,7 +23,6 @@ void create()
                          "thborn" : 1,
                          "jianling": 1, // equip.c裡限制，必須要調整成功劍靈1次後才能裝備
                 ]));
-        }
         setup();
 }
 

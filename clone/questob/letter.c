@@ -8,14 +8,9 @@ inherit ITEM;
 void create()
 {
         set_name("師門信件", ({ "letter", "quest letter" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", "這是一封師傅送來的親筆信。\n");
                 set("value", 0);
-        }
         setup();
 }
 

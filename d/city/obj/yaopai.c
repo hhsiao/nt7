@@ -34,14 +34,10 @@ void create()
 {
         set_name(HIG"巡城腰牌"NOR, ({ "yao pai","pai" }) );
         set_weight(600);
-        /*if( clonep() )                 
-        set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", (: look_it :) );
                 set("value", 0);
-             }   
-}
+             }
 
 void init()
 {
@@ -54,13 +50,13 @@ int do_xunluo(object me, object ob)
         mapping renwu;
         me=this_player();
         renwu=query("bang_quest", me);
-        
+
         if( !mapp(renwu) )
                 return 0;
-        
+
         if( renwu["id"]!="xc")
                 return 0;
-        
+
         the_place = base_name(environment(this_player()));
         if (member_array(the_place,renwu["place"]) != -1)
         {
@@ -72,11 +68,11 @@ int do_xunluo(object me, object ob)
         }
         else
                 tell_object(me,"你沒必要在這裡巡邏啊！\n");
-                
+
         return 1;
 }
 
 string look_it(object me)
 {
-        return "這是一塊"HIW"揚州小刀會"NOR"的巡城腰牌。"; 
-}         
+        return "這是一塊"HIW"揚州小刀會"NOR"的巡城腰牌。";
+}

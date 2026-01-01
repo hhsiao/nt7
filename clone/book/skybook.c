@@ -15,13 +15,8 @@ void create()
 此乃當年仙人贈於"蛋生"的寶物,因為蛋生不識字,仙人施了法,
 把天書變成了無字天書,呵呵!就是文盲也能讀懂,快看看(kan)吧！
 LONG );
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("material", "unknow");
-        }
 }
 
 void init()

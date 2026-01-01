@@ -8,7 +8,6 @@ inherit F_AUTOLOAD;
 int do_study(string);
 int study(object me, string arg)
 {
-    object where = environment(me);
     object ob;
     int myskill, cost;
 
@@ -52,11 +51,7 @@ void create()
 {
         set_name(HIG"獨孤九劍劍譜"NOR, ({ "lonely_sword_book","ls_book" }));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("no_drop","這是當世孤本啊。如何能丟失？");
                 set("no_put","這是當世孤本啊。如何能丟失？");
                 set("no_get",1);
@@ -65,7 +60,6 @@ void create()
                 set("value", 1000);
                 set("material", "paper");
                 set("master_id","npc");
-        }
 }
 
 void init()

@@ -7,14 +7,10 @@ void create()
 {
         set_name("粗磁大碗", ({"wan", "da wan","ci wan"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一個藍邊粗磁大碗。\n");
+        set("long", "一個藍邊粗磁大碗。\n");
                 set("unit", "個");
                 set("value", 0);
                 set("max_liquid", 4);
-        }
 
 // because a container can contain different liquid
 // we set it to contain tea at the beginning

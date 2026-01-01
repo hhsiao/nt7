@@ -15,11 +15,7 @@ void create()
         set_weight(4000);
         set("unit", "根");
         set("long", (: long_desc :));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", (: long_desc :));
-        }
+        set("long", (: long_desc :));
                 set("value", 450);
                 set("material", "steel");
                 set("snake_type","怪蛇");
@@ -40,7 +36,7 @@ string long_desc()
 
                   if( query("snake", staff) == 1)desc+=HIW"杖上盤著一條銀鱗閃閃的小蛇，不住的蜿蜒上下。\n"NOR;
                   else if( query("snake", staff) == 2)desc+=HIW"杖上盤著兩條銀鱗閃閃的小蛇，不住的蜿蜒上下。\n"NOR;
-                  
+
                   return desc;
 }
 
@@ -86,4 +82,3 @@ int convert(string arg)
 
                   return 1;
 }
-

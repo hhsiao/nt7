@@ -4,16 +4,11 @@
 void create()
 {
         set_name(HIW "昊天丹" NOR, ({ "haotian dan", "haotian", "dan" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "這是一顆精煉而成的昊天丹，服用後能增加靈慧。\n" NOR);
+        set("long", HIW "這是一顆精煉而成的昊天丹，服用後能增加靈慧。\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 10000);
                 set("base_weight", 50);
                 set("only_do_effect", 1);
-
-        }
         setup();
 }
 

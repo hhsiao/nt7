@@ -17,14 +17,10 @@ void create()
         set_name(RED "更名卷軸" NOR, ({ "idname scroll", "scroll" }) );
         set_weight(30);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "可以使自造裝備改變(idname)代號和中文名的更名卷軸。\n" NOR);
+        set("long", HIW "可以使自造裝備改變(idname)代號和中文名的更名卷軸。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                 set("unit", "張");
-        }
 
         setup();
 }

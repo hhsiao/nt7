@@ -9,20 +9,16 @@ void create()
 {
         set_name(WHT"白手絹"NOR, ({ "bai shoujuan", "piece", "shoujuan"}) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "方");
+        set("unit", "方");
                 set("material", "cloth");
                 set("long", "這是一方雪白的手絹，上面有些字：
-     跟著手絹上的圖案走，你就可以走出大戈壁。。。\n");               
+     跟著手絹上的圖案走，你就可以走出大戈壁。。。\n");
                 set("armor_type", "bandage");
                 set("armor_prop/attack", -10);
                 set("armor_prop/defense", -10);
                 set("armor_prop/unarmed", -10);
                 set("no_get",1);
                 set("no_drop",1);
-        }
 }
 
 void init()

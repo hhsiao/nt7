@@ -2,16 +2,12 @@
 
 inherit BOOK;
 inherit F_UNIQUE;
- 
+
 void create()
 {
         set_name("「九陰真經」殘本", ({ "jiuyin zhenjing3" }));
         set_weight(400);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本手抄本，上面記錄了一些武功秘訣。\n");
                 set("value", 0);
                 set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "difficulty": 30,
                         "max_skill" : 179,
                 ]) );
-        }
 }

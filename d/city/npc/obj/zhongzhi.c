@@ -7,15 +7,11 @@ void create()
 {
         set_name(YEL "花種" NOR, ({"hua zhong", "zhong"}));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一枚無法確定品種的花種。\n");
+        set("long", "一枚無法確定品種的花種。\n");
                 set("unit", "只");
                 set("value", 20);
                 set("food_remaining", 1);
                 set("food_supply", 10);
-        }
 }
 
 void init()
@@ -26,7 +22,7 @@ void init()
 int do_zhonghua()
 {
         object me,ob;
- 
+
         me = this_player();
         ob = this_object();
 

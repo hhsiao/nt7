@@ -60,23 +60,19 @@ void create()
 {
         set_name(BLINK + HIR"落日弓"NOR, ({ "sun bow", "bow", "gong" }) );
         set_weight(40000);
-        /*if(clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long",
+        set("long",
 HIR"天下第一神弓——落日弓，據聞自後羿射日後，天下已無人能拉開此弓。\n
 此弓一出，直可驚天地，泣鬼神！！！\n"NOR);
                 set("unit", "把");
                 set("value", 200000);
                 set("consistence", 85);
-                set("dam", 1800);      
+                set("dam", 1800);
                 set("no_put", 1);
                 set("consistence", 21);
                 set("is_bow", 1);
                 set("wield_msg", HIY"$N將$n"HIY"從肩上取下，握在手中。\n"NOR);
                 set("unwield_msg", HIY"$N將$n"HIY"橫跨，背在肩上。\n"NOR);
                 set("material", "iron");
-        }
         init_hammer(10);
 }
 
@@ -91,7 +87,7 @@ int do_she(string arg)
            int i, n, m;
            string what;
            mapping exits;
-   
+
     room = environment(me);
            bow=query_temp("weapon", me);
 
@@ -102,7 +98,7 @@ int do_she(string arg)
                    return notify_fail("弓還在背上呢，怎麼射呀！\n");
 
            if( me->query_str()<query("dam", bow)/20 )
-                   return notify_fail("你使盡吃奶的力氣也拉不開弓來，看來力氣不夠！\n");  
+                   return notify_fail("你使盡吃奶的力氣也拉不開弓來，看來力氣不夠！\n");
 
            if( query("consistence", bow)<0 )
            {
@@ -116,13 +112,13 @@ int do_she(string arg)
                    return notify_fail("你現在正忙著呢！\n");
 
            if( query("qi", me)<200 || query("jing", me)<100 )
-                   return notify_fail("你現在精氣不夠充盈，硬拉功怕有危險啊！\n"); 
+                   return notify_fail("你現在精氣不夠充盈，硬拉功怕有危險啊！\n");
 
            if (! arg || sscanf(arg, "%s %d", what, n) != 2)
                    return notify_fail("不會射箭？找人家教教你吧！\n");
-                   
+
             if( n>query("dam", bow)/200)n=query("dam", bow)/200;
-            
+
             for (i = 0; i < n; i++)
              {
             if( objectp(room) && mapp(exits=query("exits", room)) && stringp(exits[what]) )
@@ -135,26 +131,26 @@ int do_she(string arg)
 
         if (room == environment(me))
                       return notify_fail("看清楚點，朝哪裡射呀你？\n");
-                      
+
         if (objectp(room))
              {
             if( query("have_quest", room) || query("no_fight", room) )
-                              return notify_fail("那裡有神明佐佑，不容你胡來也！\n"); 
-                              
-            "/cmds/std/look.c"->look_room(me, room);  
-                      
+                              return notify_fail("那裡有神明佐佑，不容你胡來也！\n");
+
+            "/cmds/std/look.c"->look_room(me, room);
+
                       message_vision(HIY"$N從箭囊內抽出一支"HIW"羽箭"HIY"，搭在"
                                        +query("name", bow)+HIY"上，隨後立了一個霸王上弓式，\n朝"HIR
                                        + exits_name[what] + HIY"把弓拉滿.......\n"NOR, me);
-                                       
+
             tell_object(all_inventory(room), HIB"你覺得一股猛烈的殺機從"HIR
                                        + exits_name[exits_reverse(what)] + HIB"傳來！！\n"NOR);
 
                       tell_object(me, HIR + exits_name[what] + HIW"的情景你一目瞭然，"
-                                + "你把利箭漸漸瞄準了——>\n"NOR);   
-                      me->start_busy(2 + random(3));  
+                                + "你把利箭漸漸瞄準了——>\n"NOR);
+                      me->start_busy(2 + random(3));
             input_to("do_shoot", me, bow, room, what, m);
-             } else return notify_fail("看清楚點，朝哪裡射呀你？\n");  
+             } else return notify_fail("看清楚點，朝哪裡射呀你？\n");
 
             return 1;
 }
@@ -164,7 +160,7 @@ int do_shoot(string id, object me, object bow, object room, string what, int m)
             object ob, obj, *env;
             int damage, ratio;
 
-            if (! id || id == "") 
+            if (! id || id == "")
             {
                      message_vision("$N嘆了口氣，將箭從"+query("name", bow)+"上又取了下來。\n",me);
                      return 1;
@@ -194,7 +190,7 @@ int do_shoot(string id, object me, object bow, object room, string what, int m)
                       damage = damage + random(damage);
 
                 me->want_kill(ob);
-                      
+
                      if (random(me->query_skill("arrow", 1)) > ob->query_skill("dodge", 1) / 4
                   || random(query("combat_exp", me))>query("combat_exp", ob)*2 )
                      {
@@ -223,13 +219,13 @@ int do_shoot(string id, object me, object bow, object room, string what, int m)
                                                    + exits_name[exits_reverse(what)]
                                                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"手臂"HIY"上！\n"NOR,
                                                    ob);
-                              damage = damage / 4 + random(damage / 2);                                  
+                              damage = damage / 4 + random(damage / 2);
                               ob->receive_damage("qi", damage, me);
-                              
+
                               if( damage>query_temp("apply/armor", ob) )
                                       ob->receive_wound("qi",damage-query_temp("apply/armor", ob),me);
-                              
-                              COMBAT_D->report_status(ob, random(2));  
+
+                              COMBAT_D->report_status(ob, random(2));
                                       tell_object(me, HIR"嘿嘿，目標應聲而倒，真是好箭法！\n"NOR);
 
                               ratio=query("combat_exp", me)/100;
@@ -237,7 +233,7 @@ int do_shoot(string id, object me, object bow, object room, string what, int m)
                               if (ratio > 1000) ratio = 1000;
                               if (ratio < 10) ratio = 10;
                               if (! playerp(ob))
-                                      me->improve_skill("arrow", 
+                                      me->improve_skill("arrow",
                                               random((damage / 2 + me->query_int() / 10) * ratio / 100), 0);
 
                       } else
@@ -250,7 +246,7 @@ int do_shoot(string id, object me, object bow, object room, string what, int m)
                                        damage=query("dam", bow)*(5+me->query_str())/(m*5+obj->query_dex());
                                        if (damage < 100) damage = 100;
                                        if (damage > 1500) damage = 1500;
-                                       damage = damage / 2 + random(damage / 2); 
+                                       damage = damage / 2 + random(damage / 2);
 
                                        if (damage > 2000)
                                         message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
@@ -281,7 +277,7 @@ int do_shoot(string id, object me, object bow, object room, string what, int m)
                                 obj->receive_damage("qi", damage, me);
                                 if( damage>query_temp("apply/armor", obj) )
                                         obj->receive_wound("qi",damage-query_temp("apply/armor", obj),me);
-                                COMBAT_D->report_status(obj, random(2));  
+                                COMBAT_D->report_status(obj, random(2));
 
                                 tell_object(me,HIB"糟糕，箭好象射到別人了，好好練箭法吧！\n"NOR);
                                } else
@@ -306,4 +302,4 @@ int do_shoot(string id, object me, object bow, object room, string what, int m)
              me->receive_damage("qi", 100, me);
 
              return 1;
-}    
+}

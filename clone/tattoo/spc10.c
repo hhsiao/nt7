@@ -6,10 +6,7 @@ void create()
 {
         set_name(NOR + WHT "冥皇煉獄圖" NOR, ({ "lianyu tu", "lianyu", "tu" }));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
+        set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
                 set("unit", "張");
                 set("value", 16500);
                 set("material", "paper");
@@ -20,5 +17,4 @@ void create()
                 set("tattoo_dex", 2);
                 set("tattoo_special", "hatred");
                 set("tattoo_spcname", "殺氣沖霄");
-        }
 }

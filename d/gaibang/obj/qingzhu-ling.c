@@ -9,13 +9,9 @@ void create()
 {
         set_name("青竹令", ({"qingzhu ling", "bamboo", "ling"}));
         set_weight(500);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "面");
+        set("unit", "面");
                 set("long","這是一面青竹削制的令牌，正面青光發亮，燒蝕著「丐幫」兩個大字。\n");
                 set("material", "bamboo");
-        }
 }
 
 void init()
@@ -29,19 +25,19 @@ void init()
 }
 
 int do_bihua(string arg)
-{     
+{
         object ob1, ob2, old_target;
         string family;
 
         ob1 = this_player();
-        
-        if( !arg || arg=="" ) 
-        return notify_fail("你想跟誰比劃？\n");  
+
+        if( !arg || arg=="" )
+        return notify_fail("你想跟誰比劃？\n");
 
         if( query_temp("busy", this_object()) )
         return notify_fail("每次只能有兩人參加比武。\n");
 
-        if( !objectp( ob2 = present(arg, environment(ob1)) ) ) 
+        if( !objectp( ob2 = present(arg, environment(ob1)) ) )
         return notify_fail("你想跟誰比劃？\n");
 
         if( query_temp("owner", this_object()) != query("name", ob1) )
@@ -56,7 +52,7 @@ int do_bihua(string arg)
         if( query("rank", ob2) != query("rank", ob1) )
         return notify_fail("對方在幫中的等級與你不同，不能互相較藝！\n");
 
-        if( !objectp( present("qingzhu ling", ob2) ) ) 
+        if( !objectp( present("qingzhu ling", ob2) ) )
         return notify_fail("對方沒有青竹令，你們不能互相較藝！\n");
 
         if( query_temp("gaibang_winner", ob1) )
@@ -65,15 +61,15 @@ int do_bihua(string arg)
         if( query_temp("loser", this_object()) == query("name", ob2) )
         return notify_fail("對方是你的手下敗將，你不能與之比劃武藝！\n");
 
-        if( ob1 == ob2)    
+        if( ob1 == ob2)
         return notify_fail("你不能攻擊自己。\n");
 
         if( query_temp("win_times", this_object()) >= 1 )
         return notify_fail("你已經戰勝同門一次，不必繼續比試武藝。\n");
 
         if( userp(ob2) && query_temp("pending/fight", ob2) != ob1){
-                message_vision("\n$N對著$n說道：" 
-                        + RANK_D->query_self(ob1) 
+                message_vision("\n$N對著$n說道："
+                        + RANK_D->query_self(ob1)
                         + ob1->name() + "領教師兄的高招！\n\n", ob1, ob2);
                 if( objectp(old_target=query_temp("pending/fight", ob1)) )
                         tell_object(old_target, YEL + ob1->name() + "取消了和你比試的念頭。\n" NOR);
@@ -83,7 +79,7 @@ int do_bihua(string arg)
                 write(YEL "由於對方是由玩家控制的人物，你必須等對方同意才能進行比試。\n" NOR);
                 return 1;
         }
-            
+
         delete_temp("halted", ob1);
         delete_temp("halted", ob2);
 
@@ -108,9 +104,9 @@ void fighting(object ob1, object ob2)
 
 int checking(object ob1, object ob2)
 {
-        object ob; 
-        
-        if(ob1->is_fighting()) 
+        object ob;
+
+        if(ob1->is_fighting())
         {
                 call_out("checking", 1, ob1, ob2);
                 return 1;
@@ -122,7 +118,7 @@ int checking(object ob1, object ob2)
         if ( !present(ob1, environment(ob2)) ) return 1;
 
         if ( !present(ob2, environment(ob1)) ) return 1;
-           
+
         if( query_temp("halted", ob1) )
         {
                 delete_temp("halted", ob1);
@@ -138,21 +134,21 @@ int checking(object ob1, object ob2)
         if( query("qi", ob1)*2>query("max_qi", ob1) )
         {
                 if( query("qi", ob2)*2>query("max_qi", ob2)){
-                        message_vision( ob1->name() + "與" + ob2->name() + 
+                        message_vision( ob1->name() + "與" + ob2->name() +
                         "比武不分勝負！\n", ob1);
                         return 1;
                 }
-                message_vision( ob2->name() + "向" + ob1->name() + 
+                message_vision( ob2->name() + "向" + ob1->name() +
                         "拱了拱手，在青竹令上劃了一道記號，並簽上自己的名字。\n", ob1);
 
                 ob = present("qingzhu ling", ob1);
                 addn_temp("win_times", 1, ob);
                 set_temp("loser",query("name",  ob2), ob);
                 set_temp("gaibang_winner", 1, ob1);
-        } 
-        else 
+        }
+        else
         {
-                message_vision( ob1->name() + "向" + ob2->name() + 
+                message_vision( ob1->name() + "向" + ob2->name() +
                         "拱了拱手，在青竹令上劃了一道記號，並簽上自己的名字。\n", ob1);
 
                 ob = present("qingzhu ling", ob2);
@@ -185,14 +181,14 @@ int do_look(string arg)
         if( present(arg, this_player()) != ob ) return 0;
 
         if( query_temp("win_times", ob)){
-                tell_object( this_player(), 
+                tell_object( this_player(),
                 "這是一面青竹削制的令牌，正面青光發亮，燒蝕著「丐幫」兩個大字，\n" +
                 "青竹令的背面刻著一道表示勝利的記號。反面是"+query_temp("loser", ob)+
                 "的簽名。\n");
 
                 tell_object(this_player(),"\n這塊青竹令由簡長老簽發，屬於"+query_temp("owner", ob)+"。\n");
         }
-        else         tell_object( this_player(), 
+        else         tell_object( this_player(),
                 "這是一面青竹削制的令牌，正面青光發亮，燒蝕著「丐幫」兩個大字。\n" );
 
         return 1;

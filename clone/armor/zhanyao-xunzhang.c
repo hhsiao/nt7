@@ -1,7 +1,7 @@
 #include <armor.h>
 #include <ansi.h>
 
-int is_xunzhang() { return 1; } 
+int is_xunzhang() { return 1; }
 inherit MEDAL;
 
 void create()
@@ -9,11 +9,7 @@ void create()
         set_name(HIG "斬妖勳章" NOR, ({ "zhanyao xunzhang", "zhanyao", "xunzhang" }));
         set("long", HIG "斬殺千年九頭蛇精後獲得的勳章，非常珍貴，乃勇者的象徵。\n" NOR);
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "枚");
+        set("unit", "枚");
                 set("value", 200000);
                 set("material", "bronze");
                 set("armor_prop/damage", 200);
@@ -23,11 +19,9 @@ void create()
                 set("armor_prop/dex", 6);
                 set("armor_prop/str", 6);
                 set("armor_prop/int", 6);
-
-        }
         set("enchase/SN", "zyxz");
         setup();
-}        
+}
 
 int query_autoload()
 {

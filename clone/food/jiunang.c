@@ -1,6 +1,6 @@
 // 神話世界·西遊記·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // created by snowcat on 4/9/1997
 // jiunang.c 羊皮大酒囊
 
@@ -11,15 +11,10 @@ void create()
 {
   set_name("羊皮大酒囊", ({"jiunang", "wineskin", "skin"}));
   set_weight(800);
-  /*if (clonep())
-    set_default_object(__FILE__);
-  else*/
-  {
-     set("long", "一個用來裝羊奶酒的大酒囊，大概裝得十來升的酒。\n");
+  set("long", "一個用來裝羊奶酒的大酒囊，大概裝得十來升的酒。\n");
      set("unit", "個");
      set("value", 100);
      set("max_liquid", 20);
-  }
 
   set("liquid", ([
         "type": "alcohol",

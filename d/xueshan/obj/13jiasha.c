@@ -9,10 +9,7 @@ void create()
 {
         set_name(HIW"十三龍象袈裟"NOR, ({ "shisan longxiang", "jiasha", "longxiang jiasha" }));
         set_weight(5000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("jiasha/neili", 0);
+        set("jiasha/neili", 0);
                 set("long", HIW"這是一件喇嘛穿的袈裟，上面繡著些梵文，看似普通但卻是大輪寺開寺始祖終身所穿的袈裟。
 可能是因為它長時間被龍象內力籠罩，所以也似乎有了儲存內力的功效。你可以試試注入內力(longxiang)。\n"NOR);
                 set("material", "silk");
@@ -23,7 +20,6 @@ void create()
                 set("remove_msg", HIW"$N脫下一件十三龍象袈裟，小心翼翼的放入懷中。\n" NOR);
                 set("armor_prop/armor", 500);
                 set("treasure",1);
-        }
         setup();
 }
 
@@ -45,10 +41,10 @@ int do_add(string arg)
                 return notify_fail("你上一個動作還沒有完成。\n");
 
         if( me->query_skill_mapped("force") == "longxiang" && me->query("neili", 1) < 1000 )
-                return notify_fail("你的內力不足，無法注入足夠的內力！\n");     
+                return notify_fail("你的內力不足，無法注入足夠的內力！\n");
 
         if( me->query_skill_mapped("force") != "longxiang" && me->query("neili", 1) < 1500 )
-                return notify_fail("你的內力不足，無法注入足夠的內力！\n");     
+                return notify_fail("你的內力不足，無法注入足夠的內力！\n");
 
         if ( me->is_fighting())
                 return notify_fail("戰鬥中不能將內力注入袈裟。\n");

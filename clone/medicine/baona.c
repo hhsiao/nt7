@@ -4,10 +4,7 @@
 void create()
 {
         set_name(HIY "三黃寶臘丹" NOR, ({"baola dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIY "這是一粒黃色的藥丸，用牛黃輔以原料製成，具有不"
+        set("long", HIY "這是一粒黃色的藥丸，用牛黃輔以原料製成，具有不"
                             "錯的解毒效果。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 5000);
@@ -28,7 +25,6 @@ void create()
                         "min_level" : 80,
                         "medical" : 100,
                 ]));
-        }
         setup();
 }
 

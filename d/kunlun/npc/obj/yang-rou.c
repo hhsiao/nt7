@@ -8,12 +8,8 @@ void create()
 {
         set_name("羊肉", ({"yang rou", "rou"}));
         set_weight(900);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一塊又肥又香的羊肉。\n");
+        set("long", "一塊又肥又香的羊肉。\n");
                 set("unit", "塊");
                 set("food_remaining", 3);
                 set("food_supply", 40);
-        }
 }

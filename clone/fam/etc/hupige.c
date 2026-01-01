@@ -5,13 +5,9 @@ void create()
 {
         set_name(HIW "白虎皮革" NOR, ({ "baihu pige", "pige" }));
         set_weight(5000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "一張巨大的白虎皮革，乃世間珍品。\n" NOR);
+        set("long", HIW "一張巨大的白虎皮革，乃世間珍品。\n" NOR);
                 set("unit", "張");
                 set("value", 1000000);
-        }
         setup();
 }
 

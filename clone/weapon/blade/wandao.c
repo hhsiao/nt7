@@ -21,14 +21,10 @@ void create()
         int i = random(sizeof(names));
         set_name(names[i],({ ids[i], "wan dao", "blade" }) );
         set_weight(2000);
-        /*if( clonep() )
-                 set_default_object(__FILE__);
-        else*/ {
-                set("long", "一把彎彎的戰刀．\n");
+        set("long", "一把彎彎的戰刀．\n");
                 set("unit", "把");
                 set("value", 400);
                 set("material","metal");
-        }
         init_blade(25);
         setup();
 }

@@ -43,17 +43,13 @@ void create()
 {
         set_name(HIM "聚寶箱" NOR, ({ "ju baoxiang", "baoxiang", "xiang" }));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", sort_string(HIW "一個四周邊緣環繞著神秘光環的箱子，據說"
+        set("long", sort_string(HIW "一個四周邊緣環繞著神秘光環的箱子，據說"
                                 "可以將東西無限制的存（store）進去,不會"
                                 "丟失，且無論什麼時候都可以取（take）出"
                                 "來，還可以使用密碼鎖（lock）防盜。" NOR, 38, 0));
 
                 set("value", 100);
                 set("unit", "個");
-        }
         set("no_get", 1);
         setup();
 }
@@ -127,9 +123,7 @@ void init()
 
 int do_open(string arg)
 {
-        string f, pass, new_pass, st_pass;
         object me;
-        int st_stat;
 
         me = this_player();
 
@@ -168,9 +162,7 @@ int get_passwd(string pass, object ob)
 
 int do_lock(string arg)
 {
-        string f, pass, new_pass, st_pass;
         object me;
-        int st_stat;
 
         me = this_player();
 

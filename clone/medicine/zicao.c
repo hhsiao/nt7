@@ -8,14 +8,9 @@ void create()
 {
     set_name(HIM"紫草"NOR, ({"zi cao", "zicao"}));
     set_weight(40);
-    /*if (clonep())
-        set_default_object(__FILE__);
-    else*/
-    {
-        set("long", "這是崑崙山中出產的紫草，食之據說能延年益壽。\n");
+    set("long", "這是崑崙山中出產的紫草，食之據說能延年益壽。\n");
         set("unit", "株");
         set("value", 80);
-    }
 }
 
 void init()
@@ -30,7 +25,7 @@ int do_eat(string arg)
         return notify_fail("別急，慢慢吃，小心別噎著了。\n");
     if (!id(arg))
         return notify_fail("你要吃什麼？\n");
-    if(arg=="zi cao" || "zicao") 
+    if(arg=="zi cao" || "zicao")
     {
         set_temp("nopoison", 1, this_player());
         set("eff_jing",query("max_jing",  this_player()), this_player());

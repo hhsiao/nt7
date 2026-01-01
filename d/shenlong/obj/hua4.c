@@ -7,14 +7,10 @@ inherit ITEM;
 void create()
 {
 	set_name(HIC "翡翠蘭" NOR, ({"feicui lan", "feicui", "lan"}));
-   /*if (clonep())
-		set_default_object(__FILE__);
-   else*/ {
-        	set("unit", "朵");
+   set("unit", "朵");
 		set("long", "這是一朵千年難得一見的翡翠蘭，據說能解百毒。\n");
         	set("value", 1000000);
 		set("only_do_effect", 1);
-	}
         setup();
 }
 
@@ -42,20 +38,20 @@ int do_effect(object me)
                 break;
         case 6:
                 time = time - time * 6 / 10;
-                break;  
+                break;
         case 7:
                 time = time - time * 7 / 10;
-                break;                  
+                break;
         }
         if( time < 10 ) time = 10;
 
-        if( time()-query_temp("last_eat/feicui", me) < time ) 
+        if( time()-query_temp("last_eat/feicui", me) < time )
         {
-                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n"); 
-                return 1; 
+                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
+                return 1;
         }
 
-        set_temp("last_eat/feicui", time(), me); 
+        set_temp("last_eat/feicui", time(), me);
         me->clear_condition();
 set("eff_jing",query("max_jing",  me), 	me);
 set("jing",query("max_jing",  me), 	me);

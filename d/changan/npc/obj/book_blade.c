@@ -6,11 +6,7 @@ void create()
 {
         set_name("〖刀法簡介〗", ({"blade book", "book"}));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ 
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("value", 1000);
                 set("material", "paper");
                 set("skill", ([
@@ -20,5 +16,4 @@ void create()
                         "difficulty": 20,
                         "max_skill": 20,
                 ]));
-        }
 }

@@ -7,11 +7,7 @@ void create()
 {
         set_name("「獨孤九劍殘本」", ({ "dugu canben", "canben", "dugu" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
                         "這是一本薄薄的佈滿灰塵的獨孤九劍殘本，只因長期藏\n"
                         "在空室之中，書頁已有些破損殘缺。\n",
@@ -19,7 +15,6 @@ void create()
                 set("value", 1);
                 set("no_sell", 1);
                 set("material", "paper");
-        }
 }
 
 void init()
@@ -61,5 +56,3 @@ int do_read(string arg)
         destruct(this_object());
         return 1;
 }
-
-

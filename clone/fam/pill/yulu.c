@@ -4,15 +4,11 @@ inherit ITEM;
 void create()
 {
         set_name(HIG "天香玉露" NOR, ({ "tianxiang yulu", "tianxiang", "yulu", "herb_yulu" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "瓶");
+        set("unit", "瓶");
                 set("base_unit", "瓶");
                 set("long", HIG "採自靈山，千年來以靈芝為母，不斷的"
                             "吸取著日精月華。\n" NOR);
                 set("value", 30000);
-        }
         setup();
 }
 

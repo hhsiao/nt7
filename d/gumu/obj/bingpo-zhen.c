@@ -6,16 +6,12 @@ inherit THROWING;
 void create()
 {
         set_name(HIW "冰魄銀針" NOR, ({ "bingpo zhen", "bingpo", "zhen" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "這是一根細長的銀針，針尖透出陣陣寒氣。\n" NOR);
+        set("long", HIW "這是一根細長的銀針，針尖透出陣陣寒氣。\n" NOR);
                 set("unit", "些");
                 set("base_unit", "根");
                 set("base_weight", 500);
                 set("base_value", 0);
                 set("material", "iron");
-        }
 
         set_temp("daub/poison", ([
                 "id"     : "xiao longnv",

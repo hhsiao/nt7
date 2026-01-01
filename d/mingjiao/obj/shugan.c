@@ -9,14 +9,10 @@ void create()
 {
         set_name("樹幹", ({ "shu gan","trunk"}) );
         set_weight(20000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一根剛剛砍下來的樹幹。\n");
+        set("long", "這是一根剛剛砍下來的樹幹。\n");
                 set("unit", "根");
                 set("no_get", "這麼大的樹幹，你能拿起來嗎？");
                 set("value",1);
-        }
 }
 
 void init()
@@ -33,7 +29,7 @@ int set_owner(string arg)
         if (!arg) return notify_fail("指令格式：setowner <xxx>\n");
         set("owner",arg);
         write("OK!\n");
-                
+
         return 1;
 }
 
@@ -70,7 +66,7 @@ int do_carry(string arg)
 
                         return 1;
                 }
-        
+
         message_vision("$N使勁一抬，將剛砍下來的樹幹扛到肩上\n",me);
         this_object()->move(me);
         set_temp("apply/short", ({(query("title", me)+""+query("name", me)+"扛著一根樹幹")}), me);

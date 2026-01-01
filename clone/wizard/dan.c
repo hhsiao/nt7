@@ -13,13 +13,8 @@ void init()
 void create()
 {
         set_name(HIB "還魂丹" NOR, ({ "huanhun dan", "compensation dan", "dan" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "粒");
+        set("unit", "粒");
                 set("long", "這是一粒非常奇異的藥丸，據說一吃就死，但也或許有某些奇效。\n");
-        }
         setup();
 }
 

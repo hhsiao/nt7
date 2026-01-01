@@ -6,11 +6,7 @@ void create()
 {
         set_name("本草綱目", ({ "bencao gangmu", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "封面上寫著「本草綱目」，是一個醫學的百科全書。\n");
                 set("value", 2000);
@@ -22,5 +18,4 @@ void create()
                         "difficulty":   25,
                         "max_skill":    2100,
                 ]));
-        }
 }

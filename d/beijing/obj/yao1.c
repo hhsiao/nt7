@@ -4,13 +4,9 @@ void create()
 {
         set_name(RED"膏藥"NOR, ({ "gaoyao" }) );
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "看上去很奇怪的一副膏藥，半邊紅半邊黑。\n");
+        set("long", "看上去很奇怪的一副膏藥，半邊紅半邊黑。\n");
                 set("unit", "副");
                 set("value", 500);
-        }
     setup();
 }
 

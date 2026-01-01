@@ -7,11 +7,7 @@ void create()
 {
         set_name("十八泥偶", ({ "18 niou", "18", "niou" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "盒");
+        set("unit", "盒");
                 set("long", NOR + WHT "
 這是一個小木盒，盒中墊著棉花，並列著三排泥制玩偶，每排
 六個，共是一十八個。玩偶製作得非常精巧，每個都是裸體的
@@ -28,7 +24,6 @@ void create()
                         "max_skill"    : 99,
                         "min_skill"    : 20
                 ]));
-        }
 }
 
 void init()

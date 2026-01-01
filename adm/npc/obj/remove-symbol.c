@@ -5,13 +5,9 @@ void create()
 {
         set_name(YEL "解除干將綁定符" NOR, ({ "remove symbol", "remove", "symbol" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", YEL "該符文可以解除(unbind)物品的被幹將聖符綁定。\n" NOR);
+        set("long", YEL "該符文可以解除(unbind)物品的被幹將聖符綁定。\n" NOR);
                 set("unit", "塊");
                 set("value", 5000);
-        }
         setup();
 }
 
@@ -48,7 +44,7 @@ int do_unbind(string arg)
                 return notify_fail("目前只開放解除勳章類的綁定！\n");
 
         if( query("equipped", ob) )
-                return notify_fail("你先解除" + ob->name() + "的裝備再說！\n"); 
+                return notify_fail("你先解除" + ob->name() + "的裝備再說！\n");
 
         id = replace_string(query("id", ob), " ", "-");
         file = "/clone/medal/"+id+".c";
@@ -72,4 +68,3 @@ int query_autoload()
 {
         return 1;
 }
-

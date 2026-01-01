@@ -7,11 +7,7 @@ void create()
 {
         set_name(HIW "寰宇天晶" NOR, ({"tian jing", "tian", "jing"}));
         set_weight(10000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", HIW "\n一塊純白色的水晶，晶瑩剔透，無暇的表面射\n"
+        set("long", HIW "\n一塊純白色的水晶，晶瑩剔透，無暇的表面射\n"
                             "出耀眼的光澤。其中彷彿蘊藏著千千萬萬的生\n"
                             "命，生命流動不息，散發出宇宙的力量。這便\n"
                             "是傳說中的至寶——寰宇天晶，相傳為女媧娘\n"
@@ -24,5 +20,4 @@ void create()
                 set("material_name", HIW "寰宇天晶" NOR);
                 set("can_make", "all");
                 set("power_point", 200);
-        }
 }

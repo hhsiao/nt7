@@ -6,10 +6,7 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(NOR + HIB "蠱毒" NOR, ({ "gu du", "gu", "du", "gudu" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIB "這是一粒集百毒之精華煉製而成的毒藥，毒性猛烈之極。\n" NOR);
+        set("long", HIB "這是一粒集百毒之精華煉製而成的毒藥，毒性猛烈之極。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 100);
                 set("base_weight", 10);
@@ -25,7 +22,6 @@ void create()
                 ]));
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }

@@ -5,10 +5,7 @@ void create()
 {
         set_name(YEL "固元鎮定散" NOR, ({"zhending san", "san"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", YEL "這是一包淡黃色的粉末，具有神奇的鎮定效果。\n" NOR);
+        set("long", YEL "這是一包淡黃色的粉末，具有神奇的鎮定效果。\n" NOR);
                 set("base_unit", "包");
                 set("base_value", 5000);
                 set("base_weight", 60);
@@ -29,7 +26,6 @@ void create()
                         "min_level" : 120,
                         "medical" : 150,
                 ]));
-        }
         setup();
 }
 

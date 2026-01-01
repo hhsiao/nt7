@@ -12,15 +12,9 @@ void create()
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
         set_name(YEL "元素" NOR, ({ "element" }));              /* NAME_EXIT  */
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-//**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
                 set("long", YEL "從特殊的水晶中粹取出來的元素粉末。\n" NOR); /* DBASE_EXIT  */
                 set("value", 100);
                 set("unit", "顆");
-        }
         setup();
 }
-

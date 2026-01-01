@@ -6,17 +6,13 @@
 void create()
 {
         set_name(HIG "菩提子" NOR, ({"puti zi", "zi"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIG "這是一顆晶瑩如玉的菩提子，採自靈山佛祖座"
+        set("long", HIG "這是一顆晶瑩如玉的菩提子，採自靈山佛祖座"
                             "前，珍稀無比，\n乃萬年菩提樹之實，功能化百劫"
                             "，渡千災，與天地同壽。\n");
                 set("base_value", 50000);
                 set("base_weight", 100);
                 set("base_unit", "顆");
                 set("only_do_effect", 1);
-        }
         setup();
 }
 
@@ -53,6 +49,6 @@ int do_effect(object me)
         add_amount(-1);
         if (query_amount() < 1)
                 destruct(this_object());
-                
+
         return 1;
 }

@@ -6,11 +6,7 @@ void create()
 {
         set_name( "胡家刀譜",({ "hujia daopu", "book" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long","這是胡家刀譜總訣，記錄了精妙的胡家刀法。\n");
                 set("value", 50);
                 set("material", "paper");
@@ -23,5 +19,4 @@ void create()
                         "min_skill":    30,           // the minimum level you can learn
                         "max_skill":    149           // the maximum level you can learn
                 ]) );
-        }
 }

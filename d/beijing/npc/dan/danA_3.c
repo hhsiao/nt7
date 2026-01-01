@@ -5,13 +5,9 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIR"補精丹"NOR, ({"bujing dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("base_unit", "粒");
+        set("base_unit", "粒");
                 set("base_value", 80);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }

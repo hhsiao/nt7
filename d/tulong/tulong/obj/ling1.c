@@ -13,11 +13,7 @@ void create()
 {
         set_name(CYN "聖火令" NOR, ({ "shenghuo ling", "shenghuo", "ling" }) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "把");
+        set("unit", "把");
                 set("value", 10000);
                 set("material", "steel");
                 set("no_sell", "他奶奶的，這是什麼玩意？");
@@ -26,7 +22,6 @@ void create()
                                 "色變幻。令上刻得有不少波斯文字。 \n" NOR);
                 set("wield_msg", CYN "$N“唰”的一聲，從腰間抽出一片黑黝的鐵牌握在手中。\n");
                 set("unwield_msg", CYN "$N將聖火令插回腰間。\n" NOR);
-        }
         init_sword(100);
         setup();
 }
@@ -37,7 +32,7 @@ int do_du(string arg)
 //      object where = environment(me);
 //      object ob;
 //      mapping skill;
-        int pxlevel; 
+        int pxlevel;
 
         if (!(arg=="shenghuo ling" || arg == "shenghuo" || arg == "ling" ))
         return 0;
@@ -49,7 +44,7 @@ int do_du(string arg)
                 write("你無法在戰鬥中專心下來研讀新知！\n");
                 return 1;
         }
-        if (!id(arg)) { 
+        if (!id(arg)) {
                 write("你要讀什麼？\n");
                 return 1;
         }

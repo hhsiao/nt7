@@ -34,14 +34,10 @@ void create()
 {
         set_name(HIG"巡城腰牌"NOR, ({ "yao pai","pai" }) );
         set_weight(600);
-        /*if( clonep() )                 
-        set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", "這是一塊"HIW"屬於幫派"NOR"的巡城腰牌，帶上它可以巡邏(xunluo)幫派地盤。\n");
                 set("value", 0);
-             }   
-}
+             }
 
 void init()
 {
@@ -54,13 +50,13 @@ int do_xunluo(object me, object ob)
         mapping renwu;
         me=this_player();
         renwu=query("bunch_quest", me);
-        
+
         if( !mapp(renwu) )
                 return notify_fail("你目前沒有領取任何幫派任務！\n");
-        
+
         if( renwu["id"]!="xc")
                 return notify_fail("老大沒有讓你來巡城啊！\n");
-        
+
         the_place = base_name(environment(this_player()));
         if (member_array(the_place,renwu["place"]) != -1)
         {
@@ -72,6 +68,6 @@ int do_xunluo(object me, object ob)
         }
         else
                 tell_object(me,"你沒必要在這裡巡邏啊！\n");
-                
+
         return 1;
 }

@@ -1,17 +1,13 @@
-#include <ansi.h> 
+#include <ansi.h>
 inherit ITEM;
 
 void create()
 {
         set_name("蛇膽粉", ({ "shedan fen", "shedan", "fen" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "包");
+        set("unit", "包");
                 set("long", GRN "這是一包治療外傷的蛇膽粉。\n" NOR);
                 set("value", 2000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

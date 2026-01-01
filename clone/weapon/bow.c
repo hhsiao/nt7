@@ -8,16 +8,11 @@ void create()
 {
         set_name("短弓", ({ "short bow", "bow", "duan gong", "gong" }));
         set_weight(2000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", "一張短弓，打造得頗為精緻，具有不錯的準確度。\n");
                 set("value", 20000);
                 set("power", 100000);   // 攻擊威力
                 set("accuracy", 120);   // 準確度120%
-        }
         setup();
 }
 
@@ -125,7 +120,7 @@ int do_shot(string arg)
 
         ap = my_exp * query("accuracy") / 100;
         if (userp(victim)) ap /= 2;
-        
+
         if (v_exp / 2 + random(v_exp) > query("power") || ap < v_exp)
         {
                 switch (random(3))

@@ -5,15 +5,11 @@ void create()
         set_name( "桌子",({"table" }));
         set_weight(30000);
         set_max_encumbrance(18000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("material", "wood");
                 set("value", 2000);
                 set("long", "這張破桌子放在這裡很久了，上面放了一個八卦盤，和一個籤筒。\n" );
                 set("no_sell", "這樣東西不能隨便買賣。");
-        }
         setup();
 }
 void init()

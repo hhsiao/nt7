@@ -8,22 +8,18 @@ void create()
 {
         set_name(HIY "仙丹" NOR, ({ "xian dan", "dan", "xiandan" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆園園的仙丹，據說吃了可以增強智力。"
+        set("long", "一顆園園的仙丹，據說吃了可以增強智力。"
                     "增加先天屬性至五點\n");
                 set("value", 10000);
                 set("unit", "顆");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)
 {
         message_vision("$N一仰脖，吞下了一顆" + this_object()->name() +
                        "。\n", me);
-        if( query("gift/xiandan", me) >= 5 || 
+        if( query("gift/xiandan", me) >= 5 ||
             query("gift/int/succeed", me) >= 5 )
         {
                 message_vision("$N忽然“哇哇”，吐了一地。\n", me);

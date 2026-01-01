@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIM "藥王神篇" NOR, ({ "yaowang shenpian", "shu" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本薄薄的小冊子，上面工工整整"
                             "寫著“藥王神篇”幾個字。\n",
 
@@ -38,6 +34,5 @@ void create()
                         "tianxin" : 100,        // 天心解毒丹
                         "shengsheng" : 200,     // 生生造化丹
                 ]));
-        }
         setup();
 }

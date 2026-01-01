@@ -9,11 +9,7 @@ void create()
 {
         set_name("鐵手掌", ({ "iron hand", "hand", "shu", "book" }));
         set_weight(2000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long","易筋經攻防篇\n這是一塊鐵手掌，上面凹凹凸凸刻滿了人形搏擊的場面。\n");
                 set("value", 500);
                 set("material", "steel");
@@ -25,7 +21,6 @@ void create()
                         "difficulty":        20,        // the base int to learn this skill
                         "max_skill":        29        // the maximum level you can learn
                 ]) );
-        }
 }
 
 void init()
@@ -52,9 +47,9 @@ int do_study(string arg)
 //                        write("你現在過於疲倦，休息一會兒再讀吧！\n");
                         me->unconcious();
                         return 1;
-                }                  
+                }
                 else
-                {                  
+                {
                         c_exp=query("combat_exp", me);
                         c_skill=me->query_skill("parry",1);
                         me->receive_damage("jing", 20);

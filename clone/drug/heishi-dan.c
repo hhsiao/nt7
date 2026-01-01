@@ -12,16 +12,11 @@ void create()
 {
         set_name(BLU"玉洞黑石丹"NOR, ({"yudong dan", "heishi dan", "dan"}));
         set_weight(50);
-        /*if (clonep())
-            set_default_object(__FILE__);
-    else*/ 
-    {
-                set("unit", "顆");
+        set("unit", "顆");
         set("long", "黑黑的一顆藥丸，毫不起眼，卻是崆峒派的療傷聖藥。\n");
                 set("value", 20000);
                 set("no_sell", 1);
                 set("medicine", 1);
-    }
         setup();
 }
 
@@ -36,7 +31,7 @@ int cure_ob(object me)
                         else
                         {
                                 addn("neili", -(query("neili", me)), me);
-                        }        
+                        }
                 message_vision(BLU"$N服下一顆黑石玉洞丹，覺得體內真氣翻湧，內力大損。原來服食太急太多，藥效適得其反！\n" NOR, me);
                 destruct(this_object());
                 return 1;

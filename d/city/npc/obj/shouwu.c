@@ -13,13 +13,9 @@ void init()
 void create()
 {
         set_name("何首烏", ({"heshou wu", "wu"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "棵");
+        set("unit", "棵");
                 set("long", "這是一棵初具人形的何首烏。\n");
                 set("value", 10000);
-        }
         setup();
 }
 

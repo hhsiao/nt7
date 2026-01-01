@@ -7,11 +7,7 @@ void create()
 {
         set_name( HIG "飄逸步法" NOR, ({ "wuji" }));
         set_weight(200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", HIG "這是一本殘破的舊書，上面畫著舞動的小人。\n" NOR);
                 set("value", 100);
                 set("material", "paper");
@@ -23,6 +19,4 @@ void create()
                         "max_skill":    100,    // the maximum level you can learn
                         "min_skill":    0,     // the minimum level you can learn
                 ]));
-        }
 }
-

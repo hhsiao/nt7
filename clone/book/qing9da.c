@@ -6,11 +6,7 @@ void create()
 {
         set_name("青字九打", ({ "qingzi9da", "book1" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本很古舊的線裝書，青字九打是青城鎮山絕技。\n");
                 set("value", 7000);
                 set("material", "paper");
@@ -22,5 +18,4 @@ void create()
                         "max_skill":        150,// the maximum level you can learn
                         "min_skill":        100        // the maximum level you can learn
                 ]) );
-        }
 }

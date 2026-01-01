@@ -6,11 +6,7 @@ void create()
 {
         set_name("棍法詳解", ({ "club book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "封面上寫著「棍法詳解）」\n");
                 set("value", 10000);
@@ -23,5 +19,4 @@ void create()
                         "max_skill":    49,
                         "min_skill":    20,
                 ]));
-        }
 }

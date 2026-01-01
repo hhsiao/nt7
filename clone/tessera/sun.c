@@ -9,16 +9,11 @@ void create()
 {
         set_name(RED "日魂" NOR, ({ "sun soul", "sun" }) );
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", RED "太陽真火凝聚而成，烏金色，能破邪怯魔，千軍辟易。。\n" NOR);
+        set("long", RED "太陽真火凝聚而成，烏金色，能破邪怯魔，千軍辟易。。\n" NOR);
                 set("value", 50000);
                 set("unit", "塊");
                 set("can_enchant", "weapon");
                 set("auto_load", 1);
-        }
         setup();
 }
 

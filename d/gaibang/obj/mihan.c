@@ -8,12 +8,8 @@ void create()
 {
         set_name("密函", ({"mihan", "letter", "han"}));
         set_weight(100);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "封");
+        set("unit", "封");
                 set("material", "paper");
-        }
 }
 
 void init()
@@ -75,7 +71,7 @@ int response(object me, object who, object obj)
                 }
 
         message_vision("$N抽出密函仔細的看了一遍。\n", who);
-        
+
         if( query("target_id", obj) != query("id", who )
          || query("target_name", obj) != who->name()){
                 message_vision("$N抬起頭來，疑惑地說道：這信不是給我的呀？\n", who);
@@ -132,16 +128,16 @@ int response(object me, object who, object obj)
 
                         obj->move(me);
                 }
-                
+
                 return 1;
         }
         else if( query("gb/job_pending", me)){
                 set("gb/job_status", 2, me);
         }
-        
+
         if( query("shen", who)<0){
                 message_vision("$N抬起頭來，目中陰鷲一閃，沉聲說道：嘿！豈有此理，道不同不相為謀。\n", who);
-                                
+
                 if( random(query("kar", me))>10){
                         message_vision("$N沉聲對$n說道：嘿！俗話說兩國交鋒，不斬來使，但算你倒黴！\n", who, me);
                         message_vision("$N奸笑道：我正愁不知要送甚麼給"+boss+"以表達我的心意，你自個兒送上門來，可怨不得我！\n", who);
@@ -188,7 +184,7 @@ int check_fight(object me, object who, object obj)
 
         if ( !objectp(obj) ) return 1;
 
-        if ( objectp(corpse = present("corpse", environment(me))) 
+        if ( objectp(corpse = present("corpse", environment(me)))
          && query("victim_name", corpse) == query("target_name", obj )
          && query("my_killer", corpse) == query("id", me)){
                 set("gb/job_kill",query("target_name",  obj), me);

@@ -16,12 +16,8 @@ void create()
         set_weight(10);
         set("skill",([
               "name":         skills[random(sizeof(skills))]
-               ]) ); 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+               ]) );
+        set("unit", "本");
                 set("long","這是蝶谷毒仙王難姑一生心血彙集成的使毒經書。\n");
                 set("value", 1500);
                 set("material", "paper");
@@ -33,5 +29,4 @@ void create()
                         "min_skill":    10,
                         "max_skill":    100
                 ]) );
-        }
 }

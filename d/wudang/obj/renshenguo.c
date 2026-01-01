@@ -22,14 +22,10 @@ void destguo(object ob)
 void create()
 {
         set_name(HIM "人參果" NOR, ({"renshen guo", "renshen", "guo"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("long", HIM "這是一隻已經成型的人參果，真的象極了三"
                             "周不滿的小孩。\n" NOR);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

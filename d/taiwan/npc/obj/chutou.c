@@ -8,16 +8,12 @@ void create()
 {
         set_name("鋤頭", ({ "chu tou", "chu" }) );
         set_weight(8000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "把");
+        set("unit", "把");
                 set("long", "這是鄉下農民種地用的鋤頭。\n");
                 set("value", 3);
                 set("material", "iron");
                 set("wield_msg", "$N將$n從肩上放了下來，握在手中。\n");
                 set("unwield_msg", "$N將$n扛在肩上。\n");
-        }
 
         init_hammer(10);
         setup();

@@ -8,11 +8,7 @@ void create()
 {
         set_name(HIR "聖火令" NOR, ({ "shenghuo ling", "ling" }) );
         set_weight(1000);
-        /*if (clonep())
-                destruct(this_object());
-        else*/
-        {
-                set("unit", "把");
+        set("unit", "把");
                 set("value", 10000);
                 set("material", "steel");
                 set("no_sell", "他奶奶的，這種破鐵牌也值錢？");
@@ -35,8 +31,6 @@ void create()
                         "min_skill":    50,
                         "need" : ([ "sanscrit" : 150 ]),
                 ]) );
-
-        }
         init_sword(80);
         setup();
 }

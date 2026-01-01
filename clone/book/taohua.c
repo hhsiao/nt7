@@ -9,11 +9,7 @@ void create()
 {
         set_name(HIG "桃花葯術" NOR, ({ "taohua yaoshu", "yaoshu" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long", "這是一本泛黃的書籍，上面用古篆書"
                             "寫著“桃花葯術”幾個字。\n",
 
@@ -38,6 +34,5 @@ void create()
                         "jiuhua" : 200,         // 九花玉露丸
                         "wuchang" : 250,        // 無常丹
                 ]));
-        }
         setup();
 }

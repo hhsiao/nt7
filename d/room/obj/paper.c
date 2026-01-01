@@ -15,15 +15,11 @@ void create()
 {
         set_name("紙張", ({"paper", "paper of drawing"}));
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("long", "這是一張普普通通的白紙，上面什麼也沒有。"
                             "如果你願意可以畫(draw)點東西在上面。\n");
                 set("material", "paper");
                 set("can_draw", 1);
-        }
 }
 
 void init()
@@ -80,7 +76,7 @@ int do_draw(string arg)
                         set("draw/content", "上面畫的是" + environment(me)->short() +
                             "的風景，極為傳神，宛若親臨。\n");
                         set("draw/info", base_name(environment(me)));
-                }                
+                }
 
                 set("draw/type", "風景");
         } else
@@ -142,7 +138,7 @@ int do_draw(string arg)
                             "，果然傳神之至，庶幾破紙而出。\n";
                         set("draw/content", msg);
                         set("draw/info",query("id", ob));
-                }                
+                }
 
                 set("draw/type", "人物");
         } else
@@ -174,7 +170,7 @@ int do_draw(string arg)
                             "，逼真之極。\n";
                         set("draw/content", msg);
                         set("draw/info",query("id", ob));
-                }                
+                }
 
                 set("draw/type", "物品");
         }

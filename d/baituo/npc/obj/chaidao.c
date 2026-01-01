@@ -2,20 +2,15 @@
 
 inherit BLADE;
 
-void create()
-{
-        set_name("柴刀", ({ "chai dao", "dao" }) );
-        set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "把");
-                set("value", 500);
-                set("material", "iron");
-                set("long", "這是一柄半新不舊的柴刀。\n");
-                set("wield_msg", "$N抽出一把$n握在手中。\n");
-                set("unequip_msg", "$N將手中的$n插回腰間。\n");
-        }
-        init_blade(5);
-        setup();
+void create() {
+    set_name("柴刀", ({ "chai dao", "dao" }) );
+    set_weight(1000);
+    set("unit", "把");
+    set("value", 500);
+    set("material", "iron");
+    set("long", "這是一柄半新不舊的柴刀。\n");
+    set("wield_msg", "$N抽出一把$n握在手中。\n");
+    set("unequip_msg", "$N將手中的$n插回腰間。\n");
+    init_blade(5);
+    setup();
 }

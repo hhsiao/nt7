@@ -2,16 +2,12 @@
 #include <ansi.h>
 
 inherit HEAD;
- 
+
 void create()
 {
         set_name(HIG "劍靈之怒" NOR, ({ "jianling zhinu2", "zhinu2", }) );
         set_weight(1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "頂");
+        set("unit", "頂");
                 set("long", HIG "這是由黑曜石和劍靈的怒氣結晶而成的頭箍，陣陣光芒令人生畏。\n" NOR);
                 set("value", 1500000);
                 set("armor_prop/dex", 50);
@@ -28,7 +24,6 @@ void create()
                          "thborn" : 1,
                          "jianling": 1, // equip.c裡限制，必須要調整成功劍靈1次後才能裝備
                 ]));
-        }
         setup();
 }
 
@@ -36,4 +31,3 @@ int query_autoload()
 {
         return 1;
 }
-

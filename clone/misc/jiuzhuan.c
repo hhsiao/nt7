@@ -8,15 +8,11 @@ void create()
 {
         set_name(HIY "九轉金丹" NOR, ({ "jiuzhuan jindan", "dan" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆金色的仙丹，傳說是太上老君"
+        set("long", "一顆金色的仙丹，傳說是太上老君"
                             "精心修煉的靈丹妙藥。\n");
                 set("value", 1500000);
                 set("unit", "顆");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)
@@ -47,7 +43,7 @@ int do_effect(object me)
                 addn("gift/dex/succeed", 1, me);
         }
 
-        if( query("gift/con/succeed", me)<4 && random(2) && 
+        if( query("gift/con/succeed", me)<4 && random(2) &&
             query("gender", me) != "無性" )
         {
                 effect++;

@@ -8,14 +8,10 @@ void create()
 {
         set_name( "僧鞋", ({ "seng xie", "xie" }) );
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "雙");
+        set("unit", "雙");
                 set("long", "一雙圓口青布僧鞋。");
                 set("value", 100);
                 set("material", "boots");
                 set("armor_prop/dodge", 3);
-        }
         setup();
 }

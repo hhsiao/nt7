@@ -4,15 +4,11 @@ inherit ITEM;
 void create()
 {
         set_name(NOR + HIC "龜苓膏" NOR, ({ "guiling gao", "guiling", "gao" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", HIC "這是一塊用烏龜甲和茯苓配置成的龜苓"
                             "膏，功能延年益壽。\n" NOR);
                 set("value", 3000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

@@ -8,11 +8,7 @@ void create()
 {
         set_name(CYN "斗轉星移" NOR, ({ "douzhuan book", "douzhuan", "book" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("no_sell", 1);
                 set("long", "這是一本記載了慕容家斗轉星移的秘籍。\n");
                 set("value", 1000);
@@ -26,5 +22,4 @@ void create()
                         "max_skill":    179,
                         "min_skill":    100
                 ]) );
-        }
 }

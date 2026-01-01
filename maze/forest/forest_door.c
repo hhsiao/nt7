@@ -3,19 +3,15 @@ inherit ITEM;
 
 void create()
 {
-                
+
         set_name(HIG"原始森林入口"NOR, ({ "forest door","door"}) );
         set_weight(5);
         set("no_get",1);
 
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", GRN"從這個入口可以進入原始森林迷宮副本。(enter door)\n"NOR); 
+        set("long", GRN"從這個入口可以進入原始森林迷宮副本。(enter door)\n"NOR);
                 set("unit", "個");
                 set("lore",1);
                 set("value", 20);
-        }
         setup();
 }
 void init()
@@ -33,15 +29,15 @@ int do_enter(string arg) {
 }
 */
 
-int do_enter(string arg) 
+int do_enter(string arg)
 {
         int valid;
-                
+
         if( !arg || (arg != "door" && arg != "forest") )
                 return 0;
-        
+
         arg = "forest";
-        valid = FUBEN_D->valid_enter(this_player(), arg); 
+        valid = FUBEN_D->valid_enter(this_player(), arg);
         if( valid >=1 )
                 FUBEN_D->enter_fuben(this_player(), arg);
         else {
@@ -56,7 +52,6 @@ int do_enter(string arg)
                 else if( valid == -4 )
                         write("該副本被巫師關閉，您暫時無法進入。\n");
 
-        }        
+        }
         return 1;
 }
-

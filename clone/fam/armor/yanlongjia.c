@@ -10,10 +10,7 @@ void create()
 {
         set_name(HIY "炎龍聖甲" NOR, ({ "yanlong shengjia", "yanlong", "shengjia" }));
         set_weight(6000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "副");
+        set("unit", "副");
                 set("long", HIY "\n一副充滿著神奇力量的聖甲，散發著奇異的光芒。\n" NOR
                             HIG "有效招架修正：+ 50        有效輕功修正：+ 30\n" NOR
                             HIG "抗毒效果修正：+ 25%       防禦效果等級： 180\n" NOR
@@ -26,7 +23,7 @@ void create()
                 set("summon_id", "yanlongjia");
                 set("ctype", "護甲");
                 set("summon_wear_msg", HIY "剎那間，天空忽暗，風聲大作，一條炎龍騰空而來，\n"
-                                "漸漸地化為一陣青煙，與$N" HIY 
+                                "漸漸地化為一陣青煙，與$N" HIY
                                 "合為一體。\n" NOR);
                 set("summon_remove_msg", HIY "風雨漸息，一條炎龍疼空而起，消失在天際。\n" NOR);
                 set("armor_prop/armor", 180);
@@ -38,8 +35,6 @@ void create()
                                              "一道奇異的光芒，將毒質全部吸收。\n" NOR);
                 set("reduce_msg", HIR "剎那間，" HIY "炎龍聖甲" HIR "散發出"
                                              "一道奇異的光芒，吸收了部分毒質。\n" NOR);
-
-        }
         setup();
 }
 

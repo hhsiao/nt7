@@ -8,14 +8,10 @@ void create()
 {
         set_name(HIY "福緣丹" NOR, ({ "kar dan", "dan", "kar" }) );
         set_weight(200);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆園園的仙丹，據說吃了可以增強運氣。\n");
+        set("long", "一顆園園的仙丹，據說吃了可以增強運氣。\n");
                 set("value", 10000);
                 set("unit", "粒");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)

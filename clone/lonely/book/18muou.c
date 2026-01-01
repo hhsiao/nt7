@@ -1,15 +1,12 @@
 #include <ansi.h>
- 
+
 inherit ITEM;
 
 void create()
 {
         set_name("十八木偶", ({ "18 muou", "18", "muou" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__); 
-        else*/ {
-                set("unit", "盒");
+        set("unit", "盒");
                 set("long", NOR + YEL "
 這是一個小木盒，盒中墊著棉花，並列著三排木偶，神情或喜
 悅不禁，或痛哭流淚，或裂嘴大怒，或慈和可親，竟無一相同。
@@ -26,5 +23,4 @@ void create()
                         "max_skill"    : 179,
                         "min_skill"    : 0
                 ]));
-        }
 }

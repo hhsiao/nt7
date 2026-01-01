@@ -8,15 +8,11 @@ void create()
 {
         set_name("香茶",({"tea", "cha", "xiang cha"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一杯熱茶，悠悠地冒著香氣～～～\n");
+        set("long", "一杯熱茶，悠悠地冒著香氣～～～\n");
                 set("unit", "杯");
                 set("value", 30);
                 set("remaining",10);
                 set("drink_supply", 20);
-        }
         set("liquid", ([
                 "type": "tea",
                 "name": "茶",

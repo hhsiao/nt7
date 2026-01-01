@@ -7,16 +7,13 @@
 void create()
 {
         set_name(HIC "天魔聖血膏" NOR, ({"tianmo shengxuegao", "tianmo", "shengxuegao"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一包天魔聖血膏，天魔聖血膏是天下無雙的救傷靈藥。\n");
+        set("long", "這是一包天魔聖血膏，天魔聖血膏是天下無雙的救傷靈藥。\n");
                 set("base_unit", "包");
                 set("base_value", 26000);
                 set("base_weight", 80);
                 set("only_do_effect", 1);
                 set("mixture", ([
-                        "herb" : ([ 
+                        "herb" : ([
                                     "dangui"   : 1,
                                     "lurong"   : 6,
                                     "honghua"  : 3,
@@ -32,16 +29,15 @@ void create()
                         "medical" : 200,
                         "liandan-shu" : 1900,
                 ]));
-        }
         setup();
 }
 
 int do_effect(object me)
 {
-        mapping my; 
+        mapping my;
         int time = 900;
 
-        my = me->query_entire_dbase(); 
+        my = me->query_entire_dbase();
 
         // vip的效果
         switch( me->query_viplevel() )
@@ -63,10 +59,10 @@ int do_effect(object me)
                 break;
         case 6:
                 time = time - time * 6 / 10;
-                break;  
+                break;
         case 7:
                 time = time - time * 7 / 10;
-                break;                  
+                break;
         }
         if( time < 10 ) time = 10;
 
@@ -89,9 +85,9 @@ int do_effect(object me)
         my["jingli"]   = my["max_jingli"];
         me->start_busy(3);
 
-        add_amount(-1); 
-        if (query_amount() < 1) 
-                destruct(this_object()); 
+        add_amount(-1);
+        if (query_amount() < 1)
+                destruct(this_object());
 
         return 1;
 }

@@ -5,16 +5,12 @@ void create()
 {
         set_name("旱菸袋", ({ "han yan", "yan" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("long", "這是一隻用了好多年的銅菸袋。\n");
                 set("value", 100);
                 set("material", "steel");
                 set("wield_msg", "$N「唰」的一聲抽出一隻$n握在手中。\n");
                 set("unwield_msg", "$N將手中的$n插回腰帶中。\n");
-        }
         init_sword(5);
         setup();
 }

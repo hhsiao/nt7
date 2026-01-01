@@ -4,10 +4,7 @@
 void create()
 {
         set_name(HIW "白虎奪命丹" NOR, ({"duoming dan", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "武當派的療傷聖藥，可治療各種內傷，效果顯著。\n" NOR);
+        set("long", HIW "武當派的療傷聖藥，可治療各種內傷，效果顯著。\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 8000);
                 set("base_weight", 80);
@@ -31,7 +28,6 @@ void create()
                         "min_level" : 140,
                         "wudang-yaoli" : 180,
                 ]));
-        }
         setup();
 }
 

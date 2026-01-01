@@ -6,10 +6,7 @@ void create()
 {
         set_name("丹陽鞭法譜", ({ "whip book", "book" }));
         set_weight(600);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
                         "「丹陽鞭法譜 -- 上卷」\n");
                 set("value", 200);
@@ -23,5 +20,4 @@ void create()
                                                                 // modify is jing_cost's (difficulty - int)*5%
                         "max_skill":        150                        // the maximum level you can learn                                                        // from this object.
                 ]) );
-        }
 }

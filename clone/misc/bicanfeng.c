@@ -7,10 +7,7 @@ inherit ITEM;
 void create()
 {
         set_name(GRN "碧蠶粉" NOR, ({"bican fen", "fen"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一袋劇毒的毒藥，如果用來煉暗器有見血封喉之效。\n");
+        set("long", "一袋劇毒的毒藥，如果用來煉暗器有見血封喉之效。\n");
                 set("unit", "袋");
                 set("value", 20000);
                 set("can_pour", 1);
@@ -23,7 +20,6 @@ void create()
                         "duration": 15,
                 ]));
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

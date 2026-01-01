@@ -3,22 +3,20 @@
 
 inherit ROOM;
 #include <ansi.h>;
-void create()
-{
-        set("short", HIY"周伯通居"NOR);
-        set("long", 
-"這是間很簡陋的屋子，陳設簡單，由此可見老頑童極於玩而不
-極於物。\n");
-        set("exits", ([
-                "west"  : __DIR__"house1",
-                "north" : __DIR__"shanpo1",
+void create() {
+    set("short", HIY"周伯通居"NOR);
+    set("long",
+        "這是間很簡陋的屋子，陳設簡單，由此可見老頑童極於玩而不極於物。\n");
+    set("exits", ([
+        "west": __DIR__"house1",
+        "north": __DIR__"shanpo1"
         ]));
-        set("objects", ([           
+    set("objects", ([
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -410);
-        set("coor/y", -370);
-        set("coor/z", 10);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -410);
+    set("coor/y", -370);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

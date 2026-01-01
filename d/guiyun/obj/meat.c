@@ -8,13 +8,9 @@ void create()
 {
         set_name("豬肉", ({"rou", "meat"}));
         set_weight(30);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一塊做菜用的生豬肉，還殘留著血絲。\n");
+        set("long", "一塊做菜用的生豬肉，還殘留著血絲。\n");
                 set("unit", "塊");
                 set("value", 0);
                 set("food_remaining", 4);
                 set("food_supply", 25);
-        }
 }

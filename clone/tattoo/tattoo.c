@@ -7,10 +7,7 @@ void create()
 {
         set_name(NOR + WHT "刺青圖" NOR, ({ "tattoo paper", "tattoo", "paper" }));
         set_weight(300);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
+        set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
                 set("unit", "張");
                 set("material", "paper");
                 set("value", 500);                        // 刺青時的花費與圖騰的價值相關
@@ -28,7 +25,6 @@ void create()
                 set("tattoo_per", 1);
                 set("tattoo_special", "power");           // 刺青時增加的特殊技能
                 set("tattoo_spcname", "天神降世");        // 在look時所提供的提示信息
-        }
 }
 
 string long()

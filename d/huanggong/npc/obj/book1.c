@@ -12,14 +12,10 @@ void create()
 {
         set_name("帛書", ({"book"}));
         set_weight(500);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "\n一封精裝的<<論語>>\n");
+        set("long", "\n一封精裝的<<論語>>\n");
                 set("unit", "幅");
                 set("material", "paper");
                 set("no_get", "\n住手,你豈可在此胡鬧!下去!\n");
-        }
         setup();
 }
 

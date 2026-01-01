@@ -9,17 +9,12 @@ void create()
 {
         set_name(HIY "神武項圈" NOR, ({ "shenwu xiangquan", "shenwu", "xiangquan" }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "串");
+        set("unit", "串");
                 set("value", 200000);
                 set("material", "gold");
                 set("armor_prop/armor", 300);
-        }
         setup();
-}        
+}
 
 int query_autoload()
 {

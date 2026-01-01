@@ -6,14 +6,10 @@ int cure_ob(string);
 void create()
 {
    set_name("養精丹", ({"yangjing dan", "dan"}));
-   /*if (clonep())
-      set_default_object(__FILE__);
-   else*/ {
-      set("unit", "粒");
+   set("unit", "粒");
       set("value", 100);
                 set("no_sell", 1);
       set("medicine", 1);
-   }
    setup();
 }
 

@@ -8,16 +8,11 @@ void create()
 {
         set_name("鑽石戒指", ({ "zuan jie", "zuanjie", "ring" }));
         set("weight", 400);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "個");
+        set("unit", "個");
                 set("value", 12000);
                 set("material", "diamond");
                 set("armor_prop/armor", 1);
                 set("armor_prop/per", 1);
-        }
 
         setup();
-}       
+}

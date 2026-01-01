@@ -7,10 +7,7 @@ void create()
 {
 
         set_name("無形之毒", ({ "wuxing du","yao"}) );
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long",
+        set("long",
                         "這是一包五毒教的秘製的毒藥，吃了它必死無疑。\n你可以用(xpour)命令試試。\n" );
                 set("unit", "些");
                 set("base_value", 200);
@@ -18,7 +15,6 @@ void create()
                 set("base_weight", 30);
                 set("pour_type", "wuxing_poison");
                 set("value", 800);
-        }
         set_amount(1);
 }
 

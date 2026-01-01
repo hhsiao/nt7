@@ -11,17 +11,13 @@ void init()
 void create()
 {
         set_name(CYN"藍呢官轎"NOR, ({"jiao",}));
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一頂蘭呢大官轎，是揚州知府和成都提督共同出資設立的，往返兩地的快轎。\n");
+        set("long", "這是一頂蘭呢大官轎，是揚州知府和成都提督共同出資設立的，往返兩地的快轎。\n");
                 set("unit", "頂");
                 set("no_get", 1);
                 set("no_steal", 1);
                 set("no_beg", 1);
                 set("no_drop", 1);
                 set("no_put", 1);
-        }
         setup();
 }
 int do_enter(string arg)

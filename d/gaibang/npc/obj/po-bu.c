@@ -7,14 +7,10 @@ void create()
 {
         set_name(NOR + WHT "破布" NOR, ({ "po bu", "po", "bu", "piece" }));
         set_weight(80);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("long", WHT "這是一塊破布，不知道有什麼用。\n" NOR);
                 set("material", "cloth");
                 set("no_sell", "什麼東西？快拿走。");
-        }
 }
 
 string long()

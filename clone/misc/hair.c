@@ -11,15 +11,11 @@ void create()
 {
         set_name(RED "頭髮" NOR, ({ "hair" }));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "束");
+        set("unit", "束");
                 set("value", 1);
                 set("no_sell", "我這兒不是假髮店，你一邊兒去。");
                 set("long", WHT "一束頭髮。\n" NOR);
                 set("only_do_effect", 1);
-        }
 }
 
 int set_from(object owner)

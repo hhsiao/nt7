@@ -7,16 +7,12 @@ void create()
 {
         set_name(HIM "玄黃紫清丹" NOR, ({ "xuanhuang dan", "dan" }) );
         set_weight(300);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一顆紫中泛黃的精緻奇丹，具有這神話般的功效，"
+        set("long", "一顆紫中泛黃的精緻奇丹，具有這神話般的功效，"
                             "是練武人夢寐以求的妙藥。\n");
                 set("base_value", 250000);
                 set("base_weight", 100);
                 set("base_unit", "粒");
                 set("only_do_effect", 1);
-        }
         setup();
 }
 
@@ -30,7 +26,7 @@ int do_effect(object me)
                        this_object()->name() + HIW "，只見$N"
                        HIW "渾身一顫，七竅都冒出白煙來。\n" NOR, me);
         if( query("gift/xuanhuang", me) <= 20 )
-        {                        
+        {
                 message_vision(HIW "只見$N" HIW "渾身一顫，七竅都冒出白煙來。\n", me);
                 //addn("combat_exp", 150000, me);
                 me->improve_skill("force", 250000);
@@ -54,6 +50,6 @@ int do_effect(object me)
         add_amount(-1);
         if (query_amount() < 1)
                 destruct(this_object());
-                
+
         return 1;
 }

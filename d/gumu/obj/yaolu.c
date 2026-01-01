@@ -19,10 +19,7 @@ void create()
 {
         set_name(CYN"青石藥爐"NOR,( {"yao lu","yaolu","lu"} ));
         set_weight(10000);
-        /*if (clonep() )
-                set_default_object(__FILE__);
-        else*/{
-                set("unit","只");
+        set("unit","只");
                 set("long",_DES);
                 set("value",10000);
                 set("material","stone");
@@ -33,8 +30,7 @@ void create()
                 set("count",6);
                 set("drug","none");
                 set("no_refresh", 1);
-        }
-        
+
         setup();
 }
 
@@ -67,35 +63,35 @@ int do_open(string arg)
                 set("long",_DES+_FIRE);
                 return 1;
         }
-        
+
         message_vision("$N將藥爐蓋子揭開。\n", me);
         set("long",_DES+_OPEN);
         set("open", 1);
 
         return 1;
 }
-        
+
 int do_addyao(string arg)
 {
         object me, obj,ob;
-        string item, target; 
+        string item, target;
         int s,d,n;
         me = this_player();
         ob = this_object();
 
-        if (!query("open")) return notify_fail("你先把蓋子打開吧。\n"); 
+        if (!query("open")) return notify_fail("你先把蓋子打開吧。\n");
 
         if (!arg || sscanf(arg, "%s in %s", item, target) != 2 )
                 return notify_fail("你要將什麼東西放進哪裡？\n");
 
         if (item == "all" ) return notify_fail("這小小藥爐怎麼裝得下這麼多東西？\n");
-                
+
         if (!objectp(obj = present(item, me))) return notify_fail("東西呢？\n");
-                                                                
+
         if( !query("yaocai", obj))return notify_fail("藥爐裡只能放用以煉製的藥材。\n");
-                        
+
         if (query("is_burning")) return notify_fail("火已點燃，不要亂動。\n");
-                
+
         if (query("count") < 1) return notify_fail("你已放了太多藥材了。\n");
 
         s=query("cure_s", obj);
@@ -109,7 +105,7 @@ int do_addyao(string arg)
         addn("cure_s",s);
         addn("cure_d",d);
         addn("cure_n",n);
-        
+
         if (wizardp(me)) printf("%d\t%d\t%d\t\n",query("cure_s"),query("cure_d"),query("cure_n"));
 
         set("ready", 1);
@@ -189,7 +185,7 @@ int do_pour(string arg)
 }
 
 int do_close(string arg)
-{       
+{
         object me;
         me = this_player();
 
@@ -202,7 +198,7 @@ int do_close(string arg)
                 set("long",_DES+_OPEN+_FIRE);
                 return 1;
         }
-        
+
         message_vision("$N把藥爐蓋子扣上。\n", me);
         set("long",_DES);
         set("open", 0);
@@ -221,7 +217,7 @@ int do_burn(string arg)
         if (!(query("ready"))) return notify_fail("藥爐裡什麼都沒有。\n");
 
         if (query("is_burning")) return notify_fail("火已經點燃了。\n");
-                
+
         if (query("open")) return notify_fail("你先把蓋子蓋好吧。\n");
 
         message_vision(RED"$N將炭盆點燃。\n\n"NOR,me);
@@ -245,7 +241,7 @@ int do_miehuo(string arg)
         if (arg != "huo") return 0;
 
         if (!(query("is_burning"))) return notify_fail("火還沒點燃。\n");
-                
+
         message_vision(RED"$N將炭火熄滅。\n"NOR, me);
 
         if (query("open")) set("long",_DES+_OPEN);
@@ -277,11 +273,11 @@ int do_aoyao()
 {
         object me;
         int time,s,d,n,ds,dd,dn,i;
-        
+
         me = this_player();
         time = 0;
         if (!query("fire_ready")) return notify_fail("火侯未到！\n");
-        
+
         if ((int)me->query_skill("qufeng",1) < 60 )
                 return notify_fail("你對玉蜂蜜的特性認識不夠！\n");
 
@@ -355,7 +351,7 @@ int do_quyao(string arg)
         if (query("pending")) return notify_fail("你正在運功煉藥。\n");
 
         if (!(query("done"))) return notify_fail("你要取什麼？\n");
-                
+
         if (query("is_burning")){
                 message_vision(RED"只聽「啊」的一聲慘叫，原來$N被藥爐燙了手。\n"NOR,me);
                 addn("qi", -150+random(50), me);
@@ -367,7 +363,7 @@ int do_quyao(string arg)
         if (!query("drug") || query("drug") == "none")
                 message_vision(HIB"$N開爐一看，爐中之物象一團漿糊一樣，看來沒什麼用。\n"NOR,me);
         else if ( query("drug_name") == "玉蜂針毒" ) {
-                if ( !zhen1 = present("jin zhen",me) ) 
+                if ( !zhen1 = present("jin zhen",me) )
                         return notify_fail("你身上沒有金針。\n");
                 zhen2 = new("/d/gumu/obj/yufeng-zhen");
                 zhen2->set_amount(zhen1->query_amount());

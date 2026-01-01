@@ -6,11 +6,7 @@ void create()
 {
         set_name("短兵詳解", ({ "dagger book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "封面上寫著「短兵詳解）」\n");
                 set("value", 10000);
@@ -23,5 +19,4 @@ void create()
                         "max_skill":    49,
                         "min_skill":    20,
                 ]));
-        }
 }

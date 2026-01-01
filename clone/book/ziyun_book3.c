@@ -6,11 +6,7 @@ void create()
 {
         set_name(HIM"紫氳外譜"NOR, ({ "ziyun_book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
                         "這是一本薄薄的冊頁。\n");
                 set("value", 1000);
@@ -26,5 +22,4 @@ void create()
                         "min_skill":    61                        // the maximum level you can learn
                                                                 // from this object.
                 ]) );
-        }
 }

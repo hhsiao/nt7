@@ -15,13 +15,9 @@ void init()
 void create()
 {
         set_name("冬不拉", ({"dongbula"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "把");
+        set("unit", "把");
                 set("long", "這是一把維吾爾族的絃樂器冬不拉。你可以演奏(play)它。\n");
                 set("value", 100);
-        }
 //        setup();
 }
 

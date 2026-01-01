@@ -9,15 +9,11 @@ void create()
 {
         set_name(HIY "點金槍" NOR, ({ "golden spear","qiang","spear" }));
         set_weight(14000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "杆");
+        set("unit", "杆");
                 set("value", 10000);
                 set("material", "gold");
                 set("long", "此槍以黃金為頭銅為杆。\n");
                 set("wield_msg", "$N抄起一杆$n，順手抖了個槍花。\n");
-        }
         init_spear(60);
         setup();
 }

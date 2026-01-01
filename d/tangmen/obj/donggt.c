@@ -11,16 +11,11 @@ void create()
 {
         set_name(HIC "冬瓜湯" NOR, ({"tang"}));
         set_weight(50);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "碗");
+        set("unit", "碗");
                 set("long", "這是一碗味道鮮美的冬瓜湯。\n");
                 set("value", 0);
                 set("drink_remaining", 5);
                 set("drink_supply", 30);
-        }
         setup();
 }
 
@@ -36,7 +31,7 @@ int do_drink(string arg)
 
         addn("water", query("drink_supply"), this_player());
 
-        if ( this_player()->is_fighting() ) 
+        if ( this_player()->is_fighting() )
                 this_player()->start_busy(2);
 
         addn("drink_remaining", -1);
@@ -45,8 +40,8 @@ int do_drink(string arg)
         {
                    message_vision("$N捧起湯碗，美美的喝了一口鮮湯。\n", this_player());
         }
-        else 
-        { 
+        else
+        {
                    message_vision("$N捧起湯碗，喝乾了最後一滴鮮湯。\n", this_player());
                 destruct(this_object());
         }

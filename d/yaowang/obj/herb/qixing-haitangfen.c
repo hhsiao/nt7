@@ -5,10 +5,7 @@ void create()
 {
         set_weight(100);
         set_name(HIW "七星海棠粉" NOR, ({"qixing-haitang fen", "qixing fen", "fen"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "包");
+        set("unit", "包");
                 set("long", HIW "這是一瓶白色的劇毒粉末，可殺人於無形。\n" NOR);
                 set("value", 50000);
                 set("poison_type", "yaowang_poison");
@@ -17,13 +14,12 @@ void create()
                 set("can_drug", 1);
                 set("poison", ([
                         "level" : 200,
-                              "id"    : "yaowang", 
+                              "id"    : "yaowang",
                         "name"  : "七星海棠粉",
                         "duration": 15,
                 ]));
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

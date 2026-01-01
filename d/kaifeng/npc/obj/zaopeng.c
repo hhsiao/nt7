@@ -5,14 +5,10 @@ void create()
 {
         set_name("木澡盆", ({"zaopen"}));
         set_weight(500000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "木頭的澡盆,已經很陳舊。\n");
+        set("long", "木頭的澡盆,已經很陳舊。\n");
                 set("unit", "只");
                 set("value", 100);
                 set("max_liquid", 15);
-        }
         set("liquid", ([
                 "type": "alcohol",
                 "name": "洗澡水",

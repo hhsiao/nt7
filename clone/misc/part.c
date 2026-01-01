@@ -14,15 +14,11 @@ void create()
 {
         set_name(RED "殘肢" NOR, ({ "body part"}));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "塊");
+        set("unit", "塊");
                 set("value", 0);
                 set("no_store", 1);
                 set("food_supply", 15);
                 set("food_remaining", 4);
-        }
 }
 
 string long() { return ::long() + extra_desc(); }

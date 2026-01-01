@@ -10,12 +10,12 @@ void create () {
 LONG);
 
     set("exits", ([
-        "south":__DIR__"qingshilu2",
-        "north":__DIR__"guandao1"
-    ]));
+        "south": __DIR__"qingshilu2",
+        "north": __DIR__"guandao1"
+        ]));
     set("objects", ([
         __DIR__"npc/bing":2
-    ]));
+        ]));
     set("outdoors", "annan");
 
     set("valid_startroom", 1);

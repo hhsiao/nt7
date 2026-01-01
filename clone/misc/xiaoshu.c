@@ -7,14 +7,10 @@ inherit ITEM;
 void create()
 {
         set_name(HIY"消暑丸"NOR, ({"xiaoshu wan", "xiaoshuwan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "包");
+        set("unit", "包");
                 set("long", "這是一包治療中暑的藥，立刻見效。\n");
                 set("value", 600);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

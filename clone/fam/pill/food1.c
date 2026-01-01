@@ -4,15 +4,11 @@
 void create()
 {
         set_name(HIC "養生丹" NOR, ({ "yangsheng dan", "yangsheng", "dan" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIC "以名貴藥材精煉而成，乃是高麗國的貢物。\n" NOR);
+        set("long", HIC "以名貴藥材精煉而成，乃是高麗國的貢物。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 10000);
                 set("base_weight", 55);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

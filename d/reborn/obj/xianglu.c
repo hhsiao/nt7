@@ -10,14 +10,10 @@ void create()
         set_weight(500);
         set_max_encumbrance(800000);
         set("no_get", 1);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("prep", "in");
+        set("prep", "in");
                 set("unit", "只");
                 set("long", HIR "一隻青銅鼎香爐，燒香祭祀用的，常年香火不滅。\n" NOR);
                 set("value", 1);
-        }
 }
 
 int is_container() { return 1; }

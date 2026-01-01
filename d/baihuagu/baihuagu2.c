@@ -3,28 +3,27 @@
 
 inherit ROOM;
 #include <ansi.h>
-void create()
-{
-        set("short", HIM"百花谷內"NOR);
-        set("long", 
-HIG"只見奼紫嫣紅，滿山錦繡，彩蝶紛飛，群蜂輕舞。縱是宇外瓊地，
+void create() {
+    set("short", HIM"百花谷內"NOR);
+    set("long",
+        HIG"只見奼紫嫣紅，滿山錦繡，彩蝶紛飛，群蜂輕舞。縱是宇外瓊地，
 世外桃源，也不過如此。山坡下一列掛著七八個木製的蜂巢另一面山
 山坡上蓋著三間茅屋。\n"NOR);
-        set("outdoors", "baihuagu");
-        set("exits", ([
-                "north"    : __DIR__"baihuagu",
-                "westup"   : __DIR__"shanpo1",
-                "eastdown" : __DIR__"shanpo2",
-                "south"    : __DIR__"baihuagu1",
-                "west"     : __DIR__"baihuagu",
-                "east"     : __FILE__,
+    set("outdoors", "baihuagu");
+    set("exits", ([
+        "north": __DIR__"baihuagu",
+        "westup": __DIR__"shanpo1",
+        "eastdown": __DIR__"shanpo2",
+        "south": __DIR__"baihuagu1",
+        "west": __DIR__"baihuagu",
+        "east": __FILE__
         ]));
-        set("objects", ([
+    set("objects", ([
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -400);
-        set("coor/y", -360);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -400);
+    set("coor/y", -360);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

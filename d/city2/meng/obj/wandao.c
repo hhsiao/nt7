@@ -6,10 +6,7 @@ void create()
 {
         set_name(HIW"蒙古彎刀"NOR, ({ "wan dao","blade" }));
         set_weight(12000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "柄");
+        set("unit", "柄");
                 set("long", "這是一柄亮晃晃的鋼刀，是蒙古官兵的常備武器。\n");
                 set("value", 1000);
                 set("rigidity",200);
@@ -18,7 +15,6 @@ void create()
                 set("material", "steel");
                 set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
                 set("unwield_msg", "$N將手中的$n插回刀鞘。\n");
-        }
         init_blade(400);
         setup();
 }
@@ -51,17 +47,17 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                                   message_vision(
                                           BLINK+HIM"$N的中軍遭到埋伏，損失殆盡！！\n"NOR,victim);
                 }
-                else  
+                else
                 {
                         if( query_temp("warquest/group", victim) )
                                   message_vision(
-                                          BLINK+HIM"$N的全軍陷入了敵軍的埋伏，存亡已在旦夕！！\n"NOR,victim);  
+                                          BLINK+HIM"$N的全軍陷入了敵軍的埋伏，存亡已在旦夕！！\n"NOR,victim);
                 }
-                
+
                 victim->receive_damage("qi",dam, me);
-                victim->receive_wound("qi",dam, me); 
+                victim->receive_wound("qi",dam, me);
        }
-       return damage_bonus; 
+       return damage_bonus;
 }
 
-void owner_is_killed() { destruct(this_object()); }  
+void owner_is_killed() { destruct(this_object()); }

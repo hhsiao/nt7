@@ -88,7 +88,7 @@ string * escape_str = ({
         "$N本能地往旁邊一讓，袖箭只是擦破了$N的皮肉，並沒有造成多大傷害。\n",
 });
 
-int i; 
+int i;
 void init()
 {
         add_action("do_shot","shot");
@@ -100,15 +100,10 @@ void create()
 
         set_name(HIY+name_str[i]+NOR, ({ id[i],short_id[i] }) );
         set_weight(1500);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "盒");
+        set("unit", "盒");
                 set("value", 0);
                 set("material", "steel");
                 set("long", des_str[i]);
-        }
         setup();
 }
 

@@ -6,10 +6,7 @@ void create()
 {
         set_name(NOR + YEL "鈦金竹" NOR, ({"taijin zhu", "taijin", "zhu"}));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", YEL "千年一遇的奇竹，吸取了天魂地魄之精，堅如玄鐵。\n" NOR);
+        set("long", YEL "千年一遇的奇竹，吸取了天魂地魄之精，堅如玄鐵。\n" NOR);
                 set("unit", "根");
                 set("value", 8000);
                 set("item_origin", 1);
@@ -17,7 +14,6 @@ void create()
                 set("material_name", NOR + YEL "鈦金竹" NOR);
                 set("can_make", ({ "簫", "棍", "杖", "鞭" }));
                 set("power_point", 50);
-        }
 }
 
 int query_autoload()

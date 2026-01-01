@@ -1,4 +1,4 @@
-// routuan.c 
+// routuan.c
 // Last Modified by Lonely on Jul. 15 2001
 
 inherit ITEM;
@@ -18,14 +18,10 @@ void create()
 
         set_name(name[i], ({id[i]}));
         set_weight(100);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long","一"+unit[i]+"餵養寵物的"+name[i]+"。看起來好象髒乎乎的。\n");
+        set("long","一"+unit[i]+"餵養寵物的"+name[i]+"。看起來好象髒乎乎的。\n");
                 set("unit", unit[i]);
                 set("value", value[i]);
                 set("siliao_remaining", remaining[i]);
                 set("siliao_supply", supply[i]);
                 set("siliao_effect", effect[i]);
-        }
 }

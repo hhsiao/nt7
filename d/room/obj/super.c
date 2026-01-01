@@ -10,15 +10,11 @@ void create()
 {
         set_name(HIC "免費卡" NOR, ({ "card", "fee free card" }));
         set_weight(10);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("material", "paper");
                 set("fee free", 200000000);
                 set("value", 1);
                 set("no_sell", 1);
-        }
 }
 
 string long()

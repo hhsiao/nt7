@@ -1,4 +1,4 @@
-// This program is a part of NT MudLIB 
+// This program is a part of NT MudLIB
 // Written by Lonely@nitan.org
 
 #include <ansi.h>
@@ -9,23 +9,18 @@ void create()
 {
         set_name(HIY "神" HIW "之" HIM "祝福" NOR YEL "鐵甲" NOR, ({"zhufu armor","tiejia","armor"}));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "件");
+        set("unit", "件");
                 set("long", "一件沉甸甸的鐵甲。\n");
                 set("value", 3000);
                 set("material", "steel");
                 set("armor_prop/armor", 40);
                 set("armor_prop/dodge", -10);
-        }
-        set("auto_load", 1); 
-        set("mod_mark", "A2010");  
-        set("mod_level", "M2010");  
-        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套裝"NOR); 
+        set("auto_load", 1);
+        set("mod_mark", "A2010");
+        set("mod_level", "M2010");
+        set("mod_name", HIY"神"HIW"之"HIM"祝福"NOR YEL"套裝"NOR);
 
-        set("enchase", ([ 
+        set("enchase", ([
                 "flute" : 1,
                 "used" : 1,
                 "apply_prop" : ([ /* sizeof() == 2 */
@@ -44,12 +39,11 @@ void create()
                         ]),
                 ]),
         }));
-        
+
         set("require", ([
                 "max_level" : 40,
                 "max_age"   : 30,
         ]));
-        set("quality_level", 2); 
+        set("quality_level", 2);
         setup();
 }
-

@@ -6,10 +6,7 @@ inherit COMBINED_ITEM;
 void create()
 {
         set_name(HIR "蟲毒" NOR, ({ "chong du", "chong", "du", "chongdu" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIR "這是一粒由毒蟲毒液精製而成的毒藥，毒性相當猛烈。\n" NOR);
+        set("long", HIR "這是一粒由毒蟲毒液精製而成的毒藥，毒性相當猛烈。\n" NOR);
                 set("base_unit", "粒");
                 set("base_value", 100);
                 set("base_weight", 10);
@@ -25,7 +22,6 @@ void create()
                 ]));
                 set("no_sell", 1);
                 set("only_do_effect", 1);
-        }
         setup();
         set_amount(1);
 }

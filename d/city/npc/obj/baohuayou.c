@@ -4,11 +4,7 @@ void create()
 {
         set_name("刨花油", ({ "baohua you", "you"}) );
         set_weight(50);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "樽");
+        set("unit", "樽");
                 set("long", "氣味芳香的刨花油\n");
                 set("value", 1000);
-        }
 }

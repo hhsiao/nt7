@@ -7,10 +7,7 @@ int is_xuemai_dan() { return 1;}
 void create()
 {
         set_name(HIR "十品血脈丹" NOR, ({"xuemai dan10", "dan"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一粒血脈丹，可激活體內血脈能力。\n");
+        set("long", "這是一粒血脈丹，可激活體內血脈能力。\n");
                 set("base_unit", "顆");
 
                 set("base_value", 200000);
@@ -33,14 +30,12 @@ void create()
                         "medical" : 1000,
                         "liandan-shu" : 3900,
                 ]));
-        }
         set("level", 10);
         setup();
 }
 
-int do_effect(object me) 
+int do_effect(object me)
 {
-        write("血脈丹只能在修煉血脈upblood時候服用。\n"); 
+        write("血脈丹只能在修煉血脈upblood時候服用。\n");
         return 1;
 }
-

@@ -8,14 +8,11 @@ int query_autoload()
 void create()
 {
         set_name(HIW "補藥" NOR, ({ "bu yao", "yao" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                                                                set("long", HIY "這是一顆增加內功的補藥。\n" NOR);
+        set("long", HIY "這是一顆增加內功的補藥。\n" NOR);
                                                                 set("unit", "課");
                 set("value", 10000);
                 set("weight", 300);
-                //增加的技能名為force  
+                //增加的技能名為force
                 //如果不為force 那後面的force_point表示增加精力
                 set("pill_skill", "force");
                 // 是否為特殊武功
@@ -26,17 +23,15 @@ void create()
 
                 //增加多少內力或者精力
                 set("force_point", 1);
-                                                                
+
                                                                 //加武功成功的描述
                 set("pill_msg1", HIR "你只覺一股暖氣散佈全身，說不出的舒服受用。\n" NOR);
                 //加武功失敗的描述  這兩項僅當pill_point定義時
                 set("pill_msg2", HIY "你只覺一股熱流湧上，內息得到了完全的補充。\n" NOR);
-                
+
                 // 增加內力或精力的描述，如果有前面兩條信息，則應作缺省
                 set("pill_msg3", HIM "你感到內力又雄厚了一些。\n" NOR);
                 set("pill_msg4", HIR "你感到內息澎湃，難以吸收藥力。\n" NOR);
-
-        }
         setup();
 }
 
@@ -53,7 +48,7 @@ int do_eat(string arg)
         int neili_limit=me->query_skill("force")*10;
   pot1 = query("pill_point");
   pot2 = query("force_point");
-  time = query("pill_point") / 40; 
+  time = query("pill_point") / 40;
   //假設20000點熟練度 就是500condition ==187 min ~= 3hour
 
 //非技能型的藥物重新計算效用時間

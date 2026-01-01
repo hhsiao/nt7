@@ -14,15 +14,10 @@ void create()
 {
         set_name("袈裟", ({"jia sha", "jia", "sha"}));
         set_weight(800);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一件舊得已經看不出顏色的袈裟，上面有好多窟窿。\n");
+        set("long", "一件舊得已經看不出顏色的袈裟，上面有好多窟窿。\n");
                 set("unit", "件");
                 set("material", "cloth");
                 set("no_get", "這樣東西不能離開那兒。\n");
-
-        }
         setup();
 }
 

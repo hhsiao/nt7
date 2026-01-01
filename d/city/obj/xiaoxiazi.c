@@ -12,18 +12,13 @@ void create()
 {
     set_name( "小匣子", ({ "xiao xiazi", "xiazi", "box" }) );
     set_weight( 2000 );
-    /*if ( clonep() )
-        set_default_object( __FILE__ );
-    else*/
-    {
-        set( "long", @LONG
+    set( "long", @LONG
 這個匣子雖小，卻入手很沉，不知道是什麼材料製成的。匣子表面上刻著一些神
 秘的花紋，隱隱泛著柔和的紅光，看上去有些奇異。
 LONG
         );
         set( "unit", "個" );
         set( "value", 40 );
-    }
     setup();
 }
 
@@ -55,7 +50,7 @@ int do_open_box( string arg )
             set_temp("open_box",query("have_married", me));
         }
         {
-            set_temp( "both_open", 1 ); 
+            set_temp( "both_open", 1 );
         }
         me->start_busy( (:opening:), (:halt_opening:) );
         return 1;
@@ -76,7 +71,7 @@ int opening()
         return 1;
     }
 
-    if ( mark < 10 ) 
+    if ( mark < 10 )
     {
         // 很遺憾了，時間過了。
         message_vision( "時間過了", me );

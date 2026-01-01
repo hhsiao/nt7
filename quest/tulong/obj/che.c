@@ -7,15 +7,11 @@ void create()
         set_max_encumbrance(6);        set("no_get",1);
         set("no_magic", 1);
         set("no_fight", 1);
-         /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/{ 
-                set("unit", "輛");
+         set("unit", "輛");
                 set("long", "一輛紅木鏢車，扯出一個幡子，上面寫著“福威鏢局”四個大字。\n");
                 set("value", 0);
-              }
-}       
-      
+}
+
 void init()
 {
         add_action("do_drive", "drive");
@@ -23,7 +19,7 @@ void init()
 
 int do_drive(string arg)
 {
-        object me, ob; 
+        object me, ob;
    me = this_player();
    ob = this_object();
 
@@ -70,7 +66,7 @@ int do_drive(string arg)
     ob->move(environment(me));
     message_vision("鏢車隆隆地駛了過來。\n",me);
     return 1;
-    }     
+    }
    if( arg=="se"){
     me->command("southeast");
     ob->move(environment(me));
@@ -106,7 +102,7 @@ int do_drive(string arg)
     ob->move(environment(me));
     message_vision("鏢車隆隆地駛了過來。\n",me);
     return 1;
-    } 
+    }
    if( arg=="u"){
     me->command("up");
     ob->move(environment(me));
@@ -147,8 +143,8 @@ int do_drive(string arg)
     ob->move(environment(me));
     message_vision("鏢車隆隆地駛了過來。\n",me);
     return 1;
-    } 
-  return notify_fail("沒有這個方向。\n"); 
+    }
+  return notify_fail("沒有這個方向。\n");
 }
 
 int is_container() { return 1; }

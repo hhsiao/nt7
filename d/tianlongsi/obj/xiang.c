@@ -2,39 +2,31 @@ inherit ITEM;
 
 void init();
 int do_dian(string arg);
-void create()
-{
-        set_name("香", ({ "xiang" }) );
-        set_weight(30);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "柱");
-                set("long", "這是一柱香,你可以點燃它(dian)。\n");
-                set("value", 100);
-                set("material", "wood");
-        }
-        setup();
+void create() {
+    set_name("香", ({ "xiang" }) );
+    set_weight(30);
+    set("unit", "柱");
+    set("long", "這是一柱香,你可以點燃它(dian)。\n");
+    set("value", 100);
+    set("material", "wood");
+    setup();
 }
 
-void init()
-{
-        add_action("do_dian", "dian");
+void init() {
+    add_action("do_dian", "dian");
 }
 
-int do_dian(string arg)
-{
-        object me;
-        string item, target; 
+int do_dian(string arg) {
+    object me;
 
-        me = this_player();
-        if(!arg||arg!="xiang")
-                return notify_fail("你要點燃什麼東西？\n");
-        else
-                {
-                if( query_temp("marks/ask_temp3", me) )
-                        set_temp("marks/dian_temp", 1, me);
-                return notify_fail("你點燃一柱香拿在手中。\n");
-                }                
-        return 0;
+    me = this_player();
+    if(!arg||arg!="xiang")
+        return notify_fail("你要點燃什麼東西？\n");
+    else
+    {
+        if(query_temp("marks/ask_temp3", me) )
+            set_temp("marks/dian_temp", 1, me);
+        return notify_fail("你點燃一柱香拿在手中。\n");
+    }
+    return 0;
 }

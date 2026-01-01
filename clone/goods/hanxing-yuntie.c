@@ -7,11 +7,7 @@ void create()
 {
         set_name(HIB "寒星隕鐵" NOR, ({"hanxing yuntie", "hanxing", "yuntie"}));
         set_weight(1000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", sort_msg(HIM "從太空掉落下來的一種寒星隕鐵。"
+        set("long", sort_msg(HIM "從太空掉落下來的一種寒星隕鐵。"
                                          "似乎包容著不為人知的力量，但卻感覺"
                                          "不到一點能量。\n" NOR));
                 set("unit", "塊");
@@ -21,5 +17,4 @@ void create()
                 set("material_name", HIM "寒星隕鐵" NOR);
                 set("can_make", "all");
                 set("power_point", 200);
-        }
 }

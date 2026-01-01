@@ -210,10 +210,7 @@ void init()
 void create()
 {
         set_name("大車", ({"da che", "che", "dache"}));
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long","這是一輛半新不舊的大車，車上坐著一個半老不老的車伕。
+        set("long","這是一輛半新不舊的大車，車上坐著一個半老不老的車伕。
 你可以仔細看看(kan)車上掛著的牌子，那就是你乘上大車，\n可以去(qu)的地方。\n");
                 set("unit", "輛");
                 set("no_fight",1);
@@ -222,7 +219,6 @@ void create()
                 set("no_beg", 1);
                 set("no_drop", 1);
                 set("no_put", 1);
-        }
         setup();
 }
 int look_sign()
@@ -275,7 +271,7 @@ int do_go(string arg)
                         return 1;
                 }
         }
-         if( query_temp("LAST_PKER_TIME", ob) && 
+         if( query_temp("LAST_PKER_TIME", ob) &&
              time()-query_temp("LAST_PKER_TIME", ob)<7200 && !wizardp(ob) )
              return notify_fail("殺了人，可不能做縮頭烏龜！\n");
 

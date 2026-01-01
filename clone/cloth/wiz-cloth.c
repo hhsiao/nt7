@@ -29,15 +29,11 @@ void create()
         set_name(clothname[i], ({ clothid[i], "cloth" }));
         set_weight(1000);
         set("long", clothlong[i]);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
         //        set("long", clothlong[i]);
                 set("unit", "件");
                 set("value", 0);
                 set("material", "cloth");
                 set("armor_prop/armor", 100);
                 set("armor_prop/per", 300);
-        }
         setup();
 }

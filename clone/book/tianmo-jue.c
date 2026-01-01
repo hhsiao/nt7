@@ -1,5 +1,5 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 
 #include <ansi.h>
@@ -10,11 +10,7 @@ void create()
 {
         set_name(HIR"天魔訣"NOR, ({ "tianmo jue", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",HIR"天    魔    訣。\n"NOR);
                 set("value", 200);
                 set("material", "paper");
@@ -28,6 +24,4 @@ void create()
                         "max_skill":    100                     // the maximum level you can learn
                                                                 // from this object.
                 ]) );
-        }
 }
-

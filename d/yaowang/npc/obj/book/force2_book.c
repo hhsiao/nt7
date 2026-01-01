@@ -6,10 +6,7 @@ void create()
 {
         set_name("內功詳解", ({ "force book", "book" }));
         set_weight(600);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "本");
+        set("unit", "本");
                 set("long",
 "封面上寫著「內功詳解）」\n");
                 set("value", 10000);
@@ -22,7 +19,6 @@ void create()
                         "max_skill":    99,
                         "min_skill":    50,
                 ]));
-        }
 }
 
 int is_yaowang_book() { return 1; }

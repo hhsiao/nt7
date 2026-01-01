@@ -2,34 +2,25 @@
 
 inherit ITEM;
 #include <ansi.h>;
-void create()
-{
-        set_name(HIW"白布小囊"NOR, ({"baibu xiaonan", "xiaonan"}));
-        set_weight(80);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是一隻白布小囊，好象可以打開的。\n");
-                set("unit", "只");
-                set("value", 1);
-        }
+void create() {
+    set_name(HIW"白布小囊"NOR, ({"baibu xiaonan", "xiaonan"}));
+    set_weight(80);
+    set("long", "這是一隻白布小囊，好象可以打開的。\n");
+    set("unit", "只");
+    set("value", 1);
 }
-void init()
-{
-        add_action("do_dakai", "dakai");
+void init() {
+    add_action("do_dakai", "dakai");
 }
-int do_dakai(string arg)
-{
-        object bu, me = this_player();
-        string message;
-        int col;
+int do_dakai(string arg) {
+    object bu, me = this_player();
 
-        if(!id(arg)) return notify_fail("你要拆什麼？\n");
-        if(!present(this_object(), me))
-                return notify_fail("你要拆什麼？\n");
-        message_vision("$N拆開白布小囊，攤開發現是張白布！\n", me);
-        bu = new(__DIR__"whitecloth");
-        bu->move(me);
-        destruct(this_object());
-        return 1;
+    if(!id(arg)) return notify_fail("你要拆什麼？\n");
+    if(!present(this_object(), me))
+        return notify_fail("你要拆什麼？\n");
+    message_vision("$N拆開白布小囊，攤開發現是張白布！\n", me);
+    bu = new(__DIR__"whitecloth");
+    bu->move(me);
+    destruct(this_object());
+    return 1;
 }

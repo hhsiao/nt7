@@ -7,13 +7,9 @@ inherit ITEM;
 void create()
 {
         set_name(HIR"小紅蓮"NOR, ({"hong lian", "honglian"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "朵");
+        set("unit", "朵");
                 set("long", "這是一朵紅色小花，象極了一個小蓮座。\n");
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

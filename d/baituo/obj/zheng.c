@@ -11,14 +11,10 @@ void create()
         set_name("古箏", ({ "gu zheng", "gu", "zheng" }));
         set_weight(300);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "臺");
+        set("unit", "臺");
                 set("long", YEL "這是一臺看上去有些陳舊的古箏。\n" NOR);
                 set("value", 50);
                 set("material", "wood");
-        }
         setup();
 }
 

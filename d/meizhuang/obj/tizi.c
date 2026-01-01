@@ -12,13 +12,9 @@ void create()
 {
         set_name("梯子", ({"ti zi", "ti"}));
         set_weight(200000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "一架長梯，靠在書架的旁邊。\n");
+        set("long", "一架長梯，靠在書架的旁邊。\n");
                 set("unit", "架");
                 set("material", "wood");
-        }
         setup();
 }
 

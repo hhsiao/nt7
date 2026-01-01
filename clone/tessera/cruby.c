@@ -12,11 +12,7 @@ void create()
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
         set_name(HIR "細碎的紅寶石" NOR, ({ "chipped ruby" }) ); /* NAME_EXIT  */
         set_weight(20);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-//**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
                 set("long", HIR "一片紅色的紅寶石碎片。\n" NOR); /* DBASE_EXIT  */
                 set("value", 20000);
                 set("unit", "顆");
@@ -26,7 +22,6 @@ void create()
                 set("magic/type", "fire");
                 set("magic/power", 70);
                 set("auto_load", 1);
-        }
         set("no_identify", 1);
         setup();
 }

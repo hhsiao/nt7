@@ -7,14 +7,10 @@ void create()
 {
         set_name("水囊", ({"shuinang", "wineskin", "skin"}));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", "這是裝滿清水的水囊。\n");
+        set("long", "這是裝滿清水的水囊。\n");
                 set("unit", "只");
                 set("value", 200);
                 set("max_liquid", 300);
-        }
 
         set("liquid", ([
                 "type": "water",

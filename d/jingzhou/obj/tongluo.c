@@ -14,13 +14,9 @@ void init()
 void create()
 {
         set_name(HIY"銅鑼"NOR, ({"tongluo"}));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "面");
+        set("unit", "面");
                 set("long", "這是一面武漢產的銅鑼。你可以敲敲(qiao)它。\n");
                 set("value", 100);
-        }
 //        setup();
 }
 

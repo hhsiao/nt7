@@ -29,20 +29,16 @@ nosave object *total = ({ });
 #define FOURTH          "/clone/fam/max/zhenyu"
 #define FIFTH           "/clone/fam/max/longjia"
 
-#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "比武精靈："+(string)x) 
+#define NCH_CHANNEL(x) CHANNEL_D->channel_broadcast("nch", "比武精靈："+(string)x)
 
 void create()
 {
         seteuid(ROOT_UID);
         set_name(HIR "武林英雄鼓" NOR, ({ "drum" }) );
         set_weight(5000000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "只");
+        set("unit", "只");
                 set("long", "這是一隻牛皮製成的巨鼓，武林人士在華山論劍時敲響(knock)它開始比武。\n");
-                set("no_get", 1); 
-        }
+                set("no_get", 1);
 }
 
 int init()
@@ -101,7 +97,7 @@ if (query("id", me)=="lazy cat") me->command("say 喵喵喵，人數不夠，取
         delete("round");
         delete("loop");
         delete("exits", ob);
-        //NCH_CHANNEL( sprintf( "env have %O\nfighters is %O\n", env, fighters ) ); 
+        //NCH_CHANNEL( sprintf( "env have %O\nfighters is %O\n", env, fighters ) );
         give_money(env, fighters);
         return 1;
 }
@@ -255,7 +251,7 @@ void de_group(object *fighters)
         mapping arena;
         object room = environment();
 
-        //NCH_CHANNEL( sprintf( "group fighters is %O\n", fighters ) ); 
+        //NCH_CHANNEL( sprintf( "group fighters is %O\n", fighters ) );
         if (sizeof(fighters) <= 1)       return;
         for (i = 0; i < 100; i++)
                 if (query("group" + i)) delete("group" + i);
@@ -358,9 +354,9 @@ void de_group(object *fighters)
                                         if( query("combat/PKS", no1)>10 )
                                                 addn("combat/PKS", -10, no1);
                                         else delete("combat/PKS", no1);
-                                        
-                                        HISTORY_D->add_history("華山論劍", query("id", no1), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 1.\n", 
-                                                query("name", no1), query("id", no1), query("age", no1), query("level",no1)));    
+
+                                        HISTORY_D->add_history("華山論劍", query("id", no1), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 1.\n",
+                                                query("name", no1), query("id", no1), query("age", no1), query("level",no1)));
                                 }
                                 if (no2)
                                 {
@@ -376,9 +372,9 @@ void de_group(object *fighters)
                                         if( query("combat/PKS", no1)>7 )
                                                 addn("combat/PKS", -7, no1);
                                         else delete("combat/PKS", no1);
-                                        
-                                        HISTORY_D->add_history("華山論劍", query("id", no2), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 2.\n", 
-                                                query("name", no2), query("id", no2), query("age", no2), query("level", no2)));    
+
+                                        HISTORY_D->add_history("華山論劍", query("id", no2), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 2.\n",
+                                                query("name", no2), query("id", no2), query("age", no2), query("level", no2)));
                                 }
                                 if (no3)
                                 {
@@ -394,9 +390,9 @@ void de_group(object *fighters)
                                         if( query("combat/PKS", no1)>5 )
                                                 addn("combat/PKS", -5, no1);
                                         else delete("combat/PKS", no1);
-                                        
-                                        HISTORY_D->add_history("華山論劍", query("id", no3), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 3.\n", 
-                                                query("name", no3), query("id", no3), query("age", no3), query("level", no3)));    
+
+                                        HISTORY_D->add_history("華山論劍", query("id", no3), sprintf("英豪組 %s(%s)，年齡 %d、等級 %d，榮獲名次 3.\n",
+                                                query("name", no3), query("id", no3), query("age", no3), query("level", no3)));
                                 }
                                 if (no4)
                                 {
@@ -747,7 +743,7 @@ int give_money(object *players,object *fighters)
                                 new("/clone/tessera/rune04")->move(user);
                                 new("/clone/tessera/rune05")->move(user);
                                 new("/clone/tessera/rune06")->move(user);
-         new("/u/redl/npc/obj/penny")->move(user); 
+         new("/u/redl/npc/obj/penny")->move(user);
                         }
                 }
                 message("vision", query("drum_knocked") + "給參賽的江湖人士每人一點禮物：“小小意思，笑納，笑納。”\n",

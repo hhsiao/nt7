@@ -9,15 +9,11 @@ void create()
         set_name(HIR"動"HIG"感"HIM"超"HIC"人"NOR, ({ "Chaoren", "sword" }));
         set_weight(6000);
         set("taskobj", 1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "柄");
+        set("unit", "柄");
                 set("value", 2000);
                 set("material", "steel");
                 set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
                 set("unwield_msg", "$N將手中的$n插回劍鞘。\n");
-        }
         init_sword(30);
         setup();
 }

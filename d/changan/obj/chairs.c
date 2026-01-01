@@ -1,5 +1,5 @@
 /*  <SecCrypt CPL V3R05>  */
- 
+
 //
 
 #include  <ansi.h>
@@ -33,15 +33,11 @@ void  create()
                       suffixs[random(sizeof(suffixs))],  ({  "chair"  }));
     set_weight(28000);
     set("long",  "這是一把椅子。\n"  );
-    /*if(  clonep()  )
-        set_default_object(__FILE__);
-    else*/  {
-        set("unit",  "把");
+    set("unit",  "把");
         set("material",  "stone");
         set("value",  2000);
         set("no_sell",  1);
         set("no_get",  1);
-    }
     setup();
 }
 

@@ -5,14 +5,9 @@ void create()
 {
         set_name(YEL "解除綁定符" NOR, ({ "unbind symbol", "unbind", "symbol" }));
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", YEL "該符文可以解除(unbind)物品的綁定屬性。\n" NOR);
+        set("long", YEL "該符文可以解除(unbind)物品的綁定屬性。\n" NOR);
                 set("unit", "塊");
                 set("value", 500000);
-        }
         setup();
 }
 
@@ -58,5 +53,3 @@ int query_autoload()
 {
         return 1;
 }
-
-

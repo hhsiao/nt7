@@ -13,13 +13,9 @@ void init()
 void create()
 {
         set_name("藥粉", ({ "yao fen" , "yao", "fen" }));
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "包");
+        set("unit", "包");
                 set("long", "這是一包專治內傷的藥粉。\n");
                 set("value", 1000);
-        }
         setup();
 }
 

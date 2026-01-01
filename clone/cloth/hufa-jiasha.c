@@ -1,4 +1,4 @@
-// hufa-jiasha.c 
+// hufa-jiasha.c
 // Last Modified by Lonely on May. 25 2001
 
 #include <armor.h>
@@ -10,13 +10,9 @@ void create()
         set_name(HIY"護法袈裟"NOR, ({ "hufa jiasha", "jiasha", "cloth" }) );
         set("long","一件金光燦燦的護法袈裟。");
         set_weight(4000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "件");
+        set("unit", "件");
                 set("value", 2000);
                 set("material", "cloth");
                 set("armor_prop/armor", 20);
-        }
         setup();
 }

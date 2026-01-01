@@ -7,16 +7,12 @@ void create()
         set_name(HIW "莫邪聖符" NOR, ({ "moye fu", "moye", "fu" }) );
         set_weight(1);
 
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("long", HIW "莫邪聖符可以將普通道具升級為自造道具，以後可以隨時召喚升級後的道具。\n"
+        set("long", HIW "莫邪聖符可以將普通道具升級為自造道具，以後可以隨時召喚升級後的道具。\n"
                                                 "指令格式： upd <欲升級道具ID> to <升級後的道具ID> \n"
                                                                 "目前僅僅限於升級防具類道具。\n" NOR);
                 set("value", 1);
                 set("no_sell", 1);
                         set("unit", "張");
-        }
 
         setup();
 }
@@ -30,7 +26,7 @@ int check_legal_id(string id)
 
                 if ((strlen(id) < 4) || (strlen(id) > 10))
                 {
-                        write(WHT "\n對不起，升級後的ID必須是" HIY " 4 " NOR + WHT 
+                        write(WHT "\n對不起，升級後的ID必須是" HIY " 4 " NOR + WHT
                                   "到" HIY " 10 " NOR + WHT "個英文字母。\n" NOR);
                         return 0;
                 }
@@ -78,7 +74,7 @@ int do_upd(string arg)
 
                 if (sscanf(arg, "%s to %s", tar_id, new_id) != 2)
                         return notify_fail("指令格式: upd <欲升級道具ID> to <升級後的道具ID>\n");
-                
+
 /*
 1、首先判斷該道具是否存在。
 2、該道具是否為防具。
@@ -100,18 +96,18 @@ int do_upd(string arg)
                 // 該道具是否下線不丟失
                 if (! ob->query_autoload())
                         return notify_fail("你只能升級下線不丟失的物品。\n");
-                
+
                 // 該道具是否為自造道具
                 if (ob->is_item_make())
-                        return notify_fail("自造物品不能升級。\n");                
+                        return notify_fail("自造物品不能升級。\n");
 
-                // 
+                //
                 if (ob->query("no_upd"))
                         return notify_fail("該特殊物品不能升級。\n");
-                        
+
                 // 該物品新ID是否合法，全為英文名
                 if (! check_legal_id(new_id))return 1;
-                                                
+
                 // 該物品新ID是否與現有自造物品ID重複（can_summon)
                 can_summon_list = me->query("can_summon");
 
@@ -127,12 +123,12 @@ int do_upd(string arg)
                                 }
                         }
                 }
-                
+
                 // 如果是勳章則加上諸神賜予 xxx(id)
                 if (ob->query("armor_type") == "medal" ||
                     ob->query("armor_type") == "medal2")
                 {
-                        ob->set("long", ob->query("long") + 
+                        ob->set("long", ob->query("long") +
                                         HIC "只見勳章的邊緣刻著一排小字：諸神賜予 " + me->name() + HIC + "(" + me->query("id") + ")\n" NOR);
                 }
 
@@ -146,7 +142,7 @@ int do_upd(string arg)
 
                 // 4、進行升級
                 // 4.1 根據道具類型設置相關數據，並寫入文件。
-                head_file = 
+                head_file =
                 "\n"
                 "#include <ansi.h>\n"
                 "#include <armor.h>\n"
@@ -193,23 +189,23 @@ int do_upd(string arg)
                 // 7. ==ARMOR_POINT==
                 head_file = replace_string(head_file, "==ARMOR_POINT==", sprintf("%d", ob->query("armor_prop/armor") * 5 / 6));
                 // 8. ==ARMOR_MATERIAL==
-                head_file = replace_string(head_file, "==ARMOR_MATERIAL==", ob->query("material") ? 
-                                                                            "\"" + ob->query("material") + "\"" : 
+                head_file = replace_string(head_file, "==ARMOR_MATERIAL==", ob->query("material") ?
+                                                                            "\"" + ob->query("material") + "\"" :
                                                                                 "\"" +  "steel" + "\"");
-                        
+
                 // 11.設置道具的armor_pro
                 armor_prop = ob->query("armor_prop");
-                
+
                 key_armor_prop = keys(armor_prop);
                 input_file = head_file;
                 if (sizeof(key_armor_prop))
-                {                
+                {
                         for (i = 0; i < sizeof(key_armor_prop); i ++ )
                         {
-                                if (key_armor_prop[i] == "armor")continue;                                
-                                
+                                if (key_armor_prop[i] == "armor")continue;
+
                                 // 如果為護身符 則暫時不寫入fy&qy值，在循環後單獨寫入
-                                if (ob->query("armor_type") == "myheart" || 
+                                if (ob->query("armor_type") == "myheart" ||
                                     ob->query("armor_type") == "myheart2")
                                 {
                                         if (key_armor_prop[i] =="fy" || key_armor_prop[i] == "qy")
@@ -217,23 +213,23 @@ int do_upd(string arg)
                                 }
 
                                 input_file += "\tset(\"armor_prop/" + key_armor_prop[i] + "\", ";
-                                                                
+
                                 if (stringp(armor_prop[key_armor_prop[i]]))
                                         input_file += armor_prop[key_armor_prop[i]] + ");\n";
-                                else                                        
+                                else
                                         input_file += sprintf("%d", armor_prop[key_armor_prop[i]]) + ");\n";
-                        } 
-                        
+                        }
+
                         // 單獨寫入福緣及氣運的計算公式
-                        if (ob->query("armor_type") == "myheart" || 
+                        if (ob->query("armor_type") == "myheart" ||
                             ob->query("armor_type") == "myheart2")
                         {
                                 input_file += "\tset(\"armor_prop/fy" + "\", ";
                                 input_file += sprintf("%d", ob->query("armor_prop/fy")) + " + f_enchase_points(0));\n";
                                 input_file += "\tset(\"armor_prop/qy" + "\", ";
-                                input_file += sprintf("%d", ob->query("armor_prop/qy")) + " + f_enchase_points(1));\n";                                
+                                input_file += sprintf("%d", ob->query("armor_prop/qy")) + " + f_enchase_points(1));\n";
                         }
-                
+
                 }
                 input_file += "\tset(\"armor_prop/armor\", apply_armor());\n";
                 // 如果無armor_prop不能裝備，可設置
@@ -248,7 +244,7 @@ int do_upd(string arg)
                         {
                                 input_file += "\tset(\"limit/" + key_limit[i] + "\", ";
                                 input_file += sprintf("%d", limit[key_limit[i]]) + ");\n";
-                        }                        
+                        }
                 }
 
                 input_file += "\n\tsetup();\n";
@@ -257,18 +253,18 @@ int do_upd(string arg)
 
                 // 寫入文件
                 if (! ITEM_D->extern_write_file("/data/item/" + me->query("id")[0..0] + "/" + me->query("id") + "-" + new_id + ".c",
-                                              input_file, 
+                                              input_file,
                                                                   1) )
                 {
                         return notify_fail("升級失敗，寫入文件異常。\n");
-                }                                
+                }
 
                 // 更新道具
                 load_object("/data/item/" + me->query("id")[0..0] + "/" + me->query("id") + "-" + new_id + ".c");
 
                 // 記錄
                 log_file("moyefu", me->query("id") + " 於 " + ctime(time()) + " 使用莫邪符升級 " + new_id + "。\n");
-                
+
                 // 設置CAN_SUMMON
                 me->set("can_summon/" + new_id, "/data/item/" + me->query("id")[0..0] + "/" + me->query("id") + "-" + new_id + ".c");
                 me->save();

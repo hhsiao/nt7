@@ -4,23 +4,18 @@ inherit HEAD;
 
 void create()
 {
-        set_name(HIG "文曲星頭盔" NOR, ({ "wisdom head", "toukui", }));  
+        set_name(HIG "文曲星頭盔" NOR, ({ "wisdom head", "toukui", }));
         set_weight(500);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("long", "蘊含了文曲星的精元和無上智慧(神)。\n"); 
+        set("long", "蘊含了文曲星的精元和無上智慧(神)。\n");
                 set("unit", "件");
                 set("value", 2000000);
                 set("material", "cloth");
                 set("armor_prop/armor", 10);
-        }
-        set("auto_load", 1); 
-        set("mod_mark", "A2003");  
-        set("mod_level", "M2000");  
-        set("mod_name", HBGRN"文曲星學習套裝(神)"NOR); 
-        set("enchase", ([ 
+        set("auto_load", 1);
+        set("mod_mark", "A2003");
+        set("mod_level", "M2000");
+        set("mod_name", HBGRN"文曲星學習套裝(神)"NOR);
+        set("enchase", ([
                 "flute" : 2,
                 "used"  : 2,
                 "apply_prop" : ([ /* sizeof() == 4 */
@@ -49,8 +44,8 @@ void create()
                         ]),
                 ]),
         }));
-        
-        set("quality_level", 2);  
-       
+
+        set("quality_level", 2);
+
         setup();
 }

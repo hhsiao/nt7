@@ -7,14 +7,10 @@ void create()
 {
         set_name("桃樹枝", ({ "trunk" }));
         set_weight(1200);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "根");
+        set("unit", "根");
                 set("long", "這是一根從桃樹上砍下來的樹枝，可以把它削成桃木劍。\n");
                 set("value", 0);
                 set("material", "bamboo");
-        }
 }
 
 void init()
@@ -47,6 +43,6 @@ int do_make(string arg)
                        "，幾下就把桃樹枝削成了一把劍，並刻上了一些驅鬼的符號。\n", me);
         sword = new("/d/wudang/quest/obj/ghost_sword");
         sword->move(me);
-        destruct(this_object()); 
+        destruct(this_object());
         return 1;
 }

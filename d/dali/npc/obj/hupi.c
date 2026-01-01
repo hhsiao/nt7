@@ -9,13 +9,9 @@ void create()
 {
         set_name("虎皮", ({ "hu pi" }) );
         set_weight(20000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "張");
+        set("unit", "張");
                 set("material", "cloth");
                 set("value", 20000);
                 set("armor_prop/armor", 10);
-        }
         setup();
 }

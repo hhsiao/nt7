@@ -5,12 +5,12 @@ inherit ITEM;
 #define CAO_SM         "/d/yaowang/obj/herb/"
 #define CAO_MEM_SM     "/d/yaowang/obj/herb/rare/"
 #define CAO_MEM        "/d/yaowang/obj/herb/member/"
-#define MEMBER_D       "/adm/daemons/memberd" 
+#define MEMBER_D       "/adm/daemons/memberd"
 
 // 會員草藥列表
 string *MEM_LIST = ({ "huanyang", "huoxuezhu", "hy-bc",
                          "hy-js", "hy-ly", "hy-mh", "hy-sb", "hy-ty",
-                           "hy-yq", "hy-ys", "hy-zhu", "jiegudan", 
+                           "hy-yq", "hy-ys", "hy-zhu", "jiegudan",
                          "jiujia", "lgshenjin", "shujincao", "tbrenshen",
                          "wugong", "zhjcao", });
 
@@ -21,10 +21,10 @@ string *MEM_LIST = ({ "huanyang", "huoxuezhu", "hy-bc",
 // 特殊草藥列表
 string *SM_LIST = ({ "tihuxiang", "huoxuezhu", "hy-bc",
                          "hy-js", "hy-ly", "hy-mh", "hy-sb", "hy-ty",
-                           "hy-yq", "hy-ys", "hy-zhu", "jiegudan", 
+                           "hy-yq", "hy-ys", "hy-zhu", "jiegudan",
                          "jiujia", "lgshenjin", "shujincao", "tbrenshen",
                          "wugong", "zhjcao", });
-                     
+
 // 普通草藥列表 //先寫這麼多，以後在補充
 string *NOR_LIST = ({ "chaihu", "chenpi", "chongcao",
                          "chuanwu", "dahuang", "danggui", "duhuo", "fangfeng",
@@ -37,13 +37,9 @@ void create()
         set_name("草籽", ({"cao zi"}));
         set_weight(10);
         set("no_clean_up", 1);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "粒");
+        set("unit", "粒");
                 set("long", "一粒淡褐色的草籽，種在田地裡(zhong)會長成草藥。\n");
                 set("value", 10);
-        }
         setup();
 }
 
@@ -78,13 +74,13 @@ int do_zhong(string arg)
 
         if( query("jingli", me) <= 20 )
                 return notify_fail("你太累了，還是先休息一下吧！\n");
-        
+
         if( query("jingli", me) <= 20 )
                 return notify_fail("你太累了，還是先休息一下吧！\n");
-                
+
         if( query_temp("growing", me) )
                 return notify_fail("你已經在種植草藥了！\n");
-                
+
         if( query("value", ob) != 10 )
                 return notify_fail("已經種在地裡了！\n");
 
@@ -152,7 +148,7 @@ int grow_c(object ob, object me)
         {
                 int i=10+random(5);
                 message_vision(WHT"青草慢慢地長大了一點。\n"NOR, ob);
-                call_out("grow_d", i, ob, me);  
+                call_out("grow_d", i, ob, me);
                 return 1;
         }else
         {
@@ -166,12 +162,12 @@ int grow_c(object ob, object me)
 int grow_d(object ob, object me)
 {
         if (environment(ob)==environment(me))
-        {                       
+        {
                 int i=10+random(10);
                 message_vision(WHT"青草慢慢地又長大了一些。\n"NOR, ob);
                 set_name( CYN"大青草"NOR , ({"da qingcao"}));
                 set("long", "一株綠色的大青草，還沒有長成。\n");
-                call_out("grow_e", i, ob, me);  
+                call_out("grow_e", i, ob, me);
                 return 1;
         }else
         {
@@ -189,37 +185,37 @@ int grow_e(object ob, object me)
         skill = (int)me->query_skill("baicao-jue", 1) + (int)me->query_skill("bencao-changshi", 1);
         skilla = (int)me->query_skill("baicao-jue", 1);
         skillb = (int)me->query_skill("bencao-changshi", 1);
-        
+
         exp = 8 + random(5);
         pot = 3 + random(3);
 
         if( query("potential", me)>me->query_potential_limit() )
                 pot = 1;
-                
+
         if (environment(ob)!=environment(me))
-        {                       
+        {
                 message_vision(WHT"由於主人沒有管理，大青草枯萎了。\n"NOR, ob);
                 tell_object(me, HIC "由於你沒有加強對大青草的管理，大青草枯萎了。\n" NOR);
                 delete_temp("growing", me);
                 destruct(ob);
                 return 1;
         }
-        
+
         message_vision(WHT"大青草長成了，可以挖起來了(dig)。\n"NOR, me);
         me->receive_damage("jing", 50 + random(30));
         me->receive_damage("qi", 50 + random(30));
-        if (random(skill) < 100 && random(3) == 1) 
+        if (random(skill) < 100 && random(3) == 1)
         {
                 delete_temp("growing", me);
-                obj=new(__DIR__"cao"); 
+                obj=new(__DIR__"cao");
                 set("owner",query("id",  me), obj);
-                obj->move(environment(ob)); 
+                obj->move(environment(ob));
                 addn("combat_exp", exp, me);
                 me->improve_potential(pot);
                         tell_object(me, HIC "你獲得了" + chinese_number(exp) +
-                                "點經驗和" + chinese_number(pot) + "點潛能。\n"NOR );      
+                                "點經驗和" + chinese_number(pot) + "點潛能。\n"NOR );
                 addn("zhongyao", -1, (environment(ob)));
-                destruct(ob); 
+                destruct(ob);
         } else
 
         if( MEMBER_D->is_valib_member(query("id", me)) )
@@ -229,10 +225,10 @@ int grow_e(object ob, object me)
                         message_vision(HIY "$N種植的草藥長成了，可以挖起來了(dig)。$N忽然發現上面好象懸浮著一道金光。\n"NOR, me);
                 delete_temp("growing", me);
                         obj = new(CAO_MEM_SM + MEM_SM_LIST[random(sizeof(MEM_SM_LIST))]);
-                        tell_object(me, HIC "你種成了稀有草藥「" + NOR + obj->name() + NOR + HIC "」。\n" NOR);                
+                        tell_object(me, HIC "你種成了稀有草藥「" + NOR + obj->name() + NOR + HIC "」。\n" NOR);
                         set("owner",query("id",  me), obj);
                         set("no_get", 1, obj);
-                        obj->move(environment(ob)); 
+                        obj->move(environment(ob));
                         exp += exp;
                         pot += pot;
                         addn("combat_exp", exp, me);
@@ -240,8 +236,8 @@ int grow_e(object ob, object me)
                         tell_object(me, HIC "你獲得了" + chinese_number(exp) +
                                 "點經驗和" + chinese_number(pot) + "點潛能。\n"NOR );
                         addn("zhongyao", -1, (environment(ob)));
-                        destruct(ob); 
-        
+                        destruct(ob);
+
                         if (me->can_improve_skill("baicao-jue") && skilla < 500)
                         {
                                 me->improve_skill("baicao-jue",query("int", me)+10);
@@ -252,8 +248,8 @@ int grow_e(object ob, object me)
                                 me->improve_skill("bencao-changshi",query("int", me)+10);
                                 tell_object(me, HIC "在種草過程中你的「本草常識」提高了！\n" NOR);
                         }
-                        
-                } else 
+
+                } else
                 if (random(skill) > 100 && random(2) == 1)
                 {
                         message_vision(HIC "$N種植的草藥長成了，可以挖起來了(dig)。\n" NOR, me);
@@ -262,14 +258,14 @@ int grow_e(object ob, object me)
                         tell_object(me, HIC "你種成了「" + NOR + obj->name() + NOR + HIC "」。\n" NOR);
                         set("owner",query("id",  me), obj);
                         set("no_get", 1, obj);
-                        obj->move(environment(ob)); 
+                        obj->move(environment(ob));
                         addn("combat_exp", exp, me);
                         me->improve_potential(pot);
                         tell_object(me, HIC "你獲得了" + chinese_number(exp) +
                                 "點經驗和" + chinese_number(pot) + "點潛能。\n"NOR );
                         addn("zhongyao", -1, (environment(ob)));
-                        destruct(ob); 
-        
+                        destruct(ob);
+
                         if (me->can_improve_skill("baicao-jue") && skilla < 500)
                         {
                                 me->improve_skill("baicao-jue",query("int", me)/4);
@@ -289,14 +285,14 @@ int grow_e(object ob, object me)
                         tell_object(me, HIC "你種成了「" + NOR + obj->name() + NOR + HIC "」。\n" NOR);
                         set("owner",query("id",  me), obj);
                         set("no_get", 1, obj);
-                        obj->move(environment(ob)); 
+                        obj->move(environment(ob));
                         addn("combat_exp", exp, me);
                         me->improve_potential(pot);
                         tell_object(me, HIC "你獲得了" + chinese_number(exp) +
                                 "點經驗和" + chinese_number(pot) + "點潛能。\n"NOR );
                         addn("zhongyao", -1, (environment(ob)));
-                        destruct(ob); 
-        
+                        destruct(ob);
+
                         if (me->can_improve_skill("baicao-jue") && skilla < 500)
                         {
                                 me->improve_skill("baicao-jue",query("int", me)/4);
@@ -308,7 +304,7 @@ int grow_e(object ob, object me)
                                 tell_object(me, HIC "在種草過程中你的「本草常識」提高了！\n" NOR);
                         }
                 }
-                                
+
         }else
 
         if (random(skill) > 300 && random(10) == 1)
@@ -316,10 +312,10 @@ int grow_e(object ob, object me)
                 message_vision(HIY "$N種植的草藥長成了，可以挖起來了(dig)。$N忽然發現上面好象懸浮著一道金光。\n"NOR, me);
                         delete_temp("growing", me);
                 obj = new(CAO_SM + SM_LIST[random(sizeof(SM_LIST))]);
-                tell_object(me, HIC "你種成了稀有草藥「" + NOR + obj->name() + NOR + HIC "」。\n" NOR);                
+                tell_object(me, HIC "你種成了稀有草藥「" + NOR + obj->name() + NOR + HIC "」。\n" NOR);
                 set("owner",query("id",  me), obj);
                 set("no_get", 1, obj);
-                obj->move(environment(ob)); 
+                obj->move(environment(ob));
                 exp += exp;
                 pot += pot;
                 addn("combat_exp", exp, me);
@@ -327,7 +323,7 @@ int grow_e(object ob, object me)
                 tell_object(me, HIC "你獲得了" + chinese_number(exp) +
                         "點經驗和" + chinese_number(pot) + "點潛能。\n"NOR );
                 addn("zhongyao", -1, (environment(ob)));
-                destruct(ob); 
+                destruct(ob);
 
                 if (me->can_improve_skill("baicao-jue") && skilla < 400)
                 {
@@ -339,7 +335,7 @@ int grow_e(object ob, object me)
                         me->improve_skill("bencao-changshi",query("int", me)+10);
                         tell_object(me, HIC "在種草過程中你的「本草常識」提高了！\n" NOR);
                 }
-                
+
         } else
         {
                 message_vision(HIC "$N種植的草藥長成了，可以挖起來了(dig)。\n" NOR, me);
@@ -348,13 +344,13 @@ int grow_e(object ob, object me)
                 tell_object(me, HIC "你種成了「" + NOR + obj->name() + NOR + HIC "」。\n" NOR);
                 set("owner",query("id",  me), obj);
                 set("no_get", 1, obj);
-                obj->move(environment(ob)); 
+                obj->move(environment(ob));
                 addn("combat_exp", exp, me);
                 me->improve_potential(pot);
                 tell_object(me, HIC "你獲得了" + chinese_number(exp) +
                         "點經驗和" + chinese_number(pot) + "點潛能。\n"NOR );
                 addn("zhongyao", -1, (environment(ob)));
-                destruct(ob); 
+                destruct(ob);
 
                 if (me->can_improve_skill("baicao-jue") && skilla < 400)
                 {

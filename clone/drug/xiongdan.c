@@ -14,15 +14,11 @@ void create()
 {
         set_name("熊膽", ({ "xiong dan", "dan" }) );
         set_weight(1000);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "顆");
+        set("unit", "顆");
                 set("long", "這是一顆比拳頭還大的熊膽，遍體發出烏黑的亮光。\n");
                 set("value", 10000);
                 set("no_sell", 1);
                 set("medicine", 1);
-        }
         setup();
 }
 
@@ -48,7 +44,7 @@ int cure_ob(object me)
         }
 
         addn("neili", 200, me);
-        me->apply_condition("bonze_drug", 
+        me->apply_condition("bonze_drug",
         me->query_condition("bonze_drug")+30);
         message_vision(HIY "$N吃下一顆熊膽，只覺得丹田充滿真氣混身有勁。\n" NOR, me);
 
@@ -69,4 +65,3 @@ void destroy()
 {
         destruct(this_object());
 }
-

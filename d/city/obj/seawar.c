@@ -9,953 +9,903 @@
 inherit ITEM;
 
 int has_start;
-int game_mode;                // 開始攻擊？0-佈局 1-火力 2-開火 3-結束
-int who_win;                // 勝利方 0=沒有結束 -1=和手
-mixed table;                // 兩個棋盤 table = cell[9][9]
-                        // cell = ({ HasShip , HasFire })
-mapping player;                // 兩個玩家 [id:tableNumber(1,2)]
-mixed player_action;        // 玩家的活動
-mapping visitor;        // 兩個玩家觀戰的人 [id:({id,...})]
-mixed ship;                // 兩個玩家的戰船 ({ mixed({hasDest,x,y,fireX,fireY,fireValue}) ,...})
-mixed numbers = ({"０","１","２","３","４","５","６","７","８","９"});
+int game_mode;  // 開始攻擊？0-佈局 1-火力 2-開火 3-結束
+int who_win;    // 勝利方 0=沒有結束 -1=和手
+mixed table;    // 兩個棋盤 table = cell[9][9]
+// cell = ({ HasShip , HasFire })
+mapping player;     // 兩個玩家 [id:tableNumber(1,2)]
+mixed player_action;    // 玩家的活動
+mapping visitor;    // 兩個玩家觀戰的人 [id:({ id,... })]
+mixed ship;     // 兩個玩家的戰船 ({ mixed({hasDest,x,y,fireX,fireY,fireValue}) ,...})
+mixed numbers = ({ "０", "１", "２", "３", "４", "５", "６", "７", "８", "９" });
 mixed cell_status = ({
-                        // 自己的棋盤
-                        ({"～","＊","～"}),
-                        ({"船","＠","船"}),
-                        // 敵方的棋盤
-                        ({"～","＊","＃"}),
-                        ({"～","Ｘ","＃"})
-        });                // 棋格的狀態
-mixed fire_x,fire_y;
+// 自己的棋盤
+    ({ "～", "＊", "～" }),
+    ({ "船", "＠", "船" }),
+// 敵方的棋盤
+    ({ "～", "＊", "＃" }),
+    ({ "～", "Ｘ", "＃" })
+});     // 棋格的狀態
+mixed fire_x, fire_y;
 int reset_game(int all);
 
-void msg(object me,object who,string msg)
-{
-        if(me) message_vision(msg,me,who);
-        else tell_room(environment(this_object()),msg,0);
+void msg(object me, object who, string msg) {
+    if(me) message_vision(msg, me, who);
+    else tell_room(environment(this_object()), msg, 0);
 }
 
-int player_id(string key)
-{
-        return player[key];
+int player_id(string key) {
+    return player[key];
 }
 
-object get_player(string id)
-{
-        object ob;
-        ob= find_player(id);
-        if( !ob || environment(ob) != environment(this_object()) )
-                return 0;
-        return ob;
-}
-
-string enemy_id(string key)
-{
-        mixed *idx;
-        int i;
-        idx = keys(player);
-        for(i=0;i<sizeof(idx);i++)
-                if(idx[i]!=key)
-                        return idx[i];
+object get_player(string id) {
+    object ob;
+    ob = find_player(id);
+    if(!ob || environment(ob) != environment(this_object()) )
         return 0;
+    return ob;
 }
 
-object get_player2(int wHIYh)
-{
-        mixed *idx;
-        int i;
-
-        idx = keys(player);
-        for(i=0;i<sizeof(idx);i++)
-                if(player[idx[i]]==wHIYh)
-                        return get_player(idx[i]);
-        return 0;        
+string enemy_id(string key) {
+    mixed *idx;
+    int i;
+    idx = keys(player);
+    for(i = 0;i<sizeof(idx);i++)
+        if(idx[i]!=key)
+        return idx[i];
+    return 0;
 }
 
-int is_visitor(object who,string which)
-{
-        if(!get_player(which))
-                return 0;
-        if( !visitor[which] || member_array(query("id", who),visitor[which]) == -1 )
-                return 0;
+object get_player2(int wHIYh) {
+    mixed *idx;
+    int i;
+
+    idx = keys(player);
+    for(i = 0;i<sizeof(idx);i++)
+        if(player[idx[i]]==wHIYh)
+        return get_player(idx[i]);
+    return 0;
+}
+
+int is_visitor(object who, string which) {
+    if(!get_player(which))
+        return 0;
+    if(!visitor[which] || member_array(query("id", who), visitor[which]) == -1 )
+        return 0;
+    return 1;
+}
+
+int is_playing(object ob) {
+    string id;
+    id = query("id", ob);
+    if(player[id])
         return 1;
+    return 0;
 }
 
-int is_playing(object ob)
-{
-        string id;
-        id=query("id", ob);
-        if(player[id])
-                return 1;
-        return 0;
+mixed get_table(string id) {
+    int i;
+    if(i = player[id])
+        return table[i - 1];
+    return 0;
 }
 
-mixed get_table(string id)
-{
-        int i;
-        if(i=player[id])
-                return table[i-1];
-        return 0;
+mixed get_ship(string id) {
+    int i;
+    if(i = player[id])
+        return ship[i - 1];
+    return 0;
 }
 
-mixed get_ship(string id)
-{
-        int i;
-        if(i=player[id])
-                return ship[i-1];
-        return 0;
+int remain_ship(string who) {
+    int i, c;
+    mixed *sh;
+    sh = get_ship(who);
+    c = 0;
+    for(i = 0;i<SHIP_NUM;i++)
+        if(!sh[i][0])c++;
+    return c;
 }
 
-int remain_ship(string who)
-{
-        int i,c;
-        mixed *sh;
-        sh = get_ship(who);
-        c = 0;
-        for(i=0;i<SHIP_NUM;i++)
-                if(!sh[i][0])c++;
-        return c;
+int remain_place(string who) {
+    int i, c;
+    mixed *sh;
+    sh = get_ship(who);
+    c = 0;
+    for(i = 0;i<SHIP_NUM;i++)
+        if(!sh[i][1])c++;
+    return c;
 }
 
-int remain_place(string who)
-{
-        int i,c;
-        mixed *sh;
-        sh = get_ship(who);
-        c = 0;
-        for(i=0;i<SHIP_NUM;i++)
-                if(!sh[i][1])c++;
-        return c;
+int remain_fire(string who) {
+    int i, c;
+    mixed *sh;
+    sh = get_ship(who);
+    c = 0;
+    for(i = 0;i<SHIP_NUM;i++)
+        if(!sh[i][0]&&!sh[i][3])c++;
+    return c;
 }
 
-int remain_fire(string who)
-{
-        int i,c;
-        mixed *sh;
-        sh = get_ship(who);
-        c = 0;
-        for(i=0;i<SHIP_NUM;i++)
-                if(!sh[i][0]&&!sh[i][3])c++;
-        return c;
+void create() {
+    set_name("海戰棋", ({ "seawar board", "board", "sea" }) );
+    set_weight(1);
+    set("unit", "副");
+    set("long", "這是一副海戰棋，上面稀稀落落擺著一些艦船。\n");
+    set("value", 1);
+    set("material", "wood");
+    reset_game(1);
+    setup();
 }
 
-void create()
-{
-        set_name("海戰棋", ({ "seawar board","board","sea"}) );
-        set_weight(1);
-        /*if( clonep() )
-                set_default_object(__FILE__);
-        else*/
-        {
-                set("unit", "副");
-                set("long", "這是一副海戰棋，上面稀稀落落擺著一些艦船。\n");
-                set("value", 1);
-                set("material", "wood");
-        }
-        reset_game(1);
-        setup();
-}
+string player_status(string key) {
+    mixed* sh;
+    int i;
+    string r;
 
-string player_status(string key)
-{
-        mixed* sh;
-        int i;
-        string r;
+    sh = get_ship(key);
 
-        sh = get_ship(key);
+    if(!sh)
+        return "???";
 
-        if(!sh)
-                return "???";
-
-        r = "";
-        for(i=0;i<SHIP_NUM;i++)
-        {
-                if(sh[i][0])
-                        r+= HIR"Ｘ"NOR" ";
-                else
-                        r+= HIB"船"NOR" ";
-        }
-        return r;
-}
-
-string build_board(string key)
-{
-        mixed *mt,*et,*d;
-        string r;
-        int x,y,id,mid,eid;
-
-        id = player_id(key);
-        if(!id) return "";
-        if(id==1)
-        {
-                mid = 0;
-                eid = 1;
-        }
+    r = "";
+    for(i = 0;i<SHIP_NUM;i++)
+    {
+        if(sh[i][0])
+            r += HIR"Ｘ"NOR" ";
         else
-        {
-                mid = 1;
-                eid = 0;
-        }
-        mt = table[mid];
-        et = table[eid];
-        
-        r = "\n";
-        r += "＊我軍的情況＊　　　　　＊敵軍的情況＊\n";
-        r += "　１２３４５６７８９　　　１２３４５６７８９\n";
-        for(y=0;y<HEIGHT;y++)
-        {
-                r = r+numbers[y+1];
-                for(x=0;x<WIDTH;x++)
-                {
-                        d = mt[x][y];
-                        if(game_mode==2 && x==fire_x[mid]-1 && y==fire_y[mid]-1)
-                                r += BLINK+HIY + cell_status[d[0]][d[1]] + NOR;
-                        else r += cell_status[d[0]][d[1]];
-                }
-
-                r = r+"　　" + numbers[y+1];
-                for(x=0;x<WIDTH;x++)
-                {
-                        d = et[x][y];
-                        if(game_mode == 2 && x == fire_x[eid]-1 && y == fire_y[eid]-1)
-                                r += cell_status[d[0]+2][d[1]];
-                        else
-                                r += cell_status[d[0]+2][d[1]];
-                }
-                r+="\n";
-        }
-        r += "船隻狀態：" + player_status(key) + "\n";
-        return r;
+            r += HIB"船"NOR" ";
+    }
+    return r;
 }
 
-int reset_game(int all)
-{
-        int i,x,y;
+string build_board(string key) {
+    mixed *mt,*et,*d;
+    string r;
+    int x, y, id, mid, eid;
 
-        table = ({0,0});
-        if(all)
+    id = player_id(key);
+    if(!id) return "";
+    if(id==1)
+    {
+        mid = 0;
+        eid = 1;
+    }
+    else
+    {
+        mid = 1;
+        eid = 0;
+    }
+    mt = table[mid];
+    et = table[eid];
+
+    r = "\n";
+    r += "＊我軍的情況＊　　　　　＊敵軍的情況＊\n";
+    r += "　１２３４５６７８９　　　１２３４５６７８９\n";
+    for(y = 0;y<HEIGHT;y++)
+    {
+        r = r + numbers[y + 1];
+        for(x = 0;x<WIDTH;x++)
         {
-                player = ([]);
-                visitor = ([]);
+            d = mt[x][y];
+            if(game_mode==2 && x==fire_x[mid] - 1 && y==fire_y[mid] - 1)
+                r += BLINK + HIY + cell_status[d[0]][d[1]] + NOR;
+            else r += cell_status[d[0]][d[1]];
         }
-        ship = ({0,0});
-        player_action = ([]);
 
-        for(i=0;i<2;i++)
+        r = r + "　　" + numbers[y + 1];
+        for(x = 0;x<WIDTH;x++)
         {
-                table[i] = allocate(WIDTH);
-                for(x=0;x<WIDTH;x++)
-                {
-                        table[i][x] = allocate(HEIGHT);
-                        for(y=0;y<HEIGHT;y++)
-                                table[i][x][y] = ({0,0});
-                }
-                
-                ship[i] = allocate(SHIP_NUM);
-                for(x=0;x<SHIP_NUM;x++)
-                        ship[i][x] = ({0,0,0,0,0,0});
+            d = et[x][y];
+            if(game_mode == 2 && x == fire_x[eid] - 1 && y == fire_y[eid] - 1)
+                r += cell_status[d[0] + 2][d[1]];
+            else
+                r += cell_status[d[0] + 2][d[1]];
         }
-
-        if(all)
-                has_start = 0;
-        return 1;
+        r += "\n";
+    }
+    r += "船隻狀態：" + player_status(key) + "\n";
+    return r;
 }
 
-void display(int who)
-{
-        string b,id,m;
-        int i,j;
-        mixed* v;
-        object ob,vtor;
+int reset_game(int all) {
+    int i, x, y;
 
-        for(i=1;i<=2;i++)
+    table = ({ 0, 0 });
+    if(all)
+    {
+        player = ([]);
+        visitor = ([]);
+    }
+    ship = ({ 0, 0 });
+    player_action = ([]);
+
+    for(i = 0;i<2;i++)
+    {
+        table[i] = allocate(WIDTH);
+        for(x = 0;x<WIDTH;x++)
         {
-                if(!who||who==i)
-                {
-                        ob = get_player2(i);
-                        if(ob)
-                        {
-                                id=query("id", ob);
-                                b = build_board(id);
-                                tell_object(ob,b);
-                                v = visitor[id];
-                                for(j=0;j<sizeof(v);j++)
-                                {
-                                        vtor = find_player(v[j]);
-                                        if(vtor)//&&environment(vtor) == environment(this_object()))
-                                                tell_object(vtor,b);
-                                }
-                                
-                                switch(game_mode)
-                                {
-                                case 0:
-                                        m=sprintf("佈置船隻：%d只\n",remain_place(query("id", ob)));
-                                        m += "使用["HIY"place X座標 Y座標"NOR"]佈置船隻\n";
-                                        m += "使用["HIY"unplace X座標 Y座標"NOR"]取消佈置\n";
-                                        m += "使用["HIY"rplace"NOR"]隨機擺放船隻\n";
-                                        break;
-                                case 1:
-                                        m=sprintf("佈置火力：%d個\n",remain_fire(query("id", ob)));
-                                        m += "使用["HIY"fire X座標 Y座標"NOR"]設置攻擊位置\n";
-                                        m += "使用["HIY"unfire X座標 Y座標"NOR"]取消設置\n";
-                                        break;
-                                case 3:
-                                        m = "戰鬥結束了。\n戰況：";
-                                        if(who_win==-1)
-                                                m+="和手";
-                                        else if(who_win==i)
-                                                m+=HIY"勝利了"NOR;
-                                        else
-                                                m+=HBWHT BLK"失敗了"NOR;
-                                        break;
-                                }
-                                if(m)
-                                        tell_object(ob,m);
-                        }
-                }
+            table[i][x] = allocate(HEIGHT);
+            for(y = 0;y<HEIGHT;y++)
+                table[i][x][y] = ({ 0, 0 });
         }
+
+        ship[i] = allocate(SHIP_NUM);
+        for(x = 0;x<SHIP_NUM;x++)
+            ship[i][x] = ({ 0, 0, 0, 0, 0, 0 });
+    }
+
+    if(all)
+        has_start = 0;
+    return 1;
 }
 
-string extra_long()
-{
-        object who;
-        string r,key;
-        mixed *idx;
-        int i;
-        
-        if(sizeof(player)>0)
+void display(int who) {
+    string b, id, m;
+    int i, j;
+    mixed* v;
+    object ob, vtor;
+
+    for(i = 1;i<=2;i++)
+    {
+        if(!who||who==i)
         {
-                idx = keys(player);
-                r =        "******************************************\n";
-                for(i=0;i<sizeof(idx);i++)
+            ob = get_player2(i);
+            if(ob)
+            {
+                id = query("id", ob);
+                b = build_board(id);
+                tell_object(ob, b);
+                v = visitor[id];
+                for(j = 0;j<sizeof(v);j++)
                 {
-                        key = idx[i];
-                        who = get_player(key);
-                        if(who)
-                                r = r + key + "："+player_status(key)+"\n";
+                    vtor = find_player(v[j]);
+                    if(vtor)    //&&environment(vtor) == environment(this_object()))
+                        tell_object(vtor, b);
                 }
-                r += "******************************************\n";
+
+                switch(game_mode)
+                {
+                case 0:
+                    m = sprintf("佈置船隻：%d只\n", remain_place(query("id", ob)));
+                    m += "使用["HIY"place X座標 Y座標"NOR"]佈置船隻\n";
+                    m += "使用["HIY"unplace X座標 Y座標"NOR"]取消佈置\n";
+                    m += "使用["HIY"rplace"NOR"]隨機擺放船隻\n";
+                    break;
+                case 1:
+                    m = sprintf("佈置火力：%d個\n", remain_fire(query("id", ob)));
+                    m += "使用["HIY"fire X座標 Y座標"NOR"]設置攻擊位置\n";
+                    m += "使用["HIY"unfire X座標 Y座標"NOR"]取消設置\n";
+                    break;
+                case 3:
+                    m = "戰鬥結束了。\n戰況：";
+                    if(who_win==-1)
+                        m += "和手";
+                    else if(who_win==i)
+                        m += HIY"勝利了"NOR;
+                    else
+                        m += HBWHT BLK"失敗了"NOR;
+                    break;
+                }
+                if(m)
+                    tell_object(ob, m);
+            }
         }
-        return r;
+    }
 }
 
-int view_board(object who,string which)
-{
-        string b;
-        object ob;
-        mixed *v;
-        int i,see;
+string extra_long() {
+    object who;
+    string r, key;
+    mixed *idx;
+    int i;
 
-        ob = get_player(which);
-        if(!ob)
-                return 0;
-
-        see = 0;
-        if(ob==who)
-                see = 1;
-
-        if(!see)
-                see = is_visitor(who,which);
-
-        if(see)
+    if(sizeof(player)>0)
+    {
+        idx = keys(player);
+        r = "******************************************\n";
+        for(i = 0;i<sizeof(idx);i++)
         {
-                b = build_board(which);
-                tell_object(who,b);
-                return 1;
+            key = idx[i];
+            who = get_player(key);
+            if(who)
+                r = r + key + "："+player_status(key) + "\n";
         }
+        r += "******************************************\n";
+    }
+    return r;
+}
+
+int view_board(object who, string which) {
+    string b;
+    object ob;
+    int see;
+
+    ob = get_player(which);
+    if(!ob)
         return 0;
-}
 
-void start_game()
-{
-        has_start = 1;
-        game_mode = 0;
-        who_win = 0;
+    see = 0;
+    if(ob==who)
+        see = 1;
 
-        msg(0,0,"開始遊戲\n");
-        display(0);
-}
+    if(!see)
+        see = is_visitor(who, which);
 
-int before_fire()
-{
-        game_mode = 1;
-        player_action = ([]);
-        msg(0,0,"\n\n"HIC"！！！進入戰備狀態！！！"NOR"\n\n");
-        display(0);
-}
-
-int start_fire()
-{
-        player_action = ([]);
-        msg(0,0,"\n\n"HIR"！！！開始戰鬥狀態！！！"NOR"\n\n");
-        game_mode = 2;
-        fire_x = ({0,0});
-        fire_y = ({0,0});
-        remove_call_out("fire_it");
-        call_out("fire_it",2);
-}
-
-void init()
-{
-
-//        add_action("do_help","helpboard");                // 幫助
-
-        add_action("do_reset","reset");                        // 重置遊戲
-        add_action("do_start","start");                        // 重新開始
-        add_action("do_join","join");                        // 加入遊戲
-
-        add_action("do_view","view");                        // 查看情況
-        add_action("do_visitor","visit");                // 查看情況
-        add_action("do_finish","finish");                // 完成
-
-        add_action("do_place","place");                        // 佈置船隻
-        add_action("do_rplace","rplace");                // 隨機擺放船隻
-        add_action("do_unplace","unplace");                // 取消船隻
-
-        add_action("do_fire","fire");                        // 佈置火力
-        add_action("do_unfire","unfire");                // 取消火力
-}
-
-int do_reset(string arg)
-{
-        mixed *idx;
-        int i;
-
-        if(!this_object()->id(arg))
-                return 0;
-
-        if(!is_playing(this_player()))
-        {
-                if(get_player2(1)||get_player2(2))
-                        return notify_fail("你都不玩啊！\n");
-        }
-                
-        if(reset_game(1))
-                msg(this_player(),0,"$N重置了遊戲。\n");
+    if(see)
+    {
+        b = build_board(which);
+        tell_object(who, b);
         return 1;
+    }
+    return 0;
 }
 
-int do_start(string arg)
-{
-        mixed *idx;
-        int i;
+void start_game() {
+    has_start = 1;
+    game_mode = 0;
+    who_win = 0;
 
-        if(!is_playing(this_player()))
-                return notify_fail("你都不玩啊！\n");
+    msg(0, 0, "開始遊戲\n");
+    display(0);
+}
 
-        reset_game(0);
+int before_fire() {
+    game_mode = 1;
+    player_action = ([]);
+    msg(0, 0, "\n\n"HIC"！！！進入戰備狀態！！！"NOR"\n\n");
+    display(0);
+}
+
+int start_fire() {
+    player_action = ([]);
+    msg(0, 0, "\n\n"HIR"！！！開始戰鬥狀態！！！"NOR"\n\n");
+    game_mode = 2;
+    fire_x = ({ 0, 0 });
+    fire_y = ({ 0, 0 });
+    remove_call_out("fire_it");
+    call_out("fire_it", 2);
+}
+
+void init() {
+
+    //        add_action("do_help","helpboard");                // 幫助
+
+    add_action("do_reset", "reset");    // 重置遊戲
+    add_action("do_start", "start");    // 重新開始
+    add_action("do_join", "join");  // 加入遊戲
+
+    add_action("do_view", "view");  // 查看情況
+    add_action("do_visitor", "visit");  // 查看情況
+    add_action("do_finish", "finish");  // 完成
+
+    add_action("do_place", "place");    // 佈置船隻
+    add_action("do_rplace", "rplace");  // 隨機擺放船隻
+    add_action("do_unplace", "unplace");    // 取消船隻
+
+    add_action("do_fire", "fire");  // 佈置火力
+    add_action("do_unfire", "unfire");  // 取消火力
+}
+
+int do_reset(string arg) {
+
+    if(!this_object()->id(arg))
+        return 0;
+
+    if(!is_playing(this_player()))
+    {
+        if(get_player2(1)||get_player2(2))
+            return notify_fail("你都不玩啊！\n");
+    }
+
+    if(reset_game(1))
+        msg(this_player(), 0, "$N重置了遊戲。\n");
+    return 1;
+}
+
+int do_start(string arg) {
+
+    if(!is_playing(this_player()))
+        return notify_fail("你都不玩啊！\n");
+
+    reset_game(0);
+    start_game();
+    return 1;
+}
+
+int do_view(string arg) {
+
+    if(!is_playing(this_player()))
+    {
+        if(!arg) return notify_fail("你都不玩啊！\n");
+        if(!is_visitor(this_player(), arg))
+            return notify_fail("你不能夠看"+arg + "的棋，可以使用[visit "+arg + "]命令成為"+arg + "的觀眾。\n");
+    }
+    if(!arg)arg = query("id", this_player());
+    if(!view_board(this_player(), arg)) return notify_fail("？？？\n");
+    return 1;
+}
+
+int do_join(string arg) {
+    object me;
+
+    me = this_player();
+    if(has_start)
+        return notify_fail("遊戲已經開始，不能加入了，請使用(reset)命令重置。\n");
+    if(is_playing(me))
+        return notify_fail("你已經參加了。\n");
+
+    player[query("id", me)] = sizeof(player) + 1;
+    msg(me, 0, "$N加入遊戲了。\n");
+
+    if(sizeof(player)==2)
         start_game();
-        return 1;
+
+    return 1;
 }
 
-int do_view(string arg)
-{
-        mixed *idx;
-        int i;
+int do_place(string arg) {
+    int i, x, y;
+    mixed *sh,*tb;
+    string id;
 
-        if(!is_playing(this_player()))
+    if(!is_playing(this_player()))
+        return notify_fail("你都不玩啊！\n");
+
+    if(!has_start||game_mode!=0)
+        return notify_fail("現在不是佈置船隻的時候。\n");
+
+    if(!arg || sscanf(arg, "%d %d", x, y)!=2 )
+        return notify_fail("place X座標 Y座標\n");
+
+    if(x<1||x>WIDTH)
+        return notify_fail("X座標錯誤\n");
+    if(y<1||y>HEIGHT)
+        return notify_fail("Y座標錯誤\n");
+
+    id = query("id", this_player());
+    sh = get_ship(id);
+    tb = get_table(id);
+    if(!sh||!tb)
+        return notify_fail("access date fail\n");
+
+    if(tb[x - 1][y - 1][0] == 1)
+        return notify_fail("該處已經佈置了船隻\n");
+
+    for(i = 0;i<SHIP_NUM;i++)
+    {
+        if(!sh[i][1])
         {
-                if(!arg) return notify_fail("你都不玩啊！\n");
-                if(!is_visitor(this_player(),arg))
-                        return notify_fail("你不能夠看"+arg+"的棋，可以使用[visit "+arg+"]命令成為"+arg+"的觀眾。\n");
+            sh[i][1] = x;
+            sh[i][2] = y;
+            tb[x - 1][y - 1][0] = 1;
+            break;
         }
-        if( !arg)arg=query("id", this_player());
-        if(!view_board(this_player(),arg)) return notify_fail("？？？\n");
-        return 1;
+    }
+
+    if(i==SHIP_NUM)
+        return notify_fail("你已經沒有空餘的船隻可以佈置了。\n");
+    else
+    {
+        display(player_id(id));
+        if(!remain_place(id))
+            tell_object(this_player(), "\n使用[Finish]結束佈置船隻。\n");
+    }
+    return 1;
 }
 
-int do_join(string arg)
-{
-        object me;
+int do_unplace(string arg) {
+    int i, x, y;
+    mixed *sh,*tb;
 
-        me = this_player();
-        if(has_start)
-                return notify_fail("遊戲已經開始，不能加入了，請使用(reset)命令重置。\n");
-        if(is_playing(me))
-                return notify_fail("你已經參加了。\n");
+    if(!is_playing(this_player()))
+        return notify_fail("你都不玩啊！\n");
 
-        player[query("id",me)]=sizeof(player)+1; 
-        msg(me,0,"$N加入遊戲了。\n");
+    if(game_mode!=0)
+        return notify_fail("現在不是佈置船隻的時候。\n");
 
-        if(sizeof(player)==2)
-                start_game();
+    if(!arg || sscanf(arg, "%d %d", x, y)!=2 )
+        return notify_fail("unplace X座標 Y座標\n");
 
-        return 1;
-}
+    if(x<1||x>WIDTH)
+        return notify_fail("X座標錯誤\n");
+    if(y<1||y>HEIGHT)
+        return notify_fail("Y座標錯誤\n");
 
-int do_place(string arg)
-{
-        int i,x,y;
-        mixed *sh,*tb;
-        string id;
+    sh = get_ship(query("id", this_player()));
+    tb = get_table(query("id", this_player()));
+    if(!sh||!tb)
+        return notify_fail("access date fail\n");
 
-        if(!is_playing(this_player()))
-                return notify_fail("你都不玩啊！\n");
-        
-        if(!has_start||game_mode!=0)
-                return notify_fail("現在不是佈置船隻的時候。\n");
-
-        if( !arg || sscanf(arg, "%d %d", x, y)!=2 )
-                return notify_fail("place X座標 Y座標\n");
-
-        if(x<1||x>WIDTH)
-                return notify_fail("X座標錯誤\n");
-        if(y<1||y>HEIGHT)
-                return notify_fail("Y座標錯誤\n");
-
-        id=query("id", this_player());
-        sh = get_ship(id);
-        tb = get_table(id);
-        if(!sh||!tb)
-                return notify_fail("access date fail\n");
-
-        if(tb[x-1][y-1][0] == 1)
-                return notify_fail("該處已經佈置了船隻\n");
-
-        for(i=0;i<SHIP_NUM;i++)
+    for(i = 0;i<SHIP_NUM;i++)
+    {
+        if(sh[i][1]==x&&sh[i][2]==y)
         {
-                if(!sh[i][1])
-                {
-                        sh[i][1] = x;
-                        sh[i][2] = y;
-                        tb[x-1][y-1][0] = 1;
-                        break;
-                }
+            sh[i][1] = 0;
+            sh[i][2] = 0;
+            tb[x - 1][y - 1][0] = 0;
+            display(player_id(query("id", this_player())));
+            break;
         }
+    }
 
-        if(i==SHIP_NUM)
-                return notify_fail("你已經沒有空餘的船隻可以佈置了。\n");
-        else
-        {
-                display(player_id(id));
-                if(!remain_place(id))
-                        tell_object(this_player(),"\n使用[Finish]結束佈置船隻。\n");
-        }
-        return 1;
+    if(i==SHIP_NUM)
+        return notify_fail("該位置沒有佈置船隻。\n");
+    return 1;
 }
 
-int do_unplace(string arg)
-{
-        int i,x,y;
-        mixed *sh,*tb;
+int do_finish(string arg) {
+    mixed *sh;
+    string id;
 
-        if(!is_playing(this_player()))
-                return notify_fail("你都不玩啊！\n");
-        
-        if(game_mode!=0)
-                return notify_fail("現在不是佈置船隻的時候。\n");
+    if(!is_playing(this_player()))
+        return notify_fail("你都不玩啊！\n");
 
-        if( !arg || sscanf(arg, "%d %d", x, y)!=2 )
-                return notify_fail("unplace X座標 Y座標\n");
+    if(!(game_mode==0||game_mode==1))
+        return notify_fail("？？？\n");
 
-        if(x<1||x>WIDTH)
-                return notify_fail("X座標錯誤\n");
-        if(y<1||y>HEIGHT)
-                return notify_fail("Y座標錯誤\n");
+    id = query("id", this_player());
+    sh = get_ship(id);
+    if(!sh)
+        return notify_fail("access date fail\n");
 
-        sh=get_ship(query("id", this_player()));
-        tb=get_table(query("id", this_player()));
-        if(!sh||!tb)
-                return notify_fail("access date fail\n");
+    if(game_mode==0)
+    {
+        if(remain_place(id))
+            return notify_fail("還有船隻沒有佈置\n");
+    }
+    else if(game_mode==1)
+    {
+        if(remain_fire(id))
+            return notify_fail("還有火力沒有佈置\n");
+    }
 
-        for(i=0;i<SHIP_NUM;i++)
-        {
-                if(sh[i][1]==x&&sh[i][2]==y)
-                {
-                        sh[i][1] = 0;
-                        sh[i][2] = 0;
-                        tb[x-1][y-1][0] = 0;
-                        display(player_id(query("id", this_player())));
-                        break;
-                }
-        }
+    if(game_mode==0)
+        msg(this_player(), 0, "$N的船隻佈置完成\n");
+    else if(game_mode==1)
+        msg(this_player(), 0, "$N的火力佈置完成\n");
 
-        if(i==SHIP_NUM)
-                return notify_fail("該位置沒有佈置船隻。\n");
-        return 1;
-}
-
-int do_finish(string arg)
-{
-        int i,x,y;
-        mixed *sh;
-        string id;
-
-        if(!is_playing(this_player()))
-                return notify_fail("你都不玩啊！\n");
-        
-        if(!(game_mode==0||game_mode==1))
-                return notify_fail("？？？\n");
-
-        id=query("id", this_player());
-        sh = get_ship(id);
-        if(!sh)
-                return notify_fail("access date fail\n");
-
+    player_action[query("id", this_player())] = 1;
+    if(sizeof(player_action)==2)
+    {
+        // all finish,go fire
         if(game_mode==0)
-        {
-                if(remain_place(id))
-                        return notify_fail("還有船隻沒有佈置\n");
-        }
+            before_fire();
         else if(game_mode==1)
-        {
-                if(remain_fire(id))
-                        return notify_fail("還有火力沒有佈置\n");
-        }
-
-        if(game_mode==0)
-                msg(this_player(),0,"$N的船隻佈置完成\n");
-        else if(game_mode==1)
-                msg(this_player(),0,"$N的火力佈置完成\n");
-
-        player_action[query("id", this_player())]=1;
-        if(sizeof(player_action)==2)
-        {
-                // all finish,go fire
-                if(game_mode==0)
-                        before_fire();
-                else if(game_mode==1)
-                        start_fire();
-        }
-        return 1;
+            start_fire();
+    }
+    return 1;
 }
 
-int do_fire(string arg)
-{
-        int i,x,y;
-        mixed *sh,*tb;
-        string id;
+int do_fire(string arg) {
+    int i, x, y;
+    mixed *sh,*tb;
+    string id;
 
-        if(!is_playing(this_player()))
-                return notify_fail("你都不玩啊！\n");
-        
-        if(game_mode!=1)
-                return notify_fail("現在不是佈置火力的時候。\n");
+    if(!is_playing(this_player()))
+        return notify_fail("你都不玩啊！\n");
 
-        if( !arg || sscanf(arg, "%d %d", x, y)!=2 )
-                return notify_fail("place X座標 Y座標\n");
+    if(game_mode!=1)
+        return notify_fail("現在不是佈置火力的時候。\n");
 
-        if(x<1||x>WIDTH)
-                return notify_fail("X座標錯誤\n");
-        if(y<1||y>HEIGHT)
-                return notify_fail("Y座標錯誤\n");
+    if(!arg || sscanf(arg, "%d %d", x, y)!=2 )
+        return notify_fail("place X座標 Y座標\n");
 
-        id=query("id", this_player());
-        sh = get_ship(id);
-        tb = get_table(enemy_id(id));
-        if(!sh||!tb)
-                return notify_fail("access date fail\n");
+    if(x<1||x>WIDTH)
+        return notify_fail("X座標錯誤\n");
+    if(y<1||y>HEIGHT)
+        return notify_fail("Y座標錯誤\n");
 
-        if(tb[x-1][y-1][1] != 0)
-                return notify_fail("該處已經佈置了火力\n");
+    id = query("id", this_player());
+    sh = get_ship(id);
+    tb = get_table(enemy_id(id));
+    if(!sh||!tb)
+        return notify_fail("access date fail\n");
 
-        for(i=0;i<SHIP_NUM;i++)
+    if(tb[x - 1][y - 1][1] != 0)
+        return notify_fail("該處已經佈置了火力\n");
+
+    for(i = 0;i<SHIP_NUM;i++)
+    {
+        if(!sh[i][0]&&!sh[i][3])
         {
-                if(!sh[i][0]&&!sh[i][3])
-                {
-                        sh[i][3] = x;
-                        sh[i][4] = y;
-                        sh[i][5] = tb[x-1][y-1][1];
-                        tb[x-1][y-1][1] = 2;
-                        break;
-                }
+            sh[i][3] = x;
+            sh[i][4] = y;
+            sh[i][5] = tb[x - 1][y - 1][1];
+            tb[x - 1][y - 1][1] = 2;
+            break;
         }
+    }
 
-        if(i==SHIP_NUM)
-                return notify_fail("你已經沒有空餘的火力可以佈置了。\n");
-        else
-        {
-                display(player_id(id));
-                if(i+1==SHIP_NUM)
-                        tell_object(this_player(),"\n使用[Finish]結束佈置火力。\n");
-        }
-        return 1;
+    if(i==SHIP_NUM)
+        return notify_fail("你已經沒有空餘的火力可以佈置了。\n");
+    else
+    {
+        display(player_id(id));
+        if(i + 1==SHIP_NUM)
+            tell_object(this_player(), "\n使用[Finish]結束佈置火力。\n");
+    }
+    return 1;
 }
 
-int do_unfire(string arg)
-{
-        int i,x,y;
-        mixed *sh,*tb;
-        string id;
+int do_unfire(string arg) {
+    int i, x, y;
+    mixed *sh,*tb;
+    string id;
 
-        if(!is_playing(this_player()))
-                return notify_fail("你都不玩啊！\n");
-        
-        if(game_mode!=1)
-                return notify_fail("現在不是佈置火力的時候。\n");
+    if(!is_playing(this_player()))
+        return notify_fail("你都不玩啊！\n");
 
-        if( !arg || sscanf(arg, "%d %d", x, y)!=2 )
-                return notify_fail("unplace X座標 Y座標\n");
+    if(game_mode!=1)
+        return notify_fail("現在不是佈置火力的時候。\n");
 
-        if(x<1||x>WIDTH)
-                return notify_fail("X座標錯誤\n");
-        if(y<1||y>HEIGHT)
-                return notify_fail("Y座標錯誤\n");
+    if(!arg || sscanf(arg, "%d %d", x, y)!=2 )
+        return notify_fail("unplace X座標 Y座標\n");
 
-        id=query("id", this_player());
-        sh = get_ship(id);
-        tb = get_table(enemy_id(id));
-        if(!sh||!tb)
-                return notify_fail("access date fail\n");
+    if(x<1||x>WIDTH)
+        return notify_fail("X座標錯誤\n");
+    if(y<1||y>HEIGHT)
+        return notify_fail("Y座標錯誤\n");
 
-        for(i=0;i<SHIP_NUM;i++)
+    id = query("id", this_player());
+    sh = get_ship(id);
+    tb = get_table(enemy_id(id));
+    if(!sh||!tb)
+        return notify_fail("access date fail\n");
+
+    for(i = 0;i<SHIP_NUM;i++)
+    {
+        if(!sh[i][0]&&sh[i][3]==x&&sh[i][4]==y)
         {
-                if(!sh[i][0]&&sh[i][3]==x&&sh[i][4]==y)
-                {
-                        sh[i][3] = 0;
-                        sh[i][4] = 0;
-                        tb[x-1][y-1][1] = sh[i][5];
-                        display(player_id(id));
-                        break;
-                }
+            sh[i][3] = 0;
+            sh[i][4] = 0;
+            tb[x - 1][y - 1][1] = sh[i][5];
+            display(player_id(id));
+            break;
         }
+    }
 
-        if(i==SHIP_NUM)
-                return notify_fail("該位置沒有佈置火力。\n");
-        return 1;
+    if(i==SHIP_NUM)
+        return notify_fail("該位置沒有佈置火力。\n");
+    return 1;
 }
 
-int which_ship(mixed* sh,int x,int y)
-{
-        int i;
-        for(i=0;i<SHIP_NUM;i++)
-        {
-                if(sh[i][1]==x&&sh[i][2]==y)
-                        return i;
-        }
-        return -1;
+int which_ship(mixed* sh, int x, int y) {
+    int i;
+    for(i = 0;i<SHIP_NUM;i++)
+    {
+        if(sh[i][1]==x&&sh[i][2]==y)
+            return i;
+    }
+    return -1;
 }
 
-int fire_it()
-{
-        int i,j1,j2,x,y,bFire;
-        int r1,r2;
-        string key1,key2;
-        string m;
-        mixed *sh1,*sh2;
-        mixed *tb1,*tb2;
-        
-        key1 = keys(player)[0];
-        key2 = keys(player)[1];
-        sh1 = get_ship(key1);
-        sh2 = get_ship(key2);
-        tb1 = get_table(key1);
-        tb2 = get_table(key2);
+int fire_it() {
+    int i, j1, j2, x, y, bFire;
+    int r1, r2;
+    string key1, key2;
+    string m;
+    mixed *sh1,*sh2;
+    mixed *tb1,*tb2;
 
-        game_mode = 2;
+    key1 = keys(player)[0];
+    key2 = keys(player)[1];
+    sh1 = get_ship(key1);
+    sh2 = get_ship(key2);
+    tb1 = get_table(key1);
+    tb2 = get_table(key2);
 
-        m = 0;
-        bFire = 0;
+    game_mode = 2;
 
-        fire_x = ({0,0});
-        fire_y = ({0,0});
+    m = 0;
+    bFire = 0;
 
-        if(sh1&&sh2)
+    fire_x = ({ 0, 0 });
+    fire_y = ({ 0, 0 });
+
+    if(sh1&&sh2)
+    {
+        for(i = 0;i<SHIP_NUM;i++)
         {
-                for(i=0;i<SHIP_NUM;i++)
+            j1 = -1;
+            j2 = -1;
+            if(!sh1[i][0]&&sh1[i][3])
+            {
+                // fire it
+                x = sh1[i][3];
+                y = sh1[i][4];
+                fire_x[0] = x;
+                fire_y[0] = y;
+                sh1[i][3] = 0;
+                sh1[i][4] = 0;
+                tb2[x - 1][y - 1][1] = 1;
+                j2 = which_ship(sh2, x, y);
+                bFire = 1;
+            }
+
+            if(!sh2[i][0]&&sh2[i][3])
+            {
+                // fire it
+                x = sh2[i][3];
+                y = sh2[i][4];
+                fire_x[1] = x;
+                fire_y[1] = y;
+                sh2[i][3] = 0;
+                sh2[i][4] = 0;
+                tb1[x - 1][y - 1][1] = 1;
+                j1 = which_ship(sh1, x, y);
+                bFire = 1;
+            }
+
+            if(j1>=0)
+            {
+                m = BLINK HIY + key1 + "的船被擊沉了。\n" NOR;
+                sh1[j1][0] = 1;     // be fired
+                if(sh1[j1][3])
                 {
-                        j1 = -1;
-                        j2 = -1;
-                        if(!sh1[i][0]&&sh1[i][3])
-                        {
-                                // fire it
-                                x = sh1[i][3];
-                                y = sh1[i][4];
-                                fire_x[0] = x;
-                                fire_y[0] = y;
-                                sh1[i][3] = 0;
-                                sh1[i][4] = 0;
-                                tb2[x-1][y-1][1] = 1;
-                                j2 = which_ship(sh2,x,y);
-                                bFire = 1;
-                        }
-
-                        if(!sh2[i][0]&&sh2[i][3])
-                        {
-                                // fire it
-                                x = sh2[i][3];
-                                y = sh2[i][4];
-                                fire_x[1] = x;
-                                fire_y[1] = y;
-                                sh2[i][3] = 0;
-                                sh2[i][4] = 0;
-                                tb1[x-1][y-1][1] = 1;
-                                j1 = which_ship(sh1,x,y);
-                                bFire = 1;
-                        }
-
-                        if(j1>=0)
-                        {
-                                m = BLINK HIY + key1 + "的船被擊沉了。\n" NOR;
-                                sh1[j1][0] = 1;        // be fired
-                                if(sh1[j1][3])
-                                {
-                                        x = sh1[j1][3];
-                                        y = sh1[j1][4];
-                                        sh1[j1][3] = 0;
-                                        sh1[j1][4] = 0;
-                                        tb2[x-1][y-1][1] = sh1[j1][5];
-                                }
-                        }
-                        if(j2>=0)
-                        {
-                                if(!m)m="";
-                                m = m + BLINK HIY + key2 + "的船被擊沉了。\n" NOR;
-                                sh2[j2][0] = 1;        // be fired
-                                if(sh2[j2][3])
-                                {
-                                        x = sh2[j2][3];
-                                        y = sh2[j2][4];
-                                        sh2[j2][3] = 0;
-                                        sh2[j2][4] = 0;
-                                        tb1[x-1][y-1][1] = sh2[j2][5];
-                                }
-                        }
-
-                        if(bFire)break;
+                    x = sh1[j1][3];
+                    y = sh1[j1][4];
+                    sh1[j1][3] = 0;
+                    sh1[j1][4] = 0;
+                    tb2[x - 1][y - 1][1] = sh1[j1][5];
                 }
+            }
+            if(j2>=0)
+            {
+                if(!m)m = "";
+                m = m + BLINK HIY + key2 + "的船被擊沉了。\n" NOR;
+                sh2[j2][0] = 1;     // be fired
+                if(sh2[j2][3])
+                {
+                    x = sh2[j2][3];
+                    y = sh2[j2][4];
+                    sh2[j2][3] = 0;
+                    sh2[j2][4] = 0;
+                    tb1[x - 1][y - 1][1] = sh2[j2][5];
+                }
+            }
+
+            if(bFire)break;
+        }
+    }
+
+    if(bFire)
+    {
+        msg(0, 0, BLINK HIR"\n~~~~~ 攻擊！！ ~~~~~\n"NOR);
+        if(m)msg(0, 0, m);
+        display(0);
+        remove_call_out("fire_it");
+        call_out("fire_it", 4);
+    }
+    else
+    {
+        // fire finish
+        r1 = 0;
+        r2 = 0;
+        for(i = 0;i<SHIP_NUM;i++)
+        {
+            if(!sh1[i][0])r1++;
+            if(!sh2[i][0])r2++;
         }
 
-        if(bFire)
+        if(r1==0||r2==0)
         {
-                msg(0,0,BLINK HIR"\n~~~~~ 攻擊！！ ~~~~~\n"NOR);
-                if(m)msg(0,0,m);
-                display(0);
-                remove_call_out("fire_it");
-                call_out("fire_it",4);
-        }
-        else
-        {
-                // fire finish
-                r1 = 0;
-                r2 = 0;
-                for(i=0;i<SHIP_NUM;i++)
-                {
-                        if(!sh1[i][0])r1++;
-                        if(!sh2[i][0])r2++;
-                }
-
-                if(r1==0||r2==0)
-                {
-                        game_mode = 3;
-                        if(r1==0)
-                        {
-                                if(r2==0)
-                                        who_win = -1;
-                                else
-                                        who_win = 1;
-                        }
-                        else
-                                who_win = 2;
-
-                        display(0);
-                        msg(0,0,HIR"\n\n 所有戰鬥結束了，使用(start)重新開始。\n"NOR);
-                }
+            game_mode = 3;
+            if(r1==0)
+            {
+                if(r2==0)
+                    who_win = -1;
                 else
-                {
-                        msg(0,0,sprintf(HIC"\n該回合攻擊結束...\n%s(%d) VS %s(%d)\n"NOR,key1,remain_ship(key1),key2,remain_ship(key2)));
-                        before_fire();
-                }
-        }
-}
+                    who_win = 1;
+            }
+            else
+                who_win = 2;
 
-int do_visitor(string arg)
-{
-        string key;
-        object me,ob;
-        int del;
-
-        if(!arg)
-                return notify_fail("visit [-]玩家ID\n");
-
-        if(sscanf(arg, "-d %s", key)==1 )
-                del = 1;
-        else
-        {
-                del = 0;
-                key = arg;
-        }
-                
-        me = this_player();
-        if(is_playing(me))
-        {
-                ob = present(key,environment(this_object()));
-                if(!ob)
-                        return notify_fail("這裡沒有這個玩家啊？\n");
-
-                if(del)
-                {
-                        if( !is_visitor(ob,query("id", me)) )
-                                return notify_fail("不是你的觀戰者了。\n");
-
-                        msg(me,ob,"$N不再允許$n觀看$N的戰況。\n");
-                        visitor[query("id", me)]=visitor[query("id", me)]-({query("id", ob)});
-                }
-                else
-                {
-                        if( is_visitor(ob,query("id", me)) )
-                                return notify_fail("已經是你的觀戰者了。\n");
-
-                        msg(me,ob,"$N讓$n觀看$N的戰況。\n");
-                        if( !visitor[query("id", me)] )
-                                visitor[query("id", me)]=({query("id", ob)});
-                        else
-                                visitor[query("id",me)] += query("id",ob); 
-                }
+            display(0);
+            msg(0, 0, HIR"\n\n 所有戰鬥結束了，使用(start)重新開始。\n"NOR);
         }
         else
         {
-                if(del)
-                        return notify_fail("？？？？\n");
-
-                ob = get_player(key);
-                if(!ob)
-                        return notify_fail("沒有這個玩家在玩啊？\n");
-                msg(me,ob,"$N希望成為$n的觀戰者。\n");
-                tell_object(ob,"接受使用[visit"+query("id", me)+"]。\n");
+            msg(0, 0, sprintf(HIC"\n該回合攻擊結束...\n%s(%d) VS %s(%d)\n"NOR, key1, remain_ship(key1), key2, remain_ship(key2)));
+            before_fire();
         }
-        return 1;
+    }
 }
 
-int do_rplace(string arg)
-{
-        int i,x,y;
-        mixed *sh,*tb;
+int do_visitor(string arg) {
+    string key;
+    object me, ob;
+    int del;
 
-        if(!is_playing(this_player()))
-                return notify_fail("你都不玩啊！\n");
-        
-        if(!has_start||game_mode!=0)
-                return notify_fail("現在不是佈置船隻的時候。\n");
-        
-        sh = get_ship(query("id",this_player())); 
-        tb = get_table(query("id",this_player())); 
-        for(i=0;i<SHIP_NUM;i++)
+    if(!arg)
+        return notify_fail("visit [-]玩家ID\n");
+
+    if(sscanf(arg, "-d %s", key)==1 )
+        del = 1;
+    else
+    {
+        del = 0;
+        key = arg;
+    }
+
+    me = this_player();
+    if(is_playing(me))
+    {
+        ob = present(key, environment(this_object()));
+        if(!ob)
+            return notify_fail("這裡沒有這個玩家啊？\n");
+
+        if(del)
         {
-                if(!sh||!tb)
-                        return notify_fail("access date fail\n");
+            if(!is_visitor(ob, query("id", me)) )
+                return notify_fail("不是你的觀戰者了。\n");
 
-                if(!sh[i][1])
-                {
-                        x = random(WIDTH)+1;
-                        y = random(HEIGHT)+1;
-
-                        if(tb[x-1][y-1][0] != 1)
-                        {
-                                sh[i][1] = x;
-                                sh[i][2] = y;
-                                tb[x-1][y-1][0] = 1;
-                        }
-                }
+            msg(me, ob, "$N不再允許$n觀看$N的戰況。\n");
+            visitor[query("id", me)] = visitor[query("id", me)] - ({ query("id", ob) });
         }
+        else
+        {
+            if(is_visitor(ob, query("id", me)) )
+                return notify_fail("已經是你的觀戰者了。\n");
 
-        display(player_id(query("id",this_player()))); 
-        return 1;
+            msg(me, ob, "$N讓$n觀看$N的戰況。\n");
+            if(!visitor[query("id", me)] )
+                visitor[query("id", me)] = ({ query("id", ob) });
+            else
+                visitor[query("id", me)] += query("id", ob);
+        }
+    }
+    else
+    {
+        if(del)
+            return notify_fail("？？？？\n");
+
+        ob = get_player(key);
+        if(!ob)
+            return notify_fail("沒有這個玩家在玩啊？\n");
+        msg(me, ob, "$N希望成為$n的觀戰者。\n");
+        tell_object(ob, "接受使用[visit"+query("id", me) + "]。\n");
+    }
+    return 1;
 }
 
-int do_help(string arg)
-{
-        this_player()->start_more( @HELP
+int do_rplace(string arg) {
+    int i, x, y;
+    mixed *sh,*tb;
+
+    if(!is_playing(this_player()))
+        return notify_fail("你都不玩啊！\n");
+
+    if(!has_start||game_mode!=0)
+        return notify_fail("現在不是佈置船隻的時候。\n");
+
+    sh = get_ship(query("id", this_player()));
+    tb = get_table(query("id", this_player()));
+    for(i = 0;i<SHIP_NUM;i++)
+    {
+        if(!sh||!tb)
+            return notify_fail("access date fail\n");
+
+        if(!sh[i][1])
+        {
+            x = random(WIDTH) + 1;
+            y = random(HEIGHT) + 1;
+
+            if(tb[x - 1][y - 1][0] != 1)
+            {
+                sh[i][1] = x;
+                sh[i][2] = y;
+                tb[x - 1][y - 1][0] = 1;
+            }
+        }
+    }
+
+    display(player_id(query("id", this_player())));
+    return 1;
+}
+
+int do_help(string arg) {
+    this_player()->start_more(@HELP
 海戰棋使用方法:
 ——[開始遊戲]———————————————
 幫助命令：helpboard
@@ -1001,6 +951,6 @@ int do_help(string arg)
 
 ——————————————————————
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

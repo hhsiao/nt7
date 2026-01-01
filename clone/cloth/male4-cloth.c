@@ -11,14 +11,10 @@ void create()
 {
         set_name( HIC "短打勁裝" NOR, ({ "cloth" }) );
         set_weight(3000);
-        /*if (clonep())
-                set_default_object(__FILE__);
-        else*/ {
-                set("unit", "件");
+        set("unit", "件");
                 set("long", "一件很利索的短打勁裝。\n");
                 set("material", "cloth");
                 set("value", 0);
                 set("armor_prop/armor", 1);
-        }
         setup();
 }
