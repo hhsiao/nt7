@@ -5,13 +5,12 @@ inherit ITEM;
 void init();
 inherit F_FOOD;
 
-void create()
-{
-        set_name("米飯",({"rice", "mi fan", "fan" }));
-        set_weight(50);
-        set("long", "一碗剛從鍋裡盛出來的大米飯，還冒著熱氣～～～\n");
-                set("unit", "碗");
-                set("value", 120);
-                set("food_remaining", 5);
-                set("food_supply", 40);
+void create() {
+    set_name("米飯", ({"rice", "mi fan", "fan" }));
+    set_weight(50);
+    set("long", "一碗剛從鍋裡盛出來的大米飯，還冒著熱氣～～～\n");
+    set("unit", "碗");
+    set("value", 120);
+    set("food_remaining", 5);
+    set("food_supply", 40);
 }

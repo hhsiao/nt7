@@ -2,10 +2,9 @@
 
 inherit  ROOM;
 
-void  create  ()
-{
-        set("short",  "龍門石窟");
-        set("long",  @LONG
+void create  () {
+    set("short", "龍門石窟");
+    set("long", @LONG
 這裡就是著名的龍門石窟，凡來洛陽遊玩的遊客比來此觀摩。此處
 的石窟造像，密佈於兩岸的崖壁上，長達兩華里。它和敦煌莫高窟、大
 同雲崗石窟，合稱我國三大石窟藝術寶庫。此石窟開創於北魏孝文帝遷
@@ -14,15 +13,15 @@ void  create  ()
 賓陽洞、藥方洞、潛溪寺、萬佛洞、奉先寺等多處景點。東香山也是唐
 詩人白居易晚年寓居地，琵琶峰下蒼松翠柏中有白居易墓。
 LONG);
-        set("exits",  ([  /*  sizeof()  ==  2  */
-                "eastup"    :  __DIR__"baiyuan",
-                "westdown"  :  __DIR__"guandaos4",
+    set("exits",  ([  /*  sizeof()  ==  2  */
+        "eastup": __DIR__"baiyuan",
+        "westdown": __DIR__"guandaos4"
         ]));
-        set("outdoors", "luoyang");
-        set("no_clean_up", 0);
-	set("coor/x", -6980);
-	set("coor/y", 2060);
-	set("coor/z", 10);
-	setup();
-        replace_program(ROOM);
+    set("outdoors", "luoyang");
+    set("no_clean_up", 0);
+    set("coor/x", -6980);
+    set("coor/y", 2060);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

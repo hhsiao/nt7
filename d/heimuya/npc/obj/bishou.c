@@ -3,14 +3,13 @@
 
 inherit DAGGER;
 
-void create()
-{
-        set_name(HIC "月牙匕" NOR, ({"yueya bi", "yueya", "bi", "dagger"}));
-        set_weight(800);
-        set("unit", "柄");
-                set("long", HIC "一柄做工精細的玉製匕首。\n" NOR);
-                set("value", 10000);
-                set("material", "stone");
-        init_dagger(35);
-        setup();
+void create() {
+    set_name(HIC "月牙匕" NOR, ({"yueya bi", "yueya", "bi", "dagger"}));
+    set_weight(800);
+    set("unit", "柄");
+    set("long", HIC "一柄做工精細的玉製匕首。\n" NOR);
+    set("value", 10000);
+    set("material", "stone");
+    init_dagger(35);
+    setup();
 }

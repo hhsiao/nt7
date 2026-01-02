@@ -2,22 +2,21 @@
 
 inherit ROOM;
 
-void create()
-{
+void create() {
     set("short", "竹屋");
     set("long", @LONG
 這裡是神龍教主的居室----仙福居，中間一張大桌，牆上掛著一
 副水墨畫，沒有什麼特別出奇之處。
 LONG );
     set("exits", ([
-	"east" : __DIR__"zhulin",
-    ]));
+        "east": __DIR__"zhulin"
+        ]));
 
-    set("objects",([
-         CLASS_D("shenlong")+"/su": 1,
-         __DIR__"npc/mujianping": 1,
-         __DIR__"npc/fangyi": 1,
-    ]));
+    set("objects", ([
+        CLASS_D("shenlong") + "/su": 1,
+        __DIR__"npc/mujianping": 1,
+        __DIR__"npc/fangyi": 1
+        ]));
     setup();
     replace_program(ROOM);
 }

@@ -5,31 +5,29 @@ inherit ITEM;
 
 int is_magic_item() { return 1; }
 
-void create()
-{
-        set_name(BLU "閻王契" NOR, ({ "contract" }) );
-        set_weight(100);
-        set("unit", "份");
-                set("value", 10000);
-                set("long", BLU "這是一份閻王契。\n" NOR);
-        setup();
+void create() {
+    set_name(BLU "閻王契" NOR, ({ "contract" }) );
+    set_weight(100);
+    set("unit", "份");
+    set("value", 10000);
+    set("long", BLU "這是一份閻王契。\n" NOR);
+    setup();
 }
 
-string long()
-{
-        int i, n;
-        string msg;
-        string *rec;
+string long() {
+    int i, n;
+    string msg;
+    string *rec;
 
-        msg = query("long");
-        rec = query("offer");
+    msg = query("long");
+    rec = query("offer");
 
-        if( !rec ) return msg;
-        else {
-                n = sizeof(rec);
-                for( i=0; i<n; i++ ) {
-                        msg += rec[i];
-                }
-                return msg;
+    if(!rec ) return msg;
+    else {
+        n = sizeof(rec);
+        for(i = 0; i<n; i++ ) {
+            msg += rec[i];
         }
+        return msg;
+    }
 }

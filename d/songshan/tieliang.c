@@ -3,17 +3,16 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "鐵梁峽");
-        set("long", @LONG
+void create() {
+    set("short", "鐵梁峽");
+    set("long", @LONG
 由此上山，山路越發險竣。鐵梁峽右側盡是怪石，而左邊則為萬仞
 深谷，渺不見底。隔著峽谷，青岡峰環抱青岡坪，向上是嵩山主峰的山
 路。
     登高遠眺石羊關，隱隱可見“玉溪垂釣”(jing)處。
 LONG );
-        set("item_desc", ([
-                "jing" : "
+    set("item_desc", ([
+        "jing": "
     石羊關東，潁水下源，有一小湖，方可數畝，名曰“玉溪”。溪南
 有泉水數處，從平地噴出，騰湧而上，高近七尺，好似一串串的珍珠，
 人稱“飛玉泉”。玉溪湖中，有一巨石，約三丈見方，有三分有二沒於
@@ -28,19 +27,19 @@ LONG );
     古人《釣魚臺》詩云：
                   臺前落日寒鴻哀，臺下西風潁水來。
                   一曲渝浪秋色景，白雲紅葉好登臺。
-",
+        "
         ]));
-        set("exits", ([
-                "down"    : __DIR__"luyasi",
-                "northup" : __DIR__"shandao5",
+    set("exits", ([
+        "down": __DIR__"luyasi",
+        "northup": __DIR__"shandao5"
         ]));
-        set("objects", ([
-                __DIR__"npc/xiazi" : random(3)+1,
+    set("objects", ([
+        __DIR__"npc/xiazi" : random(3) + 1
         ]));
-        set("outdoors", "songshan");
-        set("coor/x", -20);
-        set("coor/y", 810);
-        set("coor/z", 40);
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "songshan");
+    set("coor/x", -20);
+    set("coor/y", 810);
+    set("coor/z", 40);
+    setup();
+    replace_program(ROOM);
 }

@@ -4,14 +4,13 @@
 inherit ITEM;
 inherit F_LIQUID;
 #include <ansi.h>
-void create()
-{
-        set_name(MAG"湯碗"NOR, ({"soup"}));
-        set_weight(50);
-        set("long", "一碗香氣撲鼻的新鮮野菇做的湯。\n");
-                set("unit", "碗");
-                set("value", 80);
-                set("max_liquid", 4);
+void create() {
+    set_name(MAG"湯碗"NOR, ({"soup"}));
+    set_weight(50);
+    set("long", "一碗香氣撲鼻的新鮮野菇做的湯。\n");
+    set("unit", "碗");
+    set("value", 80);
+    set("max_liquid", 4);
 
     // because a container can contain different liquid
     // we set it to contain tea at the beginning
@@ -19,6 +18,6 @@ void create()
         "type": "water",
         "name": "鮮菇湯",
         "remaining": 6,
-        "drunk_supply": 25,
-    ]));
+        "drunk_supply": 25
+        ]));
 }

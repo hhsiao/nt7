@@ -2,10 +2,9 @@ inherit ROOM;
 
 #include <ansi.h>
 
-void create()
-{
-        set("short", "長生村");
-        set("long",@LONG
+void create() {
+    set("short", "長生村");
+    set("long",@LONG
 這裡是長生村西村，周圍三三兩兩的茅草房，雞犬相聞，
 炊煙了了，不時有幾隻黃毛狗搖著尾巴對著你叫幾聲，看來
 在對你表示歡迎。不遠處幾位村民正在耕田，耕牛傳來賣力
@@ -14,44 +13,43 @@ void create()
 令人好生羨慕。
 LONG);
 
-        set("exits", ([
-                "east"         : __DIR__"changshengcun",
-                "west"         : __DIR__"changshengcunwest2",
+    set("exits", ([
+        "east": __DIR__"changshengcun",
+        "west": __DIR__"changshengcunwest2"
         ]));
-        set("no_rideto", 1);         // 設置不能騎馬到其他地方
-        set("no_flyto", 1);          // 設置不能從起來地方騎馬來這裡
-        set("no_die", 1);            // 死亡後移動到扁鵲居
-        set("penglai", 1);           // 表示在蓬萊島
-        set("no_fight", 1);
-        set("no_fight", 1);
-        set("sleep_room", 1);
+    set("no_rideto", 1);    // 設置不能騎馬到其他地方
+    set("no_flyto", 1);     // 設置不能從起來地方騎馬來這裡
+    set("no_die", 1);   // 死亡後移動到扁鵲居
+    set("penglai", 1);  // 表示在蓬萊島
+    set("no_fight", 1);
+    set("no_fight", 1);
+    set("sleep_room", 1);
 
-        set("objects", ([
-                __DIR__"npc/wantong" : random(4),
-                __DIR__"npc/nongfu1" : random(2),
-                __DIR__"npc/nongfu2" : random(2),
+    set("objects", ([
+        __DIR__"npc/wantong" : random(4),
+        __DIR__"npc/nongfu1" : random(2),
+        __DIR__"npc/nongfu2" : random(2)
         ]));
 
-        set("region", "penglai");
-        setup();
+    set("region", "penglai");
+    setup();
 }
 
-void init ()
-{
-        if( !query_temp("apply/xianshu-lingwei", this_player()) )
+void init () {
+    if(!query_temp("apply/xianshu-lingwei", this_player()) )
+    {
+        if(!query("penglai/go_quest/ok", this_player()) )
         {
-                if( !query("penglai/go_quest/ok", this_player()) )
-                {
-                        this_player()->start_busy(3);
-                        tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
-                }
-                else
-                {
-                        if (random(2))
-                        {
-                                this_player()->start_busy(1);
-                                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);                
-                        }
-                }
+            this_player()->start_busy(3);
+            tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
         }
+        else
+        {
+            if (random(2))
+            {
+                this_player()->start_busy(1);
+                tell_object(this_player(), NOR + WHT "你到了此處，四周仙氣繚繞令你一時間難以辨別方向。\n" NOR);
+            }
+        }
+    }
 }

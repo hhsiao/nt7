@@ -5,31 +5,29 @@ inherit ROOM;
 
 string look_picture();
 
-void create()
-{
-        set("short", "走廊");
-        set("long", @LONG
+void create() {
+    set("short", "走廊");
+    set("long", @LONG
 這裡是禪房走廊。房頂一側支在南面的高牆上，另一側凌空架在
 幾根細細的石柱上。彩梁畫棟，連頂棚也用彩漆繪滿了各種飛天的圖
 形，每幅畫似乎都在訴說一個娓娓動人的佛經故事。南邊牆上也畫著
 一幅畫(picture)。北望可以觀賞僧眾們練武的場面。
 LONG );
-        set("exits", ([
-                "west" : __DIR__"zoulang1",
-                "east" : __DIR__"houdian",
-                "north" : __DIR__"wuchang1",
+    set("exits", ([
+        "west": __DIR__"zoulang1",
+        "east": __DIR__"houdian",
+        "north": __DIR__"wuchang1"
         ]));
-        set("item_desc",([
-                "picture"                :        (: look_picture :),
+    set("item_desc", ([
+        "picture": (: look_picture :)
         ]));
-        set("no_clean_up", 0);
-        setup();
+    set("no_clean_up", 0);
+    setup();
 }
 
 
-string look_picture()
-{
-        return
+string look_picture() {
+    return
         "\n"
         "    ※※※※※※※※※※※※※※※※※※※※※※※※※※\n"
         "    ※※※※※※※※※※※※※※※※※※※※※※※※※※\n"

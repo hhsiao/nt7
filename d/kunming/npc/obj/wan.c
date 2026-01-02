@@ -4,14 +4,13 @@
 inherit ITEM;
 inherit F_LIQUID;
 
-void create()
-{
-        set_name("大碗茶", ({"wan", "da wan","ci wan"}));
-        set_weight(50);
-        set("long", "一個粗磁大碗。\n");
-                set("unit", "個");
-                set("value", 0);
-        set("max_liquid", 4);
+void create() {
+    set_name("大碗茶", ({"wan", "da wan", "ci wan"}));
+    set_weight(50);
+    set("long", "一個粗磁大碗。\n");
+    set("unit", "個");
+    set("value", 0);
+    set("max_liquid", 4);
 
     // because a container can contain different liquid
     // we set it to contain tea at the beginning
@@ -19,6 +18,6 @@ void create()
         "type": "tea",
         "name": "茶水",
         "remaining": 4,
-        "drunk_supply": 0,
-    ]));
+        "drunk_supply": 0
+        ]));
 }

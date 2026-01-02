@@ -5,25 +5,23 @@
 inherit ROOM;
 #include "didao.h"
 
-void create()
-{
-        set("short", "地道");
-        set("long", @LONG
+void create() {
+    set("short", "地道");
+    set("long", @LONG
 這是一條剛剛挖成的地道，看樣子已經到了盡頭。
 LONG );
-        set("exits", ([
-                "west": "/d/mingjiao/didao/didao_e_4",
-]));
-        
-        set("cost", 1);
-        set("valid_dig","east");
+    set("exits", ([
+        "west": "/d/mingjiao/didao/didao_e_4"
+        ]));
 
-        setup();
-//        replace_program(ROOM);
+    set("cost", 1);
+    set("valid_dig", "east");
+
+    setup();
+    //        replace_program(ROOM);
 }
 
-void init()
-{
-        add_action("do_dig","wa");
-        add_action("do_dig","dig");
+void init() {
+    add_action("do_dig", "wa");
+    add_action("do_dig", "dig");
 }

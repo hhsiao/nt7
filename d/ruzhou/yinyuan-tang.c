@@ -5,29 +5,28 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "姻緣堂");
-   set("long", @LONG
+void create() {
+    set("short", "姻緣堂");
+    set("long", @LONG
 你簡直走進了一片紅色的世界，高低左右地垂著各式各樣的紅綢綾緞
 彩紙貼花，細細看去，每一處竟都繡扎著鴛鴦鳳凰，透出一股股濃郁的喜
 慶氣氛，當中一塊橫匾：
           千里姻緣一線牽
 LONG
-   );
-        set("exits", ([
-                "west" : __DIR__"hongniang-zhuang",
-   ]) );
-   set("objects", ([
-   ]) );
-   set("no_fight",1);
-   set("no_steal",1);
-   set("no_beg",1);
-   set("no_sleep_room",1);
+    );
+    set("exits", ([
+        "west": __DIR__"hongniang-zhuang"
+        ]) );
+    set("objects", ([
+        ]) );
+    set("no_fight", 1);
+    set("no_steal", 1);
+    set("no_beg", 1);
+    set("no_sleep_room", 1);
 
-	set("coor/x", -6720);
-	set("coor/y", 1850);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", -6720);
+    set("coor/y", 1850);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

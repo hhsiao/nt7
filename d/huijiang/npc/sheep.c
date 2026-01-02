@@ -3,32 +3,30 @@
 
 inherit NPC;
 
-void create()
-{
-        set_name("綿羊", ({ "sheep","yang" }) );
-        set("race", "走畜");
-        set("age", 22);
-        set("long", "白色的羊毛卷曲，溫柔的眼波，千萬不要被外表迷糊。\n");
+void create() {
+    set_name("綿羊", ({ "sheep", "yang" }) );
+    set("race", "走畜");
+    set("age", 22);
+    set("long", "白色的羊毛卷曲，溫柔的眼波，千萬不要被外表迷糊。\n");
 
-        set("str", 13);
-        set("cor", 24);
-        set("combat_exp",5000);
-        set_temp("apply/attack", 15);
-        set_temp("apply/armor", 20);
+    set("str", 13);
+    set("cor", 24);
+    set("combat_exp", 5000);
+    set_temp("apply/attack", 15);
+    set_temp("apply/armor", 20);
 
-        set("chat_chance",5);
-        set("chat_msg", ({
-                "綿羊吃了一會草，抬頭呆呆的看著頭頂飄過的白雲。\n",
-                "綿羊擺擺蹄子，動動腿，低頭向你撞來。\n",
-        }));
+    set("chat_chance", 5);
+    set("chat_msg", ({
+        "綿羊吃了一會草，抬頭呆呆的看著頭頂飄過的白雲。\n",
+        "綿羊擺擺蹄子，動動腿，低頭向你撞來。\n"
+    }));
 
-        setup();
+    setup();
 }
 
-void die()
-{
-        message_vision("$N側身倒下，四肢抽搐一陣，死了。\n",this_object());
-        new(__DIR__"obj/yangrou")->move(environment(this_object()));
-        destruct(this_object());
-        return;
+void die() {
+    message_vision("$N側身倒下，四肢抽搐一陣，死了。\n", this_object());
+    new(__DIR__"obj/yangrou")->move(environment(this_object()));
+    destruct(this_object());
+    return;
 }

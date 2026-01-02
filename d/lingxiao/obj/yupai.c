@@ -3,11 +3,10 @@
 
 inherit ITEM;
 #include <ansi.h>
-void create()
-{
-        set_name(HIW"寒玉牌"NOR, ({"hanyu pai", "pai"}));
-        set_weight(500);
-        set("unit", "塊");
-                set("long","這是一塊雪白的玉牌，觸手生寒，凝人氣血。\n");
-                set("material", "yu");
+void create() {
+    set_name(HIW"寒玉牌"NOR, ({"hanyu pai", "pai"}));
+    set_weight(500);
+    set("unit", "塊");
+    set("long", "這是一塊雪白的玉牌，觸手生寒，凝人氣血。\n");
+    set("material", "yu");
 }

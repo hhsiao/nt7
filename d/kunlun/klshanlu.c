@@ -5,24 +5,23 @@
 #include <room.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", "崑崙山麓");
-        set("long",@long
+void create() {
+    set("short", "崑崙山麓");
+    set("long",@long
 整個崑崙山脈雪山連綿，冰河垂懸。遠望崑崙，有如橫臥雲彩間的
 銀色玉龍。每年春天以後，冰雪融化，匯成了一股股清澈溪流，流入長
 江，黃河。
 long);
-        set("exits",([
-                "northup" : __DIR__"shanmen",
-                "east"    : __DIR__"shankou",
-                "southwest" : __DIR__"kunlun1",
-//                "west"    : "/d/fairyland/shanlu1",
+    set("exits", ([
+        "northup": __DIR__"shanmen",
+        "east": __DIR__"shankou",
+        "southwest": __DIR__"kunlun1",
+    //                "west"    : "/d/fairyland/shanlu1"
         ]));
-        set("outdoors", "kunlun");
-        set("coor/x", -120000);
-        set("coor/y", 30000);
-        set("coor/z", 30);
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "kunlun");
+    set("coor/x", -120000);
+    set("coor/y", 30000);
+    set("coor/z", 30);
+    setup();
+    replace_program(ROOM);
 }

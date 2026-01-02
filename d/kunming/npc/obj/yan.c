@@ -1,10 +1,9 @@
 inherit ITEM;
 
-void create()
-{
-        set_name("水煙", ({"shui yan", "shui", "yan"}));
-        set_weight(50);
-        set("long", "這是一卷水煙絲。\n");
-                set("unit", "卷");
-                set("value", 10);
+void create() {
+    set_name("水煙", ({"shui yan", "shui", "yan"}));
+    set_weight(50);
+    set("long", "這是一卷水煙絲。\n");
+    set("unit", "卷");
+    set("value", 10);
 }

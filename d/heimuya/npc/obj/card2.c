@@ -2,11 +2,10 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("白虎堂令牌", ({"card2"}));
-           set("long",
-                "這是日月神教下第二大堂白虎堂令牌,上面刻有一隻白虎神。\n");
-        set("unit", "塊");
-        set_weight(10);
+void create() {
+    set_name("白虎堂令牌", ({"card2"}));
+    set("long",
+        "這是日月神教下第二大堂白虎堂令牌,上面刻有一隻白虎神。\n");
+    set("unit", "塊");
+    set_weight(10);
 }

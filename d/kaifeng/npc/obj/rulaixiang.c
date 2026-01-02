@@ -1,12 +1,11 @@
 #include <ansi.h>
 inherit ITEM;
 
-void create()
-{
-        set_name(YEL "如來佛像" NOR, ({ "xiang" }) );
-        set_weight(500000);
-        set_max_encumbrance(800);
-        set("unit", "座");
-                set("long", "佛教中的至尊，坐八寶蓮花。\n");
-                set("value", 50);
+void create() {
+    set_name(YEL "如來佛像" NOR, ({ "xiang" }) );
+    set_weight(500000);
+    set_max_encumbrance(800);
+    set("unit", "座");
+    set("long", "佛教中的至尊，坐八寶蓮花。\n");
+    set("value", 50);
 }

@@ -3,10 +3,9 @@
 
 inherit  ROOM;
 
-void  create  ()
-{
-        set("short",  "白馬寺");
-        set("long",  @LONG
+void create  () {
+    set("short", "白馬寺");
+    set("long", @LONG
 這裡就是著名的白馬寺，從寺廟點燃的眾多香火來看，這裡一直很
 旺盛，每天來此上香的香客絡繹不絕。傳東漢明帝劉莊夜夢金神，從西
 而來，飛繞殿庭。於是，派十八人出使西域，拜求佛法，在大月氏遇天
@@ -16,15 +15,15 @@ void  create  ()
 天王、大雄、接引、毗盧等殿建築完整，居然躲過了多年的戰亂。寺前
 有一對石雕白馬，栩栩如生。
 LONG);
-        set("exits",  ([  /*  sizeof()  ==  2  */
-                "east"      :  __DIR__"baima1",
-                "southwest" :  __DIR__"road2",
+    set("exits",  ([  /*  sizeof()  ==  2  */
+        "east": __DIR__"baima1",
+        "southwest": __DIR__"road2"
         ]));
-        set("outdoors", "luoyang");
-        set("no_clean_up", 0);
-	set("coor/x", -6900);
-	set("coor/y", 2160);
-	set("coor/z", -10);
-	setup();
-        replace_program(ROOM);
+    set("outdoors", "luoyang");
+    set("no_clean_up", 0);
+    set("coor/x", -6900);
+    set("coor/y", 2160);
+    set("coor/z", -10);
+    setup();
+    replace_program(ROOM);
 }

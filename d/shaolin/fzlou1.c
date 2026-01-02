@@ -4,37 +4,35 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "茶室");
-        set("long", @LONG
+void create() {
+    set("short", "茶室");
+    set("long", @LONG
 這裡是方丈待客的地方，靠牆左右兩側擺著一溜太師椅。北面牆
 上掛了一付對聯。牆角一幾，放著幾個茶壺。有個茶壺壺身上題了『
 碧螺春』三個篆字，壺嘴熱氣騰騰，似乎是剛沏的新茶。往北是方丈
 室。
 LONG );
-        set("exits", ([
-                "north" : __DIR__"fzlou2",
-                "down" : __DIR__"fzlou",
+    set("exits", ([
+        "north": __DIR__"fzlou2",
+        "down": __DIR__"fzlou"
         ]));
-        set("objects",([
-                CLASS_D("shaolin") + "/qing-le" : 1,
+    set("objects", ([
+        CLASS_D("shaolin") + "/qing-le" : 1
         ]));
-//        set("no_clean_up", 0);
-        setup();
+    //        set("no_clean_up", 0);
+    setup();
 }
 
-int valid_leave(object me, string dir)
-{
-        int skill;
+int valid_leave(object me, string dir) {
+    int skill;
 
-        skill = me->query_skill("buddhism", 1);
-        if (!wizardp(me) && skill < 30)
+    skill = me->query_skill("buddhism", 1);
+    if (!wizardp(me) && skill < 30)
+    {
+        if (dir == "north" )
         {
-                if (dir == "north" )
-                {
-                        return notify_fail("你資格不夠，不能進入方丈室。\n");
-                }
+            return notify_fail("你資格不夠，不能進入方丈室。\n");
         }
-        return ::valid_leave(me, dir);
+    }
+    return ::valid_leave(me, dir);
 }

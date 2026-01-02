@@ -2,18 +2,16 @@
 
 inherit ITEM;
 
-void create()
-{
-	set_name(YEL + GRN "松葉" NOR, ({ "penglai songye" }) );
-	set_weight(100);
-	set("unit", "片");
-		set("value", 1);
-		set("long", YEL + GRN "這是一片從長松樹上落下的松葉。\n" NOR);
+void create() {
+    set_name(YEL + GRN "松葉" NOR, ({ "penglai songye" }) );
+    set_weight(100);
+    set("unit", "片");
+    set("value", 1);
+    set("long", YEL + GRN "這是一片從長松樹上落下的松葉。\n" NOR);
 
-	setup();
+    setup();
 }
 
-int query_autoload()
-{
-	return 1;
+int query_autoload() {
+    return 1;
 }

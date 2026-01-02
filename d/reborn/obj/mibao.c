@@ -5,11 +5,10 @@ inherit ITEM;
 
 int is_magic_item() { return 1; }
 
-void create()
-{
-        set_name(HIM "密寶奇珍" NOR, ({ "mibao qizhen" }) );
-        set_weight(100);
-        set("unit", "份");
-                set("long", HIM "這是一件密寶奇珍。\n" NOR);
-        setup();
+void create() {
+    set_name(HIM "密寶奇珍" NOR, ({ "mibao qizhen" }) );
+    set_weight(100);
+    set("unit", "份");
+    set("long", HIM "這是一件密寶奇珍。\n" NOR);
+    setup();
 }

@@ -2,13 +2,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name(HIG "西瓜" NOR, ({ "xigua" }) );
-        set_weight(100);
-        set("unit", "個");
-                set("value", 100);
-                set("food_remaining", 5);
-                set("food_supply", 20);
-            setup();
+void create() {
+    set_name(HIG "西瓜" NOR, ({ "xigua" }) );
+    set_weight(100);
+    set("unit", "個");
+    set("value", 100);
+    set("food_remaining", 5);
+    set("food_supply", 20);
+    setup();
 }

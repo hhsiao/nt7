@@ -3,16 +3,15 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "朝天門");
-        set("long", @LONG
+void create() {
+    set("short", "朝天門");
+    set("long", @LONG
 陡見雙峰中斷，天然出現一個門戶，疾風從斷絕處吹出，雲霧隨風
 撲面而至，這裡就是朝天門了。天門望去，便見箕山。路人到此，感受
 山風送爽，亦不讓“箕陰避暑”(jing)之處了。
 LONG );
-        set("item_desc", ([
-                "jing" : "
+    set("item_desc", ([
+        "jing": "
     箕山背險坡上，樹林茂密，林蔭濃厚。龍潭泉處，山凋深長。兩崖
 石壁如劍，石洞陰潤整潔，芳草苔蔓如毯，溪水淙淙似琴。炎夏仲秋之
 時，此處環境幽雅，景色秀美，空氣溼潤，閔爽無比。因而，人們常常
@@ -29,20 +28,20 @@ LONG );
                   棄標崖畔排煩熱，洗耳溪邊枕細流。
                   每有涼風來樹底，更無塵事到心頭。
                   許由巢父今何在，千古箕山五月秋。
-",
+        "
         ]));
-        set("exits", ([
-                "northup"   : __DIR__"shandao6",
-                "southdown" : __DIR__"shandao5",
+    set("exits", ([
+        "northup": __DIR__"shandao6",
+        "southdown": __DIR__"shandao5"
         ]));
-        set("objects", ([
-                __DIR__"npc/wan": 1,
+    set("objects", ([
+        __DIR__"npc/wan": 1
         ]));
-        set("outdoors", "songshan");
-        set("no_clean_up", 0);
-        set("coor/x", -20);
-        set("coor/y", 830);
-        set("coor/z", 60);
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "songshan");
+    set("no_clean_up", 0);
+    set("coor/x", -20);
+    set("coor/y", 830);
+    set("coor/z", 60);
+    setup();
+    replace_program(ROOM);
 }

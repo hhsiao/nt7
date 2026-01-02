@@ -3,16 +3,15 @@
 #include <ansi.h>;
 inherit ITEM;
 
-void create()
-{
-        set_name(HIW"白池"NOR, ({ "bai chi", "chi", "bai" }) );
-        set_weight(500);
-        set_max_encumbrance(80000);
-        set("no_get", 1);
-        set("no_shown", 1);
-        set("unit", "個");
-                set("long", HIW"一個水色為白的池潭。\n"NOR);
-                set("value", 1);
+void create() {
+    set_name(HIW"白池"NOR, ({ "bai chi", "chi", "bai" }) );
+    set_weight(500);
+    set_max_encumbrance(80000);
+    set("no_get", 1);
+    set("no_shown", 1);
+    set("unit", "個");
+    set("long", HIW"一個水色為白的池潭。\n"NOR);
+    set("value", 1);
 }
 
 int is_container() { return 1; }

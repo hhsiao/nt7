@@ -4,25 +4,24 @@
 #include <room.h>
 
 inherit ROOM;
-void create()
-{
-        set("short", "落日林");
-        set("long", @LONG
+void create() {
+    set("short", "落日林");
+    set("long", @LONG
 落日林位於靈州的東北，在西夏王陵和靈州的中間，延綿百里，多
 長的是紅松。
 LONG );
-        set("exits", ([
-                "north"     : __DIR__"dalu",
-                "southwest" : __DIR__"dongmen",
+    set("exits", ([
+        "north": __DIR__"dalu",
+        "southwest": __DIR__"dongmen"
         ]));
-        set("objects", ([ 
-                CLASS_D("xuanming") + "/bai" : 1,
+    set("objects", ([
+        CLASS_D("xuanming") + "/bai" : 1
         ]));
-        set("no_clean_up", 0);
-        set("outdoors", "lingzhou");
-        set("coor/x", -6245);
-        set("coor/y", 2925);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("outdoors", "lingzhou");
+    set("coor/x", -6245);
+    set("coor/y", 2925);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

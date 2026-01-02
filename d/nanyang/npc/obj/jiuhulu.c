@@ -5,20 +5,19 @@
 inherit ITEM;
 inherit F_LIQUID;
 #include <ansi.h>
-void create()
-{
-        set_name(YEL"酒葫蘆"NOR, ({"jiu hulu", "hulu", "pot"}));
-        set_weight(3000);
-        set("long", "一個用來裝酒的大葫蘆，外皮金黃，裡面能裝好幾斤酒。\n");
-                set("unit", "個");
-                set("value", 300);
-                set("max_liquid", 30);
-        // because a container can contain different liquid
-        // we set it to contain wine at the beginning
-        set("liquid", ([
-                "type": "alcohol",
-                "name": "黃酒",
-                "remaining": 30,
-                "drunk_apply": 10,
+void create() {
+    set_name(YEL"酒葫蘆"NOR, ({"jiu hulu", "hulu", "pot"}));
+    set_weight(3000);
+    set("long", "一個用來裝酒的大葫蘆，外皮金黃，裡面能裝好幾斤酒。\n");
+    set("unit", "個");
+    set("value", 300);
+    set("max_liquid", 30);
+    // because a container can contain different liquid
+    // we set it to contain wine at the beginning
+    set("liquid", ([
+        "type": "alcohol",
+        "name": "黃酒",
+        "remaining": 30,
+        "drunk_apply": 10
         ]));
 }

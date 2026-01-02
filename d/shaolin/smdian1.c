@@ -3,22 +3,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "東側殿");
-        set("long", @LONG
+void create() {
+    set("short", "東側殿");
+    set("long", @LONG
 這裡是東側殿。房間四周懸掛著達摩祖師、觀音大士的畫像，以
 及一些寺內元老的字畫。地下散亂地放著許多蒲團，木魚等。看來此
 處是本派弟子打坐修行之所。幾位年輕僧人正肅容入定，看來已頗得
 禪宗三昧。
 LONG );
-        set("exits", ([
-                "west" : __DIR__"smdian",
+    set("exits", ([
+        "west": __DIR__"smdian"
         ]));
-        set("objects",([
-                __DIR__"obj/muchui" : 1,
+    set("objects", ([
+        __DIR__"obj/muchui" : 1
         ]));
-//        set("no_clean_up", 0);
-        setup();
-        replace_program(ROOM);
+    //        set("no_clean_up", 0);
+    setup();
+    replace_program(ROOM);
 }

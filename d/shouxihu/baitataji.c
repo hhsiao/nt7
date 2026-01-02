@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","白塔塔基");
-        set("long",@LONG
+void create() {
+    set("short", "白塔塔基");
+    set("long",@LONG
 白塔，在蓮花橋側蓮性寺內，一稱喇嘛塔，仿北京北海喇嘛塔式，
 其形如錐，高入雲表。塔基建臺53級，臺上造塔，塔身中空，其外層拾
 級而上，加青銅纓絡鎏金塔鈴，最上簇鎏金頂。每值晴日當空，塔頂金
@@ -15,14 +14,14 @@ void create()
     白塔塔基。象徵佛教“五十三參”的五十三級塔下築臺，石級平臺
 南嵌“白塔晴雲”石額。
 LONG );
-        set("exits", ([
-                "north" : __DIR__"lianxingsi",
-                "up"    : __DIR__"baitafokan",
+    set("exits", ([
+        "north": __DIR__"lianxingsi",
+        "up": __DIR__"baitafokan"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -20);
-        set("coor/y", 50);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -20);
+    set("coor/y", 50);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

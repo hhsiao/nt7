@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "月臺");
-        set("long", @LONG
+void create() {
+    set("short", "月臺");
+    set("long", @LONG
 這裡是法王寺的月臺。從月臺東望，太室山巒高聳入雲，寺東有雙
 峰插雲，嶙峋崛突，相峙對立，中間闕如，其壯如門，故稱“嵩門”。
 良夜長宵，正是飽覽嵩山八景之“嵩門待月”(jing)和回味嵩門來歷傳
@@ -14,11 +13,11 @@ void create()
     晴天白日裡，遠眺少室山有時能看到同列嵩山八景的“少室晴雪”
 (jing1)。
 LONG );
-        set("exits", ([
-                "east" : __DIR__"fawangsi",
+    set("exits", ([
+        "east": __DIR__"fawangsi"
         ]));
-        set("item_desc", ([
-                "jing" : "
+    set("item_desc", ([
+        "jing": "
     每逢中秋佳節夜晚，一輪銀盤似的皎月，從這半圓形的門洞中，徐
 徐升起，不偏不倚，月滿嵩門，好似玉鏡，嵌於架中，皎潔的月光，猶
 如水銀瀉滿山頭，使碧綠的群山披上一層銀裝。景色美妙，引人入勝。
@@ -33,7 +32,7 @@ LONG );
                   抵圓暫息盧勞夢，民社寧忘國計憂。
                   徒倚欲歸情不厭，松濤鍾韻兩悠悠。
 \n",
-                "story" : "
+        "story" : "
     傳說很早以前，嵩門待月勝景東邊的山谷大石洞中，住著一位姑娘，
 名叫“毛妮”。石洞南相隔一個山峰，有個山坡，那裡住著一個青年小
 夥子，名叫“好漢”。當初他們兩個都是給財主當奴隸，後來被財主剝
@@ -46,7 +45,7 @@ LONG );
 人們稱毛妮住的地方為“毛妮洞”。稱好漢住的地方為“好漢坡”。二
 人會面那個闢山處叫“嵩門待月”。毛妮與好漢育的“參苗”稱為“嵩
 參”。\n",
-                "jing1" : "
+        "jing1" : "
     少室山險，多有石板，特別是少林寺正南的劍峰上，有一塊巨大的
 臥石，平整如案。每逢夏季雨後初晴，山水順石而下，陽光直射其上，
 色變銀白，精瑩明亮，遊人站在月臺上，舉目南眺，可觀白雲朵朵，在
@@ -58,18 +57,18 @@ LONG );
                   過景斜驅不可道，白雲欲盡難為容。
                   行人與我玩幽境，北風切切吹衣冷。
                   惜別浮橋駐馬時，舉目試望南山嶺。
-\n",
+        \n"
         ]));
-        set("objects", ([
-                __DIR__"npc/zhong": 1,
-                __DIR__"npc/dizi" : 1,
-                "/clone/medicine/vegetable/gancao" : random(2),
+    set("objects", ([
+        __DIR__"npc/zhong": 1,
+        __DIR__"npc/dizi" : 1,
+        "/clone/medicine/vegetable/gancao" : random(2)
         ]));
-//        set("no_clean_up", 0);
-        set("outdoors", "songshan");
-        set("coor/x", -40);
-        set("coor/y", 810);
-        set("coor/z", 50);
-        setup();
-        replace_program(ROOM);
+    //        set("no_clean_up", 0);
+    set("outdoors", "songshan");
+    set("coor/x", -40);
+    set("coor/y", 810);
+    set("coor/z", 50);
+    setup();
+    replace_program(ROOM);
 }

@@ -4,22 +4,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "地道");
-        set("long", @LONG
+void create() {
+    set("short", "地道");
+    set("long", @LONG
 這裡是厚土旗挖的地道，裡面黑漆漆的，只有幾柄火把插在牆上。
 LONG );
-        set("exits", ([ /* sizeof() == 1 */
-                "up": "/d/mingjiao/didao/didao",
-                "east": "/d/mingjiao/didao/didao_e",
-                "west": "/d/mingjiao/didao/didao_w",
-                "north": "/d/mingjiao/didao/didao_n",
-                "south": "/d/mingjiao/didao/didao_s",
-]));
-        
-        set("cost", 1);
+    set("exits", ([ /* sizeof() == 1 */
+        "up": "/d/mingjiao/didao/didao",
+        "east": "/d/mingjiao/didao/didao_e",
+        "west": "/d/mingjiao/didao/didao_w",
+        "north": "/d/mingjiao/didao/didao_n",
+        "south": "/d/mingjiao/didao/didao_s"
+        ]));
 
-        setup();
-//        replace_program(ROOM);
+    set("cost", 1);
+
+    setup();
+    //        replace_program(ROOM);
 }

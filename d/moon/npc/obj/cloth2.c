@@ -4,15 +4,14 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name("絲衣", ({ "cloth"}) );
-        set_weight(1000);
-        set("unit", "件");
-                set("material", "cloth");
-                set("for_lady",1);
-                set("armor_prop/armor", 1);
-                set("armor_prop/personality",5);
-		set("value",100);
-        setup();
+void create() {
+    set_name("絲衣", ({ "cloth" }) );
+    set_weight(1000);
+    set("unit", "件");
+    set("material", "cloth");
+    set("for_lady", 1);
+    set("armor_prop/armor", 1);
+    set("armor_prop/personality", 5);
+    set("value", 100);
+    setup();
 }

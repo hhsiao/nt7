@@ -20,7 +20,7 @@ LONG );
     set("no_sleep_room", 1);
 
     set("exits", ([
-        "out" : __DIR__"road5"
+        "out": __DIR__"road5"
         ]));
     set("objects", ([
         __DIR__"obj/dzt" : 1

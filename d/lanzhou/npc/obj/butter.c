@@ -3,13 +3,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name(YEL"酥油"NOR, ({"butter", "suyou"}));
-        set_weight(60);
-        set("long", "一碗用犛牛奶煉製的酥油。\n");
-                set("unit", "碗");
-                set("value", 100);
-                set("food_remaining", 3);
-                set("food_supply", 100);
+void create() {
+    set_name(YEL"酥油"NOR, ({"butter", "suyou"}));
+    set_weight(60);
+    set("long", "一碗用犛牛奶煉製的酥油。\n");
+    set("unit", "碗");
+    set("value", 100);
+    set("food_remaining", 3);
+    set("food_supply", 100);
 }

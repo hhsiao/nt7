@@ -3,25 +3,24 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "山道");
-        set("long", @LONG
+void create() {
+    set("short", "山道");
+    set("long", @LONG
 此段山路是通往後山腳。往南上是一大片樹林。往北下可以望見
 一個較大的湖。
 LONG
-        );
-        set("outdoors", "zhongnan");
-        set("exits", ([
-                "southup"   : __DIR__"shulin6",
-                "northdown" : __DIR__"taiyi1",
+    );
+    set("outdoors", "zhongnan");
+    set("exits", ([
+        "southup": __DIR__"shulin6",
+        "northdown": __DIR__"taiyi1"
         ]));
-        set("objects", ([
-                "/clone/medicine/vegetable/lingzhi" : random(2),
+    set("objects", ([
+        "/clone/medicine/vegetable/lingzhi" : random(2)
         ]));
-        set("coor/x", -3190);
-        set("coor/y", 170);
-        set("coor/z", 90);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -3190);
+    set("coor/y", 170);
+    set("coor/z", 90);
+    setup();
+    replace_program(ROOM);
 }

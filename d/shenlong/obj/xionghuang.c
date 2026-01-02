@@ -2,18 +2,16 @@
 
 inherit ITEM;
 
-void create()
-{
-	set_name("雄黃", ({"xionghuang" }));
-	set("unit", "包");
-		set("long", "這是一包雄黃，據說可驅百毒。\n");
-		set("value", 1000);
-		set("only_do_effect", 1);
-	setup();
+void create() {
+    set_name("雄黃", ({"xionghuang" }));
+    set("unit", "包");
+    set("long", "這是一包雄黃，據說可驅百毒。\n");
+    set("value", 1000);
+    set("only_do_effect", 1);
+    setup();
 }
 
-int do_effect(object me)
-{
-	write("想死啊？雄黃不能吃。\n");
-        return 1;
+int do_effect(object me) {
+    write("想死啊？雄黃不能吃。\n");
+    return 1;
 }

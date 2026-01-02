@@ -4,15 +4,14 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name("朝服", ({ "chao fu", "cloth" }) );
-        set_weight(1000);
-        set("long","這是一件補服，是大臣上朝時穿的。\n");
-                set("unit", "件");
-                set("value", 60);
-                set("material", "cloth");
-                set("armor_prop/armor", 3);
-                set("armor_prop/per", 3);
-        setup();
+void create() {
+    set_name("朝服", ({ "chao fu", "cloth" }) );
+    set_weight(1000);
+    set("long", "這是一件補服，是大臣上朝時穿的。\n");
+    set("unit", "件");
+    set("value", 60);
+    set("material", "cloth");
+    set("armor_prop/armor", 3);
+    set("armor_prop/per", 3);
+    setup();
 }

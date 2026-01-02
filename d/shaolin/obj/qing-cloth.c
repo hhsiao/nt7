@@ -5,12 +5,11 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name("白布黑邊袈裟", ({ "jia sha", "cloth" }) );
-        set_weight(5000);
-        set("unit", "件");
-                set("material", "cloth");
-                set("armor_prop/armor", 4);
-        setup();
+void create() {
+    set_name("白布黑邊袈裟", ({ "jia sha", "cloth" }) );
+    set_weight(5000);
+    set("unit", "件");
+    set("material", "cloth");
+    set("armor_prop/armor", 4);
+    setup();
 }

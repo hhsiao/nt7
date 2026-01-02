@@ -4,60 +4,58 @@
 #include <ansi.h>
 #define TSROB __DIR__"tsr_dugu-jiujian"
 
-void init()
-{
-       object me = this_player();
-       object ob;
-       
-       if (! objectp(ob = find_object(TSROB)))
-       {
-             write(HIR "TSR 物件載入出錯，請與本站 (admin) 聯繫。\n" NOR);
-             return;
-       }
+void init() {
+    object me = this_player();
+    object ob;
 
-       if (wizardp(me))
-       {
-                
-                write(HIG"\n房間ID："+query("room_id", this_object())+"\n");
-                write(HIG "管理物件分配該房間的序列號：" + query(query("room_id"), ob) + 
-                          "\n"NOR);
-                write(HIG "正確開鎖順序：F、A、B、C、D、E\n" NOR);
-                
-       }
-       
-       add_action("do_move", "move");
+    if (! objectp(ob = find_object(TSROB)))
+    {
+        write(HIR "TSR 物件載入出錯，請與本站 (admin) 聯繫。\n" NOR);
+        return;
+    }
+
+    if (wizardp(me))
+    {
+
+        write(HIG"\n房間ID："+query("room_id", this_object()) + "\n");
+        write(HIG "管理物件分配該房間的序列號：" + query(query("room_id"), ob) +
+            "\n"NOR);
+        write(HIG "正確開鎖順序：F、A、B、C、D、E\n" NOR);
+
+    }
+
+    add_action("do_move", "move");
 }
 
-int do_move(string arg)
-{
-       object me = this_player();
-       object ob;
-       string room_id;
-       
-       if (! arg || arg != "desk")
-             return notify_fail("你想移動什麼？\n");
+int do_move(string arg) {
+    object me = this_player();
+    object ob;
+    string room_id;
 
-       if (me->is_busy() || me->is_fighting())
-             return notify_fail("等你忙完了再說吧！\n");
+    if (! arg || arg != "desk")
+        return notify_fail("你想移動什麼？\n");
 
-       ob = find_object(TSROB);
-       
-       if ( ! objectp(ob))
-             return notify_fail("TSR 物件載入出錯，請與巫師聯繫！\n");
+    if (me->is_busy() || me->is_fighting())
+        return notify_fail("等你忙完了再說吧！\n");
 
-       if( query("lock/unlocked", ob) )
-             return notify_fail("機關已經被打開了，這樣是多此一舉。\n");
+    ob = find_object(TSROB);
 
-       room_id=query("room_id", this_object());
-       room_id=query(room_id, ob);
+    if (! objectp(ob))
+        return notify_fail("TSR 物件載入出錯，請與巫師聯繫！\n");
 
-       if (! stringp(ob->openlock(room_id)))
-             return notify_fail("TSR 數據出錯，請與巫師聯繫！\n");
+    if(query("lock/unlocked", ob) )
+        return notify_fail("機關已經被打開了，這樣是多此一舉。\n");
 
-       me->start_busy(1 + random(2));
+    room_id = query("room_id", this_object());
+    room_id = query(room_id, ob);
 
-       message_vision(HIC "$N" HIC "將石桌用力的旋轉，只聽得不遠處傳來"
-                      "一陣轟隆隆的像是觸動機關的聲音。\n" NOR, me);
+    if (! stringp(ob->openlock(room_id)))
+        return notify_fail("TSR 數據出錯，請與巫師聯繫！\n");
 
-       return 1;
+    me->start_busy(1 + random(2));
+
+    message_vision(HIC "$N" HIC "將石桌用力的旋轉，只聽得不遠處傳來"
+        "一陣轟隆隆的像是觸動機關的聲音。\n" NOR, me);
+
+    return 1;
 }

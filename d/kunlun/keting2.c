@@ -5,22 +5,21 @@
 #include <room.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", "客臥廳");
-        set("long",@long
+void create() {
+    set("short", "客臥廳");
+    set("long",@long
 這裡是待客休息廳，裡面簡單，只有幾張床，供疲憊的客人歇息，
 屋子裡烤著火，暖烘烘的。
 long);
-        set("exits",([
-                "east" : __DIR__"wlang02",
+    set("exits", ([
+        "east": __DIR__"wlang02"
         ]));
-        set("no_fight",1);
-        set("sleep_room",1);
-        set("no_clean_up", 0);
-        set("coor/x", -120020);
-        set("coor/y", 40060);
-        set("coor/z", 90);
-        setup();
-        replace_program(ROOM);
+    set("no_fight", 1);
+    set("sleep_room", 1);
+    set("no_clean_up", 0);
+    set("coor/x", -120020);
+    set("coor/y", 40060);
+    set("coor/z", 90);
+    setup();
+    replace_program(ROOM);
 }

@@ -12,9 +12,9 @@ void create() {
 LONG );
 
     set("exits", ([
-        "southwest" : __DIR__"road3",
-        "east"      : __DIR__"road5"
-    ]));
+        "southwest": __DIR__"road3",
+        "east": __DIR__"road5"
+        ]));
     set("outdoors", "suzhou");
     set("coor/x", 890);
     set("coor/y", -1060);

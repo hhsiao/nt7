@@ -2,8 +2,7 @@
 #include <ansi.h>
 inherit NPC;
 
-void create()
-{
+void create() {
     set_name("張乘雲", ({"zhang chengyun", "zhang", "chengyun"}));
     set("nickname", HIW "白猿神魔" NOR );
     set("title", "日月神教長老");

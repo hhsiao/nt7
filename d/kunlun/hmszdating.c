@@ -4,26 +4,25 @@
 #include <ansi.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", HIY"山莊大廳"NOR);
-        set("long", @LONG
+void create() {
+    set("short", HIY"山莊大廳"NOR);
+    set("long", @LONG
 這裡是山莊會客之所，大廳之中坐著此間莊主。每逢年節，就有許
 多僕在此等侯，希望主人能賞一些銀子。廳子兩旁放置著許多椅子和茶
 機，是供客人座的。這裡雖然遠離中原，但來此之客卻是當真不少。廳
 中壁上掛著一大副猛虎之圖。這裡有幾個童僕來回的侍侯著。
 LONG        );
-        set("exits", ([ /* sizeof() == 3 */
-                "south" : __DIR__"hmszhuang",
-                "north" : __DIR__"hmsznuange",
-                "east"  : __DIR__"hmszhouyuan",
+    set("exits", ([ /* sizeof() == 3 */
+        "south": __DIR__"hmszhuang",
+        "north": __DIR__"hmsznuange",
+        "east": __DIR__"hmszhouyuan"
         ]));
-        set("objects",([
-                __DIR__"npc/zhu"  :  1,
+    set("objects", ([
+        __DIR__"npc/zhu"  :  1
         ]));
-        set("coor/x", -90030);
-        set("coor/y", 10020);
-        set("coor/z", 50);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -90030);
+    set("coor/y", 10020);
+    set("coor/z", 50);
+    setup();
+    replace_program(ROOM);
 }

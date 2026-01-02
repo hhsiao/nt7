@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","蓮花橋");
-        set("long",@LONG
+void create() {
+    set("short", "蓮花橋");
+    set("long",@LONG
 蓮花橋位於“水雲勝概”、“白塔晴雲”之間, 因橫跨瘦西湖蓮花
 埂上，故名蓮花橋；又因橋上置五亭，故俗稱五亭橋。此橋為乾隆巡鹽
 御史高恆所建，橋基平面分成十二個大小不同的橋墩，主軸線兩側有四
@@ -20,18 +19,18 @@ void create()
 繪藻井，亭間有廊相連，圍以石欄，柱頭雕各式石獅。宛如一條錦帶束
 在瘦西湖腰間，又似一朵盛開的蓮花浮於水面，
 LONG );
-        set("outdoors", "shouxihu");
+    set("outdoors", "shouxihu");
 
-        set("exits", ([
-                "north" : __DIR__"shuiyun",
-                "south" : __DIR__"pingtai4",
+    set("exits", ([
+        "north": __DIR__"shuiyun",
+        "south": __DIR__"pingtai4"
         ]));
-        set("objects", ([
-                "/d/city/npc/lady2" : 2,
+    set("objects", ([
+        "/d/city/npc/lady2" : 2
         ]));
-        set("coor/x", -10);
-        set("coor/y", 100);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -10);
+    set("coor/y", 100);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

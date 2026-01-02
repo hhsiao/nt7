@@ -5,13 +5,12 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIW"白色道袍"NOR, ({"pao", "cloth", "dao pao"}) );
-        set_weight(1200);
-        set("unit", "件");
-                set("long", "一件普普通通的白布道袍。\n");
-                set("material", "cloth");
-                set("armor_prop/armor", 2);
-        setup();
+void create() {
+    set_name(HIW"白色道袍"NOR, ({ "pao", "cloth", "dao pao" }) );
+    set_weight(1200);
+    set("unit", "件");
+    set("long", "一件普普通通的白布道袍。\n");
+    set("material", "cloth");
+    set("armor_prop/armor", 2);
+    setup();
 }

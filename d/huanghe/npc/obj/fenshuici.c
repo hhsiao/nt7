@@ -3,16 +3,15 @@
 #include <weapon.h>
 inherit DAGGER;
 
-void create()
-{
-        set_name("分水刺", ({ "fenshui ci", "ci" }));
-        set_weight(7000);
-        set("unit", "柄");
-                set("long", "這是一隻水中分水峨嵋刺。\n");
-                set("value", 1000);
-                set("material", "steel");
-                set("wield_msg", "$N「唰」的一聲抽出一隻$n握在手中。\n");
-                set("unwield_msg", "$N將手中的$n插回袖中。\n");
-        init_dagger(5);
-        setup();
+void create() {
+    set_name("分水刺", ({ "fenshui ci", "ci" }));
+    set_weight(7000);
+    set("unit", "柄");
+    set("long", "這是一隻水中分水峨嵋刺。\n");
+    set("value", 1000);
+    set("material", "steel");
+    set("wield_msg", "$N「唰」的一聲抽出一隻$n握在手中。\n");
+    set("unwield_msg", "$N將手中的$n插回袖中。\n");
+    init_dagger(5);
+    setup();
 }

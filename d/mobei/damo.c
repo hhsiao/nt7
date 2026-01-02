@@ -3,22 +3,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set ("short", "大漠");
-        set ("long", @LONG
+void create() {
+    set ("short", "大漠");
+    set ("long", @LONG
 四周是一望無際的沙漠，在烈日的照射下，你幾乎要虛脫了。西北
 通向蒙古草原，南邊則是京城方向。
 LONG);
-        set("no_clean_up", 0);
-        set("outdoors","mobei");
-        set("exits", ([ /* sizeof() == 3 */
-                "south"     : __DIR__"lvzhou",
-                "northwest" : __DIR__"mobei",
+    set("no_clean_up", 0);
+    set("outdoors", "mobei");
+    set("exits", ([ /* sizeof() == 3 */
+        "south": __DIR__"lvzhou",
+        "northwest": __DIR__"mobei"
         ]));
-        set("coor/x", -210);
-        set("coor/y", 5130);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -210);
+    set("coor/y", 5130);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

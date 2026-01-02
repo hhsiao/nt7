@@ -3,22 +3,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "荒路");
-        set("long", @LONG
+void create() {
+    set("short", "荒路");
+    set("long", @LONG
 這是條連接關內外的荒路，由於遠離城鎮，人煙稀少。
 LONG
-        );
-        set("no_clean_up", 0);
-        set("outdoors","mobei");
-        set("exits", ([ /* sizeof() == 2 */
-                "south"     : "/d/changcheng/juyongguan",
-                "northwest" : __DIR__"damo2",
+    );
+    set("no_clean_up", 0);
+    set("outdoors", "mobei");
+    set("exits", ([ /* sizeof() == 2 */
+        "south": "/d/changcheng/juyongguan",
+        "northwest": __DIR__"damo2"
         ]));
-        set("coor/x", -190);
-        set("coor/y", 5100);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -190);
+    set("coor/y", 5100);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

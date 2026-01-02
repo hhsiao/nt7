@@ -1,21 +1,20 @@
 inherit ROOM;
 
-void create()
-{
-        set("short", "田埂小道");
-        set("long", @LONG
+void create() {
+    set("short", "田埂小道");
+    set("long", @LONG
 這是一條向東的田間小道，兩旁是一片片綠油油的水田和悠閒的
 牧童。
 LONG);
-        set("exits", ([
-                "west" : __DIR__"cunkou",
-                "east" : __DIR__"road",
+    set("exits", ([
+        "west": __DIR__"cunkou",
+        "east": __DIR__"road"
         ]));
 
-        set("xinshoucun", 1);
-        set("outdoors", "newbie");
-        set("no_pk", 1);
-	setup();
+    set("xinshoucun", 1);
+    set("outdoors", "newbie");
+    set("no_pk", 1);
+    setup();
 
-        replace_program(ROOM);
+    replace_program(ROOM);
 }

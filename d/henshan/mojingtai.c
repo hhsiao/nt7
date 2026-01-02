@@ -1,31 +1,30 @@
 inherit ROOM;
 
-void create()
-{
-        set("short", "磨鏡臺");
-        set("long", @LONG
+void create() {
+    set("short", "磨鏡臺");
+    set("long", @LONG
 磨鏡臺位於燕子巖下，與半山亭一溝相鄰。臺前峰迴路轉，臺旁
 古松蒼翠，環境清幽。相傳南宗禪宗懷讓在此宣揚「頓悟法門」，坐
 臺高僧鬥法，懷讓磨鏡，智服北宗道一，此臺因而傳名。「磨鏡臺之
 幽」是衡山大四絕之一。
 LONG );
-        set("exits", ([
-                "southdown"  : __DIR__"shanlu8",
-                "westup"     : __DIR__"shanlu7",
-                "northup"    : __DIR__"shanlu6",
+    set("exits", ([
+        "southdown": __DIR__"shanlu8",
+        "westup": __DIR__"shanlu7",
+        "northup": __DIR__"shanlu6"
         ]));
 
-        set("objects", ([
-                __DIR__"npc/youke" : 2,
-        ]));               
- 
-        set("outdoors", "henshan");
+    set("objects", ([
+        __DIR__"npc/youke" : 2
+        ]));
 
-        set("no_clean_up", 0);
+    set("outdoors", "henshan");
 
-	set("coor/x", -6950);
-	set("coor/y", -5550);
-	set("coor/z", 10);
-	setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+
+    set("coor/x", -6950);
+    set("coor/y", -5550);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

@@ -4,100 +4,96 @@ inherit F_MASTER;
 
 #include <ansi.h>
 
-void create()
-{
-        set_name("武伯", ({ "wu bo", "wu", "bo" }) );
-        //set("nickname", HIY "新手福星" NOR);
-        set("title", HIC "武術教練" NOR);
-        set("gender", "男性");
-        set("age", 30);
-        set("long", "這是古村的武術教練，你可以拜他為師（bai wuqing zi）學習武功。\n");
-        set("attitude", "peaceful");
+void create() {
+    set_name("武伯", ({ "wu bo", "wu", "bo" }) );
+    //set("nickname", HIY "新手福星" NOR);
+    set("title", HIC "武術教練" NOR);
+    set("gender", "男性");
+    set("age", 30);
+    set("long", "這是古村的武術教練，你可以拜他為師（bai wuqing zi）學習武功。\n");
+    set("attitude", "peaceful");
 
-        set("str", 26);
-        set("con", 30);
-        set("int", 24);
-        set("dex", 30);
+    set("str", 26);
+    set("con", 30);
+    set("int", 24);
+    set("dex", 30);
 
-        set("max_qi", 883400);
-        set("max_jing", 881700);
-        set("neili", 882800);
-        set("max_neili", 882800);
+    set("max_qi", 883400);
+    set("max_jing", 881700);
+    set("neili", 882800);
+    set("max_neili", 882800);
 
-        set("combat_exp", 1500000);
-        set("score", 5000000);
+    set("combat_exp", 1500000);
+    set("score", 5000000);
 
-        set_skill("sword", 30);
-        set_skill("unarmed", 30);
-        set_skill("blade", 30);
-        set_skill("force", 30);
-        set_skill("dodge", 30);
-        set_skill("parry", 30);
-        set_skill("mieshenquan", 30);
-        set_skill("tianjian", 30);
-        set_skill("juedao", 30);
-        set_skill("xiaoyaobu", 30);
-        set_skill("zhanshenjue", 30);
-        set_skill("literate", 50);
-        set_skill("martial-cognize", 50);
+    set_skill("sword", 30);
+    set_skill("unarmed", 30);
+    set_skill("blade", 30);
+    set_skill("force", 30);
+    set_skill("dodge", 30);
+    set_skill("parry", 30);
+    set_skill("mieshenquan", 30);
+    set_skill("tianjian", 30);
+    set_skill("juedao", 30);
+    set_skill("xiaoyaobu", 30);
+    set_skill("zhanshenjue", 30);
+    set_skill("literate", 50);
+    set_skill("martial-cognize", 50);
 
-        map_skill("unarmed", "mieshenquan");
-        map_skill("sword", "tianjian");
-        map_skill("blade", "juedao");
-        map_skill("parry", "tianjian");
-        map_skill("force", "zhanshenjue");
-        map_skill("dodge", "xiaoyaobu");
+    map_skill("unarmed", "mieshenquan");
+    map_skill("sword", "tianjian");
+    map_skill("blade", "juedao");
+    map_skill("parry", "tianjian");
+    map_skill("force", "zhanshenjue");
+    map_skill("dodge", "xiaoyaobu");
 
-        set_temp("apply/damage", 100);
-        set_temp("apply/armor", 100);
+    set_temp("apply/damage", 100);
+    set_temp("apply/armor", 100);
 
-        set("inquiry", ([
-               "老村長"   :  "他是我尊師，有什麼幫助就找他。\n",
-               "花伯"     :  "他是我師兄，你要出村就找他！\n",
+    set("inquiry", ([
+        "老村長"   :  "他是我尊師，有什麼幫助就找他。\n",
+        "花伯"     :  "他是我師兄，你要出村就找他！\n"
         ]));
 
-        create_family("古村", 1, "弟子");
-        set("no_pk", 1);
-	setup();
+    create_family("古村", 1, "弟子");
+    set("no_pk", 1);
+    setup();
 
-        carry_object("/clone/weapon/changjian")->wield();
-        carry_object("/clone/cloth/cloth")->wear();
+    carry_object("/clone/weapon/changjian")->wield();
+    carry_object("/clone/cloth/cloth")->wear();
 }
 
-void attempt_apprentice(object ob)
-{
+void attempt_apprentice(object ob) {
 
-        /*
-        if( query("newbie_quest/leixing", ob) != "baishi" )
-        {
-             command("shake");
-             command("say 沒有我尊師老村長的允許，我可不敢收你為徒！");
-             return;
-        }
-        */  
-              
-        if( query("family", ob) )
-        {
-             command("yi");
-             command("say 你師傅是誰？");
-             return;
-        }
+    /*
+     * if( query("newbie_quest/leixing", ob) != "baishi" )
+     * {
+     * command("shake");
+     * command("say 沒有我尊師老村長的允許，我可不敢收你為徒！");
+     * return;
+     * }
+     */
 
-        command("say 好吧，我就收下你了。");
-        command("recruit "+query("id", ob));
-
-        ob->save();
-
+    if(query("family", ob) )
+    {
+        command("yi");
+        command("say 你師傅是誰？");
         return;
+    }
+
+    command("say 好吧，我就收下你了。");
+    command("recruit "+query("id", ob));
+
+    ob->save();
+
+    return;
 }
 
-void init()
-{
-        tell_object(this_player(), HIG "拜師請使用指令 bai 師傅ID(bai wu bo)。\n" NOR);
-        tell_object(this_player(), HIY "查看師傅技能請使用 skills 師傅ID(skills wu bo)。\n" NOR);
+void init() {
+    tell_object(this_player(), HIG "拜師請使用指令 bai 師傅ID(bai wu bo)。\n" NOR);
+    tell_object(this_player(), HIY "查看師傅技能請使用 skills 師傅ID(skills wu bo)。\n" NOR);
 }
 
-void unconcious()
-{
-        die();
+void unconcious() {
+    die();
 }

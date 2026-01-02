@@ -4,12 +4,11 @@ inherit ITEM;
 #include <ansi.h>
 
 
-void create()
-{
-        set_name(HIY"虎撐"NOR, ({"hu cheng", "cheng"}));
-        set("unit", "把");
-//      set("no_get", 1);
+void create() {
+    set_name(HIY"虎撐"NOR, ({"hu cheng", "cheng"}));
+    set("unit", "把");
+    //      set("no_get", 1);
 
-        set("long", "這是一把郎中走街串巷搖著的虎撐。\n");
-        setup();
+    set("long", "這是一把郎中走街串巷搖著的虎撐。\n");
+    setup();
 }

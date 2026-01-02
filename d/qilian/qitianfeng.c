@@ -1,27 +1,26 @@
 // Room: /d/qilian/qitianfeng.c
-// Winder 2000/09/05 
+// Winder 2000/09/05
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "齊天峰");
-        set("long", @LONG
+void create() {
+    set("short", "齊天峰");
+    set("long", @LONG
 北祈連山區第一高峰，直聳入雲，無路可尋。只見山前豎著一塊大
 石 (stone)，據聞山中土人曾見時有黑衣神秘人出入此山，有膽大好奇
 者入山探之，從未生還。
 LONG );
-        set("outdoors", "qilian");
-        set("exits", ([
-                "eastdown" : __DIR__"zibaipo",
-                "westdown" : __DIR__"tanglangling",
+    set("outdoors", "qilian");
+    set("exits", ([
+        "eastdown": __DIR__"zibaipo",
+        "westdown": __DIR__"tanglangling"
         ]));
-        set("objects", ([
-                "/d/xingxiu/npc/trader" : 1,
+    set("objects", ([
+        "/d/xingxiu/npc/trader" : 1
         ]));
-        set("coor/x", -15000);
-        set("coor/y", 3000);
-        set("coor/z", 200);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -15000);
+    set("coor/y", 3000);
+    set("coor/z", 200);
+    setup();
+    replace_program(ROOM);
 }

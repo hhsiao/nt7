@@ -4,19 +4,17 @@
 inherit ITEM;
 inherit MI_QIN;
 
-void create()
-{
-        set_name(NOR + YEL "檀木琴" NOR, ({ "tanmu qin", "tanmu", "qin" }));
-        set_weight(600);
+void create() {
+    set_name(NOR + YEL "檀木琴" NOR, ({ "tanmu qin", "tanmu", "qin" }));
+    set_weight(600);
 
-        set("unit", "把");
-                set("long", NOR + YEL "一把檀木所制的木琴，古典雅緻。\n" NOR);
-                set("value", 50);
-                set("material", "wood");
-        setup();
+    set("unit", "把");
+    set("long", NOR + YEL "一把檀木所制的木琴，古典雅緻。\n" NOR);
+    set("value", 50);
+    set("material", "wood");
+    setup();
 }
 
-void init()
-{
-        add_action("play_qin", "play");
+void init() {
+    add_action("play_qin", "play");
 }

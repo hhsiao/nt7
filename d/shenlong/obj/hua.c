@@ -4,18 +4,16 @@ inherit ITEM;
 
 #include <ansi.h>
 
-void create()
-{
-	set_name(HIG"百香花"NOR, ({"baixiang hua", "baixiang"}));
-	set("unit", "朵");
-		set("long", "這是一朵鮮豔的花，花香濃郁異常。\n");
-		set("only_do_effect", 1);
-	setup();
+void create() {
+    set_name(HIG"百香花"NOR, ({"baixiang hua", "baixiang"}));
+    set("unit", "朵");
+    set("long", "這是一朵鮮豔的花，花香濃郁異常。\n");
+    set("only_do_effect", 1);
+    setup();
 }
 
-int do_effect(object me)
-{
-        message_vision("$N把" + name() + "扔進嘴裡，幾下就吞了下去。\n", me);
-	destruct(this_object());
-	return 1;
+int do_effect(object me) {
+    message_vision("$N把" + name() + "扔進嘴裡，幾下就吞了下去。\n", me);
+    destruct(this_object());
+    return 1;
 }

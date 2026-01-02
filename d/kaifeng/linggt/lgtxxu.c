@@ -1,5 +1,5 @@
-// This program is a part of NITAN MudLIB 
-// redl 2012/12/1 
+// This program is a part of NITAN MudLIB
+// redl 2012/12/1
 // 攻擊型
 #include <ansi.h>
 #include <transmsg.h>
@@ -10,7 +10,7 @@
 #define TIME_KICK 90            //每層過關的基礎戰鬥時間
 #define CAN_USEKNIFE 3          //限制每輪闖關可以使用飛刀靈符的次數
 #define CAN_USECRYSTAL 3        //限制每輪闖關可以使用塔靈水晶的次數，每塊延長30秒，使用後的所有層都有效
-#define BONUS_EXPADD 2100       
+#define BONUS_EXPADD 2100
 #define BONUS_EXPADD_J 180
 
 inherit ROOM;
@@ -24,632 +24,614 @@ void pass(object me);
 
 object objboss;
 
-void remove_no_fight()
-{
-        delete("no_fight");
+void remove_no_fight() {
+    delete("no_fight");
 }
 
-void fullnow(object me)
-{
+void fullnow(object me) {
     mapping my;
-    object boss;
 
-        me->remove_call_out("revive");
-        me->remove_call_out("unconcious");
-        remove_call_out("remove_no_fight");
+    me->remove_call_out("revive");
+    me->remove_call_out("unconcious");
+    remove_call_out("remove_no_fight");
 
-        me->remove_all_enemy(1);
-        //boss = query("boss", find_object(__DIR__"lgtd"));
-        //if (objectp(boss)) boss->remove_all_enemy(1);
-        set("no_fight", "1"); 
+    me->remove_all_enemy(1);
+    //boss = query("boss", find_object(__DIR__"lgtd"));
+    //if (objectp(boss)) boss->remove_all_enemy(1);
+    set("no_fight", "1");
 
-        my = me->query_entire_dbase();
-        my["jing"]   = my["eff_jing"]   = my["max_jing"]; 
-        my["jingli"] = my["eff_jingli"] = my["max_jingli"]; 
-        my["qi"]     = my["eff_qi"]     = my["max_qi"]; 
-        my["neili"]  = my["max_neili"];
-        me->clear_condition();
-        me->stop_busy();
-        me->clear_weak();
-        me->full_self();
+    my = me->query_entire_dbase();
+    my["jing"] = my["eff_jing"] = my["max_jing"];
+    my["jingli"] = my["eff_jingli"] = my["max_jingli"];
+    my["qi"] = my["eff_qi"] = my["max_qi"];
+    my["neili"] = my["max_neili"];
+    me->clear_condition();
+    me->stop_busy();
+    me->clear_weak();
+    me->full_self();
 
-        if( query_temp("block_msg/all", me) ) {
-                        tell_object(me, HIR "你終於抹掉了眼前的鮮血，能看見了。\n" NOR);
-                        delete_temp("block_msg/all", me);
-        }
+    if(query_temp("block_msg/all", me) ) {
+        tell_object(me, HIR "你終於抹掉了眼前的鮮血，能看見了。\n" NOR);
+        delete_temp("block_msg/all", me);
+    }
 
-        call_out("remove_no_fight", 2);
+    call_out("remove_no_fight", 2);
 }
 
-int kickdown2(object me)
-{
-        object boss;//yang, ding,
-        int ngold;
-        
-        fullnow(me);
-        remove_call_out("kickdown");
-//        boss = query("boss", find_object(__DIR__"lgtd"));
-                boss = objboss;
-        
-        if (query("lgt/can_die", me) > 0) {
-                tell_object(me, YEL + "你情急之下大喝一聲掏出一張靈符扔了出去...\n" + NOR);
-                tell_object(me, HIY + query("short") + HIY + "轟得一震，空氣復散清明。\n" + NOR);
-                addn("lgt/can_die", -1, me);
-                if (query("lgt/can_die", me) > 0) 
-                        tell_object(me, YEL + "你怔怔地望著剩餘的" + HIG + chinese_number(query("lgt/can_die", me)) + "張靈符" + NOR + YEL + "，大口喘息著，不知道該不該繼續......\n" + NOR);
-                set("entertime", time());
-                call_out("kickdown", 10, me);
-                if (!objboss || !objectp(objboss)) pass(me);
-                return 1;
-        }
+int kickdown2(object me) {
+    object boss;    //yang, ding,
+    int ngold;
 
-        tell_object(me, YEL + "你大喝一聲五官齊齊"+HIR+"溢血"+NOR+YEL+"，撲到窗戶邊掙扎著，一頭從塔上栽了下去...\n" + NOR);
+    fullnow(me);
+    remove_call_out("kickdown");
+    //        boss = query("boss", find_object(__DIR__"lgtd"));
+    boss = objboss;
 
-                if (objectp(boss)) {
-                                CHANNEL_D->channel_broadcast(CHANL_NAME, 
-                                        NOR + query("name", me) + NOR + "被" + query("short") + NOR + "的"+ query("title", boss) + NOR + "擊敗了！\n" + NOR
-                                        );
-                }
-        
-        me->move(__DIR__"lgtd");
-        
-        ngold = find_object(__DIR__"lgtd")->pay_gold(me);//願賭服輸
-
-        message_vision(YEL + "突然只見" +HIC+query("short")+ NOR + YEL+"的窗戶裡彈出一個黑影，迅速由小變大..\n然後“噗通”一聲栽落在地上。原來是$N"+ NOR + YEL+"，半死不活的好可憐啊……\n" NOR, me);
-        delete_temp("lgt", me);
-
-        //獨佔式的任務，必須扯眼球突出，激發人氣和慾望
-        CHANNEL_D->channel_broadcast("news", HIC + "楊小邪(yang xiaoxie)突然以非常機車的姿勢非常機車的對著" + HIC + query("name", me) + HIC + "(" + HIC + query("id", me) + HIC + ")" + HIC + "大聲笑著『哇哈哈 ~~~』。\n" + NOR);
-        CHANNEL_D->channel_broadcast("news", HIC + "小丁(xiao ding)掩著嘴吃吃地對" + HIC + query("name", me) + HIC + "(" + HIC + query("id", me) + HIC + ")" + HIC + "笑著。\n" + NOR);
-        CHANNEL_D->channel_broadcast("news", HIC + "楊小邪(yang xiaoxie)對小丁(xiao ding)得意的作出勝利的手勢！！ 「 V 」 說：「 " + HIC + chinese_number(ngold) + HIC + "兩黃金...」\n" + NOR);
-        CHANNEL_D->channel_broadcast("news", HIC + "小丁(xiao ding)在楊小邪(yang xiaoxie)的額頭上輕輕地吻了一下... \n" + NOR);
-        
-        if (objboss && objectp(objboss)) destruct(objboss); 
+    if (query("lgt/can_die", me) > 0) {
+        tell_object(me, YEL + "你情急之下大喝一聲掏出一張靈符扔了出去...\n" + NOR);
+        tell_object(me, HIY + query("short") + HIY + "轟得一震，空氣復散清明。\n" + NOR);
+        addn("lgt/can_die", -1, me);
+        if (query("lgt/can_die", me) > 0)
+            tell_object(me, YEL + "你怔怔地望著剩餘的" + HIG + chinese_number(query("lgt/can_die", me)) + "張靈符" + NOR + YEL + "，大口喘息著，不知道該不該繼續......\n" + NOR);
+        set("entertime", time());
+        call_out("kickdown", 10, me);
+        if (!objboss || !objectp(objboss)) pass(me);
         return 1;
+    }
+
+    tell_object(me, YEL + "你大喝一聲五官齊齊"+HIR + "溢血"+NOR + YEL + "，撲到窗戶邊掙扎著，一頭從塔上栽了下去...\n" + NOR);
+
+    if (objectp(boss)) {
+        CHANNEL_D->channel_broadcast(CHANL_NAME,
+            NOR + query("name", me) + NOR + "被" + query("short") + NOR + "的"+ query("title", boss) + NOR + "擊敗了！\n" + NOR
+        );
+    }
+
+    me->move(__DIR__"lgtd");
+
+    ngold = find_object(__DIR__"lgtd")->pay_gold(me);   //願賭服輸
+
+    message_vision(YEL + "突然只見" +HIC + query("short") + NOR + YEL + "的窗戶裡彈出一個黑影，迅速由小變大..\n然後“噗通”一聲栽落在地上。原來是$N"+ NOR + YEL + "，半死不活的好可憐啊……\n" NOR, me);
+    delete_temp("lgt", me);
+
+    //獨佔式的任務，必須扯眼球突出，激發人氣和慾望
+    CHANNEL_D->channel_broadcast("news", HIC + "楊小邪(yang xiaoxie)突然以非常機車的姿勢非常機車的對著" + HIC + query("name", me) + HIC + "(" + HIC + query("id", me) + HIC + ")" + HIC + "大聲笑著『哇哈哈 ~~~』。\n" + NOR);
+    CHANNEL_D->channel_broadcast("news", HIC + "小丁(xiao ding)掩著嘴吃吃地對" + HIC + query("name", me) + HIC + "(" + HIC + query("id", me) + HIC + ")" + HIC + "笑著。\n" + NOR);
+    CHANNEL_D->channel_broadcast("news", HIC + "楊小邪(yang xiaoxie)對小丁(xiao ding)得意的作出勝利的手勢！！ 「 V 」 說：「 " + HIC + chinese_number(ngold) + HIC + "兩黃金...」\n" + NOR);
+    CHANNEL_D->channel_broadcast("news", HIC + "小丁(xiao ding)在楊小邪(yang xiaoxie)的額頭上輕輕地吻了一下... \n" + NOR);
+
+    if (objboss && objectp(objboss)) destruct(objboss);
+    return 1;
 }
 
 
-void do_beepobj(object obj)
-{
-        if (! obj) return; 
-        tell_object(obj, "\a", 0);
+void do_beepobj(object obj) {
+    if (! obj) return;
+    tell_object(obj, "\a", 0);
 }
 
-void kickdown(object me)
-{
-        int i, j;
-        if (!this_object() || !me) return;
-        if (environment(me) != this_object()) return;
-        
-        if (!query_temp("lgt/knock2", me)) {
-                i = (query("no_magic")) ? (TIME_KICK+query_temp("lgt/tlcrystal", me)*30) : 30;
-                j = time() - query("entertime");
-                if (j > i ) {
-                                if (objboss && objectp(objboss) && objectp(environment(objboss))) {
-                                        tell_object(me, CYN + query("name", objboss) + NOR + CYN + "重重地" + ((random(2)) ? "對你哼了一聲" : "往地上啐了一口") + "，" 
-                                                + ((random(2)) ? "轉身" : "閃身") + ((random(2)) ? "一躍" : "一跳") + "消失了。\n" + NOR); 
-                                                objboss->die(me);
-                                } else {
-                                //pass(me);
-                                tell_object(me, CYN + "一個空洞的聲音在你耳邊響起：" + HIR + "你在磨蹭什麼？！\n" + NOR);
-                                kickdown2(me);
-                        }
-                        return;
-                } else if ( j > to_int(i * 0.9) ) {
-                         write(YEL + "你聽到無數天魔在耳邊吟唱嘶吼，莫大的壓力使你開始神智迷糊了...\n" + NOR);
-                        if (query("lgt/beep", me)) {
-                                do_beepobj(me);
-                                call_out("do_beepobj", 1, me);
-                        }
-                } else if ( j > to_int(i * 0.8) ) {
-                        write(YEL + "佛塔內的景色開始慢慢扭曲，像水波紋一樣不停變幻...\n" + NOR);
-                        if (query("lgt/beep", me)) {
-                                do_beepobj(me);
-                                call_out("do_beepobj", 1, me);
-                        }
-                } else if ( j > to_int(i * 0.5) ) {
-                        write(YEL + "佛塔內的空氣漸漸變得稀薄起來...\n" + NOR);
-                        if (query("lgt/beep", me)) do_beepobj(me);
-                }
+void kickdown(object me) {
+    int i, j;
+    if (!this_object() || !me) return;
+    if (environment(me) != this_object()) return;
+
+    if (!query_temp("lgt/knock2", me)) {
+        i = (query("no_magic")) ? (TIME_KICK + query_temp("lgt/tlcrystal", me)*30) : 30;
+        j = time() - query("entertime");
+        if (j > i ) {
+            if (objboss && objectp(objboss) && objectp(environment(objboss))) {
+                tell_object(me, CYN + query("name", objboss) + NOR + CYN + "重重地" + ((random(2)) ? "對你哼了一聲" : "往地上啐了一口") + "，"
+                    + ((random(2)) ? "轉身" : "閃身") + ((random(2)) ? "一躍" : "一跳") + "消失了。\n" + NOR);
+                objboss->die(me);
+            } else {
+                //pass(me);
+                tell_object(me, CYN + "一個空洞的聲音在你耳邊響起：" + HIR + "你在磨蹭什麼？！\n" + NOR);
+                kickdown2(me);
+            }
+            return;
+        } else if (j > to_int(i * 0.9) ) {
+            write(YEL + "你聽到無數天魔在耳邊吟唱嘶吼，莫大的壓力使你開始神智迷糊了...\n" + NOR);
+            if (query("lgt/beep", me)) {
+                do_beepobj(me);
+                call_out("do_beepobj", 1, me);
+            }
+        } else if (j > to_int(i * 0.8) ) {
+            write(YEL + "佛塔內的景色開始慢慢扭曲，像水波紋一樣不停變幻...\n" + NOR);
+            if (query("lgt/beep", me)) {
+                do_beepobj(me);
+                call_out("do_beepobj", 1, me);
+            }
+        } else if (j > to_int(i * 0.5) ) {
+            write(YEL + "佛塔內的空氣漸漸變得稀薄起來...\n" + NOR);
+            if (query("lgt/beep", me)) do_beepobj(me);
         }
-        //write ("test time:" + ctime(time()) + "\n");
-        call_out("kickdown", 2, me);
-        return;
+    }
+    //write ("test time:" + ctime(time()) + "\n");
+    call_out("kickdown", 2, me);
+    return;
 }
 
-string look_zhong(object me)
-{
+string look_zhong(object me) {
     return "這是一個可以敲(knock)響的黃銅古鐘(zhong)。\n如果有禮佛的誠意的話，你應該會有一些收穫的吧。\n";
 }
 
-int user_cant_die(object me)
-{
-                if (!playerp(me)) {
-                //destruct(me); 
-                return 0;
-        }
-        if (userp(me)) {
-                tell_object(me, CYN + "一個空洞的聲音在你耳邊響起：" + HIR + "你被殺死一次！\n" + NOR);
-                fullnow(me);
-                kickdown2(me);
-        }
-        return 1;
+int user_cant_die(object me) {
+    if (!playerp(me)) {
+        //destruct(me);
+        return 0;
+    }
+    if (userp(me)) {
+        tell_object(me, CYN + "一個空洞的聲音在你耳邊響起：" + HIR + "你被殺死一次！\n" + NOR);
+        fullnow(me);
+        kickdown2(me);
+    }
+    return 1;
 }
 
-int user_cant_unconcious(object me)
-{
-                if (!playerp(me)) {
-                //destruct(me); 
-                return 0;
-        }
-        if (userp(me)) {
-                tell_object(me, CYN + "一個空洞的聲音在你耳邊響起：" + HIR + "你被擊暈一次！\n" + NOR);
-                fullnow(me);
-                user_cant_die(me);
-        }
-        return 1;
+int user_cant_unconcious(object me) {
+    if (!playerp(me)) {
+        //destruct(me);
+        return 0;
+    }
+    if (userp(me)) {
+        tell_object(me, CYN + "一個空洞的聲音在你耳邊響起：" + HIR + "你被擊暈一次！\n" + NOR);
+        fullnow(me);
+        user_cant_die(me);
+    }
+    return 1;
 }
 
 
 
-void create()
-{
-        set("short", "靈感" + TOWERNAME + "塔.第二層");
-        set("long",
-"這裡是靈感塔內，四周宏偉的壁磚上刻繪著許多地獄魔神樣的圖騰。\n"
-"無量的金黃色佛經文字懸浮在空中，映射出炫目的光芒，似乎鎮壓著這裡\n"
-"自成一界。\n"
-"    中央是一座巨大的佛像，佛像前的香桌上倒置放著一個"+CYN+"銅鐘"+NOR+"。\n"
-);
+void create() {
+    set("short", "靈感" + TOWERNAME + "塔.第二層");
+    set("long",
+        "這裡是靈感塔內，四周宏偉的壁磚上刻繪著許多地獄魔神樣的圖騰。\n"
+            "無量的金黃色佛經文字懸浮在空中，映射出炫目的光芒，似乎鎮壓著這裡\n"
+            "自成一界。\n"
+            "    中央是一座巨大的佛像，佛像前的香桌上倒置放著一個"+CYN + "銅鐘"+NOR + "。\n"
+    );
 
-        set("item_desc", ([
-                "鍾": (: look_zhong :),
-                "銅鐘": (: look_zhong :),
-                "zhong": (: look_zhong :),
+    set("item_desc", ([
+        "鍾": (: look_zhong :),
+        "銅鐘": (: look_zhong :),
+        "zhong": (: look_zhong :)
         ]) );
-        set("exits", ([
-                "up"   : __FILE__,
+    set("exits", ([
+        "up": __FILE__
         ]));
-        set("tlv", 2);
-                set("no_protect", 1); //斷線不能消除戰鬥
-                set("no_rideto", 1);
-                set("no_flyto", 1);
-                set("no_fly", 1);//禁止招馬，否則有bug
-                set("no_sleep_room", 1); //禁止睡覺，bug
-                set("no_magic", 1); 
-                                set("trans_msg_to", "/u/redl/teleport/tower");
-        setup();
+    set("tlv", 2);
+    set("no_protect", 1);   //斷線不能消除戰鬥
+    set("no_rideto", 1);
+    set("no_flyto", 1);
+    set("no_fly", 1);   //禁止招馬，否則有bug
+    set("no_sleep_room", 1);    //禁止睡覺，bug
+    set("no_magic", 1);
+    set("trans_msg_to", "/u/redl/teleport/tower");
+    setup();
 }
 
-void do_beep()
+void do_beep() {
+    object me = this_player();
+    if (!query("lgt/beep", me)) {
+        set("lgt/beep", 1, me);
+        tell_object(me, HIC + "你打開了塔靈的超時報警功能！\n" + NOR);
+    } else {
+        delete("lgt/beep", me);
+        tell_object(me, HIC + "你關閉了塔靈的超時報警功能！\n" + NOR);
+    }
+}
+
+int do_passnext()   //切換對手
 {
-        object me = this_player();
-        if (!query("lgt/beep", me)) {
-                set("lgt/beep", 1, me);
-                tell_object(me, HIC + "你打開了塔靈的超時報警功能！\n" + NOR);
-        } else {
-                delete("lgt/beep", me);
-                tell_object(me, HIC + "你關閉了塔靈的超時報警功能！\n" + NOR);
+    object me;
+    me = this_player();
+
+    if(me->is_fighting()) return notify_fail("你還是先解決目前的敵人吧！\n");
+    if(me->is_busy()) return notify_fail("你正忙著，沒空使用靈符。\n");
+    if (query("no_magic"))  return notify_fail("你先想辦法通過這一層再說吧。\n");
+    if (objectp(present("qiu tu", this_object())))  return notify_fail("你先想辦法通過這一層再說吧。\n");
+    if (objectp(present("wu chi", this_object())))  return notify_fail("你先想辦法通過這一層再說吧。\n");
+
+    if (query("lgt/can_die", me) > 0) {
+        if (!random(3)) {
+            tell_object(me, NOR "你損失一張飛刀靈符。\n" NOR);
+            addn("lgt/can_die", -1, me);
         }
-}
-
-int do_passnext()//切換對手
-{
-        object me, obb;
-        me = this_player();
-        
-        if(me->is_fighting()) return notify_fail("你還是先解決目前的敵人吧！\n");
-        if(me->is_busy()) return notify_fail("你正忙著，沒空使用靈符。\n");
-        if (query("no_magic"))  return notify_fail("你先想辦法通過這一層再說吧。\n");
-        if (objectp(present("qiu tu", this_object())))  return notify_fail("你先想辦法通過這一層再說吧。\n");
-        if (objectp(present("wu chi", this_object())))  return notify_fail("你先想辦法通過這一層再說吧。\n");
-        
-                if (query("lgt/can_die", me) > 0) {
-                            if (!random(3)) {
-                                tell_object(me, NOR "你損失一張飛刀靈符。\n" NOR);
-                                addn("lgt/can_die", -1, me); 
-                            }
-                        me->start_busy(999);//等待pass2()的stop_busy
-                        tell_object(me, CYN + "你拈起一張靈符一晃，符紙無風自燃。\n符紙突然化作一片透明的" + YEL + "飛刀" + CYN + "，往樓上一竄一閃，消失了...\n樓上傳來“啊”的一聲慘叫......" + NOR); //故意不\n的 
-                        remove_call_out("kickdown");
-                                                call_out("pass2", 2, me);
-                } else
-                        return notify_fail("你沒有靈符可用了！\n");
-                        
-        return 1;
-}
-
-
-void pass2(object me)
-{
-        object boss, *inv;
-        
-        if (!me || !objectp(me)) {
-                inv = all_inventory(this_object());
-                if( sizeof(inv) > 0 ) {
-                    foreach( object ob3 in inv ) {
-                                if( playerp(ob3) ) {
-                                        me = ob3;
-                                        break;
-                                }
-                        }
-                }
-        }
-        
-        tell_object(me, HIY + query("short") + HIY + "轟得一震，空氣復散清明。\n" + NOR);
-        
-        remove_call_out("pass2");
+        me->start_busy(999);    //等待pass2()的stop_busy
+        tell_object(me, CYN + "你拈起一張靈符一晃，符紙無風自燃。\n符紙突然化作一片透明的" + YEL + "飛刀" + CYN + "，往樓上一竄一閃，消失了...\n樓上傳來“啊”的一聲慘叫......" + NOR);   //故意不\n的
         remove_call_out("kickdown");
-        set("entertime", time());
-        call_out("kickdown", 10, me);
-
-        remove_call_out("remove_no_fight");
-        me->remove_all_enemy(1);
-        set("no_fight", "1");
-        call_out("remove_no_fight", 1);
-
-        //讓玩家可以驅毒療傷思考切換什麼武功去戰鬥等等
-        delete("no_magic");
-        boss = new(__DIR__"npc/boss");
-        boss->setlv(query("tlv")+1,-1,-1);
-        tell_object(me, HIG + "楊小邪(yang xiaoxie)偷偷告訴你：" + query("wmsg", boss) + NOR);
-        tell_object(me, NOR + "(你還有" + query("lgt/can_die", me) + "張靈符)\n" + NOR);
-        objboss = boss;
-        set("objboss", boss);
-
-        me->stop_busy();
-        me->start_busy(2);//留時間強制讓玩家看清楚提示！
-}
-
-void pass(object me)//通關，準備下一輪
-{
-        me->start_busy(3+random(2));
-        me->remove_all_enemy(1);
-        remove_call_out("kickdown");
-        set("entertime", time());
-        remove_call_out("pass2");
         call_out("pass2", 2, me);
+    } else
+    return notify_fail("你沒有靈符可用了！\n");
+
+    return 1;
 }
 
-      
-void init() 
-{ 
-        int nbonus;
-        object me, boss;
-        me = this_player();
-        
-                if (!playerp(me))
-                {
-                        return;
+
+void pass2(object me) {
+    object boss, *inv;
+
+    if (!me || !objectp(me)) {
+        inv = all_inventory(this_object());
+        if(sizeof(inv) > 0 ) {
+            foreach(object ob3 in inv ) {
+                if(playerp(ob3) ) {
+                    me = ob3;
+                    break;
                 }
-        
-        if (query("env/invisible", me)) 
-        {
-                return;
+            }
         }
-        
-        set("trans_msg_id", query("id", me));
-        
-                        if (random(2))
-                        {
-                        me->start_busy(2+random(2));//防止玩家用 do u,19 pfm搶招
-                }
-                
-                set("no_magic", 1); 
-                remove_call_out("kickdown");
-                set("entertime", time());
-                call_out("kickdown", 10, me);
-                delete("no_fight");//防止no_fight被利用
-        
-        if (query("tlv") < 3) {
-                if (!query("lgt/upd", me)) {
-                        set("lgt/upd", 1, me);
-                        tell_object(me, CYN + 
-"一個空洞的聲音在你耳邊響起...\n" + 
-"    這位" + RANK_D->query_respect(me) + "，我是塔靈，剛才你上來之前，楊小邪給了你幾張鬼畫符是吧？\n" +
-"    其實那是他的飛刀，這小子是有些鬼門道和手段，所以至今唯有那小子曾經登頂過我頭上的全部九百九十九層靈感塔。\n" + 
-"    這楊小邪除了惡作劇一些，其實心地不壞。你如果聽到他提供的情報，告訴你對手的實力後，根據你自己的情況，\n" + 
-"  該選擇(pass)的，就(pass)，千萬別逞強。如果覺得有把握，就直接上去戰鬥吧！\n" + 
-"    如果看到塔內的空氣開始稀薄，甚至扭曲，你得當心了，超時也算失敗的。目前每層的戰鬥時間限制在" + chinese_number(TIME_KICK) + "秒內完成！\n" + 
-"    我現在已經幫你打開了超時的聲音報警，你可以使用(beep)來關閉它，再次使用則可以打開它。\n" +
-"    最後一點，你在脫離戰鬥後，覺得沒有把握繼續下去。選擇敲鐘，拜祭完大佛後，方算挑戰完成。如果失敗掉下塔去。是會被那小子黑錢的。\n" + 
-HIY + "\n9秒後開始計時……" 
-                        + NOR); 
-                        set("lgt/beep", 1, me);
-                        me->start_busy(999);//等待pass2()的stop_busy
-                        call_out("pass", 9, me);
-                } else 
-                        pass(me);
-        } else {
-                boss = objboss;
-                if (!objectp(boss)) {
-                        boss = query("objboss");
-                        objboss = query("objboss");
-                }
-                if (objectp(boss)) {
-                        tell_object(me, CYN + "你眼神凝滯處，一個黑影閃出擋在你的面前！\n" + NOR); 
-                        boss->move(this_object());
-                        if (query("tlv")>=30 && (query("tlv") % 10 == 0 || !random( (1000 - query("tlv")) / 50 ))) {
-                                //30層後, 每到10字層絕對給個武痴，或者幾率的機會任意層給個武痴. 150lv=1/17, 300lv=1/14, 600lv=1/8, 900lv=1/2
-                                tell_object(me, CYN + "在一陣狂笑聲裡，樓梯口旋風般地跳下來個老頭，後發先至跑到你跟前！\n" + NOR); 
-                                if (!random(20)) {//5%縮回
-                                        tell_object(me, CYN + "你正大吃一驚，卻見老頭連連衝你擺手，嘴裡“哈哈哈...” 的跑上塔去了。\n" + NOR); 
-                                } else {
-                                        new(__DIR__"npc/wuchi")->move(this_object());
-                                }
-                        }
-                }
-        }
+    }
 
-        if (query("tlv")>=10 && query("tlv") % 25 ==0) {//每10層給予獎勵
-                nbonus = to_int(query("tlv") * 20);//聊以自慰，主要是打廣告說明有人在活動中，引起關注
-                addn("weiwang", nbonus, me);
-                if (query("family", me)) addn("family/gongji", nbonus/10, me);
-                                CHANNEL_D->channel_broadcast(CHANL_NAME, 
-                        HIG + "聽說" + query("name", me) + HIG + "登上" + HIC + query("short")  + HIG +  "，江湖威望上升" + chinese_number(nbonus) + "點" + ((!query("family", me)) ? "" : "，師門獎勵功績" + chinese_number(nbonus/10) + "點") + "！\n" + NOR
-                );
-        }
+    tell_object(me, HIY + query("short") + HIY + "轟得一震，空氣復散清明。\n" + NOR);
 
-        remove_action("do_knock", "knock");
-        remove_action("do_passnext", "pass");
-        remove_action("do_beep", "beep");
-        remove_action("do_use", "use");
-        add_action("do_knock", "knock");
-        add_action("do_passnext", "pass");
-        add_action("do_beep", "beep");
-        add_action("do_use", "use");
-} 
+    remove_call_out("pass2");
+    remove_call_out("kickdown");
+    set("entertime", time());
+    call_out("kickdown", 10, me);
 
+    remove_call_out("remove_no_fight");
+    me->remove_all_enemy(1);
+    set("no_fight", "1");
+    call_out("remove_no_fight", 1);
 
+    //讓玩家可以驅毒療傷思考切換什麼武功去戰鬥等等
+    delete("no_magic");
+    boss = new(__DIR__"npc/boss");
+    boss->setlv(query("tlv") + 1,-1,-1);
+    tell_object(me, HIG + "楊小邪(yang xiaoxie)偷偷告訴你：" + query("wmsg", boss) + NOR);
+    tell_object(me, NOR + "(你還有" + query("lgt/can_die", me) + "張靈符)\n" + NOR);
+    objboss = boss;
+    set("objboss", boss);
 
-int do_use(string arg)
-{
-        object me, obb;
-        me = this_player();
-
-        if(!arg) return notify_fail("你到底想用什麼？\n");
-        if(me->is_fighting()) return notify_fail("你還是先解決目前的敵人吧！\n");
-        if(me->is_busy()) return notify_fail("你正忙著，沒空使用物品。\n");
-        
-        if(arg == "knife" || arg == "fly knife" || arg == "fei dao") {
-                obb = present("fly knife", me);
-                        if (!objectp(obb)) return notify_fail("你身上已經沒有靈符可用了。\n");        
-                        if (base_name(obb) != "/d/kaifeng/linggt/npc/obj/feidao") return notify_fail("你身上已經沒有靈符可用了。\n");
-                if(query_temp("lgt/knife", me) >= CAN_USEKNIFE) return notify_fail(NOR + "你本輪闖關已經使用過"+chinese_number(CAN_USEKNIFE)+"次"+query("name", obb)+ NOR + "了。\n");
-                        if (obb->query_amount() > 0) obb->add_amount(-1);
-                        addn_temp("lgt/knife", 1, me);
-                        addn("lgt/can_die", 1, me);
-                        tell_object(me, CYN + "你從身上拿出一張" + query("name", obb) + NOR + CYN + "夾在手指間...\n" + NOR); 
-                        tell_object(me, NOR + "(你還有" + query("lgt/can_die", me) + "張靈符)\n" + NOR);
-                return 1;
-        } else if(arg == "crystal" || arg == "tower crystal" || arg == "tower") {
-                obb = present("tower crystal", me);
-                        if (!objectp(obb)) return notify_fail("你身上已經沒有塔靈水晶可用了。\n");        
-                        if (base_name(obb) != "/d/kaifeng/linggt/npc/obj/tlcrystal") return notify_fail("你身上已經沒有塔靈水晶可用了。\n");
-                if(query_temp("lgt/tlcrystal", me) >= CAN_USECRYSTAL) return notify_fail(NOR + "你本輪闖關已經使用過"+chinese_number(CAN_USECRYSTAL)+"次"+query("name", obb)+ NOR + "了。\n");
-                        if (obb->query_amount() > 0) obb->add_amount(-1);
-                        addn_temp("lgt/tlcrystal", 1, me);
-                        tell_object(me, CYN + "你拿出一塊" + query("name", obb) + NOR + CYN + "捏成粉碎，夢幻泡影般的紫青迷霧揮發，時間流逝變慢了...\n" + NOR); 
-                return 1;
-        }
-        
-        return notify_fail("你到底想用什麼？\n");
+    me->stop_busy();
+    me->start_busy(2);  //留時間強制讓玩家看清楚提示！
 }
 
-int do_knock(string arg)
+void pass(object me)    //通關，準備下一輪
 {
-        object me, obb;
-//        int i, blv;
-        me = this_player();
-        
-        if(me->is_fighting()) return notify_fail("你還是先解決目前的敵人吧！\n");
-        if(me->is_busy()) return notify_fail("你正忙著，沒空敲鐘。\n");
-        if(!arg) return notify_fail("你到底想要敲什麼？\n");
-        if(arg != "zhong") return notify_fail("你到底想要敲什麼？\n");
-        if (query_temp("lgt/knock2", me)) return notify_fail("你已經在敲鐘唸佛了！\n");
-        if (query("tlv") < 3) return notify_fail("你至少也要往上爬一層啊，這麼膽怯？！\n");
+    me->start_busy(3 + random(2));
+    me->remove_all_enemy(1);
+    remove_call_out("kickdown");
+    set("entertime", time());
+    remove_call_out("pass2");
+    call_out("pass2", 2, me);
+}
 
-        //50%幾率未殺不可敲
-        if ((random(2)) && objectp(present("qiu tu", this_object())))
-        {
-                tell_object(me, NOR + query("title", objboss) + NOR + YEL "大急，撲過來和你搶奪銅鐘...\n" + NOR); 
-                objboss->kill_ob(me);
-                return notify_fail("你還是先解決目前的敵人吧！\n");
-        }        
-                
-                me->start_busy(2);
-                remove_call_out("knock2");
-        
-        set_temp("lgt/knock2", 1, me);
-        call_out("knock2", 1, me, 1, query("tlv"));
-        
-                fullnow(me);
+
+void init() {
+    int nbonus;
+    object me, boss;
+    me = this_player();
+
+    if (!playerp(me))
+    {
+        return;
+    }
+
+    if (query("env/invisible", me))
+    {
+        return;
+    }
+
+    set("trans_msg_id", query("id", me));
+
+    if (random(2))
+    {
+        me->start_busy(2 + random(2));  //防止玩家用 do u,19 pfm搶招
+    }
+
+    set("no_magic", 1);
+    remove_call_out("kickdown");
+    set("entertime", time());
+    call_out("kickdown", 10, me);
+    delete("no_fight");     //防止no_fight被利用
+
+    if (query("tlv") < 3) {
+        if (!query("lgt/upd", me)) {
+            set("lgt/upd", 1, me);
+            tell_object(me, CYN +
+                "一個空洞的聲音在你耳邊響起...\n" +
+                "    這位" + RANK_D->query_respect(me) + "，我是塔靈，剛才你上來之前，楊小邪給了你幾張鬼畫符是吧？\n" +
+                "    其實那是他的飛刀，這小子是有些鬼門道和手段，所以至今唯有那小子曾經登頂過我頭上的全部九百九十九層靈感塔。\n" +
+                "    這楊小邪除了惡作劇一些，其實心地不壞。你如果聽到他提供的情報，告訴你對手的實力後，根據你自己的情況，\n" +
+                "  該選擇(pass)的，就(pass)，千萬別逞強。如果覺得有把握，就直接上去戰鬥吧！\n" +
+                "    如果看到塔內的空氣開始稀薄，甚至扭曲，你得當心了，超時也算失敗的。目前每層的戰鬥時間限制在" + chinese_number(TIME_KICK) + "秒內完成！\n" +
+                "    我現在已經幫你打開了超時的聲音報警，你可以使用(beep)來關閉它，再次使用則可以打開它。\n" +
+                "    最後一點，你在脫離戰鬥後，覺得沒有把握繼續下去。選擇敲鐘，拜祭完大佛後，方算挑戰完成。如果失敗掉下塔去。是會被那小子黑錢的。\n" +
+                HIY + "\n9秒後開始計時……"
+                            + NOR);
+            set("lgt/beep", 1, me);
+            me->start_busy(999);    //等待pass2()的stop_busy
+            call_out("pass", 9, me);
+        } else
+        pass(me);
+    } else {
+        boss = objboss;
+        if (!objectp(boss)) {
+            boss = query("objboss");
+            objboss = query("objboss");
+        }
+        if (objectp(boss)) {
+            tell_object(me, CYN + "你眼神凝滯處，一個黑影閃出擋在你的面前！\n" + NOR);
+            boss->move(this_object());
+            if (query("tlv")>=30 && (query("tlv") % 10 == 0 || !random((1000 - query("tlv")) / 50 ))) {
+                //30層後, 每到10字層絕對給個武痴，或者幾率的機會任意層給個武痴. 150lv=1/17, 300lv=1/14, 600lv=1/8, 900lv=1/2
+                tell_object(me, CYN + "在一陣狂笑聲裡，樓梯口旋風般地跳下來個老頭，後發先至跑到你跟前！\n" + NOR);
+                if (!random(20)) { //5%縮回
+                    tell_object(me, CYN + "你正大吃一驚，卻見老頭連連衝你擺手，嘴裡“哈哈哈...” 的跑上塔去了。\n" + NOR);
+                } else {
+                    new(__DIR__"npc/wuchi")->move(this_object());
+                }
+            }
+        }
+    }
+
+    if (query("tlv")>=10 && query("tlv") % 25 ==0) { //每10層給予獎勵
+        nbonus = to_int(query("tlv") * 20);     //聊以自慰，主要是打廣告說明有人在活動中，引起關注
+        addn("weiwang", nbonus, me);
+        if (query("family", me)) addn("family/gongji", nbonus / 10, me);
+        CHANNEL_D->channel_broadcast(CHANL_NAME,
+            HIG + "聽說" + query("name", me) + HIG + "登上" + HIC + query("short") + HIG +  "，江湖威望上升" + chinese_number(nbonus) + "點" + ((!query("family", me)) ? "" : "，師門獎勵功績" + chinese_number(nbonus / 10) + "點") + "！\n" + NOR
+        );
+    }
+
+    remove_action("do_knock", "knock");
+    remove_action("do_passnext", "pass");
+    remove_action("do_beep", "beep");
+    remove_action("do_use", "use");
+    add_action("do_knock", "knock");
+    add_action("do_passnext", "pass");
+    add_action("do_beep", "beep");
+    add_action("do_use", "use");
+}
+
+
+
+int do_use(string arg) {
+    object me, obb;
+    me = this_player();
+
+    if(!arg) return notify_fail("你到底想用什麼？\n");
+    if(me->is_fighting()) return notify_fail("你還是先解決目前的敵人吧！\n");
+    if(me->is_busy()) return notify_fail("你正忙著，沒空使用物品。\n");
+
+    if(arg == "knife" || arg == "fly knife" || arg == "fei dao") {
+        obb = present("fly knife", me);
+        if (!objectp(obb)) return notify_fail("你身上已經沒有靈符可用了。\n");
+        if (base_name(obb) != "/d/kaifeng/linggt/npc/obj/feidao") return notify_fail("你身上已經沒有靈符可用了。\n");
+        if(query_temp("lgt/knife", me) >= CAN_USEKNIFE) return notify_fail(NOR + "你本輪闖關已經使用過"+chinese_number(CAN_USEKNIFE) + "次"+query("name", obb) + NOR + "了。\n");
+        if (obb->query_amount() > 0) obb->add_amount(-1);
+        addn_temp("lgt/knife", 1, me);
+        addn("lgt/can_die", 1, me);
+        tell_object(me, CYN + "你從身上拿出一張" + query("name", obb) + NOR + CYN + "夾在手指間...\n" + NOR);
+        tell_object(me, NOR + "(你還有" + query("lgt/can_die", me) + "張靈符)\n" + NOR);
         return 1;
+    } else if(arg == "crystal" || arg == "tower crystal" || arg == "tower") {
+        obb = present("tower crystal", me);
+        if (!objectp(obb)) return notify_fail("你身上已經沒有塔靈水晶可用了。\n");
+        if (base_name(obb) != "/d/kaifeng/linggt/npc/obj/tlcrystal") return notify_fail("你身上已經沒有塔靈水晶可用了。\n");
+        if(query_temp("lgt/tlcrystal", me) >= CAN_USECRYSTAL) return notify_fail(NOR + "你本輪闖關已經使用過"+chinese_number(CAN_USECRYSTAL) + "次"+query("name", obb) + NOR + "了。\n");
+        if (obb->query_amount() > 0) obb->add_amount(-1);
+        addn_temp("lgt/tlcrystal", 1, me);
+        tell_object(me, CYN + "你拿出一塊" + query("name", obb) + NOR + CYN + "捏成粉碎，夢幻泡影般的紫青迷霧揮發，時間流逝變慢了...\n" + NOR);
+        return 1;
+    }
+
+    return notify_fail("你到底想用什麼？\n");
 }
 
-int get_show_giftexp(object me, int exp)//在news頻道用來顯示的經驗獎勵值
-{
-        int quest_times;
-        if (MEMBER_D->is_double_reward(me)) exp *= 2;
-        quest_times = "/adm/daemons/actiond"->query_action("quest_reward");
-        if (quest_times) exp *= quest_times;
-        if( me->query_bunch() && BUNCH_D->query_bunch_efficient(me->query_bunch(), "exp") ) exp *= 2;        
-        else if( me->query_family() && FAMILY_D->query_family_efficient(me->query_family(), "exp") ) exp *= 2;
-        return exp;
+int do_knock(string arg) {
+    object me;
+    //        int i, blv;
+    me = this_player();
+
+    if(me->is_fighting()) return notify_fail("你還是先解決目前的敵人吧！\n");
+    if(me->is_busy()) return notify_fail("你正忙著，沒空敲鐘。\n");
+    if(!arg) return notify_fail("你到底想要敲什麼？\n");
+    if(arg != "zhong") return notify_fail("你到底想要敲什麼？\n");
+    if (query_temp("lgt/knock2", me)) return notify_fail("你已經在敲鐘唸佛了！\n");
+    if (query("tlv") < 3) return notify_fail("你至少也要往上爬一層啊，這麼膽怯？！\n");
+
+    //50%幾率未殺不可敲
+    if ((random(2)) && objectp(present("qiu tu", this_object())))
+    {
+        tell_object(me, NOR + query("title", objboss) + NOR + YEL "大急，撲過來和你搶奪銅鐘...\n" + NOR);
+        objboss->kill_ob(me);
+        return notify_fail("你還是先解決目前的敵人吧！\n");
+    }
+
+    me->start_busy(2);
+    remove_call_out("knock2");
+
+    set_temp("lgt/knock2", 1, me);
+    call_out("knock2", 1, me, 1, query("tlv"));
+
+    fullnow(me);
+    return 1;
 }
 
-int knock_end(object me)
+int get_show_giftexp(object me, int exp)    //在news頻道用來顯示的經驗獎勵值
 {
-        int i, j, k = 50;
-        int pot, mar, yuanshen_level, yuanshen_exp;
-        string msg;
-        //通告全服，回到塔底
-        if (query("tlv")>=10) find_object(__DIR__"lgtd")->log_hero(me, query("tlv"));//十層以上才能當地主
-        message_vision(YEL + "天空上傳來一聲長嘯……\n只見$N"+YEL+"瀟灑地從"+HIC+query("short")+ NOR + YEL+"的窗戶閃電般射出，\n凌空幾個後空翻，再連接兩個拉拉提難度係數1080，穩穩飄飛落到地上。\n" NOR, me);
-        i = query("tlv");
-        set("lgt/upd", i, me);//最後一次的成功層數
-                j = BONUS_EXPADD_J;
-                while (k < 1000) {
-                        if (i>k) {
-                                j -= 4;
-                        }
-                        k += 50;
-                }
-        i *= j;
-        i *= BONUS_EXPADD;
-        i += (query("lgt/texp", me)/8);
-        if (i<500000) i = 500000;//新人每天可以來領50w
-        
+    int quest_times;
+    if (MEMBER_D->is_double_reward(me)) exp *= 2;
+    quest_times = "/adm/daemons/actiond"->query_action("quest_reward");
+    if (quest_times) exp *= quest_times;
+    if(me->query_bunch() && BUNCH_D->query_bunch_efficient(me->query_bunch(), "exp") ) exp *= 2;
+    else if(me->query_family() && FAMILY_D->query_family_efficient(me->query_family(), "exp") ) exp *= 2;
+    return exp;
+}
+
+int knock_end(object me) {
+    int i, j, k = 50;
+    int pot, mar, yuanshen_level, yuanshen_exp;
+    string msg;
+    //通告全服，回到塔底
+    if (query("tlv")>=10) find_object(__DIR__"lgtd")->log_hero(me, query("tlv"));   //十層以上才能當地主
+    message_vision(YEL + "天空上傳來一聲長嘯……\n只見$N"+YEL + "瀟灑地從"+HIC + query("short") + NOR + YEL + "的窗戶閃電般射出，\n凌空幾個後空翻，再連接兩個拉拉提難度係數1080，穩穩飄飛落到地上。\n" NOR, me);
+    i = query("tlv");
+    set("lgt/upd", i, me);  //最後一次的成功層數
+    j = BONUS_EXPADD_J;
+    while (k < 1000) {
+        if (i>k) {
+            j -= 4;
+        }
+        k += 50;
+    }
+    i *= j;
+    i *= BONUS_EXPADD;
+    i += (query("lgt/texp", me) / 8);
+    if (i<500000) i = 500000;   //新人每天可以來領50w
+
 #ifdef DB_SAVE
-        if (MEMBER_D->is_double_reward(me)) 
-                i *= 2;
+    if (MEMBER_D->is_double_reward(me))
+        i *= 2;
 #endif
 
-                set("lgt/bonus/exp_lastjump", i, me);
-                addn("lgt/bonus/exp_lastjump_count", i, me);
+    set("lgt/bonus/exp_lastjump", i, me);
+    addn("lgt/bonus/exp_lastjump_count", i, me);
 
-        //甩開各種雙倍獎勵，特別是幫會雙
-        pot = i / 3;
-        mar = i / 6;
-        addn("potential", pot, me);
-        addn("experience", mar, me);
-        // 元神
-        if( i > 100 && (yuanshen_level = query("yuanshen_level", me)) && yuanshen_level < 100 )
-        {
-                if( yuanshen_level > 40 ) yuanshen_exp = i * 25 / 100;
-                else if( yuanshen_level > 30 ) yuanshen_exp = i * 20 / 100;
-                else if( yuanshen_level > 20 ) yuanshen_exp = i * 15 / 100;
-                else if( yuanshen_level > 10 ) yuanshen_exp = i * 10 / 100;
-                else yuanshen_exp = i * 5 / 100;
-                addn("yuanshen_exp", yuanshen_exp, me);
-                i -= yuanshen_exp;
-        }
-        addn("combat_exp", i, me);
-        
-                msg = HIG + "你在靈感" + TOWERNAME + "塔上成功敲鐘之後，你獲得了";
-        if (i > 0) msg += chinese_number(i) + "點經驗、";
-        if (pot > 0) msg += chinese_number(pot) + "點潛能、";
-        if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
-        if( yuanshen_exp ) msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
-        msg += "能力得到了提升。\n" + NOR;
-        tell_object(me, sort_msg(msg));
-        
-        /*
-        if (query("reborn/times", me)) i *= 2;//如果有轉世，抵消轉世的獎勵懲罰
-        call_other(GIFT_D, "bonus", me, ([ "exp":i, "pot":i/4, "mar":i/8, "prompt":"你在靈感塔上成功敲鐘之後"]));
-        if (query("reborn/times", me)) i /= 2;//如果有轉世，抵消轉世的獎勵懲罰
-        i = get_show_giftexp(me, i);//計算活動額外
-        i += query("lgt/texp", me);
-        */
-        if (query("tlv")>=100) CHANNEL_D->channel_broadcast("news",
-                                        HIC + "楊小邪(yang xiaoxie)雙拳一抱，高聲對" + HIC + me->query_idname() + HIC + "說道：“恭喜！恭喜！\n"+
-                                        //"        聽說您到"HIC + query("short") + HIC + "累計獲得了" + HIC + chinese_number(i) + HIC + "點經驗，小邪在此恭喜你了！” \n" + NOR
-                                        "        聽說您到"HIC + query("short") + HIC + "，小邪在此恭喜你了！” \n" + NOR
-                                        );
-        delete_temp("lgt", me);
-        if (objboss && objectp(objboss)) destruct(objboss); 
-        me->move(__DIR__"lgtd");
-        return 1;
+    //甩開各種雙倍獎勵，特別是幫會雙
+    pot = i / 3;
+    mar = i / 6;
+    addn("potential", pot, me);
+    addn("experience", mar, me);
+    // 元神
+    if(i > 100 && (yuanshen_level = query("yuanshen_level", me)) && yuanshen_level < 100 )
+    {
+        if(yuanshen_level > 40 ) yuanshen_exp = i * 25 / 100;
+        else if(yuanshen_level > 30 ) yuanshen_exp = i * 20 / 100;
+        else if(yuanshen_level > 20 ) yuanshen_exp = i * 15 / 100;
+        else if(yuanshen_level > 10 ) yuanshen_exp = i * 10 / 100;
+        else yuanshen_exp = i * 5 / 100;
+        addn("yuanshen_exp", yuanshen_exp, me);
+        i -= yuanshen_exp;
+    }
+    addn("combat_exp", i, me);
+
+    msg = HIG + "你在靈感" + TOWERNAME + "塔上成功敲鐘之後，你獲得了";
+    if (i > 0) msg += chinese_number(i) + "點經驗、";
+    if (pot > 0) msg += chinese_number(pot) + "點潛能、";
+    if (mar > 0) msg += chinese_number(mar) + "點實戰體會、";
+    if(yuanshen_exp ) msg += "元神獲得經驗" + chinese_number(yuanshen_exp) + "點、";
+    msg += "能力得到了提升。\n" + NOR;
+    tell_object(me, sort_msg(msg));
+
+    /*
+     * if (query("reborn/times", me)) i *= 2;//如果有轉世，抵消轉世的獎勵懲罰
+     * call_other(GIFT_D, "bonus", me, ([ "exp":i, "pot":i/4, "mar":i/8, "prompt":"你在靈感塔上成功敲鐘之後"]));
+     * if (query("reborn/times", me)) i /= 2;//如果有轉世，抵消轉世的獎勵懲罰
+     * i = get_show_giftexp(me, i);//計算活動額外
+     * i += query("lgt/texp", me);
+     */
+    if (query("tlv")>=100) CHANNEL_D->channel_broadcast("news",
+        HIC + "楊小邪(yang xiaoxie)雙拳一抱，高聲對" + HIC + me->query_idname() + HIC + "說道：“恭喜！恭喜！\n"+
+    //"        聽說您到"HIC + query("short") + HIC + "累計獲得了" + HIC + chinese_number(i) + HIC + "點經驗，小邪在此恭喜你了！” \n" + NOR
+            "        聽說您到"HIC + query("short") + HIC + "，小邪在此恭喜你了！” \n" + NOR
+    );
+    delete_temp("lgt", me);
+    if (objboss && objectp(objboss)) destruct(objboss);
+    me->move(__DIR__"lgtd");
+    return 1;
 }
 
 
-int knock2(object me, int i, int imax)
-{
-        object obb;
-        int blv;
-        string unit;
-        
-        me->start_busy(2);
-        if (imax < 10 || i > imax) return knock_end(me);
-        
-        tell_object(me,YEL"你埋首合什虔誠地向大佛禱告......\n"NOR); 
+int knock2(object me, int i, int imax) {
+    object obb;
+    int blv;
+    string unit;
 
-                blv = random(10000);
-                if (blv < 1) obb = new("/clone/goods/tianjing");                                                //寰宇天晶
-                        else if (blv < 20) obb = new("/d/kaifeng/linggt/npc/obj/tlcrystal");               //塔靈水晶
-                        else if (blv < 60) obb = new("/d/kaifeng/linggt/npc/obj/feidao");                  //飛刀靈符
-                        else if (blv < 140) obb = new("/d/kaifeng/npc/obj/mashu");                                 //麻薯，拿給洗象池的沈芝毓換玉清丸
-                        else if (blv < 300) obb = new("/clone/tongren/tongren2");                               //無名大銅人
-                        else if (blv < 460) obb = new("/clone/tongren/tongren1");                               //無名小銅人
-                        else if (blv < 780) obb = new("/clone/tessera/rune" + to_string(20 + random(5)));       //符文20-24
-                        else if (blv < 1100) obb = new("/clone/tessera/rune" + to_string(15 + random(5)));      //符文15~19
-                        else if (blv < 1740) obb = new("/clone/gift/jiuzhuan");                                 //九轉金丹
-                        else if (blv < 2380) obb = new("/clone/gift/tianxiang");                                        //天香玉露
-                        else if (blv < 3660) obb = new("/clone/gift/puti-zi");                                  //菩提子
-                        else if (blv < 6220) obb = new("/clone/money/yuanbao");                                 //金票=百兩黃金
-                        else obb = new("/clone/money/cash");                                                                    //銀票=十兩黃金
-                        unit = query("base_unit", obb);
-                        if (!unit) unit = query("unit", obb);
-/*                        //故意如此加強登塔人的成就感，獨佔性任務不算刷屏!
-                        CHANNEL_D->channel_broadcast(CHANL_NAME, query("name", me) + HIG + "在靈感" + TOWERNAME + "塔獲得了一" + unit + query("name", obb)+ HIG + "的獎勵！\n" + NOR);
-                        */
-                        tell_object(me,
-                                query("name", me) + HIG + "在靈感" + TOWERNAME + "塔獲得了一" + unit + query("name", obb)+ HIG + "的獎勵！\n" + NOR
-                                );
-                        obb->move(me);
-        i += BONUS_INTERVAL;
-        call_out("knock2", 1, me, i, imax);
-        return 1;
+    me->start_busy(2);
+    if (imax < 10 || i > imax) return knock_end(me);
+
+    tell_object(me, YEL"你埋首合什虔誠地向大佛禱告......\n"NOR);
+
+    blv = random(10000);
+    if (blv < 1) obb = new("/clone/goods/tianjing");    //寰宇天晶
+    else if (blv < 20) obb = new("/d/kaifeng/linggt/npc/obj/tlcrystal");    //塔靈水晶
+    else if (blv < 60) obb = new("/d/kaifeng/linggt/npc/obj/feidao");   //飛刀靈符
+    else if (blv < 140) obb = new("/d/kaifeng/npc/obj/mashu");  //麻薯，拿給洗象池的沈芝毓換玉清丸
+    else if (blv < 300) obb = new("/clone/tongren/tongren2");   //無名大銅人
+    else if (blv < 460) obb = new("/clone/tongren/tongren1");   //無名小銅人
+    else if (blv < 780) obb = new("/clone/tessera/rune" + to_string(20 + random(5)));   //符文20-24
+    else if (blv < 1100) obb = new("/clone/tessera/rune" + to_string(15 + random(5)));  //符文15~19
+    else if (blv < 1740) obb = new("/clone/gift/jiuzhuan");     //九轉金丹
+    else if (blv < 2380) obb = new("/clone/gift/tianxiang");    //天香玉露
+    else if (blv < 3660) obb = new("/clone/gift/puti-zi");  //菩提子
+    else if (blv < 6220) obb = new("/clone/money/yuanbao");     //金票=百兩黃金
+    else obb = new("/clone/money/cash");    //銀票=十兩黃金
+    unit = query("base_unit", obb);
+    if (!unit) unit = query("unit", obb);
+    /*
+     * //故意如此加強登塔人的成就感，獨佔性任務不算刷屏!
+     * CHANNEL_D->channel_broadcast(CHANL_NAME, query("name", me) + HIG + "在靈感" + TOWERNAME + "塔獲得了一" + unit + query("name", obb)+ HIG + "的獎勵！\n" + NOR);
+     */
+    tell_object(me,
+        query("name", me) + HIG + "在靈感" + TOWERNAME + "塔獲得了一" + unit + query("name", obb) + HIG + "的獎勵！\n" + NOR
+    );
+    obb->move(me);
+    i += BONUS_INTERVAL;
+    call_out("knock2", 1, me, i, imax);
+    return 1;
 }
 
 
-int valid_leave(object me, string dir)
-{
-        mapping ob; 
-        object *obs;
-        int tlv;
-        
-        //if (!wizardp(me)){
-        //戰鬥不可逃
-        if (me->is_fighting() || objectp(present("qiu tu", this_object())))
-        {
-                tell_object(me,NOR"你還是先解決目前的敵人吧！\n"NOR); 
-                return 0;
+int valid_leave(object me, string dir) {
+    mapping ob;
+    object *obs;
+    int tlv;
+
+    //if (!wizardp(me)){
+    //戰鬥不可逃
+    if (me->is_fighting() || objectp(present("qiu tu", this_object())))
+    {
+        tell_object(me, NOR"你還是先解決目前的敵人吧！\n"NOR);
+        return 0;
+    }
+
+    tlv = query("tlv");
+
+    if (tlv >= 1299) {
+        tell_object(me, NOR"你無敵了，不用再上去了吧。\n"NOR);
+        return 0;
+    }
+
+    if (objectp(query_temp("is_riding", me)) ) return notify_fail("你騎著馬沒法上靈感塔去！\n");
+
+    if (query("no_magic"))  return notify_fail("你暫時還不能到上一層去！\n");
+
+    if (playerp(me))
+    {
+        if (tlv < 3) { //電梯
+            //tlv = query("level", me) / 2 - 18;
+            tlv = (query("level", me)<100) ? query("level", me) / 2 - 15 : query("level", me) * 2 / 3 + 5;  //等級高了起點低,太慢
+            if (query("lgt/upd", me) && query("lgt/upd", me)>100 && (query("lgt/upd", me) - tlv)>99 ) tlv = query("lgt/upd", me) - 99;
+            if (tlv < 3)
+                tlv = 3;
+            else
+                tell_object(me, YEL"你略一思忖，深吸口氣縱身直接躍上了第" + chinese_number(tlv) + "層。\n"NOR);
+        } else {
+            tlv += 1;
         }
-        
-        tlv = query("tlv");
-        
-        if (tlv >= 1299) {
-                tell_object(me,NOR"你無敵了，不用再上去了吧。\n"NOR); 
-                return 0;
-        }
-        
-        if ( objectp(query_temp("is_riding", me)) ) return notify_fail("你騎著馬沒法上靈感塔去！\n");
-        
-        if (query("no_magic"))  return notify_fail("你暫時還不能到上一層去！\n");
-        
-        if (playerp(me))
-        {
-                if (tlv < 3) {//電梯
-                     //tlv = query("level", me) / 2 - 18;
-                                                tlv = (query("level", me)<100) ? query("level", me) / 2 - 15 : query("level", me) * 2 / 3 + 5;//等級高了起點低,太慢
-                                                if ( query("lgt/upd", me) && query("lgt/upd", me)>100 && (query("lgt/upd", me)-tlv)>99 ) tlv = query("lgt/upd", me) - 99;
-                        if (tlv < 3)
-                                tlv = 3;
-                        else 
-                                tell_object(me,YEL"你略一思忖，深吸口氣縱身直接躍上了第" + chinese_number(tlv) + "層。\n"NOR); 
-                } else {
-                        tlv += 1;       
-                }
-                set("tlv", tlv);
+        set("tlv", tlv);
         set("short", "靈感" + TOWERNAME + "塔.第" + chinese_number(tlv) + "層");
         //remove_action("do_passnext", "pass");
+    }
+    obs = all_inventory();
+    if (sizeof(obs) > 0)
+    {
+        if (arrayp(query_temp("objects")))
+            obs -= query_temp("objects");
+        //obs = filter_array(obs, (: ! living($1) && clonep($1) && ! $1->is_character() :));
+        obs = filter_array(obs, (: (!$1->is_user()) && (!$1->is_worm2()) :));   //要驅逐寵物的幫助，只能留下玩家自己
+        if (sizeof(obs) > 0)
+        {
+            obs = obs[0..<1];
+            foreach (ob in obs) destruct(ob);
         }
-        obs = all_inventory(); 
-        if (sizeof(obs) > 0) 
-        { 
-                if (arrayp(query_temp("objects"))) 
-                        obs -= query_temp("objects"); 
-                //obs = filter_array(obs, (: ! living($1) && clonep($1) && ! $1->is_character() :)); 
-                obs = filter_array(obs, (: (!$1->is_user()) && (!$1->is_worm2())  :)); //要驅逐寵物的幫助，只能留下玩家自己
-                if (sizeof(obs) > 0) 
-                { 
-                        obs = obs[0..<1]; 
-                        foreach (ob in obs) destruct(ob); 
-                } 
-        } 
-        
+    }
 
-        return ::valid_leave(me, dir);
+
+    return ::valid_leave(me, dir);
 }
-

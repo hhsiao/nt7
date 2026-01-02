@@ -3,13 +3,12 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("喜帖", ({ "xi tie","tie"}));
-        set_weight(500);
-        set("unit", "張");
-                set("long","一張大紅的帖子，上面寫著：\n"
-                        "誠邀閣下參加我們的在汝州紅娘莊的婚禮和揚州醉仙樓大堂的婚宴。\n");
-      set("material", "paper");
-        setup();
+void create() {
+    set_name("喜帖", ({ "xi tie", "tie"}));
+    set_weight(500);
+    set("unit", "張");
+    set("long", "一張大紅的帖子，上面寫著：\n"
+        "誠邀閣下參加我們的在汝州紅娘莊的婚禮和揚州醉仙樓大堂的婚宴。\n");
+    set("material", "paper");
+    setup();
 }

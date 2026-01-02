@@ -6,16 +6,15 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(WHT "黑邊白色長袍" NOR, ({ "chang pao", "cloth","changpao","pao"}));
-        set_weight(6000);
-        set("long","這是一件黑色滾邊的白色長袍，華貴異常，看不出是什麼質料做的。\n");
-                set("unit", "件");
-                set("material", "cloth");
-                set("armor_prop/armor", 65);
-                set("value", 100);
-                set("wear_msg","$N迎風一展，[唰]的一聲，披上一件$n。\n");
-                set("remove_msg","$N解開$n,把$n從身上脫了下來。\n");
-        setup();
+void create() {
+    set_name(WHT "黑邊白色長袍" NOR, ({ "chang pao", "cloth", "changpao", "pao"}));
+    set_weight(6000);
+    set("long", "這是一件黑色滾邊的白色長袍，華貴異常，看不出是什麼質料做的。\n");
+    set("unit", "件");
+    set("material", "cloth");
+    set("armor_prop/armor", 65);
+    set("value", 100);
+    set("wear_msg", "$N迎風一展，[唰]的一聲，披上一件$n。\n");
+    set("remove_msg", "$N解開$n,把$n從身上脫了下來。\n");
+    setup();
 }

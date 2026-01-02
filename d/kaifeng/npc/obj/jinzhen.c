@@ -3,17 +3,16 @@
 
 inherit THROWING;
 
-void create()
-{
-        set_name(HIY "芙蓉金針" NOR, ({ "furong jinzhen", "furong", "jinzhen", "zhen" }) );
-        set("unit", "些");
-                set("value", 0);
-                set("base_unit", "根");
-                set("base_weight", 200);
-                set("base_value", 0);
-                set("material", "iron");
-                set("long", HIY "這是一些細長的金針，長約寸許。\n" NOR);
-        set_amount(50);
-        init_throwing(50);
-        setup();
+void create() {
+    set_name(HIY "芙蓉金針" NOR, ({ "furong jinzhen", "furong", "jinzhen", "zhen" }) );
+    set("unit", "些");
+    set("value", 0);
+    set("base_unit", "根");
+    set("base_weight", 200);
+    set("base_value", 0);
+    set("material", "iron");
+    set("long", HIY "這是一些細長的金針，長約寸許。\n" NOR);
+    set_amount(50);
+    init_throwing(50);
+    setup();
 }

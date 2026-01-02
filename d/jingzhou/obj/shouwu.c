@@ -5,27 +5,24 @@ inherit ITEM;
 void setup()
 {}
 
-void init()
-{
-        add_action("do_eat", "eat");
+void init() {
+    add_action("do_eat", "eat");
 }
 
-void create()
-{
-        set_name("何首烏", ({"heshou wu", "wu"}));
-        set("unit", "棵");
-                set("long", "這是一棵初具人形的何首烏。\n");
-                set("value", 10000);
-        setup();
+void create() {
+    set_name("何首烏", ({"heshou wu", "wu"}));
+    set("unit", "棵");
+    set("long", "這是一棵初具人形的何首烏。\n");
+    set("value", 10000);
+    setup();
 }
 
-int do_eat(string arg)
-{
-        if (!id(arg))
+int do_eat(string arg) {
+    if (!id(arg))
         return notify_fail("你要吃什麼？\n");
 
-        addn("max_neili", 1, this_player());
-        message_vision("$N吃下一棵何首烏，頓時間覺得全身充滿了活力 !\n", this_player());
-        destruct(this_object());
-        return 1;
+    addn("max_neili", 1, this_player());
+    message_vision("$N吃下一棵何首烏，頓時間覺得全身充滿了活力 !\n", this_player());
+    destruct(this_object());
+    return 1;
 }

@@ -3,26 +3,25 @@
 
 inherit BUILD_ROOM;
 
-void create()
-{
-        set("short","碎石小道");
-        set("long",
-"這是一條佈滿石子的小路，兩邊長著幾顆高大的楊柳樹，北面的路似\n"
-"乎總是被白煙瀰漫著，西南面是通往村外的路，在小路的西面赫然立著一\n"
-"座小亭，裡面依稀可見幾個身影。\n"
-);
+void create() {
+    set("short", "碎石小道");
+    set("long",
+        "這是一條佈滿石子的小路，兩邊長著幾顆高大的楊柳樹，北面的路似\n"
+        "乎總是被白煙瀰漫著，西南面是通往村外的路，在小路的西面赫然立著一\n"
+        "座小亭，裡面依稀可見幾個身影。\n"
+    );
 
-        set("recordable_room",1);
-        set("outdoors","playertown");
-        
-        set("exits",([
-                "north" : __DIR__"road7",
-                "south" : __DIR__"road5",
-                "west" : __DIR__"road4",
+    set("recordable_room", 1);
+    set("outdoors", "playertown");
+
+    set("exits", ([
+        "north": __DIR__"road7",
+        "south": __DIR__"road5",
+        "west": __DIR__"road4"
         ]));
-        
-        setup();
-        
-        // replace_program(ROOM);
-        
+
+    setup();
+
+    // replace_program(ROOM);
+
 }

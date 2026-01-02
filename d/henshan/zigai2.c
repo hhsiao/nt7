@@ -1,29 +1,27 @@
 inherit ROOM;
 
-void create()
-{
-        set("short", "水蓮洞內");
-        set("long", @LONG
+void create() {
+    set("short", "水蓮洞內");
+    set("long", @LONG
 這裡四周空曠，比起外面來卻沒有那麼潮溼。
 LONG );
-        set("exits",([
-               "south" : __DIR__"inhole2",
+    set("exits", ([
+        "south": __DIR__"inhole2"
         ]));
-        
-        set("objects",([
-               "/clone/beast/yanjingshe" : 2,
+
+    set("objects", ([
+        "/clone/beast/yanjingshe" : 2
         ]));
-        
-        setup();
-        
+
+    setup();
+
 }
 
-void init()
-{
-       object me = this_player();
+void init() {
+    object me = this_player();
 
-       if (present("fire", me))
-                      set("exits/north", __DIR__"zigai3");
-        
-        return ;
+    if (present("fire", me))
+        set("exits/north", __DIR__"zigai3");
+
+    return;
 }

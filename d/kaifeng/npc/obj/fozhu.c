@@ -3,12 +3,11 @@
 
 inherit HEAD;
 
-void create()
-{
-        set_name(MAG "紫檀佛串" NOR,({"fo chuan"}));
-        set_weight(1000);
-        set("material", "wood");
-                set("unit", "條");
-                set("armor_prop/armor",10);
-        setup();
+void create() {
+    set_name(MAG "紫檀佛串" NOR, ({"fo chuan"}));
+    set_weight(1000);
+    set("material", "wood");
+    set("unit", "條");
+    set("armor_prop/armor", 10);
+    setup();
 }

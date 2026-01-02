@@ -5,21 +5,20 @@
 #include <room.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", "苦寒樓");
-        set("long",@long
+void create() {
+    set("short", "苦寒樓");
+    set("long",@long
 這裡是崑崙派的苦寒樓，取名自“梅花香自苦寒來”之意，乃是昆
 侖派前輩為了激勵後進崑崙派弟子而建的，是崑崙弟子靜修之所。
 long);
-        set("exits",([
-                "west" : __DIR__"shanlin"+(random(5)+1),
-                "enter" : __DIR__"kuhanlou1",
+    set("exits", ([
+        "west": __DIR__"shanlin"+(random(5) + 1),
+        "enter": __DIR__"kuhanlou1"
         ]));
-        set("outdoors", "kunlun");
-        set("coor/x", -119900);
-        set("coor/y", 40130);
-        set("coor/z", 90);
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "kunlun");
+    set("coor/x", -119900);
+    set("coor/y", 40130);
+    set("coor/z", 90);
+    setup();
+    replace_program(ROOM);
 }

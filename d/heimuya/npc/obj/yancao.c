@@ -3,12 +3,11 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name( "上等菸草", ({ "shangdeng yancao", "yancao" }) );
-        set_weight(800);
-        set("unit", "包");
-                set("value", 1000);
-                set("material", "leather");
-        setup();
+void create() {
+    set_name("上等菸草", ({ "shangdeng yancao", "yancao" }) );
+    set_weight(800);
+    set("unit", "包");
+    set("value", 1000);
+    set("material", "leather");
+    setup();
 }

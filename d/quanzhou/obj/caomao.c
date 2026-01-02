@@ -4,13 +4,12 @@
 #include <armor.h>
 inherit HEAD;
 
-void create()
-{
-        set_name("草帽", ({ "cao mao", "mao" }) );
-        set_weight(800);
-        set("unit", "頂");
-                set("material", "cloth");
-                set("value", 150);
-                set("armor_prop/armor", 2);
-        setup();
+void create() {
+    set_name("草帽", ({ "cao mao", "mao" }) );
+    set_weight(800);
+    set("unit", "頂");
+    set("material", "cloth");
+    set("value", 150);
+    set("armor_prop/armor", 2);
+    setup();
 }

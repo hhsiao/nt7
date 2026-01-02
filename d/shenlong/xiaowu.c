@@ -2,15 +2,14 @@
 
 inherit ROOM;
 string* books = ({
-	"/clone/book/book-bamboo",
-	"/clone/book/book-paper",
-	"/clone/book/book-stone",
-	"/clone/book/book-iron",
+    "/clone/book/book-bamboo",
+    "/clone/book/book-paper",
+    "/clone/book/book-stone",
+    "/clone/book/book-iron"
 });
 
 
-void create()
-{
+void create() {
     set("short", "小屋");
     set("long", @LONG
 一進小屋，只見牆上掛滿了無數名貴的字畫，書架上也堆滿了平
@@ -20,16 +19,15 @@ LONG
     );
 
     set("exits", ([
-	"south" : __DIR__"caodi",
+        "south": __DIR__"caodi",
 
-    ]));
+        ]));
     set("objects", ([
-		CLASS_D("shenlong")+"/lu": 1,
-		books[random(sizeof(books))] : 1,
-		books[random(sizeof(books))] : 1,
-    ]));
+        CLASS_D("shenlong") + "/lu": 1,
+        books[random(sizeof(books))] : 1,
+        books[random(sizeof(books))] : 1
+        ]));
     set("outdoors", "shenlong");
     setup();
-   replace_program(ROOM); 
+    replace_program(ROOM);
 }
-

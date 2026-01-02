@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "山谷");
-        set("long", @LONG
+void create() {
+    set("short", "山谷");
+    set("long", @LONG
 在壑幽林美，山清氣爽的山谷中，座落著一座寺院。門前的對聯寫
 著：
 
@@ -16,15 +15,15 @@ void create()
 乃是摩尼教的所在。摩尼教是波斯人摩尼創立的宗教，又稱為「明教」。
 摩尼教徒主要食素，被世人傳為「食菜事魔」，稱之為「魔教」。
 LONG );
-        set("outdoors", "quanzhou");
-        set("no_clean_up", 0);
-        set("exits", ([
-                "enter" : __DIR__"caoan",
-                "north" : __DIR__"shisun",
+    set("outdoors", "quanzhou");
+    set("no_clean_up", 0);
+    set("exits", ([
+        "enter": __DIR__"caoan",
+        "north": __DIR__"shisun"
         ]));
-	set("coor/x", -930);
-	set("coor/y", -7740);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", -930);
+    set("coor/y", -7740);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

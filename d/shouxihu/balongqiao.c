@@ -3,23 +3,22 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","八龍橋");
-        set("long",@LONG
+void create() {
+    set("short", "八龍橋");
+    set("long",@LONG
 吹臺和小金山之間是一段柳岸長堤，長堤中段架有兩側雕塑八龍頭
 花崗岩橋，這就是八龍橋。
 LONG );
-        set("outdoors", "shouxihu");
+    set("outdoors", "shouxihu");
 
-        set("exits", ([
-                "north"   : __DIR__"chuitai",
-                "southup" : __DIR__"changchunling",
+    set("exits", ([
+        "north": __DIR__"chuitai",
+        "southup": __DIR__"changchunling"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", 0);
-        set("coor/y", 120);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", 0);
+    set("coor/y", 120);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

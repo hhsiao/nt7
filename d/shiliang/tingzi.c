@@ -3,8 +3,7 @@
 #include <ansi.h>
 inherit ROOM;
 int do_jump(string arg);
-void create()
-{
+void create() {
     set("short", "玫瑰小亭");
     set("long", @LONG
 你正站在湖邊的一個小亭裡，通過一條蜿蜒的走廊可以回到
@@ -14,44 +13,42 @@ void create()
 LONG
     );
     set("no_clean_up", 0);
-        set("outdoors", "shiliang");
+    set("outdoors", "shiliang");
     set("exits", ([
-        "south" : __DIR__"zoulang4",
-    ]));
+        "south": __DIR__"zoulang4"
+        ]));
     set("item_desc", ([
         "木樁" : "這是幾根分佈得怪里怪氣的木樁，看上去不是很結實。\n"
-    ]) );
-        set("coor/x", 1610);
-        set("coor/y", -1900);
-        set("coor/z", 0);
-        setup();
+        ]) );
+    set("coor/x", 1610);
+    set("coor/y", -1900);
+    set("coor/z", 0);
+    setup();
 }
-void init()
-{
-    object book, me;
+void init() {
+    object me;
     me = this_player();
     add_action("do_jump", "jump");
 }
-int do_jump(string arg)
-{
+int do_jump(string arg) {
     int n;
     n = this_player()->query_skill("dodge");
-    if( !arg || arg!="木樁" ) {
+    if(!arg || arg!="木樁" ) {
         write("不要亂跳，現在是冬天，可不是能游泳的季節哦！\n");
         return 1;
     }
     message_vision(
-    "$N深深地吸了口氣，猛地躍了起來。\n", this_player());
-        
+        "$N深深地吸了口氣，猛地躍了起來。\n", this_player());
+
     if (n>=100) {
         message_vision(
-        "只見$N輕輕一躍，穩穩地站在湖中的木樁上，幾下起落，已經到達了湖中小島。\n", this_player());
+            "只見$N輕輕一躍，穩穩地站在湖中的木樁上，幾下起落，已經到達了湖中小島。\n", this_player());
         this_player()->move(__DIR__"xiaodao");
     }
     else {
         message_vision(
-        "$N高高躍起,重重地落在木樁上，結果把木樁踩斷了！“撲通”一聲掉進水中。\n", this_player());
+            "$N高高躍起,重重地落在木樁上，結果把木樁踩斷了！“撲通”一聲掉進水中。\n", this_player());
         this_player()->move(__DIR__"huli");
-     }
+    }
     return 1;
 }

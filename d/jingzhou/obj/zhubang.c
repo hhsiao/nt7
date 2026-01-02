@@ -3,16 +3,15 @@
 #include <weapon.h>
 inherit STAFF;
 
-void create()
-{
-        set_name("竹棒", ({ "zhubang" }));
-        set_weight(3000);
-        set("unit", "根");
-                set("long", "這是一根發黃的竹棒，入手沉甸甸的，似乎相當結實。\n");
-                set("value", 200);
-                set("material", "steel");
-                set("wield_msg", "$N抽出一根$n握在手中。\n");
-                set("unwield_msg", "$N將手中的$n插回腰間。\n");
-        init_staff(25);
-        setup();
+void create() {
+    set_name("竹棒", ({ "zhubang" }));
+    set_weight(3000);
+    set("unit", "根");
+    set("long", "這是一根發黃的竹棒，入手沉甸甸的，似乎相當結實。\n");
+    set("value", 200);
+    set("material", "steel");
+    set("wield_msg", "$N抽出一根$n握在手中。\n");
+    set("unwield_msg", "$N將手中的$n插回腰間。\n");
+    init_staff(25);
+    setup();
 }

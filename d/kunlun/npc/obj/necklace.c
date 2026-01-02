@@ -6,13 +6,12 @@
 
 inherit NECK;
 
-void create()
-{
-        set_name(HIY"金項鍊"NOR, ({ "golden necklace", "necklace", "lace" }));
-        set("weight", 500);
-        set("unit", "串");
-                set("value", 2500);
-                set("material", "gold");
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name(HIY"金項鍊"NOR, ({ "golden necklace", "necklace", "lace" }));
+    set("weight", 500);
+    set("unit", "串");
+    set("value", 2500);
+    set("material", "gold");
+    set("armor_prop/armor", 1);
+    setup();
 }

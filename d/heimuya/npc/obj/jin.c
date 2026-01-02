@@ -6,12 +6,11 @@
 
 inherit ARMOR;
 
-void create()
-{
-        set_name("金絲甲", ({ "jin" }) );
-        set_weight(8000);
-        set("unit", "件");
-                set("material", "cloth");
-                set("armor_prop/armor", 8);
-        setup();
+void create() {
+    set_name("金絲甲", ({ "jin" }) );
+    set_weight(8000);
+    set("unit", "件");
+    set("material", "cloth");
+    set("armor_prop/armor", 8);
+    setup();
 }

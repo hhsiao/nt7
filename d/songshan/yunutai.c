@@ -3,16 +3,15 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "玉女臺");
-        set("long", @LONG
+void create() {
+    set("short", "玉女臺");
+    set("long", @LONG
 這理是嵩山東南的玉女臺。玉女臺下的石淙洞，就是“石淙會飲”
 (jing)之處。兩岸石壁高聳，險峻如削，怪古嶙峋多姿，大小別致。澗
 中有巨石，兩岸多洞穴，水聲石響，淙淙有聲，故名“石淙”。
 LONG );
-        set("item_desc", ([
-                "jing" : "
+    set("item_desc", ([
+        "jing": "
     石上青苔滿布，潤水清澈見底，上空鶯歌燕舞，水中群魚戰遊。碧
 水潭中有個大石頭，獨出水面，平整如案。登上石頂眺望，周圍是水，
 四面環山，紅日映染河水，微風徐徐撲面，山青水秀，鳥語花香，大有
@@ -31,32 +30,31 @@ LONG );
                   均露均霜標勝壤，交風交雨列皇戰。
                   萬仞高崖藏日色，千尋幽潤浴雲衣。
                   且駐歡筵賞仁智，稠鞍薄晚雜塵飛。
-",
+        "
         ]));
-        set("exits", ([
-                "northwest" : __DIR__"shandao1",
+    set("exits", ([
+        "northwest": __DIR__"shandao1"
         ]));
-        set("no_clean_up", 0);
-        set("outdoors", "songshan");
-        set("coor/x", -20);
-        set("coor/y", 810);
-        set("coor/z", 30);
-        setup();
+    set("no_clean_up", 0);
+    set("outdoors", "songshan");
+    set("coor/x", -20);
+    set("coor/y", 810);
+    set("coor/z", 30);
+    setup();
 }
- 
-int valid_leave(object me, string dir)
-{
-        if ((random((int)me->query_skill("dodge")) <= 20) && dir=="up")    
-        {
-                return notify_fail("你使勁兒一蹦，離瀑布頂還有數丈遠就掉了下來，摔的鼻青臉腫。\n");
-        }
-        if ((random((int)me->query_skill("dodge")) <= 35) && dir=="up")    
-        {
-                return notify_fail("你奮力一躍，卻離瀑布頂還有一丈多遠，看來是白費力氣。\n");
-        }
-        if ((random((int)me->query_skill("dodge")) <= 60) && dir=="up")    
-        {
-                return notify_fail("你縱身而起，離瀑布頂只差一點點了，再加把勁。\n");
-        }
-        return ::valid_leave(me, dir);
+
+int valid_leave(object me, string dir) {
+    if ((random((int)me->query_skill("dodge")) <= 20) && dir=="up")
+    {
+        return notify_fail("你使勁兒一蹦，離瀑布頂還有數丈遠就掉了下來，摔的鼻青臉腫。\n");
+    }
+    if ((random((int)me->query_skill("dodge")) <= 35) && dir=="up")
+    {
+        return notify_fail("你奮力一躍，卻離瀑布頂還有一丈多遠，看來是白費力氣。\n");
+    }
+    if ((random((int)me->query_skill("dodge")) <= 60) && dir=="up")
+    {
+        return notify_fail("你縱身而起，離瀑布頂只差一點點了，再加把勁。\n");
+    }
+    return ::valid_leave(me, dir);
 }

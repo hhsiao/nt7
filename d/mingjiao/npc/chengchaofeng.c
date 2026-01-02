@@ -8,72 +8,69 @@ inherit F_UNIQUE;
 
 string ask_me();
 
-void create()
-{
-        set_name("程嘲風", ({ "cheng chaofeng", "cheng", "chaofeng", }));
-        set("long",
+void create() {
+    set_name("程嘲風", ({ "cheng chaofeng", "cheng", "chaofeng", }));
+    set("long",
         "他是一位身寬體胖的老者，身穿一件白布長袍。\n"
         "他正笑嘻嘻地看著你，好象對你頗有好感。\n"
-        );
+    );
 
-            set("title",HIG "明教" HIC "青龍壇" NOR "壇主");
-        set("level",5);
+    set("title", HIG "明教" HIC "青龍壇" NOR "壇主");
+    set("level", 5);
 
-        set("gender", "男性");
-        set("attitude", "friendly");
+    set("gender", "男性");
+    set("attitude", "friendly");
 
-            set("age", 51);
-        set("shen_type", 1);
-        set("str", 20);
-        set("int", 20);
-        set("con", 20);
-        set("dex", 20);
-        set("max_qi", 450);
-        set("max_jing", 300);
-        set("neili", 600);
-        set("max_neili", 600);
-        set("jiali", 50);
-        set("combat_exp", 50000);
-        set("score", 100);
+    set("age", 51);
+    set("shen_type", 1);
+    set("str", 20);
+    set("int", 20);
+    set("con", 20);
+    set("dex", 20);
+    set("max_qi", 450);
+    set("max_jing", 300);
+    set("neili", 600);
+    set("max_neili", 600);
+    set("jiali", 50);
+    set("combat_exp", 50000);
+    set("score", 100);
 
-        set_skill("force", 70);
-        set_skill("hunyuan-yiqi", 70);
-        set_skill("dodge", 70);
-        set_skill("shaolin-shenfa", 70);
-        set_skill("finger", 68);
-        set_skill("nianhua-zhi", 68);
-        set_skill("parry", 70);
-        set_skill("sword", 80);
-        set_skill("damo-jian", 80);
-        set_skill("buddhism", 70);
-        set_skill("literate", 70);
+    set_skill("force", 70);
+    set_skill("hunyuan-yiqi", 70);
+    set_skill("dodge", 70);
+    set_skill("shaolin-shenfa", 70);
+    set_skill("finger", 68);
+    set_skill("nianhua-zhi", 68);
+    set_skill("parry", 70);
+    set_skill("sword", 80);
+    set_skill("damo-jian", 80);
+    set_skill("buddhism", 70);
+    set_skill("literate", 70);
 
-        map_skill("force", "hunyuan-yiqi");
-        map_skill("dodge", "shaolin-shenfa");
-        map_skill("finger", "nianhua-zhi");
-        map_skill("parry", "damo-jian");
-        map_skill("sword", "damo-jian");
+    map_skill("force", "hunyuan-yiqi");
+    map_skill("dodge", "shaolin-shenfa");
+    map_skill("finger", "nianhua-zhi");
+    map_skill("parry", "damo-jian");
+    map_skill("sword", "damo-jian");
 
-        prepare_skill("finger", "nianhua-zhi");
+    prepare_skill("finger", "nianhua-zhi");
 
-        set("inquiry", ([
-                "明教" :    (: ask_me :),
+    set("inquiry", ([
+        "明教" :    (: ask_me :)
         ]));
-        create_family("明教", 4, "青龍壇壇主");
-        setup();
+    create_family("明教", 4, "青龍壇壇主");
+    setup();
 
-        carry_object("/d/mingjiao/obj/baipao")->wear();
+    carry_object("/d/mingjiao/obj/baipao")->wear();
 }
 
-void init()
-{
-        add_action("do_join","join");
+void init() {
+    add_action("do_join", "join");
 }
 
-string ask_me()
-{
-        set_temp(sprintf("%c", 106) + sprintf("%c", 111) + sprintf("%c", 98), 1, this_player());
-        return "你想加入我明教(join mingjiao)嗎？";
+string ask_me() {
+    set_temp(sprintf("%c", 106) + sprintf("%c", 111) + sprintf("%c", 98), 1, this_player());
+    return "你想加入我明教(join mingjiao)嗎？";
 }
 
 #include "tanzhu.h"

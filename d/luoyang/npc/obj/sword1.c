@@ -2,18 +2,16 @@
 #include <weapon.h>
 inherit SWORD;
 
-void create()
-{
-        set_name(HIY "赤金劍" NOR, ({ "chijin jian", "chijin", "sword", "jian" }));
-        set_weight(5000);
-        set("unit", "柄");
-                set("value", 200000);
-                set("material", "steel");
-        init_sword(80);
-        setup();
+void create() {
+    set_name(HIY "赤金劍" NOR, ({ "chijin jian", "chijin", "sword", "jian" }));
+    set_weight(5000);
+    set("unit", "柄");
+    set("value", 200000);
+    set("material", "steel");
+    init_sword(80);
+    setup();
 }
 
-void owner_is_killed()
-{
-        destruct(this_object());
+void owner_is_killed() {
+    destruct(this_object());
 }

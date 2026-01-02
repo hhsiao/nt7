@@ -3,23 +3,22 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "蒙古草原");
-        set("long", @LONG
+void create() {
+    set("short", "蒙古草原");
+    set("long", @LONG
 廣袤無垠的漠北草原，成群的牛羊的白雲下奔跑，騎著駿馬的遊牧
 人揮舞著手中的長鞭，塞北的草原。南邊去是到中原，北面過去就是鐵
 木真的營帳。
 LONG);
-        set("no_clean_up", 0);
-        set("outdoors","mobei");
-        set("exits", ([ /* sizeof() == 2 */
-                "southeast" : __DIR__"caoyuan3",
-                "north"     : __DIR__"caoyuan",
+    set("no_clean_up", 0);
+    set("outdoors", "mobei");
+    set("exits", ([ /* sizeof() == 2 */
+        "southeast": __DIR__"caoyuan3",
+        "north": __DIR__"caoyuan"
         ]));
-        set("coor/x", -230);
-        set("coor/y", 5160);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -230);
+    set("coor/y", 5160);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

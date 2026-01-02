@@ -3,25 +3,24 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "察合臺營帳");
-        set("long", @LONG
+void create() {
+    set("short", "察合臺營帳");
+    set("long", @LONG
 察合臺是鐵木真的二子，生性殘忍好殺，蒙古人性喜打獵，酋長貴
 人無不畜養獵犬獵鷹。察合臺尤其愛狗，不但在營帳外面拴了獒犬，營
 帳中還有獒犬的籠子。
 LONG);
-        set("outdoors","mobei");
-        set("objects", ([ /* sizeof() == 2 */
-                __DIR__"npc/menggudog" : 1,
-                __DIR__"npc/chahetai" : 1,
+    set("outdoors", "mobei");
+    set("objects", ([ /* sizeof() == 2 */
+        __DIR__"npc/menggudog" : 1,
+        __DIR__"npc/chahetai" : 1
         ]));
-        set("exits", ([ /* sizeof() == 1 */
-                "south" : __DIR__"road2",
+    set("exits", ([ /* sizeof() == 1 */
+        "south": __DIR__"road2"
         ]));
-        set("coor/x", -200);
-        set("coor/y", 5250);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -200);
+    set("coor/y", 5250);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

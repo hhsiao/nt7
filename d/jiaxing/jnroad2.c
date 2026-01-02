@@ -3,25 +3,24 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "山路");
-        set("long", @LONG
+void create() {
+    set("short", "山路");
+    set("long", @LONG
 你走在江南的一條山路上，到處鶯飛草長。時值春日，路旁的山坡
 上開滿了金黃色的油菜花。東面是江南名城嘉興。西邊就是天下名城蘇
 州府了。
 LONG );
-        set("exits", ([
-                "south" : __DIR__"jnroad3",
-                "north" : __DIR__"jnroad1",
-                "east"  : __DIR__"jiaxing",
-                "west"  : "/d/suzhou/dongmen",
+    set("exits", ([
+        "south": __DIR__"jnroad3",
+        "north": __DIR__"jnroad1",
+        "east": __DIR__"jiaxing",
+        "west": "/d/suzhou/dongmen"
         ]));
-        set("no_clean_up", 0);
-        set("outdoors", "jiangnan");
-	set("coor/x", 1180);
-	set("coor/y", -1770);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("outdoors", "jiangnan");
+    set("coor/x", 1180);
+    set("coor/y", -1770);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

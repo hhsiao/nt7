@@ -5,8 +5,7 @@
 inherit NPC;
 inherit F_MASTER;
 
-void create()
-{
+void create() {
     set_name("東方不敗", ({"dongfang bubai", "dongfang", "bubai"}));
     set("nickname", HIY "天下無敵" NOR);
     set("title", HIM "日月神教教主" NOR);
@@ -25,13 +24,13 @@ void create()
 
     set("chat_chance", 1);
     set("chat_msg", ({
-          "東方不敗嘆了口氣道：“唉 …… 我的楊大哥....他怎麼還不回來,我好\n"
-         "掛念他 ……東方不敗眼中流露無限迷茫。\n",
+        "東方不敗嘆了口氣道：“唉 …… 我的楊大哥....他怎麼還不回來,我好\n"
+        "掛念他 ……東方不敗眼中流露無限迷茫。\n"
     }));
     set("inquiry", ([
         "楊蓮亭"   : "你敢直稱我愛人的名字,想找死呀？ \n",
-        "葵花寶典" : "如果你能幫我取得葵花寶典上冊，我一定重重謝你。\n",
-    ]));
+        "葵花寶典" : "如果你能幫我取得葵花寶典上冊，我一定重重謝你。\n"
+        ]));
 
     set("qi", 4000);
     set("max_qi", 4000);
@@ -44,16 +43,16 @@ void create()
     set("combat_exp", 2500000);
     set("score", 0);
 
-    set_skill("force", 290);             // 基本內功
-    set_skill("finger", 290);            // 基本指法
-    set_skill("unarmed", 290);           // 基本拳腳
-    set_skill("dodge", 300);             // 基本躲閃
-    set_skill("parry", 290);             // 基本招架
-    set_skill("sword", 290);             // 基本劍法
-    set_skill("pixie-jian", 300);        // 辟邪劍法
-    set_skill("changquan", 280);         // 太祖長拳
-    set_skill("literate", 120);          // 讀書識字
-    set_skill("kuihua-xinfa", 290);      // 葵花心法
+    set_skill("force", 290);    // 基本內功
+    set_skill("finger", 290);   // 基本指法
+    set_skill("unarmed", 290);  // 基本拳腳
+    set_skill("dodge", 300);    // 基本躲閃
+    set_skill("parry", 290);    // 基本招架
+    set_skill("sword", 290);    // 基本劍法
+    set_skill("pixie-jian", 300);   // 辟邪劍法
+    set_skill("changquan", 280);    // 太祖長拳
+    set_skill("literate", 120);     // 讀書識字
+    set_skill("kuihua-xinfa", 290);     // 葵花心法
 
     map_skill("force", "kuihua-xinfa");
     map_skill("sword", "pixie-jian");

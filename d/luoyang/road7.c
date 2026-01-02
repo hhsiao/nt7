@@ -3,22 +3,21 @@
 
 inherit  ROOM;
 
-void  create  ()
-{
-        set("short",  "土路");
-        set("long",  @LONG
+void create  () {
+    set("short", "土路");
+    set("long", @LONG
 這是洛陽城郊的一條茅草土路。洛陽四塞之地，平原遠處天際間，
 隱隱可見群山逶迤。
 LONG);
-        set("exits",  ([  /*  sizeof()  ==  2  */
-                "north" : __DIR__"road2",
-                "south" : __DIR__"dukang",
+    set("exits",  ([  /*  sizeof()  ==  2  */
+        "north": __DIR__"road2",
+        "south": __DIR__"dukang"
         ]));
-        set("outdoors", "luoyang");
-        set("no_clean_up", 0);
-	set("coor/x", -6910);
-	set("coor/y", 2140);
-	set("coor/z", -10);
-	setup();
-        replace_program(ROOM);
+    set("outdoors", "luoyang");
+    set("no_clean_up", 0);
+    set("coor/x", -6910);
+    set("coor/y", 2140);
+    set("coor/z", -10);
+    setup();
+    replace_program(ROOM);
 }

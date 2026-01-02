@@ -6,93 +6,89 @@ inherit NPC;
 
 string ask_book();
 string ask_yideng();
-void create()
-{
-        set_name("劉瑛姑", ({ "liu yinggu", "liu", "yinggu" }));
-        set("gender", "女性");
-        set("nickname", CYN "神算子" NOR ) ;
-        set("age", 42);
-        set("long",
+void create() {
+    set_name("劉瑛姑", ({ "liu yinggu", "liu", "yinggu" }));
+    set("gender", "女性");
+    set("nickname", CYN "神算子" NOR );
+    set("age", 42);
+    set("long",
         "但見她額頭滿布皺紋，面頰卻如凝脂，一張臉以眼為界，上
 半老，下半少，卻似相差了二十多歲年紀。\n",);
 
-        set("combat_exp", 1000000);
-        set("shen_type", 1);
-        set("per", 20);
-        set("int", 20);
-        set("str", 20);
-        set("dex", 20);
-        set("con", 20);
+    set("combat_exp", 1000000);
+    set("shen_type", 1);
+    set("per", 20);
+    set("int", 20);
+    set("str", 20);
+    set("dex", 20);
+    set("con", 20);
 
-        set("max_neili", 2000);
-        set("neili", 2000);
-        set("jiali", 0);
+    set("max_neili", 2000);
+    set("neili", 2000);
+    set("jiali", 0);
 
-        set_skill("force", 100);
-        set_skill("kurong-changong", 100);
-        set_skill("sword", 120);
-        set_skill("duanjia-jian",120);
-        set_skill("dodge", 120);
-        set_skill("tiannan-bu", 120);      //金雁功
-        set_skill("unarmed", 100);
-        set_skill("kongming-quan",100);     //空明拳
-        set_skill("parry", 120);
-        set_skill("literate",80);
+    set_skill("force", 100);
+    set_skill("kurong-changong", 100);
+    set_skill("sword", 120);
+    set_skill("duanjia-jian", 120);
+    set_skill("dodge", 120);
+    set_skill("tiannan-bu", 120);   //金雁功
+    set_skill("unarmed", 100);
+    set_skill("kongming-quan", 100);    //空明拳
+    set_skill("parry", 120);
+    set_skill("literate", 80);
 
-        map_skill("force", "kurong-changong");
-        map_skill("sword", "duanjia-jian");
-        map_skill("dodge", "tiannan-bu");
-        map_skill("parry", "duanjia-jian");
-        map_skill("unarmed","kongming-quan");
+    map_skill("force", "kurong-changong");
+    map_skill("sword", "duanjia-jian");
+    map_skill("dodge", "tiannan-bu");
+    map_skill("parry", "duanjia-jian");
+    map_skill("unarmed", "kongming-quan");
 
-        set("inquiry", ([
-                "周伯通"     : "他、他、、他在哪裡！",
-                "段智興"     : "這個老和尚，枉稱慈悲！\n",
-                "一燈大師"   : (: ask_yideng :),
-                "九章算術"   : (: ask_book :),
+    set("inquiry", ([
+        "周伯通"     : "他、他、、他在哪裡！",
+        "段智興"     : "這個老和尚，枉稱慈悲！\n",
+        "一燈大師"   : (: ask_yideng :),
+        "九章算術"   : (: ask_book :)
         ]) );
-        set("book_count", 1);
-        set("yideng_count", 1);
+    set("book_count", 1);
+    set("yideng_count", 1);
 
-        setup();
-        carry_object(__DIR__"obj/black_cloth")->wear();
+    setup();
+    carry_object(__DIR__"obj/black_cloth")->wear();
 }
 
-string ask_book()
-{
-        mapping fam;
-        object ob;
+string ask_book() {
+    mapping fam;
+    object ob;
 
-        if( (!(fam=query("family", this_player())) || 
-                fam["family_name"] != "段氏皇族") ||
-                (query("book_count") < 1) )
-                return RANK_D->query_respect(this_player()) +
-                "說什麼？我實在不明白。";
+    if((!(fam = query("family", this_player())) ||
+        fam["family_name"] != "段氏皇族") ||
+        (query("book_count") < 1) )
+    return RANK_D->query_respect(this_player()) +
+        "說什麼？我實在不明白。";
 
-        if (this_player()->query_skill("literate",1) < 100)
-                return RANK_D->query_respect(this_player()) +
-                "想要這書？你還讀不懂它呢。";
-        addn("book_count", -1);
-        ob = new("/clone/book/lbook4");
-        ob->move(this_player());
-        command("rumor"+query("name", this_player())+"拿到九章算術啦。\n");
-        return "好吧，這本「九章算術」你拿回去好好鑽研。\n";
+    if (this_player()->query_skill("literate", 1) < 100)
+        return RANK_D->query_respect(this_player()) +
+        "想要這書？你還讀不懂它呢。";
+    addn("book_count", -1);
+    ob = new("/clone/book/lbook4");
+    ob->move(this_player());
+    command("rumor"+query("name", this_player()) + "拿到九章算術啦。\n");
+    return "好吧，這本「九章算術」你拿回去好好鑽研。\n";
 }
 
-string ask_yideng()
-{
-        mapping fam;
-        object ob;
+string ask_yideng() {
+    object ob;
 
-        if (query("yideng_count") < 1)
-                return RANK_D->query_respect(this_player()) +
-                "想說什麼？找一燈大師，那可別找我。";
-        addn("yideng_count", -1);
-        ob = new(__DIR__"obj/whiteobj");
-        ob->move(this_player());
-        ob = new(__DIR__"obj/yellowobj");
-        ob->move(this_player());
-        ob = new(__DIR__"obj/redobj");
-        ob->move(this_player());
-        return "你想見他？好吧，這三個囊兒給你，有緣你就去找他吧。\n";
+    if (query("yideng_count") < 1)
+        return RANK_D->query_respect(this_player()) +
+        "想說什麼？找一燈大師，那可別找我。";
+    addn("yideng_count", -1);
+    ob = new(__DIR__"obj/whiteobj");
+    ob->move(this_player());
+    ob = new(__DIR__"obj/yellowobj");
+    ob->move(this_player());
+    ob = new(__DIR__"obj/redobj");
+    ob->move(this_player());
+    return "你想見他？好吧，這三個囊兒給你，有緣你就去找他吧。\n";
 }

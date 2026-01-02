@@ -19,11 +19,11 @@ void create() {
     );
 
     set("exits", ([
-        "south"  : __DIR__"hengyang1"
+        "south": __DIR__"hengyang1"
         ]));
 
     set("item_desc", ([
-        "gate" : HIR "\n硃紅的大門緊閉著，敲敲(knock)看吧。\n\n" NOR
+        "gate": HIR "\n硃紅的大門緊閉著，敲敲(knock)看吧。\n\n" NOR
         ]));
 
     set("objects", ([

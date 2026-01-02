@@ -4,13 +4,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("餡餅", ({"xian bing", "bing"}));
-        set_weight(200);
-        set("long", "一塊煎得焦黃焦黃的餡餅。\n");
-                set("unit", "塊");
-                set("value", 50);
-                set("food_remaining", 2);
-                set("food_supply", 40);
+void create() {
+    set_name("餡餅", ({"xian bing", "bing"}));
+    set_weight(200);
+    set("long", "一塊煎得焦黃焦黃的餡餅。\n");
+    set("unit", "塊");
+    set("value", 50);
+    set("food_remaining", 2);
+    set("food_supply", 40);
 }

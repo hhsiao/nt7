@@ -1,26 +1,25 @@
 inherit ROOM;
 
-void create()
-{
-        set("short", "後村小路");
-        set("long", @LONG
+void create() {
+    set("short", "後村小路");
+    set("long", @LONG
 這是一條蜿蜒的青石鋪就的小路，是通向後山的唯一的道
 路，路兩旁開滿不知名的野花，陣陣花香飄過，真是一片美麗
 的田園風光。
 LONG);
-        set("exits", ([
-                "west" :  __DIR__"lianwuchang",
-                "east" : __DIR__"houcun-shanlu",
+    set("exits", ([
+        "west": __DIR__"lianwuchang",
+        "east": __DIR__"houcun-shanlu"
         ]));
 
-        set("xinshoucun", 1);
-        set("outdoors", "newbie");
+    set("xinshoucun", 1);
+    set("outdoors", "newbie");
 
-        set("objects", ([
-                "/clone/quarry/tu" : 20 + random(20),
+    set("objects", ([
+        "/clone/quarry/tu" : 20 + random(20)
         ]));
-        set("no_pk", 1);
-	setup();
+    set("no_pk", 1);
+    setup();
 
-        replace_program(ROOM);
+    replace_program(ROOM);
 }

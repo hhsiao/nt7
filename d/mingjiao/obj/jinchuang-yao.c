@@ -7,46 +7,43 @@ inherit ITEM;
 void setup()
 {}
 
-void init()
-{
-        add_action("do_eat", "eat");
+void init() {
+    add_action("do_eat", "eat");
 }
 
-void create()
-{
+void create() {
 
-        set_name("金創藥", ({"jin chuangyao", "jin"}));
-        set("unit", "包");
-                set("long", "這是一包別具靈效的金創藥，專治內外傷等。\n");
-                set("value", 2000);
+    set_name("金創藥", ({"jin chuangyao", "jin"}));
+    set("unit", "包");
+    set("long", "這是一包別具靈效的金創藥，專治內外傷等。\n");
+    set("value", 2000);
 
-        set("shaolin",1);
-        setup();
+    set("shaolin", 1);
+    setup();
 }
 
-int do_eat(string arg)
-{
-        object me = this_player();
+int do_eat(string arg) {
+    object me = this_player();
 
-        if (!id(arg)) return notify_fail("你要吃什麼？\n");
+    if (!id(arg)) return notify_fail("你要吃什麼？\n");
 
-        if( query("eff_qi", me) == query("max_qi", me) )
-                return notify_fail("你現在不需要用金創藥。\n");
+    if(query("eff_qi", me) == query("max_qi", me) )
+        return notify_fail("你現在不需要用金創藥。\n");
 
-        if ( (int)me->query_condition("bonze_drug" ) > 0 )
-        {
-                addn("eff_qi", -50, this_player());
-                message_vision(HIR "$N吃下一包金創藥，只覺胸口煩惡欲嘔，四肢乏力，原來服食太急太多，藥效適得其反！\n" NOR, me);
-        }
-        else
-        {
-                this_player()->receive_curing("qi", 50);
-                message_vision(HIC "$N吃下一包金創藥，只覺精神振作，氣色看起來好多了。\n" NOR, me);
-        }
+    if ((int)me->query_condition("bonze_drug" ) > 0 )
+    {
+        addn("eff_qi", -50, this_player());
+        message_vision(HIR "$N吃下一包金創藥，只覺胸口煩惡欲嘔，四肢乏力，原來服食太急太多，藥效適得其反！\n" NOR, me);
+    }
+    else
+    {
+        this_player()->receive_curing("qi", 50);
+        message_vision(HIC "$N吃下一包金創藥，只覺精神振作，氣色看起來好多了。\n" NOR, me);
+    }
 
-        me->apply_condition("bonze_drug", 15);
+    me->apply_condition("bonze_drug", 15);
 
-        destruct(this_object());
-        return 1;
+    destruct(this_object());
+    return 1;
 
 }

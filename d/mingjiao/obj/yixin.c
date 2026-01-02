@@ -4,12 +4,11 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("陽教主遺信", ({"yi xin", "xin", "letter"}));
-        set_weight(100);
-        set("unit", "封");
-                set("long", @LONG
+void create() {
+    set_name("陽教主遺信", ({"yi xin", "xin", "letter"}));
+    set_weight(100);
+    set("unit", "封");
+    set("long", @LONG
 夫人親啟：
 
     夫人妝次：夫人自歸陽門，日夕鬱郁。餘粗鄙寡德，無足為歡，甚可歉咎，
@@ -39,13 +38,12 @@ void create()
     餘名頂天，然於世無功，於教無勳，傷夫人之心，齎恨而沒，狂言頂天立地，
 誠可笑也。
 LONG );
-                set("material", "paper");
+    set("material", "paper");
 }
 
-string long()
-{
-        return query("long") + HIG "
-你看完心底暗自尋思，想不到陽教主這封信和乾坤大挪移心法卻是沒能送了出去。
-陽夫人自殺殉情，便使這遺信和心法幾乎長眠於此了，若是千百年後才能有人來
-此，卻不知道還能看到否？\n" NOR;
+string long() {
+    return query("long") + HIG "
+    你看完心底暗自尋思，想不到陽教主這封信和乾坤大挪移心法卻是沒能送了出去。
+    陽夫人自殺殉情，便使這遺信和心法幾乎長眠於此了，若是千百年後才能有人來
+    此，卻不知道還能看到否？\n" NOR;
 }

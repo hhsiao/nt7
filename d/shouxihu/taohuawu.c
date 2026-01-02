@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "桃花塢");
-        set("long", @LONG
+void create() {
+    set("short", "桃花塢");
+    set("long", @LONG
 長堤春柳北端，為桃花塢故址，可惜此塢久廢。廢墟上新築徐園，
 園中有黃石迭砌的荷池，外有曲水，內有池塘，池水與湖水相通。過池
 是館軒，取杜甫“兩個黃鸝鳴翠柳，一行白鷺上青天”之意，而稱聽鸝
@@ -15,11 +14,11 @@ void create()
 榭為畫舫靠泊處，亦為遠眺小金山最佳處。繞過徐園，立於小紅橋，小
 金山聳立，湖面陡然放開。
 LONG );
-        set("no_sleep_room",1);
-        set("outdoors", "shouxihu");
-        set("no_clean_up", 0);
-        set("item_desc", ([
-                "lian" : "
+    set("no_sleep_room", 1);
+    set("outdoors", "shouxihu");
+    set("no_clean_up", 0);
+    set("item_desc", ([
+        "lian": "
         綠        紅
         印        流
         苔        花
@@ -27,8 +26,8 @@ LONG );
         留        愛
         鶴        鶯
         篆        簧
-\n",
-                "lian2" : "
+        \n",
+        "lian2": "
         江        山
         波        色
         蘸        迎
@@ -36,22 +35,22 @@ LONG );
         岸        秀
         堪        可
         染        餐
-\n",
+        \n"
         ]));
-        set("exits", ([
-                "northwest" : __DIR__"ouxiangqiao",
-                "southdown" : __DIR__"pingtai",
-                "south"     : __DIR__"changdi2",
-                "north"     : __DIR__"xiaohongqiao",
-                "west"      : __DIR__"yinxie",
-                "east"      : __DIR__"chunboqiao",
+    set("exits", ([
+        "northwest": __DIR__"ouxiangqiao",
+        "southdown": __DIR__"pingtai",
+        "south": __DIR__"changdi2",
+        "north": __DIR__"xiaohongqiao",
+        "west": __DIR__"yinxie",
+        "east": __DIR__"chunboqiao"
         ]));
-        set("objects", ([
-                "/d/city/npc/lady" : 1,
+    set("objects", ([
+        "/d/city/npc/lady" : 1
         ]));
-        set("coor/x", 0);
-        set("coor/y", 40);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", 0);
+    set("coor/y", 40);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

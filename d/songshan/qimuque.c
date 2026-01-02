@@ -3,16 +3,15 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "啟母闕");
-        set("long", @LONG
+void create() {
+    set("short", "啟母闕");
+    set("long", @LONG
 啟母闕在嵩山南麓萬歲峰下，是漢代啟母廟前的神道闕，和太室闕
 同為中嶽漢三闕之一。往南看去穎水橫流，好一派“穎水春耕”(jing)
 的畫卷。
 LONG );
-        set("item_desc", ([
-                "jing"  : "
+    set("item_desc", ([
+        "jing": "
     潁河兩岸，多系梯田，每年春耕開始，農夫耕田在潁水河畔。耕牛
 拉犁前邊走，農夫扶犁後邊行，揚鞭驅犢，南耕北耘，人畜倒影，置於
 水中，好象一幅天然的春耕圓案，甚是好看。故有潁水春耕之景。
@@ -27,15 +26,15 @@ LONG );
 愈耕心情俞高興，情不自禁地唱起“耕耘樂”來。周圍農夫們聽到潁大
 夫唱歌，也就跟著唱了起來。霎時間，潁水河畔田歌四起。以後年年如
 此。後人為了紀念潁考叔，就把他的住宅改稱為“潁考叔廟”。
-\n"
+        \n"
         ]));
-        set("exits", ([
-                "east"  : __DIR__"qimushi",
+    set("exits", ([
+        "east": __DIR__"qimushi"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -20);
-        set("coor/y", 750);
-        set("coor/z", 10);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -20);
+    set("coor/y", 750);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

@@ -1,15 +1,14 @@
 //ken 1999.12.11
 inherit ITEM;
-void create()
-{
-        set_name("楓林", ({ "楓林", "feng"}) );
-        set_weight(500);
-        set_max_encumbrance(80000);
-        set("no_get", 1);
-        set("no_shown", 1);
-        set("unit", "片");
-                set("long", "一片濃得化不開的紅楓林。\n");
-                set("value", 1);
+void create() {
+    set_name("楓林", ({ "楓林", "feng" }) );
+    set_weight(500);
+    set_max_encumbrance(80000);
+    set("no_get", 1);
+    set("no_shown", 1);
+    set("unit", "片");
+    set("long", "一片濃得化不開的紅楓林。\n");
+    set("value", 1);
 }
 
 int is_container() { return 1; }

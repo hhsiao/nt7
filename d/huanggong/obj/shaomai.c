@@ -3,12 +3,11 @@
 inherit ITEM;
 inherit F_FOOD;
 #include <ansi.h>;
-void create()
-{
-        set_name(HIR"燒賣"NOR, ({"shao mai", "mai"}));
-        set_weight(80);
-        set("unit", "只");
-                set("value", 50);
-                set("food_remaining", 5);
-                set("food_supply", 5);
+void create() {
+    set_name(HIR"燒賣"NOR, ({"shao mai", "mai"}));
+    set_weight(80);
+    set("unit", "只");
+    set("value", 50);
+    set("food_remaining", 5);
+    set("food_supply", 5);
 }

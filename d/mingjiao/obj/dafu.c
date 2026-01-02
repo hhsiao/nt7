@@ -3,16 +3,15 @@
 #include <weapon.h>
 inherit AXE;
 
-void create()
-{
-        set_name("大斧", ({ "dafu","fu" }));
-        set_weight(10000);
-        set("unit", "柄");
-                set("long", "這是一柄大斧頭。\n");
-                set("value", 5000);
-                set("material", "steel");
-                set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
-                set("unwield_msg", "$N將手中的$n插回腰間。\n");
-      init_axe(20);
-        setup();
+void create() {
+    set_name("大斧", ({ "dafu", "fu" }));
+    set_weight(10000);
+    set("unit", "柄");
+    set("long", "這是一柄大斧頭。\n");
+    set("value", 5000);
+    set("material", "steel");
+    set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
+    set("unwield_msg", "$N將手中的$n插回腰間。\n");
+    init_axe(20);
+    setup();
 }

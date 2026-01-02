@@ -5,27 +5,25 @@ inherit ROOM;
 
 string look_jiebei();
 
-void create()
-{
-        set("short", "界碑");
-        set("long", @LONG
+void create() {
+    set("short", "界碑");
+    set("long", @LONG
 界碑——未連接好的區域(jiebei)。
 LONG );
 
-        set("exits", ([
-                "east" : __DIR__"shulin14",
-                "northup" : __DIR__"qyping",
+    set("exits", ([
+        "east": __DIR__"shulin14",
+        "northup": __DIR__"qyping"
         ]));
 
-        set("outdoors", "shaolin");
-        set("item_desc",([
-                "stone"                :        (: look_jiebei :),
+    set("outdoors", "shaolin");
+    set("item_desc", ([
+        "stone": (: look_jiebei :)
         ]));
-        setup();
+    setup();
 }
 
 
-string look_jiebei()
-{
-        return "由此往前，通向山頂。道路尚未修好。\n—時空書於俠客行\n";
+string look_jiebei() {
+    return "由此往前，通向山頂。道路尚未修好。\n—時空書於俠客行\n";
 }

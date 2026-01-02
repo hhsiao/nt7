@@ -2,8 +2,7 @@
 
 inherit NPC;
 
-void create()
-{
+void create() {
     set_name("野羊", ({ "sheep" }) );
     set("gender", "雄性");
     set("race", "家畜");

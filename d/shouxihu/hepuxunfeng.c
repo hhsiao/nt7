@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","荷浦薰風");
-        set("long",@LONG
+void create() {
+    set("short", "荷浦薰風");
+    set("long",@LONG
 荷浦薰風位於長堤春柳東岸。為清乾隆布政使銜江春所築家園，故
 稱“江園”。乾隆高宗南巡時賜名淨香園。園內有清華堂、青雨廊、杏
 花春雨之堂，又有怡性堂、翠玲瓏館及涵虛閣。涵虛閣外，構小亭置四
@@ -15,15 +14,15 @@ void create()
     江園內飛甍反宇，五色填漆，一片金碧，照耀湖山，每當夕陽西下，
 殿角鈴聲與畫船簫鼓輒相應答。
 LONG );
-        set("outdoors", "shouxihu");
+    set("outdoors", "shouxihu");
 
-        set("exits", ([
-                "north" : __DIR__"siqiaoyanyu",
+    set("exits", ([
+        "north": __DIR__"siqiaoyanyu"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", 2);
-        set("coor/y", 39);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", 2);
+    set("coor/y", 39);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

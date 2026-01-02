@@ -2,10 +2,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "玉女峰");
-        set("long", @LONG
+void create() {
+    set("short", "玉女峰");
+    set("long", @LONG
 這裡是華山的中峰，玉女峰。傳說春秋時隱士蕭史善吹洞簫，簫
 聲引動了秦穆公女兒弄玉的愛慕，拋棄了宮廷生活，跟蕭史來此隱居，
 故稱玉女峰。這裡地勢略為平緩，不似其它四峰般險峻，江湖上赫赫
@@ -13,21 +12,20 @@ void create()
 北面稀稀落落有十幾間房子，是華山派的地方，閒雜遊客最好別往那
 裡去。
 LONG );
-        set("exits", ([ /* sizeof() == 3 */
-            "westdown"  : __DIR__"zhenyue",
-            "west"      : __DIR__"yunuci",
-            "north"     : __DIR__"square",
-            "southdown" : __DIR__"yunupath1",
-            "northeast" : __DIR__"xiaolu1",
+    set("exits", ([ /* sizeof() == 3 */
+        "westdown": __DIR__"zhenyue",
+        "west": __DIR__"yunuci",
+        "north": __DIR__"square",
+        "southdown": __DIR__"yunupath1",
+        "northeast": __DIR__"xiaolu1"
         ]));
-        set("objects", ([
-            __DIR__"npc/yue-lingshan" : 1,
+    set("objects", ([
+        __DIR__"npc/yue-lingshan" : 1
         ]));
 
-        // set("no_clean_up", 0);
-        set("outdoors", "huashan" );
+    // set("no_clean_up", 0);
+    set("outdoors", "huashan" );
 
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }
- 

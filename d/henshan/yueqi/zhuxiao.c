@@ -4,19 +4,17 @@
 inherit ITEM;
 inherit MI_XIAO;
 
-void create()
-{
-        set_name(GRN "普通竹蕭" NOR, ({ "zhu xiao", "zhu", "xiao" }));
-        set_weight(600);
+void create() {
+    set_name(GRN "普通竹蕭" NOR, ({ "zhu xiao", "zhu", "xiao" }));
+    set_weight(600);
 
-        set("unit", "把");
-                set("long", GRN "一把翠竹所制的洞蕭，非常普通。\n" NOR);
-                set("value", 200);
-                set("material", "bamboo");
-        setup();
+    set("unit", "把");
+    set("long", GRN "一把翠竹所制的洞蕭，非常普通。\n" NOR);
+    set("value", 200);
+    set("material", "bamboo");
+    setup();
 }
 
-void init()
-{
-        add_action("play_xiao", "play");
+void init() {
+    add_action("play_xiao", "play");
 }

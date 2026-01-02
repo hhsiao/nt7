@@ -10,7 +10,7 @@ void create() {
 松旁有一天生奇石，宛如翹首望月的猴子。
 LONG );
     set("exits", ([ /* sizeof() == 3 */
-        "southdown" : __DIR__"liyubei",
+        "southdown": __DIR__"liyubei",
     /*
      * "northup" : "/adm/npc/huashanjueding",
      * "up" : "/adm/npc/kantai",
@@ -19,7 +19,7 @@ LONG );
      * "3" : "/adm/npc/biwu3",
      * "4" : "/adm/npc/biwu4",
      */
-    ]));
+        ]));
 
     set("outdoors", "huashan" );
 
@@ -42,14 +42,14 @@ int do_open() {
         return notify_fail("門已經是開著的了。\n");
 
     set("exits", ([ /* sizeof() == 3 */
-        "southdown" : __DIR__"liyubei",
-        "northup" : "/adm/npc/huashanjueding",
-        "up" : "/adm/npc/kantai",
-        "1" : "/adm/npc/biwu1",
-        "2" : "/adm/npc/biwu2",
-        "3" : "/adm/npc/biwu3",
+        "southdown": __DIR__"liyubei",
+        "northup": "/adm/npc/huashanjueding",
+        "up": "/adm/npc/kantai",
+        "1": "/adm/npc/biwu1",
+        "2": "/adm/npc/biwu2",
+        "3": "/adm/npc/biwu3",
     //                      "4" : "/adm/npc/biwu4"
-    ]));
+        ]));
 
     message_vision(HIY "$N" HIY "輕輕一推，將通向武林大會會場的"
         "大門開啟了。\n" NOR, me);
@@ -67,7 +67,7 @@ int do_close() {
         return notify_fail("門已經是關著的了。\n");
 
     set("exits", ([ /* sizeof() == 3 */
-        "southdown" : __DIR__"liyubei"
+        "southdown": __DIR__"liyubei"
         ]));
     message_vision(WHT "$N" WHT "順手一帶，將通向武林大會會場的"
         "大門關上了。\n" NOR, me);

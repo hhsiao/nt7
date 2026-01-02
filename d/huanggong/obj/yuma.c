@@ -3,13 +3,12 @@
 inherit ITEM;
 #include <ansi.h>;
 
-void create()
-{
-        set_name(GRN"翡翠玉馬"NOR, ({ "stone horse", "yu ma", "ma" }));
-        set("weight", 5000);
-        set("unit", "座");
-                set("value", 50000);
-                set("long", "一座翡翠雕成的玉馬。\n");
-                set("material", "stone");
-        setup();
+void create() {
+    set_name(GRN"翡翠玉馬"NOR, ({ "stone horse", "yu ma", "ma" }));
+    set("weight", 5000);
+    set("unit", "座");
+    set("value", 50000);
+    set("long", "一座翡翠雕成的玉馬。\n");
+    set("material", "stone");
+    setup();
 }

@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","四橋煙雨");
-        set("long",@LONG
+void create() {
+    set("short", "四橋煙雨");
+    set("long",@LONG
 四橋煙雨樓位於瘦西湖東岸，與小金山隔湖相望，舊為鹽商黃履暹
 別墅，為黃園的南半部分。乾隆南巡時賜名“趣園”。
     四橋煙雨樓面西，二層三楹，四面廊。登樓遠眺，虹橋、長春橋、
@@ -15,18 +14,18 @@ void create()
 變幻，空濛變幻，可得四橋煙雨之意趣。乾隆每次遊湖，均要登四橋煙
 雨樓憑窗眺望。
 LONG );
-        set("outdoors", "shouxihu");
+    set("outdoors", "shouxihu");
 
-        set("exits", ([
-                "west"  : __DIR__"chunboqiao",
-                "south" : __DIR__"hepuxunfeng",
+    set("exits", ([
+        "west": __DIR__"chunboqiao",
+        "south": __DIR__"hepuxunfeng"
         ]));
-        set("objects", ([
-                "/d/taishan/npc/shu-sheng" : 1,
+    set("objects", ([
+        "/d/taishan/npc/shu-sheng" : 1
         ]));
-        set("coor/x", 2);
-        set("coor/y", 40);
-        set("coor/z", 0);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", 2);
+    set("coor/y", 40);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

@@ -3,8 +3,7 @@
 inherit NPC;
 int ask_kill();
 
-void create()
-{
+void create() {
     set_name("向問天", ({ "xiang wentian", "xiang"}));
     set("nickname", HIR "天王老子" NOR );
     set("gender", "男性");
@@ -20,11 +19,11 @@ void create()
     set("dex", 30);
     set("chat_chance", 1);
     set("inquiry", ([
-      "楊蓮亭"     : "這種人，該殺！\n",
-      "東方不敗"   : "篡位叛徒，我非殺了他不可！\n",
-      "殺東方不敗" : (: ask_kill() :),
-      "任我行"     : "教主被困，已歷十年......\n",
-    ]));
+        "楊蓮亭"     : "這種人，該殺！\n",
+        "東方不敗"   : "篡位叛徒，我非殺了他不可！\n",
+        "殺東方不敗" : (: ask_kill() :),
+        "任我行"     : "教主被困，已歷十年......\n"
+        ]));
     set("qi", 4000);
     set("max_qi", 4000);
     set("jing", 1000);
@@ -68,20 +67,18 @@ void create()
     carry_object("/d/heimuya/npc/obj/cloth")->wear();
 }
 
-void attempt_apprentice(object ob)
-{
+void attempt_apprentice(object ob) {
     command("say 我不收弟子。\n");
     return;
 }
 
-int ask_kill()
-{
-   object ob,me = this_player();
+int ask_kill() {
+    object ob, me = this_player();
 
-   command("tell"+query("id", this_player())+"你要去殺東方不敗？\n");
-   message_vision(HIC "向問天對$N點了點頭說：我助你一臂之力。\n" NOR,this_player());
-   ob=new("/d/heimuya/npc/obj/card4");
-   ob->move(me);
-   tell_object(me,"向問天從懷裡摸出一塊令牌塞到你的手上。\n");
-   return 1;
+    command("tell"+query("id", this_player()) + "你要去殺東方不敗？\n");
+    message_vision(HIC "向問天對$N點了點頭說：我助你一臂之力。\n" NOR, this_player());
+    ob = new("/d/heimuya/npc/obj/card4");
+    ob->move(me);
+    tell_object(me, "向問天從懷裡摸出一塊令牌塞到你的手上。\n");
+    return 1;
 }

@@ -4,20 +4,18 @@
 inherit ITEM;
 inherit MI_QIN;
 
-void create()
-{
-        set_name(WHT "七玄流銀·天籟" NOR, ({ "tianlai qin", "tianlai", "qin" }));
-        set_weight(1000);
+void create() {
+    set_name(WHT "七玄流銀·天籟" NOR, ({ "tianlai qin", "tianlai", "qin" }));
+    set_weight(1000);
 
-        set("unit", "把");
-                set("long", WHT "此琴通體泛出銀光，耀眼奪"
-                                "目。上刻「" HIG "天籟" WHT "」。\n" NOR);
-                set("value", 5000000);
-                set("material", "wood");
-        setup();
+    set("unit", "把");
+    set("long", WHT "此琴通體泛出銀光，耀眼奪"
+        "目。上刻「" HIG "天籟" WHT "」。\n" NOR);
+    set("value", 5000000);
+    set("material", "wood");
+    setup();
 }
 
-void init()
-{
-        add_action("play_qin", "play");
+void init() {
+    add_action("play_qin", "play");
 }
