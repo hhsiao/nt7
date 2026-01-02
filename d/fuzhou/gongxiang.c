@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "宮巷");
-        set("long", @LONG
+void create() {
+    set("short", "宮巷");
+    set("long", @LONG
 舊名仙居，以巷中有紫極宮得名，是當今福州保護得最完整的古巷
 坊。巷內現存明代的建築六幢，清代的建築十三幢。其中面積在萬平方
 尺以上的深宅大院有十幢之多。福州歷代尤以近代名人多居於巷內，如
@@ -17,14 +16,14 @@ void create()
 部件上常飾以重點雕刻。各種精巧生動的石刻在柱礎、臺階、門框、
 花座、柱杆上隨處可見。真可算是福州古建築藝術集大成者。
 LONG );
-        set("exits", ([
-                "west" : __DIR__"nanhoujie6",
+    set("exits", ([
+        "west": __DIR__"nanhoujie6"
         ]));
-        set("outdoors", "fuzhou");
-        set("no_clean_up", 0);
-	set("coor/x", -80);
-	set("coor/y", -6240);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("outdoors", "fuzhou");
+    set("no_clean_up", 0);
+    set("coor/x", -80);
+    set("coor/y", -6240);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

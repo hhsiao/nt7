@@ -3,16 +3,15 @@
 
 inherit FINGER;
 
-void create()
-{
-   set_name(HIG"琥珀戒指"NOR, ({ "finger"}) );
-   set_weight(500);
-   set("long","這是一枚名貴的琥珀戒指。\n");
-     set("material", "琥珀");
-     set("unit", "枚");
-     set("value", 800);
-     set("armor_prop/armor",3);
-     set("armor_prop/dodge",2);
-     set("armor_prop/per",1);
-   setup();
+void create() {
+    set_name(HIG"琥珀戒指"NOR, ({ "finger" }) );
+    set_weight(500);
+    set("long", "這是一枚名貴的琥珀戒指。\n");
+    set("material", "琥珀");
+    set("unit", "枚");
+    set("value", 800);
+    set("armor_prop/armor", 3);
+    set("armor_prop/dodge", 2);
+    set("armor_prop/per", 1);
+    setup();
 }

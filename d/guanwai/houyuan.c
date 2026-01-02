@@ -2,8 +2,7 @@
 
 inherit ROOM;
 
-void create()
-{
+void create() {
     set("short", "後院");
     set("long", @LONG
 這是胡家的後院，雖然不大，但是收拾得頗為整齊利落，看來是
@@ -11,11 +10,11 @@ void create()
 面望過去是一條鋪滿碎石子的小路，隱隱飄來陣陣飯香。
 LONG );
     set("exits", ([
-        "south" : __DIR__"xiaowu",
-        "north" : __DIR__"shizilu",
-        "west"  : __DIR__"jingxiu",
-    ]));
+        "south": __DIR__"xiaowu",
+        "north": __DIR__"shizilu",
+        "west": __DIR__"jingxiu"
+        ]));
     set("outdoors", "changbai");
     setup();
-        replace_program(ROOM);
+    replace_program(ROOM);
 }

@@ -15,9 +15,9 @@ void create() {
     );
     //set("outdoors", "dongtian");
     set("exits", ([ /* sizeof() == 1 */
-        "west" : __DIR__"zoulang24",
-        "up" : __DIR__"chuangonglou2"
-    ]));
+        "west": __DIR__"zoulang24",
+        "up": __DIR__"chuangonglou2"
+        ]));
 
     set("no_steal", 1);
     set("no_beg", 1);

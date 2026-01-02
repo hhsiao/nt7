@@ -3,25 +3,24 @@
 inherit ITEM;
 
 string* titles = ({
-        "子張心得",
-        "子路心得",
-        "子貢心得",
-        "子夏心得",
+    "子張心得",
+    "子路心得",
+    "子貢心得",
+    "子夏心得"
 });
 
-void create()
-{
-        set_name(titles[random(sizeof(titles))], ({ "shu", "book" }));
-        set_weight(200);
-        set("unit", "本");
-                set("long", "這是一冊古書。\n");
-                set("value", 500);
-                set("material", "paper");
-                set("skill", ([
-                        "name": "literate", // name of the skill
-                        "exp_required": 50000,  // minimum experience required
-                        "jing_cost":    10,  // jing cost every time study this
-                        "difficulty":   10,  // the base int to learn this skill
-                        "max_skill":    100  // the maximum level you can learn
-                ]) );
+void create() {
+    set_name(titles[random(sizeof(titles))], ({ "shu", "book" }));
+    set_weight(200);
+    set("unit", "本");
+    set("long", "這是一冊古書。\n");
+    set("value", 500);
+    set("material", "paper");
+    set("skill", ([
+        "name": "literate",     // name of the skill
+        "exp_required": 50000,  // minimum experience required
+        "jing_cost": 10,    // jing cost every time study this
+        "difficulty": 10,   // the base int to learn this skill
+        "max_skill": 100    // the maximum level you can learn
+        ]) );
 }

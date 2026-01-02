@@ -1,90 +1,82 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/9
-#include <ansi.h> 
-#include <room.h> 
+#include <ansi.h>
+#include <room.h>
 inherit DEMONROOM;
 
-void fullnow(object me)
-{
+void fullnow(object me) {
     mapping my;
-        me->remove_call_out("revive");
-        me->remove_call_out("unconcious");
-        my = me->query_entire_dbase();
-        my["jing"]   = my["eff_jing"]   = my["max_jing"]; 
-        my["jingli"] = my["eff_jingli"] = my["max_jingli"]; 
-        my["qi"]     = my["eff_qi"]     = my["max_qi"]; 
-        my["neili"]  = my["max_neili"];
-        me->clear_condition();
-        me->stop_busy();
-        me->clear_weak();
-        me->full_self();
-        if( query_temp("block_msg/all", me) ) {
-                       delete_temp("block_msg/all", me);
-                       tell_object(me, HIR "你終於抹掉了眼前的鮮血，能看見了。\n" NOR);
-        }
+    me->remove_call_out("revive");
+    me->remove_call_out("unconcious");
+    my = me->query_entire_dbase();
+    my["jing"] = my["eff_jing"] = my["max_jing"];
+    my["jingli"] = my["eff_jingli"] = my["max_jingli"];
+    my["qi"] = my["eff_qi"] = my["max_qi"];
+    my["neili"] = my["max_neili"];
+    me->clear_condition();
+    me->stop_busy();
+    me->clear_weak();
+    me->full_self();
+    if(query_temp("block_msg/all", me) ) {
+        delete_temp("block_msg/all", me);
+        tell_object(me, HIR "你終於抹掉了眼前的鮮血，能看見了。\n" NOR);
+    }
 }
 
 object ob_hairpin(object me) {return query_temp("armor/hairpin", me);}
-int is_weared(object me) 
-{
-        object ob = ob_hairpin(me);
-        string obn;
-        if (!ob || base_name(ob)!=__DIR__"npc/obj/hairpin") return 0;
-        addn("full_time", -1, ob);
-        obn = NOR + query("name", ob) + NOR;
-        if (query("full_time", ob) < 1 && random(2)) {
-        if( query_temp("block_msg/all", me) ) {
-                       delete_temp("block_msg/all", me);
+int is_weared(object me) {
+    object ob = ob_hairpin(me);
+    string obn;
+    if (!ob || base_name(ob)!=__DIR__"npc/obj/hairpin") return 0;
+    addn("full_time", -1, ob);
+    obn = NOR + query("name", ob) + NOR;
+    if (query("full_time", ob) < 1 && random(2)) {
+        if(query_temp("block_msg/all", me) ) {
+            delete_temp("block_msg/all", me);
         }
         message_vision(NOR "\n$N身上的" + obn + "咔嚓一聲碎了。\n" NOR, me);
-                ob->unequip();
-                destruct(ob);
-                return 0;
-        } else {
-                fullnow(me);
-                message_vision(NOR "\n$N身上的" + obn + "一閃，擋下了致命傷害，瞬間精氣神全滿。\n" NOR, me);
-        }
-        return 1;
+        ob->unequip();
+        destruct(ob);
+        return 0;
+    } else {
+        fullnow(me);
+        message_vision(NOR "\n$N身上的" + obn + "一閃，擋下了致命傷害，瞬間精氣神全滿。\n" NOR, me);
+    }
+    return 1;
 }
 
-int user_cant_die(object me)
-{
-                return is_weared(me);
+int user_cant_die(object me) {
+    return is_weared(me);
 }
 
-int user_cant_unconcious(object me)
-{
-                return user_cant_die(me);
+int user_cant_unconcious(object me) {
+    return user_cant_die(me);
 }
 
-int valid_leave(object me, string dir)
-{
-        if (me->is_fighting())
-        {
-                tell_object(me, "你還是先解決目前的敵人吧！\n"); 
-                return 0;
-        }
-                
-        return ::valid_leave(me, dir);
+int valid_leave(object me, string dir) {
+    if (me->is_fighting())
+    {
+        tell_object(me, "你還是先解決目前的敵人吧！\n");
+        return 0;
+    }
+
+    return ::valid_leave(me, dir);
 }
 
-int discmds() 
-{ 
-        tell_object(this_player(), "你不能在這裡毛手毛腳。\n");  
-        return -1;  
-} 
-
-void init()
-{
-        add_action("discmds", ({  
-                        "steal", "cast", "conjure", "array", "fight", "hit",   
-                        "home", "ansuan", "touxi", "ride", "qi", "stab", "fbattle",
-                        "surrender", "array", "battle", "accept", "swear",
-        }));  
-        
-        if ( query("stop_run") ) return;
-        if ( query("env/invisible", this_player()) ) return;
-        tell_object(this_player(), "\n噗哧一聲你踩到坨蝙蝠屎，差點跌倒！\n\n"); 
-        this_player()->start_busy(2);
+int discmds() {
+    tell_object(this_player(), "你不能在這裡毛手毛腳。\n");
+    return -1;
 }
 
+void init() {
+    add_action("discmds", ({
+        "steal", "cast", "conjure", "array", "fight", "hit",
+        "home", "ansuan", "touxi", "ride", "qi", "stab", "fbattle",
+        "surrender", "array", "battle", "accept", "swear"
+    }));
+
+    if (query("stop_run") ) return;
+    if (query("env/invisible", this_player()) ) return;
+    tell_object(this_player(), "\n噗哧一聲你踩到坨蝙蝠屎，差點跌倒！\n\n");
+    this_player()->start_busy(2);
+}

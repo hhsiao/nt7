@@ -10,15 +10,14 @@ int do_drop(string arg);
 int do_look(string arg);
 int do_inv(string arg);
 
-void create()
-{
-        set("short", "九宮桃花陣");
-        set("outdoors", "guiyun");
-        set("exits", ([
-                "west"  : __DIR__"jiugong8",
-                "north" : __DIR__"jiugong6",
+void create() {
+    set("short", "九宮桃花陣");
+    set("outdoors", "guiyun");
+    set("exits", ([
+        "west": __DIR__"jiugong8",
+        "north": __DIR__"jiugong6"
         ]));
-        setup();
+    setup();
 }
 
 #include "jiugong.h"

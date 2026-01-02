@@ -5,13 +5,12 @@
 
 inherit ITEM;
 
-void create()
-{
+void create() {
     set_name(HIM"姻緣籤"NOR, ({"yinyuan qian", "qian"}));
     set_weight(500);
     set("unit", "支");
-        set("long", HIC"這是一支月老祠內求得的姻緣籤，上面寫著：\n"NOR);
-        set("value", 0);
-        set("material", "bamboo");
+    set("long", HIC"這是一支月老祠內求得的姻緣籤，上面寫著：\n"NOR);
+    set("value", 0);
+    set("material", "bamboo");
     setup();
 }

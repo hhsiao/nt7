@@ -1,14 +1,13 @@
 #include <weapon.h>
 inherit BLADE;
 
-void create()
-{
-        set_name("匕首", ({ "bishou", "dao" }));
-        set_weight(1000);
-        set("unit", "柄");
-                set("long", "這是一柄亮晃晃的匕首\n");
-                set("value", 500);
-                set("material", "steel");
-        init_blade(15);
-        setup();
+void create() {
+    set_name("匕首", ({ "bishou", "dao" }));
+    set_weight(1000);
+    set("unit", "柄");
+    set("long", "這是一柄亮晃晃的匕首\n");
+    set("value", 500);
+    set("material", "steel");
+    init_blade(15);
+    setup();
 }

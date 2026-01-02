@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "睹光臺捨身崖");
-        set("long", @LONG
+void create() {
+    set("short", "睹光臺捨身崖");
+    set("long", @LONG
 從臥雲庵出來，這裡是看日出、雲海、佛光、神燈之地。臺下深
 崖萬丈，陡徹無底，雲遮霧掩。極目四望，數百里外的大小雪山皆歷
 歷在目。因為這裡至高至潔，至險至奇，又至美至幻，常有人在這裡
@@ -14,70 +13,67 @@ void create()
 接天際。雲海輕蕩時，你在金頂，腳踏白雲，大有飄飄欲仙之感；當
 雲濤迅猛湧來時，整個金頂都似在向前浮動，令人有乘舟欲風之意。
 LONG );
-        set("outdoors", "emei");
-        set("exits",([ /* sizeof() == 1 */
-                "north"     : __DIR__"duguangtai", 
-/*
-                "enter"    : __DIR__"woyunan",
-                "east"     : __DIR__"duguangtai", 
-*/
+    set("outdoors", "emei");
+    set("exits",([ /* sizeof() == 1 */
+        "north": __DIR__"duguangtai",
+    /*
+     * "enter"    : __DIR__"woyunan",
+     * "east"     : __DIR__"duguangtai",
+     */
         ]));
-        
-        set("coor/x", -570);
-        set("coor/y", -340);
-        set("coor/z", 220);
-        
-        setup();
+
+    set("coor/x", -570);
+    set("coor/y", -340);
+    set("coor/z", 220);
+
+    setup();
 }
 
-void init()
-{
-        object me;
+void init() {
+    object me;
 
-        if (interactive(me = this_player()))
-        {
-                remove_call_out("clone_ji");
-                call_out("clone_ji", 2,me);
-        }
-        add_action("do_sheshen","sheshen");
+    if (interactive(me = this_player()))
+    {
+        remove_call_out("clone_ji");
+        call_out("clone_ji", 2, me);
+    }
+    add_action("do_sheshen", "sheshen");
 }
 
-void clone_ji(object me)
-{
-        object *ob, obj;
-        int i;
+void clone_ji(object me) {
+    object *ob, obj;
+    int i;
 
-        if (! objectp(me) || environment(me) != this_object())
-                return;
+    if (! objectp(me) || environment(me) != this_object())
+        return;
 
-        ob = all_inventory(environment(me));
-        for (i = 0; i < sizeof(ob); i++)
-        {
-                if( query("id", ob[i]) == "jixiaofu" )
-                return;
-        }
+    ob = all_inventory(environment(me));
+    for (i = 0; i < sizeof(ob); i++)
+    {
+        if(query("id", ob[i]) == "jixiaofu" )
+            return;
+    }
 
-        if( query("marks/ji", me) )
-        {
-                obj = new("/kungfu/class/emei/ji.c");
-                obj->move(environment(me));
-        }
+    if(query("marks/ji", me) )
+    {
+        obj = new("/kungfu/class/emei/ji.c");
+        obj->move(environment(me));
+    }
 }
 
-int do_sheshen(object me)
-{
-        me = this_player();
-        message_vision("$N覺得活著太沒意思了，決定捨身成仁。\n", me);
-        message_vision("$N毅然跳出捨身崖，長聲尖叫，淒厲的聲音響徹山谷，隨著$N的的下落也急劇向下拉長。\n", me);
-        if (me->query_skill("dodge", 1) >= 220)
-        {
-                me->move(__DIR__"st0");
-                me->unconcious();
-        } else
-        {
-                command("chat 有人跳下捨身崖自殺了。\n\n");
-                me->move(__DIR__"st0");
-                me->die();
-        }
-        return 1;
+int do_sheshen(object me) {
+    me = this_player();
+    message_vision("$N覺得活著太沒意思了，決定捨身成仁。\n", me);
+    message_vision("$N毅然跳出捨身崖，長聲尖叫，淒厲的聲音響徹山谷，隨著$N的的下落也急劇向下拉長。\n", me);
+    if (me->query_skill("dodge", 1) >= 220)
+    {
+        me->move(__DIR__"st0");
+        me->unconcious();
+    } else
+    {
+        command("chat 有人跳下捨身崖自殺了。\n\n");
+        me->move(__DIR__"st0");
+        me->die();
+    }
+    return 1;
 }

@@ -2,10 +2,9 @@
 
 #include <ansi.h>
 inherit ROOM;
-void create()
-{
-     set("short", "三生石");
-        set("long", @LONG
+void create() {
+    set("short", "三生石");
+    set("long", @LONG
 楚天蒼茫，雲霧迷離的三生石黑沉沉的，看上去很笨拙。其實本
 是塊普通的大石頭，只是上面鐫了字(zi)，便傳奇了。四處少有人跡，
 只有些形狀各異的亂石散落在暗暗的綠色裡。看著這塊在傳說裡代表
@@ -13,8 +12,8 @@ void create()
 生世世輪迴如夢，但三生石卻是一直都在的。彷彿就為了聆聽情人們
 的盟約而在這裡靜靜屹立，直至海枯石爛。
 LONG );
-        set("item_desc", ([
-                "zi": RED"
+    set("item_desc", ([
+        "zi": RED"
 傳說，唐朝時有一個和尚圓澤和李源交好，有一天一起去峨嵋，有
 兩條路可以走，圓澤要走一條，李源要走另一條，最後還是依了李
 源。半路上，碰見一個大著肚子的孕婦，圓澤臉色一變說：我所以
@@ -32,17 +31,17 @@ LONG );
 　　 　　 欲話因緣恐斷腸。
 　　 　　 吳越山川尋已遍，
 　　 　　 卻回煙棹下瞿唐。
-唱完就不知所蹤。\n"NOR,
+唱完就不知所蹤。\n"NOR
         ]));
-        set("outdoors", "xihu");
-        set("exits", ([
-                "south" : "/d/hangzhou/qixi-tai",
+    set("outdoors", "xihu");
+    set("exits", ([
+        "south": "/d/hangzhou/qixi-tai",
 
         ]));
-//        set("no_clean_up", 0);
-	set("coor/x", 780);
-	set("coor/y", -1960);
-	set("coor/z", 10);
-	setup();
-        replace_program(ROOM);
+    //        set("no_clean_up", 0);
+    set("coor/x", 780);
+    set("coor/y", -1960);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

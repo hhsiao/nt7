@@ -98,7 +98,7 @@ int addn_c(int a, int b, int c)     //max,current,add
 void addn_p(object me) {
     int dam, i, qy = copy(query("qy"));
     mapping my;
-    string fmsg, msg = NOR + "你頭髮上戴著的" + query("name") + NOR + "撒落幾瓣天花，";
+    string msg = NOR + "你頭髮上戴著的" + query("name") + NOR + "撒落幾瓣天花，";
     string *cmsg = ({});
     object *enemies, enemy;
 

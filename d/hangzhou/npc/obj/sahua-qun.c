@@ -6,15 +6,14 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIR"撒花百褶裙"NOR, ({ "sahua qun", "qun" }) );
-        set_weight(3000);
-        set("unit", "件");
-                set("long", "一件鮮豔奪目的百褶裙，式樣簡單大方。\n");
-                set("material", "cloth");
-                set("value", 0);
-                set("armor_prop/armor", 3);
-                set("female_only", 1);
-        setup();
+void create() {
+    set_name(HIR"撒花百褶裙"NOR, ({ "sahua qun", "qun" }) );
+    set_weight(3000);
+    set("unit", "件");
+    set("long", "一件鮮豔奪目的百褶裙，式樣簡單大方。\n");
+    set("material", "cloth");
+    set("value", 0);
+    set("armor_prop/armor", 3);
+    set("female_only", 1);
+    setup();
 }

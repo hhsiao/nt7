@@ -4,13 +4,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("牛肉條", ({"niurou tiao", "tiao", "beef"}));
-        set_weight(40);
-        set("long", "一碗炙牛肉條，每條牛肉都是由四條小肉拼成，香氣濃郁。\n");
-                set("unit", "碗");
-                set("value", 50);
-                set("food_remaining", 1);
-                set("food_supply", 20);
+void create() {
+    set_name("牛肉條", ({"niurou tiao", "tiao", "beef"}));
+    set_weight(40);
+    set("long", "一碗炙牛肉條，每條牛肉都是由四條小肉拼成，香氣濃郁。\n");
+    set("unit", "碗");
+    set("value", 50);
+    set("food_remaining", 1);
+    set("food_supply", 20);
 }

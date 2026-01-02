@@ -27,35 +27,35 @@ mapping *dts = ({
  */
 
     ([
-        "dir" : "emei",
-        "aname" : "峨眉山",
-        "dtname" : ({ "凝碧崖", "兜蘿綿", "普賢院" })
-        ]),
-        ([
-            "dir" : "songshan",
-            "aname" : "嵩山",
-            "dtname" : ({ "司馬峽", "禪武石", "金剛崖" })
-            ]),
-            ([
-                "dir" : "huangshan",
-                "aname" : "黃山",
-                "dtname" : ({ "洞觀嶺", "天蓮峰", "夢筆巖" })
-                ]),
-                ([
-                    "dir" : "huanghe",
-                    "aname" : "黃河",
-                    "dtname" : ({ "黑水洞", "化形潭", "躍龍淵" })
-                    ]),
-                    ([
-                        "dir" : "guanwai",
-                        "aname" : "長白山",
-                        "dtname" : ({ "冰雪林", "溯源湖", "封天池" })
-                        ]),
-                        ([
-                            "dir" : "yueyang",
-                            "aname" : "洞庭湖",
-                            "dtname" : ({ "怒蛟殿", "水晶宮", "湘竹冢" })
-                            ]),
+        "dir": "emei",
+        "aname": "峨眉山",
+        "dtname": ({ "凝碧崖", "兜蘿綿", "普賢院" })
+    ]),
+    ([
+        "dir": "songshan",
+        "aname": "嵩山",
+        "dtname": ({ "司馬峽", "禪武石", "金剛崖" })
+    ]),
+    ([
+        "dir": "huangshan",
+        "aname": "黃山",
+        "dtname": ({ "洞觀嶺", "天蓮峰", "夢筆巖" })
+    ]),
+    ([
+        "dir": "huanghe",
+        "aname": "黃河",
+        "dtname": ({ "黑水洞", "化形潭", "躍龍淵" })
+    ]),
+    ([
+        "dir": "guanwai",
+        "aname": "長白山",
+        "dtname": ({ "冰雪林", "溯源湖", "封天池" })
+    ]),
+    ([
+        "dir": "yueyang",
+        "aname": "洞庭湖",
+        "dtname": ({ "怒蛟殿", "水晶宮", "湘竹冢" })
+    ]),
 
 });
 

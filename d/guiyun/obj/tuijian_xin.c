@@ -3,12 +3,11 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("推薦信", ({ "recommend letter", "letter", "xin" }) );
-        set("owner", "jpei");
-        set("long","這是陸乘風寫給黃藥師的一封信。\n");
-        set_weight(2);
-        set("unit", "封");
-        setup();
+void create() {
+    set_name("推薦信", ({ "recommend letter", "letter", "xin" }) );
+    set("owner", "jpei");
+    set("long", "這是陸乘風寫給黃藥師的一封信。\n");
+    set_weight(2);
+    set("unit", "封");
+    setup();
 }

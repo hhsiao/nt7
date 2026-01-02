@@ -3,13 +3,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name(HIY"百果油包"NOR, ({"baozi", "dumpling"}));
-        set_weight(80);
-        set("long", "一個煎得油澄澄、香噴噴的百果油包。\n");
-                set("unit", "個");
-                set("value", 70);
-                set("food_remaining", 3);
-                set("food_supply", 20);
+void create() {
+    set_name(HIY"百果油包"NOR, ({"baozi", "dumpling"}));
+    set_weight(80);
+    set("long", "一個煎得油澄澄、香噴噴的百果油包。\n");
+    set("unit", "個");
+    set("value", 70);
+    set("food_remaining", 3);
+    set("food_supply", 20);
 }

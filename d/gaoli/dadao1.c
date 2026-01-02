@@ -1,20 +1,19 @@
 // /d/gaoli/baihuuedajie3
 // Room in 高麗
 inherit ROOM;
-void create()        
-{
-        set("short", "青石大道");
-        set("long", @LONG
+void create() {
+    set("short", "青石大道");
+    set("long", @LONG
 你走在一條青石大道上，因為戰爭的原因，越向前走行人越來越少，
 不時有人騎著馬匆匆而過。大道往東進入新羅境內。北邊通向高麗城。
 LONG
-        );
-set("outdoors", "gaoli");
-set("exits", ([
-                "west" : __DIR__"baihumen",
-                "southwest" : __DIR__"dadao8",
-                "east" : __DIR__"jiangkou",
+    );
+    set("outdoors", "gaoli");
+    set("exits", ([
+        "west": __DIR__"baihumen",
+        "southwest": __DIR__"dadao8",
+        "east": __DIR__"jiangkou"
         ]));
-       setup();
-        replace_program(ROOM);
-}        
+    setup();
+    replace_program(ROOM);
+}

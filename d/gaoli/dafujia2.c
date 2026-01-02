@@ -12,7 +12,7 @@ void create()
 是一套精緻的宜興瓷器。
 LONG
 );
-        set("exits", ([ 
+        set("exits", ([
         "south" : __DIR__"dafujia1",
         ]));
 set("objects", ([

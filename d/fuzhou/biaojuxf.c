@@ -2,24 +2,23 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "東廂房");
-        set("long", @LONG
+void create() {
+    set("short", "東廂房");
+    set("long", @LONG
 房間裡佈置很簡單，只有一張小床，一個小几，和幾張方凳。窗臺
 上放著一個磁杯，杯裡插著幾枝無名小花。房間雖不大，但是給人整潔
 舒適的感覺。
 LONG
-        );
-        set("exits", ([
-                "west" : __DIR__"biaojuhy",
+    );
+    set("exits", ([
+        "west": __DIR__"biaojuhy"
         ]));
-        set("objects", ([
-                __DIR__"npc/zhu" : 1,
+    set("objects", ([
+        __DIR__"npc/zhu" : 1
         ]));
-	set("coor/x", -91);
-	set("coor/y", -6151);
-	set("coor/z", -1);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", -91);
+    set("coor/y", -6151);
+    set("coor/z", -1);
+    setup();
+    replace_program(ROOM);
 }

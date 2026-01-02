@@ -1,10 +1,9 @@
 // liuhuang.c 硫磺
 inherit ITEM;
-void create()
-{
-        set_name("硫磺", ({"liuhuang"}));
-        set_weight(40);
-        set("long", "一塊黃色的硫磺晶體。\n");
-                set("unit", "塊");
-                set("value", 10);
+void create() {
+    set_name("硫磺", ({"liuhuang"}));
+    set_weight(40);
+    set("long", "一塊黃色的硫磺晶體。\n");
+    set("unit", "塊");
+    set("value", 10);
 }

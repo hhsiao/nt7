@@ -3,13 +3,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name(RED"龍井蝦仁"NOR, ({"shrimp"}));
-        set_weight(1300);
-        set("long", "釅釅濃濃的一盤龍井蝦仁。\n");
-                set("unit", "碗");
-                set("value", 50);
-                set("food_remaining", 5);
-                set("food_supply", 20);
+void create() {
+    set_name(RED"龍井蝦仁"NOR, ({"shrimp"}));
+    set_weight(1300);
+    set("long", "釅釅濃濃的一盤龍井蝦仁。\n");
+    set("unit", "碗");
+    set("value", 50);
+    set("food_remaining", 5);
+    set("food_supply", 20);
 }

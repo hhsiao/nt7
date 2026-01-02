@@ -2,13 +2,12 @@
 
 inherit CLOTH;
 
-void create()
-{
-   set_name("僧衣", ({ "cloth"}) );
-   set_weight(5000);
-   set("material", "cloth");
-     set("unit", "件");
-     set("value", 40);
-     set("armor_prop/armor", 2);
-   setup();
+void create() {
+    set_name("僧衣", ({ "cloth" }) );
+    set_weight(5000);
+    set("material", "cloth");
+    set("unit", "件");
+    set("value", 40);
+    set("armor_prop/armor", 2);
+    setup();
 }

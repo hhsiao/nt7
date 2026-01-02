@@ -2,13 +2,12 @@
 #include <armor.h>
 inherit CLOTH;
 
-void create()
-{
-        set_name(NOR + WHT "破布衣" NOR, ({ "cloth" }));
-        set_weight(1000);
-        set("long", WHT "這是一件滿是油膩的破布衣。\n" NOR);
-                set("unit", "件");
-                set("material", "cloth");
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name(NOR + WHT "破布衣" NOR, ({ "cloth" }));
+    set_weight(1000);
+    set("long", WHT "這是一件滿是油膩的破布衣。\n" NOR);
+    set("unit", "件");
+    set("material", "cloth");
+    set("armor_prop/armor", 1);
+    setup();
 }

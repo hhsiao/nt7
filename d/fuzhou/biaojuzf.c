@@ -3,25 +3,24 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "賬房");
-        set("long", @LONG
+void create() {
+    set("short", "賬房");
+    set("long", @LONG
 這裡是福威鏢局的賬房，地上鋪著大紅地毯，壁上字畫高懸。上首
 一張紅木交椅，上坐一個老先生。一古木書案橫於椅前，上面整齊的堆
 著一卷卷鏢局押鏢的貨票。
 LONG );
-        set("no_fight", 1);
-        set("exits", ([
-                "west"   : __DIR__"biaojuzt",
-                "south"  : __DIR__"biaojuhc",
+    set("no_fight", 1);
+    set("exits", ([
+        "west": __DIR__"biaojuzt",
+        "south": __DIR__"biaojuhc"
         ]));
-        set("objects", ([
-                __DIR__"npc/huang" : 1,
+    set("objects", ([
+        __DIR__"npc/huang" : 1
         ]));
-	set("coor/x", -91);
-	set("coor/y", -6161);
-	set("coor/z", -1);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", -91);
+    set("coor/y", -6161);
+    set("coor/z", -1);
+    setup();
+    replace_program(ROOM);
 }

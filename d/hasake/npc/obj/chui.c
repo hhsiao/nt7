@@ -6,17 +6,16 @@
 inherit HAMMER;
 
 
-void create()
-{
-        set_name("流星錘", ({ "liuxing chui", "chui", "hammer" }));
-        set_weight(10000);
-        set("unit", "柄");
-                set("long", "一柄精鐵製的流星錘。\n");
-                set("value", 1000);
-                set("weapon_prop/parry", 1);
-                       set("poisoned", "bing_poison");
-                set("material", "steel");
-                         set("poison_number", 300);
-        init_hammer(40);
-        setup();
+void create() {
+    set_name("流星錘", ({ "liuxing chui", "chui", "hammer" }));
+    set_weight(10000);
+    set("unit", "柄");
+    set("long", "一柄精鐵製的流星錘。\n");
+    set("value", 1000);
+    set("weapon_prop/parry", 1);
+    set("poisoned", "bing_poison");
+    set("material", "steel");
+    set("poison_number", 300);
+    init_hammer(40);
+    setup();
 }

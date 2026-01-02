@@ -3,16 +3,15 @@
 
 inherit NECK;
 
-void create()
-{
-   set_name(HIY"黃金項鍊"NOR, ({ "necklace"}) );
-   set_weight(1000);
-   set("long","這是一串名貴的黃金項鍊。\n");
-     set("material", "黃金");
-     set("unit", "串");
-     set("value", 1000);
-     set("armor_prop/armor",10);
-     set("armor_prop/dodge",2);
-     set("armor_prop/per",5);
-   setup();
+void create() {
+    set_name(HIY"黃金項鍊"NOR, ({ "necklace" }) );
+    set_weight(1000);
+    set("long", "這是一串名貴的黃金項鍊。\n");
+    set("material", "黃金");
+    set("unit", "串");
+    set("value", 1000);
+    set("armor_prop/armor", 10);
+    set("armor_prop/dodge", 2);
+    set("armor_prop/per", 5);
+    setup();
 }

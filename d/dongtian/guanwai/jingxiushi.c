@@ -18,8 +18,8 @@ void create() {
     );
     //set("outdoors", "dongtian");
     set("exits", ([ /* sizeof() == 1 */
-        "east": __DIR__"zoulang14"
-        ]));
+    "east": __DIR__"zoulang14"
+    ]));
 
     set("no_steal", 1);
     set("no_beg", 1);

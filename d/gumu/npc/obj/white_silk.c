@@ -6,19 +6,18 @@
 #include <ansi.h>
 inherit CLOTH;
 
-void create()
-{
-        set_name("白紗裙", ({ "white skirt","skirt" }) );
-                //set_color("$HIW$");
-        set_weight(800);
+void create() {
+    set_name("白紗裙", ({ "white skirt", "skirt" }) );
+    //set_color("$HIW$");
+    set_weight(800);
 
-        set("unit", "件");
-                        set("long", "一件潔白的紗裙。\n");
-            set("material", "cloth");
-            set("value", 0);
-            set("armor_prop/armor", 8);
-            set("armor_prop/per", 5);
-            set("female_only", 1);
+    set("unit", "件");
+    set("long", "一件潔白的紗裙。\n");
+    set("material", "cloth");
+    set("value", 0);
+    set("armor_prop/armor", 8);
+    set("armor_prop/per", 5);
+    set("female_only", 1);
 
-        setup();
+    setup();
 }

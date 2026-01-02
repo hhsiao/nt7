@@ -6,18 +6,17 @@
 
 inherit NPC;
 
-void create()
-{
-        set_name("白駱駝", ({ "camel" }));
-        set("long","一匹白駱駝。\n");
-        set("race", "走畜");
-        set("age", 5);
-        set("attitude","heroism");
-        set("str", 30);
-        set("dex", 35);
-        set("con", 40);
-        set("int", 10);
-        set("shen", 1);
-        set("combat_exp", 2000);
-        setup();
+void create() {
+    set_name("白駱駝", ({ "camel" }));
+    set("long", "一匹白駱駝。\n");
+    set("race", "走畜");
+    set("age", 5);
+    set("attitude", "heroism");
+    set("str", 30);
+    set("dex", 35);
+    set("con", 40);
+    set("int", 10);
+    set("shen", 1);
+    set("combat_exp", 2000);
+    setup();
 }

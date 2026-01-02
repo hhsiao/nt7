@@ -5,92 +5,86 @@
 
 inherit NPC;
 
-void create()
-{
-        set_name(WHT"玉蜂群"NOR, ({ "yufeng qun","bees" }) );
-        set("race", "昆蟲");
-        set("subrace", "飛蟲");
-        set("age", 1);
-        set("long", "這是古墓派馴養的一群玉蜂，嗡嗡的，不知有多少。\n");
-        set("str", 60);
-        set("dex", 80);
+void create() {
+    set_name(WHT"玉蜂群"NOR, ({ "yufeng qun", "bees" }) );
+    set("race", "昆蟲");
+    set("subrace", "飛蟲");
+    set("age", 1);
+    set("long", "這是古墓派馴養的一群玉蜂，嗡嗡的，不知有多少。\n");
+    set("str", 60);
+    set("dex", 80);
 
-        set("limbs", ({ "密集處", "稀薄處", "核心", "外圍" }) );
+    set("limbs", ({ "密集處", "稀薄處", "核心", "外圍" }) );
 
-        set("max_jing",1000);
-        set("jing",1000);
-        set("qi",1000);
-        set("max_qi",1000);
-        set("jingli",1000);
-        set("max_jingli",1000);
+    set("max_jing", 1000);
+    set("jing", 1000);
+    set("qi", 1000);
+    set("max_qi", 1000);
+    set("jingli", 1000);
+    set("max_jingli", 1000);
 
-        set_skill("dodge", 100);
-        set_skill("parry", 100);
-        set_skill("unarmed", 100);
+    set_skill("dodge", 100);
+    set_skill("parry", 100);
+    set_skill("unarmed", 100);
 
-        setup();
+    setup();
 }
 
-void init()
-{
-        add_action("do_attack", "attack");
+void init() {
+    add_action("do_attack", "attack");
 }
 
-void die()
-{
-        object ob;
+void die() {
 
-        message_vision("\n$N終於都死了，地上白茫茫一片。\n", this_object());
-        destruct(this_object());
+    message_vision("\n$N終於都死了，地上白茫茫一片。\n", this_object());
+    destruct(this_object());
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus)
-{
-        object owner;
-        object here = environment(me);
+mixed hit_ob(object me, object victim, int damage_bonus) {
+    object owner;
+    object here = environment(me);
 
-        if( (owner=present(query("owner", me),here))){
-                addn("combat_exp", 2+random(3), owner);
-                addn("potential", 1+random(3), owner);
+    if((owner = present(query("owner", me), here))){
+        addn("combat_exp", 2 + random(3), owner);
+        addn("potential", 1 + random(3), owner);
 
-                owner->improve_skill("qufeng", 20+random(20), 0);
-        }
+        owner->improve_skill("qufeng", 20 + random(20), 0);
+    }
 
-        victim->apply_condition("yufengdu", 5 + random(5)
-                + victim->query_condition("yufengdu"));
+    victim->apply_condition("yufengdu", 5 + random(5)
+        + victim->query_condition("yufengdu"));
 }
 
-int do_attack(string arg)
-{
-        object ob, me = this_player(),bees;
-        string victim;
+int do_attack(string arg) {
+    object ob, me = this_player(), bees;
+    string victim;
 
-        if (!arg) return 0;
+    if (!arg) return 0;
 
-        victim = arg;
-        if( victim == query("id", me))return notify_fail("玉蜂群不知所措，只是圍著你打轉。\n");
+    victim = arg;
+    if(victim == query("id", me))return notify_fail("玉蜂群不知所措，只是圍著你打轉。\n");
 
-        ob = present(victim, environment(me));
-        bees = present("yufeng qun", environment(me));
+    ob = present(victim, environment(me));
+    bees = present("yufeng qun", environment(me));
 
-        if (!ob) return notify_fail("這裡並無此人！\n");
+    if (!ob) return notify_fail("這裡並無此人！\n");
 
-        message_vision(HIR "$N嘴裡嗡嗡作聲，指揮玉蜂群向$n攻去。\n" NOR, me, ob);
+    message_vision(HIR "$N嘴裡嗡嗡作聲，指揮玉蜂群向$n攻去。\n" NOR, me, ob);
 
-        if( query("owner") != me || query("race", ob) != "人類"
-                 || query("family/family_name", ob) == "古墓派"){
-                message_vision( "$N不知所措，只是圍著你打轉。\n" NOR, bees );
-                return 1;
-        }
+    if(query("owner") != me || query("race", ob) != "人類"
+        || query("family/family_name", ob) == "古墓派"){
+            message_vision("$N不知所措，只是圍著你打轉。\n" NOR, bees );
+            return 1;
+    }
 
-        if( random(20) ){
-                message_vision( HIW"只見$N發瘋般向$n撲了過去。\n" NOR, bees, ob );
-                bees->kill_ob(ob);
-                me->want_kill(ob);
-                ob->kill_ob(me);
-        }
-        else
-                message_vision( "$N不知所措，只是圍著你打轉。\n" NOR, bees );
+    if(random(20) ){
+        message_vision(HIW"只見$N發瘋般向$n撲了過去。\n" NOR, bees, ob );
+        bees->kill_ob(ob);
+        me->want_kill(ob);
+        ob->kill_ob(me);
+    }
+    else
+        message_vision("$N不知所措，只是圍著你打轉。\n" NOR, bees );
 
-        return 1;
+    return 1;
 }

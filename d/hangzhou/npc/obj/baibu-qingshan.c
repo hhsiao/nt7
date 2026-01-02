@@ -5,14 +5,13 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIW"白布輕衫"NOR, ({ "baibu qingshan", "cloth","shan" }) );
-        set_weight(3000);
-        set("unit", "件");
-                set("long", "一件白色長衫，洗得十分乾淨。\n");
-                set("material", "cloth");
-                set("value", 0);
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name(HIW"白布輕衫"NOR, ({ "baibu qingshan", "cloth", "shan" }) );
+    set_weight(3000);
+    set("unit", "件");
+    set("long", "一件白色長衫，洗得十分乾淨。\n");
+    set("material", "cloth");
+    set("value", 0);
+    set("armor_prop/armor", 1);
+    setup();
 }
