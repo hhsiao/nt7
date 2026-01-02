@@ -4,14 +4,13 @@
 
 inherit CLUB;
 
-void create()
-{
-        set_name(HIY"如意盤龍棍"NOR, ({ "panlong gun","gun", "panlong" }) );
-        set_weight(8000);
-        set("unit", "根");
-                set("value", 250000);
-                set("material", "steel");
-                set("long", "一根沉甸甸雕著盤龍的長棍。\n");
-        init_club(50);
-        setup();
+void create() {
+    set_name(HIY"如意盤龍棍"NOR, ({ "panlong gun", "gun", "panlong" }) );
+    set_weight(8000);
+    set("unit", "根");
+    set("value", 250000);
+    set("material", "steel");
+    set("long", "一根沉甸甸雕著盤龍的長棍。\n");
+    init_club(50);
+    setup();
 }

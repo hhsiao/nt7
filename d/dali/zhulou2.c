@@ -2,31 +2,29 @@
 //Date: June. 29 1998 by Java
 
 inherit ROOM;
-void create()
-{
-        set("short","竹樓");
-        set("long",@LONG
+void create() {
+    set("short", "竹樓");
+    set("long",@LONG
 一間標準的臺夷竹樓，四面牆壁皆是竹子，正中砌了一座正方形
 的灶臺，其內架置著鐵爐。夷族傳統席地而睡，是以屋內無床，延牆
 擺有墊褥，屋舍內除了石堆祭臺外別無傢俱。
 LONG);
-        set("objects", ([
-           __DIR__"npc/kid": 1,
+    set("objects", ([
+        __DIR__"npc/kid": 1
         ]));
-        set("exits",([ /* sizeof() == 1 */
-            "down"   : __DIR__"zhulou1",
+    set("exits", ([ /* sizeof() == 1 */
+        "down": __DIR__"zhulou1"
         ]));
-	set("coor/x", -19150);
-	set("coor/y", -6960);
-	set("coor/z", 10);
-	setup();
+    set("coor/x", -19150);
+    set("coor/y", -6960);
+    set("coor/z", 10);
+    setup();
 }
 
-void init()
-{
-        object me = this_player();
-        if( query_temp("xuncheng", me) )
-        {
-                set_temp("dali_xc/zl2", 1, me);
-        }
+void init() {
+    object me = this_player();
+    if(query_temp("xuncheng", me) )
+    {
+        set_temp("dali_xc/zl2", 1, me);
+    }
 }

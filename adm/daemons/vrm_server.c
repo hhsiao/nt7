@@ -596,7 +596,6 @@ void init_road()
 {
 
         int x, y, out, numb;
-        class coordinate *valid_leaves = ({});
 
         // 存入待處理隊列.
         newpath += ({ enter });
@@ -636,7 +635,6 @@ void init_road()
 void init_room()
 {
         int i, j, x, y, out, numb, flag;
-        class coordinate *valid_leaves = ({});
         //class coordinate tmp1, tmp2;
         mixed deadroom;
         mixed *alldead = ({});

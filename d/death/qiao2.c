@@ -2,10 +2,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", NOR + WHT "【奈河橋】" NOR);
-        set("long", NOR + WHT @LONG
+void create() {
+    set("short", NOR + WHT "【奈河橋】" NOR);
+    set("long", NOR + WHT @LONG
 
                     奈         河         橋
 
@@ -15,36 +14,33 @@ void create()
 
 
 LONG NOR );
-        set("exits", ([
-                // "north" : __DIR__"hell1",
-                "north" : __DIR__"youmingjie",
-                "south" : __DIR__"qiao1",
+    set("exits", ([
+    // "north" : __DIR__"hell1",
+        "north": __DIR__"youmingjie",
+        "south": __DIR__"qiao1"
         ]));
-        set("objects", ([
-                __DIR__"npc/niutou":1,
-                __DIR__"npc/ghost":1,
+    set("objects", ([
+        __DIR__"npc/niutou":1,
+        __DIR__"npc/ghost":1
         ]));
-        set("item_desc", ([
-                "north": HIW "\n奈河橋的另一端被煙霧所籠罩，彷彿沒有"
-                         "盡頭，你什麼都看不清。\n" NOR
+    set("item_desc", ([
+        "north": HIW "\n奈河橋的另一端被煙霧所籠罩，彷彿沒有"
+        "盡頭，你什麼都看不清。\n" NOR
         ]));
 
-        set("no_sleep_room", 1);
+    set("no_sleep_room", 1);
 
-        set("no_magic", 1);
-        setup();
+    set("no_magic", 1);
+    setup();
 }
-int valid_leave(object me, string dir)
-{
-        int i;
-        object ob;
-        me = this_player();
-        if (dir == "north")
-        {
-                if (objectp(present("niu tou", environment(me))) &&
-                    !query("hell_quest/鎖陽丹", me) )
-                        return notify_fail(CYN "牛頭看了你一眼，喝道：你還不滾"
-                                           "回去還陽，來這裡湊什麼熱鬧！\n" NOR);
-        }
-        return ::valid_leave(me, dir);
+int valid_leave(object me, string dir) {
+    me = this_player();
+    if (dir == "north")
+    {
+        if (objectp(present("niu tou", environment(me))) &&
+            !query("hell_quest/鎖陽丹", me) )
+            return notify_fail(CYN "牛頭看了你一眼，喝道：你還不滾"
+                "回去還陽，來這裡湊什麼熱鬧！\n" NOR);
+    }
+    return ::valid_leave(me, dir);
 }

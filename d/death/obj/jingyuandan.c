@@ -2,11 +2,10 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(RED "精元丹" NOR, ({ "jingyuan dan", "jingyuan", " dan"}));
-        set_weight(700);
-        set("long", RED "一顆神秘的神丹，散發出隱隱血光。\n" NOR);
-                set("unit", "塊");
-                set("value", 20000);
+void create() {
+    set_name(RED "精元丹" NOR, ({ "jingyuan dan", "jingyuan", " dan"}));
+    set_weight(700);
+    set("long", RED "一顆神秘的神丹，散發出隱隱血光。\n" NOR);
+    set("unit", "塊");
+    set("value", 20000);
 }

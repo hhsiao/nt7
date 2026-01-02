@@ -4,10 +4,9 @@ inherit ROOM;
 
 string look_duilian();
 
-void create()
-{
-        set("short", HIB "【輪迴道】" NOR);
-        set("long", HIB @LONG
+void create() {
+    set("short", HIB "【輪迴道】" NOR);
+    set("long", HIB @LONG
 
                     輪         回         道
 
@@ -18,38 +17,37 @@ void create()
 
 LONG NOR );
 
-        set("exits", ([
-                "enter" : __DIR__"lunhuisi",
-                "west"  : __DIR__"jimiesi",
+    set("exits", ([
+        "enter": __DIR__"lunhuisi",
+        "west": __DIR__"jimiesi"
         ]));
 
-        set("item_desc", ([
-                "door" : YEL "一扇厚厚的銅門，上面佈滿了蛛網和灰塵。\n" NOR,
-                "duilian" :       (: look_duilian :),
+    set("item_desc", ([
+        "door": YEL "一扇厚厚的銅門，上面佈滿了蛛網和灰塵。\n" NOR,
+        "duilian": (: look_duilian :)
         ]));
 
-        create_door("enter", YEL "銅門" NOR, "out", DOOR_CLOSED);
-        set("no_magic", 1);
-        setup();
+    create_door("enter", YEL "銅門" NOR, "out", DOOR_CLOSED);
+    set("no_magic", 1);
+    setup();
 }
 
-string look_duilian()
-{
-        return
-        RED "\n"
-        "             ※※※※※※※            ※※※※※※※\n"
-        "             ※※※※※※※            ※※※※※※※\n"
-        "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "　天　" NOR + RED "※※            ※※" NOR + HIW "  血  " NOR + RED "※※\n"
-        "             ※※　 　 ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  地  " NOR + RED "※※            ※※" NOR + HIW "  脈  " NOR + RED "※※\n"
-        "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  崩  " NOR + RED "※※            ※※" NOR + HIW "  呈  " NOR + RED "※※\n"
-        "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  裂  " NOR + RED "※※            ※※" NOR + HIW "  現  " NOR + RED "※※\n"
-        "             ※※      ※※            ※※      ※※\n"
-        "             ※※" NOR + HIW "  時  " NOR + RED "※※            ※※" NOR + HIW "  間  " NOR + RED "※※\n"
-        "             ※※    　※※            ※※      ※※\n"
-        "             ※※※※※※※            ※※※※※※※\n"
-        "             ※※※※※※※            ※※※※※※※\n" NOR;
+string look_duilian() {
+    return
+    RED "\n"
+    "             ※※※※※※※            ※※※※※※※\n"
+    "             ※※※※※※※            ※※※※※※※\n"
+    "             ※※      ※※            ※※      ※※\n"
+    "             ※※" NOR + HIW "　天　" NOR + RED "※※            ※※" NOR + HIW "  血  " NOR + RED "※※\n"
+    "             ※※　 　 ※※            ※※      ※※\n"
+    "             ※※" NOR + HIW "  地  " NOR + RED "※※            ※※" NOR + HIW "  脈  " NOR + RED "※※\n"
+    "             ※※      ※※            ※※      ※※\n"
+    "             ※※" NOR + HIW "  崩  " NOR + RED "※※            ※※" NOR + HIW "  呈  " NOR + RED "※※\n"
+    "             ※※      ※※            ※※      ※※\n"
+    "             ※※" NOR + HIW "  裂  " NOR + RED "※※            ※※" NOR + HIW "  現  " NOR + RED "※※\n"
+    "             ※※      ※※            ※※      ※※\n"
+    "             ※※" NOR + HIW "  時  " NOR + RED "※※            ※※" NOR + HIW "  間  " NOR + RED "※※\n"
+    "             ※※    　※※            ※※      ※※\n"
+    "             ※※※※※※※            ※※※※※※※\n"
+    "             ※※※※※※※            ※※※※※※※\n" NOR;
 }

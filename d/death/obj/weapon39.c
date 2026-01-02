@@ -3,13 +3,12 @@
 
 inherit DAGGER;
 
-void create()
-{
-        set_name(HIG "青陽神匕" NOR, ({ "qingyang dagger", "dagger", "qingyang" }) );
-        set_weight(4000);
-        set("unit", "柄");
-                set("value", 3000000);
-                set("material", "steel");
-        init_dagger(160);
-        setup();
+void create() {
+    set_name(HIG "青陽神匕" NOR, ({ "qingyang dagger", "dagger", "qingyang" }) );
+    set_weight(4000);
+    set("unit", "柄");
+    set("value", 3000000);
+    set("material", "steel");
+    init_dagger(160);
+    setup();
 }

@@ -2,22 +2,21 @@
 //Date: June. 29 1998 by Java
 
 inherit ROOM;
-void create()
-{
-        set("short","第二層");
-        set("long", @LONG
+void create() {
+    set("short", "第二層");
+    set("long", @LONG
 為四神坐像，各有表情，衣褶隆起，筋節畢現，肌肉暴起，極富
 立體感。
 LONG );
-        set("outdoors", "dalic");
-        set("exits",([ /* sizeof() == 1 */
-            "up"    : "/d/dali/jingzhuang3",
-            "down"  : "/d/dali/jingzhuang1",
+    set("outdoors", "dalic");
+    set("exits", ([ /* sizeof() == 1 */
+        "up": "/d/dali/jingzhuang3",
+        "down": "/d/dali/jingzhuang1"
         ]));
-        set("no_clean_up", 0);
-	set("coor/x", -19091);
-	set("coor/y", -6871);
-	set("coor/z", 19);
-	setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -19091);
+    set("coor/y", -6871);
+    set("coor/z", 19);
+    setup();
+    replace_program(ROOM);
 }

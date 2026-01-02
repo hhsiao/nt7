@@ -1,10 +1,9 @@
 #include <ansi.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", GRN "【白虎穴】" NOR);
-        set("long", GRN @LONG
+void create() {
+    set("short", GRN "【白虎穴】" NOR);
+    set("long", GRN @LONG
 
                     白         虎         穴
 
@@ -14,15 +13,15 @@ void create()
 
 LONG NOR );
 
-        set("objects", ([
-                __DIR__"npc/baihu" : 1,
-        ]));
-        
-        set("exits", ([
-                "south" : __DIR__"heisenlin/exit",
+    set("objects", ([
+        __DIR__"npc/baihu" : 1
         ]));
 
-        set("baihu", 1);
-        set("no_magic", 1);
-        setup();
+    set("exits", ([
+        "south": __DIR__"heisenlin/exit"
+        ]));
+
+    set("baihu", 1);
+    set("no_magic", 1);
+    setup();
 }

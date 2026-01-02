@@ -1,10 +1,9 @@
 #include <ansi.h>
 inherit ROOM;
- 
-void create()
-{
-        set("short", RED "【地陰通道】" NOR);
-       set("long", RED @LONG
+
+void create() {
+    set("short", RED "【地陰通道】" NOR);
+    set("long", RED @LONG
 
                     地     陰     通     道
 
@@ -12,43 +11,42 @@ void create()
 佛永遠沒有止境一般。
 
 LONG NOR );
-        set("exits", ([
-                "up" : __DIR__"lunhuisi",
-                "down" : __DIR__"diyin_road2",
+    set("exits", ([
+        "up": __DIR__"lunhuisi",
+        "down": __DIR__"diyin_road2"
         ]));
 
-        set("no_sleep_room", 1);
+    set("no_sleep_room", 1);
 
-        set("no_magic", 1);
-        setup();
+    set("no_magic", 1);
+    setup();
 }
 
-int valid_leave(object me, string dir)
-{
-        int i;
-        if (dir == "down")
-        {
-                i=query_temp("long_road", me);
-                i = i + 1;
+int valid_leave(object me, string dir) {
+    int i;
+    if (dir == "down")
+    {
+        i = query_temp("long_road", me);
+        i = i + 1;
 
-                if (i == 10)
-                {
-                        delete_temp("long_road", me);
-                        return 1;
-                }
-           else {
-                        set_temp("long_road", i, me);
-                        return notify_fail( RED "\n你向下走著這深不見底的階梯……"
-                                            "只覺階梯似乎在無限延伸，永遠到達不了盡頭"
-                                            "一般。\n" NOR);
-                }
+        if (i == 10)
+        {
+            delete_temp("long_road", me);
+            return 1;
         }
-   else {
-                if (dir == "up")
-                {
-                        delete_temp("long_road", me);
-                        return 1;
-                }
+        else {
+            set_temp("long_road", i, me);
+            return notify_fail(RED "\n你向下走著這深不見底的階梯……"
+                "只覺階梯似乎在無限延伸，永遠到達不了盡頭"
+                "一般。\n" NOR);
+        }
+    }
+    else {
+        if (dir == "up")
+        {
+            delete_temp("long_road", me);
+            return 1;
+        }
         return 1;
-        }
+    }
 }

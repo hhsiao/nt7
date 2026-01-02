@@ -3,13 +3,12 @@
 
 inherit BLADE;
 
-void create()
-{
-        set_name(RED "七煞陰陽刃" NOR, ({ "yinyang ren", "ren", "blade", "dao" }) );
-        set_weight(4000);
-        set("unit", "柄");
-                set("value", 1300000);
-                set("material", "steel");
-        init_blade(100);
-        setup();
+void create() {
+    set_name(RED "七煞陰陽刃" NOR, ({ "yinyang ren", "ren", "blade", "dao" }) );
+    set_weight(4000);
+    set("unit", "柄");
+    set("value", 1300000);
+    set("material", "steel");
+    init_blade(100);
+    setup();
 }

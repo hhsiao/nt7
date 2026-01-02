@@ -1,4 +1,4 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/10
 #include <ansi.h>
 
@@ -6,29 +6,25 @@ inherit ITEM;
 inherit F_CLEAN_UP;
 
 string load_name();
-void create()
-{
-        set_name(YEL "洞天仙府令" NOR, ({ "dongtian ling", "ling"}));
-        set_weight(100);
-                set("unit", "枚");
-                set("value", 10000000);
-                set("dt_value", 1);
-                set("weight", 2000);
-        setup();
+void create() {
+    set_name(YEL "洞天仙府令" NOR, ({ "dongtian ling", "ling"}));
+    set_weight(100);
+    set("unit", "枚");
+    set("value", 10000000);
+    set("dt_value", 1);
+    set("weight", 2000);
+    setup();
+    set("dt_name", load_name());
+}
+
+string load_name() {
+    return __DIR__"guangchang.c"->load_name();
+}
+
+string long() {
+    if (!query("dt_name") || !query("dt_time") || query("dt_time") < time()) {
         set("dt_name", load_name());
-}        
-
-string load_name()
-{
-        return __DIR__"guangchang.c"->load_name();
+        set("dt_time", time() + 60);
+    }
+    return "這是一枚銅質令牌，有金篆文刻字『" + query("dt_name") + "』。\n";
 }
-
-string long()
-{
-        if (!query("dt_name") || !query("dt_time") || query("dt_time") < time()) {
-                set("dt_name", load_name());
-                set("dt_time", time() + 60);
-        }
-        return "這是一枚銅質令牌，有金篆文刻字『" + query("dt_name") + "』。\n";
-}
-

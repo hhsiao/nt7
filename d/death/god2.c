@@ -2,10 +2,9 @@
 #include <ansi.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", HIY"聖殿"NOR);
-        set("long", HIC @LONG
+void create() {
+    set("short", HIY"聖殿"NOR);
+    set("long", HIC @LONG
 你步如到聖殿中。聖殿裡的空間顯得格外的大，你抬起頭來，竟看不到頂，
 四排三十二根白柱向上伸去，也不知道有多高。仙霧繚繞中，你隱約看見前面一
 個平臺上有一把金椅，上面似乎坐著個沉思的老人，可你卻看不清他的面容，你
@@ -16,7 +15,7 @@ void create()
 詳，天國原來就是這樣的……可是，你卻慢慢覺得這裡過於冷清，不由開始懷念
 起那喧囂嘈雜的塵世來……
 LONG
-NOR   );
-        set("no_magic", 1);
-        setup();
+        NOR );
+    set("no_magic", 1);
+    setup();
 }

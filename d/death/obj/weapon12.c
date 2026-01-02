@@ -4,13 +4,12 @@
 
 inherit HAMMER;
 
-void create()
-{
-        set_name(HIW"定妖神錘"NOR, ({ "dingyao chui", "chui", "dingyao", "hammer" }) );
-        set_weight(18000);
-        set("unit", "把");
-                set("value", 600000);
-                set("material", "steel");
-        init_hammer(80);
-        setup();
+void create() {
+    set_name(HIW"定妖神錘"NOR, ({ "dingyao chui", "chui", "dingyao", "hammer" }) );
+    set_weight(18000);
+    set("unit", "把");
+    set("value", 600000);
+    set("material", "steel");
+    init_hammer(80);
+    setup();
 }
