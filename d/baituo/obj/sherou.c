@@ -3,14 +3,13 @@
 inherit F_FOOD;
 inherit ITEM;
 
-void create()
-{
-        set_name("蛇肉", ({ "she rou", "rou" }) );
-        set_weight(350);
-        set("long", "一條燒烤得香噴噴的蛇肉。\n");
-                set("unit", "條");
-                set("value", 50);
-                set("food_remaining", 3);
-                set("food_supply", 20);
+void create() {
+    set_name("蛇肉", ({ "she rou", "rou" }) );
+    set_weight(350);
+    set("long", "一條燒烤得香噴噴的蛇肉。\n");
+    set("unit", "條");
+    set("value", 50);
+    set("food_remaining", 3);
+    set("food_supply", 20);
     setup();
 }

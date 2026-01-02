@@ -3,20 +3,19 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "靈蛇島海灘");
-        set("long", @LONG
+void create() {
+    set("short", "靈蛇島海灘");
+    set("long", @LONG
 這是個樹木蔥翠的大島，島上奇峰挺拔，聳立著好幾座高山。島
 西端山石直降入海，並無淺灘，往來船隻近岸泊就。
 LONG );
-        set("outdoors", "lingshe");
-        set("exits", ([
-                "east"  : __DIR__"lingsheroad1",
+    set("outdoors", "lingshe");
+    set("exits", ([
+        "east": __DIR__"lingsheroad1"
         ]));
-        set("objects", ([
-                __DIR__"npc/yinli" : 1,
+    set("objects", ([
+        __DIR__"npc/yinli" : 1
         ]));
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }

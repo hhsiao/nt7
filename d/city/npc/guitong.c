@@ -1,72 +1,67 @@
 /*  <SecCrypt CPL V3R05>  */
- 
+
 //  created  7/6/1997  by  snowcat
 #include  <ansi.h>
 
 inherit  NPC;
 
-object  room  =  0;
+object room = 0;
 
-void  create()
-{
-    set_name("青鬏龜童",  ({"gui  tong",  "tong"  }));
-    set("gender",  "男性");
-    set("age",  13);
-    set("per",  30);
-    set("long",  "一位扎著青鬏的龜童。\n");
-    set("combat_exp",  5000);
-    set_skill("force",  50);
-    set_skill("unarmed",  50);
-    set_skill("dodge",  50);
-    set_skill("parry",  50);
-    set("jing",  500);
-    set("max_jing",  500);
-    set("qi",  500);
-    set("max_qi",  500);
-    set("neili",  150);
-    set("max_neili",  150);
-    set("force_factor",  10);
+void create() {
+    set_name("青鬏龜童", ({"gui  tong", "tong"  }));
+    set("gender", "男性");
+    set("age", 13);
+    set("per", 30);
+    set("long", "一位扎著青鬏的龜童。\n");
+    set("combat_exp", 5000);
+    set_skill("force", 50);
+    set_skill("unarmed", 50);
+    set_skill("dodge", 50);
+    set_skill("parry", 50);
+    set("jing", 500);
+    set("max_jing", 500);
+    set("qi", 500);
+    set("max_qi", 500);
+    set("neili", 150);
+    set("max_neili", 150);
+    set("force_factor", 10);
     setup();
     carry_object(__DIR__"obj/linen")->wear();
 }
 
-void  init()
-{
+void init() {
     ::init();
-    add_action("do_fight",  "fight");
-    add_action("do_kill",  "kill");
+    add_action("do_fight", "fight");
+    add_action("do_kill", "kill");
     if  (room  ==  0)
-        room  =  environment  (this_object());
+        room = environment  (this_object());
 }
 
-void  refuse_message  (object  me,  object  who)
-{
-    message_vision  ("$N說：別別，殺$N哪有賽龜有趣。\n",me,who);
+void refuse_message  (object me, object who) {
+    message_vision  ("$N說：別別，殺$N哪有賽龜有趣。\n", me, who);
 }
 
-int  do_fight(string  arg)
-{
-    object  who  =  this_player();
-    object  me  =  this_object();
+int do_fight(string arg) {
+    object who = this_player();
+    object me = this_object();
 
-    if  (arg  &&  present(arg,environment(who))==me)
+    if  (arg  &&  present(arg, environment(who))==me)
     {
-        message_vision  ("$N看樣子輸紅了眼，想找$n打架。\n",who,me);
-        refuse_message  (me,who);
+        message_vision  ("$N看樣子輸紅了眼，想找$n打架。\n", who, me);
+        refuse_message  (me, who);
         return  1;
     }
     return  0;
 }
 
-int  do_kill(string  arg)
-{
-    object  who  =  this_player();
-    object  me  =  this_object();
+int do_kill(string arg) {
+    object who = this_player();
+    object me = this_object();
 
-    if  (arg  &&  present(arg,environment(who))==me)
+    if  (arg  &&  present(arg, environment(who))==me)
     {
-        message_vision  ("$N看樣子輸紅了眼，想殺$n。\n",who,me);
-        refuse_message  (me,who);
+        message_vision  ("$N看樣子輸紅了眼，想殺$n。\n", who, me);
+        refuse_message  (me, who);
         return  1;
     }
     return  0;

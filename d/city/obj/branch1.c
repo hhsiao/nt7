@@ -5,14 +5,13 @@
 #include <weapon.h>
 inherit SWORD;
 
-void create()
-{
+void create() {
     set_name("小樹枝", ({"shuzhi", "zhi", "branch"}));
-    set_weight(100+random(100));
+    set_weight(100 + random(100));
     set("long", "這是一根小樹枝。\n");
-        set("unit","根");
-        set("wield_msg","$N抽出一根小樹枝握在手中。\n");
-        set("material", "wood");
+    set("unit", "根");
+    set("wield_msg", "$N抽出一根小樹枝握在手中。\n");
+    set("material", "wood");
     init_sword(random(2));
 
     setup();

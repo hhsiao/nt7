@@ -3,16 +3,15 @@
 inherit ITEM;
 inherit F_LIQUID;
 
-void create()
-{
-        set_name("茶壺", ({ "tea pot", "pot" }));
-        set_weight(500);
-        set("long", "一個茶館賣的茶壺，大概裝得幾升水。\n");
-                set("unit", "個");
-                set("value", 30);
-                set("max_liquid", 10);
-        set("liquid", ([
-                "name": "茶水",
-                "remaining": 10,
+void create() {
+    set_name("茶壺", ({ "tea pot", "pot" }));
+    set_weight(500);
+    set("long", "一個茶館賣的茶壺，大概裝得幾升水。\n");
+    set("unit", "個");
+    set("value", 30);
+    set("max_liquid", 10);
+    set("liquid", ([
+        "name": "茶水",
+        "remaining": 10
         ]));
 }

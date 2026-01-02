@@ -4,18 +4,17 @@
 
 inherit EQUIP;
 
-void create()
-{
-        set_name( RED "豔露凝香衣" NOR, ({ "ningxiang yi", "ningxiang", "yi" }) );
-        set_weight(700);
-        set("unit", "件");
-                set("value", 2000);
-                set("material", "cloth");
-                set("armor_type", "cloth");
-                set("armor_prop/armor", 3);
-                set("female_only", 1);
-                set("wear_msg","$N穿上一件$n。\n");
-                set("remove_msg","$N將$n脫了下來。\n");
+void create() {
+    set_name(RED "豔露凝香衣" NOR, ({ "ningxiang yi", "ningxiang", "yi" }) );
+    set_weight(700);
+    set("unit", "件");
+    set("value", 2000);
+    set("material", "cloth");
+    set("armor_type", "cloth");
+    set("armor_prop/armor", 3);
+    set("female_only", 1);
+    set("wear_msg", "$N穿上一件$n。\n");
+    set("remove_msg", "$N將$n脫了下來。\n");
 
-        setup();
+    setup();
 }

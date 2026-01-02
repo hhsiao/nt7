@@ -2,18 +2,17 @@
 
 inherit EQUIP;
 
-void create()
-{
-        set_name( HIY "軟金束帶" NOR, ({ "ruanjin sudai", "sudai", "ruanjin" }) );
-        set_weight(1000);
-        set("unit", "條");
-                set("value", 2000);
-                set("material", "cloth");
-                set("armor_type", "waist");
-                set("armor_prop/armor", 4);
-                set("armor_prop/dodge", -1);
-                set("wear_msg","$N圍上一條$n。\n");
-                set("remove_msg","$N將$n解了下來。\n");
+void create() {
+    set_name(HIY "軟金束帶" NOR, ({ "ruanjin sudai", "sudai", "ruanjin" }) );
+    set_weight(1000);
+    set("unit", "條");
+    set("value", 2000);
+    set("material", "cloth");
+    set("armor_type", "waist");
+    set("armor_prop/armor", 4);
+    set("armor_prop/dodge", -1);
+    set("wear_msg", "$N圍上一條$n。\n");
+    set("remove_msg", "$N將$n解了下來。\n");
 
-        setup();
+    setup();
 }

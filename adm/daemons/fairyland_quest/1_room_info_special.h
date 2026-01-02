@@ -18,7 +18,7 @@
 
    JOB1 的發呆生效時間必須比 JOB2 的短。具體看下邊的設置。
 
-   另外，在此房間停留，會隨機損失 hp ，至死方休！ 
+   另外，在此房間停留，會隨機損失 hp ，至死方休！
 
    int query_idle( object target ) 返回發呆值 :)
 
@@ -58,20 +58,20 @@ void create()
     set("long", "你剛走過來，卻發現這裡是一小方水潭，水潭之水清幽平靜，潭邊立著一個
 小亭(ting)。你只見月色清風，粼光閃爍，端的是舒心暢懷，清雅無比。你似乎
 已忘了密林中的兇殺嘶喊，剛才的緊迫就似已離你而去。
-                                                           [1;33m●[37;0m       
-                                                                    
-                                            [1;32m.. .[37;0m      [1;34mI[37;0m       [1;32m..[37;0m    
-                                            [1;32m..[37;0m      [1;34m,'.`.[37;0m           
-                                              [1;34m.__,-'.:::.`-.__,[37;0m  [1;32m.[37;0m  
+                                                           [1;33m●[37;0m
+
+                                            [1;32m.. .[37;0m      [1;34mI[37;0m       [1;32m..[37;0m
+                                            [1;32m..[37;0m      [1;34m,'.`.[37;0m
+                                              [1;34m.__,-'.:::.`-.__,[37;0m  [1;32m.[37;0m
                                                [1;34m~-------------~[37;0m      ");
 
     // string to long, 要分開來 set, 5555555
     set("long", query("long") + "
-                                                 [1;31m_|=|___|=|_[37;0m        
-                                           [1;34m.__,-'.:::::::::.`-.__,[37;0m  
-                               [37m[37;0m             [1;34m~-------------------~[37;0m   
-                               [37m |[37;0m              [1;31m_|_|_|___|_|_|_[37;0m      
-                               [37m###################################[37;0m  
+                                                 [1;31m_|=|___|=|_[37;0m
+                                           [1;34m.__,-'.:::::::::.`-.__,[37;0m
+                               [37m[37;0m             [1;34m~-------------------~[37;0m
+                               [37m |[37;0m              [1;31m_|_|_|___|_|_|_[37;0m
+                               [37m###################################[37;0m
 [42m     [30m▂▃▄▅▆▇▆▅▄▅▆▅▄▃▂▁▂▃▄▅▆▇█▇▆▅▄▃▂▁   [37;0m
         \n");
 
@@ -101,7 +101,7 @@ void create()
     set("invalid_startroom",1);
 
     set("exits",([
-        "east" : __DIR__"hj_room2", 
+        "east" : __DIR__"hj_room2",
         "south" : __DIR__"hj_room11",
         "southeast" : __DIR__"hj_room12",
         ]) );
@@ -345,7 +345,7 @@ void checking_job2( object me, string id )
 int do_lvup(string arg)
 {
     object me = this_player(), rooms;
-    int next_lv, score_need, skills_need, power_need, f_sks_need, y_sks_need, l_sks_need, d_sks_need, heal_sks_need, dh_sks_need, fh_sks_need, gs_sks_need;
+    int next_lv, score_need, power_need, f_sks_need, y_sks_need, l_sks_need, d_sks_need, heal_sks_need, dh_sks_need, fh_sks_need, gs_sks_need;
     string msg;
 
     int t;

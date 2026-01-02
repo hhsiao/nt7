@@ -1,17 +1,16 @@
-        //shawei.c
+//shawei.c
 
 #include <weapon.h>
 
 inherit STAFF;
 
-void create()
-{
-        set_name("殺威棒", ({"shawei bang", "bang"}));
-        set_weight(3000);
-        set("unit", "把");
-                set("value", 200);
-                set("material", "wood");
+void create() {
+    set_name("殺威棒", ({"shawei bang", "bang"}));
+    set_weight(3000);
+    set("unit", "把");
+    set("value", 200);
+    set("material", "wood");
 
-        init_staff(20);
-        setup();
+    init_staff(20);
+    setup();
 }

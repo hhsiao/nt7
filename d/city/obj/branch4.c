@@ -5,15 +5,14 @@
 #include <weapon.h>
 inherit CLUB;
 
-void create()
-{
+void create() {
     set_name(YEL"長樹枝"NOR, ({"shuzhi", "zhi", "branch"}));
-    set_weight(500+random(500));
+    set_weight(500 + random(500));
     set("long", "這是一根長樹枝。\n");
-        set("unit","根");
-        set("wield_msg","$N拔出一根長樹枝握在手中。\n");
-        set("material", "wood");
-    init_club(random(2)+1);
+    set("unit", "根");
+    set("wield_msg", "$N拔出一根長樹枝握在手中。\n");
+    set("material", "wood");
+    init_club(random(2) + 1);
 
     setup();
 }

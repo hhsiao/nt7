@@ -2,26 +2,25 @@
 // Date: Feb.14 1998 by Java
 
 inherit ROOM;
-void create()
-{
-        set("short", "金牛武館一部");
-        set("long", @LONG
+void create() {
+    set("short", "金牛武館一部");
+    set("long", @LONG
 這裡是「金牛武館」教授一部，師傅陳滸教授如下技能：基本輕
 功，基本內功，基本招架，基本拳法，基本杖法，基本棒法。
 LONG );
-        set("objects", ([
-                __DIR__"npc/chenhu" : 1,
+    set("objects", ([
+        __DIR__"npc/chenhu" : 1
         ]));
-        set("no_fight",0);
-        set("no_steal",1);
-        set("no_beg",1);
-        set("no_clean_up", 0);
-        set("exits", ([
-                "west" : __DIR__"wuguan",
+    set("no_fight", 0);
+    set("no_steal", 1);
+    set("no_beg", 1);
+    set("no_clean_up", 0);
+    set("exits", ([
+        "west": __DIR__"wuguan"
         ]));
-        set("coor/x", -15190);
-	set("coor/y", -1800);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", -15190);
+    set("coor/y", -1800);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

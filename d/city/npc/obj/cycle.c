@@ -4,14 +4,13 @@
 
 inherit NECK;
 
-void create()
-{
-        set_name("武者項圈", ({ "neck-cycle", "xiang quan", "lian" }) );
-        set_weight(1000);
-        set("material", "steel");
-                set("unit", "串");
-                set("long", "這是一串鐵質的項鍊，用以保護頸部。\n");
-                set("value", 1800);
-                set("armor_prop/dodge", 5);
-        setup();
+void create() {
+    set_name("武者項圈", ({ "neck-cycle", "xiang quan", "lian" }) );
+    set_weight(1000);
+    set("material", "steel");
+    set("unit", "串");
+    set("long", "這是一串鐵質的項鍊，用以保護頸部。\n");
+    set("value", 1800);
+    set("armor_prop/dodge", 5);
+    setup();
 }

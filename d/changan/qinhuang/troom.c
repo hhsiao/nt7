@@ -1,39 +1,36 @@
 inherit ROOM;
 int do_xue(string arg);
-void create()
-{
+void create() {
     set("short", "箭俑");
-        set("long", @LONG
+    set("long", @LONG
 這裡的陶俑手裡都拿著弓，擺著各種姿勢，神態各異。
 LONG );
     set("exits", ([
-           "west":__DIR__"shidao3",
-    ]));
+        "west": __DIR__"shidao3"
+        ]));
     setup();
 }
-void init()
-{
+void init() {
     add_action("do_xue", "xue");
 }
-int do_xue(string arg)
-{
+int do_xue(string arg) {
     object me;
     me = this_player();
-    if ( !arg || ( arg != "俑" ) )
+    if (!arg || (arg != "俑" ) )
         return notify_fail("什麼？\n");
-    if ( (int)me->query_skill("literate", 1) < 1)
+    if ((int)me->query_skill("literate", 1) < 1)
         return notify_fail("你是個文盲，先學點文化(literate)吧。\n");
-    if( query("hammer", me))return notify_fail("你已經學過錘俑了。\n");
-    if( query("sword", me))return notify_fail("你已經學過劍俑了。\n");
-    if( query("unarmed", me))return notify_fail("你已經學過拳俑了。\n");
-    if( query("club", me))return notify_fail("你已經學過棍俑了。\n");
-    if( query("axe", me))return notify_fail("你已經學過斧俑了。\n");
-    if( query("staff", me))return notify_fail("你已經學過杖俑了。\n");
-    if( query("whip", me))return notify_fail("你已經學過鞭俑了。\n");
-    if( query("blade", me))return notify_fail("你已經學過刀俑了。\n");
+    if(query("hammer", me))return notify_fail("你已經學過錘俑了。\n");
+    if(query("sword", me))return notify_fail("你已經學過劍俑了。\n");
+    if(query("unarmed", me))return notify_fail("你已經學過拳俑了。\n");
+    if(query("club", me))return notify_fail("你已經學過棍俑了。\n");
+    if(query("axe", me))return notify_fail("你已經學過斧俑了。\n");
+    if(query("staff", me))return notify_fail("你已經學過杖俑了。\n");
+    if(query("whip", me))return notify_fail("你已經學過鞭俑了。\n");
+    if(query("blade", me))return notify_fail("你已經學過刀俑了。\n");
     me->receive_damage("jing", 1000);
     message_vision("$N開始模仿學習這些秦俑的各種動作。\n", me);
-    if ( (int)me->query_skill("throwing", 1) < 851)
+    if ((int)me->query_skill("throwing", 1) < 851)
     {
         me->improve_skill("throwing", me->query_int());
         set("throwing", 1, me);

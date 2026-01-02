@@ -2,51 +2,48 @@
 
 inherit COMBINED_ITEM;
 
-void create()
-{
-        set_name(HIY "龍王丹" NOR, ({"longwang dan", "dan"}));
-        set("base_unit", "粒");
-                set("no_drop", "這樣東西不能離開你。\n");
-                set("no_sell", "這樣東西不能離開你。\n");
-                set("no_put", "這樣東西不能放在那兒。\n");
-                set("no_get", "這樣東西不能離開那兒。\n");
-                set("no_steal", "這樣東西不能離開那兒。\n");
-                set("no_beg", "這樣東西不能離開那兒。\n");
-                set("base_value", 0);
-                set("only_do_effect", 1);
-        setup();
-        set_amount(1);
+void create() {
+    set_name(HIY "龍王丹" NOR, ({"longwang dan", "dan"}));
+    set("base_unit", "粒");
+    set("no_drop", "這樣東西不能離開你。\n");
+    set("no_sell", "這樣東西不能離開你。\n");
+    set("no_put", "這樣東西不能放在那兒。\n");
+    set("no_get", "這樣東西不能離開那兒。\n");
+    set("no_steal", "這樣東西不能離開那兒。\n");
+    set("no_beg", "這樣東西不能離開那兒。\n");
+    set("base_value", 0);
+    set("only_do_effect", 1);
+    setup();
+    set_amount(1);
 }
 
-int do_effect(object me)
-{
-        mapping my;
+int do_effect(object me) {
+    mapping my;
 
-        if( time()-query_temp("last_eat/dan(M, me)")<400 )
-        {
-                write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
-                return 1;
-        }
-
-        my = me->query_entire_dbase();
-
-//        me->set_temp("last_eat/dan(M)", time());
-
-        if(me->improve_neili(3))
-                message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到內力又雄厚了一些。\n" NOR, me);
-        else
-                message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到好象沒什麼效果。\n" NOR, me);
-
-        me->start_busy(1);
-
-        add_amount(-1);
-        if (query_amount() < 1)
-                destruct(this_object());
-
+    if(time() - query_temp("last_eat/dan(M, me)")<400 )
+    {
+        write("你剛服用過藥，需藥性發揮完效用以後才能繼續服用。\n");
         return 1;
+    }
+
+    my = me->query_entire_dbase();
+
+    //        me->set_temp("last_eat/dan(M)", time());
+
+    if(me->improve_neili(3))
+        message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到內力又雄厚了一些。\n" NOR, me);
+    else
+        message_vision(HIY "$N" HIY "吃下一粒龍王丹，感到好象沒什麼效果。\n" NOR, me);
+
+    me->start_busy(1);
+
+    add_amount(-1);
+    if (query_amount() < 1)
+        destruct(this_object());
+
+    return 1;
 }
 
-void owner_is_killed()
-{
-        destruct(this_object());
+void owner_is_killed() {
+    destruct(this_object());
 }

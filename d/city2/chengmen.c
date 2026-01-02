@@ -1,11 +1,10 @@
 inherit ROOM;
 #include <ansi.h>;
 
-void create()
-{
-        set("short", "汴梁城門");
-        set("long",
-"這裡是大宋汴梁城的城門，只見城門上方“汴梁城”三個大字分外醒
+void create() {
+    set("short", "汴梁城門");
+    set("long",
+        "這裡是大宋汴梁城的城門，只見城門上方“汴梁城”三個大字分外醒
 目。也許是遠離戰火之故，這裡的繁華絲毫未減大都之色，來來往往遊人
 閒士絡繹不絕，歌舞笙歌，醉生夢死，好一片太平安樂盛世。\n"
 "                         s________________s
@@ -21,17 +20,17 @@ void create()
     []==[]_|__|__|__|__|__|__|        |_|__|__|__|__|__|__[]==[]
     []==[]__|__|__|__|__|__|_|        |__|__|__|__|__|__|_[]==[]
     []==[]_|__|__|__|__|__|__|        |_|__|__|__|__|__|__[]==[]\n\n"
-);
-        set("outdoors", "city2");
-        set("no_fly",1);
-        set("exits", ([
-                "north"    : __DIR__"nandajie1",
-                "south"    : __DIR__"yidao3",
-//                "west"    : "/d/room/playtown/guandao1",
+    );
+    set("outdoors", "city2");
+    set("no_fly", 1);
+    set("exits", ([
+        "north": __DIR__"nandajie1",
+        "south": __DIR__"yidao3",
+    //                "west"    : "/d/room/playtown/guandao1"
         ]));
-        set("objects", ([
-                __DIR__"npc/jinyiwei" : 3,
+    set("objects", ([
+        __DIR__"npc/jinyiwei" : 3
         ]));
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }

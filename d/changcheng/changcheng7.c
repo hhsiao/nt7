@@ -4,25 +4,24 @@
 #include <ansi.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", "長城");
-        set("long", WHT @LONG
+void create() {
+    set("short", "長城");
+    set("long", WHT @LONG
 這裡就是舉世聞名的----長城。站在長城上，你可以看到四周群山
 環繞，山上可以看見不少矮矮的灌木叢，但不少的樹也被砍光了，很多
 地方已經露出了一片片的黃土，舉目望去，你腳下的長城順著山脊象一
 條巨龍般蜿蜒的向北，向東南延伸出去。北面山頂處是一個烽火臺。
 LONG
-NOR );
-        set("outdoors", "changcheng");
-        set("exits", ([
-                "northup"   :__DIR__"fenghuotai1-1",
-                "southeast" :__DIR__"changcheng6",
+        NOR );
+    set("outdoors", "changcheng");
+    set("exits", ([
+        "northup": __DIR__"fenghuotai1-1",
+        "southeast": __DIR__"changcheng6"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -6000);
-        set("coor/y", 6000);
-        set("coor/z", 80);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -6000);
+    set("coor/y", 6000);
+    set("coor/z", 80);
+    setup();
+    replace_program(ROOM);
 }

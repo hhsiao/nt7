@@ -2,10 +2,9 @@
 // Date: Feb.14 1998 by Java
 
 inherit ROOM;
-void create()
-{
-        set("short", "金牛武館");
-        set("long", @LONG
+void create() {
+    set("short", "金牛武館");
+    set("long", @LONG
 「金牛武館」在江湖中很有名聲，很多大俠自小就是從這裡走進
 江湖。雖然他們在江湖早已成名立萬，這裡的師傅年紀也都大了，卻
 是他們的啟蒙業師，他們也常回來看望師傅們，因此這裡長久得到黑
@@ -13,15 +12,15 @@ void create()
 基本輕功，基本內功，基本招架，基本手法，^M基本刀法。  牆上貼
 著個貼子(tiezi)。
 LONG );
-        set("objects", ([
-                __DIR__"npc/mawude" : 1,
-                __DIR__"npc/zhangfang" : 1,
+    set("objects", ([
+        __DIR__"npc/mawude" : 1,
+        __DIR__"npc/zhangfang" : 1
         ]));
-         set("no_fight",0);
-        set("no_steal",1);
-        set("no_beg",1);
-        set("item_desc", ([
-            "tiezi" : @TEXT
+    set("no_fight", 0);
+    set("no_steal", 1);
+    set("no_beg", 1);
+    set("item_desc", ([
+        "tiezi": @TEXT
 金牛武館敬啟者：不須把所有的基本武功學全。必要的基本武功是：
 
 ㈠ 基本內功
@@ -46,23 +45,22 @@ LONG );
 學習命令是: xue 師傅名 武功技能
 TEXT
         ]) );
-        set("exits", ([
-                "southwest" : __DIR__"northroad3",
-                "east"      : __DIR__"wuguanchen",
-                "south"     : __DIR__"wuguanlong",
-                "west"      : __DIR__"wuguanxiao",
-                "north"     : __DIR__"wuguanliu",
-                "up"        : __DIR__"practice",
+    set("exits", ([
+        "southwest": __DIR__"northroad3",
+        "east": __DIR__"wuguanchen",
+        "south": __DIR__"wuguanlong",
+        "west": __DIR__"wuguanxiao",
+        "north": __DIR__"wuguanliu",
+        "up": __DIR__"practice"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -15200);
-	set("coor/y", -1800);
-	set("coor/z", 0);
-	setup();
+    set("no_clean_up", 0);
+    set("coor/x", -15200);
+    set("coor/y", -1800);
+    set("coor/z", 0);
+    setup();
 }
-int valid_leave(object me, string dir)
-{
-        if( present("ma wude", this_object()) && !query_temp("marks/jinniu_paied", me) && (dir == "up") )
+int valid_leave(object me, string dir) {
+    if(present("ma wude", this_object()) && !query_temp("marks/jinniu_paied", me) && (dir == "up") )
         return notify_fail("馬五德笑道: 那是本館弟子才能進去的。\n");
-        else  return 1;
+    else  return 1;
 }

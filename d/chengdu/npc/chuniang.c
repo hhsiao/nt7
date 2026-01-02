@@ -24,7 +24,7 @@ LONG );
     set("attitude", "friendly");
 
     set("inquiry", ([
-        "job" : (: ask_job :),
+        "job": (: ask_job :),
         "工作" : (: ask_job :)
         ]));
 
@@ -50,8 +50,8 @@ LONG );
     set_skill("unarmed", 50);
 
     set("vendor_goods", ({
-            "/clone/misc/cailiao"
-        }));
+        "/clone/misc/cailiao"
+    }));
 
     setup();
 }
@@ -147,8 +147,8 @@ int do_cook(string arg) {
     }
 
     set_temp("job/step", 1, me);
-    me->start_busy(bind((: call_other, __FILE__, "cooking" :), me),
-        bind((: call_other, __FILE__, "halt_cooking" :), me));
+    me->start_busy(bind((: call_other, __FILE__, "cooking": ), me),
+        bind((: call_other, __FILE__, "halt_cooking": ), me));
     tell_object(me, "你拿起蔬菜，走到一邊坐下，開始揀菜。\n");
     return 1;
 }
@@ -229,7 +229,7 @@ int cooking(object me) {
             write(MAG "你隱隱約約的發現炒菜居然和武功有一些相通之處，真是奇妙。\n" NOR);
             gain_exp = 500 + random(1500);
             gain_pot = (gain_exp + 2) / 3;
-            GIFT_D->work_bonus(me, ([ "exp" : gain_exp, "pot" : gain_pot ]));
+            GIFT_D->work_bonus(me, ([ "exp": gain_exp, "pot": gain_pot ]));
         }
         return 0;
     }

@@ -4,14 +4,13 @@
 
 inherit HEAD;
 
-void create()
-{
-        set_name("臺夷頭巾", ({ "tou jin" }) );
-        set_weight(2000);
-        set("material", "steel");
-                set("unit", "條");
-                set("long", "這是一條臺夷頭巾，用以纏繞頭部。\n");
-                set("value", 1500);
-                set("armor_prop/dodge", -5);
-        setup();
+void create() {
+    set_name("臺夷頭巾", ({ "tou jin" }) );
+    set_weight(2000);
+    set("material", "steel");
+    set("unit", "條");
+    set("long", "這是一條臺夷頭巾，用以纏繞頭部。\n");
+    set("value", 1500);
+    set("armor_prop/dodge", -5);
+    setup();
 }

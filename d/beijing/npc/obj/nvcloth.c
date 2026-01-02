@@ -3,12 +3,11 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name("短裙", ({ "duan qun" }) );
-        set_weight(3000);
-        set("unit", "件");
-                set("material", "cloth");
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name("短裙", ({ "duan qun" }) );
+    set_weight(3000);
+    set("unit", "件");
+    set("material", "cloth");
+    set("armor_prop/armor", 1);
+    setup();
 }

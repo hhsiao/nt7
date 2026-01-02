@@ -38,7 +38,7 @@ void create() {
         "借書" : "借？你不還我到哪裡找你？哼！"
         ]));
     set("vendor_goods", ({
-            "/clone/book/lbook1",
+        "/clone/book/lbook1",
         "/clone/book/lbook2",
         "/clone/book/lbook3"
     }));
@@ -46,11 +46,11 @@ void create() {
 
     set("chat_chance", 1);
     set("chat_msg", ({
-            "朱熹說道：普天之下，莫非王土；率土之濱，莫非王臣。\n",
+        "朱熹說道：普天之下，莫非王土；率土之濱，莫非王臣。\n",
         "朱熹說道：出家人，小過損益焉；無妄大過，未濟鹹困之。\n",
         "朱熹說道：大學之道，在明明德。在親民，在止於至善。 \n",
         "朱熹說道：格物致知，誠意正心，修身齊家，治國平天下。\n"
-        }) );
+    }) );
 }
 
 void init() {

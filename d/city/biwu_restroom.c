@@ -4,64 +4,59 @@ inherit ROOM;
 
 int do_look(string arg);
 
-void create()
-{
+void create() {
     set("short", HIY"休息室"NOR);
-        set("long", @LONG
+    set("long", @LONG
 這是一個簡單但是色彩柔和的小房間，四周隨意放著一些沙發，
 另外中間還有幾張小床，給打下擂臺的挑戰者們時不時給抬到這裡來。
 這裡最好請保持安靜。
 LONG );
 
-    set("no_fight",1);
-    set("no_beg",1);
-    set("no_steal",1);
-    set("biwu_room",1);
+    set("no_fight", 1);
+    set("no_beg", 1);
+    set("no_steal", 1);
+    set("biwu_room", 1);
 
     set("exits", ([
-        "east"  : "/d/city/biwu_road",
-    ]));
+        "east": "/d/city/biwu_road"
+        ]));
 
     set("no_clean_up", 0);
-	set("coor/x", -70);
-	set("coor/y", 10);
-	set("coor/z", 0);
-	setup();
+    set("coor/x", -70);
+    set("coor/y", 10);
+    set("coor/z", 0);
+    setup();
 }
 
-void init()
-{
-    add_action("do_get","get");
-    add_action("do_put","put");
-    add_action("do_drop","drop");
+void init() {
+    add_action("do_get", "get");
+    add_action("do_put", "put");
+    add_action("do_drop", "drop");
 }
 
-int do_get()
-{
+int do_get() {
     object me;
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在這裡你想幹什麼？\n");
+    tell_object(me, "在這裡你想幹什麼？\n");
     return 1;
 }
 
-int do_drop()
-{
+int do_drop() {
     object me;
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在這裡你想幹什麼？\n");
+    tell_object(me, "在這裡你想幹什麼？\n");
     return 1;
 }
 
-int do_put()
-{
+int do_put() {
     object me;
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在這裡你想幹什麼？\n");
+    tell_object(me, "在這裡你想幹什麼？\n");
     return 1;
 }

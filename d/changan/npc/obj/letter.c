@@ -2,38 +2,35 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("家書", ({"xin", "letter"}));
-        set_weight(100);
-          set("unit", "封");
-                  set("long", "一封滴滿淚痕的信．\n");
+void create() {
+    set_name("家書", ({"xin", "letter"}));
+    set_weight(100);
+    set("unit", "封");
+    set("long", "一封滴滿淚痕的信．\n");
 
-          set("is_monitored",1);
-          setup();
+    set("is_monitored", 1);
+    setup();
 }
 
-void destruct_me(object where, object me)
-{
-          message_vision("$n一落，慢慢地隨風飄去……\n",where,me);
-          destruct (me);
+void destruct_me(object where, object me) {
+    message_vision("$n一落，慢慢地隨風飄去……\n", where, me);
+    destruct (me);
 }
 
-void init()
-{
-          object me = this_object();
-          object where = environment();
-          if (interactive(where))
+void init() {
+    object me = this_object();
+    object where = environment();
+    if (interactive(where))
+    {
+        if(query("owned", me) )
         {
-                    if( query("owned", me) )
-                {
-                              if( query("owned", me) != query("id", where) )
-                        {
-                                call_out("destruct_me",1,where,me);
-                        }
-                } else
-                {
-                              set("owned",query("id",  where), me);
-                }
+            if(query("owned", me) != query("id", where) )
+            {
+                call_out("destruct_me", 1, where, me);
+            }
+        } else
+        {
+            set("owned", query("id", where), me);
         }
+    }
 }

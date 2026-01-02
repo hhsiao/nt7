@@ -4,13 +4,12 @@
 
 inherit NECK;
 
-void create()
-{
-        set_name("金項鍊", ({ "golden necklace", "necklace", "lace" }));
-        set_weight(500);
-        set("unit", "串");
-                set("value", 2500);
-                set("material", "gold");
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name("金項鍊", ({ "golden necklace", "necklace", "lace" }));
+    set_weight(500);
+    set("unit", "串");
+    set("value", 2500);
+    set("material", "gold");
+    set("armor_prop/armor", 1);
+    setup();
 }

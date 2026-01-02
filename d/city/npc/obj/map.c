@@ -3,12 +3,11 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name( HIC "『天下旅遊圖』" NOR, ({ "luyou tu", "tu" }) );
-        set_weight(10);
-        set("unit", "張");
-                set("long", @TEXT
+void create() {
+    set_name(HIC "『天下旅遊圖』" NOR, ({ "luyou tu", "tu" }) );
+    set_weight(10);
+    set("unit", "張");
+    set("long", @TEXT
                  『天下旅遊圖』
                                                                          天池
                                                                      長白山●/
@@ -50,7 +49,7 @@ void create()
   ●  湖泊                           | ～  /    /～～ ¤～ ～～～ ～ ～～～～
                                     /   ～ --__-  ～ ～～～ ～～～～ ～～～
 TEXT);
-                set("value", 50);
-                set("material", "paper");
-        setup();
+    set("value", 50);
+    set("material", "paper");
+    setup();
 }

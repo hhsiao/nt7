@@ -5,14 +5,13 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        string name =RED"素暖香雞"NOR;
-        set_name(name, ({"sunuan xiangji", "xiangji", "ji"}));
-          set_weight(300);
-          set("long", "一盤令人垂涎的"+name+"。\n");
-                    set("unit", "盤");
-                    set("value", 1000);
-                    set("food_remaining", 10);
-                    set("food_supply", 30);
+void create() {
+    string name = RED"素暖香雞"NOR;
+    set_name(name, ({"sunuan xiangji", "xiangji", "ji"}));
+    set_weight(300);
+    set("long", "一盤令人垂涎的"+name + "。\n");
+    set("unit", "盤");
+    set("value", 1000);
+    set("food_remaining", 10);
+    set("food_supply", 30);
 }

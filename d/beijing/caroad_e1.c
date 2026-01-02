@@ -1,59 +1,56 @@
 #include <room.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", "東長安街");
-        set("long", @LONG
+void create() {
+    set("short", "東長安街");
+    set("long", @LONG
 熱鬧的東長安大街是紫禁城的交通要道，寬闊的青石大道向東西
 兩頭延伸，路邊有個狗洞(dong)，幾隻懶狗正在那裡探頭。街道上行
 人不斷，繁華的盛世景象不言而喻。在這裡可以遠遠望見西邊那一堵
 堵高大厚實的古城牆，便是著名的天安門廣場了。北面是京城最為繁
 華熱鬧的王府井大街。
 LONG );
-       set("exits", ([
-                "east" : "/d/beijing/caroad_e2",
-                "west" : "/d/beijing/cagc_e",
-                "north" : "/d/beijing/wang_1",
+    set("exits", ([
+        "east": "/d/beijing/caroad_e2",
+        "west": "/d/beijing/cagc_e",
+        "north": "/d/beijing/wang_1"
         ]));
-        set("objects", ([
-                "/d/beijing/npc/girl4" : 1,
-                "/d/beijing/npc/jumin1" : 1,
+    set("objects", ([
+        "/d/beijing/npc/girl4" : 1,
+        "/d/beijing/npc/jumin1" : 1
         ]));
-        set("item_desc", ([
-            "dong" : "黑呼呼的狗洞，不知道有多深。\n",
+    set("item_desc", ([
+        "dong": "黑呼呼的狗洞，不知道有多深。\n"
         ]));
-	set("coor/x", -2780);
-	set("coor/y", 7670);
-	set("coor/z", 0);
-	setup();
+    set("coor/x", -2780);
+    set("coor/y", 7670);
+    set("coor/z", 0);
+    setup();
 }
-void init()
-{
-        add_action("do_enter", "enter");
-        add_action("do_enter", "zuan");
+void init() {
+    add_action("do_enter", "enter");
+    add_action("do_enter", "zuan");
 }
 
-int do_enter(string arg)
-{
-        object me;
-        mapping fam;
+int do_enter(string arg) {
+    object me;
+    mapping fam;
 
-        me = this_player();
-        if( !arg || arg=="" ) return 0;
-        if( arg=="dong" )
+    me = this_player();
+    if(!arg || arg=="" ) return 0;
+    if(arg=="dong" )
+    {
+        if((fam = query("family", me)) && fam["family_name"] == "丐幫" )
         {
-           if( (fam=query("family", me)) && fam["family_name"] == "丐幫" )
-           {
-               message("vision",
-                        me->name() + "運起丐幫縮骨功，一彎腰往狗洞裡鑽了進去。",
-                        environment(me), ({me}) );
-               me->move("/d/gaibang/underbj");
-               message("vision",
-                        me->name() + "從洞裡走了進來。\n",
-                        environment(me), ({me}) );
-                        return 1;
-           }
-           else  return notify_fail("這麼小的洞，你鑽得進去嗎？\n");
-       }
+            message("vision",
+                me->name() + "運起丐幫縮骨功，一彎腰往狗洞裡鑽了進去。",
+                environment(me), ({ me }) );
+            me->move("/d/gaibang/underbj");
+            message("vision",
+                me->name() + "從洞裡走了進來。\n",
+                environment(me), ({ me }) );
+            return 1;
+        }
+        else  return notify_fail("這麼小的洞，你鑽得進去嗎？\n");
+    }
 }

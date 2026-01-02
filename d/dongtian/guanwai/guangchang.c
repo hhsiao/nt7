@@ -205,8 +205,7 @@ int halt_attacking2()
 
 int attacking(object me)
 {
-        object ob;
-        object *obs, *t, tob;
+        object *t, tob;
         string coupid, *owns = ({});
         int ti1, ti2, n = 0, i, plv, npci = random(2) + 2;
 
@@ -1173,7 +1172,7 @@ int chk_reqitems(object me, int idx)
 
 int chk_reqtcash(object me, int amount)
 {
-        int i, k, flag;
+        int k, flag;
         string file, obname;
         object ob, *inv;
         int max_amount;
@@ -1906,7 +1905,7 @@ void addn_p()
 
 void create3(string na, string pa, string aa)
 {
-        string msg, fil, ft, *flist;
+        string fil, ft, *flist;
         object room, eroom, oroom;
         object *enemies;
         int flag = 1;

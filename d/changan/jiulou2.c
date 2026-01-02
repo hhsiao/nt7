@@ -5,31 +5,29 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "望星樓二樓");
-        set("long", 
-"二樓是酒樓的雅座。在這裡的客人們都低言慢語，不象樓下的客人\n"
-"那般狂呼豪飲。二樓賣的酒菜也是望星樓掌廚最拿手的。兩旁掛著長聯\n"
-"直貫屋角：\n"
-HIR "       君即飲此觴，對酒高歌，人醉樓頭，待劉伶同樂；\n"
-    "       餘亦醺一夢，臨風把盞，雲橫江上，與王粲銷愁。\n\n"
-NOR
-        );
+void create() {
+    set("short", "望星樓二樓");
+    set("long",
+        "二樓是酒樓的雅座。在這裡的客人們都低言慢語，不象樓下的客人\n"
+        "那般狂呼豪飲。二樓賣的酒菜也是望星樓掌廚最拿手的。兩旁掛著長聯\n"
+        "直貫屋角：\n"
+        HIR "       君即飲此觴，對酒高歌，人醉樓頭，待劉伶同樂；\n"
+        "       餘亦醺一夢，臨風把盞，雲橫江上，與王粲銷愁。\n\n"
+        NOR
+    );
 
-        set("exits", ([
-                "down" : __DIR__"jiulou",
+    set("exits", ([
+        "down": __DIR__"jiulou"
         ]));
-        set("objects", ([
-                __DIR__"npc/yang-laoban" : 1,
+    set("objects", ([
+        __DIR__"npc/yang-laoban" : 1
         ]));
 
 
-        set("coor/x", -10750);
-        set("coor/y", 1970);
-        set("coor/z", 10);
+    set("coor/x", -10750);
+    set("coor/y", 1970);
+    set("coor/z", 10);
 
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }
-

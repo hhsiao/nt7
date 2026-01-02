@@ -5,14 +5,13 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(CYN"玉帶"NOR, ({"yu dai", "dai" }));
-        set_weight(500);
-        set("long", "白玉雕成的玉帶，觸手細膩清涼。\n");
-                set("unit", "只");
-                set("value", 120000);
-                set("material", "gold");
-                set("armor_prop/armor", 12);
-        setup();
+void create() {
+    set_name(CYN"玉帶"NOR, ({"yu dai", "dai" }));
+    set_weight(500);
+    set("long", "白玉雕成的玉帶，觸手細膩清涼。\n");
+    set("unit", "只");
+    set("value", 120000);
+    set("material", "gold");
+    set("armor_prop/armor", 12);
+    setup();
 }

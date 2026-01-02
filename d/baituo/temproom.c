@@ -3,12 +3,11 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "小路");
-        set("long", @LONG
+void create() {
+    set("short", "小路");
+    set("long", @LONG
 通往蛇場內部的道路。
 LONG );
-        
-        setup();
+
+    setup();
 }

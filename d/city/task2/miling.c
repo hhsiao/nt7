@@ -3,7 +3,7 @@
 #include <ansi.h>
 inherit ITEM;
 
-string * help_str=({
+string * help_str = ({
 "這封密令是要你去保護一位人質，將之送到安全的地點去。在途中，
 不斷會有各種殺手截殺人質，而人質本身是不堪一擊的。途中會遇到
 各種各樣的狀況，需要靠你自己的智慧去解決。\n",
@@ -23,76 +23,70 @@ string * search = get_dir("/d/");
 
 int find_outdoor(string);
 
-void init()
-{
-        add_action("do_read", "readling");
-        add_action("do_help", "helpling");
-        add_action("do_where", "whereis");
+void init() {
+    add_action("do_read", "readling");
+    add_action("do_help", "helpling");
+    add_action("do_where", "whereis");
 }
 
-void create()
-{
-        set_name(HIY"密令"NOR, ({"mi ling", "ling", "ml"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
-                set("long",
-                "這是一張已經發黃的紙，上面歪歪曲曲地寫著一些字，\n你可以用指令(readling)來讀取，\n用指令(helpling)來看幫助，\n用指令(whereis)看地點說明。\n");
-                set("value", 0);
-                set("material","paper");
-                set("unit", "紙");
-//                set("no_get", 1);
-//                set("no_put", 1);
-//                set("no_drop", 1);
-                set("describe","");
-                set("src_add","");
-                set("src_des","");
-                set("dest_add","");
-                set("dest_des","");
-        }
+void create() {
+    set_name(HIY"密令"NOR, ({"mi ling", "ling", "ml"}));
+    if (clonep())
+        set_default_object(__FILE__);
+    else {
+        set("long",
+            "這是一張已經發黃的紙，上面歪歪曲曲地寫著一些字，\n你可以用指令(readling)來讀取，\n用指令(helpling)來看幫助，\n用指令(whereis)看地點說明。\n");
+        set("value", 0);
+        set("material", "paper");
+        set("unit", "紙");
+        //                set("no_get", 1);
+        //                set("no_put", 1);
+        //                set("no_drop", 1);
+        set("describe", "");
+        set("src_add", "");
+        set("src_des", "");
+        set("dest_add", "");
+        set("dest_des", "");
+    }
 }
 
-int do_read()
-{
-        object me = this_player();
+int do_read() {
+    object me = this_player();
 
-        tell_object(me,HIG"你這次的任務是："+query("describe")+"。\n"NOR);
-        return 1;
+    tell_object(me, HIG"你這次的任務是："+query("describe") + "。\n"NOR);
+    return 1;
 }
 
-int do_help()
-{
-        object me = this_player();
-        int i;
+int do_help() {
+    object me = this_player();
+    int i;
 
-        for (i=0;i<sizeof(help_str);i++)
-                tell_object(me,HIY + help_str[i] +"\n"+NOR);
-        return 1;
+    for (i = 0;i<sizeof(help_str);i++)
+        tell_object(me, HIY + help_str[i] + "\n"+NOR);
+    return 1;
 }
 
-int do_where()
-{
-        object me = this_player();
-        int i;
-        string where;
+int do_where() {
+    object me = this_player();
+    int i;
+    string where;
 
-        i = find_outdoor(query("src_des"));
-        where = i < sizeof(search) ? to_chinese(search[i]) : "哪個地方的";
-        tell_object(me,HIG"人質好象在"+where+"的"+query("src_add")+"\n"NOR);
-        i = find_outdoor(query("dest_des"));
-        where = i < sizeof(search) ? to_chinese(search[i]) : "哪個地方的";
-        tell_object(me,HIG"要護送到好象在"+where+"的"+query("dest_add")+"\n"NOR);
-        return 1;
+    i = find_outdoor(query("src_des"));
+    where = i < sizeof(search) ? to_chinese(search[i]) : "哪個地方的";
+    tell_object(me, HIG"人質好象在"+where + "的"+query("src_add") + "\n"NOR);
+    i = find_outdoor(query("dest_des"));
+    where = i < sizeof(search) ? to_chinese(search[i]) : "哪個地方的";
+    tell_object(me, HIG"要護送到好象在"+where + "的"+query("dest_add") + "\n"NOR);
+    return 1;
 }
 
-int find_outdoor(string arg)
-{
-        int i = 0;
+int find_outdoor(string arg) {
+    int i = 0;
 
-        while ( i < sizeof(search) ) {
-                if (search[i] == arg)
-                        return i;
-                i ++;
-        }
-        return i;
+    while (i < sizeof(search) ) {
+        if (search[i] == arg)
+            return i;
+        i ++;
+    }
+    return i;
 }

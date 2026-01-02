@@ -6,7 +6,7 @@
 
 inherit  ITEM;
 
-string  *prefixs  =  ({
+string *prefixs = ({
     "大",
     "小",
     "黑",
@@ -14,50 +14,49 @@ string  *prefixs  =  ({
     "圓",
     "白漆",
     "青漆",
-    "紫漆",
+    "紫漆"
 });
 
-string  *names  =  ({
+string *names = ({
     "木",
     "仙",
     "鑲玉",
-    "獸腳",
+    "獸腳"
 });
 
-string  *suffixs  =  ({
+string *suffixs = ({
     "桌",
-    "案",
+    "案"
 });
 
-void  create()
-{
-    set_name(prefixs[random(sizeof(prefixs))]+names[random(sizeof(names))]+
-                      suffixs[random(sizeof(suffixs))],  ({  "table"  }));
+void create() {
+    set_name(prefixs[random(sizeof(prefixs))] + names[random(sizeof(names))]+
+        suffixs[random(sizeof(suffixs))], ({  "table"  }));
     set_weight(30000);
-    set("long",  "這是一張桌子。\n"  );
-    set("unit",  "張");
-        set("material",  "stone");
-        set("value",  2000);
-        set("no_sell",  1);
-        set("no_get",  1);
+    set("long", "這是一張桌子。\n" );
+    set("unit", "張");
+    set("material", "stone");
+    set("value", 2000);
+    set("no_sell", 1);
+    set("no_get", 1);
     setup();
 }
 /*
 
-void  init  ()
-{
-    object  me  =  this_object();
-    object  where  =  environment(me);
+ * void  init  ()
+ * {
+ * object  me  =  this_object();
+ * object  where  =  environment(me);
 
-    if  (where  &&  userp(where))
-    {
-        remove_call_out  ("destruct_me");
-        call_out  ("destruct_me",900+random(900),me);
-    }
-}
+ * if  (where  &&  userp(where))
+ * {
+ * remove_call_out  ("destruct_me");
+ * call_out  ("destruct_me",900+random(900),me);
+ * }
+ * }
 
-void  destruct_me  (object  me)
-{
-        destruct  (me);
-}
-*/
+ * void  destruct_me  (object  me)
+ * {
+ * destruct  (me);
+ * }
+ */

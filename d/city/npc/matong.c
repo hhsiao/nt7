@@ -778,7 +778,7 @@ varargs int do_win(string str,object me)
 int do_check_win(string str)
 {
         int size=strlen(str),i,check;
-        int t,k,W,T,S,Sp;
+        int t,W,T,S,Sp;
         string tempW="",tempT="",tempS="",tempB="";
         string Special="1w9w1s9s1t9teasowenojofaba";
 
@@ -914,7 +914,7 @@ int do_check_win(string str)
 int check_hu(string strW)
 {
         int i,j,check;
-        int k,t;
+        int t;
         int A,B,C,D,E,F;
         for (i=0;i<sizeof(strW);i+=2)
         {//再把順子刪掉
@@ -1816,7 +1816,7 @@ string sort_data(string str)
 {
         int i = strlen(str),a,b,c,d;
 
-        string newstr="",temp="";
+        string temp="";
         for (a=-1;a<i;a++)
         {
                 a++;
@@ -2160,7 +2160,6 @@ int set_mjdata(object me,int *winner)
 int *get_mjdata(string Id)
 {
         int i,check,*winner=({0,0,0,0});
-        string str="";
         mixed *MjData;
 
         if (!Id) return 0;

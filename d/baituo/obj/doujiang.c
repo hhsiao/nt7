@@ -3,17 +3,16 @@ inherit F_LIQUID;
 
 void init();
 
-void create()
-{
-        set_name("杯子", ({ "cup", "beizi" }));
-        set_weight(50);
-        set("long", "一個磁杯子。\n");
-                set("unit", "個");
-                set("max_liquid", 5);
+void create() {
+    set_name("杯子", ({ "cup", "beizi" }));
+    set_weight(50);
+    set("long", "一個磁杯子。\n");
+    set("unit", "個");
+    set("max_liquid", 5);
 
-        set("liquid", ([
-                "name": "豆漿",
-                "remaining": 8,
+    set("liquid", ([
+        "name": "豆漿",
+        "remaining": 8
         ]));
-        setup();
+    setup();
 }

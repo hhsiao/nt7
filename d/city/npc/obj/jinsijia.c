@@ -5,30 +5,27 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name( HIY"金絲甲"NOR, ({ "jinsi jia", "jia"}) );
-        set_weight(10000);
-        set("unit", "件");
-/*
-                set("no_get", "1");
-                set("no_put", "1");
-                set("no_beg", "1");
-                set("no_drop", "1");
-                set("no_steal", "1");
-*/
-                set("value", 30000);
-                set("material", "leather");
-                set("armor_prop/armor", 100);
-        setup();
+void create() {
+    set_name(HIY"金絲甲"NOR, ({ "jinsi jia", "jia" }) );
+    set_weight(10000);
+    set("unit", "件");
+    /*
+     * set("no_get", "1");
+     * set("no_put", "1");
+     * set("no_beg", "1");
+     * set("no_drop", "1");
+     * set("no_steal", "1");
+     */
+    set("value", 30000);
+    set("material", "leather");
+    set("armor_prop/armor", 100);
+    setup();
 }
 
-int query_autoload()
-{
-   return 1;
+int query_autoload() {
+    return 1;
 }
-void owner_is_killed()
-{
-        write(HIY"只見眼前金光一閃...好象是.....\n"NOR);
-        destruct(this_object());
+void owner_is_killed() {
+    write(HIY"只見眼前金光一閃...好象是.....\n"NOR);
+    destruct(this_object());
 }

@@ -2,61 +2,58 @@
 inherit ITEM;
 int do_tear(string arg);
 #include <ansi.h>;
-void init()
-{
-        add_action("do_tear", "tear");
+void init() {
+    add_action("do_tear", "tear");
 }
 
-void create()
-{
-        set_name(HIY"四十二章經二"NOR, ({"book2"}));
-        set_weight(1000);
-        set("long",
-"\n一本正黃旗的經書，封皮(binding)很精緻。
+void create() {
+    set_name(HIY"四十二章經二"NOR, ({"book2"}));
+    set_weight(1000);
+    set("long",
+        "\n一本正黃旗的經書，封皮(binding)很精緻。
 翻了開來，第一頁寫著「永不加賦」四個大字，
 筆致圓柔，是順治帝的手筆。\n");
-                set("unit", "本");
-                set("material", "paper");
-        setup();
+    set("unit", "本");
+    set("material", "paper");
+    setup();
 }
 
 
-int do_tear(string arg)
-{
-        object me;
-        string dir;
-        me = this_player();
+int do_tear(string arg) {
+    object me;
+    string dir;
+    me = this_player();
 
-        if( !arg || arg=="" ) return 0;
-        if(!present(this_object(), me))
-                return notify_fail("你要撕什麼？\n");
+    if(!arg || arg=="" ) return 0;
+    if(!present(this_object(), me))
+        return notify_fail("你要撕什麼？\n");
 
-        if(arg=="book2")
+    if(arg=="book2")
+    {
+        message_vision("$N一下把經書撕得粉碎。\n", me);
+        destruct(this_object());
+        return 1;
+    }
+
+    if(sscanf(arg, "book2 %s", dir)==1 )
+    {
+        if(dir=="binding" )
         {
-                message_vision("$N一下把經書撕得粉碎。\n", me);
-                destruct(this_object());
-                return 1;
-        }
-
-        if( sscanf(arg, "book2 %s", dir)==1 )
-        {
-                if( dir=="binding" )
-                {
-                        if( query("hasgot", this_object()) )
-                                message_vision("$N將封皮撕開，發現羊皮已經被取走了。\n", me);
-                        else
-                        {
-                                message_vision("$N將封皮撕開，幾塊羊皮掉了下來。\n", me);
-                                message_vision("$N先將羊皮上的地圖記了下來，然後把它們燒掉了。\n", me);
+            if(query("hasgot", this_object()) )
+                message_vision("$N將封皮撕開，發現羊皮已經被取走了。\n", me);
+            else
+            {
+                message_vision("$N將封皮撕開，幾塊羊皮掉了下來。\n", me);
+                message_vision("$N先將羊皮上的地圖記了下來，然後把它們燒掉了。\n", me);
                 set("huanggong\haspi2", 1, me);
                 set("hasgot", 1, this_object());
-                }
+            }
         }
         else
         {
-                message_vision("$N一下把經書撕得粉碎。\n", me);
-                destruct(this_object());
+            message_vision("$N一下把經書撕得粉碎。\n", me);
+            destruct(this_object());
         }
         return 1;
-        }
+    }
 }

@@ -1,9 +1,8 @@
 #include <ansi.h>
 inherit ITEM;
-void create()
-{
-        set_name(YEL "手信" NOR, ({"letter"}));
-        set("long",@LONG
+void create() {
+    set_name(YEL "手信" NOR, ({"letter"}));
+    set("long",@LONG
 這是一張已經發黃的草紙，上面寫道...
 給我的後人：
     看完這封信，不要震驚哦，我花了畢生的精力，但是，很遺憾，
@@ -31,7 +30,7 @@ void create()
 了回來的出口，但......
 (下面已經看不清楚了，也許是年代太久遠了的緣故。)
 LONG
-);
-        set("unit", "張");
-        set("weight", 10);
+    );
+    set("unit", "張");
+    set("weight", 10);
 }

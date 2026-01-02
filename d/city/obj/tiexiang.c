@@ -5,35 +5,32 @@
 #include <ansi.h>
 inherit ITEM;
 
-void create()
-{
-        set_name("鐵箱", ({"tie xiang", "box"}));
-        set("long",
-                              "這是隻鐵箱，好像能打開(open)\n");
-                set("unit", "只");
-                set("open_count", 1);
-                set("weight", 1000);
+void create() {
+    set_name("鐵箱", ({"tie xiang", "box"}));
+    set("long",
+        "這是隻鐵箱，好像能打開(open)\n");
+    set("unit", "只");
+    set("open_count", 1);
+    set("weight", 1000);
 }
 
-void init()
-{
-        add_action("do_open","open");
+void init() {
+    add_action("do_open", "open");
 }
 
-int do_open()
-{
-        object ob, me = this_player();
+int do_open() {
+    object ob, me = this_player();
 
-        if (query("open_count") > 0)
-        {
-                message_vision(
-                        HIY "$N伸手打開鐵箱，箱子裡有一本書，上寫《天魔訣》三字。\n" NOR,
-                        this_player());
-                addn("open_count", -1);
-                ob = new("/clone/book/tianmo-jue");
-                ob -> move(me);
-                return 1;
-        }
-        else
-                return notify_fail("鐵盒已經被別人打開過了。\n");
+    if (query("open_count") > 0)
+    {
+        message_vision(
+            HIY "$N伸手打開鐵箱，箱子裡有一本書，上寫《天魔訣》三字。\n" NOR,
+            this_player());
+        addn("open_count", -1);
+        ob = new("/clone/book/tianmo-jue");
+        ob -> move(me);
+        return 1;
+    }
+    else
+        return notify_fail("鐵盒已經被別人打開過了。\n");
 }

@@ -272,9 +272,9 @@ int get_finish(object me)
                 return 0;
         }
 
-        if( !query("family/family_name", me) || 
+        if( !query("family/family_name", me) ||
             query("family/family_name", me) != "段氏皇族" )
-                    return notify_fail("你研究了一會兒，只覺的不是段氏皇族的根本無法理解其中奧妙\n");  
+                    return notify_fail("你研究了一會兒，只覺的不是段氏皇族的根本無法理解其中奧妙\n");
 
         if( query("gender", me) == "無性" )
                 return notify_fail("你無根無性，陰陽不調，難以演練六脈神劍。\n");
@@ -309,17 +309,17 @@ int get_finish(object me)
                 tell_object(me, "你覺得真氣不繼，無法融會貫通六劍。\n");
                 return 0;
         }
-   
+
         if ((int)me->query_skill("martial-cognize", 1) < 200)
         {
                 tell_object(me, "你演練完畢，發現如果武學修養更上一層因該更有所幫助。\n");
-                return 0;           
+                return 0;
         }
 
         if ((int)me->query_skill("force", 1) < 340)
         {
                 tell_object(me, "你演練完畢，發現自己內功根基太差，無法再繼續演練下去。\n");
-                return 0;           
+                return 0;
         }
 
         if (random(10) < 7)
@@ -414,8 +414,6 @@ int practice_skill(object me)
 
 mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
 {
-        string name;
-
         if (userp(me))
                 attack_time = (int)(me->query_skill("liumai-shenjian", 1) / 50);
         else
@@ -554,5 +552,5 @@ void skill_improved(object me)
 
 string perform_action_file(string action)
 {
-        return __DIR__"liumai-shenjian/" + action; 
+        return __DIR__"liumai-shenjian/" + action;
 }

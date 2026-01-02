@@ -1,8 +1,8 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/9
-#include <ansi.h> 
-#include <room.h> 
-inherit __DIR__"normal.c"; 
+#include <ansi.h>
+#include <room.h>
+inherit __DIR__"normal.c";
 
 #define ENCNUM 16
 #define ENCRND 4
@@ -13,7 +13,7 @@ int clean_up() { return 1;}
 void create()
 {
         set("short", "珍寶閣");
-        set("long", 
+        set("long",
 "這就是珍寶閣的所在，一棟九色的樓層拔地而起，赤橙黃綠青藍紫為前\n"
 "七層，然後為黑色一層，白色的頂層為最高，上面高懸一顆碧水珠，光彩奪\n"
 "目，人們一到珍寶閣十丈之內，立刻如沐春風，清爽無比，在珍寶閣各路珍\n"
@@ -25,7 +25,7 @@ void create()
                 ]));
 
         set("no_steal",1);
-        set("no_beg",1);         
+        set("no_beg",1);
                 set("no_rideto", 1);
                 set("no_flyto", 1);
         set("no_drift", 1);
@@ -58,19 +58,18 @@ void init()
 {
         int rnd;
         object ob;
-        object room;
         string obname;
         object me = this_player();
         object gcroom = get_object(__DIR__"guangchang.c");
         int halfamount;
         string *giftobs = ({});
-        
+
          if (!query("dongtian/encounter/SN1", me))
                 init_encounter(me);
-        
-        if (playerp(me) && 
+
+        if (playerp(me) &&
                 ( (query_temp("dongtian/houshan/hold_time", me)==query("hold_time", gcroom) && !gcroom->owner_level(me)) || (query("dongtian/encounter/SN1", me) && query("dongtian/encounter/SN1", me)==query("encounter/SN")) )
-                && query("encounter/amount"))  {        
+                && query("encounter/amount"))  {
                 halfamount = query("encounter/amount") / 2;
           while (query("encounter/amount")>halfamount) {
         set("encounter/ntime", time() + DELAY_T + random(DELAY_T / 2));
@@ -78,7 +77,7 @@ void init()
         set("encounter/SN", random(ENCRND) + 1);
                 delete("dongtian/encounter/SN1", me);
                 init_encounter(me);
-                
+
                 //獎勵
                 rnd = random(560);
                 if (rnd < 1)
@@ -101,11 +100,11 @@ void init()
                         ob = new("/clone/tongren/tongren1");
                 else
                         ob = EQUIPMENT_D->create_dynamic("", 60, 400);
-                        
+
         if (!ob->move(this_object()))
         {
-                destruct(ob); 
-        } 
+                destruct(ob);
+        }
         else
         {
                 me->start_busy(5 + random(6));//等待被主人抓賊
@@ -117,7 +116,7 @@ void init()
                         message_vision(append_color(
                                 NOR + CYN + (random(2) ? "哐啷" : "噹地") + (random(2) ? "~ " : "，") + NOR + CYN + "$N" + (random(2) ? "踩" : "踢") + (random(2) ? "到" : "住") + obname + NOR + CYN + (random(2) ? ".." : "...") + "\n" NOR
                                 , CYN), me);
-                        //if (rnd < 99) 
+                        //if (rnd < 99)
                         giftobs += ({obname});
 /*                      //if (rnd < 270) {//通知主人方
                                 if (objectp(room = get_object(__DIR__"houdian"))) {
@@ -130,10 +129,9 @@ void init()
                         //}*/
         }
       }
-        if(giftobs && sizeof(giftobs)) 
+        if(giftobs && sizeof(giftobs))
                 CHANNEL_D->channel_broadcast("dt", sort_msg(NOR + HIW + "傳說有人在" + NOR + HIC + __DIR__"guangchang.c"->load_name() + NOR + HIW + "洞天的" + query("short") + "發現了" + implode(giftobs, NOR + HIW + "、" + NOR + HIW) + NOR + HIW + "。\n" + NOR, 64));
         }
-        
+
         ::init();
 }
-

@@ -1,10 +1,9 @@
 inherit ITEM;
 #include <ansi.h>
-void create()
-{
-        set_name("刨花油", ({ "baohua you", "you"}) );
-        set_weight(50);
-        set("unit", "樽");
-                set("long", "氣味芳香的刨花油\n");
-                set("value", 1000);
+void create() {
+    set_name("刨花油", ({ "baohua you", "you" }) );
+    set_weight(50);
+    set("unit", "樽");
+    set("long", "氣味芳香的刨花油\n");
+    set("value", 1000);
 }

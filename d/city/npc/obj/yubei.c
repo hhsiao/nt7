@@ -5,13 +5,12 @@
 inherit ITEM;
 inherit F_LIQUID;
 
-void create()
-{
-        set_name(WHT"玉杯"NOR, ({ "yu bei", "bei" }) );
-        set_weight(50);
-        set("long", "小小的玉杯。做工精細。\n");
-                set("unit", "個");
-                set("value", 10000 );
-                set("max_liquid", 20);
+void create() {
+    set_name(WHT"玉杯"NOR, ({ "yu bei", "bei" }) );
+    set_weight(50);
+    set("long", "小小的玉杯。做工精細。\n");
+    set("unit", "個");
+    set("value", 10000 );
+    set("max_liquid", 20);
 
 }

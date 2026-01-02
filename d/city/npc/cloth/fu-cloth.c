@@ -4,17 +4,16 @@
 
 inherit EQUIP;
 
-void create()
-{
-        set_name( HIY "富貴團金褂" NOR, ({ "tuanjin gua", "tuanjin", "gua" }) );
-        set_weight(700);
-        set("unit", "件");
-                set("value", 1000);
-                set("material", "cloth");
-                set("armor_type", "cloth");
-                set("armor_prop/armor", 2);
-                set("wear_msg","$N穿上一件$n。\n");
-                set("remove_msg","$N將$n脫了下來。\n");
+void create() {
+    set_name(HIY "富貴團金褂" NOR, ({ "tuanjin gua", "tuanjin", "gua" }) );
+    set_weight(700);
+    set("unit", "件");
+    set("value", 1000);
+    set("material", "cloth");
+    set("armor_type", "cloth");
+    set("armor_prop/armor", 2);
+    set("wear_msg", "$N穿上一件$n。\n");
+    set("remove_msg", "$N將$n脫了下來。\n");
 
-        setup();
+    setup();
 }

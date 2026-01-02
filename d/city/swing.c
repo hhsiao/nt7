@@ -137,7 +137,6 @@ int is_owner(object me)
 
 int do_push2(string arg)
 {
-        int i;
         object me,ob;
         me = this_player();
         if(!arg || !objectp(ob = present(arg, environment(me))))
@@ -164,7 +163,6 @@ int do_push2(string arg)
 void init()
 {
         object me = this_player();
-        string id = query("id", me);
         add_action("do_sit", "sit");
                 add_action("do_lift", "lift");
         add_action("do_dang", "dang");
@@ -176,7 +174,6 @@ void init()
 
 int do_sit(string arg)
 {
-                int rnd = 0;
         string sitter, id;
         object me,ob;
         me = this_player();

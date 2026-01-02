@@ -3,21 +3,20 @@
 #include <ansi.h>
 inherit ITEM;
 
-void create()
-{
-        set_name(HIB"〖"HIY+"百變神通"HIB+"〗"NOR, ({"book","shu"}));
-        set_weight(600);
-        set("unit", "本");
-                set("value", 1000);
-                set("material", "paper");
-                set("long",
-                "一本可以學習易容術的書。\n");
-                set("value", 100);
-                set("skill", ([
-                        "name" : "pretending",
-                        "exp_required" : 1000,
-                        "jing_cost" : 20,
-                        "difficulty" : 30,
-                        "max_skill" : 200,
-                ]));
+void create() {
+    set_name(HIB"〖"HIY + "百變神通"HIB + "〗"NOR, ({"book", "shu"}));
+    set_weight(600);
+    set("unit", "本");
+    set("value", 1000);
+    set("material", "paper");
+    set("long",
+        "一本可以學習易容術的書。\n");
+    set("value", 100);
+    set("skill", ([
+        "name": "pretending",
+        "exp_required": 1000,
+        "jing_cost": 20,
+        "difficulty": 30,
+        "max_skill": 200
+        ]));
 }

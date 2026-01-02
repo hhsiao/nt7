@@ -2,96 +2,89 @@
 inherit ROOM;
 #include <ansi.h>;
 
-void create()
-{
-        set("short", "城外驛道");
-        set("long", @LONG
+void create() {
+    set("short", "城外驛道");
+    set("long", @LONG
 這裡是通往大宋京城的驛道，由於連年來戰火不止，顯得格外地
 荒涼，不時有來往的馬匹飛奔而過，濺起一土塵煙，沿途不時有土匪
 大盜出現，還是少作停留的好。
 LONG );
-        set("outdoors", "xiangyang");
-        set("no_fly", 1);
-        set("no_rideto", 1);
-        set("no_magic", 1);
+    set("outdoors", "xiangyang");
+    set("no_fly", 1);
+    set("no_rideto", 1);
+    set("no_magic", 1);
 
-        set("exits", ([
-                "east"  : __DIR__"yidao2", 
-                "west"  : __DIR__"yidao2",
+    set("exits", ([
+        "east": __DIR__"yidao2",
+        "west": __DIR__"yidao2"
         ]));
 
-        setup();
+    setup();
 }
 
-void init()
-{
-        object me=this_player();
+void init() {
+    object me = this_player();
 
-        if (! me->is_busy())
-                me->start_busy(random(2));
+    if (! me->is_busy())
+        me->start_busy(random(2));
 
-        tell_object(me,YEL"你快馬加鞭，一路飛馳在驛道上......\n"NOR);
+    tell_object(me, YEL"你快馬加鞭，一路飛馳在驛道上......\n"NOR);
 }
 
-int valid_leave(object me,string dir)
-{
-        object dadao,*env;
-        int i,flag;
-        int n;
-  
-        /*
-        env=all_inventory(environment(me));   
-        n = sizeof(filter_array(env, (: query("id", $1) == "jiangyang dadao" :)));
-        flag=0;
+int valid_leave(object me, string dir) {
 
-        for(i=0;i<sizeof(env);i++)
-        {
-                if( objectp(env[i]) && query("id", env[i]) == "jiangyang dadao"
-                &&  query("killer", env[i]) == query("id", me) )
-                        flag=1;
-        }
+    /*
+     * env=all_inventory(environment(me));
+     * n = sizeof(filter_array(env, (: query("id", $1) == "jiangyang dadao" :)));
+     * flag=0;
 
-        if( query_temp("warquest/purchase", me) && n < 20 && random(12)>10 )
-        {
-                dadao=new(__DIR__"npc/dadao");
-                dadao->set_from_me(me);
-                set_temp("warquest/party", "meng", dadao);
-                dadao->move(environment(me));
-                dadao->kill_ob(me);
-                me->kill_ob(dadao);
-                return notify_fail("忽然從路邊叢林中殺出一路人馬！\n");
-        } else
-        if(flag)
-                return notify_fail("江陽大盜擋住了你的去路。\n");
-        */
+     * for(i=0;i<sizeof(env);i++)
+     * {
+     * if( objectp(env[i]) && query("id", env[i]) == "jiangyang dadao"
+     * &&  query("killer", env[i]) == query("id", me) )
+     * flag=1;
+     * }
 
-        if( dir == "east" )
-                addn_temp("yidao/mark_steps", -random(2), me);
-        if(  dir == "west" )
-                addn_temp("yidao/mark_steps", random(2), me);
+     * if( query_temp("warquest/purchase", me) && n < 20 && random(12)>10 )
+     * {
+     * dadao=new(__DIR__"npc/dadao");
+     * dadao->set_from_me(me);
+     * set_temp("warquest/party", "meng", dadao);
+     * dadao->move(environment(me));
+     * dadao->kill_ob(me);
+     * me->kill_ob(dadao);
+     * return notify_fail("忽然從路邊叢林中殺出一路人馬！\n");
+     * } else
+     * if(flag)
+     * return notify_fail("江陽大盜擋住了你的去路。\n");
+     */
 
-        if( query_temp("yidao/mark_steps", me)>11 )
-        {
-                me->move(__DIR__"yidao3");
-                delete_temp("yidao", me);
-                tell_object(me,YEL"一路風塵僕僕之後，汴梁已經近在眼前了......\n"NOR);
-                return -1;
-        } 
+    if(dir == "east" )
+        addn_temp("yidao/mark_steps", -random(2), me);
+    if(dir == "west" )
+        addn_temp("yidao/mark_steps", random(2), me);
 
-        if( query_temp("yidao/mark_steps", me)<-11 )
-        {
-                me->move(__DIR__"yidao1");
-                delete_temp("yidao", me);
-                tell_object(me,YEL"一路風塵僕僕之後，襄陽已經近在眼前了......\n"NOR); 
-                return -1;
-        }
-        
-        if (! me->is_busy())
-                me->start_busy(random(2));
-
-        tell_object(me,YEL"你快馬加鞭，一路飛馳在驛道上......\n"NOR);
+    if(query_temp("yidao/mark_steps", me)>11 )
+    {
+        me->move(__DIR__"yidao3");
+        delete_temp("yidao", me);
+        tell_object(me, YEL"一路風塵僕僕之後，汴梁已經近在眼前了......\n"NOR);
         return -1;
-        
-        return ::valid_leave(me,dir);
-}
+    }
 
+    if(query_temp("yidao/mark_steps", me)<-11 )
+    {
+        me->move(__DIR__"yidao1");
+        delete_temp("yidao", me);
+        tell_object(me, YEL"一路風塵僕僕之後，襄陽已經近在眼前了......\n"NOR);
+        return -1;
+    }
+
+    if (! me->is_busy())
+        me->start_busy(random(2));
+
+    tell_object(me, YEL"你快馬加鞭，一路飛馳在驛道上......\n"NOR);
+    return -1;
+
+    return ::valid_leave(me, dir);
+}

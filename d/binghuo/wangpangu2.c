@@ -3,8 +3,7 @@
 
 inherit ROOM;
 
-void create()
-{
+void create() {
 /*
         set("short", "山谷");
         set("long", @LONG
@@ -18,54 +17,52 @@ void create()
 不及飛。
 LONG );
 */
-        set("short", "揚刀立威會場");
-        set("long", @LONG
+    set("short", "揚刀立威會場");
+    set("long", @LONG
 這裡是揚刀立威會場，一片青草地上擺著七八張方桌，除了東首第一席外，
 每張桌旁都已坐了人，有海沙派、巨鯨幫、神拳門等等各派弟子。
 LONG );
-        set("no_sleep_room",1);
-        set("outdoors", "wangpan");
-        set("item_desc", ([
-                "zi": 
-"　　　　※※※※※※※※※※※※※※※※※※※※※※※\n"
-"　　　　※※※※　　        　　　　　　　　　※※※※\n"
-"　　　　※※※※　　誰　倚　莫　號　寶　武　　※※※※\n"
-"　　　　※※※※　　        　　　　　　　　　※※※※\n"
-"　　　　※※※※　　與　天　敢　令　刀　林    ※※※※\n"
-"　　　　※※※※　　        　　　　　　　　　※※※※\n"
-"　　　　※※※※　　爭　不　不　天　屠　至　　※※※※\n"
-"　　　　※※※※　　        　　　　　　　　　※※※※\n"
-"　　　　※※※※　　鋒　出　從　下　龍　尊　　※※※※\n"
-"　　　　※※※※　　　　　　                　※※※※\n"
-"　　　　※※※※※※※※※※※※※※※※※※※※※※※\n",
+    set("no_sleep_room", 1);
+    set("outdoors", "wangpan");
+    set("item_desc", ([
+        "zi":
+        "　　　　※※※※※※※※※※※※※※※※※※※※※※※\n"
+        "　　　　※※※※　　        　　　　　　　　　※※※※\n"
+        "　　　　※※※※　　誰　倚　莫　號　寶　武　　※※※※\n"
+        "　　　　※※※※　　        　　　　　　　　　※※※※\n"
+        "　　　　※※※※　　與　天　敢　令　刀　林    ※※※※\n"
+        "　　　　※※※※　　        　　　　　　　　　※※※※\n"
+        "　　　　※※※※　　爭　不　不　天　屠　至　　※※※※\n"
+        "　　　　※※※※　　        　　　　　　　　　※※※※\n"
+        "　　　　※※※※　　鋒　出　從　下　龍　尊　　※※※※\n"
+        "　　　　※※※※　　　　　　                　※※※※\n"
+        "　　　　※※※※※※※※※※※※※※※※※※※※※※※\n"
         ]));
-        set("exits", ([
-                "north"     : __DIR__"wangpangu1",
-                "northeast" : __DIR__"wangpanlin",
+    set("exits", ([
+        "north": __DIR__"wangpangu1",
+        "northeast": __DIR__"wangpanlin"
         ]));
-        set("objects", ([
-                "/d/tulong/tulong/npc/mai" : 1,
-                "/d/tulong/tulong/npc/guo" : 1,
-                "/d/tulong/tulong/npc/yin" : 1,
-                "/d/tulong/tulong/npc/yuan" : 1,
-                "/d/tulong/tulong/obj/ding" : 1,
-                "/d/tulong/tulong/npc/zhang" : 1,
-                "/d/tulong/tulong/npc/chang" : 1,
+    set("objects", ([
+        "/d/tulong/tulong/npc/mai" : 1,
+        "/d/tulong/tulong/npc/guo" : 1,
+        "/d/tulong/tulong/npc/yin" : 1,
+        "/d/tulong/tulong/npc/yuan" : 1,
+        "/d/tulong/tulong/obj/ding" : 1,
+        "/d/tulong/tulong/npc/zhang" : 1,
+        "/d/tulong/tulong/npc/chang" : 1
         ]));
-        setup();
+    setup();
 }
 
-void reset()
-{
+void reset() {
 
-        object item, con;
-        ::reset();
-        con = present( "ding", this_object());
-        item = find_object("/d/tulong/obj/tulongdao");
-        if( !objectp(item) || !environment(item) ) {
-                item = get_object("/d/tulong/obj/tulongdao");
-                item->move(con);
-                item->start_borrowing();
-        }
+    object item, con;
+    ::reset();
+    con = present("ding", this_object());
+    item = find_object("/d/tulong/obj/tulongdao");
+    if(!objectp(item) || !environment(item) ) {
+        item = get_object("/d/tulong/obj/tulongdao");
+        item->move(con);
+        item->start_borrowing();
+    }
 }
-

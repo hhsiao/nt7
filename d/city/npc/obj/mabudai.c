@@ -1,13 +1,12 @@
 inherit ITEM;
-void create()
-{
-        set_name("麻布袋", ({ "budai", "dai", "bag" }));
-        set_weight(100);
-        set_max_encumbrance(1000000);
-        set("unit", "個");
-                set("long", "一隻用麻布織成的袋子，好像可以裝東西。\n");
-                set("value", 100);
-                set("no_steal",1);
+void create() {
+    set_name("麻布袋", ({ "budai", "dai", "bag" }));
+    set_weight(100);
+    set_max_encumbrance(1000000);
+    set("unit", "個");
+    set("long", "一隻用麻布織成的袋子，好像可以裝東西。\n");
+    set("value", 100);
+    set("no_steal", 1);
 }
 
 int is_container() { return 1; }

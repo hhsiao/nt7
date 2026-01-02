@@ -4,61 +4,57 @@ inherit ROOM;
 
 int do_look(string arg);
 
-void create()
-{
+void create() {
     set("short", HIY"演武大廳"NOR);
-        set("long", @LONG
+    set("long", @LONG
 這是一個寬敞的大房間，靠北牆搭著一個巨大的擂臺(leitai)，
 擂臺後被一塊布簾遮擋的密密實實，但是一股濃厚的殺氣仍然從布簾
 後散發出來，瀰漫在空氣裡，直鑽入你內心。在東面牆上，懸掛著偌
 大的一個大匾(dabian)。
 LONG );
 
-    set("no_fight",1);
-    set("no_beg",1);
-    set("no_steal",1);
-    set("biwu_room",1);
+    set("no_fight", 1);
+    set("no_beg", 1);
+    set("no_steal", 1);
+    set("biwu_room", 1);
 
-    set("item_desc",([
-            "leitai" : "一個四四方方的大擂臺，你可以跳(jump)上去。\n",
-    ]));
+    set("item_desc", ([
+        "leitai": "一個四四方方的大擂臺，你可以跳(jump)上去。\n"
+        ]));
 
     set("exits", ([
-        "south"  : "/d/city/biwu_road",
-    ]));
+        "south": "/d/city/biwu_road"
+        ]));
 
     set("no_clean_up", 0);
-	set("coor/x", -60);
-	set("coor/y", 20);
-	set("coor/z", 0);
-	setup();
+    set("coor/x", -60);
+    set("coor/y", 20);
+    set("coor/z", 0);
+    setup();
 }
 
-void init()
-{
-    add_action("do_no","get");
-    add_action("do_no","put");
-    add_action("do_no","drop");
-    add_action("do_no","summon");
-    add_action("do_no","eat");
-    add_action("do_no","drink");
-    add_action("do_no","guard");
-    add_action("do_jump","jump");
-    add_action("do_look","look");
+void init() {
+    add_action("do_no", "get");
+    add_action("do_no", "put");
+    add_action("do_no", "drop");
+    add_action("do_no", "summon");
+    add_action("do_no", "eat");
+    add_action("do_no", "drink");
+    add_action("do_no", "guard");
+    add_action("do_jump", "jump");
+    add_action("do_look", "look");
 }
 
-int do_no()
-{
+int do_no() {
     object me;
     me = this_player();
     if (wizardp(me)) return 0;
 
-    tell_object(me,"在這裡你想幹什麼？\n");
+    tell_object(me, "在這裡你想幹什麼？\n");
     return 1;
 }
 
-int do_look(string arg)
-{
+int do_look(string arg) {
     string msg;
     int i;
     mapping paiming;
@@ -69,33 +65,32 @@ int do_look(string arg)
     msg += HIC "-------------------------------------------------------------\n";
     msg += "\n";
     for (i = 0;i < sizeof(paiming);i++)
-{
-            msg += HIY + "   【天下第" + chinese_number(i+1) + "】 " + NOR + paiming[i]["title"] + "\n";
-            msg += "\n";
-}
+    {
+        msg += HIY + "   【天下第" + chinese_number(i + 1) + "】 " + NOR + paiming[i]["title"] + "\n";
+        msg += "\n";
+    }
     msg += HIC "-------------------------------------------------------------\n";
     write(msg);
     return 1;
 }
 
-int do_jump(string arg)
-{
+int do_jump(string arg) {
     object me;
 
     me = this_player();
 
     if (arg != "leitai")
     {
-            tell_object(me,"你要往哪裡跳啊？\n");
-            return 1;
+        tell_object(me, "你要往哪裡跳啊？\n");
+        return 1;
     }
 
     if (wizardp(me))
     {
-            tell_object(me,"你是巫師啊，就別來跟玩家爭什麼第一第二了！\n");
-            return 1;
+        tell_object(me, "你是巫師啊，就別來跟玩家爭什麼第一第二了！\n");
+        return 1;
     }
 
-    if (COMPETE_D->join_competition(me)) 
-            return 1;
+    if (COMPETE_D->join_competition(me))
+        return 1;
 }

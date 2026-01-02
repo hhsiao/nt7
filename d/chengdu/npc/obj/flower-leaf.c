@@ -4,20 +4,19 @@
 #include <ansi.h>
 
 inherit THROWING;
-void create()
-{
-        set_name(HIR"花瓣"NOR, ({ "flower leaf", "hua ban", "ban" }) );
-        set("long", "新鮮的玫瑰花的花瓣，上面還掛這晶瑩的露珠。\n");
-                set("unit", "把");
-                set("value", 0);
-                set("base_unit", "片");
-                set("base_weight", 1);
-                set("base_value", 0);
-                set("material", "wood");
-                set("damage", 2);        //Here the damage=int_throwing, added by King
-                set("wield_msg", HIC"$N迅速地從暗器袋中掏出一些玫瑰花瓣，捏在手中就待發出！\n"NOR);
-                set("unwield_msg",HIC"$N將手裡剩下的玫瑰花瓣盡數放回暗器袋中。\n"NOR);
-        set_amount(50);
-        init_throwing(2);
-        setup();
+void create() {
+    set_name(HIR"花瓣"NOR, ({ "flower leaf", "hua ban", "ban" }) );
+    set("long", "新鮮的玫瑰花的花瓣，上面還掛這晶瑩的露珠。\n");
+    set("unit", "把");
+    set("value", 0);
+    set("base_unit", "片");
+    set("base_weight", 1);
+    set("base_value", 0);
+    set("material", "wood");
+    set("damage", 2);   //Here the damage=int_throwing, added by King
+    set("wield_msg", HIC"$N迅速地從暗器袋中掏出一些玫瑰花瓣，捏在手中就待發出！\n"NOR);
+    set("unwield_msg", HIC"$N將手裡剩下的玫瑰花瓣盡數放回暗器袋中。\n"NOR);
+    set_amount(50);
+    init_throwing(2);
+    setup();
 }
