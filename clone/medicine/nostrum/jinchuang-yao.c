@@ -17,14 +17,10 @@ void create()
 {
 
         set_name("金創藥", ({"jin chuangyao", "jin"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("long", "這是一包別具靈效的金創藥，專治內外傷等。\n");
                 set("value", 2000);
                 set("no_drop", "這樣東西不能離開你。\n");
-        }
         set("pour_type", "1");
         set("shaolin",1);
         setup();
@@ -42,7 +38,7 @@ int do_eat(string arg)
 
         if( query("eff_qi", me) == query("max_qi", me) )
                 return notify_fail("你現在不需要用金創藥。\n");
-        
+
         if ( (int)me->query_condition("bonze_drug" ) > 0 )
         {
                 this_player()->receive_damage("qi", 50);

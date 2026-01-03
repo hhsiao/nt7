@@ -1,13 +1,10 @@
-// emei-jiuyin.c 
+// emei-jiuyin.c
 #include <ansi.h>
 inherit ITEM;
 void create()
 {
         set_name(HIG"九陰真經速成篇"NOR, ({ "jiuyin sucheng", "book"}));
         set_weight(5);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("unit", "卷");
                 set("long", "這是名震江湖之九陰真經的速成篇。你可以研讀以下的技能：\n"
                             "九陰身法       (jiuyin-shenfa) \n"
@@ -25,7 +22,6 @@ void create()
                 set("no_give", 1);
                 set("no_get", 1);
                 set("no_steal", 1);
-        }
 }
 
 void init()
@@ -71,7 +67,7 @@ int do_study(string arg)
        cost = 40 * ( 1 + ( 35 - (int)me->query("int"))/20 );
        if (cost < 20) cost = 20;
        me->set_temp("last_damage_from", "研讀高深武功，熬盡心機累");
-      
+
        if( me->query("neili") < cost * 2 + 300)
            return notify_fail("你的內力不夠，無法領會這個技能。\n");
 
@@ -80,19 +76,19 @@ int do_study(string arg)
             my_skill = me->query_skill("jiuyin-baiguzhua", 1);
             if( my_skill >= 180)
                 return notify_fail("你覺得這經書上所寫的已經太淺了，不能學到什麼東西。\n");
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else write("你研讀著有關九陰白骨爪的技巧，似乎有些心得。\n");
             me->improve_skill("jiuyin-baiguzhua", ((int)me->query_skill("literate", 1)/5+1) );
             me->receive_damage("jing", cost );
             me->add("neili", -cost * 2);
             me->add("potential", - random(2));
-            break;             
+            break;
          case "cuixin-zhang":
             my_skill = me->query_skill("cuixin-zhang", 1);
             if( my_skill >= 180)
                 return notify_fail("你覺得這經書上所寫的已經太淺了，不能學到什麼東西。\n");
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else write("你研讀著有關催心掌的技巧，似乎有些心得。\n");
             me->improve_skill("cuixin-zhang", ((int)me->query_skill("literate", 1)/5+1) );
@@ -107,7 +103,7 @@ int do_study(string arg)
             if( my_skill >= me->query_skill("daode-jing",1))
                 return notify_fail("你的道德經太淺，不能學到什麼東西。\n");
             else
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else write("你研讀著有關九陰身法的技巧，似乎有些心得。\n");
             me->improve_skill("jiuyin-shenfa", ((int)me->query_skill("literate", 1)/5+1) );
@@ -122,7 +118,7 @@ int do_study(string arg)
             if( my_skill >= me->query_skill("daode-jing",1))
                 return notify_fail("你的道德經太淺，不能學到什麼東西。\n");
             else
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else write("你研讀著有關九陰真功的技巧，似乎有些心得。\n");
             me->improve_skill("jiuyin-zhengong", ((int)me->query_skill("literate", 1)/5+1) );
@@ -137,7 +133,7 @@ int do_study(string arg)
             if( my_skill >= me->query_skill("daode-jing",1))
                 return notify_fail("你的道德經太淺，不能學到什麼東西。\n");
             else
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else write("你研讀著有關九陰銀龍鞭的技巧，似乎有些心得。\n");
             me->improve_skill("yinlong-bian", ((int)me->query_skill("literate", 1)/5+1) );
@@ -157,4 +153,3 @@ int do_study(string arg)
        }
        return 1;
 }
-

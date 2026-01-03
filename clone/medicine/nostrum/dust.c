@@ -6,13 +6,9 @@ void setup()
 void create()
 {
         set_name(HIC"化屍粉"NOR, ({"dust"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("long", "這是一包用毀屍滅跡的化屍粉，只要一丁點就可以化去(dissolve)一具屍體！\n");
                 set("value", 50);
-        }
         set("pour_type", "1");
         setup();
 }
@@ -22,7 +18,7 @@ void init()
         if( this_player()==environment() )
                 add_action("do_dissolve", "dissolve");
 }
-                                                                
+
 int do_dissolve(string arg)
 {
         object ob, me = this_player();

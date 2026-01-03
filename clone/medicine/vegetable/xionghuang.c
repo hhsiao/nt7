@@ -15,15 +15,11 @@ void init()
 void create()
 {
         set_name(HIY"雄黃"NOR, ({"xiong huang" }));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("vegetable", 32);
                 set("nostrum", 1);
                 set("long", "這是一包雄黃，據說可驅百毒。\n");
                 set("value", 1000);
-        }
         set("pour_type", "1");
         setup();
 }

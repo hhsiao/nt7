@@ -15,13 +15,9 @@ void init()
 void create()
 {
         set_name(YEL"狗皮膏藥"NOR, ({"goupi gaoyao", "goupi", "gaoyao"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "帖");
                 set("long", "這是一帖武林人士常貼(tie)的狗皮膏藥。\n");
                 set("value", 5000);
-        }
         set("pour_type", "1");
         setup();
 }

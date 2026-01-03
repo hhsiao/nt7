@@ -15,16 +15,12 @@ void init()
 void create()
 {
         set_name(HIY"玄門定陽丹"NOR, ({"dingyang dan", "dan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("long", "一顆火紅色的丹藥。此乃全真異寶。\n");
                 set("no_sell", 1);
                 set("no_drop", 1);
                 set("no_give", 1);
                 set("no_get", 1);
-        }
         set("pour_type", "1");
         setup();
 }
@@ -37,7 +33,7 @@ int do_eat(string arg)
 
         force_limit = me->query_skill("force")*10;
         neili_limit=query("max_neili", me);
-        
+
         if (!id(arg)) return notify_fail("你要吃什麼？\n");
         if (!present(this_object(), this_player()))
                 return notify_fail("你要吃什麼？\n");
@@ -67,7 +63,7 @@ int do_eat(string arg)
 
                 me->apply_condition("quanzhen_drug", 60);
         }
-        
+
         destruct(this_object());
         return 1;
 }

@@ -14,9 +14,6 @@ void init()
 void create()
 {
         set_name(MAG"九轉結氣丸"NOR, ({"jieqi wan", "jieqi", "wan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("vegetable", 15);
                 set("nostrum", 82);
@@ -24,7 +21,6 @@ void create()
                 set("long","這是一顆透著紫紅色調的九轉結氣丸。此丸乃武當珍藥，提高功力，靈效無比。\n");
                 set("value", 100);
                 set("no_drop", "這樣東西不能離開你。\n");
-        }
         set("pour_type", "1");
         setup();
 }

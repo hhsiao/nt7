@@ -4,15 +4,11 @@ void create() {
     set_name(HIY"普通鼎爐"NOR, ({ "putong dinglu", "dinglu" }));
     set_weight(500);
     set_max_encumbrance(500);
-    if (clonep())
-        set_default_object(__FILE__);
-    else {
         set("unit", "個");
         set("long", "一個小小圓圓的普通鼎爐，藥房常常用它來煎藥煉丹。\n");
         set("value", 1000000);
         set("no_get", 1);
         set("no_give", 1);
-    }
 }
 
 int is_container() { return 1; }

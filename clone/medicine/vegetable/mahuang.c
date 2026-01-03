@@ -12,16 +12,12 @@ void init()
 void create()
 {
         set_name(HIY"麻黃"NOR, ({"mahuang" }));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("vegetable", 32);
                 set("value", 100);
                 set("nostrum", 16);
                 set("long", "這是一包麻黃，據說可以入藥。\n");
                 set("value", 1000);
-        }
         set("pour_type", "1");
         setup();
 }

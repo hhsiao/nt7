@@ -16,9 +16,6 @@ void init()
 void create()
 {
         set_name(MAG"大還丹"NOR, ({"dahuan dan", "dahuan", "dan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("vegetable", 42);
                 set("nostrum", 16);
@@ -26,7 +23,6 @@ void create()
                 set("long", "這是一顆紫紅晶亮的大還丹。此丹乃少林珍藥，提高功力，靈效無比。\n");
                 set("value", 10000);
                 set("no_drop", "這樣東西不能離開你。\n");
-        }
         set("pour_type", "1");
         set("shaolin",1);
         setup();
@@ -39,7 +35,7 @@ int do_eat(string arg)
 
         force_limit = me->query_skill("force")*10;
         neili_limit=query("max_neili", me);
-        
+
         if(!id(arg)) return notify_fail("你要吃什麼？\n");
         if(!present(this_object(), this_player()))
                 return notify_fail("你要吃什麼？\n");
@@ -68,7 +64,7 @@ int do_eat(string arg)
                 }
         }
         me->apply_condition("bonze_drug", 60);
-        
+
         destruct(this_object());
         return 1;
 }

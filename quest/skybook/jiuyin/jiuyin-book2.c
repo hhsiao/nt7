@@ -6,9 +6,6 @@ void create()
 {
         set_name("人皮", ({ "ren pi", "pi"}));
         set_weight(500);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("unit", "張");
                 set("long", "一張人皮，看不出有什麼特別之處。\n");
                 set("treasure", 1);
@@ -19,7 +16,6 @@ void create()
                 set("no_steal", 1);
                 set("no_drop", 1);
                 set("material", "skin");
-        }
 }
 
 void init()
@@ -73,7 +69,7 @@ int do_study(string arg)
 
        cost = 40 * ( 1 + ( 35 - (int)me->query("int"))/20 );
        if (cost < 20) cost = 20;
-      
+
        if( me->query("neili") < cost * 2 + 300)
           return notify_fail("你的內力不夠，無法領會這個技能。\n");
 
@@ -89,7 +85,7 @@ int do_study(string arg)
             write(HIC"你經過轉世重修後，領悟到了武技萬變不離其宗的道理，瞬間領悟到了九陰白骨爪的精華所在。\n"NOR);
             me->set_skill("jiuyin-baiguzhua",150);
             }
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else
                 write("你研讀著有關九陰白骨爪的技巧，似乎有些心得。\n");
@@ -98,7 +94,7 @@ int do_study(string arg)
             me->add("neili", -cost * 2);
             if(me->query_skill("jiuyin-baiguzhua",1) < 150)
               me->add("potential", - random(2));
-            break;             
+            break;
          case "cuixin-zhang":
             my_skill = me->query_skill("cuixin-zhang", 1);
             if( my_skill >= 150)
@@ -109,7 +105,7 @@ int do_study(string arg)
             write(HIC"你經過轉世重修後，領悟到了武技萬變不離其宗的道理，瞬間領悟到了催心掌的精華所在。\n"NOR);
             me->set_skill("cuixin-zhang",150);
             }
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else
                 write("你研讀著有關催心掌的技巧，似乎有些心得。\n");
@@ -129,7 +125,7 @@ int do_study(string arg)
             write(HIC"你經過轉世重修後，領悟到了武技萬變不離其宗的道理，瞬間領悟到了九陰銀龍鞭的精華所在。\n"NOR);
             me->set_skill("yinlong-bian",150);
             }
-            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+            if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
                 return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
             else
                 write("你研讀著有關九陰銀龍鞭的技巧，似乎有些心得。\n");
@@ -142,4 +138,3 @@ int do_study(string arg)
     }
     return 1;
 }
-

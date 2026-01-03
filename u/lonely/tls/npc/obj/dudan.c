@@ -16,15 +16,11 @@ void create()
 {
 	set_name("毒丹", ({"du dan", "du", "dan"}));
 	set_weight(150);
-	if (clonep())
-		set_default_object(__FILE__);
-	else {
 		set("unit", "顆");
 		set("long", "這是一顆黑色的丹丸，好象有毒。\n");
 		set("value", 100000);
 		set("no_get", 1);
 		set("no_drop", 1);
-	}
 	setup();
 }
 
@@ -37,7 +33,7 @@ int do_eat(string arg)
 
 	if ( me->query_skill_mapped("force") == "qiantian-yiyang" )
 		return notify_fail("你現在所用內功不對，吃了反而會大損元氣。\n");
-       
+
 	if ( (int)me->query_condition("bonze_drug" ) > 0 )
 		return notify_fail("你剛吃過靈藥，現在不能吃毒丹! \n");
 

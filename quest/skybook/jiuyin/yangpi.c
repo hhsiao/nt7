@@ -8,9 +8,6 @@ void create()
 {
 	set_name(HIW"山羊皮"NOR, ({ "shanyang pi", "yangpi", "pi" }));
 	set_weight(250);
-	if( clonep() )
-		set_default_object(__FILE__);
-	else {
 		set("unit", "張");
 		set("long","這是一張山羊皮，上面寫滿了許多希奇古怪的字。\n");
 		set("treasure", 1);
@@ -28,7 +25,6 @@ void create()
                         "max_skill":    62      // the maximum level you can learn
 */
 		]) );
-	}
 }
 
 void init()
@@ -53,7 +49,7 @@ int do_du(string arg)
 		return notify_fail("你根本無法理解山羊皮上希奇古怪的字！\n");
 
 	if( !me->query_skill("literate", 1) )
-		return notify_fail("你是個文盲，先學點文化(literate)吧。\n");        
+		return notify_fail("你是個文盲，先學點文化(literate)吧。\n");
 
 	if( me->query("jing") < 30 )
 		return notify_fail("你現在過於疲倦，無法專心下來研讀新知。\n");

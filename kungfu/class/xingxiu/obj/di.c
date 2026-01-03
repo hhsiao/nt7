@@ -9,15 +9,12 @@ void create() {
     set_name(WHT"白玉短笛"NOR, ({ "duandi", "di",}));
     set("weight", 100);
     seteuid(getuid());
-    if(clonep()) set_default_object(__FILE__);
-    else{
         set("unit", "只");
         set("long", WHT"這玉笛短得出奇，只不來七寸來長、通體潔白，晶瑩可愛。\n" NOR);
         set("value", 50);
         set("no_get", 1);
         set("di_number", 0);
         set("no_drop", 1);
-    }
     setup();
 }
 

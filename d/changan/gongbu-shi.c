@@ -25,7 +25,7 @@ LONG );
     set("product/perfect-stone", ([ "name": "精石",
         "rate": 300,
         "max": 50000,
-        s"cost": ({ "stone" }), ]));
+        "cost": ({ "stone" }), ]));
 
     set("product/stone", ([ "name": "石料",
         "max": 50000,

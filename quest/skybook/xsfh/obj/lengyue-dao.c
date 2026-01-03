@@ -10,9 +10,6 @@ void create()
 {
         set_name( HIB"冷月寶刀"NOR , ({ "lengyue dao","lengyue baodao","baodao","lengyue","blade","dao"}));
         set_weight(20000);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "柄");
                 set("long", HIB"刀光如水，在冷月下流轉不定。刀柄上用金絲銀絲鑲著一鉤眉毛彎月。\n"NOR);
                 set("value", 1);
@@ -26,7 +23,6 @@ void create()
                 set("material", "steel");
                 set("wield_msg", HIB"$N緩緩抽刀出鞘，冷森森的一道青光激射而出，眨眼之間，手中已多了一柄寒氣逼人的長刀。\n"NOR);
                 set("unwield_msg",HIB"$N將冷月寶刀小心的收起，耀人的寒光沒入刀鞘。\n"NOR);
-        }
         init_blade(120);
         setup();
 }

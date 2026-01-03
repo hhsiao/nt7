@@ -7,9 +7,6 @@ void finish(object me, object ob);
 void create() {
     set_name(RED"鐮刀"NOR, ({ "lian dao"}));
     set_weight(100);
-    if(clonep() )
-        set_default_object(__FILE__);
-    else {
         set("long", "一把採藥人常用的鐮刀，用來尋找（search）草類藥材。\n");
         set("unit", "把");
         set("no_get", 1);
@@ -17,7 +14,6 @@ void create() {
         set("no_put", 1);
         set("no_give", 1);
         set("value", 100000);
-    }
     init_blade(20, 2);
     setup();
 }

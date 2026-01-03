@@ -5,9 +5,6 @@ inherit ITEM;
 void create() {
     set_name("明月十三式", ({ "ming yue book", "book" }));
     set_weight(600);
-    if(clonep() )
-        set_default_object(__FILE__);
-    else {
         set("unit", "本");
         set("long",
             "這是圓月山莊中失傳以久的一本刀譜。\n");
@@ -23,5 +20,4 @@ void create() {
             "max_skill": 50     // the maximum level you can learn
         // from this object.
             ]) );
-    }
 }

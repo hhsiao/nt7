@@ -5,9 +5,6 @@ inherit "/d/war/diablo";
 void create() {
 
     set_name("墓碑", ({"tomb"}));
-    if(clonep() )
-        set_default_object(__FILE__);
-    else {
 
         set("long", "墳墓。(相關指令touch)\n");
         set("unit", "個");
@@ -18,8 +15,6 @@ void create() {
 
 
         set("act", "act1");
-
-    }
     set_coor();
 
 }

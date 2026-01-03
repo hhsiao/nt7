@@ -77,7 +77,7 @@ void create() {
     setup();
     if (clonep())
     {
-        ob = find_object(ZHENJING);
+        object ob = find_object(ZHENJING);
         if (! ob) ob = load_object(ZHENJING);
 
         if (environment(ob) && random(3) == 1)

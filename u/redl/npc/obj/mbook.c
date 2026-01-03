@@ -1,6 +1,6 @@
 // mbook.c
-// This program is a part of NITAN MudLIB 
-// redl 2012/11/1 
+// This program is a part of NITAN MudLIB
+// redl 2012/11/1
 #include <ansi.h>
 #include <medical.h>
 
@@ -10,9 +10,6 @@ void create()
 {
         set_name(HIY "煉丹筆記" NOR, ({ "liandan biji", "biji" }));
         set_weight(500);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "本");
                 set("long", "這是一本謄寫的小本，上面用小篆書寫著“煉丹筆記”幾個字。\n");
                 set("material", "paper");
@@ -40,7 +37,5 @@ void create()
                         "yuling"   : 250,       // 玉靈散
                         "yuqing"   : 300,       // 玉清散
                 ]));
-        }
         setup();
 }
-

@@ -15,9 +15,6 @@ void init()
 void create()
 {
         set_name(HIY"三清換質丹"NOR, ({"huanzhi dan", "dan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("long", "一顆深黃色的丹藥。\n");
                 set("value", 10000);
@@ -25,7 +22,6 @@ void create()
                 set("no_drop", 1);
                 set("no_give", 1);
                 set("no_get", 1);
-        }
         set("pour_type", "1");
         setup();
 }

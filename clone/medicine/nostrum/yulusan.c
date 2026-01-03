@@ -16,9 +16,6 @@ void init()
 void create()
 {
         set_name(HIG"玉露清新散"NOR, ({"yulu qingxinsan", "yulu", "san"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("vegetable", 11);
                 set("nostrum", 22);
@@ -26,7 +23,6 @@ void create()
                 set("long","這是一包淡綠晶瑩的玉露清新散。據說乃慕容世家的珍藥，提高功力，靈效無比。\n");
                 set("value", 10000);
                 set("no_drop", "這樣東西不能離開你。\n");
-        }
         set("pour_type", "1");
         setup();
 }
@@ -38,7 +34,7 @@ int do_eat(string arg)
 
         force_limit = me->query_skill("force")*10;
         neili_limit=query("max_neili", me);
-        
+
         if(!id(arg)) return notify_fail("你要吃什麼？\n");
         if(!present(this_object(), me))
                 return notify_fail("你要吃什麼？\n");

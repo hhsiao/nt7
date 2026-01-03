@@ -10,9 +10,6 @@ void create()
 {
         set_name(HIW"紙團"NOR, ({ "zhi tuan", "zhituan", "paper"}));
         set_weight(600);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("unit", "本");
                 set("long", "一個奇怪的紙團，展開之後似乎紀錄一些內功的運行方法。\n");
                 set("unique", 1);
@@ -20,7 +17,6 @@ void create()
                 set("material", "silk");
                 set("no_give", "這樣東西不能離開你。\n");
                 set("no_get", "這樣東西不能離開那兒。\n");
-        }
 }
 void init()
 {

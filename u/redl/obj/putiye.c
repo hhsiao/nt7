@@ -1,5 +1,5 @@
-// This program is a part of NITAN MudLIB 
-// redl 2013/1/1 
+// This program is a part of NITAN MudLIB
+// redl 2013/1/1
 #include <armor.h>
 #include <ansi.h>
 
@@ -20,9 +20,9 @@ void jieguozi()//準許讓他把這寶物借予普通玩家賞玩，讓他覺得
 {
         object own = environment(this_object());
         int i = query("guozi_step");
-        
+
         if (objectp(own) && !is_redl_room(own)) {
-                
+
                 if (playerp(own)) {
                         i -= TIME_INTERVAL;
                         if (i<1) {
@@ -51,9 +51,9 @@ void jieguozi()//準許讓他把這寶物借予普通玩家賞玩，讓他覺得
 //                              }
                         }
                 } else set("chk_own", 0);
-        
+
         }
-        
+
         call_out("jieguozi", TIME_INTERVAL);
 }
 
@@ -61,9 +61,6 @@ void create()
 {
         set_name(HIG "菩提葉·三仙" NOR, ({ "puti ye", "puti", "ye" }));
         set_weight(100);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "枚");
                 set("long", HIG "這是一枚曾經生長在佛祖證道的菩提樹上的樹葉，象徵著如海的智慧和胸懷廣闊。\n" NOR);
                 set("value", 50000000);
@@ -101,10 +98,9 @@ void create()
                 set("armor_prop/avoid_busy", 30);
                 set("armor_prop/reduce_busy", 30);
                 set("guozi_step", BONUS_DELAY);
-        }
         setup();
         call_out("jieguozi", TIME_INTERVAL);
-}        
+}
 
 int query_autoload()
 {
@@ -126,23 +122,20 @@ int wear()
 }
 
 
-// 
+//
 // //get()
-//      mapping ob; 
+//      mapping ob;
 //      object *obs;
-//      obs = all_inventory(); 
-//      if (sizeof(obs) > 0) 
-//      { 
-//              if (arrayp(query_temp("objects"))) 
-//                      obs -= query_temp("objects"); 
-//              //obs = filter_array(obs, (: ! living($1) && clonep($1) && ! $1->is_character() :)); 
+//      obs = all_inventory();
+//      if (sizeof(obs) > 0)
+//      {
+//              if (arrayp(query_temp("objects")))
+//                      obs -= query_temp("objects");
+//              //obs = filter_array(obs, (: ! living($1) && clonep($1) && ! $1->is_character() :));
 //              obs = filter_array(obs, (: ! $1->is_user() :)); //要驅逐寵物的幫助，只能留下玩家自己
-//              if (sizeof(obs) > 0) 
-//              { 
-//                      obs = obs[0..<1]; 
-//                      foreach (ob in obs) destruct(ob); 
-//              } 
-//      } 
-        
-
-
+//              if (sizeof(obs) > 0)
+//              {
+//                      obs = obs[0..<1];
+//                      foreach (ob in obs) destruct(ob);
+//              }
+//      }

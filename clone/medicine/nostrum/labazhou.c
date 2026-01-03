@@ -15,13 +15,9 @@ void init()
 void create()
 {
         set_name(GRN"臘八粥"NOR, ({"laba zhou", "zhou", "laba"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "碗");
                 set("long","這是一碗熱粥，其中蒸氣上冒，兀自有一個個氣泡從粥底衝將上來，一碗粥盡作深綠之色，看上去說不出的詭異。聞著藥氣刺鼻，其毒可知。\n");
                 set("value", 50000);
-        }
         set("pour_type", "1");
         setup();
 }
@@ -45,7 +41,7 @@ int do_eat(string arg)
                 addn("max_neili", -100, me);
                 message_vision(HIR "$N又喝下一碗"GRN"臘八粥"HIR"，只覺得肝腸寸斷，五臟欲裂，原來喝得太急太多，藥效適得其反！\n" NOR, me);
         }
-                        
+
         else if ( neili_limit <= force_limit  )
         {
                 addn("max_neili", 50, me);

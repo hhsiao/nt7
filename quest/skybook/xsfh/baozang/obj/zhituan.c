@@ -10,32 +10,28 @@ void create()
 {
         set_name(HIW"紙團"NOR, ({ "zhi tuan", "zhituan", "paper"}));
         set_weight(600);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("unit", "本");
-                set("long", "一個奇怪的紙團，展開之後似乎紀錄一些內功的運行方法。\n"); 
+                set("long", "一個奇怪的紙團，展開之後似乎紀錄一些內功的運行方法。\n");
                 set("unique", 1);
                 set("treasure", 1);
                 set("material", "silk");
                 set("no_give", "這樣東西不能離開你。\n");
                 set("no_get", "這樣東西不能離開那兒。\n");
-        }
 }
 void init()
 {
           if(!this_object()->query("owner")) return;
-     	  add_action("do_yanjiu", "yanjiu");	
+     	  add_action("do_yanjiu", "yanjiu");
      	  add_action("do_yanjiu", "find");
 }
 
 int do_yanjiu(string arg)
 {
-	object obj,me = this_player();        		       
+	object obj,me = this_player();
 	if (!(arg=="zhi tuan" || arg == "zhituan" || arg == "paper")) return 0;
-	if ( me->is_busy()) 
+	if ( me->is_busy())
 		return notify_fail("你現在正忙著呢。\n");
-	if( me->is_fighting() ) 
+	if( me->is_fighting() )
 		return notify_fail("你無法在戰鬥中做這個事情。\n");
 	if (!id(arg))
 		return notify_fail("你要翻什麼？\n");
@@ -54,7 +50,7 @@ int do_yanjiu(string arg)
 	me->start_busy(2);
     tell_object(me,YEL"你還是認真看一下提示卡的內容，不要過於衝動。\n"NOR);
   	return 1;
-  }	
+  }
   //只能一次機會
   //難度係數與原來的凌波微步難度相同
   //降低難度，以前是random(kar)+random(int)>50,現在修改成1個random(kar+int)>50 by lsxk 2007/9/12
@@ -82,7 +78,7 @@ int do_yanjiu(string arg)
 		  tell_object(me,HIR"但如果你認為目前屬性不好或運氣不佳，可以以後再來這裡搜索，避免機會浪費。\n"NOR);
 	  }
 	  me->start_busy(2);
-	  destruct(this_object()); 
+	  destruct(this_object());
   }
-	return 1;	    
+	return 1;
 }

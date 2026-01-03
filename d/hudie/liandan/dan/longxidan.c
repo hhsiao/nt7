@@ -4,14 +4,9 @@ inherit ITEM;
 void create() {
     set_name(HIY"龍犀百草丹"NOR, ({ "longxi dan", "dan"}));
     set_weight(100);
-    if(clonep() )
-        set_default_object(__FILE__);
-    else
-    {
         set("unit", "顆");
         set("no_get", 1);
         set("no_give", 1);
-    }
     setup();
 }
 

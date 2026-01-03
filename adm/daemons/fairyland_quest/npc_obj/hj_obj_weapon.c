@@ -256,8 +256,6 @@ void setme( int iii )
 
     set_name(names[ iii ], ({ids[ iii ],ids2[ iii ]}));
     set_weight(100);
-    if (clonep())
-        set_default_object(__FILE__);
 
     set("long", longs[ iii ]);
     if( iii  < 9 || iii > 17 )

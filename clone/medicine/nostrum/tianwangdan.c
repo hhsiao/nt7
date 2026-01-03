@@ -13,15 +13,11 @@ void init()
 void create()
 {
         set_name("天王保命丹", ({"baoming dan", "dan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("value", 4000);
                 set("long", "這天王保命丹是由三百年老山人參、白熊膽、雪蓮等物煉成的靈丹。\n");
                 set("medicine", 1);
                 set("no_drop", "天王保命丹煉製，哪能亂扔！ \n");
-        }
 
         setup();
 }
@@ -36,7 +32,7 @@ int do_eat(string arg)
         if( me->is_busy() )
                 return notify_fail("別急，慢慢吃，小心別噎著了。\n");
 
-        if( query("eff_jing", me) >= query("max_jing", me) && 
+        if( query("eff_jing", me) >= query("max_jing", me) &&
                 query("eff_qi", me) >= query("max_qi", me) )
         {
                 message_vision("$N沒必要吃天王保命丹。\n",me);

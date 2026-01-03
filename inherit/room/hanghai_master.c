@@ -124,10 +124,6 @@ void create()
 {
         set_name(HIY"經緯儀（遊戲道具）"NOR, ({"jingwei yi","yi"}));
         set_weight(1);
-        if (clonep())
-                set_default_object(__FILE__);
-        else
-        {
                 set("long", "〖小航海時代〗遊戲的主要道具，有了它才可以進行遊戲。
 
 查詢現在的遊戲狀態，輸入： game check
@@ -135,7 +131,6 @@ void create()
 \n");
                 set("unit", "具");
                 set("value", 0);
-        }
 
         set("no_get", 1);
         set("no_drop",1);
@@ -328,7 +323,7 @@ int do_game(string arg)
 int do_go(string arg)
 {
         object me = this_player(), who;
-        int x, y, old_x, old_y, i;
+        int x, y, old_x, old_y;
 
         string * dirs = ({
 "north", "south", "west", "east", "northwest", "northeast", "southwest", "southeast", });
@@ -363,7 +358,7 @@ int do_go(string arg)
         if( x<1 || y<1 || x>10 || y>16 )
                 return notify_fail("這個方向已經無法前進了！\n");
 
-        set("be_finded(" +old_x+ "," +old_y+ ")", 1); 
+        set("be_finded(" +old_x+ "," +old_y+ ")", 1);
 
 
         if( query( "island(" +old_x+ "," +old_y+ ")" ) == "new"
@@ -542,14 +537,14 @@ void map()
 
         the_map += sprintf( "          %s  %s  %s  %s  %s
           %s  %s  %s  %s  %s\n\n",
-                query("b1"), query("b2"), query("b3"), 
-                query("b4"), query("b5"), query("b6"), 
-                query("b7"), query("b8"), query("b9"), 
+                query("b1"), query("b2"), query("b3"),
+                query("b4"), query("b5"), query("b6"),
+                query("b7"), query("b8"), query("b9"),
                 query("b10") );
 
         the_map += sprintf(HIW"  肉搏之刃(rb)：∞  火炮(hp)：%d  巨斧(jf)：  %d
   漫天飛刀(fd)：%d   魚槍(yq)：%d  燃燒彈(rs)：%d\n"NOR,
-                query("att_hp"), query("att_jf"), 
+                query("att_hp"), query("att_jf"),
                 query("att_fd"), query("att_yq"), query("att_rs") );
 
 

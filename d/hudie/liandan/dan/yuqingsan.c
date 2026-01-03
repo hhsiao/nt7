@@ -3,14 +3,9 @@ inherit ITEM;
 void create() {
     set_name(HIR"玉清散"NOR, ({ "yuqing san", "san"}));
     set_weight(100);
-    if(clonep() )
-        set_default_object(__FILE__);
-    else
-    {
         set("unit", "包");
         set("no_get", 1);
         set("no_give", 1);
-    }
     setup();
 }
 void init() {

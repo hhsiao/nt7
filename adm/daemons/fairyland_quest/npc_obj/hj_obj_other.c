@@ -66,10 +66,6 @@ void setme( int iii )
     else set_name(names[ iii ], ({ids[ iii ] , "baoshi", "bao shi", "bs" }));
 
     set_weight(100);
-
-    if (clonep())
-        set_default_object(__FILE__);
-
     set("long", longs[ iii ]);
     set("heal_hp",heal_hps[ iii ]);
     set("unit", "枚");
@@ -169,7 +165,7 @@ int do_chixia(string arg)
     set_temp("hj_hp", temp1, me);
     if( temp_add>=0 )
     message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，頓時覺得精神一振。\n"NOR,me);
-    else 
+    else
     message_vision(CYN"$N"NOR+CYN"吞下一"+query("unit", ob)+query("name", ob)+""NOR+CYN"，只覺得腹如絞痛，看來是吃下了有毒的東西！\n"NOR,me);
 
     destruct(ob);

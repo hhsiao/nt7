@@ -119,8 +119,8 @@ int *times=({
 int can_use( string id, object me )
 {
     if( !me || !id || query("id") != id ||
-        !query_temp("huanjing", me) || query_temp("huanjing", me) != "start" || 
-        !query_temp("hj_hp", me) || query_temp("hj_hp", me)<1 || 
+        !query_temp("huanjing", me) || query_temp("huanjing", me) != "start" ||
+        !query_temp("hj_hp", me) || query_temp("hj_hp", me)<1 ||
         query("use_times") <= 0 || !environment(me) ||
         !query("room_mark", environment(me)) )
 
@@ -143,8 +143,6 @@ void setme( int iii )
 
     set_name(names[ iii ],({ ids[ iii ] , ids2[ iii ] }));
     set_weight(100);
-    if (clonep())
-        set_default_object(__FILE__);
 
     set("long", longs[ iii ]);
     set("unit", units[ iii ]);
@@ -241,7 +239,7 @@ int do_feixiang(string arg)
     // 已優化的判斷句
     if( !can_use( "fx zhishi" , me ) )
         return 0;
-    if ( !arg || !sscanf(arg, "%d",temp_mark) ) 
+    if ( !arg || !sscanf(arg, "%d",temp_mark) )
         return notify_fail("這裡的區域標記為 1 - "+HJ_ROOM_AMOUNT+" 。輸入你想要去的地方的標記吧……\n");
     if( temp_mark < 1 || temp_mark > HJ_ROOM_AMOUNT)
         return notify_fail("這裡的區域標記為 1 - "+HJ_ROOM_AMOUNT+" 。輸入你想要去的地方的標記吧……\n");
@@ -504,8 +502,8 @@ int do_fadai(string arg)
             return notify_fail("這兒沒別的人，這可是個寶貝，還是省著點用吧。\n");
         for(i=0;i<sizeof(inv_here);i++)
         {
-            if( query_temp("hj_hp", inv_here[i]) && 
-                query_temp("hj_hp", inv_here[i])>0 && 
+            if( query_temp("hj_hp", inv_here[i]) &&
+                query_temp("hj_hp", inv_here[i])>0 &&
                 inv_here[i] != me )
             human_amount++;
         }
@@ -514,8 +512,8 @@ int do_fadai(string arg)
         message_vision(HIY"$N"HIY"舉起"NOR"$n"HIY"聲嘶力竭般大聲叫喊道：“一堆呆子，快快出現！”\n"NOR,me, ob);
         for(i=0;i<sizeof(inv_here);i++)
         {
-            if( query_temp("hj_hp", inv_here[i]) && 
-                query_temp("hj_hp", inv_here[i])>0 && 
+            if( query_temp("hj_hp", inv_here[i]) &&
+                query_temp("hj_hp", inv_here[i])>0 &&
                 inv_here[i] != me
             )
                 fadai( inv_here[i], time );
@@ -674,7 +672,7 @@ int do_kuitan(string arg)
         return notify_fail("這不是活物！\n");
     if( query("hj_game/npc", target) )
         return notify_fail("這不是與你一樣的玩家勇士。\n");
-    if( !query_temp("hj_hp", target) || query_temp("hj_hp", target)<1 || 
+    if( !query_temp("hj_hp", target) || query_temp("hj_hp", target)<1 ||
        query_temp("huanjing", target) != "start" )
         return notify_fail(query("name", target)+"已沒有絲毫幻境裡的氣息，算了吧。\n");
     if(!living(target))

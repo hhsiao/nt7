@@ -14,15 +14,11 @@ void init()
 void create()
 {
         set_name(HIY"人參"NOR, ({"ren shen", "shen"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "株");
                 set("vegetable", 8);
                 set("nostrum", 32);
                 set("long", "這是一株保存了很久的千年人參。\n");
                 set("value", 10000);
-        }
         set("pour_type", "1");
         setup();
 }

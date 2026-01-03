@@ -11,13 +11,9 @@ void init() {
 
 void create() {
     set_name("熊膽幹", ({"xiongdan gan", "xiongdan", "gan"}));
-    if (clonep())
-        set_default_object(__FILE__);
-    else {
         set("unit", "副");
         set("long", "這是一副熊膽幹。\n");
         set("value", 1000);
-    }
     setup();
 }
 

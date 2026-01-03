@@ -22,17 +22,10 @@ string *color=({
 void create()
 {
     set_name( color[random(8)] +"寶箱"NOR, ({"box","bao xiang","xiang"}));
-
     set_weight(10000000);
-    if (clonep())
-        set_default_object(__FILE__);
-    else
-    {
-        set("long", "一個未曾開啟(open)的寶箱。\n");
-        set("unit", "個");
-        set("value", 0);
-    }
-
+    set("long", "一個未曾開啟(open)的寶箱。\n");
+    set("unit", "個");
+    set("value", 0);
     set("hj_game/obj","box");
     set("no_get","1");
     set("be_open","no");

@@ -11,16 +11,12 @@ void create()
         set_name("布袋", ({"bu dai", "dai"}));
         set_weight(2000);
         set_max_encumbrance(3000);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("long", "這是一個破舊的布袋。\n");
                 set("unit", "個");
                 set("no_get", 1);
                 set("no_steal", 1);
                 set("no_give", 1);
                 set("fill_lime", 1);
-        }
         setup();
 }
 
@@ -50,7 +46,7 @@ int do_sa(string arg)
 	object ob = this_object();
 	object ob1, ob2, ob3;
 	string msg;
-	
+
 	if (!(ob1 = present("shihui", ob)))
 		return notify_fail("袋裡又沒石灰，你撒啥？！\n");
 
@@ -100,7 +96,7 @@ int do_attack(object me, object ob2, object ob3, string msg)
 int do_finish(object me, object ob)
 {
 	object ob1;
-	
+
 	tell_object(me,HIY"茅十八道：“你為什麼用石灰撒在那史松的眼裡？”聲音嚴厲，神態更是兇惡。\n\n"+
 			"    你心中十分害怕，當下茅十八便將撒石灰、下蒙汗藥等這些江湖人所不齒的卑鄙手段\n"+
 			"告訴了你。隨後又說：“我這裡有一本我派刀法的秘籍，你拿去自行好好鑽研。只要你能\n"+

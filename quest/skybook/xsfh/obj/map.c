@@ -9,9 +9,6 @@ void create()
 {
         set_name(HIB"寶藏圖"NOR, ({ "baozang tu","tu"}));
         set_weight(1000);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "張");
                 set("long","一個羊皮紙上似乎是隨意記錄一些山脈、河流和城鎮的地圖。\n"+
                            "你可以按地圖上的樣子對照（duizhao）你的方位。\n");
@@ -20,7 +17,6 @@ void create()
                 set("no_get",1);
                 set("no_give",1);
                 set("no_drop",1);
-        }
         setup();
 }
 

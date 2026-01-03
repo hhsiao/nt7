@@ -10,9 +10,6 @@ void create()
         set_name("大鐵盒" , ({ "tie he", "box" }) );
         set_weight(3000);
         set_max_encumbrance(5000);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("unit", "個");
                 set("long", "這是一個兩尺來高的鐵盒子，上面滿是了泥土。\n");
                 set("value", 1000);
@@ -20,7 +17,6 @@ void create()
                 set("no_get",1);
                 set("no_drop",1);
                 set("amount",30);
-                }
         setup();
 }
 
@@ -38,14 +34,14 @@ int do_open(string arg)
         object ob;
 
     if( query_temp("open", me) && geteuid(me) != "yueying" )
-          return notify_fail("你已經打開盒子了\n");   
+          return notify_fail("你已經打開盒子了\n");
     if (!arg || (arg != "box" && arg != "tie he"))
        {
         return notify_fail("你想打開什麼？\n");
         return 1;
        }
     else
-    {  
+    {
     if( !present("jiaxin",me) && query("quest/jinshe2/xin", me) )
     {
           ob=unew(__DIR__"jiaxin");
@@ -57,9 +53,9 @@ int do_open(string arg)
                  }
         ob->move(me);
         write(HIC"你輕開鐵匣，發現裡面平平整整放著一封書信,你連忙揀了起來。\n"NOR);
-        
+
         set_temp("open", 1, me);
-        return 1;       
+        return 1;
       }
     if (!present("xin jian",me))
        {
@@ -82,7 +78,7 @@ int do_move(string arg)
         return notify_fail("你要幹什麼？\n");
         if( !query_temp("mark/open", me) && !query_temp("mark/xin", me) )
          return notify_fail("你要做什麼？\n");
-        
+
                 write("你小心翼翼打開暗層.......\n");
                 if( random(10)>8 || query("env/debug", me)){
                                           ob=unew(__DIR__"jinshezhui");
@@ -96,8 +92,8 @@ int do_move(string arg)
                                                      return 1;
                                                     }
                                           else return 1;
-                                          }          
-                          
+                                          }
+
         message_vision(RED"$N突然看見幾道寒光撲面，大叫一聲，一陣抽搐。\n"NOR, me);
         delete_temp("mark/open", me);
         me->unconcious();

@@ -15,16 +15,12 @@ void init()
 void create()
 {
         set_name(HIG"凌霄生精丹"NOR, ({"shengjing dan", "dan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("long", "一顆碧綠色的丹藥。此乃全真異寶。\n");
                 set("no_sell", 1);
                 set("no_drop", 1);
                 set("no_give", 1);
                 set("no_get", 1);
-        }
         set("pour_type", "1");
         setup();
 }
@@ -36,7 +32,7 @@ int do_eat(string arg)
 
         taoism_limit = me->query_skill("taoism", 1)*10;
         jingli_limit=query("max_jingli", me);
-        
+
         if (!id(arg)) return notify_fail("你要吃什麼？\n");
         if (!present(this_object(), this_player()))
                 return notify_fail("你要吃什麼？\n");

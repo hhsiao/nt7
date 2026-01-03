@@ -7,8 +7,6 @@ void create()
 {
         set_name(HIW "神虎戰甲" NOR, ({ "shenhu zhanjia", "shenhu", "zhanjia" }));
         set_weight(6000);
-        if (clonep())set_default_object(__FILE__);
-        else {
                 set("unit", "張");
                 set("long", HIW "\n一張投射著奇異光芒的戰甲，乃天地間的極品。\n" NOR
                             HIG "有效招架修正：+ 70        有效輕功修正：+ 10\n" NOR
@@ -29,8 +27,6 @@ void create()
                 set("armor_prop/parry", 70);
                 set("armor_prop/reduce_poison", 20); // 提高30%抗毒效果
                 set("armor_prop/avoid_poison", 20); // 提高20%迴避效果
-
-        }
         setup();
 }
 

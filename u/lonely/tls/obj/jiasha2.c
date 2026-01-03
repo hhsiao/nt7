@@ -7,9 +7,6 @@ void create()
 {
         set_name(YEL"細絲木棉袈裟"NOR, ({ "jia sha", "cloth","jiasha" }) );
         set_weight(8000);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("long", "這是一件黃色的木棉袈裟。\n");
                 set("unit", "件");
                 set("material", "cloth");
@@ -17,6 +14,5 @@ void create()
                 set("wear_msg","$N披上一件$n。\n");
                 set("remove_msg","$N把$n從身上脫了下來。\n");
                 set("tianlongsi",1);
-        }
         setup();
 }

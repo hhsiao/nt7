@@ -16,15 +16,11 @@ void init()
 void create()
 {
         set_name("天山雪蓮", ({"xuelian", "lian", "lotus"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "株");
                 set("vegetable", 32);
                 set("nostrum", 4);
                 set("long", "這是一株只有在寒冷的地方才能生長的雪蓮。\n");
                 set("value", 100);
-        }
         set("pour_type", "1");
         setup();
 }

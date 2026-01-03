@@ -13,15 +13,9 @@ void create()
 {
     set_name(HIY"神"HIM"人"HIR"令"NOR, ({"shenren ling","ling"}));
     set_weight(100);
-    if (clonep())
-        set_default_object(__FILE__);
-
-    else
-    {
         set("long", "這是一個「神人令」，它能散發神聖之氣，讓諸邪惡魔等不敢攻擊你。\n");
         set("unit", "個");
         set("value", 0);
-    }
 
     set("hj_game/obj","shenren ling");
     setup();

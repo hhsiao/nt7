@@ -11,14 +11,10 @@ void init()
 void create()
 {
         set_name(HIW"特效感冒藥"NOR, ({"texiao yao", "ganmao yao","yao"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("long", "這是一包特效感冒藥，用的是平一指的獨家配方。\n"+
                 "對各種感冒病症都有顯著療效。\n");
                 set("value", 20000);
-        }
         setup();
 }
 
@@ -29,7 +25,7 @@ int do_eat(string arg)
                 return 0;
         if (me->is_busy() )
                 return notify_fail("別急，慢慢來。\n");
-        if (! me->query_condition("ill_kesou") && 
+        if (! me->query_condition("ill_kesou") &&
         ! me->query_condition("ill_shanghan") &&
         ! me->query_condition("ill_fashao") &&
         ! me->query_condition("ill_dongshang") &&
@@ -37,8 +33,8 @@ int do_eat(string arg)
         {
                 write("你現在又沒有感冒，別亂吃藥。\n");
                 return 1;
-        } 
-        else 
+        }
+        else
         {
                 me->clear_condition("ill_kesou");
                 me->clear_condition("ill_shanghan");

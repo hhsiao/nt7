@@ -9,9 +9,6 @@ string query_autoload()
 void create()
 {
         set_name(HIY "補藥" NOR, ({ "pill" }));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("long", HIY "這是一顆增加內功的補藥。\n" NOR);
                 set("base_unit", "顆");
                 set("base_value", 10000);
@@ -41,7 +38,6 @@ void create()
                 // 增加功力的描述，如果有前面兩條信息，則應作缺省
                 set("pill_msg3", HIM "你感到內力又雄厚了一些。\n" NOR);
                 set("pill_msg4", HIR "你感到內息澎湃，難以吸收藥力。\n" NOR);
-        }
         setup();
 }
 
@@ -66,14 +62,14 @@ int do_effect(object me)
                 pot2 += pot2 / 2;
                 time -= time / 2;
         }
-        
+
         // 妙手藥王再提升效果10%
         if( query("special_skill/yaowang", me) )
         {
                 pot1 += pot1 / 10;
                 pot2 += pot2 / 10;
                 time -= time / 10;
-        }       
+        }
 
         if ((int)me->query_condition("pill_drug") > 0)
         {
@@ -81,7 +77,7 @@ int do_effect(object me)
                       "衝蕩，不敢貿然服食。\n");
                 return 1;
         }
-        
+
         // 未1轉的玩家降低為25%
         if( !query("scborn/ok", me))time=time/4;
         // 一轉但是未二轉的玩家降低為40%
@@ -108,14 +104,14 @@ int do_effect(object me)
         break;
         case 6:
                 time = time - time * 6 / 10;
-        break;  
+        break;
         case 7:
                 time = time - time * 7 / 10;
-        break;                  
+        break;
         }
 
         if (time < 10)time = 10;
-        
+
         // 增加藥物效用時間，該時段裡不能再次服用
         me->apply_condition("pill_drug", time);
 

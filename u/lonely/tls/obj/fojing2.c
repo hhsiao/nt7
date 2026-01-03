@@ -19,9 +19,6 @@ void create()
 {
 	set_name(titles[random(sizeof(titles))], ({ "shu", "book" }));
 	set_weight(200);
-	if( clonep() )
-		set_default_object(__FILE__);
-	else {
 		set("unit", "本");
 		set("long", "這是一冊佛經。\n");
 		set("value", 500);
@@ -33,7 +30,6 @@ void create()
 			"difficulty":	20,	// the base int to learn this skill
 			"max_skill":	100	// the maximum level you can learn
 		]) );
-	}
 }
 /*
 void init()

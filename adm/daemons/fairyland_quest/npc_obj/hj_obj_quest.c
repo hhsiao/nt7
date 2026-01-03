@@ -99,8 +99,6 @@ void setme( int iii )
     set( "iii", iii );
     set_name(names[ iii ], ({ids[ iii ],"shi"}));
     set_weight(100);
-    if (clonep())
-        set_default_object(__FILE__);
 
     set("long", longs[ iii ]);
     set("unit", units[ iii ]);
@@ -147,7 +145,7 @@ int do_linghui(string arg)
     if( !arg || (arg != query("id", ob) && arg != skills[iii] && arg != "shi") )
         return 0;
 
-    if( !query_temp("huanjing", me) || query_temp("huanjing", me) != "start" || 
+    if( !query_temp("huanjing", me) || query_temp("huanjing", me) != "start" ||
         !query_temp("hj_hp", me) || query_temp("hj_hp", me)<1 )
         return 0;
     if( me->is_busy() || query_temp("hj_need_waiting", me) )

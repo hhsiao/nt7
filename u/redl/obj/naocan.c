@@ -6,16 +6,12 @@ void create()
 {
         set_name(HIC "蛇年" HIY "腦黃金" NOR, ({ "nao huangjin", "nao", "huangjin" }) );
         set_weight(300);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("long", HIG "上面寫著「" HIY "2003年我家不收禮，收禮只"
                             "收腦黃金" HIG "」看樣子是高級貨。\n" NOR);
                 set("value", 500000);
                 set("no_sell", 1);
                 set("unit", "盒");
                 set("only_do_effect", 1);
-        }
 }
 
 int do_effect(object me)

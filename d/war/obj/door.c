@@ -5,9 +5,6 @@ inherit "/d/war/diablo";
 void create() {
 
     set_name("傳送門", ({"door"}));
-    if(clonep() )
-        set_default_object(__FILE__);
-    else {
 
         set("long", "暗黑傳送門。(相關指令touch,flyto)\n");
         set("unit", "個");
@@ -18,8 +15,6 @@ void create() {
 
 
         set("act", "act1");
-
-    }
     set_coor();
 
 }

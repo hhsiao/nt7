@@ -31,9 +31,6 @@ void init() {
 
 void create() {
     set_name(HIY"密令"NOR, ({"mi ling", "ling", "ml"}));
-    if (clonep())
-        set_default_object(__FILE__);
-    else {
         set("long",
             "這是一張已經發黃的紙，上面歪歪曲曲地寫著一些字，\n你可以用指令(readling)來讀取，\n用指令(helpling)來看幫助，\n用指令(whereis)看地點說明。\n");
         set("value", 0);
@@ -47,7 +44,6 @@ void create() {
         set("src_des", "");
         set("dest_add", "");
         set("dest_des", "");
-    }
 }
 
 int do_read() {

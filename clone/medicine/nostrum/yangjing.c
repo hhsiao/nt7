@@ -6,16 +6,12 @@ inherit ITEM;
 void create()
 {
         set_name(HIG"養精丹"NOR, ({"yangjing dan", "dan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set_weight(4000);
                 set("unit", "粒");
                 set("vegetable", 7);
                 set("nostrum", 128);
                 set("level", 10);
                 set("value", 5000);
-        }
         set("pour_type", "1");
         setup();
 }
@@ -51,4 +47,3 @@ int do_eat(string arg)
         destruct(this_object());
         return 1;
 }
- 

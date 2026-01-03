@@ -11,13 +11,9 @@ void init()
 void create()
 {
         set_name(HIC"祛瘡粉"NOR, ({"quchuang fen", "quchuangfen","fen"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("long", "這是一治療凍瘡的藥粉，塗抹(mo)在患處立刻見效。\n");
                 set("value", 2000);
-        }
         setup();
 }
 

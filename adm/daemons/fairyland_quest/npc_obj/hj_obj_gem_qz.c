@@ -8,7 +8,6 @@
 
 inherit ITEM;
 
-
 string *names = ({
     "蠻野族權杖",
     "猛力族權杖",
@@ -40,9 +39,6 @@ void setme( int iii )
     set("iii", iii);
     set_name( names[ iii ], ({ ids[ iii ], "quan zhang", "zhang" }) );
     set_weight(100);
-    if (clonep())
-        set_default_object(__FILE__);
-
     set("long", longs[ iii ]);
     set("unit", "柄");
     set("hj_game/obj","the_gem_qz");

@@ -12,16 +12,12 @@ void init()
 void create()
 {
         set_name(YEL"藤黃"NOR, ({"tenghuang" }));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("vegetable", 32);
                 set("value", 350);
                 set("nostrum", 32);
                 set("long", "這是一包藤黃，據說可以入藥。\n");
                 set("value", 1000);
-        }
         set("pour_type", "1");
         setup();
 }

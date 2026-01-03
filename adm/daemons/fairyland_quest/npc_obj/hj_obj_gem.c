@@ -40,8 +40,6 @@ void setme( int iii )
     set("iii", iii);
     set_name( names[ iii ], ({ ids[ iii ], "baowu" }) );
     set_weight(100);
-    if (clonep())
-        set_default_object(__FILE__);
 
     set("long", longs[ iii ]);
     set("unit", "個");

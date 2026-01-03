@@ -3,17 +3,11 @@ inherit ITEM;
 void create() {
     set_name(HIW"九花玉露丸"NOR, ({ "jiuhuayulu wan", "wan"}));
     set_weight(100);
-    if(clonep() )
-        set_default_object(__FILE__);
-    else
-    {
         set("long", "九花玉露丸是桃花島黃藥師的療傷聖藥，只要還有一口氣在，就能把命救回來。\n");
         set("unit", "顆");
         set("no_get", 1);
         set("no_give", 1);
         set("value", 100000);
-
-    }
     setup();
 }
 

@@ -8,10 +8,6 @@ void create()
 {
         set_name( HIC"六脈神劍譜"NOR,({ "sixfinger book","book"}));
         set_weight(200);
-        if (clonep())
-                set_default_object(__FILE__);
-        else
-        {
                 set("unit", "本");
                 set("long","這是一幅圖。上面都是縱橫交叉的直線、圓圈和弧形。\n");
                 set("value", 500);
@@ -25,7 +21,6 @@ void create()
                         "max_skill":    120,            // the maximum level you can learn
                         "need" : ([ "force" : 301 ]),
                 ]) );
-        }
 }
 
 string skl_name()
@@ -47,7 +42,7 @@ int do_yanjiu(string arg)
         object me = this_player();
         string skill,book;
         string msg;
-        
+
         if (!present(ob,me)) return 0;
 
         if ((int)me->query_skill("literate",1)<1)
@@ -80,7 +75,7 @@ int do_yanjiu(string arg)
                 return 1;
         }
 
-        if (skill != "此去彼來" && skill != "馭劍氣" 
+        if (skill != "此去彼來" && skill != "馭劍氣"
            && skill != "ciqu" && skill != "yuqi")
         {
                 write("書上並沒有介紹關於"+skill+"的內容。\n");
@@ -93,14 +88,14 @@ int do_yanjiu(string arg)
                 return 1;
         }
 
-        if( query("jing", me)<100 || 
-            query("qi", me)<100 || 
+        if( query("jing", me)<100 ||
+            query("qi", me)<100 ||
             query("neili", me)<200 )
   {
           write("你現在過於疲倦，無法專心下來研讀新知。\n");
           return 1;
   }
-  
+
   switch(skill)
   {
           case "ciqu":
@@ -119,7 +114,7 @@ int do_yanjiu(string arg)
            if (random (10) != 1)
            {
                 write("你研究了半天，仍然無法將「此去彼來」融會貫通！\n");
-                me->start_busy(15); 
+                me->start_busy(15);
                 set("jing", 1, me);
                 return 1;
            }
@@ -127,8 +122,8 @@ int do_yanjiu(string arg)
                      "……\n" NOR;
            msg += HIW "$N" HIW "攤開雙手，手指連彈，霎時間空氣炙熱，幾"
                   "欲沸騰，六道劍氣分自六穴，一起衝向天際" HIW "！\n" NOR;
-           msg += HIG "$N" HIG "長嘆一聲，感慨萬千，將內力收回丹田。\n" NOR; 
-           message_vision(msg, me); 
+           msg += HIG "$N" HIG "長嘆一聲，感慨萬千，將內力收回丹田。\n" NOR;
+           message_vision(msg, me);
 
                    me->improve_skill("finger", 1500000);
                    me->improve_skill("six-finger", 1500000);
@@ -164,10 +159,10 @@ int do_yanjiu(string arg)
            msg = HIG "$N" HIG "翻看劍譜，仔細研究上面所記載的武學，霎那間忽有所悟"
                      "……\n" NOR;
            msg += HIM "$N" HIM "一聲清嘯，十指紛彈，頓覺六脈劍氣已湧上心頭，此起"
-                  "彼伏、連綿不絕。霎時劍氣如奔，連綿無盡的萬道劍氣豁然貫向虛空" HIM 
+                  "彼伏、連綿不絕。霎時劍氣如奔，連綿無盡的萬道劍氣豁然貫向虛空" HIM
                   "！\n" NOR;
-           msg += HIG "$N" HIG "長嘆一聲，感慨萬千，將內力收回丹田。\n" NOR; 
-           message_vision(msg, me); 
+           msg += HIG "$N" HIG "長嘆一聲，感慨萬千，將內力收回丹田。\n" NOR;
+           message_vision(msg, me);
 
                    me->improve_skill("finger", 1500000);
                    me->improve_skill("six-finger", 1500000);

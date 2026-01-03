@@ -8,19 +8,14 @@ void init()
 }
 void create()
 {
-	set_name("雪露丸", ({"xuelu wan", "wan", }));   
+	set_name("雪露丸", ({"xuelu wan", "wan", }));
 	set("no_drop",1);
 	set("no_get",1);
-	if (clonep())
-		set_default_object(__FILE__);
-	else {
 		set("unit", "顆");
 		set("long", "這是一顆晶瑩半透明的藥丸，淺綠色帶有一股清香，此藥是天龍寺秘傳以天山雪蓮與碧玉草合成，提高體力，靈效無比。\n");
-		set("value", 10000);     
+		set("value", 10000);
 		set("no_drop",1);
 	set("no_get",1);
-		
-	}
 
 	set("tialongsi",1);
 	setup();
@@ -49,7 +44,7 @@ int do_eat(string arg)
 		write("所練內功不符，這藥你還是不要吃的好！\n");
 		return 1;
 	}
-      } 
+      }
 
 	if ( (int)me->query_condition("bonze_drug" ) > 0 )
 	{
@@ -66,7 +61,7 @@ int do_eat(string arg)
 		message_vision(HIY "$N吃下一顆雪露丸，只覺得體力頓然提高，全身似有無窮的精力！\n" NOR, me);
 		me->apply_condition("bonze_drug", 25);
 	}
-	
+
 	destruct(this_object());
 	return 1;
 }

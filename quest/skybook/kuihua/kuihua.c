@@ -8,9 +8,6 @@ void create()
 {
 	set_name(HIW"葵花寶典"NOR, ({ "kuihua baodian", "baodian", "book"}));
 	set_weight(500);
-	if( clonep() )
-		set_default_object(__FILE__);
-	else {
 		set("unit", "本");
 		set("long", "這就是武林第一秘籍「葵花寶典」，相傳是一位宮中太監所作。\n");
 		set("value", 5000);
@@ -19,7 +16,6 @@ void create()
 		set("treasure",1);
 		set("material", "paper");
 		set("no_get", "這樣東西不能離開那兒。\n");
-	}
 	setup();
 }
 
@@ -63,7 +59,7 @@ if (arg=="pixie-jian") {
 
 	if (environment(me)->query("sleep_room"))
 		return notify_fail("臥室不宜修練，會影響別人休息。\n");
- 
+
 	if (environment(me)->query("no_fight"))
 		return notify_fail("此地不宜研習「葵花寶典」！\n");
 
@@ -82,7 +78,7 @@ if (arg=="pixie-jian") {
 			|| sk[i] == "guiyuan-tunafa"
 			|| sk[i] == "hanbing-zhenqi"
 			|| sk[i] == "huagong-dafa"
-			|| sk[i] == "kuihua-shengong" 
+			|| sk[i] == "kuihua-shengong"
 			|| sk[i] == "jiuyin-zhengong" ) continue;
 
 			if ( SKILL_D(sk[i])->valid_enable("force"))
@@ -106,7 +102,7 @@ if (arg=="pixie-jian") {
 		me->add("neili", - 50);
 		me->improve_skill("pixie-jian", me->query_int());
 		if (!random(8))
-			message("vision", me->name() + "仔細研讀著「葵花寶典」的精妙之處。\n", environment(me), me); 
+			message("vision", me->name() + "仔細研讀著「葵花寶典」的精妙之處。\n", environment(me), me);
 		tell_object(me, "你仔細研讀著「葵花寶典」的精妙之處。\n");
 	}
 	return 1;
@@ -135,7 +131,7 @@ if (arg=="pixie-jian") {
 
 	if (environment(me)->query("sleep_room"))
 		return notify_fail("臥室不宜修練，會影響別人休息。\n");
- 
+
 	if (environment(me)->query("no_fight"))
 		return notify_fail("此地不宜研習「葵花寶典」！\n");
 
@@ -154,7 +150,7 @@ if (arg=="pixie-jian") {
 			|| sk[i] == "guiyuan-tunafa"
 			|| sk[i] == "hanbing-zhenqi"
 			|| sk[i] == "huagong-dafa"
-			|| sk[i] == "kuihua-shengong" 
+			|| sk[i] == "kuihua-shengong"
 			|| sk[i] == "jiuyin-zhengong" ) continue;
 
 			if ( SKILL_D(sk[i])->valid_enable("force"))
@@ -179,7 +175,7 @@ if (arg=="pixie-jian") {
 		me->add("neili", - 50);
 		me->improve_skill("kuihua-shengong", me->query_int());
 		if (!random(8))
-			message("vision", me->name() + "仔細研讀著「葵花寶典」的精妙之處。\n", environment(me), me); 
+			message("vision", me->name() + "仔細研讀著「葵花寶典」的精妙之處。\n", environment(me), me);
 		tell_object(me, "你仔細研讀著「葵花寶典」的精妙之處。\n");
 	}
 	return 1;

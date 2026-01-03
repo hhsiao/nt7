@@ -14,15 +14,11 @@ void init()
 void create()
 {
         set_name(HIY"老山參"NOR, ({"laoshan shen", "shen"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "株");
                 set("vegetable", 4);
                 set("nostrum", 64);
                 set("long", "這是一株沾滿山泥的長白老山參。\n");
                 set("value", 10000);
-        }
         set("pour_type", "1");
         setup();
 }

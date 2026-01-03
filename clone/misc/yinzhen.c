@@ -10,10 +10,6 @@ void create()
 {
         set_name(HIW "銀針" NOR, ({ "yin zhen" , "yin", "zhen" }) );
         set_weight(200);
-
-        if( clonep() ) set_default_object(__FILE__);
-        else
-        {
                 set("unit", "把");
                 set("long", HIW"這是三寸長的銀針，細而柔韌，多為醫家刺穴療傷之用。\n能運用這種銀針的醫者多為曠世神醫，並有深厚的內功。\n你可以試著用它來針灸(zhenjiu)療傷。\n" NOR);
                 set("value", 0);
@@ -22,7 +18,6 @@ void create()
                 set("base_weight", 10);
                 set("base_value", 0);
                 set("material","crimsonsteel");
-        }
         set_amount(1);
         init_throwing(30);
         setup();
@@ -46,7 +41,7 @@ int do_heal(string arg)
         if (! arg || ! objectp(ob = present(arg, environment(me))))
                 return notify_fail("你想對誰施行針灸術？\n");
         if (! ob->is_character() )
-                return notify_fail("看清楚了，那不是活人！\n"); 
+                return notify_fail("看清楚了，那不是活人！\n");
         if( query_temp("noliving", ob) || !living(ob) )
                 return notify_fail("你還是等他醒了之後再治療吧。\n");
         if (me->is_busy()) return notify_fail("你現在正忙著呢。\n");
@@ -166,7 +161,7 @@ int do_heal(string arg)
                                 }
                         }
                 }
-                
+
         }
 
         return 1;

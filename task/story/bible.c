@@ -10,9 +10,6 @@ void create()
 	set_weight(600);
 	set("task",1);
         set("owner","西洋傳教士");
-	if( clonep() )
-		set_default_object(__FILE__);
-	else {
 		set("unit", "本");
 		set("long",
 			"這是一本聖經，上面寫了一些教義。\n"
@@ -29,6 +26,5 @@ void create()
 			"max_skill":20			// the maximum level you can learn
 							// from this object.
 		]) );
-	}
 	setup();
 }

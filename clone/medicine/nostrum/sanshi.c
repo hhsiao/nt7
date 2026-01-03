@@ -5,15 +5,11 @@ inherit ITEM;
 void create()
 {
         set_name(HIR"三尸腦神丹"NOR, ({"sanshinao shendan", "sanshi dan", "dan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
-                set("long", 
+                set("long",
 "一粒火紅色的丹藥，看樣子不是尋常物品。你只可以乘別人人事不知時
 喂(wei)給人家吃。\n");
                 set("unit", "粒");
                 set("value", 20000);
-        }
         set("pour_type", "1");
         setup();
 }

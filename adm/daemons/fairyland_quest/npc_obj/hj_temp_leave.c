@@ -9,14 +9,9 @@ void create()
 {
     set_name( "幻境物件·臨時離開時用", ({ "hj temp leave obj" }) );
     set_weight(1);
-    if (clonep())
-        set_default_object(__FILE__);
-    else
-    {
-        set("long", "玩家攜帶時即禁止其一切指令。\n");
-        set("unit", "個");
-        set("value", 0);
-    }
+    set("long", "玩家攜帶時即禁止其一切指令。\n");
+    set("unit", "個");
+    set("value", 0);
     set("hj_game/obj","hj leave obj");
     setup();
 }

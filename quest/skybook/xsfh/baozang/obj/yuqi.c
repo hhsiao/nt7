@@ -19,15 +19,11 @@ void create()
         case 11 : set_name(CYN"玉虎"NOR, ({"yu pei", "yu", "pei"})); break;
         case 12 : set_name(MAG"玉鳳"NOR, ({"yu pei", "yu", "pei"})); break;
         }
-	if (clonep())
-		set_default_object(__FILE__);
-	else {
                 set("unit", "塊");
                 set("weight", 1000);
 		set("long", "這是東漢玉石飾品中的一個，出自陝西，山東，河南一帶。\n");
 		set("material", "stone");
         set("base_value", 900000);
         set("value", 900000);
-        }
 	setup();
 }

@@ -10,12 +10,8 @@ void create()
 {
         set_name(GRN "孟婆茶" NOR,({GRN "mengpo tea" NOR, "cha", "tea"}));
         set_weight(1);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                  set("long", GRN"這就是傳說中著名的孟婆茶。每個鬼魂在投胎轉世之前，都要喝上一碗孟婆茶，據說喝了這碗茶後，你在陽間的一切一切就都會忘得乾乾淨淨，就此與今世脫離了一切關係。\n");
                 set("unit", "碗");
-        }
         set("pour_type", "1");
         setup();
 }
@@ -47,7 +43,7 @@ int do_drink(string arg)
         return 1;
 }
 int mpc_effect(object me)
-{     
+{
         string stroom;
         stroom=query("startroom", me);
         if( stroom[0..7] != "/d/death"  )

@@ -11,14 +11,10 @@ void init()
 void create()
 {
         set_name(HIY"退燒靈"NOR, ({"tuishao ling", "tuishaoling","ling"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("long", "這是一包治發燒的藥，療效顯著。\n");
                 set("value", 2000);
                 set("only_do_effect", 1);
-        }
         setup();
 }
 

@@ -20,14 +20,10 @@ void create()
 {
         set_name( YEL "參陽玉酒" NOR , ({"shenyang yujiu", "jiu"}));
         set_weight(90);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "壺");
                 set("long","一壺金黃的粘稠藥酒，是凌霄城的珍藏，飲之於學武大有裨益。\n");
                 set("value", 0);
                 set("drug_type", "補品");
-        }
         set("is_monitored",1);
         set("pour_type", "1");
         setup();
@@ -43,7 +39,7 @@ int do_drink(string arg)
         if( me->is_busy() )
                 return notify_fail("別急，慢慢喝，小心別嗆著了。\n");
 
-        if( query("eff_jing", me) >= query("max_jing", me) && 
+        if( query("eff_jing", me) >= query("max_jing", me) &&
                 query("eff_qi", me) >= query("max_qi", me) )
         {
                 write("你滿面紅光的，喝如此兇的酒不怕上火？\n");

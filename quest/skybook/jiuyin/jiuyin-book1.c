@@ -6,9 +6,6 @@ void create()
 {
         set_name(HIC"九陰真經上卷"NOR, ({ "jiuyin zhenjing", "shang juan", "book"}));
         set_weight(500);
-        if( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("unit", "卷");
                 set("long","這是名震江湖之九陰真經的上卷。你可以研讀以下的技能：\n"+
                            "道德經    (daode-jing) \n"
@@ -24,7 +21,6 @@ void create()
                 set("no_give", 1);
                 set("no_get", 1);
                 set("no_steal", 1);
-        }
 }
 
 void init()
@@ -102,7 +98,7 @@ int do_study(string arg)
 
       cost = 40 * ( 1 + ( 35 - (int)me->query("int"))/20 );
       if (cost < 20) cost = 20;
-      
+
       if( me->query("neili") < cost * 2 + 300)
           return notify_fail("你的內力不夠，無法領會這個技能。\n");
 
@@ -114,7 +110,7 @@ int do_study(string arg)
               return notify_fail("你覺得這經書上所寫的已經太淺了，不能學到什麼東西。\n");
           if( my_skill >= me->query_skill("daode-jing",1))
               return notify_fail("你道德經太淺，不能學到什麼東西。\n");
-          if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+          if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
               return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
           else
               write("你研讀著有關九陰真功的技巧，似乎有些心得。\n");
@@ -129,14 +125,14 @@ int do_study(string arg)
           me->add("neili", -cost * 2);
           if(me->query_skill("jiuyin-zhengong",1) < 200)
                me->add("potential", - random(2));
-          break;             
+          break;
         case "jiuyin-shenfa":
           my_skill = me->query_skill("jiuyin-shenfa", 1);
           if( my_skill >= 150)
               return notify_fail("你覺得這經書上所寫的已經太淺了，不能學到什麼東西。\n");
           if( my_skill >= me->query_skill("daode-jing",1))
               return notify_fail("你道德經太淺，不能學到什麼東西。\n");
-          if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+          if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
               return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
           else
               write("你研讀著有關九陰身法的技巧，似乎有些心得。\n");
@@ -158,7 +154,7 @@ int do_study(string arg)
               return notify_fail("你覺得這經書上所寫的已經太淺了，不能學到什麼東西。\n");
           if( my_skill >= me->query_skill("daode-jing",1))
               return notify_fail("你道德經太淺，不能學到什麼東西。\n");
-          if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") ) 
+          if( my_skill * my_skill * my_skill / 10 > (int)me->query("combat_exp") )
               return notify_fail("也許是缺乏實戰經驗，你對經書上面所說的東西總是無法領會。\n");
           else
               write("你研讀著有關玄陰劍法的技巧，似乎有些心得。\n");
@@ -192,4 +188,3 @@ int do_study(string arg)
       }
       return 1;
 }
-

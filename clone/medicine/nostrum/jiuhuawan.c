@@ -11,9 +11,6 @@ void init()
 void create()
 {
         set_name(HIG"九花玉露丸"NOR, ({"jiuhuayulu wan", "jiuhua wan", "wan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("vegetable", 54);
                 set("nostrum", 38);
@@ -21,7 +18,6 @@ void create()
                 set("long", "這是一顆晶瑩碧綠的九花玉露丸，經桃花島主精心練制，
 有起死回生之功。\n");
                 set("value", 50000);
-        }
         set("pour_type", "1");
         setup();
 }
@@ -37,7 +33,7 @@ int do_eat(string arg)
         if (me->is_busy() )
                 return notify_fail("別急，慢慢吃，小心別噎著了。\n");
 
-        if( query("eff_jing", me) >= query("max_jing", me) && 
+        if( query("eff_jing", me) >= query("max_jing", me) &&
                 query("eff_qi", me) >= query("max_qi", me) )
         {
                 write("沒傷沒病的，別浪費這麼珍貴的藥啦。\n");

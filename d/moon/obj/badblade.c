@@ -4,9 +4,6 @@ inherit BLADE;
 void create() {
     set_name(YEL "鈍刀" NOR, ({ "badblade" }) );
     set_weight(48000);
-    if(clonep() )
-        set_default_object(__FILE__);
-    else {
         set("unit", "把");
         set("long",
 
@@ -17,7 +14,6 @@ void create() {
         set("material", "steel");
         set("wield_msg", "$N不聲不響地抽出一把$n握在手中。\n");
         set("unequip_msg", "$N將手中的$n放下。\n");
-    }
 
     init_blade(150);
     setup();

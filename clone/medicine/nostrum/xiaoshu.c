@@ -11,13 +11,9 @@ void init()
 void create()
 {
                 set_name(HIY"消暑丸"NOR, ({"xiaoshu wan", "xiaoshuwan","wan"}));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "包");
                 set("long", "這是一包治療中暑的藥，立刻見效。\n");
                 set("value", 2000);
-        }
         setup();
 }
 

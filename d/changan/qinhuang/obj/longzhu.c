@@ -4,14 +4,10 @@ inherit ITEM;
 void create() {
     set_name(HIB BLINK "龍珠" NOR, ({ "long zhu" , "zhu", }) );
     set_weight(100000);
-    if(clonep() )
-        set_default_object(__FILE__);
-    else {
         set("unit", "顆");
         set("long", "這是顆龍眼，看來還值幾個錢。\n");
         set("value", 1000000);
         set("material", "dainomd");
-    }
 }
 void init() {
     if (environment()==this_player())

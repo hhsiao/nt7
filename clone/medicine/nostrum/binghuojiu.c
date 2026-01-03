@@ -10,13 +10,9 @@ void create()
 {
         set_name(HIC "玄" HIW "冰" HIC "碧" HIR "火"
                  HIC "酒" NOR, ({ "xuanbing jiu", "xuanbing", "jiu" }));
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "壺");
                 set("long", HIC "這是一壺珍貴之極的玄冰碧火酒。\n" NOR);
                 set("value", 50000);
-        }
         setup();
 }
 

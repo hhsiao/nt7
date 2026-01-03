@@ -86,9 +86,6 @@ void create()
 {
         set_name(HIY"經緯儀"NOR, ({"jingwei yi","yi"}));
         set_weight(1);
-        if ( clonep() )
-                set_default_object(__FILE__);
-        else {
                 set("long", @LONG
 控制戰船的主要工具，有了它才可以進行甲午海戰戰場。
 
@@ -97,7 +94,6 @@ void create()
 LONG);
                 set("unit", "具");
                 set("value", 0);
-        }
         set("no_get", 1);
         set("no_drop",1);
         set("no_steal",1);
@@ -257,7 +253,7 @@ int do_go(string arg)
         }
         if ( x < 1 || y < 1 || x > 14 || y > 22 ) return notify_fail("這個方向已經無法前進了！\n");
 
-        set("be_finded(" + old_x + "," + old_y + ")", 1); 
+        set("be_finded(" + old_x + "," + old_y + ")", 1);
 
         if ( query( "island(" + old_x + "," + old_y + ")" ) == "new" || query( "island(" + old_x + "," + old_y + ")" ) == "old" ) {
                 set("island(" + old_x + "," + old_y + ")", "old");

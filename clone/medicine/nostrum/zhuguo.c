@@ -21,13 +21,9 @@ void create()
 {
         set_name(HIR "朱果" NOR, ({"zhu guo", "guo"}));
         set_weight(20);
-        if (clonep())
-                set_default_object(__FILE__);
-        else {
                 set("unit", "顆");
                 set("long", "這是一顆朱果，通體鮮紅，一望而知是不可多得的珍品。\n");
                 set("value", 10000);
-        }
         set("pour_type", "1");
         setup();
 }
