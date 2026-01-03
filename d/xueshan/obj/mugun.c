@@ -1,16 +1,15 @@
 #include <weapon.h>
 inherit STAFF;
 
-void create()
-{
-        set_name("木棍", ({ "mu gun","gun"}));
-        set_weight(1000);
-        set("unit", "根");
-                set("long", "這是一根木棍，舉可齊眉，輕重合宜，可攻擊大片敵人。\n");
-                set("value", 50);
-                set("material", "wood");
-                set("wield_msg", "$N抽出一根$n握在手中。\n");
-                set("unwield_msg", "$N將手中的$n插回腰間。\n");
-        init_staff(5);
-        setup();
+void create() {
+    set_name("木棍", ({ "mu gun", "gun"}));
+    set_weight(1000);
+    set("unit", "根");
+    set("long", "這是一根木棍，舉可齊眉，輕重合宜，可攻擊大片敵人。\n");
+    set("value", 50);
+    set("material", "wood");
+    set("wield_msg", "$N抽出一根$n握在手中。\n");
+    set("unwield_msg", "$N將手中的$n插回腰間。\n");
+    init_staff(5);
+    setup();
 }

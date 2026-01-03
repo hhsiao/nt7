@@ -14,10 +14,10 @@ void create() {
     set("no_get", "1");
     set("rank_info/respect", "小二哥");
     set("vendor_goods", ({
-            FOOD_DIR"jitui",
+        FOOD_DIR"jitui",
         FOOD_DIR"baozi",
         LIQUID_DIR"jiudai"
-        }));
+    }));
     setup();
     carry_object("/clone/misc/cloth")->wear();
 }

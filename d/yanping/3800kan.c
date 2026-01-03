@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "三千八百坎");
-        set("long", @LONG
+void create() {
+    set("short", "三千八百坎");
+    set("long", @LONG
 自古入閩無敞途。往來貨運全靠肩挑背扛，逶迤入閩，車馬不通。
 這段古道號稱“三千八百坎”，寬僅三尺，青石砌就，階如長龍，盤曲
 蜿蜒，縈繞碧峰，甚為壯觀。行商頭腳相繼，直達峰頂古堡。相傳老農
@@ -15,14 +14,14 @@ void create()
 “三千八百坎，坎坎有黃金”。
     由此下到坎底衍仙山麓，就是延平府城了。
 LONG );
-        set("exits", ([
-                "northup"   : __DIR__"banyanting",
-                "southdown" : __DIR__"yidao3",
+    set("exits", ([
+        "northup": __DIR__"banyanting",
+        "southdown": __DIR__"yidao3"
         ]));
-        set("objects", ([
-                "/d/taishan/npc/tiao-fu" : 2,
+    set("objects", ([
+        "/d/taishan/npc/tiao-fu" : 2
         ]));
-        set("outdoors", "yanping");
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "yanping");
+    setup();
+    replace_program(ROOM);
 }

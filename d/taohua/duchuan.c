@@ -1,22 +1,19 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "海船");
-        set("long", @LONG
+void create() {
+    set("short", "海船");
+    set("long", @LONG
 一艘海船，大概能載十七、八個人。幾名健碩的水手正在船頭船尾忙
 來忙去。
 LONG );
 
-        set("valid_startroom", 1);
-        set("outdoors", "taohua");
-        set("cost", 2);
-        setup();
-        replace_program(ROOM);
+    set("valid_startroom", 1);
+    set("outdoors", "taohua");
+    set("cost", 2);
+    setup();
+    replace_program(ROOM);
 }
-
-

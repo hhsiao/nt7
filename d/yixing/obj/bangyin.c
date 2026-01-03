@@ -3,11 +3,10 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("幫印", ({ "bangyin" }) );
-        set("weight", 30);
-        set("unit", "個");
-        set("value", 0);
-        set("material", "wood");
+void create() {
+    set_name("幫印", ({ "bangyin" }) );
+    set("weight", 30);
+    set("unit", "個");
+    set("value", 0);
+    set("material", "wood");
 }

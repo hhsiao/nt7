@@ -12,8 +12,8 @@ LONG
     set("outdoors", "wudujiao");
 
     set("exits", ([
-        "south" : __DIR__"baidu2",
-        "north" : __DIR__"wdsl4"
+        "south": __DIR__"baidu2",
+        "north": __DIR__"wdsl4"
         ]));
     set("objects", ([
         __DIR__"npc/jiaotu": 4

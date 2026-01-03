@@ -3,22 +3,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "物品房");
-        set("long", @LONG
+void create() {
+    set("short", "物品房");
+    set("long", @LONG
 這是聚義館的堆放各種各樣物品的房間。郭靖的二弟子武修文正
 在這兒負責向有任務的新手分發各種物品。
 LONG );
-        set("exits", ([
-                "northwest" : __DIR__"juyihuayuan",
+    set("exits", ([
+        "northwest": __DIR__"juyihuayuan"
         ]));
-        set("objects", ([
-                __DIR__"npc/wuxiuwen" : 1,
+    set("objects", ([
+        __DIR__"npc/wuxiuwen" : 1
         ]));
-        set("coor/x", -7830);
-	set("coor/y", -810);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", -7830);
+    set("coor/y", -810);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

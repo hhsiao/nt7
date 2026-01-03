@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "雲步橋");
-        set("long", @LONG
+void create() {
+    set("short", "雲步橋");
+    set("long", @LONG
 在快活三里北首就是雲步橋。因谷深林茂，常有云霧縈繞，楊承訓
 題“雲步橋”。橋北大壑忽臨斷崖，壁立如削。崖上石坪坦豁，傳宋真
 宗曾在此駐蹕，故名御帳坪，今柱窩尚存。岱頂下諸水奔流而來，飛瀑
@@ -17,16 +16,16 @@ void create()
 倒著肩輿下，回看斜陽景更豔。”
     此處東有酌泉亭，由此西上，就是三蹬崖。
 LONG );
-        set("exits", ([
-                "east"   : __DIR__"zhuoquan",
-                "south"  : __DIR__"kuaihuosan",
-                "westup" : __DIR__"sandengya",
+    set("exits", ([
+        "east": __DIR__"zhuoquan",
+        "south": __DIR__"kuaihuosan",
+        "westup": __DIR__"sandengya"
         ]));
-        set("outdoors", "taishan");
-        set("no_clean_up", 0);
-        set("coor/x", 60);
-	set("coor/y", 210);
-	set("coor/z", 100);
-	setup();
-        replace_program(ROOM);
+    set("outdoors", "taishan");
+    set("no_clean_up", 0);
+    set("coor/x", 60);
+    set("coor/y", 210);
+    set("coor/z", 100);
+    setup();
+    replace_program(ROOM);
 }

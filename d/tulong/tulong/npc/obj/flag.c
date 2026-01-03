@@ -3,16 +3,15 @@
 
 inherit CLUB;
 
-void create()
-{
-        set_name(HIY"大旗"NOR, ({ "flag","qi"}) );
-        set_weight(15000);
-        set("unit", "面");
-                set("long", "旗上繡著一頭大鷹，雙翅伸展，甚是威武。\n");
-                set("value", 300);
-                set("material", "silk");
-                set("wield_msg", "$N拿出一面$n，揮舞示意。\n");
-                set("unwield_msg", "$N放下手中的$n。\n");
-        init_club(10);
-        setup();
+void create() {
+    set_name(HIY"大旗"NOR, ({ "flag", "qi" }) );
+    set_weight(15000);
+    set("unit", "面");
+    set("long", "旗上繡著一頭大鷹，雙翅伸展，甚是威武。\n");
+    set("value", 300);
+    set("material", "silk");
+    set("wield_msg", "$N拿出一面$n，揮舞示意。\n");
+    set("unwield_msg", "$N放下手中的$n。\n");
+    init_club(10);
+    setup();
 }

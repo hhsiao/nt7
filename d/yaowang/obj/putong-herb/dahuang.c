@@ -1,13 +1,12 @@
 #include "herb.h"
 
-void create()
-{
-        set_name(HIY "大黃" NOR, ({ "da huang", "da", "huang", "herb_dahuang" }));
-        set("long", HIY "大黃是頗為名貴的中藥藥材。\n" NOR);
-                set("base_unit", "塊");
-                set("base_value", 7000);
-                set("base_weight", 100);
-                set("no_sell", "藥王谷的丹藥非常有名，但普通草藥隨地都有啊。");
-                set("yaowang", 1);
-        setup();
+void create() {
+    set_name(HIY "大黃" NOR, ({ "da huang", "da", "huang", "herb_dahuang" }));
+    set("long", HIY "大黃是頗為名貴的中藥藥材。\n" NOR);
+    set("base_unit", "塊");
+    set("base_value", 7000);
+    set("base_weight", 100);
+    set("no_sell", "藥王谷的丹藥非常有名，但普通草藥隨地都有啊。");
+    set("yaowang", 1);
+    setup();
 }

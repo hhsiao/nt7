@@ -4,14 +4,13 @@ inherit ITEM;
 inherit F_FOOD;
 #include <ansi.h>
 
-void create()
-{
-        set_name(WHT"菱白蝦仁"NOR, ({ "lingbai xiaren", "xiaren" }) );
-        set("long", "一盆香噴噴熱氣騰騰的菱白蝦仁。\n");
-                set("unit", "盆");
-                set("value", 180);
-                set("food_remaining", 8);
-                set("food_supply", 20);
-                set("material", "meat");
-        setup();
+void create() {
+    set_name(WHT"菱白蝦仁"NOR, ({ "lingbai xiaren", "xiaren" }) );
+    set("long", "一盆香噴噴熱氣騰騰的菱白蝦仁。\n");
+    set("unit", "盆");
+    set("value", 180);
+    set("food_remaining", 8);
+    set("food_supply", 20);
+    set("material", "meat");
+    setup();
 }

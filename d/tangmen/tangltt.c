@@ -4,19 +4,18 @@
 #include <room.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", "臥室");
-        set("long",
-"這是唐門掌門唐老太太的臥室，很簡單，沒有什麼特別。\n"
-);
-        set("exits", ([
-                        "south" : __DIR__"nzlang3",
+void create() {
+    set("short", "臥室");
+    set("long",
+        "這是唐門掌門唐老太太的臥室，很簡單，沒有什麼特別。\n"
+    );
+    set("exits", ([
+        "south": __DIR__"nzlang3"
         ]));
-        set("area", "tangmen");
-        set("objects", ([
-                CLASS_D("tangmen") + "/tangltt" : 1,
+    set("area", "tangmen");
+    set("objects", ([
+        CLASS_D("tangmen") + "/tangltt" : 1
         ]));
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }

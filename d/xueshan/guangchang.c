@@ -2,34 +2,32 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","廣場");
-        set("long",@LONG
+void create() {
+    set("short", "廣場");
+    set("long",@LONG
 這裡是雪山寺內的廣場。廣場石埕鋪就，黃土墊砌，平整而堅實。
 廣場的北面就是依山而建的雪山寺大殿。往西是塊練武場，南面是山門。
 寺內有一些手持僧棍的僧兵在巡邏。
 LONG );
-        set("outdoors","xueshansi");
-        set("exits",([
-                "east" : __DIR__"xiaoyuan",
-                "west" : __DIR__"chang",
-                "north" : __DIR__"dadian",
-                "south" : __DIR__"shanmen",
+    set("outdoors", "xueshansi");
+    set("exits", ([
+        "east": __DIR__"xiaoyuan",
+        "west": __DIR__"chang",
+        "north": __DIR__"dadian",
+        "south": __DIR__"shanmen"
         ]));
-        set("objects" , ([
-                __DIR__"npc/seng-bing1"  : 4 ,
+    set("objects" , ([
+        __DIR__"npc/seng-bing1"  : 4
         ]));
-//        set("no_clean_up", 0);
-	set("coor/x", -70000);
-	set("coor/y", -19900);
-	set("coor/z", 120);
-	setup();
+    //        set("no_clean_up", 0);
+    set("coor/x", -70000);
+    set("coor/y", -19900);
+    set("coor/z", 120);
+    setup();
 }
 
-int valid_leave(object me, string dir)
-{
-	if( query("id", me) == "sengbing" && dir == "south")return 0;
+int valid_leave(object me, string dir) {
+    if(query("id", me) == "sengbing" && dir == "south")return 0;
 
-	return ::valid_leave(me, dir);
+    return ::valid_leave(me, dir);
 }

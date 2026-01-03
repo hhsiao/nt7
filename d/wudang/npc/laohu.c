@@ -3,12 +3,11 @@
 #include <ansi.h>;
 inherit NPC;
 
-void create()
-{
-        set_name("老虎", ({ "laohu", "tiger","hu" }) );
-        set("race", "野獸");
-        set("age", 20);
-        set("long", @LONG
+void create() {
+    set_name("老虎", ({ "laohu", "tiger", "hu" }) );
+    set("race", "野獸");
+    set("age", 20);
+    set("long", @LONG
 一隻斑斕猛虎，雄偉極了。
 
          _.-'"''--..__.("\-''-'")
@@ -20,28 +19,28 @@ void create()
 
 
 LONG);
-        set("attitude", "aggressive");
-        set("shen_type", -1);
+    set("attitude", "aggressive");
+    set("shen_type", -1);
 
-        set("limbs", ({ "虎頭", "虎身", "前爪", "後抓", "尾巴" }) );
-        set("verbs", ({ "bite", "claw" }) );
+    set("limbs", ({ "虎頭", "虎身", "前爪", "後抓", "尾巴" }) );
+    set("verbs", ({ "bite", "claw" }) );
 
-        set("combat_exp", 30000);
-        set("neili",800);
-        set("jiali",100);
-        set("max_neili",800);
-        set("jingli",500);
-        set("max_jingli",500);
+    set("combat_exp", 30000);
+    set("neili", 800);
+    set("jiali", 100);
+    set("max_neili", 800);
+    set("jingli", 500);
+    set("max_jingli", 500);
 
-        set_temp("apply/attack", 20000);
-        set_temp("apply/defense", 10000);
-        set_temp("apply/armor", 1000);
+    set_temp("apply/attack", 20000);
+    set_temp("apply/defense", 10000);
+    set_temp("apply/armor", 1000);
 
-        setup();
+    setup();
 
-        set("chat_chance", 10);
-        set("chat_msg", ({
-                "老虎在浚巡，嚇得你大氣都不敢出。\n",
-                "老虎仰天長嘯，聲震山谷，黃葉紛墜。\n",
-        }) );
+    set("chat_chance", 10);
+    set("chat_msg", ({
+        "老虎在浚巡，嚇得你大氣都不敢出。\n",
+        "老虎仰天長嘯，聲震山谷，黃葉紛墜。\n"
+    }) );
 }

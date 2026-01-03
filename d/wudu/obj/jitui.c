@@ -5,26 +5,24 @@
 inherit HAMMER;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("烤山雞腿", ({ "jitui", "tui" }) );
-        set_weight(350);
-        set("long", "一枝烤得香噴噴的山雞腿。\n");
-                set("unit", "根");
-                set("value", 80);
-                set("food_remaining", 4);
-                set("food_supply", 15);
-                set("wield_msg", "$N抓起一根$n，握在手中當武器。\n");
-                set("material", "bone");
-        init_hammer(1);
-        setup();
+void create() {
+    set_name("烤山雞腿", ({ "jitui", "tui" }) );
+    set_weight(350);
+    set("long", "一枝烤得香噴噴的山雞腿。\n");
+    set("unit", "根");
+    set("value", 80);
+    set("food_remaining", 4);
+    set("food_supply", 15);
+    set("wield_msg", "$N抓起一根$n，握在手中當武器。\n");
+    set("material", "bone");
+    init_hammer(1);
+    setup();
 }
 
-int finish_eat()
-{
-        if( !query("weapon_prop") ) return 0;
-        set_name("啃得精光的山雞腿骨頭", ({ "bone" }) );
-        set_weight(150);
-        set("long", "一根啃得精光的山雞腿骨頭。\n");
-        return 1;
+int finish_eat() {
+    if(!query("weapon_prop") ) return 0;
+    set_name("啃得精光的山雞腿骨頭", ({ "bone" }) );
+    set_weight(150);
+    set("long", "一根啃得精光的山雞腿骨頭。\n");
+    return 1;
 }

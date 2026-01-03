@@ -2,61 +2,58 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","走廊");
-        set("long",@LONG
+void create() {
+    set("short", "走廊");
+    set("long",@LONG
 這裡是雪山寺內的走廊。這裡有點幽暗，天花板上有一些不知道確
 切含義的雕刻，牆壁上則是很通俗的佛經故事壁畫了。壁上點著幾碗大
 海燈照明。
 LONG );
-        set("exits",([
-                "down"   : __DIR__"cedian1",
-                "west"   : __DIR__"dating",
-                "westup" : __DIR__"zoulang3",
+    set("exits", ([
+        "down": __DIR__"cedian1",
+        "west": __DIR__"dating",
+        "westup": __DIR__"zoulang3"
         ]));
-        set("no_clean_up", 0);
-	set("coor/x", -69990);
-	set("coor/y", -19890);
-	set("coor/z", 130);
-	setup();
+    set("no_clean_up", 0);
+    set("coor/x", -69990);
+    set("coor/y", -19890);
+    set("coor/z", 130);
+    setup();
 }
 
-void init()
-{
-        add_action("do_watch", "watch");
-        add_action("do_watch", "kan");
-        add_action("do_watch", "mianbi");
-        add_action("do_watch", "face");
+void init() {
+    add_action("do_watch", "watch");
+    add_action("do_watch", "kan");
+    add_action("do_watch", "mianbi");
+    add_action("do_watch", "face");
 }
 
-int do_watch()
-{
-        object ob = this_player();
-        int lvl = this_player()->query_skill("yujiamu-quan",1);
+int do_watch() {
+    object ob = this_player();
+    int lvl = this_player()->query_skill("yujiamu-quan", 1);
 
-        if ((int)ob->query_skill("xiaowuxiang", 1) < 10)
-        {
-                message_vision("$N的小無相功不夠，看不懂上面刻的是什麼。\n",ob);
-                return 1;
-        }
-        if ((int)ob->query_skill("yujiamu-quan", 1) > 40)
-        {
-                message_vision("$N的金剛瑜迦母拳早就超越壁上所刻了。\n",ob);
-                return 1;
-        }
-        if( (lvl*lvl*lvl)>query("combat_exp", ob) )
-        {
-                message_vision("$N的實戰經驗不足，無法領悟壁上內容。\n",ob);
-                return 1;
-        }
-        if( query("jing", ob)<20 )
-        {
-                 message_vision("$N太累了，現在無法領悟壁上內容。\n",ob);
-                 return 1;
-        }
-        message_vision("$N面對著壁上圖案揣摩良久，似有所悟。\n",ob);
-        ob->improve_skill("yujiamu-quan",random(query("int", ob)));
-        ob->receive_damage("jing", 20);
+    if ((int)ob->query_skill("xiaowuxiang", 1) < 10)
+    {
+        message_vision("$N的小無相功不夠，看不懂上面刻的是什麼。\n", ob);
         return 1;
+    }
+    if ((int)ob->query_skill("yujiamu-quan", 1) > 40)
+    {
+        message_vision("$N的金剛瑜迦母拳早就超越壁上所刻了。\n", ob);
+        return 1;
+    }
+    if((lvl*lvl*lvl)>query("combat_exp", ob) )
+    {
+        message_vision("$N的實戰經驗不足，無法領悟壁上內容。\n", ob);
+        return 1;
+    }
+    if(query("jing", ob)<20 )
+    {
+        message_vision("$N太累了，現在無法領悟壁上內容。\n", ob);
+        return 1;
+    }
+    message_vision("$N面對著壁上圖案揣摩良久，似有所悟。\n", ob);
+    ob->improve_skill("yujiamu-quan", random(query("int", ob)));
+    ob->receive_damage("jing", 20);
+    return 1;
 }

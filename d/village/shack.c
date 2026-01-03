@@ -2,23 +2,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "民宅");
-        set("long", @LONG
+void create() {
+    set("short", "民宅");
+    set("long", @LONG
 這是一間十分簡陋，四壁漏風的小房子，屋子裡連一張象樣的床
 都沒有，只有一面門板上面鋪著些乾草。這屋子的主人一定是貧困潦
 倒，窮的叮噹響。
 LONG );
-        set("exits", ([ /* sizeof() == 1 */
-            "south" :__DIR__"wexit",
+    set("exits", ([ /* sizeof() == 1 */
+        "south": __DIR__"wexit"
         ]));
 
-        set("objects", ([
-            __DIR__"npc/poorman": 1
+    set("objects", ([
+        __DIR__"npc/poorman": 1
         ]));
 
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }
- 

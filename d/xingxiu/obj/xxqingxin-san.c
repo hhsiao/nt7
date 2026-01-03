@@ -2,22 +2,20 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("清心散", ({"qingxin san", "san"}));
-        set_weight(120);
-        set("unit", "包");
-                set("value", 1000);
-                set("only_do_effect", 1);
-        setup();
+void create() {
+    set_name("清心散", ({"qingxin san", "san"}));
+    set_weight(120);
+    set("unit", "包");
+    set("value", 1000);
+    set("only_do_effect", 1);
+    setup();
 }
 
-int do_effect(object me)
-{
-        message_vision("$N吃下一包" + name() + "。\n", me);
-        if (me->query_condition("xx_poison"))
-                me->clear_condition("xx_poison");
+int do_effect(object me) {
+    message_vision("$N吃下一包" + name() + "。\n", me);
+    if (me->query_condition("xx_poison"))
+        me->clear_condition("xx_poison");
 
-        destruct(this_object());
-        return 1;
+    destruct(this_object());
+    return 1;
 }

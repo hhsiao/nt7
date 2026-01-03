@@ -2,23 +2,22 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("內功詳解", ({ "force book", "book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long",
-"封面上寫著「內功詳解）」\n");
-                set("value", 10000);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "force",
-                        "exp_required": 1000,
-                        "jing_cost":    30,
-                        "difficulty":   30,
-                        "max_skill":    99,
-                        "min_skill":    50,
-                ]));
+void create() {
+    set_name("內功詳解", ({ "force book", "book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long",
+        "封面上寫著「內功詳解）」\n");
+    set("value", 10000);
+    set("material", "paper");
+    set("skill", ([
+        "name": "force",
+        "exp_required": 1000,
+        "jing_cost": 30,
+        "difficulty": 30,
+        "max_skill": 99,
+        "min_skill": 50
+        ]));
 }
 
 int is_yaowang_book() { return 1; }

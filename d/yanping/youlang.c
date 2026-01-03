@@ -3,23 +3,22 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "十里遊廊");
-        set("long", @LONG
+void create() {
+    set("short", "十里遊廊");
+    set("long", @LONG
 十里遊廊穿行於溪源峽谷中。遊廊風光漪麗，景色秀美。兩岸石壁
 對立，怪石嶙峋；峰迴路轉，山曲水迂；千屏萬嶂，綿延起伏；樹木森
 鬱，古藤纏繞。
 LONG );
-        set("exits", ([
-                "southeast" : __DIR__"beimenling",
-                "northwest" : __DIR__"xiagu",
+    set("exits", ([
+        "southeast": __DIR__"beimenling",
+        "northwest": __DIR__"xiagu"
         ]));
-        set("outdoors", "yanping");
-        set("no_clean_up", 0);
-        set("coor/x", 1450);
-        set("coor/y", -6150);
-        set("coor/z", 30);
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "yanping");
+    set("no_clean_up", 0);
+    set("coor/x", 1450);
+    set("coor/y", -6150);
+    set("coor/z", 30);
+    setup();
+    replace_program(ROOM);
 }

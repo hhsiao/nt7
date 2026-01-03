@@ -4,18 +4,17 @@
 
 inherit HAMMER;
 
-void create()
-{
-        set_name("燒紅的鐵錘", ({ "hot hammer" }) );
-        set_weight(8000);
-        set("unit", "把");
-                set("long", "這是一把沈重的鐵錘，打造的相當堅實。\n");
-                set("value", 300);
-                set("material", "iron");
-                set("wield_msg", "$N拿出一把$n，試了試重量，然後握在手中。\n");
-                set("unwield_msg", "$N放下手中的$n。\n");
-                set("stable", 0);
+void create() {
+    set_name("燒紅的鐵錘", ({ "hot hammer" }) );
+    set_weight(8000);
+    set("unit", "把");
+    set("long", "這是一把沈重的鐵錘，打造的相當堅實。\n");
+    set("value", 300);
+    set("material", "iron");
+    set("wield_msg", "$N拿出一把$n，試了試重量，然後握在手中。\n");
+    set("unwield_msg", "$N放下手中的$n。\n");
+    set("stable", 0);
 
-        init_hammer(45);
-        setup();
+    init_hammer(45);
+    setup();
 }

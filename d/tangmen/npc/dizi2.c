@@ -1,56 +1,53 @@
 inherit SMITH;
 #include <ansi.h>;
 
-void create()
-{
-        set_name("唐兵兵", ({ "tang bingbing", "tang", "bingbing" }) );
-        set("title",HIC "唐門暗器專賣店   店主" NOR);
-        set("gender", "男性" );
-        set("age", 22);
-        set("long",
-                "這是唐門專門賣兵器的小夥子，祖傳的暗器專賣店的負責人。\n");
-        set("combat_exp", 100);
-        set("attitude", "friendly");
-        set("no_get", "1");
-        set("vendor_goods", ({
-                "/d/tangmen/obj/fhshi",
-                "/d/tangmen/obj/tiejili",
-                "/d/tangmen/obj/feidao",
-                "/d/tangmen/obj/qinglianzi",
-        }));
-        setup();
-        carry_object("/clone/misc/cloth")->wear();
+void create() {
+    set_name("唐兵兵", ({ "tang bingbing", "tang", "bingbing" }) );
+    set("title", HIC "唐門暗器專賣店   店主" NOR);
+    set("gender", "男性" );
+    set("age", 22);
+    set("long",
+        "這是唐門專門賣兵器的小夥子，祖傳的暗器專賣店的負責人。\n");
+    set("combat_exp", 100);
+    set("attitude", "friendly");
+    set("no_get", "1");
+    set("vendor_goods", ({
+        "/d/tangmen/obj/fhshi",
+        "/d/tangmen/obj/tiejili",
+        "/d/tangmen/obj/feidao",
+        "/d/tangmen/obj/qinglianzi"
+    }));
+    setup();
+    carry_object("/clone/misc/cloth")->wear();
 }
 
-void init()
-{
-        object ob;
+void init() {
+    object ob;
 
-        ob = this_player();
+    ob = this_player();
 
-        ::init();
-        if( interactive(ob) && !is_fighting() )
-        {
-                remove_call_out("greeting");
-                call_out("greeting", 1, ob);
-        }
+    ::init();
+    if(interactive(ob) && !is_fighting() )
+    {
+        remove_call_out("greeting");
+        call_out("greeting", 1, ob);
+    }
 
-        add_action("do_buy", "buy");
-        add_action("do_list", "list");
+    add_action("do_buy", "buy");
+    add_action("do_list", "list");
 }
 
-void greeting(object ob)
-{
-        if( !ob || environment(ob) != environment() ) return;
-        switch( random(2) )
-        {
-                case 0:
-                        say( HIC"唐兵兵笑咪咪地說道：這位" + RANK_D->query_respect(ob)
-                                + "，來買暗器啊。\n"NOR);
-                        break;
-                case 1:
-                        say( HIG"唐兵兵搓了搓手，說道：這位" + RANK_D->query_respect(ob)
-                                + "，想買點什麼啊。\n"NOR);
-                        break;
-        }
+void greeting(object ob) {
+    if(!ob || environment(ob) != environment() ) return;
+    switch(random(2) )
+    {
+    case 0:
+        say(HIC"唐兵兵笑咪咪地說道：這位" + RANK_D->query_respect(ob)
+        + "，來買暗器啊。\n"NOR);
+        break;
+    case 1:
+        say(HIG"唐兵兵搓了搓手，說道：這位" + RANK_D->query_respect(ob)
+        + "，想買點什麼啊。\n"NOR);
+        break;
+    }
 }

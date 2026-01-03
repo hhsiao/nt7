@@ -2,32 +2,30 @@
 #include <room.h>
 inherit ROOM;
 
-void create()
-{
-        set("short","側殿");
-        set("long",@LONG
+void create() {
+    set("short", "側殿");
+    set("long",@LONG
 這裡是雪山寺的東側殿。殿內有神態各異的十八羅漢塑像，金旒玉
 鑲，很是莊嚴。
 LONG );
-        set("exits",([
-                "up"   : __DIR__"zoulang1",
-                "west" : __DIR__"dadian",
+    set("exits", ([
+        "up": __DIR__"zoulang1",
+        "west": __DIR__"dadian"
         ]));
-        set("objects",([
-                CLASS_D("xueshan")+"/jiamu" : 1,
-                __DIR__"npc/xiang-ke"       : 3,
+    set("objects", ([
+        CLASS_D("xueshan") + "/jiamu" : 1,
+        __DIR__"npc/xiang-ke"       : 3
         ]));
-	set("coor/x", -69990);
-	set("coor/y", -19890);
-	set("coor/z", 120);
-	setup();
+    set("coor/x", -69990);
+    set("coor/y", -19890);
+    set("coor/z", 120);
+    setup();
 }
-int valid_leave(object me, string dir)
-{
-        mapping myfam;
-        myfam=query("family", me);
-        if( (!myfam || (myfam["family_name"] !="雪山寺" && myfam["family_name"] !="密宗")) && dir=="up"
+int valid_leave(object me, string dir) {
+    mapping myfam;
+    myfam = query("family", me);
+    if((!myfam || (myfam["family_name"] !="雪山寺" && myfam["family_name"] !="密宗")) && dir=="up"
         && objectp(present ("jiamu huofo", environment(me))))
-                return notify_fail("嘉木活佛說道: 你非雪山寺弟子, 不能入內。\n");
-        return ::valid_leave(me,dir);
+        return notify_fail("嘉木活佛說道: 你非雪山寺弟子, 不能入內。\n");
+    return ::valid_leave(me, dir);
 }

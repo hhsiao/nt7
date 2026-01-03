@@ -4,13 +4,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("哈密瓜", ({"hamigua", "gua", "melon"}));
-        set_weight(40);
-        set("long", "一顆香甜的哈密瓜。不吃哈密瓜等於白來西域。\n");
-                set("unit", "顆");
-                set("value", 40);
-                set("food_remaining", 1);
-                set("food_supply", 50);
+void create() {
+    set_name("哈密瓜", ({"hamigua", "gua", "melon"}));
+    set_weight(40);
+    set("long", "一顆香甜的哈密瓜。不吃哈密瓜等於白來西域。\n");
+    set("unit", "顆");
+    set("value", 40);
+    set("food_remaining", 1);
+    set("food_supply", 50);
 }

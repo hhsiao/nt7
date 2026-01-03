@@ -3,34 +3,33 @@
 inherit ROOM;
 
 string* books = ({
-        "/clone/book/mizong_book",
-        "/clone/book/skin",
-	"/clone/book/book-bamboo",
-        "/clone/book/book-silk",
-	"/clone/book/book-stone",
-	"/clone/book/book-iron",
+    "/clone/book/mizong_book",
+    "/clone/book/skin",
+    "/clone/book/book-bamboo",
+    "/clone/book/book-silk",
+    "/clone/book/book-stone",
+    "/clone/book/book-iron"
 });
-void create()
-{
-        set("short", "雪山藏經室");
-	set("long", @LONG
+void create() {
+    set("short", "雪山藏經室");
+    set("long", @LONG
 這裡是雪山寺的藏經室，靠牆是一排書架，擺滿了各種拳譜、書籍。
 大多是當年掌門人鳩摩智翻譯的佛經和從少林寺取來的武學典籍。
 LONG );
-	set("exits", ([
-                "southeast" : __DIR__"dating",
-	]));
+    set("exits", ([
+        "southeast": __DIR__"dating"
+        ]));
 
-	set("objects", ([
-		books[random(sizeof(books))] : 1,
-		books[random(sizeof(books))] : 1,
-		books[random(sizeof(books))] : 1,
-                CLASS_D("xueshan")+"/daerba" : 1,
-	]));
-//        set("no_clean_up", 0);
-	set("coor/x", -70010);
-	set("coor/y", -19880);
-	set("coor/z", 130);
-	setup();
-	replace_program(ROOM);
+    set("objects", ([
+        books[random(sizeof(books))] : 1,
+        books[random(sizeof(books))] : 1,
+        books[random(sizeof(books))] : 1,
+        CLASS_D("xueshan") + "/daerba" : 1
+        ]));
+    //        set("no_clean_up", 0);
+    set("coor/x", -70010);
+    set("coor/y", -19880);
+    set("coor/z", 130);
+    setup();
+    replace_program(ROOM);
 }

@@ -5,39 +5,37 @@ inherit ROOM;
 
 int is_chat_room() { return 1; }
 int clean_up() { return 1;}
-void create()
-{
-        set("short", "巫師休息室");
-        set("long", @LONG
+void create() {
+    set("short", "巫師休息室");
+    set("long", @LONG
 這裡就是泥潭巫師的休息所在，剛粉刷過的四周牆壁上光禿禿的
 什麼都沒有，屋子的正中央放著一張楠木桌，上面擺著一本巫師留言
 簿(board)。地上則是零零碎碎的一些BUG，到處亂爬。
 LONG );
 
-        set("exits", ([
-               "down" : __DIR__"guest_room",
-               "up" : __DIR__"meeting_room",
-               "west" : __DIR__"debug_room",
+    set("exits", ([
+        "down": __DIR__"guest_room",
+        "up": __DIR__"meeting_room",
+        "west": __DIR__"debug_room"
         ]));
-        set("valid_startroom", 1);
-        set("no_fight", "1");
-        set("coor/x", 10000);
-        set("coor/y", 10000);
-        set("coor/z", 10000);
-        set_heart_beat(601);
-set("objects", ([
-"/clone/medicine/yuqing" : 30,
-]));
-        setup();
+    set("valid_startroom", 1);
+    set("no_fight", "1");
+    set("coor/x", 10000);
+    set("coor/y", 10000);
+    set("coor/z", 10000);
+    set_heart_beat(601);
+    set("objects", ([
+        "/clone/medicine/yuqing" : 30
+        ]));
+    setup();
 
-        call_other("/clone/board/wiz_b", "???");
-        replace_program(ROOM);
+    call_other("/clone/board/wiz_b", "???");
+    replace_program(ROOM);
 }
 
-void heart_beat()
-{
-                int rnd = random(100);
+void heart_beat() {
+    int rnd = random(100);
 
-                if (rnd < 3) "/u/redl/prison.c"->check_bug_user("fmsk");
-                if (rnd < 30) "/u/redl/prison.c"->check_bug_user("skup");
+    if (rnd < 3) "/u/redl/prison.c"->check_bug_user("fmsk");
+    if (rnd < 30) "/u/redl/prison.c"->check_bug_user("skup");
 }

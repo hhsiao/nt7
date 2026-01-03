@@ -12,7 +12,7 @@ void create() {
 LONG
     );
     set("exits", ([
-        "east" : __DIR__"guangchang"
+        "east": __DIR__"guangchang"
         ]));
 
     set("objects", ([
@@ -20,7 +20,7 @@ LONG
         ]));
 
     set("item_desc", ([
-        "huo" : HIR "\n這是一口巨大的鐵鍋，鍋中盛滿鐵沙，下面燃著炭火。\n" NOR
+        "huo": HIR "\n這是一口巨大的鐵鍋，鍋中盛滿鐵沙，下面燃著炭火。\n" NOR
         ]));
 
     setup();

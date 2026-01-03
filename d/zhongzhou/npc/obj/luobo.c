@@ -2,14 +2,13 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name( "蘿蔔" , ({ "luobo" }) );
-        set_weight(100);
-        set("long", "一支新鮮的蘿蔔。\n");
-                set("unit", "支");
-                set("value", 2);
-                set("food_remaining", 1);
-                set("food_supply", 5);
+void create() {
+    set_name("蘿蔔" , ({ "luobo" }) );
+    set_weight(100);
+    set("long", "一支新鮮的蘿蔔。\n");
+    set("unit", "支");
+    set("value", 2);
+    set("food_remaining", 1);
+    set("food_supply", 5);
     setup();
 }

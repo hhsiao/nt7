@@ -15,8 +15,7 @@ void create() {
     setup();
 }
 
-int do_wayao(string arg)
-{
+int do_wayao(string arg) {
     object me = this_player();
     if(me->is_busy() || query_temp("pending/exercising", me))return notify_fail("你現在正忙著呢。\n");
     if (!arg||arg!="yao") return notify_fail("你要挖什麼呢？！\n");

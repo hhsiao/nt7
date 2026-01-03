@@ -3,12 +3,11 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name(HIW"白切雞"NOR, ({"chicken"}));
-        set_weight(200);
-        set("unit", "只");
-                set("value", 100);
-                set("food_remaining", 3);
-                set("food_supply", 80);
+void create() {
+    set_name(HIW"白切雞"NOR, ({"chicken"}));
+    set_weight(200);
+    set("unit", "只");
+    set("value", 100);
+    set("food_remaining", 3);
+    set("food_supply", 80);
 }

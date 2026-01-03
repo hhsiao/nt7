@@ -6,13 +6,12 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIR"紅色袈裟"NOR,({"jiasha", "jia sha","cloth"}));
-        set_weight(5000);
-        set("unit", "件");
-                set("material", "cloth");
-                set("armor_prop/armor", 20);
-                set("value",100);
-        setup();
+void create() {
+    set_name(HIR"紅色袈裟"NOR, ({"jiasha", "jia sha", "cloth"}));
+    set_weight(5000);
+    set("unit", "件");
+    set("material", "cloth");
+    set("armor_prop/armor", 20);
+    set("value", 100);
+    setup();
 }

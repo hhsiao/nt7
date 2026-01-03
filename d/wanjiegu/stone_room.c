@@ -3,22 +3,21 @@
 inherit ROOM;
 int do_give(object me, object obj, object who);
 
-void create()
-{
-        set("short", "石屋");
-        set("long", @LONG
+void create() {
+    set("short", "石屋");
+    set("long", @LONG
 一間用花崗岩砌成的房子，堅固無比。南面有一個小孔，西邊有
 一張小床，屋內光線黑暗，又有些潮溼。一人女子正坐在床上不停地
 喘氣，身上的衣服都被汗水溼透了。
 LONG );
-        set("exits", ([ /* sizeof() == 1 */
-            "south" : __DIR__"backyard",
+    set("exits", ([ /* sizeof() == 1 */
+        "south": __DIR__"backyard"
         ]));
-        set("objects", ([ /* sizeof() == 1 */
-            __DIR__"npc/mu" : 1,
+    set("objects", ([ /* sizeof() == 1 */
+        __DIR__"npc/mu" : 1
         ]));
-//        set("no_clean_up", 0);
+    //        set("no_clean_up", 0);
 
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }

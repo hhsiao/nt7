@@ -3,15 +3,14 @@
 
 inherit HANDS;
 
-void create()
-{
-        set_name(HIY "點金盤龍弓" NOR, ({ "panlong gong", "gong", "panlong" }));
-        set_weight(500);
-        set("unit", "支");
-                set("value", 8000);
-                set("armor_prop/armor", 1);
-                set("armor_prop/hand", 1);
-                set("armor_prop/strike", 1);
-                set("armor_prop/unarmed_damage", 3);
-        setup();
+void create() {
+    set_name(HIY "點金盤龍弓" NOR, ({ "panlong gong", "gong", "panlong" }));
+    set_weight(500);
+    set("unit", "支");
+    set("value", 8000);
+    set("armor_prop/armor", 1);
+    set("armor_prop/hand", 1);
+    set("armor_prop/strike", 1);
+    set("armor_prop/unarmed_damage", 3);
+    setup();
 }

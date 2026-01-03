@@ -3,27 +3,25 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "巖縫");
-        set("long", @LONG
+void create() {
+    set("short", "巖縫");
+    set("long", @LONG
 忽然，你感覺到被什麼東西鉤了一下，原來是一棵橫著伸出懸崖的
 古松止住了下墜之勢，細看山崖中裂開了一條大縫，似乎可以由那裡攀
 緣而下。
 LONG );
-        set("exits", ([
-                "down" : __DIR__"gudi",
+    set("exits", ([
+        "down": __DIR__"gudi"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -50010);
-        set("coor/y", -21060);
-        set("coor/z", -30);
-        setup();
+    set("no_clean_up", 0);
+    set("coor/x", -50010);
+    set("coor/y", -21060);
+    set("coor/z", -30);
+    setup();
 }
 
-int valid_leave(object me,string dir)
-{
-        if(dir=="down") 
-        tell_object(me,"你攀著巖縫，很艱難地向下爬。哎呀唷。，哎呀。。唷。。\n");
-        return ::valid_leave(me,dir);
+int valid_leave(object me, string dir) {
+    if(dir=="down")
+        tell_object(me, "你攀著巖縫，很艱難地向下爬。哎呀唷。，哎呀。。唷。。\n");
+    return ::valid_leave(me, dir);
 }

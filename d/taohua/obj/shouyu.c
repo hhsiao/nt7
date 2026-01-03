@@ -2,12 +2,11 @@
 //
 inherit ITEM;
 
-void create()
-{
-        set_name("黃藥師手諭", ({"shou yu", "yu", "letter"}));
-        set_weight(100);
-        set("unit", "封");
-                set("long","\n
+void create() {
+    set_name("黃藥師手諭", ({"shou yu", "yu", "letter"}));
+    set_weight(100);
+    set("unit", "封");
+    set("long", "\n
 =================================
 |                                |
 |                字                |
@@ -24,5 +23,5 @@ void create()
 |                        緘        |
 |                                |
 =================================\n");
-                set("material", "paper");
+    set("material", "paper");
 }

@@ -6,20 +6,19 @@ inherit NPC;
 
 string comeon = HIW"突然你感到一股十分強烈的怨氣直衝雲霄。\n"NOR;
 
-string *stya = ({ 
-HIB"一陣刺耳的長嘯傳來，$N感到心神不寧，異常難受。\n"NOR, 
-HIB"$N聽到一聲悽慘的長嘆，頓感胸悶異常，忍不住噴出一口"HIR"鮮血"HIB"。\n"NOR
-}); 
+string *stya = ({
+    HIB"一陣刺耳的長嘯傳來，$N感到心神不寧，異常難受。\n"NOR,
+    HIB"$N聽到一聲悽慘的長嘆，頓感胸悶異常，忍不住噴出一口"HIR"鮮血"HIB"。\n"NOR
+});
 
 string *styb = ({
-HIC"$N對$n喝道：“本道爺今日超渡於你，早日投胎轉世，勿再害人！”\n"NOR,
-HIY"$N揮動手中的"HIM"桃木劍"HIY"，霎時天地間清風徐徐，怨氣漸消。\n"NOR
+    HIC"$N對$n喝道：“本道爺今日超渡於你，早日投胎轉世，勿再害人！”\n"NOR,
+    HIY"$N揮動手中的"HIM"桃木劍"HIY"，霎時天地間清風徐徐，怨氣漸消。\n"NOR
 });
 
 void check_time();
 
-void create()
-{
+void create() {
     set_name("冤魂", ({ "wrong ghost", "ghost" }));
     set("gender", "女性");
     set("race", "妖魔");
@@ -41,7 +40,7 @@ void create()
     set_skill("dodge", 300);
 
     set("chat_chance", 80);
-    set("chat_msg", ({ (: check_time :) })); 
+    set("chat_msg", ({ (: check_time :) }));
     setup();
     keep_heart_beat();
 }

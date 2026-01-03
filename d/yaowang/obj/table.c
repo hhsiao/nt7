@@ -2,17 +2,16 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("大木桌", ({ "wood table" }) );
-        set_weight(500);
-        set_max_encumbrance(8000);
-        set("no_get", 1);
-        set("position", "on");
-                set("prep", "on");
-                set("unit", "張");
-                set("long", "一張大木桌，足夠幾十個人同時吃飯。\n");
-                set("value", 1);
+void create() {
+    set_name("大木桌", ({ "wood table" }) );
+    set_weight(500);
+    set_max_encumbrance(8000);
+    set("no_get", 1);
+    set("position", "on");
+    set("prep", "on");
+    set("unit", "張");
+    set("long", "一張大木桌，足夠幾十個人同時吃飯。\n");
+    set("value", 1);
 }
 
 int is_container() { return 1; }

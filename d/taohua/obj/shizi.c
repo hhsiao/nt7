@@ -5,17 +5,16 @@
 
 inherit THROWING;
 
-void create()
-{
-        set_name(WHT "石子" NOR, ({ "shi zi", "shi", "zi" }) );
-        set("unit", "些");
-                set("value", 0);
-                set("base_unit", "顆");
-                set("base_weight", 100);
-                set("base_value", 0);
-                set("material", "iron");
-                set("long", "一顆不同的小石子。\n");
-        set_amount(10);
-        init_throwing(2);
-        setup();
+void create() {
+    set_name(WHT "石子" NOR, ({ "shi zi", "shi", "zi" }) );
+    set("unit", "些");
+    set("value", 0);
+    set("base_unit", "顆");
+    set("base_weight", 100);
+    set("base_value", 0);
+    set("material", "iron");
+    set("long", "一顆不同的小石子。\n");
+    set_amount(10);
+    init_throwing(2);
+    setup();
 }

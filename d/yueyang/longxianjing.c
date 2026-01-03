@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "龍涎井");
-        set("long", @LONG
+void create() {
+    set("short", "龍涎井");
+    set("long", @LONG
 龍涎井在龍舌山下，這裡的井水清澈純淨，四時不涸，是龍舌頭上
 面一點點滴下的涎水，故稱“龍涎井”。井內赭黃色岩石形象龍舌，泉
 水從岩石上注入井內，一點一滴，好似涎水。過去井水終年不涸，清澈
@@ -16,15 +15,15 @@ void create()
     距井口三尺遠處，立一對雕龍柱坊，高近丈，門寬四尺，門楣上鐫
 刻“龍涎井”三個蒼勁有力的正楷大字。
 LONG );
-        set("outdoors", "dongting");
-        set("no_clean_up", 0);
-        set("exits", ([
-                "south"   : __DIR__"longkou",
-                "northup" : __DIR__"feilaizhong",
+    set("outdoors", "dongting");
+    set("no_clean_up", 0);
+    set("exits", ([
+        "south": __DIR__"longkou",
+        "northup": __DIR__"feilaizhong"
         ]));
-        set("coor/x", -1720);
-        set("coor/y", 2300);
-        set("coor/z", -20);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -1720);
+    set("coor/y", 2300);
+    set("coor/z", -20);
+    setup();
+    replace_program(ROOM);
 }

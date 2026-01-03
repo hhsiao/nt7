@@ -2,21 +2,19 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "小土房");
-        set("long", @LONG
+void create() {
+    set("short", "小土房");
+    set("long", @LONG
 這是一間用土坯搭成的房屋，屋裡只有幾件殘破的傢俱。在靠門
 口的牆角有一隻空空的籠子，大概曾經用來養過雞、鴨之類的家禽。
 LONG );
-        set("exits", ([ /* sizeof() == 1 */
-            "west" : __DIR__"sroad2",
+    set("exits", ([ /* sizeof() == 1 */
+        "west": __DIR__"sroad2"
         ]));
-        set("objects", ([
-            __DIR__"npc/oldwoman": 1
+    set("objects", ([
+        __DIR__"npc/oldwoman": 1
         ]) );
 
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }
- 

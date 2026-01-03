@@ -3,12 +3,11 @@
 
 inherit NPC;
 
-void create()
-{
-        set_name("華南虎", ({ "huanan hu", "tiger","hu" }) );
-        set("race", "走獸");
-        set("age", 20);
-        set("long", @LONG
+void create() {
+    set_name("華南虎", ({ "huanan hu", "tiger", "hu" }) );
+    set("race", "走獸");
+    set("age", 20);
+    set("long", @LONG
 一隻矯健輕快的猛虎，雄偉極了。
 
 
@@ -20,61 +19,58 @@ void create()
 
 
 LONG);
-        set("attitude", "aggressive");
-        set("shen_type", -1);
-        set("combat_exp", 30000);
-        set("neili",800);
-        set("jiali",100);
-        set("max_neili",800);
-          set("jingli",500);
-        set("max_jingli",500);
-        set_temp("apply/attack", 200);
-        set_temp("apply/defense", 300);
-        set_temp("apply/armor", 100);
-        setup();
-        set("chat_chance", 10);
-        set("chat_msg", ({
-                "老虎在浚巡，嚇得你大氣都不敢出。\n",
-                "老虎仰天長嘯，聲震山谷，黃葉紛墜。\n",
-        }) );
+    set("attitude", "aggressive");
+    set("shen_type", -1);
+    set("combat_exp", 30000);
+    set("neili", 800);
+    set("jiali", 100);
+    set("max_neili", 800);
+    set("jingli", 500);
+    set("max_jingli", 500);
+    set_temp("apply/attack", 200);
+    set_temp("apply/defense", 300);
+    set_temp("apply/armor", 100);
+    setup();
+    set("chat_chance", 10);
+    set("chat_msg", ({
+        "老虎在浚巡，嚇得你大氣都不敢出。\n",
+        "老虎仰天長嘯，聲震山谷，黃葉紛墜。\n"
+    }) );
 }
 
-void init()
-{        
-        object ob; 
+void init() {
+    object ob;
 
-        ob = this_player();
-        ::init();
-        if( interactive(ob) && !is_fighting() )
-        {
-                remove_call_out("greeting");
-                call_out("greeting", 1, ob);
-        }
+    ob = this_player();
+    ::init();
+    if(interactive(ob) && !is_fighting() )
+    {
+        remove_call_out("greeting");
+        call_out("greeting", 1, ob);
+    }
 }
 
-void greeting(object ob)
-{
-        if( !ob || environment(ob) != environment() ) return;
-        if( ob->query_dex()<20 && !query_temp("owner", this_object()) )
-        {
-                message_vision( "只見發起一陣狂風。
-只聽得亂樹背後撲地一聲響，跳出一隻吊睛白額大蟲來。
-那大蟲又餓，又渴，把兩隻爪在地上略按一按，和身望你一撲，從半空裡攛將下來。\n",ob);
-                message_vision("$N這一下沒有躲開，為虎所傷暈了過去。\n\n",ob);
-                ob->receive_wound("qi",20);
-                ob->start_busy(2);
-                this_object()->kill_ob(ob);
-        }
+void greeting(object ob) {
+    if(!ob || environment(ob) != environment() ) return;
+    if(ob->query_dex()<20 && !query_temp("owner", this_object()) )
+    {
+        message_vision("只見發起一陣狂風。
+            只聽得亂樹背後撲地一聲響，跳出一隻吊睛白額大蟲來。
+            那大蟲又餓，又渴，把兩隻爪在地上略按一按，和身望你一撲，從半空裡攛將下來。\n",ob);
+        message_vision("$N這一下沒有躲開，為虎所傷暈了過去。\n\n", ob);
+        ob->receive_wound("qi", 20);
+        ob->start_busy(2);
+        this_object()->kill_ob(ob);
+    }
 }
 
-void die()
-{
-        object ob, corpse;
-        message_vision("$N發出震天動地的一聲長嘯，轟地倒在地上，死了！\n", this_object());
-        if( objectp(corpse = CHAR_D->make_corpse(this_object())) )
+void die() {
+    object ob, corpse;
+    message_vision("$N發出震天動地的一聲長嘯，轟地倒在地上，死了！\n", this_object());
+    if(objectp(corpse = CHAR_D->make_corpse(this_object())) )
         ob = new("/clone/medicine/vegetable/hugu");
-        ob->move(corpse);
+    ob->move(corpse);
 
-        corpse->move(environment(this_object()));
-        destruct(this_object());
+    corpse->move(environment(this_object()));
+    destruct(this_object());
 }

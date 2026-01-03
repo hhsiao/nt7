@@ -1,14 +1,13 @@
 #include <ansi.h>
 inherit ITEM;
 
-void create()
-{
-        set_name(YEL"人參"NOR, ({"ren shen", "shen"}));
-        set("unit", "棵");
-                set("long", "這是一棵人參，足有七兩多重。\n");
-                set("yaowang", 1);
-                set("dig", 1);
-                set("value", 1000);
-                set("weight", 1000);
-        setup();
+void create() {
+    set_name(YEL"人參"NOR, ({"ren shen", "shen"}));
+    set("unit", "棵");
+    set("long", "這是一棵人參，足有七兩多重。\n");
+    set("yaowang", 1);
+    set("dig", 1);
+    set("value", 1000);
+    set("weight", 1000);
+    setup();
 }

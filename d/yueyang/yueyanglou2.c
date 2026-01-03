@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "岳陽樓二樓");
-        set("long", @LONG
+void create() {
+    set("short", "岳陽樓二樓");
+    set("long", @LONG
 岳陽樓二樓內嵌有一幅《岳陽樓記》(ji)雕屏，此雕屏為清代大書
 法家張照所寫，字形方正，筆力雄渾技術法多變，獅人匠心、為傳世極
 品。
@@ -15,13 +14,13 @@ void create()
 饞畏譏也好；心曠神怡，寵辱皆忘也好，只要貶官們踏上岳陽這塊土地，
 總是文思泉湧，佳作迭出。
 LONG );
-        set("no_clean_up", 0);
-        set("exits", ([
-                "up"   : __DIR__"yueyanglou3",
-                "down" : __DIR__"yueyanglou1",
+    set("no_clean_up", 0);
+    set("exits", ([
+        "up": __DIR__"yueyanglou3",
+        "down": __DIR__"yueyanglou1"
         ]));
-        set("item_desc", ([
-                "ji" : "
+    set("item_desc", ([
+        "ji": "
                     岳陽樓記
                     　　　　　　　　　范仲淹
 　
@@ -46,9 +45,9 @@ LONG );
 憂，然則何時而樂耶？其必曰：先天下之憂而憂，天下之樂而樂歟。噫，
 微斯人，吾誰與歸。\n"
         ]));
-	set("coor/x", -6240);
-	set("coor/y", -3000);
-	set("coor/z", 30);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", -6240);
+    set("coor/y", -3000);
+    set("coor/z", 30);
+    setup();
+    replace_program(ROOM);
 }

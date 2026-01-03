@@ -2,19 +2,17 @@
 
 inherit __DIR__"shamo";
 
-int valid_leave(object me, string dir)
-{
-        string dest;
+int valid_leave(object me, string dir) {
 
-        if (dir == "west")
+    if (dir == "west")
+    {
+        if(addn_temp("out_shamo",-1, me) <= -3 )
         {
-                if( addn_temp("out_shamo",-1, me) <= -3 )
-                {
-                        me->move("/d/baituo/gebi");
-                        write("你累得半死，終於走出了沙漠。\n");
-                        return -1;
-                }
+            me->move("/d/baituo/gebi");
+            write("你累得半死，終於走出了沙漠。\n");
+            return -1;
         }
+    }
 
-        return ::valid_leave(me, dir);
+    return ::valid_leave(me, dir);
 }

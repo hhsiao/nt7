@@ -4,21 +4,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIC "黑玉斷續膏" NOR, ({ "heiyugao" }));
-        set("unit", "粒");
-                set("long", "這是一粒千年極其難配製的的黑玉斷續膏,據說能起死回生。\n");
-                set("only_do_effect", 1);
+void create() {
+    set_name(HIC "黑玉斷續膏" NOR, ({ "heiyugao" }));
+    set("unit", "粒");
+    set("long", "這是一粒千年極其難配製的的黑玉斷續膏,據說能起死回生。\n");
+    set("only_do_effect", 1);
 
-        setup();
+    setup();
 }
 
-int do_effect(object me)
-{
-        me->receive_curing("jing", 1000);
-        me->receive_curing("qi", 2000);
-        tell_object(me, HIG "你只覺一股熱流在七經八脈中循環了一個周天，立刻神采奕奕了！\n" NOR);
-        destruct(this_object());
-        return 1;
+int do_effect(object me) {
+    me->receive_curing("jing", 1000);
+    me->receive_curing("qi", 2000);
+    tell_object(me, HIG "你只覺一股熱流在七經八脈中循環了一個周天，立刻神采奕奕了！\n" NOR);
+    destruct(this_object());
+    return 1;
 }

@@ -3,24 +3,23 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "臥室");
-        set("long", @LONG
+void create() {
+    set("short", "臥室");
+    set("long", @LONG
 室內陳設甚是奢華，極大的床邊有張朱漆書桌，桌旁兩張椅子，上
 鋪錦墊。床前羅帳低垂，隱約看見床上似乎無人。窗前的香爐中青煙嫋
 嫋，你只覺置身於一個香噴噴，軟綿綿的神仙洞府。
 LONG );
-        set("exits", ([
-                "south" : __DIR__"clxiaoting",
+    set("exits", ([
+        "south": __DIR__"clxiaoting"
         ]));
-        set("objects",([
-                __DIR__"npc/cl_shijian" : 1,
+    set("objects", ([
+        __DIR__"npc/cl_shijian" : 1
         ]));
-        set("coor/x", 279);
-	set("coor/y", -971);
-	set("coor/z", -1);
-	setup();
+    set("coor/x", 279);
+    set("coor/y", -971);
+    set("coor/z", -1);
+    setup();
 
-        replace_program(ROOM);
+    replace_program(ROOM);
 }

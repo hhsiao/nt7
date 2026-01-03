@@ -2,11 +2,10 @@
 #include <ansi.h>;
 inherit ITEM;
 
-void create()
-{
-        set_name(HIR"玫瑰花露"NOR, ({ "hua lu" }));
-        set_weight(1500);
-        set("long", "這是一瓶玫瑰花露，看來是花了不少心血泡製成的。\n");
-                set("unit", "瓶");
-                set("value", 50);
+void create() {
+    set_name(HIR"玫瑰花露"NOR, ({ "hua lu" }));
+    set_weight(1500);
+    set("long", "這是一瓶玫瑰花露，看來是花了不少心血泡製成的。\n");
+    set("unit", "瓶");
+    set("value", 50);
 }

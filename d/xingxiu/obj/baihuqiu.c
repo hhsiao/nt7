@@ -6,15 +6,14 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIW"白狐裘"NOR, ({"baihu qiu", "huqiu", "qiu", "cloth"}));
-        set_weight(1000);
-        set("unit", "件");
-                set("value", 1000);
-                set("material", "fur");
-                set("armor_prop/armor", 2);
-                set("armor_prop/per", 3);
-                set("female_only", 1);
-        setup();
+void create() {
+    set_name(HIW"白狐裘"NOR, ({"baihu qiu", "huqiu", "qiu", "cloth"}));
+    set_weight(1000);
+    set("unit", "件");
+    set("value", 1000);
+    set("material", "fur");
+    set("armor_prop/armor", 2);
+    set("armor_prop/per", 3);
+    set("female_only", 1);
+    setup();
 }

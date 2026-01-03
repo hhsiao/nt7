@@ -3,22 +3,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "巖洞");
-        set("long", @LONG
+void create() {
+    set("short", "巖洞");
+    set("long", @LONG
 這裡四周沒有絲毫的光亮，每前進一步，都要先試探個虛實，但是
 卻覺得腳下平整，便似走在石板路上一般，只見道路不斷地往下傾斜，
 越走越低。
 LONG );
-        set("exits", ([
-                "north" : __DIR__"damen",
-                "out" : __DIR__"hubian",
+    set("exits", ([
+        "north": __DIR__"damen",
+        "out": __DIR__"hubian"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", -50020);
-        set("coor/y", -21060);
-        set("coor/z", -40);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -50020);
+    set("coor/y", -21060);
+    set("coor/z", -40);
+    setup();
+    replace_program(ROOM);
 }

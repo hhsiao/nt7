@@ -4,23 +4,22 @@
 #include <ansi.h>
 inherit NPC;
 
-string comeon = HIB"突然一陣腥臭的濃霧籠罩了四周，眼前頓時漆黑一團。\n"NOR; 
+string comeon = HIB"突然一陣腥臭的濃霧籠罩了四周，眼前頓時漆黑一團。\n"NOR;
 
-string *stya = ({ 
-HIB"忽然一道"HIW"白光"HIB"向$N疾射而來，手臂一麻，已被$n咬中。\n"NOR, 
-HIB"$N身體被$n纏住，越裹越緊，幾乎透不過氣來。\n"NOR, 
-HIB"$N背部一陣劇痛，被$n蛇尾擊中。\n"NOR
-}); 
+string *stya = ({
+    HIB"忽然一道"HIW"白光"HIB"向$N疾射而來，手臂一麻，已被$n咬中。\n"NOR,
+    HIB"$N身體被$n纏住，越裹越緊，幾乎透不過氣來。\n"NOR,
+    HIB"$N背部一陣劇痛，被$n蛇尾擊中。\n"NOR
+});
 
-string *styb = ({ 
-HIC"$N一聲暴喝，急揮手中"HIY"符紙"HIC"，向$n拍出。\n"NOR,
-HIY"$N揮動手中的"HIM"桃木劍"HIY"，直刺$n七寸。\n"NOR
+string *styb = ({
+    HIC"$N一聲暴喝，急揮手中"HIY"符紙"HIC"，向$n拍出。\n"NOR,
+    HIY"$N揮動手中的"HIM"桃木劍"HIY"，直刺$n七寸。\n"NOR
 });
 
 void check_time();
 
-void create()
-{
+void create() {
     set_name("百年蛇妖", ({ "snake ghost", "ghost" }));
     set("gender", "女性");
     set("race", "妖魔");
@@ -42,7 +41,7 @@ void create()
     set_skill("dodge", 500);
 
     set("chat_chance", 80);
-    set("chat_msg", ({ (: check_time :) })); 
+    set("chat_msg", ({ (: check_time :) }));
     setup();
     keep_heart_beat();
 }

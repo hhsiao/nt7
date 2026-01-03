@@ -7,41 +7,40 @@
 inherit F_CLEAN_UP;
 
 mapping *bangjobs = ({
-        ([      "name"  :  "丁典",
-                "file"  :  "/d/city/npc/dingdian",
-                "area"  :  "揚州城監獄",
-                "type"  :  "殺",
-                "bonus" :  100,
-                "score" :  40,
-        ]),
+    ([      "name": "丁典",
+        "file": "/d/city/npc/dingdian",
+        "area": "揚州城監獄",
+        "type": "殺",
+        "bonus": 100,
+        "score": 40
+    ]),
 
-        ([      "name"  :  "滕一雷",
-                "file"  :  "/d/changbai/npc/teng",
-                "area"  :  "關東",
-                "type"  :  "殺",
-                "bonus" :  70,
-                "score" :  20,
-        ]),
+    ([      "name": "滕一雷",
+        "file": "/d/changbai/npc/teng",
+        "area": "關東",
+        "type": "殺",
+        "bonus": 70,
+        "score": 20
+    ]),
 
-        ([      "name"  :  "彭連虎",
-                "file"  :  "/d/forest/npc/peng-lianhu",
-                "area"  :  "黃河幫",
-                "type"  :  "殺",
-                "bonus" :  60,
-                "score" :  15,
-        ]),
+    ([      "name": "彭連虎",
+        "file": "/d/forest/npc/peng-lianhu",
+        "area": "黃河幫",
+        "type": "殺",
+        "bonus": 60,
+        "score": 15
+    ]),
 
-        ([      "name"  :  "玄鐵令",
-                "file"  :  " ",
-                "type"  :  "尋",
-                "bonus" :  50,
-                "score" :  12,
-        ]),
+    ([      "name": "玄鐵令",
+        "file": " ",
+        "type": "尋",
+        "bonus": 50,
+        "score": 12
+    ])
 });
 
 void create() { seteuid(getuid()); }
 
-mapping query_job()
-{
-        return bangjobs[random(sizeof(bangjobs))];
+mapping query_job() {
+    return bangjobs[random(sizeof(bangjobs))];
 }

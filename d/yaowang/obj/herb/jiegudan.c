@@ -1,11 +1,10 @@
 #include "herb.h"
 
-void create()
-{
-        set_name(HIC "接骨丹" NOR, ({ "jiegudan", "Torricellia angulata", "herb_jgdan" }));
-        set("long", HIW "山茱萸科(鞘柄木科)植物角葉鞘柄木(Torricellia angulata)的根、根皮及葉。因其有治療骨折的功效，故得此名。\n" NOR);
-                set("base_unit", "根");
-                set("base_value", 30000);
-                set("base_weight", 100);
-        setup();
+void create() {
+    set_name(HIC "接骨丹" NOR, ({ "jiegudan", "Torricellia angulata", "herb_jgdan" }));
+    set("long", HIW "山茱萸科(鞘柄木科)植物角葉鞘柄木(Torricellia angulata)的根、根皮及葉。因其有治療骨折的功效，故得此名。\n" NOR);
+    set("base_unit", "根");
+    set("base_value", 30000);
+    set("base_weight", 100);
+    setup();
 }

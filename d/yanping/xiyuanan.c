@@ -4,21 +4,20 @@
 #include <ansi.h>;
 inherit ROOM;
 
-void create()
-{
-        set("short", "溪源庵");
-        set("long", @LONG
+void create() {
+    set("short", "溪源庵");
+    set("long", @LONG
 雄渾的鳳山為底座，朝南突兀聳起，巖冠嶙剛，凌空而立。溪源庵窩
 在鳳山南麓，兩側危巖壁立，四面層巒翠。沿鳳冠巖蜿蜒前行數百米，忽
 然豁然開朗，滿目田園風光。古人“策杖問真源”，沿溪流自十里遊廊到
 此，一路山嵐水響，“別後三日，夢中猶作飛濤聲”。庵內留有不少古人
 墨寶(poem)，南宋大儒朱熹大書“溪山第一”於此。
 LONG );
-        set("exits", ([
-                "southdown" : __DIR__"xiagu",
+    set("exits", ([
+        "southdown": __DIR__"xiagu"
         ]));
-        set("item_desc", ([
-                "poem" : HIY"
+    set("item_desc", ([
+        "poem": HIY"
   和謝石氍別駕遊溪源詩                     訪溪源"HIG"
                僧智永                               林世壁(明)"HIC"
 
@@ -33,11 +32,11 @@ LONG );
 涼風生木末， 幾片暮雲歸。       定知此夕遊仙夢， 一枕清風白鶴騫。
 \n"NOR
         ]));
-        set("outdoors", "yanping");
-        set("no_clean_up", 0);
-        set("coor/x", 1420);
-        set("coor/y", -6120);
-        set("coor/z", 40);
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "yanping");
+    set("no_clean_up", 0);
+    set("coor/x", 1420);
+    set("coor/y", -6120);
+    set("coor/z", 40);
+    setup();
+    replace_program(ROOM);
 }

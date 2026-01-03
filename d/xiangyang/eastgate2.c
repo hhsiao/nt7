@@ -4,38 +4,36 @@
 inherit ROOM;
 #include <ansi.h>;
 
-void create()
-{
-        set("short", "青龍外門");
-        set("long", @LONG
+void create() {
+    set("short", "青龍外門");
+    set("long", @LONG
 這裡是襄陽城的東城門，只見城門上方刻著『青龍門』三個大字。
 城門高三丈，寬約二丈有餘，尺許厚的城門上鑲滿了拳頭般大小的柳
 釘。門洞長約四丈，大約每隔兩個時辰就換官兵把守。近年來蒙古屢
 次侵犯襄陽城，故這兒把守相當嚴密，城內一些官兵們正在盤查要離
 襄陽城的人。
 LONG );
-        set("outdoors", "xiangyang");
+    set("outdoors", "xiangyang");
 
-        set("exits", ([
-                "west"  : __DIR__"eastgate1",
-                "east"  : "/d/city2/yidao",
-                "northeast"  : "/d/jianzhong/shanlu1",
+    set("exits", ([
+        "west": __DIR__"eastgate1",
+        "east": "/d/city2/yidao",
+        "northeast": "/d/jianzhong/shanlu1"
         ]));
-        set("objects", ([
-                __DIR__"npc/pi"   : 1,
-                __DIR__"npc/bing" : 2,
+    set("objects", ([
+        __DIR__"npc/pi"   : 1,
+        __DIR__"npc/bing" : 2
         ]));
-        set("coor/x", -7770);
-	set("coor/y", -770);
-	set("coor/z", 0);
-	setup();
+    set("coor/x", -7770);
+    set("coor/y", -770);
+    set("coor/z", 0);
+    setup();
 }
 
-int valid_leave(object me,string dir)
-{
-       if( dir == "east" && !wizardp(me) 
-            && !query_temp("warquest", me) )
-       return notify_fail("軍營重地，閒雜人等，不得入內！\n");
+int valid_leave(object me, string dir) {
+    if(dir == "east" && !wizardp(me)
+        && !query_temp("warquest", me) )
+        return notify_fail("軍營重地，閒雜人等，不得入內！\n");
 
-       return ::valid_leave(me,dir);
+    return ::valid_leave(me, dir);
 }

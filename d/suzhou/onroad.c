@@ -3,13 +3,11 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "路上");
-        setup();
+void create() {
+    set("short", "路上");
+    setup();
 }
 
-void init()
-{
-        printf("運河兩岸沿途的風景令你如痴如醉，轉眼間多少天過去了.......\n");
+void init() {
+    printf("運河兩岸沿途的風景令你如痴如醉，轉眼間多少天過去了.......\n");
 }

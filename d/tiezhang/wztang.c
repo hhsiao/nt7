@@ -3,10 +3,9 @@
 inherit ROOM;
 string look_bian();
 
-void create()
-{
-        set("short", HIY "五指堂" NOR);
-        set("long", @LONG
+void create() {
+    set("short", HIY "五指堂" NOR);
+    set("long", @LONG
 這是一間完全用花崗岩砌成的大廳，透出陣陣逼人的寒氣。整座房內沒
 有窗戶，顯得陰森黑暗。兩旁的牆壁上插著松油制的火把，散發出昏黃色的
 光亮，寂靜的大廳中不時響起火把噼啪的燃燒聲。大廳的正中擺放著幫主的
@@ -15,33 +14,32 @@ void create()
 面。
 LONG );
 
-        set("item_desc", ([
-                "bian"       :       (: look_bian :),
+    set("item_desc", ([
+        "bian": (: look_bian :)
         ]));
 
-        set("exits", ([
-                "east" : __DIR__"zoulang-1",
-                "southdown" : __DIR__"guangchang",
-                "west" : __DIR__"zoulang-2",
-                "north" : __DIR__"hxfang",
+    set("exits", ([
+        "east": __DIR__"zoulang-1",
+        "southdown": __DIR__"guangchang",
+        "west": __DIR__"zoulang-2",
+        "north": __DIR__"hxfang"
         ]));
-        set("objects", ([
-                CLASS_D("tiezhang") + "/qiuqianren" : 1,
-                __DIR__"npc/xiaotong" : 2,
+    set("objects", ([
+        CLASS_D("tiezhang") + "/qiuqianren" : 1,
+        __DIR__"npc/xiaotong" : 2
         ]));
 
-        set("no_clean_up", 0);
-        set("valid_startroom", 1);
-        setup();
+    set("no_clean_up", 0);
+    set("valid_startroom", 1);
+    setup();
 }
 
-string look_bian()
-{
+string look_bian() {
     return
     "\n"
-              HIY "          ####################################\n"
-                  "          ####                            ####\n"
-                  "          ####    五    指    擎    天    ####\n"
-                  "          ####                            ####\n"
-                  "          ####################################\n\n\n\n\n\n\n" NOR;
+    HIY "          ####################################\n"
+    "          ####                            ####\n"
+    "          ####    五    指    擎    天    ####\n"
+    "          ####                            ####\n"
+    "          ####################################\n\n\n\n\n\n\n" NOR;
 }

@@ -1,43 +1,41 @@
 //      kufang.c 庫房
 
 inherit ROOM;
-void create()
-{
-	set("short","庫房");
-	set("long",@LONG
+void create() {
+    set("short", "庫房");
+    set("long",@LONG
 這裡是練武場旁邊的小庫房，房裡密不通風，只有一絲光線從屋簷
 小縫中投射進來。房中有些備用的武器，都是雪山弟子日常練功需要用
 到的兵器。
 LONG );
-	set("exits",([
-		"east" : __DIR__"chang",
-	]));
-	set("objects", ([
-		"/clone/weapon/zhujian" : random(4),
-		"/clone/weapon/gangdao" : random(4),
-		__DIR__"obj/mugun" : random(4),
-		__DIR__"obj/falun" : random(4),
-		WEAPON_DIR"treasure/yinlun" : random(2),
-	]));
-	set("coor/x", -70060);
-	set("coor/y", -19900);
-	set("coor/z", 120);
-	setup();
+    set("exits", ([
+        "east": __DIR__"chang"
+        ]));
+    set("objects", ([
+        "/clone/weapon/zhujian" : random(4),
+        "/clone/weapon/gangdao" : random(4),
+        __DIR__"obj/mugun" : random(4),
+        __DIR__"obj/falun" : random(4),
+        WEAPON_DIR"treasure/yinlun" : random(2)
+        ]));
+    set("coor/x", -70060);
+    set("coor/y", -19900);
+    set("coor/z", 120);
+    setup();
 }
-int valid_leave(object me, string dir)
-{
-	int i, w, x, y, z;
-	object *inv;
-	inv = all_inventory(me);
-	i = sizeof(inv);
-	for (i = 0; i < sizeof(inv); i++)
-	{
-		if( query("id", inv[i]) == "zhujian")w++;
-		if( query("id", inv[i]) == "falun")x++;
-		if( query("id", inv[i]) == "mugun")y++;
-		if( query("id", inv[i]) == "blade")y++;
-	}
-	if (w>1 || x>1 || y>1 || z>1)
-                return notify_fail("這位" + RANK_D->query_respect(me) + "別那麼貪心，每樣帶走一把就夠啦。\n");
-        return ::valid_leave(me, dir);
+int valid_leave(object me, string dir) {
+    int i, w, x, y, z;
+    object *inv;
+    inv = all_inventory(me);
+    i = sizeof(inv);
+    for (i = 0; i < sizeof(inv); i++)
+    {
+        if(query("id", inv[i]) == "zhujian")w++;
+        if(query("id", inv[i]) == "falun")x++;
+        if(query("id", inv[i]) == "mugun")y++;
+        if(query("id", inv[i]) == "blade")y++;
+    }
+    if (w>1 || x>1 || y>1 || z>1)
+        return notify_fail("這位" + RANK_D->query_respect(me) + "別那麼貪心，每樣帶走一把就夠啦。\n");
+    return ::valid_leave(me, dir);
 }

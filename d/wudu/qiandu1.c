@@ -11,8 +11,8 @@ LONG);
     set("outdoors", "wudujiao");
 
     set("exits", ([
-        "south" : __DIR__"wdsl4",
-        "north" : __DIR__"qiandu2"
+        "south": __DIR__"wdsl4",
+        "north": __DIR__"qiandu2"
         ]));
     set("objects", ([
         __DIR__"npc/dizi": 4

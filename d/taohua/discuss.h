@@ -1,5 +1,5 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 
 #include <ansi.h>
@@ -66,8 +66,6 @@ void say_question(object me, object ob)
 
 void say_answer(object me, object ob)
 {
-        object env, *inv;
-        int i;
 
         if( !ob || !userp(ob) || !me || !userp(me) )
         {
@@ -89,7 +87,6 @@ int do_answer(string arg)
 {
         object ob = this_player();
         object partner;
-        string s;
         int ans;
 
         if( !query_temp("partner", ob) || !query_temp("partner_id", ob) || !(partner=present(query_temp("partner_id", ob),environment(ob))) )
@@ -208,8 +205,8 @@ int do_discuss(string arg)
             if (sscanf(arg, "%s", target )!=1 )
                 return notify_fail("這裡沒有你想要與之討論的人。\n");
         }
-        
-        if (times < 1) 
+
+        if (times < 1)
                 return notify_fail("你要討論多少次？\n");
         if( !(partner = present(target, environment(me))) || !partner->is_character() || me == partner)
                 return notify_fail("這裡沒有你想要與之討論的人。\n");

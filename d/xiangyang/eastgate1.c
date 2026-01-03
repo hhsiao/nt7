@@ -4,10 +4,9 @@
 inherit ROOM;
 #include <ansi.h>;
 
-void create()
-{
-        set("short", "青龍內門");
-        set("long",
+void create() {
+    set("short", "青龍內門");
+    set("long",
 "這裡是襄陽城的東城門的內城門，只見城門上方是三個大字。近年來
 蒙古屢次侵犯襄陽城，故這兒把守相當嚴密，一些官兵們正在盤查要離襄
 陽城的人。兩邊是上城頭的石階，向西進入城區。\n\n"
@@ -24,30 +23,29 @@ void create()
     []==[]_|__|__|__|__|__|__| "HIG"青龍門"NOR" |__|__|__|__|__|__|_[]==[]
     []==[]__|__|__|__|__|__|_|        |__|__|__|__|__|__|_[]==[]
     []==[]_|__|__|__|__|__|__|        |_|__|__|__|__|__|__[]==[]\n\n"
-);
-        set("outdoors", "xiangyang");
+    );
+    set("outdoors", "xiangyang");
 
-        set("exits", ([
-                "southup" : __DIR__"walle1",
-                "northup" : __DIR__"walle2",
-                "west"    : __DIR__"eastjie3",
-                "east"    : __DIR__"eastgate2",
-                "up"      : __DIR__"eastlou1",
+    set("exits", ([
+        "southup": __DIR__"walle1",
+        "northup": __DIR__"walle2",
+        "west": __DIR__"eastjie3",
+        "east": __DIR__"eastgate2",
+        "up": __DIR__"eastlou1"
         ]));
-        set("objects", ([
-                "/quest/quest5/job2/pi2"   : 1,
-                __DIR__"npc/bing" : 2,
+    set("objects", ([
+        "/quest/quest5/job2/pi2"   : 1,
+        __DIR__"npc/bing" : 2
         ]));
-        set("coor/x", -7780);
-	set("coor/y", -770);
-	set("coor/z", 0);
-	setup();
+    set("coor/x", -7780);
+    set("coor/y", -770);
+    set("coor/z", 0);
+    setup();
 }
 
-int valid_leave(object me, string dir)
-{
-        if( dir == "up" && query_temp("guo_shoucheng/mark_jianlou", me) != 2 )
-                return notify_fail("守城士兵一把攔住你道：你沒有得到郭大人的許可，不能上去！\n");
+int valid_leave(object me, string dir) {
+    if(dir == "up" && query_temp("guo_shoucheng/mark_jianlou", me) != 2 )
+        return notify_fail("守城士兵一把攔住你道：你沒有得到郭大人的許可，不能上去！\n");
 
-        return ::valid_leave(me, dir);
+    return ::valid_leave(me, dir);
 }

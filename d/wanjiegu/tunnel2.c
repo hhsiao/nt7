@@ -2,19 +2,18 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "地道");
-        set("long", @LONG
+void create() {
+    set("short", "地道");
+    set("long", @LONG
 地道里光線黑暗，空氣渾濁，一股黴味撲鼻而來。地道里石臺階
 異常粗糙，兩邊土牆上不時滲出水滴掉到地上。
 LONG );
-        set("exits", ([ /* sizeof() == 2 */
-            "south" : __DIR__"tunnel1",
-            "out" : __DIR__"grassland",
+    set("exits", ([ /* sizeof() == 2 */
+        "south": __DIR__"tunnel1",
+        "out": __DIR__"grassland"
         ]));
-        set("no_clean_up", 0);
+    set("no_clean_up", 0);
 
-        setup();
-        replace_program(ROOM);
+    setup();
+    replace_program(ROOM);
 }

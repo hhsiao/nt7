@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "水簾洞");
-        set("long", @LONG
+void create() {
+    set("short", "水簾洞");
+    set("long", @LONG
 水簾洞景區在天心岩北兩裡處，又名唐曜洞天，是武夷山最大的洞
 穴，高、寬各三十丈許，上凸下凹，似斜覆的飛簷，崖內軒爽敞亮，有
 三祀祠，奉祀宋朝大儒劉子翬（朱熹老師）、朱熹、劉珙。洞前有兩道
@@ -17,15 +16,15 @@ void create()
 散，千條萬縷，懸空傾瀉，亦大觀也”洞內巖壁上有許多摩崖石刻，篆
 書“活源”二字，尤為引人注目。
 LONG );
-        set("outdoors", "wuyi");
-        set("no_clean_up", 0);
-        set("exits", ([
-                "south" : __DIR__"path15",
+    set("outdoors", "wuyi");
+    set("no_clean_up", 0);
+    set("exits", ([
+        "south": __DIR__"path15"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", 1400);
-        set("coor/y", -4880);
-        set("coor/z", 10);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", 1400);
+    set("coor/y", -4880);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

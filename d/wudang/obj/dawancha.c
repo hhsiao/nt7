@@ -3,19 +3,18 @@
 inherit ITEM;
 inherit F_LIQUID;
 
-void create()
-{
-        set_name(WHT "粗磁大碗" NOR, ({"wan", "dawan", "cha"}));
-        set_weight(50);
-        set("long", WHT "一個藍邊粗磁大碗。\n" NOR);
-                set("unit", "個");
-                set("value", 0);
-                set("max_liquid", 4);
+void create() {
+    set_name(WHT "粗磁大碗" NOR, ({"wan", "dawan", "cha"}));
+    set_weight(50);
+    set("long", WHT "一個藍邊粗磁大碗。\n" NOR);
+    set("unit", "個");
+    set("value", 0);
+    set("max_liquid", 4);
 
-        set("liquid", ([
-                "type": "tea",
-                "name": "茶水",
-                "remaining" : 4,
-                "drunk_supply" : 0,
+    set("liquid", ([
+        "type": "tea",
+        "name": "茶水",
+        "remaining": 4,
+        "drunk_supply": 0
         ]));
 }

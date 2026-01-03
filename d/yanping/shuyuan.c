@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "延平書院");
-        set("long", @LONG
+void create() {
+    set("short", "延平書院");
+    set("long", @LONG
 建於宋嘉定二年，郡守陳宓於九峰山麓，仿白鹿書院創建此延平書
 院，為“延平四賢”講學之所，書院建於九峰山號稱“金交椅”的山凹
 之處。此處“日受千人拜，夜享萬盞燈”，為延平風水絕佳之地。堂上
@@ -15,14 +14,14 @@ void create()
 無師自通，修習內功外功，竟成為一位武功大高手，寫下了武林無上密
 笈《九陰真經》。
 LONG );
-        set("exits", ([
-                "west"      : __DIR__"9fengshan",
-                "southeast" : __DIR__"yuandong",
+    set("exits", ([
+        "west": __DIR__"9fengshan",
+        "southeast": __DIR__"yuandong"
         ]));
-        set("objects", ([
-                __DIR__"npc/huangshang" : 1,
+    set("objects", ([
+        __DIR__"npc/huangshang" : 1
         ]));
-        set("no_fight", 1);
-        setup();
-        replace_program(ROOM);
+    set("no_fight", 1);
+    setup();
+    replace_program(ROOM);
 }

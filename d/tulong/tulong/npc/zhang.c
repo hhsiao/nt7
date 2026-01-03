@@ -7,8 +7,8 @@ void create() {
     set_name("張翠山", ({ "zhang cuishan", "zhang" }));
     set("long",
         "一個二十一二歲的少年，面目俊秀，雖然略覺清\n"
-            "癯，但神朗氣爽，身形的瘦弱竟掩不住一股剽悍\n"
-            "之意。\n");
+        "癯，但神朗氣爽，身形的瘦弱竟掩不住一股剽悍\n"
+        "之意。\n");
     set("attitude", "heroism");
     set("title", "武當五俠");
     set("nickname", WHT"銀鉤鐵劃"NOR);

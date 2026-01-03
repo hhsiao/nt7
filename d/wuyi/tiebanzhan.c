@@ -3,24 +3,23 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "鐵板嶂");
-        set("long", @LONG
+void create() {
+    set("short", "鐵板嶂");
+    set("long", @LONG
 鐵板嶂因石崖峻峭、色如鐵板而得名。所有三十六峰，惟獨此峰因
 身處大王峰和玉女峰之間，由大王和玉女傳說而身背罵名。人們都把它
 看做是破壞大王玉女婚姻的罪人。此峰崖峭層疊、曲水倒映、溝壑縱橫、
 石徑曲折、修竹繁茂、意境幽雅。其下有儒巾石和“千崖萬壑”題刻。
 LONG );
-        set("outdoors", "wuyi");
-        set("no_clean_up", 0);
-        set("exits", ([
-                "southwest" : __DIR__"2qu",
+    set("outdoors", "wuyi");
+    set("no_clean_up", 0);
+    set("exits", ([
+        "southwest": __DIR__"2qu"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", 1400);
-        set("coor/y", -5000);
-        set("coor/z", 10);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", 1400);
+    set("coor/y", -5000);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

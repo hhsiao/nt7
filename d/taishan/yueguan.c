@@ -3,24 +3,23 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "月觀峰");
-        set("long", @LONG
+void create() {
+    set("short", "月觀峰");
+    set("long", @LONG
 月觀峰是位於南天門西面的山嶺，與日觀峰東西對峙而名。此處怪
 石攢簇，最高的地方一石卓立，名為君子峰。古人言可在此望越國，故
 又稱越觀峰。天晴氣朗時，夜晚可觀濟南府城萬家燈火，俗稱望府山。
 山頂有月觀亭；往北走便是泰山的西天門。
 LONG );
-        set("exits", ([
-                "east"    : __DIR__"nantian",
-                "northup" : __DIR__"xitian",
+    set("exits", ([
+        "east": __DIR__"nantian",
+        "northup": __DIR__"xitian"
         ]));
-        set("no_clean_up", 0);
-        set("outdoors", "taishan");
-        set("coor/x", 20);
-	set("coor/y", 300);
-	set("coor/z", 200);
-	setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("outdoors", "taishan");
+    set("coor/x", 20);
+    set("coor/y", 300);
+    set("coor/z", 200);
+    setup();
+    replace_program(ROOM);
 }

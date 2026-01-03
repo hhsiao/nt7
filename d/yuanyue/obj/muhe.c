@@ -2,41 +2,36 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("木盒子", ({ "woodbox", "木盒子" }) );
-        set_weight(500);
-        set_max_encumbrance(2000);
-        set("prep","on");
-        set("unit", "個");
-                set("long", "這小木盒子滿是灰塵，粘滿了煤屑柴草，你似乎可以把它打開（ｏｐｅｎ）。\n");
-                set("value", 100);
-                set("closed", 1);
-        setup();
+void create() {
+    set_name("木盒子", ({ "woodbox", "木盒子" }) );
+    set_weight(500);
+    set_max_encumbrance(2000);
+    set("prep", "on");
+    set("unit", "個");
+    set("long", "這小木盒子滿是灰塵，粘滿了煤屑柴草，你似乎可以把它打開（ｏｐｅｎ）。\n");
+    set("value", 100);
+    set("closed", 1);
+    setup();
 }
-int is_container()
-{
-        return 1;
+int is_container() {
+    return 1;
 }
-void init()
-{
-        if(this_player()==environment())
-                 add_action("do_open","open");
+void init() {
+    if(this_player()==environment())
+        add_action("do_open", "open");
 }
-int do_open(string arg)
-{
-        object  me, ob;
-        if( !arg || arg != "woodbox" )
-                return notify_fail("你要打開什麼？\n");
-        me = this_player();
-        ob = this_object();
-        if( !query("closed", ob) )
-                return notify_fail("木盒子已經打開了！\n");
-        message_vision("$N小心翼翼打開$n。\n", me, ob);
-        set("closed", 0, ob);
-        return 1;
+int do_open(string arg) {
+    object me, ob;
+    if(!arg || arg != "woodbox" )
+        return notify_fail("你要打開什麼？\n");
+    me = this_player();
+    ob = this_object();
+    if(!query("closed", ob) )
+        return notify_fail("木盒子已經打開了！\n");
+    message_vision("$N小心翼翼打開$n。\n", me, ob);
+    set("closed", 0, ob);
+    return 1;
 }
-int is_closed()
-{
-        return (query("closed", this_object()));
+int is_closed() {
+    return (query("closed", this_object()));
 }

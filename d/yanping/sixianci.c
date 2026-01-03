@@ -3,20 +3,19 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "四賢祠");
-        set("long", @LONG
+void create() {
+    set("short", "四賢祠");
+    set("long", @LONG
 延平府名優薈萃，文風昌盛。四賢祠裡供奉著楊時(yang)、羅從彥
 (luo) 、李炯(li)、朱熹 (zhu)四大名儒。自楊時與遊酢 (you)“程門
 立雪”之後，不負程顥“吾道南矣”之重望，由楊而羅，由羅而李，直
 到集大成的朱子，代代承傳。他們上承河洛之學，在此窮首皓經，齊聲
 倡儒，終於倡大閩學，著一代風流。
 LONG );
-        set("exits", ([
-                "south" : __DIR__"ximen",
+    set("exits", ([
+        "south": __DIR__"ximen"
         ]));
-        set("item_desc", ([
+    set("item_desc", ([
                 "you" : "
     遊酢，北宋著名理學家、教育家、書法家、詩人。元豐四年(1082)，與楊
 時同往潁裡，就學於程顥。五年，登進士。元佑八年(1093)，偕楊時赴洛陽求
@@ -74,10 +73,10 @@ LONG );
 澤”匾額，並親自撰並書楹聯：“誠意正心，闡鄒魯之實學；主敬窮理，紹濂
 洛之真傳。”\n",
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", 1420);
-        set("coor/y", -6180);
-        set("coor/z", 10);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", 1420);
+    set("coor/y", -6180);
+    set("coor/z", 10);
+    setup();
+    replace_program(ROOM);
 }

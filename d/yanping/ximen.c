@@ -3,23 +3,22 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "西門");
-        set("long", @LONG
+void create() {
+    set("short", "西門");
+    set("long", @LONG
 西門外便是群山了。極目西望，大溪東來，群峰蒼茫。西門是通往
 贛南湘南的要道，青磚城牆上掛著一些告示和海捕文書。延平府向來清
 明，蓋歷任知府多為理學門生故也。
 LONG );
-        set("exits", ([
-                "east"      : __DIR__"road3",
-                "north"     : __DIR__"sixianci",
-                "southwest" : __DIR__"gudao4",
+    set("exits", ([
+        "east": __DIR__"road3",
+        "north": __DIR__"sixianci",
+        "southwest": __DIR__"gudao4"
         ]));
-        set("objects", ([
-                "/d/city/npc/bing" : 1,
+    set("objects", ([
+        "/d/city/npc/bing" : 1
         ]));
-        set("outdoors", "yanping");
-        setup();
-        replace_program(ROOM);
+    set("outdoors", "yanping");
+    setup();
+    replace_program(ROOM);
 }

@@ -2,11 +2,10 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("鹿骨", ({"lu gu", "gu", "bone"}));
-        set_weight(200);
-        set("long", "一根剛剛剔出來的野鹿骨頭。\n");
-                set("unit", "根");
-                set("value", 300);
+void create() {
+    set_name("鹿骨", ({"lu gu", "gu", "bone"}));
+    set_weight(200);
+    set("long", "一根剛剛剔出來的野鹿骨頭。\n");
+    set("unit", "根");
+    set("value", 300);
 }

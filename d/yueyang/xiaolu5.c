@@ -3,22 +3,21 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "山中路");
-        set("long", @LONG
+void create() {
+    set("short", "山中路");
+    set("long", @LONG
 你走在君山的山中小路上。君山，島呈圓形，旁高中低，由七十二
 峰組成，峰峰皆靈秀，處處盡清幽。
 LONG );
-        set("outdoors", "dongting");
-        set("no_clean_up", 0);
-        set("exits", ([
-                "east"      : __DIR__"xiaolu4",
-                "southwest" : __DIR__"liuyijing",
+    set("outdoors", "dongting");
+    set("no_clean_up", 0);
+    set("exits", ([
+        "east": __DIR__"xiaolu4",
+        "southwest": __DIR__"liuyijing"
         ]));
-        set("coor/x", -1680);
-        set("coor/y", 2320);
-        set("coor/z", -20);
-        setup();
-        replace_program(ROOM);
+    set("coor/x", -1680);
+    set("coor/y", 2320);
+    set("coor/z", -20);
+    setup();
+    replace_program(ROOM);
 }

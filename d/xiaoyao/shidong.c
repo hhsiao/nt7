@@ -4,10 +4,9 @@
 inherit ROOM;
 int do_push(string arg);
 
-void create()
-{
-        set("short", "圓形石室");
-        set("long", @LONG
+void create() {
+    set("short", "圓形石室");
+    set("long", @LONG
 這是座圓形石室，光亮從左邊透來，但朦朦朧朧地不似天光。細看
 天光處，那是一扇窗，竟然是鑲在石壁的一塊大水晶，約有銅盆大小，
 光亮便從水晶中透入。一尾大蝦在窗外遊過。接著一條花紋斑爛的鯉魚
@@ -18,38 +17,36 @@ void create()
 著些梳子釵釧之屬，看來竟是閨閣所居。銅鏡(mirror)上生滿銅綠，桌
 上也是塵土寸積，不知已有多少年無人來此。
 LONG );
-        set("exits", ([
-                "south" : __DIR__"damen",
-                "east" : __DIR__"shiji2",
-                "west" : __DIR__"shiji1",
+    set("exits", ([
+        "south": __DIR__"damen",
+        "east": __DIR__"shiji2",
+        "west": __DIR__"shiji1"
         ]));
-        set("item_desc", ([
-                "mirror" : "忽見東首一面斜置的銅鏡反映光亮照向北隅，石壁\n上似有一道縫。\n",
+    set("item_desc", ([
+        "mirror": "忽見東首一面斜置的銅鏡反映光亮照向北隅，石壁\n上似有一道縫。\n"
         ]));
-        set("coor/x", -50020);
-        set("coor/y", -21040);
-        set("coor/z", -40);
-        setup();
+    set("coor/x", -50020);
+    set("coor/y", -21040);
+    set("coor/z", -40);
+    setup();
 }
 
-void init()
-{
-        add_action("do_push", "push");
+void init() {
+    add_action("do_push", "push");
 }
 
-int do_push(string arg)
-{
-        object me;
-        me = this_player();
-        if (!arg||arg!="stone") return 0;
-        write("你忙搶將過去，使力推那石壁。\n");
-        if( random(query("kar", me))<10 || 
-                me->query_skill("beiming-shengong",1) <= 40 )
-        {
-                write("那石壁推不動的。\n");
-                return 1;
-        };
-        write("果然是一道門，緩緩移開，露出一洞來。\n");
-        set("exits/north", "/d/xiaoyao/shishi3", this_object());
+int do_push(string arg) {
+    object me;
+    me = this_player();
+    if (!arg||arg!="stone") return 0;
+    write("你忙搶將過去，使力推那石壁。\n");
+    if(random(query("kar", me))<10 ||
+        me->query_skill("beiming-shengong", 1) <= 40 )
+    {
+        write("那石壁推不動的。\n");
         return 1;
+    };
+    write("果然是一道門，緩緩移開，露出一洞來。\n");
+    set("exits/north", "/d/xiaoyao/shishi3", this_object());
+    return 1;
 }

@@ -3,25 +3,24 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","戲園子");
-        set("long",@LONG
+void create() {
+    set("short", "戲園子");
+    set("long",@LONG
 這是一座蘇州城裡鼎鼎有名的戲園，戲園中生，旦，淨，墨，醜一
 應俱全，場中一個大戲臺，臺上正在唱著《遇長春》，臺下不時地傳來
 票友們的叫躍，喝彩聲。你也忍不住想坐下來看看戲，放鬆一下筋骨。
 LONG);
-//        set("no_clean_up", 0);
-        set("objects", ([
-                __DIR__"npc/piaoyou": 3,
+    //        set("no_clean_up", 0);
+    set("objects", ([
+        __DIR__"npc/piaoyou": 3
         ]));
-        set("exits",([ /* sizeof() == 1 */
-                "northeast" : __DIR__"beidajie1",
-                "north"     : __DIR__"majiu",
+    set("exits",([ /* sizeof() == 1 */
+        "northeast": __DIR__"beidajie1",
+        "north": __DIR__"majiu"
         ]));
-	set("coor/x", 1100);
-	set("coor/y", -1050);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", 1100);
+    set("coor/y", -1050);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

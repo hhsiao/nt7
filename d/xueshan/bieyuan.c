@@ -2,30 +2,28 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","雪山別院");
-        set("long",@LONG
+void create() {
+    set("short", "雪山別院");
+    set("long",@LONG
 這裡是雪山寺的分部，當年貢唐倉大喇嘛不遠萬里進京面聖，被封
 為國師，就在此處宣揚佛法。
 LONG );
-        set("exits",([
-                "east" : "/d/beijing/road5",
+    set("exits", ([
+        "east": "/d/beijing/road5"
         ]));
-        set("objects" , ([
-                __DIR__"npc/seng-bing1"  : 2 ,
-                CLASS_D("xueshan") + "/guoshi" : 1 ,
+    set("objects" , ([
+        __DIR__"npc/seng-bing1"  : 2 ,
+        CLASS_D("xueshan") + "/guoshi" : 1
         ]));
-//        set("no_clean_up", 0);
-	set("coor/x", -210);
-	set("coor/y", 4000);
-	set("coor/z", 0);
-	setup();
+    //        set("no_clean_up", 0);
+    set("coor/x", -210);
+    set("coor/y", 4000);
+    set("coor/z", 0);
+    setup();
 }
 
-int valid_leave(object me, string dir)
-{
-	if( query("id", me) == "sengbing" && dir == "east")return 0;
+int valid_leave(object me, string dir) {
+    if(query("id", me) == "sengbing" && dir == "east")return 0;
 
-	return ::valid_leave(me, dir);
+    return ::valid_leave(me, dir);
 }

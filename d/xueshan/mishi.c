@@ -2,20 +2,19 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short","密室");
-        set("long",@LONG
+void create() {
+    set("short", "密室");
+    set("long",@LONG
 這是一條小房間。什麼東西都沒有。
 LONG );
-        set("exits",([
-                "south" : __DIR__"midao",
-                "up" : "/d/city/guangchang", 
+    set("exits", ([
+        "south": __DIR__"midao",
+        "up": "/d/city/guangchang"
         ]));
-        set("no_clean_up", 0);
-	set("coor/x", -70010);
-	set("coor/y", -19870);
-	set("coor/z", 140);
-	setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", -70010);
+    set("coor/y", -19870);
+    set("coor/z", 140);
+    setup();
+    replace_program(ROOM);
 }

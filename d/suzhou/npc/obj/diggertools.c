@@ -3,13 +3,12 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("盜墓工具", ({ "tools", "daomu gongju", "gravedigger tools"}));
-        set_weight(4000);
-        set("unit", "套");
-                set("long", "這是一套專門用來盜墓的工具。乾的時候小心點，別讓巡捕抓到！\n");
-                set("value", 1);
-                set("material", "steel");
-        setup();
+void create() {
+    set_name("盜墓工具", ({ "tools", "daomu gongju", "gravedigger tools"}));
+    set_weight(4000);
+    set("unit", "套");
+    set("long", "這是一套專門用來盜墓的工具。乾的時候小心點，別讓巡捕抓到！\n");
+    set("value", 1);
+    set("material", "steel");
+    setup();
 }

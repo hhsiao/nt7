@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "五大夫松");
-        set("long", @LONG
+void create() {
+    set("short", "五大夫松");
+    set("long", @LONG
 《史記》載，秦始皇封泰山時中途遇雨，避於此間大樹下，因封樹
 為“五大夫”。後訛為五株。明代萬曆年間，古松被雷雨所毀。清雍正
 年間欽差丁皂保奉敕重修泰山時，補植五株松。古松拳曲古拙，蒼勁蔥
@@ -14,15 +13,15 @@ void create()
 　　五大夫松西攔住山坡上有望人松，長枝下垂，似躬身招手邀客，又
 名迎客松。
 LONG );
-        set("exits", ([
-                "northwest" : __DIR__"chaoyang",
-                "eastdown"  : __DIR__"sandengya",
+    set("exits", ([
+        "northwest": __DIR__"chaoyang",
+        "eastdown": __DIR__"sandengya"
         ]));
-        set("no_clean_up", 0);
-        set("outdoors", "taishan");
-        set("coor/x", 40);
-	set("coor/y", 210);
-	set("coor/z", 120);
-	setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("outdoors", "taishan");
+    set("coor/x", 40);
+    set("coor/y", 210);
+    set("coor/z", 120);
+    setup();
+    replace_program(ROOM);
 }

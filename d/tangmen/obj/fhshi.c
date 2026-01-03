@@ -1,17 +1,16 @@
 #include <weapon.h>
 #include <ansi.h>
 inherit THROWING;
-void create()
-{
-        set_name("飛蝗石", ({ "feihuang shi", "shi" }) );
-        set("unit", "把");
-                set("value", 500);
-                set("base_unit", "粒");
-                set("base_weight", 100);
-                set("base_value", 25);
-                set("material", "stone");
-                set("long", "一塊有稜有角的石頭。\n");
-       set_amount(20);
-       init_throwing(5);
-       setup();
+void create() {
+    set_name("飛蝗石", ({ "feihuang shi", "shi" }) );
+    set("unit", "把");
+    set("value", 500);
+    set("base_unit", "粒");
+    set("base_weight", 100);
+    set("base_value", 25);
+    set("material", "stone");
+    set("long", "一塊有稜有角的石頭。\n");
+    set_amount(20);
+    init_throwing(5);
+    setup();
 }

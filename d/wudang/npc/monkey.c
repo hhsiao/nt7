@@ -2,8 +2,7 @@
 
 inherit NPC;
 
-void create()
-{
+void create() {
     set_name("猴子", ({ "monkey" }) );
     set("gender", "雄性");
     set("race", "野獸");
@@ -23,7 +22,7 @@ void create()
     set("chat_msg", ({
         "猴子衝著你大扮鬼臉，嘰嘰歪歪一陣亂叫......!\n",
         "猴子忽然跳了過來，一個倒勾，前爪一伸摘了你的草帽!\n",
-        "猴子轟的一聲一起從這株樹跳到那株樹，把你嚇了一大跳!\n",
+        "猴子轟的一聲一起從這株樹跳到那株樹，把你嚇了一大跳!\n"
     }) );
 
     set_skill("unarmed", 25);

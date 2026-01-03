@@ -3,25 +3,24 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "茶館");
-        set("long", @LONG
+void create() {
+    set("short", "茶館");
+    set("long", @LONG
 你一走進來，就聞到一股茶香沁入心脾，精神為之一爽。幾張八仙
 桌一字排開，坐滿了客人，或高聲談笑，或交頭接耳。幾個店夥計在一
 旁伺候著客人們，在臺後坐著一位老闆娘，正在彈著算盤。
 LONG );
-        set("resource/water", 1);
-//        set("no_clean_up", 0);
-        set("exits", ([
-                "southwest" : __DIR__"nandajie1",
+    set("resource/water", 1);
+    //        set("no_clean_up", 0);
+    set("exits", ([
+        "southwest": __DIR__"nandajie1"
         ]));
-        set("objects", ([
-                __DIR__"npc/lady2" : 1,
+    set("objects", ([
+        __DIR__"npc/lady2" : 1
         ]));
-	set("coor/x", 1120);
-	set("coor/y", -1060);
-	set("coor/z", 0);
-	setup();
-        replace_program(ROOM);
+    set("coor/x", 1120);
+    set("coor/y", -1060);
+    set("coor/z", 0);
+    setup();
+    replace_program(ROOM);
 }

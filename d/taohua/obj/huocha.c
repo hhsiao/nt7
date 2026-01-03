@@ -5,16 +5,15 @@
 
 inherit HAMMER;
 
-void create()
-{
-        set_name("火叉", ({ "huo cha", "cha" }) );
-        set_weight(2000);
-        set("unit", "柄");
-                set("long", "這是一柄火叉，看上去鈍鈍的。\n");
-                set("value", 300);
-                set("material", "iron");
-                set("wield_msg", "$N拿出一柄$n，抖了一抖，傻笑了幾聲。\n");
-                set("unwield_msg", "$N放下手中的$n。\n");
-        init_hammer(50);
-        setup();
+void create() {
+    set_name("火叉", ({ "huo cha", "cha" }) );
+    set_weight(2000);
+    set("unit", "柄");
+    set("long", "這是一柄火叉，看上去鈍鈍的。\n");
+    set("value", 300);
+    set("material", "iron");
+    set("wield_msg", "$N拿出一柄$n，抖了一抖，傻笑了幾聲。\n");
+    set("unwield_msg", "$N放下手中的$n。\n");
+    init_hammer(50);
+    setup();
 }

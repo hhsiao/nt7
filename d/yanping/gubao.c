@@ -3,10 +3,9 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "古堡");
-        set("long", @LONG
+void create() {
+    set("short", "古堡");
+    set("long", @LONG
 仰望坎頂，視若關堡雄鎮雲天，關口為石拱門，內有一木構亭榭和
 宋代的石砌古堡。堡內懸掛大總統曹錕題贈重修古道的邑人王堂選“義
 問宣昭”木匾。古堡東面拱門前有六株千年柳杉，相傳是楊八妹的哨兵，
@@ -15,14 +14,14 @@ void create()
 放眼遠眺，城區民舍鱗次櫛比，閩江之水如銀帶環繞，氣派雄偉。古人
 曰：“晨觀日出，延平城郭增絢麗；暮看夕落，百里梯田披彩霞。”
 LONG );
-        set("exits", ([
-                "west"      : __DIR__"mangdangshan",
-                "southwest" : __DIR__"yanxianshan",
-                "northdown" : __DIR__"yidao2",
-                "southdown" : __DIR__"banyanting",
+    set("exits", ([
+        "west": __DIR__"mangdangshan",
+        "southwest": __DIR__"yanxianshan",
+        "northdown": __DIR__"yidao2",
+        "southdown": __DIR__"banyanting"
         ]));
-        set("no_clean_up", 0);
-        set("outdoors", "yanping");
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("outdoors", "yanping");
+    setup();
+    replace_program(ROOM);
 }

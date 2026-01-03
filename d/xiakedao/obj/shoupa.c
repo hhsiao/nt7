@@ -1,14 +1,13 @@
 //shoupa.c
 #include <armor.h>
 inherit ITEM;
-void create()
-{
-        set_name( "手帕", ({ "shou pa"}));
-        set_weight(300);
-        set("unit", "個");
-                set("long","這是一個漂亮的手帕。\n");
-                set("value", 50);
-                set("material", "cloth");
-                set("female_only", 1);
-                set("armor_prop/armor", 3);
+void create() {
+    set_name("手帕", ({ "shou pa"}));
+    set_weight(300);
+    set("unit", "個");
+    set("long", "這是一個漂亮的手帕。\n");
+    set("value", 50);
+    set("material", "cloth");
+    set("female_only", 1);
+    set("armor_prop/armor", 3);
 }

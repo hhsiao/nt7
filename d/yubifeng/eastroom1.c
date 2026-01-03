@@ -3,20 +3,19 @@
 
 inherit ROOM;
 
-void create()
-{
-        set("short", "劍房");
-        set("long", @long
+void create() {
+    set("short", "劍房");
+    set("long", @long
 這裡原是杜莊主藏劍納寶之所。數十年來，他在這裡窮極山野，一
 無所獲，這裡也就徒有四壁了。
 long );
-        set("exits", ([
-                "west" : __DIR__"zoulang4",
+    set("exits", ([
+        "west": __DIR__"zoulang4"
         ]));
-        set("no_clean_up", 0);
-        set("coor/x", 6140);
-        set("coor/y", 5190);
-        set("coor/z", 100);
-        setup();
-        replace_program(ROOM);
+    set("no_clean_up", 0);
+    set("coor/x", 6140);
+    set("coor/y", 5190);
+    set("coor/z", 100);
+    setup();
+    replace_program(ROOM);
 }

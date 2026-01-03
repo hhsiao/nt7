@@ -42,22 +42,19 @@
 
 
 
-int invert_reborngiftd(object me, int exp)
-{
-        //if (query("reborn/times", me)) exp *= 2;//抵消轉世的獎勵懲罰
-        return exp;
+int invert_reborngiftd(object me, int exp) {
+    //if (query("reborn/times", me)) exp *= 2;//抵消轉世的獎勵懲罰
+    return exp;
 }
 
 
-int get_show_giftexp(object me, int exp)//在news頻道用來顯示的經驗獎勵值
+int get_show_giftexp(object me, int exp)    //在news頻道用來顯示的經驗獎勵值
 {
-        int quest_times;
-        if (MEMBER_D->is_double_reward(me)) exp *= 2;
-        quest_times = "/adm/daemons/actiond"->query_action("event_reward");
-        if (quest_times) exp *= quest_times;
-        if( me->query_bunch() && BUNCH_D->query_bunch_efficient(me->query_bunch(), "exp") ) exp *= 2;        
-        else if( me->query_family() && FAMILY_D->query_family_efficient(me->query_family(), "exp") ) exp *= 2;
-        return exp;
+    int quest_times;
+    if (MEMBER_D->is_double_reward(me)) exp *= 2;
+    quest_times = "/adm/daemons/actiond"->query_action("event_reward");
+    if (quest_times) exp *= quest_times;
+    if(me->query_bunch() && BUNCH_D->query_bunch_efficient(me->query_bunch(), "exp") ) exp *= 2;
+    else if(me->query_family() && FAMILY_D->query_family_efficient(me->query_family(), "exp") ) exp *= 2;
+    return exp;
 }
-
-

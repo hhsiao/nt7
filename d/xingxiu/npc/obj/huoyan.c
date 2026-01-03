@@ -3,40 +3,36 @@
 
 #include <ansi.h>;
 inherit ITEM;
-void create()
-{
-        set_name(HIR"火焰"NOR, ({ "huo yan"}) );
-        set("long",HIR"火焰高約尺，色作純碧，鬼氣森森，和尋常火焰大異。\n"NOR );
-                set("no_get", 1);
-                set("value", 1);
-                set("unit", "堆");
-                set("fire_name", "火焰");
-                set("weight", 30000);
-                set("location", 1);
-        setup();
+void create() {
+    set_name(HIR"火焰"NOR, ({ "huo yan" }) );
+    set("long", HIR"火焰高約尺，色作純碧，鬼氣森森，和尋常火焰大異。\n"NOR );
+    set("no_get", 1);
+    set("value", 1);
+    set("unit", "堆");
+    set("fire_name", "火焰");
+    set("weight", 30000);
+    set("location", 1);
+    setup();
 }
 
-void init()
-{
-        if(base_name(environment(this_object()))!="/d/xingxiu/riyuedong")
+void init() {
+    if(base_name(environment(this_object()))!="/d/xingxiu/riyuedong")
         call_out("dest", 300);
-        remove_call_out("change");
-        call_out("change", 50);
+    remove_call_out("change");
+    call_out("change", 50);
 }
 
-string *fire_msg = ({BLU"火焰"NOR,RED"火焰"NOR,WHT"火焰"NOR,GRN"火焰"NOR,MAG"火焰"NOR});
+string *fire_msg = ({ BLU"火焰"NOR, RED"火焰"NOR, WHT"火焰"NOR, GRN"火焰"NOR, MAG"火焰"NOR });
 
-void change()
-{
-        string msg = fire_msg[random(sizeof(fire_msg))];
-        tell_room(environment(this_object()),this_object()->name()+ HIR"豁然一暗，接著火光爆長，竟然變了顏色，看起來怪異無比！\n"NOR);
-        set("name", msg, this_object());
-        remove_call_out("change");
-        call_out("change", 50);
+void change() {
+    string msg = fire_msg[random(sizeof(fire_msg))];
+    tell_room(environment(this_object()), this_object()->name() + HIR"豁然一暗，接著火光爆長，竟然變了顏色，看起來怪異無比！\n"NOR);
+    set("name", msg, this_object());
+    remove_call_out("change");
+    call_out("change", 50);
 }
 
-void dest()
-{
-        tell_room(environment(this_object()),HIR"火焰漸漸地熄滅了。\n"NOR);
-        destruct(this_object());
+void dest() {
+    tell_room(environment(this_object()), HIR"火焰漸漸地熄滅了。\n"NOR);
+    destruct(this_object());
 }

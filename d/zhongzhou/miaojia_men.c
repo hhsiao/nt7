@@ -1,10 +1,9 @@
 #include <ansi.h>
 inherit ROOM;
 
-void create()
-{
-        set("short", "苗家大門");
-        set("long",
+void create() {
+    set("short", "苗家大門");
+    set("long",
 "這是一座頗為巨大的宅院，看樣子是富人的居所。門前擺
 著兩座石獅，甚是威嚴。紅漆大門上懸掛著塊匾，上面寫著有
 
@@ -17,29 +16,28 @@ void create()
 七個鑲金大字。大門中央站著一位四十來歲的瘦高個子，手裡
 持著一副鐵靈牌，冷冷地望著你。\n");
 
-        set("exits", ([
-                  "east"  : __DIR__"miaojia_dayuan",
-                  "west"  : __DIR__"wendingbei4",
+    set("exits", ([
+        "east": __DIR__"miaojia_dayuan",
+        "west": __DIR__"wendingbei4"
         ]));
 
-        set("no_clean_up", 0);
-        set("objects", ([
-                CLASS_D("miao") + "/wen" : 1,
+    set("no_clean_up", 0);
+    set("objects", ([
+        CLASS_D("miao") + "/wen" : 1
         ]));
 
-        set("coor/x", -9030);
-	set("coor/y", -960);
-	set("coor/z", 0);
-	setup();
+    set("coor/x", -9030);
+    set("coor/y", -960);
+    set("coor/z", 0);
+    setup();
 }
 
-int valid_leave(object me, string dir)
-{
-        object wen;
+int valid_leave(object me, string dir) {
+    object wen;
 
-        if (dir != "east" ||
-            ! objectp(wen = present("zhong zhaowen", this_object())))
-                return ::valid_leave(me, dir);
+    if (dir != "east" ||
+        ! objectp(wen = present("zhong zhaowen", this_object())))
+        return ::valid_leave(me, dir);
 
-        return wen->permit_pass(me, dir);
+    return wen->permit_pass(me, dir);
 }
