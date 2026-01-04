@@ -4,22 +4,20 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIY "金絲背心" NOR, ({ "jinsi beixin3", "jinsi", "beixin3" }) );
-        set_weight(3000);
-        set("unit", "件");
-                set("material", "steel");
-                                set("value", 800000);
-                set("armor_prop/armor", 700);
-                                set("limit", ([
-                                        "exp"  :  45000000,
-                                        "int"  :  60,
-                                ]));
-        setup();
+void create() {
+    set_name(HIY "金絲背心" NOR, ({ "jinsi beixin3", "jinsi", "beixin3" }) );
+    set_weight(3000);
+    set("unit", "件");
+    set("material", "steel");
+    set("value", 800000);
+    set("armor_prop/armor", 700);
+    set("limit", ([
+        "exp": 45000000,
+        "int": 60
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

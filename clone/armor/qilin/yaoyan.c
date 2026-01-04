@@ -3,24 +3,22 @@
 
 inherit EARRING;
 
-void create()
-{
-        set_name(HIR "火麒麟·妖焰" NOR, ({ "yaoyan erhuan", "yaoyan", "erhuan" }));
-        set_weight(100);
-        set("unit", "副");
-                set("long", HIR "你定睛一看，卻無法辯識清楚，妖焰的火光閃耀刺眼，令人敬畏。\n" NOR);
-                set("value", 200000);
-                set("material", "gold");
-                set("armor_prop/con", 40);
-                set("armor_prop/magic_find", 10);
-                set("limit", ([
-                        "exp" : 10000000,
-                        "sex" : 1, // 1 為女性
-                ]));
-        setup();
+void create() {
+    set_name(HIR "火麒麟·妖焰" NOR, ({ "yaoyan erhuan", "yaoyan", "erhuan" }));
+    set_weight(100);
+    set("unit", "副");
+    set("long", HIR "你定睛一看，卻無法辯識清楚，妖焰的火光閃耀刺眼，令人敬畏。\n" NOR);
+    set("value", 200000);
+    set("material", "gold");
+    set("armor_prop/con", 40);
+    set("armor_prop/magic_find", 10);
+    set("limit", ([
+        "exp": 10000000,
+        "sex": 1,   // 1 為女性
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

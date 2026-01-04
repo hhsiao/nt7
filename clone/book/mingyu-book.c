@@ -3,27 +3,26 @@
 inherit BOOK;
 inherit F_UNIQUE;
 
-void create()
-{
-        set_name("「明玉神功」", ({ "mingyu shengong", "mingyu", "shengong" }));
-        set_weight(500);
-        set("unit", "本");
-                set("long",
-"這是一本薄薄的密集，記載著無敵於天下的明玉功秘訣。\n",
-        );
-                set("value", 1);
-                set("no_sell", 1);
-                set("no_put", 1);
-                set("no_give", 1);
-                set("no_get", 1);
-                set("material", "paper");
-                set("skill", ([
-                        "name"        : "mingyu-gong",
-                        "exp_required":  100000,
-                        "jing_cost"   :  120,
-                        "difficulty"  :  40,
-                        "max_skill"   :  400,
-                ]) );
+void create() {
+    set_name("「明玉神功」", ({ "mingyu shengong", "mingyu", "shengong" }));
+    set_weight(500);
+    set("unit", "本");
+    set("long",
+        "這是一本薄薄的密集，記載著無敵於天下的明玉功秘訣。\n",
+    );
+    set("value", 1);
+    set("no_sell", 1);
+    set("no_put", 1);
+    set("no_give", 1);
+    set("no_get", 1);
+    set("material", "paper");
+    set("skill", ([
+        "name": "mingyu-gong",
+        "exp_required": 100000,
+        "jing_cost": 120,
+        "difficulty": 40,
+        "max_skill": 400
+        ]) );
 }
 
 int query_autoload() { return 1; }

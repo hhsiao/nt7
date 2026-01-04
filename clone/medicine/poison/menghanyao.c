@@ -2,14 +2,13 @@
 
 inherit COMBINED_ITEM;
 
-void create()
-{
-        set_name("蒙汗藥", ({ "menghan yao", "yao" }) );
-        set("long", "這是極普通的蒙汗藥. \n" );
-                set("unit", "包");
-                set("pour_type","slumber_drug");
-                set("base_value", 700);
-                set("base_unit", "些");
-                set("base_weight", 30);
-        set_amount(1);
+void create() {
+    set_name("蒙汗藥", ({ "menghan yao", "yao" }) );
+    set("long", "這是極普通的蒙汗藥. \n" );
+    set("unit", "包");
+    set("pour_type", "slumber_drug");
+    set("base_value", 700);
+    set("base_unit", "些");
+    set("base_weight", 30);
+    set_amount(1);
 }

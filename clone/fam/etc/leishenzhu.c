@@ -1,20 +1,18 @@
 inherit ITEM;
 #include <ansi.h>
 
-void create()
-{
-        set_name(HIM "雷神珠"  NOR, ({"leishen zhu", "leishen", "zhu"}));
-        set_weight(300);
-        set("long", HIM "一顆圓形的神珠，透射出絢目的光芒。\n" NOR);
-                set("unit", "顆");
-                set("value", 9000);
-                set("can_be_enchased", 1);
-                set("magic/type", "lighting");
-                set("magic/power", 55 + random(16));
-        setup();
+void create() {
+    set_name(HIM "雷神珠"  NOR, ({"leishen zhu", "leishen", "zhu"}));
+    set_weight(300);
+    set("long", HIM "一顆圓形的神珠，透射出絢目的光芒。\n" NOR);
+    set("unit", "顆");
+    set("value", 9000);
+    set("can_be_enchased", 1);
+    set("magic/type", "lighting");
+    set("magic/power", 55 + random(16));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

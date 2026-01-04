@@ -2,12 +2,11 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIC "翡翠" NOR, ({ "fei cui", "fei", "cui" }));
-        set_weight(1000);
-        set("long", HIC "這是一塊上等翡翠，相信可以"
-                            "賣個好價錢。\n");
-                set("value", 180000);
-                set("unit", "塊");
+void create() {
+    set_name(HIC "翡翠" NOR, ({ "fei cui", "fei", "cui" }));
+    set_weight(1000);
+    set("long", HIC "這是一塊上等翡翠，相信可以"
+        "賣個好價錢。\n");
+    set("value", 180000);
+    set("unit", "塊");
 }

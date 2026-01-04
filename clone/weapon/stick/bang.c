@@ -4,14 +4,13 @@
 #include <weapon.h>
 inherit STICK;
 
-void create()
-{
-        set_name("木杖", ({"bang"}));
-        set_weight(2000);
-        set("unit", "把");
-                set("value", 400);
-                set("material", "wood");
-                set("wield_msg", "$N「呼」地一聲抽出一把$n握在手中。\n");
-        init_stick(20);
-        setup();
+void create() {
+    set_name("木杖", ({"bang"}));
+    set_weight(2000);
+    set("unit", "把");
+    set("value", 400);
+    set("material", "wood");
+    set("wield_msg", "$N「呼」地一聲抽出一把$n握在手中。\n");
+    init_stick(20);
+    setup();
 }

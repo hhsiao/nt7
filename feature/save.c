@@ -5,8 +5,7 @@
 #define ORIGINAL_DATA "original_data"
 
 nosave string line = "";
-void get_inventory(object ob, int deep)
-{
+void get_inventory(object ob, int deep) {
     mixed *inv;
     int i, j, size;
     string ex2;
@@ -39,7 +38,7 @@ void get_inventory(object ob, int deep)
                 file = ORIGINAL_DATA;
 
             line += sprintf("%d%c%s%c%s%c%d%c%s\n",
-                            deep, 1, base_name(inv[i]), 1, file, 1, inv[i]->query_amount(), 1, save_variable(inv[i]->my_id()));
+                deep, 1, base_name(inv[i]), 1, file, 1, inv[i]->query_amount(), 1, save_variable(inv[i]->my_id()));
         }
 
         if (inv[i]->is_container() && deep < 3 && j++ < 4)
@@ -47,8 +46,7 @@ void get_inventory(object ob, int deep)
     }
 }
 
-int save()
-{
+int save() {
     string file;
     int deep;
     int ret = 0;
@@ -86,8 +84,7 @@ int save()
 
     return 0;
 }
-int restore()
-{
+int restore() {
     string file;
 
     if (stringp(file = this_object()->query_save_file()))
@@ -99,8 +96,7 @@ int restore()
 }
 
 // logind.c 調用
-int restore_package()
-{
+int restore_package() {
     string file;
     mixed *efile;
     mixed *ab;

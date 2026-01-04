@@ -1,11 +1,10 @@
 #include "herb.h"
 
-void create()
-{
-        set_name(HIM "蠍粉" NOR, ({ "xie fen", "xie", "fen", "herb_xiefen" }));
-        set("long", HIM "蠍粉是常見的中藥藥材。\n" NOR);
-                set("base_unit", "包");
-                set("base_value", 500);
-                set("base_weight", 35);
-        setup();
+void create() {
+    set_name(HIM "蠍粉" NOR, ({ "xie fen", "xie", "fen", "herb_xiefen" }));
+    set("long", HIM "蠍粉是常見的中藥藥材。\n" NOR);
+    set("base_unit", "包");
+    set("base_value", 500);
+    set("base_weight", 35);
+    setup();
 }

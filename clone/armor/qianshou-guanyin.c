@@ -3,22 +3,20 @@
 
 inherit MYHEART2;
 
-void create()
-{
-        set_name(HIW "千手觀音" NOR, ({ "qianshou guanyin", "qianshou", "guanyin" }) );
-        set_weight(1);
-        set("material", "paper");
-                set("unit", "尊");
-                set("long", HIW "一尊手掌般大小千手觀音像，乃中原大唐之國寶。\n" NOR);
-                set("value", 1000000);
-                set("limit", ([
-                        "exp"    :   2000000,
-                ]));
-                set("armor_prop/fy", 4);
-        setup();
+void create() {
+    set_name(HIW "千手觀音" NOR, ({ "qianshou guanyin", "qianshou", "guanyin" }) );
+    set_weight(1);
+    set("material", "paper");
+    set("unit", "尊");
+    set("long", HIW "一尊手掌般大小千手觀音像，乃中原大唐之國寶。\n" NOR);
+    set("value", 1000000);
+    set("limit", ([
+        "exp": 2000000
+        ]));
+    set("armor_prop/fy", 4);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

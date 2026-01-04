@@ -3,20 +3,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("草藥經", ({ "caoyao jing", "jing", "caoyao" }));
-        set_weight(1000);
-        set("unit", "本");
-                set("long", "這是一本講述各類草藥的書。\n");
-                set("value", 2500);
-                set("material", "paper");
-                set("skill", ([
-                        "name": "xidu-poison",  // name of the skill
-                        "exp_required": 2000,  // minimum experience required
-                        "jing_cost":    30,  // jing cost every time study this
-                        "difficulty":   22,  // the base int to learn this skill
-                        "max_skill":    71,  // the maximum level you can learn
-                        "min_skill":    30   // the maximum level you can learn
-                ]) );
+void create() {
+    set_name("草藥經", ({ "caoyao jing", "jing", "caoyao" }));
+    set_weight(1000);
+    set("unit", "本");
+    set("long", "這是一本講述各類草藥的書。\n");
+    set("value", 2500);
+    set("material", "paper");
+    set("skill", ([
+        "name": "xidu-poison",  // name of the skill
+        "exp_required": 2000,   // minimum experience required
+        "jing_cost": 30,    // jing cost every time study this
+        "difficulty": 22,   // the base int to learn this skill
+        "max_skill": 71,    // the maximum level you can learn
+        "min_skill": 30     // the maximum level you can learn
+        ]) );
 }

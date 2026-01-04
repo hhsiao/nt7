@@ -2,20 +2,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name( "胡家刀譜",({ "hujia book","book"}));
-        set_weight(200);
-        set("unit", "本");
-                set("long","這是一本胡家刀譜。\n");
-                set("value", 500);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "hujia-daofa",      //name of the skill
-                        "family_name" : "關外胡家",
-                        "exp_required": 10000 ,        //minimum combat experience required
-                        "jing_cost":    20+random(20),// jing cost every time study this
-                        "difficulty":        20,           // the base int to learn this skill
-                        "max_skill":        99            // the maximum level you can learn
-                ]) );
+void create() {
+    set_name("胡家刀譜", ({ "hujia book", "book"}));
+    set_weight(200);
+    set("unit", "本");
+    set("long", "這是一本胡家刀譜。\n");
+    set("value", 500);
+    set("material", "paper");
+    set("skill", ([
+        "name": "hujia-daofa",  //name of the skill
+        "family_name": "關外胡家",
+        "exp_required": 10000 ,     //minimum combat experience required
+        "jing_cost": 20 + random(20),   // jing cost every time study this
+        "difficulty": 20,   // the base int to learn this skill
+        "max_skill": 99     // the maximum level you can learn
+        ]) );
 }

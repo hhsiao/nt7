@@ -3,22 +3,20 @@
 
 inherit MYHEART2;
 
-void create()
-{
-        set_name(HIR "福袋" NOR, ({ "fu dai", "fu", "dai" }) );
-        set_weight(1);
-        set("material", "paper");
-                set("unit", "個");
-                set("long", HIR "扶桑國有繡制福袋的習俗，據說帶在身邊可以逢凶化吉。\n" NOR);
-                set("value", 1000000);
-                set("limit", ([
-                        "exp"    :   2000000,
-                ]));
-                set("armor_prop/fy", 3);
-        setup();
+void create() {
+    set_name(HIR "福袋" NOR, ({ "fu dai", "fu", "dai" }) );
+    set_weight(1);
+    set("material", "paper");
+    set("unit", "個");
+    set("long", HIR "扶桑國有繡制福袋的習俗，據說帶在身邊可以逢凶化吉。\n" NOR);
+    set("value", 1000000);
+    set("limit", ([
+        "exp": 2000000
+        ]));
+    set("armor_prop/fy", 3);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

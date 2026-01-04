@@ -5,15 +5,14 @@
 inherit COMBINED_ITEM;
 int value() { return query_amount() * (int)query("base_value"); }
 
-void create()
-{
-        set_name(HIR "火鶴" NOR, ({"huo he", "huo"}));
-        set("long","這是一朵嬌豔火紅的火鶴，熱情奔放，吉利，充滿喜慶、祥和、希望。\n");
-                set("unit", "束");
-                set("base_value", 75);
-                set("base_unit", "朵");
-                set("base_weight", 100);
-                set("flower",1);
-        set_amount(1);
+void create() {
+    set_name(HIR "火鶴" NOR, ({"huo he", "huo"}));
+    set("long", "這是一朵嬌豔火紅的火鶴，熱情奔放，吉利，充滿喜慶、祥和、希望。\n");
+    set("unit", "束");
+    set("base_value", 75);
+    set("base_unit", "朵");
+    set("base_weight", 100);
+    set("flower", 1);
+    set_amount(1);
 }
 #include "flower.h"

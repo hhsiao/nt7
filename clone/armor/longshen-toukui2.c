@@ -5,22 +5,20 @@
 
 inherit HEAD;
 
-void create()
-{
-        set_name(HIM "龍神頭盔" NOR, ({ "longshen toukui", "longshenshen2", "toukui2" }) );
-        set_weight(1000);
-        set("material", "steel");
-                set("unit", "頂");
-                set("long", HIM "這是一頂龍骨鑄造的頭盔，用以保護頭部。\n" NOR);
-                set("value", 3500000);
-                set("armor_prop/armor", 300);
-                set("limit", ([
-                        "dex"    :   45,
-                ]));
-        setup();
+void create() {
+    set_name(HIM "龍神頭盔" NOR, ({ "longshen toukui", "longshenshen2", "toukui2" }) );
+    set_weight(1000);
+    set("material", "steel");
+    set("unit", "頂");
+    set("long", HIM "這是一頂龍骨鑄造的頭盔，用以保護頭部。\n" NOR);
+    set("value", 3500000);
+    set("armor_prop/armor", 300);
+    set("limit", ([
+        "dex": 45
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

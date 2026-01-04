@@ -4,6 +4,5 @@
 
 inherit ITEM;
 
-void create()
-{
+void create() {
 }

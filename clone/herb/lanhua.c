@@ -1,11 +1,10 @@
 #include "herb.h"
 
-void create()
-{
-        set_name(NOR + HIB "蘭花" NOR, ({ "lan hua", "lan", "hua", "herb_lanhua" }));
-        set("long", NOR + HIB "蘭花是常見的中藥藥材。\n" NOR);
-                set("base_unit", "朵");
-                set("base_value", 500);
-                set("base_weight", 20);
-        setup();
+void create() {
+    set_name(NOR + HIB "蘭花" NOR, ({ "lan hua", "lan", "hua", "herb_lanhua" }));
+    set("long", NOR + HIB "蘭花是常見的中藥藥材。\n" NOR);
+    set("base_unit", "朵");
+    set("base_value", 500);
+    set("base_weight", 20);
+    setup();
 }

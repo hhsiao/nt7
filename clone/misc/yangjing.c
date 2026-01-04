@@ -2,24 +2,22 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIG"養精丹"NOR, ({"yangjing dan", "dan"}));
-        set("unit", "粒");
-                set("value", 2000);
-                set("only_do_effect", 1);
-        setup();
+void create() {
+    set_name(HIG"養精丹"NOR, ({"yangjing dan", "dan"}));
+    set("unit", "粒");
+    set("value", 2000);
+    set("only_do_effect", 1);
+    setup();
 }
 
-int do_effect(object me)
-{
-        message_vision("$N吃下一粒" + name() + "。\n", me);
+int do_effect(object me) {
+    message_vision("$N吃下一粒" + name() + "。\n", me);
 
-        if( query("eff_jing", me)<query("max_jing", me) )
-        {
-                me->receive_curing("jing",query("max_jing", me)/50);
-        }
-        me->start_busy(2);
-        destruct(this_object());
-        return 1;
+    if(query("eff_jing", me)<query("max_jing", me) )
+    {
+        me->receive_curing("jing", query("max_jing", me) / 50);
+    }
+    me->start_busy(2);
+    destruct(this_object());
+    return 1;
 }

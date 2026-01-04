@@ -4,14 +4,13 @@
 
 inherit COMBINED_ITEM;
 
-void create()
-{
-        set_name("菜料", ({ "cai liao", "liao" }));
-        set("long", "做菜的原料，青菜蘿蔔、雞鴨魚肉。\n");
-                set("base_unit", "份");
-                set("base_value", 50);
-                set("base_weight", 80);
-        setup();
+void create() {
+    set_name("菜料", ({ "cai liao", "liao" }));
+    set("long", "做菜的原料，青菜蘿蔔、雞鴨魚肉。\n");
+    set("base_unit", "份");
+    set("base_value", 50);
+    set("base_weight", 80);
+    setup();
 
-        set_amount(1);
+    set_amount(1);
 }

@@ -2,21 +2,20 @@
 
 inherit BOOK;
 
-void create()
-{
-        set_name("手法詳解", ({ "hand book", "book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long",
-"封面上寫著「手法詳解）」\n");
-                set("value", 10000);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "hand",
-                        "exp_required": 1000,
-                        "jing_cost":    30,
-                        "difficulty":   25,
-                        "max_skill":    49,
-                        "min_skill":    20,
-                ]));
+void create() {
+    set_name("手法詳解", ({ "hand book", "book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long",
+        "封面上寫著「手法詳解）」\n");
+    set("value", 10000);
+    set("material", "paper");
+    set("skill", ([
+        "name": "hand",
+        "exp_required": 1000,
+        "jing_cost": 30,
+        "difficulty": 25,
+        "max_skill": 49,
+        "min_skill": 20
+        ]));
 }

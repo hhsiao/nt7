@@ -1071,7 +1071,7 @@ void view5(string arg) {
         return;
     }
     t = t + "/"+w[1];
-    if(file_size(DIR + t+".h")<0)
+    if(file_size(DIR + t + ".h")<0)
     {
         write(GRN"沒有這個文件!\n"NOR);
         write(GRN"請輸入你要查看的內容:"NOR);

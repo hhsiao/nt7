@@ -5,13 +5,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("水晶葡萄", ({"pu tao", "grape","putao"}));
-   set_weight(40);
-   set("long", "水靈靈的葡萄象一顆顆紫色的水晶球。\n");
-                set("unit", "把");
-     set("value", 80);
-     set("food_remaining", 4);
-     set("food_supply", 30);
+void create() {
+    set_name("水晶葡萄", ({"pu tao", "grape", "putao"}));
+    set_weight(40);
+    set("long", "水靈靈的葡萄象一顆顆紫色的水晶球。\n");
+    set("unit", "把");
+    set("value", 80);
+    set("food_remaining", 4);
+    set("food_supply", 30);
 }

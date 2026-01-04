@@ -8,27 +8,26 @@ inherit TESSERA;
 
 int is_rune() { return 1; }
 
-void create()
-{
-        set_name(HIW "符文" NOR, ({"rune34", "rune"}));
-        set_weight(10);
-        set("long", "符文：上清禹餘符，可以放入凹槽物品。\n");
-                set("unit", "個");
-                set("enchase/SN", 34);
-                set("enchase/type", "all");
-                set("enchase/consistence", 100);
-                set("enchase/weapon_prop", ([
-                        "add_skill" : 40,
-                        "suck_qi"  : 10,
-                        "absorb_blood"  : 10,
-                ]));
-                set("enchase/armor_prop", ([
-                        "add_skill" : 6,
-                        "qi_vs_neili" : 3,
-                        "full_self" : 3,
-                ]));
-                set("value", 20000);
-        setup();
+void create() {
+    set_name(HIW "符文" NOR, ({"rune34", "rune"}));
+    set_weight(10);
+    set("long", "符文：上清禹餘符，可以放入凹槽物品。\n");
+    set("unit", "個");
+    set("enchase/SN", 34);
+    set("enchase/type", "all");
+    set("enchase/consistence", 100);
+    set("enchase/weapon_prop", ([
+        "add_skill": 40,
+        "suck_qi": 10,
+        "absorb_blood": 10
+        ]));
+    set("enchase/armor_prop", ([
+        "add_skill": 6,
+        "qi_vs_neili": 3,
+        "full_self": 3
+        ]));
+    set("value", 20000);
+    setup();
 }
 
 int query_autoload() { return 1; }

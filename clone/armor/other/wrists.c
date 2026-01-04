@@ -5,12 +5,11 @@
 
 inherit WRISTS;
 
-void create()
-{
-        set_name("護腕", ({"wrists"}));
-                set_weight(1000);
-        set("material", "iron");
-                set("unit", "副");
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name("護腕", ({"wrists"}));
+    set_weight(1000);
+    set("material", "iron");
+    set("unit", "副");
+    set("armor_prop/armor", 1);
+    setup();
 }

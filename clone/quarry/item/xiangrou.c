@@ -3,12 +3,11 @@
 inherit COMBINED_ITEM;
 #include "meat.h"
 
-void create()
-{
-        set_name(NOR + WHT "象肉" NOR, ({ "xiang rou", "xiang", "rou" }));
-        set("long", NOR + WHT "這是一塊散發著腥臊臭的象肉。\n" NOR);
-                set("base_unit", "塊");
-                set("base_value", 500);
-        setup();
-        set_amount(1);
+void create() {
+    set_name(NOR + WHT "象肉" NOR, ({ "xiang rou", "xiang", "rou" }));
+    set("long", NOR + WHT "這是一塊散發著腥臊臭的象肉。\n" NOR);
+    set("base_unit", "塊");
+    set("base_value", 500);
+    setup();
+    set_amount(1);
 }

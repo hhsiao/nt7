@@ -2,20 +2,19 @@
 
 inherit BOOK;
 
-void create()
-{
-        set_name("刀法入門", ({ "blade book", "book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long",
-"封面上寫著「刀法入門）」\n");
-                set("value", 200);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "blade",
-                        "exp_required":        1000,
-                        "jing_cost":        20,
-                        "difficulty":        20,
-                        "max_skill":        20,
-                ]));
+void create() {
+    set_name("刀法入門", ({ "blade book", "book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long",
+        "封面上寫著「刀法入門）」\n");
+    set("value", 200);
+    set("material", "paper");
+    set("skill", ([
+        "name": "blade",
+        "exp_required": 1000,
+        "jing_cost": 20,
+        "difficulty": 20,
+        "max_skill": 20
+        ]));
 }

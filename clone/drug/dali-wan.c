@@ -7,27 +7,25 @@ void setup()
 
 int cure_ob(string);
 
-void create()
-{
-        set_name(HIR"金剛大力丸"NOR, ({"dali wan", "wan"}));
-        set_weight(100);
-        set("unit", "顆");
-                set("long","這是江湖上常見的藥丸，紅色，龍眼大小，服後會力氣大增。\n");
-                set("value", 5000);
-                set("no_sell", 1);
-set("wposition", "/clone/drug/dali-wan.c");
-        setup();
+void create() {
+    set_name(HIR"金剛大力丸"NOR, ({"dali wan", "wan"}));
+    set_weight(100);
+    set("unit", "顆");
+    set("long", "這是江湖上常見的藥丸，紅色，龍眼大小，服後會力氣大增。\n");
+    set("value", 5000);
+    set("no_sell", 1);
+    set("wposition", "/clone/drug/dali-wan.c");
+    setup();
 }
 
-int cure_ob(object me)
-{
-        int app_str;
-        if( query_temp("daliwan", me) )
-                return notify_fail("你已服過大力丸了。\n");
-        app_str = random(5)+1;
-        message_vision(HIR"$N服下一顆金剛大力丸，掄了掄胳膊，直想找人打一架。\n"NOR,me);
-        addn_temp("apply/str", app_str, me);
-        set_temp("daliwan", 1, me);
+int cure_ob(object me) {
+    int app_str;
+    if(query_temp("daliwan", me) )
+        return notify_fail("你已服過大力丸了。\n");
+    app_str = random(5) + 1;
+    message_vision(HIR"$N服下一顆金剛大力丸，掄了掄胳膊，直想找人打一架。\n"NOR, me);
+    addn_temp("apply/str", app_str, me);
+    set_temp("daliwan", 1, me);
     destruct(this_object());
     return 1;
 }

@@ -3,23 +3,21 @@
 
 inherit EARRING;
 
-void create()
-{
-        set_name(HIW "陰陽耳環" NOR, ({ "yinyang erhuan3", "yinyang", "erhuan3" }));
-        set_weight(100);
-        set("unit", "副");
-                set("value", 200000);
-                set("material", "silver");
-                set("armor_prop/armor", 1);
-                set("armor_prop/force", 40);
-                set("armor_prop/con", 8);
-                set("limit", ([
-                        "sex" : 3, // 1 為無性
-                ]));
-        setup();
+void create() {
+    set_name(HIW "陰陽耳環" NOR, ({ "yinyang erhuan3", "yinyang", "erhuan3" }));
+    set_weight(100);
+    set("unit", "副");
+    set("value", 200000);
+    set("material", "silver");
+    set("armor_prop/armor", 1);
+    set("armor_prop/force", 40);
+    set("armor_prop/con", 8);
+    set("limit", ([
+        "sex": 3,   // 1 為無性
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

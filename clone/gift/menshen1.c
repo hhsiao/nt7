@@ -7,42 +7,40 @@ inherit ITEM;
 
 void setup() {}
 
-void create()
-{
-        set_name(HIM "門神" NOR, ({ "men shen", "menshen" }));
-        set("long", "這是一張畫的五顏六色的門神，常常"
-                            "被人貼在門上用來驅除妖邪。\n");
-                set("unit", "張");
+void create() {
+    set_name(HIM "門神" NOR, ({ "men shen", "menshen" }));
+    set("long", "這是一張畫的五顏六色的門神，常常"
+        "被人貼在門上用來驅除妖邪。\n");
+    set("unit", "張");
 
-        set("no_get", 1);
-        setup();
+    set("no_get", 1);
+    setup();
 }
 
-void init()
-{
-        object env;
-        object me;
+void init() {
+    object env;
+    object me;
 
-        if (! objectp(env = environment()))
-                return;
+    if (! objectp(env = environment()))
+        return;
 
-        if (! clonep(env) || base_name(env) != CHAT_ROOM)
-                return;
+    if (! clonep(env) || base_name(env) != CHAT_ROOM)
+        return;
 
-        if( !stringp(query("owner_id", env)) ||
-            !stringp(query("startroom", env)) )
-                return;
+    if(!stringp(query("owner_id", env)) ||
+        !stringp(query("startroom", env)) )
+        return;
 
-        me = this_player();
-        if (! interactive(me) || env->welcome(me))
-                return;
+    me = this_player();
+    if (! interactive(me) || env->welcome(me))
+        return;
 
-        message_vision("門神大喝一聲：“何方妖孽，也"
-                       "敢來此？”說罷手中銅錘一蕩，"
-                       "將$N一錘打得飛了出去！\n", me);
-        me->move(query("startroom", env));
-        me->start_busy(3);
-        message("vision", "只聽“蓬”一聲，" + me->name() +
-                "飛了出來，身上青一塊兒紫一塊兒的。\n",
-                environment(me), ({ me }));
+    message_vision("門神大喝一聲：“何方妖孽，也"
+        "敢來此？”說罷手中銅錘一蕩，"
+        "將$N一錘打得飛了出去！\n", me);
+    me->move(query("startroom", env));
+    me->start_busy(3);
+    message("vision", "只聽“蓬”一聲，" + me->name() +
+        "飛了出來，身上青一塊兒紫一塊兒的。\n",
+        environment(me), ({ me }));
 }

@@ -1,25 +1,23 @@
 // lbook3.c
 #include <ansi.h>
 inherit ITEM;
-void create()
-{
-        set_name(YEL"「千字文」"NOR, ({ "literateb3", "shu3", "book3" }));
-        set_weight(500);
-        set("unit", "本");
-                set("long","讀書人必讀的千字文。\n");
-                set("value", 500000);
-                set("material", "paper");
-                set("skill",
-                ([
-                        "name": "literate",
-                        "exp_required": 1000,
-                        "jing_cost":    10,
-                        "difficulty":   15,
-                        "max_skill":    99,
-                        "min_skill":    80,
-                ]) );
+void create() {
+    set_name(YEL"「千字文」"NOR, ({ "literateb3", "shu3", "book3" }));
+    set_weight(500);
+    set("unit", "本");
+    set("long", "讀書人必讀的千字文。\n");
+    set("value", 500000);
+    set("material", "paper");
+    set("skill",
+        ([
+            "name": "literate",
+            "exp_required": 1000,
+            "jing_cost": 10,
+            "difficulty": 15,
+            "max_skill": 99,
+            "min_skill": 80
+            ]) );
 }
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

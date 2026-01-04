@@ -3,36 +3,34 @@
 
 inherit SHOP;
 
-void create()
-{
-        set("short", "雙溪樓");
-        set("no_fight", 1);
-        set("no_beg", 1);
-        set("owner", "VOID_SHOP");
-        set("exits", ([
-                "down" : "/d/yanping/majiu",
+void create() {
+    set("short", "雙溪樓");
+    set("no_fight", 1);
+    set("no_beg", 1);
+    set("owner", "VOID_SHOP");
+    set("exits", ([
+        "down": "/d/yanping/majiu"
         ]));
-        set("objects", ([
-                __DIR__"waiter" : 1,
+    set("objects", ([
+        __DIR__"waiter": 1
         ]));
-        set("shop_type", 0);
+    set("shop_type", 0);
 
-        setup();
+    setup();
 }
 
-void init()
-{
-        if (query("shop_type") == 0)
-                set("long", @LONG
+void init() {
+    if (query("shop_type") == 0)
+        set("long", @LONG
 這裡是延平城裡最著名的店鋪，整個鋪面裝修得相當精美雅緻，樓
 頂憑軒處，正是俯瞰雙溪匯流的好去處。不過店裡的貨櫃上卻空無一物，
 看樣子已經很久沒人來打理了。
 LONG);
-        else
-                set("long", @LONG
+    else
+        set("long", @LONG
 這裡是延平城裡最熱鬧的店鋪，整個鋪面裝修得相當精美雅緻，樓
 頂憑軒處，正是俯瞰雙溪匯流的好去處。店鋪裡的夥計正招呼著客人，
 忙得滿頭大汗。
 LONG);
-        return;
+    return;
 }

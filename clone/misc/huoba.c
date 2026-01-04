@@ -3,11 +3,10 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("火把", ({"huo ba"}));
-        set_weight(80);
-        set("long", "這是一根火把，到了黑暗的地方就用(fire)得著了。\n");
-                set("unit", "根");
-                set("value", 100);
+void create() {
+    set_name("火把", ({"huo ba"}));
+    set_weight(80);
+    set("long", "這是一根火把，到了黑暗的地方就用(fire)得著了。\n");
+    set("unit", "根");
+    set("value", 100);
 }

@@ -1,21 +1,19 @@
 inherit ITEM;
 #include <ansi.h>
 
-void create()
-{
-        set_name(HIG "天轎·神泣" NOR, ({"tianjiao shenqi", "shenqi" }));
-        set_weight(900);
-        set("unit", "塊");
-                set("value", 50000);
-                set("enchase/name", "天轎·神泣");
-                set("enchase/point", 85);
-                set("enchase/type", "all");
-                set("enchase/cur_firm", 85);
-                set("enchase/spe_data", ([]) );
-        setup();
+void create() {
+    set_name(HIG "天轎·神泣" NOR, ({"tianjiao shenqi", "shenqi" }));
+    set_weight(900);
+    set("unit", "塊");
+    set("value", 50000);
+    set("enchase/name", "天轎·神泣");
+    set("enchase/point", 85);
+    set("enchase/type", "all");
+    set("enchase/cur_firm", 85);
+    set("enchase/spe_data", ([]) );
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

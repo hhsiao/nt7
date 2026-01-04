@@ -8,23 +8,22 @@ inherit TESSERA;
 
 int is_rune() { return 1; }
 
-void create()
-{
-        set_name(HIW "符文" NOR, ({"rune24", "rune"}));
-        set_weight(10);
-        set("long", "符文：無極曇誓符，可以放入凹槽物品。\n");
-                set("unit", "個");
-                set("enchase/SN", 24);
-                set("enchase/type", "all");
-                set("enchase/consistence", 100);
-                set("enchase/weapon_prop", ([
-                        "research_effect": 20,
-                ]));
-                set("enchase/armor_prop", ([
-                        "research_effect": 5,
-                ]));
-                set("value", 20000);
-        setup();
+void create() {
+    set_name(HIW "符文" NOR, ({"rune24", "rune"}));
+    set_weight(10);
+    set("long", "符文：無極曇誓符，可以放入凹槽物品。\n");
+    set("unit", "個");
+    set("enchase/SN", 24);
+    set("enchase/type", "all");
+    set("enchase/consistence", 100);
+    set("enchase/weapon_prop", ([
+        "research_effect": 20
+        ]));
+    set("enchase/armor_prop", ([
+        "research_effect": 5
+        ]));
+    set("value", 20000);
+    setup();
 }
 
 int query_autoload() { return 1; }

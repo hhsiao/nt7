@@ -5,32 +5,31 @@
 
 inherit MEDICAL_BOOK;
 
-void create()
-{
-        set_name(HIG "煉丹秘本" NOR, ({ "liandan miben", "miben" }));
-        set_weight(500);
-        set("unit", "本");
-                set("long", "這是一本泛黃的書籍，上面用小篆書"
-                            "寫著“煉丹秘本”幾個字。\n",
+void create() {
+    set_name(HIG "煉丹秘本" NOR, ({ "liandan miben", "miben" }));
+    set_weight(500);
+    set("unit", "本");
+    set("long", "這是一本泛黃的書籍，上面用小篆書"
+        "寫著“煉丹秘本”幾個字。\n",
 
-                );
-                set("material", "paper");
-                set("skill", ([
-                        "name": "liandan-shu",
-                        "jing_cost": 60,
-                        "difficulty": 40,
-                        "max_skill": 155,
-                        "min_skill": 30,
-                ]));
+    );
+    set("material", "paper");
+    set("skill", ([
+        "name": "liandan-shu",
+        "jing_cost": 60,
+        "difficulty": 40,
+        "max_skill": 155,
+        "min_skill": 30
+        ]));
 
-                set("can_make", ([
-                        "shujing"  : 80,        // 舒筋活絡丹
-                        "dieda"    : 80,        // 跌打傷愈膏
-                        "jiedu"    : 100,       // 牛黃解毒丸
-                        "yuzhen"   : 150,       // 玉真散
-                        "yuling"   : 150,       // 玉靈散
-                        "yuqing"   : 200,       // 玉清散
-                        "sanhuang" : 250,       // 三黃寶臘丹
-                ]));
-        setup();
+    set("can_make", ([
+        "shujing": 80,  // 舒筋活絡丹
+        "dieda": 80,    // 跌打傷愈膏
+        "jiedu": 100,   // 牛黃解毒丸
+        "yuzhen": 150,  // 玉真散
+        "yuling": 150,  // 玉靈散
+        "yuqing": 200,  // 玉清散
+        "sanhuang": 250,    // 三黃寶臘丹
+        ]));
+    setup();
 }

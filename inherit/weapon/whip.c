@@ -10,16 +10,15 @@ inherit EQUIP;
 
 varargs void init_whip(int damage, int flag)
 {
-        //if( clonep(this_object()) ) return;
+    //if( clonep(this_object()) ) return;
 
-        set("weapon_prop/damage", damage);
-        set("flag", flag );
-//        set("flag", 2 );
-        set("skill_type", "whip");
-        set("rigidity", (int)(damage/3));
-        if( !query("actions") ) {
-                set("actions", (: call_other, WEAPON_D, "query_action" :) );
-                set("verbs", ({ "whip" }) );
-        }
+    set("weapon_prop/damage", damage);
+    set("flag", flag );
+    //        set("flag", 2 );
+    set("skill_type", "whip");
+    set("rigidity", (int)(damage / 3));
+    if(!query("actions") ) {
+        set("actions", (: call_other, WEAPON_D, "query_action": ) );
+        set("verbs", ({ "whip" }) );
+    }
 }
-

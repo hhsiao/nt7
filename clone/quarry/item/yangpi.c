@@ -2,13 +2,12 @@
 
 inherit COMBINED_ITEM;
 
-void create()
-{
-        set_name(NOR + WHT "羊皮" NOR, ({ "yang pi", "yang", "pi" }));
-        set("long", NOR + WHT "羊的皮毛，毛質光滑。\n" NOR);
-                set("base_unit", "張");
-                set("base_value", 800);
-                set("base_weight", 400);
-        setup();
-        set_amount(1);
+void create() {
+    set_name(NOR + WHT "羊皮" NOR, ({ "yang pi", "yang", "pi" }));
+    set("long", NOR + WHT "羊的皮毛，毛質光滑。\n" NOR);
+    set("base_unit", "張");
+    set("base_value", 800);
+    set("base_weight", 400);
+    setup();
+    set_amount(1);
 }

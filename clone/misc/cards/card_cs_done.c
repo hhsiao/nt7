@@ -10,7 +10,7 @@ void create() {
         "這是一張"HIR"聖誕賀卡"NOR"，送給每位在聖誕節進入俠客行一百
 的玩家。你可以打開(dakai)來看看，記住自己的編號。
 新年鐘聲敲響的時候，等待著我們的抽獎禮品。\n");
-    set("value", 0);
+        set("value", 0);
     set_weight(10);
     setup();
 }

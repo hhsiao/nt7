@@ -2,19 +2,18 @@
 
 inherit __DIR__"skpaper";
 
-void create()
-{
-        set_name(NOR + WHT "拳典殘篇" NOR, ({ "quandian canpian5", "quandian", "canpian5" }));
-        set("unit", "張");
-                set("long", "這是一張殘缺不全的書頁。\n" NOR);
-                set("value", 30);
-                set("no_sell", "什麼世道，就一張破紙頭也拿來賣錢？");
-                set("material", "paper");
-                set("skill_name", "基本手法");
-                set("skill_type", "hand");
-                set("power_point", 30000);
-                set("need_exp", 300000);
-                set("min_lvl", 100);
-                set("max_lvl", 300);
-        setup();
+void create() {
+    set_name(NOR + WHT "拳典殘篇" NOR, ({ "quandian canpian5", "quandian", "canpian5" }));
+    set("unit", "張");
+    set("long", "這是一張殘缺不全的書頁。\n" NOR);
+    set("value", 30);
+    set("no_sell", "什麼世道，就一張破紙頭也拿來賣錢？");
+    set("material", "paper");
+    set("skill_name", "基本手法");
+    set("skill_type", "hand");
+    set("power_point", 30000);
+    set("need_exp", 300000);
+    set("min_lvl", 100);
+    set("max_lvl", 300);
+    setup();
 }

@@ -7,35 +7,34 @@
 inherit BOOTS;
 
 string* shoename = ({
-        "灰布鞋",
-        HIC"青布鞋"NOR,
-        HIY"麻鞋"NOR,
-        YEL"草鞋"NOR,
+    "灰布鞋",
+    HIC"青布鞋"NOR,
+    HIY"麻鞋"NOR,
+    YEL"草鞋"NOR
 });
 string* shoeid = ({
-        "bu xie",
-        "bu xie",
-        "ma xie",
-        "cao xie",
+    "bu xie",
+    "bu xie",
+    "ma xie",
+    "cao xie"
 });
 string* shoelong = ({
-        "這是一雙發白的灰布鞋。\n",
-        "這是一雙道家修行的青布鞋。\n",
-        "這是一雙出家修行人常穿的麻鞋。\n",
-        "這是一雙出家修行人的草鞋。\n",
+    "這是一雙發白的灰布鞋。\n",
+    "這是一雙道家修行的青布鞋。\n",
+    "這是一雙出家修行人常穿的麻鞋。\n",
+    "這是一雙出家修行人的草鞋。\n"
 });
 
-void create()
-{
-        int i = random(sizeof(shoename));
+void create() {
+    int i = random(sizeof(shoename));
 
-        set_name(shoename[i], ({ shoeid[i], "shoe" }));
-        set_weight(1000);
-        set("long", shoelong[i]);
-        set("unit", "雙");
-//                set("long", shoelong[i]);
-                set("value", 0);
-                set("material", "boots");
-                set("armor_prop/dodge", 5);
-        setup();
+    set_name(shoename[i], ({ shoeid[i], "shoe" }));
+    set_weight(1000);
+    set("long", shoelong[i]);
+    set("unit", "雙");
+    //                set("long", shoelong[i]);
+    set("value", 0);
+    set("material", "boots");
+    set("armor_prop/dodge", 5);
+    setup();
 }

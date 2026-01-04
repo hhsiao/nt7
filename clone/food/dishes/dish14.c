@@ -6,12 +6,11 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-  string name = "走油脆腸";
-  set_name(name, ({"zouyou cuichang", "cuichang", "chang"}));
-  set_weight(1000);
-  set("long", "一盤令人垂涎的"+name+"。\n");
+void create() {
+    string name = "走油脆腸";
+    set_name(name, ({"zouyou cuichang", "cuichang", "chang"}));
+    set_weight(1000);
+    set("long", "一盤令人垂涎的"+name + "。\n");
     set("unit", "盤");
     set("value", 250);
     set("food_remaining", 5);

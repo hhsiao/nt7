@@ -4,16 +4,15 @@
 #include <ansi.h>;
 inherit COMBINED_ITEM;
 
-void create()
-{
-        set_name("點燃的毒蟲粉", ({ "duchong fen", "duchong", "fen" }) );
-        set("long","一包以蜈蚣、蜘蛛等為原料製成的毒粉。已經點燃，可以塗(tu)在兵器上了。\n" );
-                set("unit", "些");
-                set("base_unit", "包");
-                set("base_weight", 30);
-                set("drug_color", ""BLU"藍光閃閃"NOR"");
-                set("pour_type", "xx_poison");
-        set_amount(1);
+void create() {
+    set_name("點燃的毒蟲粉", ({ "duchong fen", "duchong", "fen" }) );
+    set("long", "一包以蜈蚣、蜘蛛等為原料製成的毒粉。已經點燃，可以塗(tu)在兵器上了。\n" );
+    set("unit", "些");
+    set("base_unit", "包");
+    set("base_weight", 30);
+    set("drug_color", ""BLU"藍光閃閃"NOR"");
+    set("pour_type", "xx_poison");
+    set_amount(1);
 }
 
 #include "poison1.h";

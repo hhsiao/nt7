@@ -13,8 +13,7 @@ nosave mixed default_ob = 0;
 
 mixed query_default_object() { return default_ob; }
 
-void set_default_object(mixed ob)
-{
+void set_default_object(mixed ob) {
     // if( geteuid(previous_object()) != ROOT_UID )
     //     error("dbase: Only this_object() or object with root euid can set default_ob.\n");
     if (!geteuid())
@@ -31,8 +30,7 @@ void set_default_object(mixed ob)
     }
 }
 
-mixed set_db(string prop, mixed data)
-{
+mixed set_db(string prop, mixed data) {
     if (!mapp(dbase))
         dbase = ([]);
 
@@ -63,8 +61,7 @@ varargs mixed query_db(string prop, int raw)
     return evaluate(data, this_object());
 }
 
-int delete_db(string prop)
-{
+int delete_db(string prop) {
     if (!mapp(dbase))
         return 0;
 
@@ -77,8 +74,7 @@ int delete_db(string prop)
     }
 }
 
-mixed add(string prop, mixed data)
-{
+mixed add(string prop, mixed data) {
     mixed old;
 
     if (!mapp(dbase) || !(old = query_db(prop, 1)))
@@ -90,13 +86,11 @@ mixed add(string prop, mixed data)
     return set(prop, old + data);
 }
 
-mapping query_entire_dbase()
-{
+mapping query_entire_dbase() {
     return dbase;
 }
 
-nomask void set_dbase(mapping data)
-{
+nomask void set_dbase(mapping data) {
     if (!is_root(previous_object()))
         return;
 
@@ -106,8 +100,7 @@ nomask void set_dbase(mapping data)
     dbase = data;
 }
 
-mixed set_temp_db(string prop, mixed data)
-{
+mixed set_temp_db(string prop, mixed data) {
     if (!mapp(tmp_dbase))
         tmp_dbase = ([]);
 
@@ -135,8 +128,7 @@ varargs mixed query_temp_db(string prop, int raw)
         return data;
 }
 
-int delete_temp_db(string prop)
-{
+int delete_temp_db(string prop) {
     if (!mapp(tmp_dbase))
         return 0;
 
@@ -149,8 +141,7 @@ int delete_temp_db(string prop)
     }
 }
 
-mixed add_temp(string prop, mixed data)
-{
+mixed add_temp(string prop, mixed data) {
     mixed old;
 
     if (!mapp(tmp_dbase) || !(old = query_temp_db(prop, 1)))
@@ -162,18 +153,15 @@ mixed add_temp(string prop, mixed data)
     return set_temp(prop, old + data);
 }
 
-mixed add_temp_array(string prop, string data)
-{
+mixed add_temp_array(string prop, string data) {
     return add_temp(prop, data);
 }
 
-mapping query_entire_temp_dbase()
-{
+mapping query_entire_temp_dbase() {
     return tmp_dbase;
 }
 
-nomask void set_temp_dbase(mapping data)
-{
+nomask void set_temp_dbase(mapping data) {
     // if( !is_root(previous_object()) )
     //      return;
 
@@ -183,16 +171,14 @@ nomask void set_temp_dbase(mapping data)
     tmp_dbase = data;
 }
 
-nomask void delete_all_dbase()
-{
+nomask void delete_all_dbase() {
     // if( !is_root(previous_object()) )
     //      return;
 
     dbase = ([]);
 }
 
-nomask void delete_all_temp_dbase()
-{
+nomask void delete_all_temp_dbase() {
     // if( !is_root(previous_object()) )
     //      return;
 

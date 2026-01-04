@@ -4,15 +4,14 @@
 #include <weapon.h>
 inherit STAFF;
 
-void create()
-{
-         set_name( "鐵柺", ({ "tie guai", "tieguai", "guai" }) );
-         set_weight(8000);
-         set("unit", "根");
-                 set("long", "一條鐵柺，看起來黑黝黝的，分量肯定不輕。\n");
-                 set("value", 1000);
-                 set("material", "steel");
+void create() {
+    set_name("鐵柺", ({ "tie guai", "tieguai", "guai" }) );
+    set_weight(8000);
+    set("unit", "根");
+    set("long", "一條鐵柺，看起來黑黝黝的，分量肯定不輕。\n");
+    set("value", 1000);
+    set("material", "steel");
 
-         init_staff(20);
-         setup();
+    init_staff(20);
+    setup();
 }

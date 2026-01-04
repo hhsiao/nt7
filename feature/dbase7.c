@@ -13,8 +13,7 @@ nosave mixed default_ob = 0;
 
 mixed query_default_object() { return default_ob; }
 
-void set_default_object(mixed ob)
-{
+void set_default_object(mixed ob) {
     // if( geteuid(previous_object()) != ROOT_UID )
     //      error("dbase: Only this_object() or object with root euid can set default_ob.\n");
     if (!geteuid())
@@ -31,8 +30,7 @@ void set_default_object(mixed ob)
     }
 }
 
-mixed add(string prop, mixed data)
-{
+mixed add(string prop, mixed data) {
     mixed old;
 
     if (!mapp(dbase) || !(old = query(prop)))
@@ -44,8 +42,7 @@ mixed add(string prop, mixed data)
     return set(prop, old + data);
 }
 
-mapping query_entire_dbase()
-{
+mapping query_entire_dbase() {
     // if( (previous_object() != this_object())
     // &&  (geteuid(previous_object()) != ROOT_UID) )
     //      error("dbase: query_entire_dbase() - must has root euid or be this_object().\n");
@@ -53,8 +50,7 @@ mapping query_entire_dbase()
     return dbase;
 }
 
-mixed add_temp(string prop, mixed data)
-{
+mixed add_temp(string prop, mixed data) {
     mixed old;
 
     if (!mapp(tmp_dbase) || !(old = query_temp(prop)))
@@ -66,8 +62,7 @@ mixed add_temp(string prop, mixed data)
     return set_temp(prop, old + data);
 }
 
-mapping query_entire_temp_dbase()
-{
+mapping query_entire_temp_dbase() {
     // if( (previous_object() != this_object())
     // &&  (geteuid(previous_object()) != ROOT_UID) )
     //      error("dbase: query_entire_temp_dbase() - must has root euid or be this_object().\n");
@@ -75,8 +70,7 @@ mapping query_entire_temp_dbase()
     return tmp_dbase;
 }
 
-nomask void set_dbase(mapping data)
-{
+nomask void set_dbase(mapping data) {
     // if( !is_root(previous_object()) )
     //      return;
 
@@ -86,8 +80,7 @@ nomask void set_dbase(mapping data)
     dbase = data;
 }
 
-nomask void set_temp_dbase(mapping data)
-{
+nomask void set_temp_dbase(mapping data) {
     // if( !is_root(previous_object()) )
     //      return;
 
@@ -97,16 +90,14 @@ nomask void set_temp_dbase(mapping data)
     tmp_dbase = data;
 }
 
-nomask void delete_all_dbase()
-{
+nomask void delete_all_dbase() {
     // if( !is_root(previous_object()) )
     //      return;
 
     dbase = ([]);
 }
 
-nomask void delete_all_temp_dbase()
-{
+nomask void delete_all_temp_dbase() {
     // if( !is_root(previous_object()) )
     //      return;
 
@@ -114,22 +105,22 @@ nomask void delete_all_temp_dbase()
 }
 
 /*
-varargs int set_shadow_ob(object ob)
-{
-	if( clonep() )
-	{
-                if( !objectp(ob) ) ob = load_object(base_name(this_object()));
-                //set("shadow_ob", ob || load_object(base_name(this_object())));
-                set("shadow_ob", ob);
-                default_ob = ob;
-                set("no_clean_up", 1, ob);
-		return 1;
-	}
-	return 0;
-}
+ * varargs int set_shadow_ob(object ob)
+ * {
+ * if( clonep() )
+ * {
+ * if( !objectp(ob) ) ob = load_object(base_name(this_object()));
+ * //set("shadow_ob", ob || load_object(base_name(this_object())));
+ * set("shadow_ob", ob);
+ * default_ob = ob;
+ * set("no_clean_up", 1, ob);
+ * return 1;
+ * }
+ * return 0;
+ * }
 
-object query_shadow_ob()
-{
-	return dbase["shadow_ob"];
-}
-*/
+ * object query_shadow_ob()
+ * {
+ * return dbase["shadow_ob"];
+ * }
+ */

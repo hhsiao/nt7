@@ -2,19 +2,18 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("棍法通解", ({"shu", "book" }));
-        set_weight(100);
-        set("unit", "本");
-                set("long","這是一本修習棍法的武經。\n裡面記載著少林派弟子數百年的練功心得，上面畫著各式舞棍的小人。\n");
-                set("value", 500);
-                set("material", "book");
-                set("skill", ([
-                        "name":        "club",        // name of the skill
-                        "exp_required":        0,        // minimum combat experience required
-                        "jing_cost":        20,        // jing cost every time study this
-                        "difficulty":        20,        // the base int to learn this skill
-                        "max_skill":        100        // the maximum level you can learn
-                ]) );
+void create() {
+    set_name("棍法通解", ({"shu", "book" }));
+    set_weight(100);
+    set("unit", "本");
+    set("long", "這是一本修習棍法的武經。\n裡面記載著少林派弟子數百年的練功心得，上面畫著各式舞棍的小人。\n");
+    set("value", 500);
+    set("material", "book");
+    set("skill", ([
+        "name": "club",     // name of the skill
+        "exp_required": 0,  // minimum combat experience required
+        "jing_cost": 20,    // jing cost every time study this
+        "difficulty": 20,   // the base int to learn this skill
+        "max_skill": 100    // the maximum level you can learn
+        ]) );
 }

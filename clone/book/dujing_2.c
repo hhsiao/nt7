@@ -2,21 +2,20 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("『星宿毒經〖下冊〗』", ({ "du jing2", "book2" }) );
-        set_weight(10);
-        set("unit", "本");
-                set("long", "\n                 『星宿毒經〖下冊〗』\n\n");
-                set("value", 50);
-                set("material", "paper");
-                   set("skill", ([
-                        "name":        "poison",    // name of the skill
-                        "exp_required": 50000,      // minimum combat experience required
-                        "jing_cost":    20,          // jing cost every time study this
-                        "difficulty":   25,         // the base int to learn this skill
-                        "max_skill":    99,        // the maximum level you can learn
-                        "min_skill":    50,         // minimun level required
-                ]) );
-        setup();
+void create() {
+    set_name("『星宿毒經〖下冊〗』", ({ "du jing2", "book2" }) );
+    set_weight(10);
+    set("unit", "本");
+    set("long", "\n                 『星宿毒經〖下冊〗』\n\n");
+    set("value", 50);
+    set("material", "paper");
+    set("skill", ([
+        "name": "poison",   // name of the skill
+        "exp_required": 50000,  // minimum combat experience required
+        "jing_cost": 20,    // jing cost every time study this
+        "difficulty": 25,   // the base int to learn this skill
+        "max_skill": 99,    // the maximum level you can learn
+        "min_skill": 50,    // minimun level required
+        ]) );
+    setup();
 }

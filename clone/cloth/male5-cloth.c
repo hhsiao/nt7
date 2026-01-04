@@ -7,14 +7,13 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIM"紫蟒袍"NOR, ({ "cloth" }) );
-        set_weight(8000);
-        set("unit", "件");
-                set("long", "一件很重的紫蟒袍。\n");
-                set("material", "cloth");
-                set("value", 0);
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name(HIM"紫蟒袍"NOR, ({ "cloth" }) );
+    set_weight(8000);
+    set("unit", "件");
+    set("long", "一件很重的紫蟒袍。\n");
+    set("material", "cloth");
+    set("value", 0);
+    set("armor_prop/armor", 1);
+    setup();
 }

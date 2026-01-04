@@ -3,63 +3,61 @@
 
 inherit ITEM;
 int cure_ob(string);
-void create()
-{
-   set_name("雄黃丸", ({"xionghuang wan", "xionghuang", "wan"}));
-   set("unit", "顆");
-      set("value", 4000);
-                set("no_sell", 1);
-      set("long", "這是一顆丐幫特製能解百毒的雄黃丸，尤其對蛇嗤蟲咬之傷更見神效。\n");
-      set("medicine", 1);
-   setup();
+void create() {
+    set_name("雄黃丸", ({"xionghuang wan", "xionghuang", "wan"}));
+    set("unit", "顆");
+    set("value", 4000);
+    set("no_sell", 1);
+    set("long", "這是一顆丐幫特製能解百毒的雄黃丸，尤其對蛇嗤蟲咬之傷更見神效。\n");
+    set("medicine", 1);
+    setup();
 }
 
-int cure_ob(object me)
-{
-   message_vision("$N吃下一顆" + name() + "。\n", me);
+int cure_ob(object me) {
+    message_vision("$N吃下一顆" + name() + "。\n", me);
 
-   if ( !me->query_condition("xx_poison") && !me->query_condition("snake_poison")
-   && !me->query_condition("insect_poison") ) {
-        me->apply_condition("snake_poison", 10);
-        me->apply_condition("insect_poison", 10);
+    if (!me->query_condition("xx_poison") && !me->query_condition("snake_poison")
+        && !me->query_condition("insect_poison") ) {
+            me->apply_condition("snake_poison", 10);
+            me->apply_condition("insect_poison", 10);
         me->query_condition("xx_poison", 5);
         tell_object(me, HIR "你沒傷胡亂服食丹藥，反有大害！\n\n" NOR);
         destruct(this_object());
-          return 1;
-   }
+        return 1;
+    }
 
-   if ( (int)me->query_condition("snake_poison") ) {
-      me->apply_condition("snake_poison", (int)me->query_condition("snake_poison") - 10);
-      if ( (int)me->query_condition("snake_poison") < 0 ) me->apply_condition("snake_poison", 0);
-      set_temp("xhwan", 1, me);
-   }
+    if ((int)me->query_condition("snake_poison") ) {
+        me->apply_condition("snake_poison", (int)me->query_condition("snake_poison") - 10);
+        if ((int)me->query_condition("snake_poison") < 0 ) me->apply_condition("snake_poison", 0);
+        set_temp("xhwan", 1, me);
+    }
 
-   if ( (int)me->query_condition("insect_poison") ) {
-      me->apply_condition("insect_poison", (int)me->query_condition("insect_poison") - 10);
-      if ( (int)me->query_condition("insect_poison") < 0 ) me->apply_condition("insect_poison", 0);
-      set_temp("xhwan", 1, me);
-   }
+    if ((int)me->query_condition("insect_poison") ) {
+        me->apply_condition("insect_poison", (int)me->query_condition("insect_poison") - 10);
+        if ((int)me->query_condition("insect_poison") < 0 ) me->apply_condition("insect_poison", 0);
+        set_temp("xhwan", 1, me);
+    }
 
-   if( me->query_condition("xx_poison")>100 && !query_temp("xhwan", me)){
+    if(me->query_condition("xx_poison")>100 && !query_temp("xhwan", me)){
         return notify_fail("你中的抽髓掌毒太深，現在服此藥沒什麼效用。\n");
-   }
-   else {
-      me->apply_condition("xx_poison", (int)me->query_condition("xx_poison") - 5);
-      if ( (int)me->query_condition("xx_poison") < 0 ) me->apply_condition("xx_poison", 0);
-      set_temp("xhwan", 1, me);
-   }
+    }
+    else {
+        me->apply_condition("xx_poison", (int)me->query_condition("xx_poison") - 5);
+        if ((int)me->query_condition("xx_poison") < 0 ) me->apply_condition("xx_poison", 0);
+        set_temp("xhwan", 1, me);
+    }
 
-   if( me->query_condition("sl_poison")>100 && !query_temp("xhwan", me)){
+    if(me->query_condition("sl_poison")>100 && !query_temp("xhwan", me)){
         return notify_fail("你中的化骨綿掌毒太深，現在服此藥沒什麼效用。\n");
-   }
-   else {
-      me->apply_condition("sl_poison", (int)me->query_condition("sl_poison") - 5);
-      if ( (int)me->query_condition("sl_poison") < 0 ) me->apply_condition("sl_poison", 0);
-   }
+    }
+    else {
+        me->apply_condition("sl_poison", (int)me->query_condition("sl_poison") - 5);
+        if ((int)me->query_condition("sl_poison") < 0 ) me->apply_condition("sl_poison", 0);
+    }
 
-   message_vision(YEL "$N只覺毒傷大為好轉，可見此丹靈效。\n\n" NOR, me);
+    message_vision(YEL "$N只覺毒傷大為好轉，可見此丹靈效。\n\n" NOR, me);
 
-   delete_temp("xhwan", me);
-   destruct(this_object());
-   return 1;
+    delete_temp("xhwan", me);
+    destruct(this_object());
+    return 1;
 }

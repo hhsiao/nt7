@@ -1,11 +1,10 @@
 // head.c -腦袋
 #include <ansi.h>
 inherit ITEM;
-void create()
-{
-        set_name(RED"頭顱"NOR, ({ "head"}));
-        set_weight(300);
-        set("unit", "顆");
-            set("value", 10);
-            set("long",RED"一顆鮮血淋淋的首級，鬚髮散亂，餘血正緩緩滲出。\n"NOR);
+void create() {
+    set_name(RED"頭顱"NOR, ({ "head"}));
+    set_weight(300);
+    set("unit", "顆");
+    set("value", 10);
+    set("long", RED"一顆鮮血淋淋的首級，鬚髮散亂，餘血正緩緩滲出。\n"NOR);
 }

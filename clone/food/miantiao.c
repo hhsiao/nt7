@@ -7,39 +7,37 @@ inherit ITEM;
 inherit F_FOOD;
 
 string *names = ({
-  "刀削麵",
-  "陽春麵",
-  "細面",
-  "鋼絲面",
-  "雞絲麵",
-  "牛肉絲麵",
-  "蓋澆面",
-  "滷味面",
-  "排骨麵",
-  "豆絲面",
-  "羊雜碎面",
-  "海鮮麵",
-  "餛飩麵",
-  "車仔麵",
-  "肉煮麵",
-  "長壽麵",
-  "老家招牌面",
+    "刀削麵",
+    "陽春麵",
+    "細面",
+    "鋼絲面",
+    "雞絲麵",
+    "牛肉絲麵",
+    "蓋澆面",
+    "滷味面",
+    "排骨麵",
+    "豆絲面",
+    "羊雜碎面",
+    "海鮮麵",
+    "餛飩麵",
+    "車仔麵",
+    "肉煮麵",
+    "長壽麵",
+    "老家招牌面"
 });
 
-void create()
-{
-  set_name("各式麵條", ({"mian tiao", "miantiao", "mian"}));
-  set_weight(100);
-  set("long", "一碗熱氣騰騰的麵條。\n");
+void create() {
+    set_name("各式麵條", ({"mian tiao", "miantiao", "mian"}));
+    set_weight(100);
+    set("long", "一碗熱氣騰騰的麵條。\n");
     set("unit", "碗");
     set("value", 200);
     set("food_remaining", 5);
     set("food_supply", 35);
 }
 
-void init()
-{
-  if (query("name")=="各式麵條")
-    set_name(names[random(sizeof(names))], ({"mian tiao","miantiao","mian"}));
-  ::init();
+void init() {
+    if (query("name")=="各式麵條")
+        set_name(names[random(sizeof(names))], ({"mian tiao", "miantiao", "mian"}));
+    ::init();
 }

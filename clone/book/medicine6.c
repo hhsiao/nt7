@@ -5,20 +5,19 @@
 inherit ITEM;
 inherit F_UNIQUE;
 
-void create()
-{
-        set_name(HIC"胡青牛醫經"NOR, ({ "huqingniu yijing", "yijing", "jing"}));
-        set_weight(10);
-        set("unit", "本");
-                set("long","這是蝶谷醫仙胡青牛一生心血彙集成的醫書。\n");
-                set("value", 1500);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "medicine",
-                        "exp_required": 100 ,
-                        "jing_cost":    30+random(10),
-                        "difficulty":   20,
-                        "min_skill":    100,
-                        "max_skill":    200
-                ]) );
+void create() {
+    set_name(HIC"胡青牛醫經"NOR, ({ "huqingniu yijing", "yijing", "jing"}));
+    set_weight(10);
+    set("unit", "本");
+    set("long", "這是蝶谷醫仙胡青牛一生心血彙集成的醫書。\n");
+    set("value", 1500);
+    set("material", "paper");
+    set("skill", ([
+        "name": "medicine",
+        "exp_required": 100 ,
+        "jing_cost": 30 + random(10),
+        "difficulty": 20,
+        "min_skill": 100,
+        "max_skill": 200
+        ]) );
 }

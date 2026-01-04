@@ -3,20 +3,18 @@
 
 inherit EQUIP_SOUL;
 
-void create()
-{
-        set_name(HIM "護身符之魂" NOR, ({"charm soul5", "charm", "soul5"}));
-        set_weight(100);
+void create() {
+    set_name(HIM "護身符之魂" NOR, ({"charm soul5", "charm", "soul5"}));
+    set_weight(100);
 
-        set("long", HIM "這是一個護身符之魂。\n" NOR);
-        set("unit", "個");
-        set("value", 200000);
-        set("no_sell", 1);
+    set("long", HIM "這是一個護身符之魂。\n" NOR);
+    set("unit", "個");
+    set("value", 200000);
+    set("no_sell", 1);
 
-        set("type", "charm");
-        set("status", 5);
-        set("auto_load", 1);
-        
-        setup();
+    set("type", "charm");
+    set("status", 5);
+    set("auto_load", 1);
+
+    setup();
 }
-

@@ -7,15 +7,14 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIY"鵝黃夾襖"NOR, ({ "yellow ao", "cloth" }) );
-        set_weight(3000);
-        set("unit", "件");
-                set("long", "一件女孩喜歡的鵝黃夾襖。\n");
-                set("material", "cloth");
-                set("value", 0);
-                set("armor_prop/armor", 3);
-                set("female_only", 1);
-        setup();
+void create() {
+    set_name(HIY"鵝黃夾襖"NOR, ({ "yellow ao", "cloth" }) );
+    set_weight(3000);
+    set("unit", "件");
+    set("long", "一件女孩喜歡的鵝黃夾襖。\n");
+    set("material", "cloth");
+    set("value", 0);
+    set("armor_prop/armor", 3);
+    set("female_only", 1);
+    setup();
 }

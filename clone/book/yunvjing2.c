@@ -4,20 +4,19 @@
 inherit ITEM;
 inherit F_UNIQUE;
 
-void create()
-{
-        set_name(HIM "玉女心經下冊" NOR, ({ "jing2", }));
-        set_weight(500);
-        set("unit", "本");
-                set("long", "這是一本寫在薄絹上的書。封面上寫著 玉女心經「下」。\n");
-                set("value", 0);
-                set("material", "silk");
-                set("skill", ([
-                        "name":       "yunv-xinfa",
-                        "family_name" : "古墓派",
-                        "exp_required" : 65000,
-                        "jing_cost":  42,
-                        "difficulty": 32,
-                        "max_skill":  100
-                ]) );
+void create() {
+    set_name(HIM "玉女心經下冊" NOR, ({ "jing2", }));
+    set_weight(500);
+    set("unit", "本");
+    set("long", "這是一本寫在薄絹上的書。封面上寫著 玉女心經「下」。\n");
+    set("value", 0);
+    set("material", "silk");
+    set("skill", ([
+        "name": "yunv-xinfa",
+        "family_name": "古墓派",
+        "exp_required": 65000,
+        "jing_cost": 42,
+        "difficulty": 32,
+        "max_skill": 100
+        ]) );
 }

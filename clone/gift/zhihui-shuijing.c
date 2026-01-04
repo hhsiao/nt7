@@ -4,14 +4,13 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIM "智慧水晶" NOR, ({ "zhihui shuijing" }) );
-        set_weight(100);
-        set("long", HIM "一塊粉色的水晶碎片，你的同伴最喜歡。\n" NOR);
-                set("value", 1);
-                set("unit", "塊");
-        setup();
+void create() {
+    set_name(HIM "智慧水晶" NOR, ({ "zhihui shuijing" }) );
+    set_weight(100);
+    set("long", HIM "一塊粉色的水晶碎片，你的同伴最喜歡。\n" NOR);
+    set("value", 1);
+    set("unit", "塊");
+    setup();
 }
 
 int query_autoload() { return 1; }

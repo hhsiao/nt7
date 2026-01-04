@@ -6,36 +6,34 @@ inherit F_CLEAN_UP;
 
 void create() { seteuid(getuid()); }
 
-int main(object me, string arg)
-{
-        object *t;
-        string team_cmd;
+int main(object me, string arg) {
+    object *t;
+    string team_cmd;
 
-        if (! arg)
-        {
-                if (! pointerp(t = me->query_team()))
-                        return notify_fail("你現在並沒有參加任何隊伍。\n");
-                write(sort_msg("你現在隊伍中的成員有：\n  " +
-                      implode(t->short(1), "\n  ") + "。\n"));
-                return 1;
-        }
+    if (! arg)
+    {
+        if (! pointerp(t = me->query_team()))
+            return notify_fail("你現在並沒有參加任何隊伍。\n");
+        write(sort_msg("你現在隊伍中的成員有：\n  " +
+            implode(t->short(1), "\n  ") + "。\n"));
+        return 1;
+    }
 
-        if (sscanf(arg, "%s %s", team_cmd, arg) != 2)
-        {
-                team_cmd = arg;
-                arg = 0;
-        }
+    if (sscanf(arg, "%s %s", team_cmd, arg) != 2)
+    {
+        team_cmd = arg;
+        arg = 0;
+    }
 
-        team_cmd = __DIR__"team/" + team_cmd + ".c";
-        if (file_size(team_cmd) < 0)
-                return notify_fail("你要發什麼隊伍命令？\n");
+    team_cmd = __DIR__"team/" + team_cmd + ".c";
+    if (file_size(team_cmd) < 0)
+        return notify_fail("你要發什麼隊伍命令？\n");
 
-        return team_cmd->main(me, arg);
+    return team_cmd->main(me, arg);
 }
 
-int help(object me)
-{
-        write( @HELP
+int help(object me) {
+    write(@HELP
 隊伍指令使用方法:
 
 team with <某人> - 跟某人組成隊伍. 必須要雙方都同意加入才會生效。
@@ -69,5 +67,5 @@ team swear <名字>- 全隊結義。只有隊長才能夠使用這個命令，�
 注: team 跟 follow 是獨立的，你不一定要 follow 隊伍的領袖就可以跟隨隊長
 一起行動。
 HELP );
-        return 1;
+    return 1;
 }

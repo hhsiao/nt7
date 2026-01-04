@@ -4,15 +4,14 @@
 #include <armor.h>
 inherit CLOTH;
 
-void create()
-{
-        set_name("宮袍", ({ "gong pao", "pao", "cloth" }) );
-        set_weight(2700);
-        set("long", "一件長袍．\n");
-                set("unit", "件");
-                set("value", 1000);
-                set("material", "cloth");
-                set("armor_prop/armor", 5);
-                set("armor_prop/dodge", 10);
-        setup();
+void create() {
+    set_name("宮袍", ({ "gong pao", "pao", "cloth" }) );
+    set_weight(2700);
+    set("long", "一件長袍．\n");
+    set("unit", "件");
+    set("value", 1000);
+    set("material", "cloth");
+    set("armor_prop/armor", 5);
+    set("armor_prop/dodge", 10);
+    setup();
 }

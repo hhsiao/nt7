@@ -5,16 +5,15 @@
 inherit COMBINED_ITEM;
 int value() { return query_amount() * (int)query("base_value"); }
 
-void create()
-{
-        set_name(HIW "丁香" NOR, ({"ding xiang", "ding"}));
-        set("long","這是一朵水晶般的一串串白色丁香花，隱隱的散發著幽香。\n");
-                set("unit", "束");
-                set("base_value", 50);
-                set("base_unit", "朵");
-                set("base_weight", 100);
-                set("flower",1);
-        set_amount(1);
+void create() {
+    set_name(HIW "丁香" NOR, ({"ding xiang", "ding"}));
+    set("long", "這是一朵水晶般的一串串白色丁香花，隱隱的散發著幽香。\n");
+    set("unit", "束");
+    set("base_value", 50);
+    set("base_unit", "朵");
+    set("base_weight", 100);
+    set("flower", 1);
+    set_amount(1);
 }
 
 #include "flower.h"

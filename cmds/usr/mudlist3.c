@@ -11,128 +11,125 @@ inherit F_CLEAN_UP;
 
 #define SYNTAX "指令格式：mudlist [<Mud 名稱>|all]\n"
 
-int main(object me, string arg)
-{
-        mapping mud_list;
-        mapping mud_svc;
-        mixed *muds;
-        string output;
-        string name;
-        string mudn;
-        string vis_mudn;
-        int loop, size;
-        string local_mudlib;
-        int uc;
+int main(object me, string arg) {
+    mapping mud_list;
+    mapping mud_svc;
+    mixed *muds;
+    string output;
+    string name;
+    string mudn;
+    string vis_mudn;
+    int loop, size;
+    int uc;
 
-        if (! find_object(DNS_MASTER))
-                return notify_fail("網絡精靈並沒有被載入，請先將網路精靈載入。\n");
+    if (! find_object(DNS_MASTER))
+        return notify_fail("網絡精靈並沒有被載入，請先將網路精靈載入。\n");
 
-        //      Obtain mapping containing mud data
-        mud_list = (mapping)DNS_MASTER->query_muds();
+    //      Obtain mapping containing mud data
+    mud_list = (mapping)DNS_MASTER->query_muds();
 
-        // so we recognise ourselves as a DNS mud
-        mud_svc = DNS_MASTER->query_svc() + ([ Mud_name() : 0 ]);
+    // so we recognise ourselves as a DNS mud
+    mud_svc = DNS_MASTER->query_svc() + ([ Mud_name() : 0 ]);
 
-        if (! mud_list)
-                return notify_fail(LOCAL_MUD_NAME() + "目前並沒有跟網路上其他 Mud 取得聯繫。\n");
+    if (! mud_list)
+        return notify_fail(LOCAL_MUD_NAME() + "目前並沒有跟網路上其他 Mud 取得聯繫。\n");
 
-        // Get list of all mud names within name server
-        muds = keys(mud_list) - ({ "DEFAULT" });
+    // Get list of all mud names within name server
+    muds = keys(mud_list) - ({ "DEFAULT" });
 
-/*
-        if (! arg)
-        {
-                // filter for release sub sites & me
-                local_mudlib = MUDLIB_NAME;
-                muds = filter_array(muds, (: $(mud_list)[$1]["MUDLIB"] == $(local_mudlib) &&
-                                             (! VERSION_D->is_release_server() ||
-                                              $1 == INTERMUD_MUD_NAME ||
-                                              query($(mud_list)[$1]["HOSTADDRESS"] + " " + $(mud_list)[$1]["PORT"],get_object(CONFIG_D)) == "valid") :));
-        } else
-        if (arg == "sites")
-        {
-                // filter for all sub sites & me
-                local_mudlib = MUDLIB_NAME;
-                muds = filter_array(muds, (: $(mud_list)[$1]["MUDLIB"] == $(local_mudlib) &&
-                                             (! VERSION_D->is_release_server() ||
-                                              $1 == INTERMUD_MUD_NAME ||
-                                              query($(mud_list)[$1]["HOSTADDRESS"] + " " + $(mud_list)[$1]["PORT"],get_object(CONFIG_D))) :));
-        } else
-        if (arg != "all")
-                // filter for muds matched argument
-                muds = filter_array(muds, (: sscanf($1, $(arg) + "%*s") :));
-*/
+    /*
+     * if (! arg)
+     * {
+     * // filter for release sub sites & me
+     * local_mudlib = MUDLIB_NAME;
+     * muds = filter_array(muds, (: $(mud_list)[$1]["MUDLIB"] == $(local_mudlib) &&
+     * (! VERSION_D->is_release_server() ||
+     * $1 == INTERMUD_MUD_NAME ||
+     * query($(mud_list)[$1]["HOSTADDRESS"] + " " + $(mud_list)[$1]["PORT"],get_object(CONFIG_D)) == "valid") :));
+     * } else
+     * if (arg == "sites")
+     * {
+     * // filter for all sub sites & me
+     * local_mudlib = MUDLIB_NAME;
+     * muds = filter_array(muds, (: $(mud_list)[$1]["MUDLIB"] == $(local_mudlib) &&
+     * (! VERSION_D->is_release_server() ||
+     * $1 == INTERMUD_MUD_NAME ||
+     * query($(mud_list)[$1]["HOSTADDRESS"] + " " + $(mud_list)[$1]["PORT"],get_object(CONFIG_D))) :));
+     * } else
+     * if (arg != "all")
+     * // filter for muds matched argument
+     * muds = filter_array(muds, (: sscanf($1, $(arg) + "%*s") :));
+     */
 
-        if (! sizeof(muds))
-                return notify_fail("目前本站並沒有和這個 MUD 取得任何聯繫。\n");
+    if (! sizeof(muds))
+        return notify_fail("目前本站並沒有和這個 MUD 取得任何聯繫。\n");
 
-        //      Place mudlist into alphabetical format
-        muds = sort_array(muds, 1);
+    //      Place mudlist into alphabetical format
+    muds = sort_array(muds, 1);
 
-        output = WHT BBLU " Mud              中文名稱                國際網路位址     端口  人數 \n" NOR
-                 "----------------------------------------------------------------------\n";
+    output = WHT BBLU " Mud              中文名稱                國際網路位址     端口  人數 \n" NOR
+    "----------------------------------------------------------------------\n";
 
-        //      Count for users
-        uc = 0;
+    //      Count for users
+    uc = 0;
 
-        //      Loop through mud list and store one by one
-        for (loop = 0, size = sizeof(muds); loop < size; loop++)
-        {
-                mudn = muds[loop];
-                if (undefinedp(mud_list[mudn]["USERS"]))
-                        continue;
+    //      Loop through mud list and store one by one
+    for (loop = 0, size = sizeof(muds); loop < size; loop++)
+    {
+        mudn = muds[loop];
+        if (undefinedp(mud_list[mudn]["USERS"]))
+            continue;
 
-                if (! stringp(name = mud_list[mudn]["MUDNAME"]))
-                        name = "未知名稱";
+        if (! stringp(name = mud_list[mudn]["MUDNAME"]))
+            name = "未知名稱";
 
-                // filter some ... strange ansi
-                name = replace_string(name, ESC "[0;37;0m", "");
-                name = replace_string(name, ESC "[2;17m", "");
-                name = filter_color(name);
+        // filter some ... strange ansi
+        name = replace_string(name, ESC "[0;37;0m", "");
+        name = replace_string(name, ESC "[2;17m", "");
+        name = filter_color(name);
 
-                // 修正長度
-                vis_mudn = filter_color(mudn);
-                if (strlen(vis_mudn) > 20) vis_mudn = vis_mudn[0..19];
-                if (strlen(name) > 20) name = name[0..19];
+        // 修正長度
+        vis_mudn = filter_color(mudn);
+        if (strlen(vis_mudn) > 20) vis_mudn = vis_mudn[0..19];
+        if (strlen(name) > 20) name = name[0..19];
 
-                if (mudn == mud_nname())
-                        output += HIY BRED;
-                else if (mud_list[mudn]["MUDTYPE"] == MUD_TYPE)
-                        output += HIG BRED;
+        if (mudn == mud_nname())
+            output += HIY BRED;
+        else if (mud_list[mudn]["MUDTYPE"] == MUD_TYPE)
+            output += HIG BRED;
 
-                /*
-                if (stringp(mud_list[mudn]["ZONE"]))
-                        name += "「" + mud_list[mudn]["ZONE"] + "」";
-                */
-                output += sprintf(" %-17s%-24s%-17s%-6s%-4s \n" NOR,
-                                  upper_case(vis_mudn), name,
-                                  mud_list[mudn]["HOSTADDRESS"],
-                                  mud_list[mudn]["PORT"],
-                                  mud_list[mudn][DNS_NO_CONTACT] > MAX_RETRYS ? "失去聯繫"
-                                                                              : mud_list[mudn]["USERS"]);
+        /*
+         * if (stringp(mud_list[mudn]["ZONE"]))
+         * name += "「" + mud_list[mudn]["ZONE"] + "」";
+         */
+        output += sprintf(" %-17s%-24s%-17s%-6s%-4s \n" NOR,
+            upper_case(vis_mudn), name,
+            mud_list[mudn]["HOSTADDRESS"],
+            mud_list[mudn]["PORT"],
+            mud_list[mudn][DNS_NO_CONTACT] > MAX_RETRYS ? "失去聯繫"
+                                                        : mud_list[mudn]["USERS"]);
 
-                // 累計玩家數量
-                if (mud_list[mudn][DNS_NO_CONTACT] <= MAX_RETRYS)
-                        uc += atoi(mud_list[mudn]["USERS"]);
-        }
+        // 累計玩家數量
+        if (mud_list[mudn][DNS_NO_CONTACT] <= MAX_RETRYS)
+            uc += atoi(mud_list[mudn]["USERS"]);
+    }
 
-        // catch("/cmds/usr/port.c"->main());
-        output += "----------------------------------------------------------------------\n";
+    // catch("/cmds/usr/port.c"->main());
+    output += "----------------------------------------------------------------------\n";
 
-        if (! arg || arg == "sites")
-                output += "本泥潭共有 " CYN + uc + NOR " 位玩家在遊戲中。\n";
+    if (! arg || arg == "sites")
+        output += "本泥潭共有 " CYN + uc + NOR " 位玩家在遊戲中。\n";
 
-        if (objectp(me))
-                me->start_more(output);
-        else
-                write(output + "\n");
+    if (objectp(me))
+        me->start_more(output);
+    else
+        write(output + "\n");
 
-        return 1;
+    return 1;
 }
 
-int help()
-{
-        write(@HELP
+int help() {
+    write(@HELP
 指令格式 : mudlist <MUD名字> | all | sites
 
 這個指令讓你列出目前跟這個 Mud 取得聯繫中的其他 Mud。
@@ -142,5 +139,5 @@ int help()
 使用 sites 參數表示列出該 Mud 的所有分站。
 如果不是以上參數，則列出以 <MUD名字> 開頭的站點。
 HELP );
-        return 1;
+    return 1;
 }

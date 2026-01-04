@@ -5,23 +5,22 @@
 inherit HAMMER;
 inherit F_LIQUID;
 
-void create()
-{
-        set_name("醋罈子", ({"tanzi"}));
-        set_weight(2000);
-        set("long", "一個裝醋的大罈子．\n");
-                set("unit", "個");
-                set("value", 50);
-                set("max_liquid", 5);
-                set("wield_msg", "$N抓起一個$n，握在手中當武器。\n");
-                set("material", "bone");
+void create() {
+    set_name("醋罈子", ({"tanzi"}));
+    set_weight(2000);
+    set("long", "一個裝醋的大罈子．\n");
+    set("unit", "個");
+    set("value", 50);
+    set("max_liquid", 5);
+    set("wield_msg", "$N抓起一個$n，握在手中當武器。\n");
+    set("material", "bone");
 
-        set("liquid", ([
-                "type": "water",
-                "name": "香醋",
-                "remaining": 5,
+    set("liquid", ([
+        "type": "water",
+        "name": "香醋",
+        "remaining": 5
         ]) );
-        init_hammer(5);
-        setup();
+    init_hammer(5);
+    setup();
 
 }

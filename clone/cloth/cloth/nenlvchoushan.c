@@ -3,14 +3,13 @@
 #include <ansi.h>
 #include <armor.h>
 inherit CLOTH;
-void create()
-{
-        set_name( GRN "嫩綠綢衫" NOR, ({ "nenlv choushan", "cloth" }) );
-        set_weight(800);
-        set("unit", "件");
-                set("value", 1000);
-                set("armor_prop/armor", 1);
-                set("material", "cloth");
-                set("female_only", 1);
-        setup();
+void create() {
+    set_name(GRN "嫩綠綢衫" NOR, ({ "nenlv choushan", "cloth" }) );
+    set_weight(800);
+    set("unit", "件");
+    set("value", 1000);
+    set("armor_prop/armor", 1);
+    set("material", "cloth");
+    set("female_only", 1);
+    setup();
 }

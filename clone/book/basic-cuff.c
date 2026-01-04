@@ -2,20 +2,19 @@
 
 inherit BOOK;
 
-void create()
-{
-        set_name("拳法入門", ({ "cuff book", "book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long",
-"封面上寫著「拳法入門）」\n");
-                set("value", 200);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "cuff",
-                        "exp_required": 1000,
-                        "jing_cost":    20,
-                        "difficulty":   20,
-                        "max_skill":    20,
-                ]));
+void create() {
+    set_name("拳法入門", ({ "cuff book", "book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long",
+        "封面上寫著「拳法入門）」\n");
+    set("value", 200);
+    set("material", "paper");
+    set("skill", ([
+        "name": "cuff",
+        "exp_required": 1000,
+        "jing_cost": 20,
+        "difficulty": 20,
+        "max_skill": 20
+        ]));
 }

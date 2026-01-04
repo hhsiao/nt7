@@ -4,17 +4,16 @@
 
 inherit EQUIP;
 
-void create()
-{
-        set_name( HIM "七彩霞雲衣" NOR, ({ "qicai yi", "cloth" }) );
-        set_weight(700);
-        set("unit", "件");
-                set("value", 2000);
-                set("material", "cloth");
-                set("armor_type", "cloth");
-                set("armor_prop/per", 2);
-                set("armor_prop/armor", 3);
-                set("female_only", 1);
-                set("wear_msg","$N穿上一件$n。\n");
-                set("remove_msg","$將$n脫了下來。\n");
+void create() {
+    set_name(HIM "七彩霞雲衣" NOR, ({ "qicai yi", "cloth" }) );
+    set_weight(700);
+    set("unit", "件");
+    set("value", 2000);
+    set("material", "cloth");
+    set("armor_type", "cloth");
+    set("armor_prop/per", 2);
+    set("armor_prop/armor", 3);
+    set("female_only", 1);
+    set("wear_msg", "$N穿上一件$n。\n");
+    set("remove_msg", "$將$n脫了下來。\n");
 }

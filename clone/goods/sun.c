@@ -5,87 +5,85 @@
 
 inherit TESSERA;
 
-void create()
-{
-        set_name(RED "日魂" NOR, ({ "sun soul", "sun" }) );
-        set_weight(1);
-        set("long", RED "太陽真火凝聚而成，烏金色，能破邪怯魔，千軍辟易。。\n" NOR);
-                set("value", 50000);
-                set("unit", "塊");
-                set("can_enchant", "weapon");
-                set("can_be_enchased", 1);
-                set("magic/type", "magic");
-                set("magic/power", 500);
-                set("auto_load", 1);
-        setup();
+void create() {
+    set_name(RED "日魂" NOR, ({ "sun soul", "sun" }) );
+    set_weight(1);
+    set("long", RED "太陽真火凝聚而成，烏金色，能破邪怯魔，千軍辟易。。\n" NOR);
+    set("value", 50000);
+    set("unit", "塊");
+    set("can_enchant", "weapon");
+    set("can_be_enchased", 1);
+    set("magic/type", "magic");
+    set("magic/power", 500);
+    set("auto_load", 1);
+    setup();
 }
 
-int do_extract(object me, object obj)
-{
-        mapping enchase_prop;
-        mapping applied_prop;
-        mapping *ins;
-        string *apply;
-        string type;
-        object ob;
-        mixed res;
-        int i;
+int do_extract(object me, object obj) {
+    mapping enchase_prop;
+    mapping applied_prop;
+    mapping *ins;
+    string *apply;
+    string type;
+    object ob;
+    mixed res;
+    int i;
 
-        ob = this_object();
+    ob = this_object();
 
-        if( !obj ) return notify_fail("沒有這個物品。\n");
+    if(!obj ) return notify_fail("沒有這個物品。\n");
 
-        if( query("enchase", ob) )
-                return notify_fail("日魂已經附魔過屬性了。\n");
+    if(query("enchase", ob) )
+        return notify_fail("日魂已經附魔過屬性了。\n");
 
-        if( !query("enchase", obj) || !(applied_prop=query("enchase/apply_prop", obj)) )
-                return notify_fail("這個物品上面沒有可用來附魔的屬性。\n");
+    if(!query("enchase", obj) || !(applied_prop = query("enchase/apply_prop", obj)) )
+        return notify_fail("這個物品上面沒有可用來附魔的屬性。\n");
 
-        if( obj->is_item_make() || !(ins=query("insert", obj)) )
-                return notify_fail("這個物品無法用來附魔的屬性。\n");
+    if(obj->is_item_make() || !(ins = query("insert", obj)) )
+        return notify_fail("這個物品無法用來附魔的屬性。\n");
 
-        if( !query("skill_type", obj) && query("armor_type", obj) != "hands" && query("armor_type", obj) != "finger" )
-                return notify_fail("日魂只能用來附魔兵器類物品的屬性。\n");
+    if(!query("skill_type", obj) && query("armor_type", obj) != "hands" && query("armor_type", obj) != "finger" )
+        return notify_fail("日魂只能用來附魔兵器類物品的屬性。\n");
 
-        if( random(1000) > me->query_skill("enchanting", 1) )
-                return notify_fail("附魔失敗。\n");
+    if(random(1000) > me->query_skill("enchanting", 1) )
+        return notify_fail("附魔失敗。\n");
 
-        res = ins[random(sizeof(ins))];
-        ins -= ({ res });
+    res = ins[random(sizeof(ins))];
+    ins -= ({ res });
 
-        enchase_prop = res["apply_prop"];
-        if( !mapp(enchase_prop) )
-                return notify_fail("附魔失敗。\n");
+    enchase_prop = res["apply_prop"];
+    if(!mapp(enchase_prop) )
+        return notify_fail("附魔失敗。\n");
 
-        set("insert", ins, obj);
-        apply = keys(enchase_prop);
-        for( i=0; i<sizeof(apply); i++ )
-        {
-                if( undefinedp(applied_prop[apply[i]]) )
-                        continue;
-                else
-                {
-                        applied_prop[apply[i]] -= enchase_prop[apply[i]];
-                        if( applied_prop[apply[i]] < 1 )
-                                map_delete(applied_prop, apply[i]);
-                }
-        }
-
-        if( !sizeof(applied_prop) )
-                delete("enchase/apply_prop", obj);
+    set("insert", ins, obj);
+    apply = keys(enchase_prop);
+    for(i = 0; i<sizeof(apply); i++ )
+    {
+        if(undefinedp(applied_prop[apply[i]]) )
+            continue;
         else
-                set("enchase/apply_prop", applied_prop, obj);
+        {
+            applied_prop[apply[i]] -= enchase_prop[apply[i]];
+            if(applied_prop[apply[i]] < 1 )
+                map_delete(applied_prop, apply[i]);
+        }
+    }
 
-        if( query("skill_type", obj))type=query("skill_type", obj);
-        else type=query("armor_type", obj);
+    if(!sizeof(applied_prop) )
+        delete("enchase/apply_prop", obj);
+    else
+        set("enchase/apply_prop", applied_prop, obj);
 
-        set("enchase/weapon_prop", enchase_prop, ob);
-        set("enchase/weapon_prop/add_magic", 3, ob);
-        set("enchase/type", type, ob);
-        set("enchase/SN", 1+random(9), ob);
-        set("enchase/level",query("require/level",  obj), ob);
-        set("enchant", 1, ob);
-        set("set_data", 1, ob);
+    if(query("skill_type", obj))type = query("skill_type", obj);
+    else type = query("armor_type", obj);
 
-        return 1;
+    set("enchase/weapon_prop", enchase_prop, ob);
+    set("enchase/weapon_prop/add_magic", 3, ob);
+    set("enchase/type", type, ob);
+    set("enchase/SN", 1 + random(9), ob);
+    set("enchase/level", query("require/level", obj), ob);
+    set("enchant", 1, ob);
+    set("set_data", 1, ob);
+
+    return 1;
 }

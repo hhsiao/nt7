@@ -1,62 +1,60 @@
 // news cmds
 // by Doing
 #include <ansi.h>
- 
+
 inherit F_CLEAN_UP;
 
 #ifndef NEWS_D
 #define NEWS_D          "/adm/daemons/newsd"
 #endif
 
-int main(object me, string arg)
-{
-        if( !wizardp(me) && time()-query_temp("last_news", me)<3 )
-        {
-                write("系統氣喘噓地嘆道：慢慢來 ....\n");  
-                return 1;
-        }
-
-        set_temp("last_news", time(), me);
-
-        MYGIFT_D->check_mygift(me, "newbie_mygift/news");   
-
-        if (! arg || arg == "" || arg == "all")
-        {
-                NEWS_D->show_news(me, (arg != "all") ? 1 : 0);
-                write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
-                      HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
-                return 1;
-        }
-
-        if (sscanf(arg, "discard %s", arg) || sscanf(arg, "del %s", arg))
-        {
-                NEWS_D->do_discard(me, arg);
-                return 1;
-        }
-
-        if (sscanf(arg, "post %s", arg) || sscanf(arg, "add %s", arg))
-        {
-                NEWS_D->do_post(me, arg);
-                return 1;
-        }
-
-        if (sscanf(arg, "search %s", arg) || sscanf(arg, "find %s", arg))
-        {
-                NEWS_D->do_search(me, arg);
-                write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
-                      HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
-                return 1;
-        }
-
-        NEWS_D->do_read(me, arg);
-        write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
-              HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
+int main(object me, string arg) {
+    if(!wizardp(me) && time() - query_temp("last_news", me)<3 )
+    {
+        write("系統氣喘噓地嘆道：慢慢來 ....\n");
         return 1;
+    }
+
+    set_temp("last_news", time(), me);
+
+    MYGIFT_D->check_mygift(me, "newbie_mygift/news");
+
+    if (! arg || arg == "" || arg == "all")
+    {
+        NEWS_D->show_news(me, (arg != "all") ? 1 : 0);
+        write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
+            HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
+        return 1;
+    }
+
+    if (sscanf(arg, "discard %s", arg) || sscanf(arg, "del %s", arg))
+    {
+        NEWS_D->do_discard(me, arg);
+        return 1;
+    }
+
+    if (sscanf(arg, "post %s", arg) || sscanf(arg, "add %s", arg))
+    {
+        NEWS_D->do_post(me, arg);
+        return 1;
+    }
+
+    if (sscanf(arg, "search %s", arg) || sscanf(arg, "find %s", arg))
+    {
+        NEWS_D->do_search(me, arg);
+        write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
+            HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
+        return 1;
+    }
+
+    NEWS_D->do_read(me, arg);
+    write(HIC "閱讀新聞指令格式：" HIY "news " NOR "<" HIY "new" NOR "|" HIY "next" NOR "|" HIY "新聞編號" NOR ">\n"
+        HIC "搜索新聞指令格式：" HIG "news search " NOR "<" HIG "title" NOR "|" HIG "author" NOR "|" HIG "document" NOR "> <" HIM "關鍵字" NOR "|" HIM "關鍵詞" NOR ">\n");
+    return 1;
 }
 
-int help(object me)
-{
-        write(@HELP
+int help(object me) {
+    write(@HELP
 指令格式 : news [next] | [<新聞編號>] | new | all
            news search <title|author|document> <關鍵字|關鍵詞>
 

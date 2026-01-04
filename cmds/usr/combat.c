@@ -2,20 +2,18 @@
 
 inherit F_CLEAN_UP;
 
-int main(object me, string arg)
-{
-        if( !wizardp(me) && time()-query_temp("last_combat", me)<10 )
-                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");   
+int main(object me, string arg) {
+    if(!wizardp(me) && time() - query_temp("last_combat", me)<10 )
+        return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
 
-        set_temp("last_combat", time(), me);
-        MYGIFT_D->check_mygift(me, "newbie_mygift/combat");
-        SKILLS_D->query_skill_power(me, arg);
-        return 1;
+    set_temp("last_combat", time(), me);
+    MYGIFT_D->check_mygift(me, "newbie_mygift/combat");
+    SKILLS_D->query_skill_power(me, arg);
+    return 1;
 }
 
-int help (object me)
-{
-        write(@HELP
+int help (object me) {
+    write(@HELP
 查看武功各種參數值
     combat attack             查看命中力排名
     combat dodge              查看躲閃力排名
@@ -35,5 +33,5 @@ int help (object me)
     combat <技能種類>         查看可激發武功
 
 HELP);
-        return 1;
+    return 1;
 }

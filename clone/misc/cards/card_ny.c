@@ -9,7 +9,7 @@ void create() {
     set("long",
         "這是一張"HIR"新年賀卡"NOR"，送給每位在新的一年進入飛雪連天的玩家。
 你可以打開(dakai)來看看，會有意外驚喜哦。\n");
-    set("value", 0);
+        set("value", 0);
     set_weight(10);
     setup();
 }

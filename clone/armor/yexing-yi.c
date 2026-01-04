@@ -5,24 +5,22 @@
 inherit CLOTH;
 
 
-void create()
-{
-        set_name(HIB "夜行衣" NOR, ({ "yexing yi", "yexing", "yi" }) );
-        set_weight(3000);
-        set("unit", "件");
-                set("long", HIB "一件黑色的夜行衣，穿上它可以讓你身法更輕盈。\n" NOR);
-                set("material", "cloth");
-                set("value", 800000);
-                set("armor_prop/armor", 100);
-                set("armor_prop/dodge", 10);
-                set("special/desc", HIR "提升有效輕功10級。");
-                set("limit", ([
-                        "exp"  :  1200000,
-                ]));
-        setup();
+void create() {
+    set_name(HIB "夜行衣" NOR, ({ "yexing yi", "yexing", "yi" }) );
+    set_weight(3000);
+    set("unit", "件");
+    set("long", HIB "一件黑色的夜行衣，穿上它可以讓你身法更輕盈。\n" NOR);
+    set("material", "cloth");
+    set("value", 800000);
+    set("armor_prop/armor", 100);
+    set("armor_prop/dodge", 10);
+    set("special/desc", HIR "提升有效輕功10級。");
+    set("limit", ([
+        "exp": 1200000
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

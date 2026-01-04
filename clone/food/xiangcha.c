@@ -6,18 +6,17 @@
 inherit ITEM;
 inherit F_LIQUID;
 
-void create()
-{
-  set_name("楠木茶盅", ({"cha zhong", "chazhong", "cha", "teapot", "tea"}));
-  set_weight(50);
-  set("long", "一隻楠木茶盅。\n");
+void create() {
+    set_name("楠木茶盅", ({"cha zhong", "chazhong", "cha", "teapot", "tea"}));
+    set_weight(50);
+    set("long", "一隻楠木茶盅。\n");
     set("unit", "只");
     set("max_liquid", 2);
 
-  set("liquid", ([
-       "type": "water",
-       "name": "雲霧山香茶",
-       "remaining": 2,
-       ]) );
-  setup();
+    set("liquid", ([
+        "type": "water",
+        "name": "雲霧山香茶",
+        "remaining": 2
+        ]) );
+    setup();
 }

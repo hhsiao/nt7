@@ -4,16 +4,15 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIG "丹玉磨" NOR, ({ "danyu mo", "mo" }));
-        set_weight(1200);
-        set_max_encumbrance(200);
-        set("unit", "只");
-                set("long", "一隻用玉磨成的小碗，頗為沉重，由於玉的特殊質地，所以用
+void create() {
+    set_name(HIG "丹玉磨" NOR, ({ "danyu mo", "mo" }));
+    set_weight(1200);
+    set_max_encumbrance(200);
+    set("unit", "只");
+    set("long", "一隻用玉磨成的小碗，頗為沉重，由於玉的特殊質地，所以用
 來煉藥可以獲得更好的效果。\n");
-                set("value", 20000);
-                set("item_prop/medical", 100);
+        set("value", 20000);
+    set("item_prop/medical", 100);
 }
 
 int is_container() { return 1; }

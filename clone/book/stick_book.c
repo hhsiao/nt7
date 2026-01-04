@@ -2,20 +2,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name( "棒法入門", ({ "shu", "book" }));
-        set_weight(200);
-        set("unit", "本");
-                set("long", "這是本有些年代的書了，封皮上寫著《棒法入門》。\n");
-                set("value", 100);
-                set("material", "paper");
-                set("skill", ([
-                        "name": "stick",
-                        "exp_required": 10000,
-                        "jing_cost": 40,
-                        "difficulty": 20,
-                        "max_skill": 99,
-                        "min_skill": 30,
-                ]) );
+void create() {
+    set_name("棒法入門", ({ "shu", "book" }));
+    set_weight(200);
+    set("unit", "本");
+    set("long", "這是本有些年代的書了，封皮上寫著《棒法入門》。\n");
+    set("value", 100);
+    set("material", "paper");
+    set("skill", ([
+        "name": "stick",
+        "exp_required": 10000,
+        "jing_cost": 40,
+        "difficulty": 20,
+        "max_skill": 99,
+        "min_skill": 30
+        ]) );
 }

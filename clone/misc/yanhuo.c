@@ -4,26 +4,24 @@ inherit ITEM;
 #include <ansi.h>
 int fire(object me, object ob);
 
-void create()
-{
-    set_name(HIM "煙花" NOR, ({"yan hua","yanhua"}));
+void create() {
+    set_name(HIM "煙花" NOR, ({"yan hua", "yanhua"}));
     set("unit", "個");
     set("long", "這是還未點燃的煙花。\n");
-    set("value",1000000);
+    set("value", 1000000);
     setup();
 }
 
-int fire(object me, object ob)
-{
-    object obj=this_object();
+int fire(object me, object ob) {
+    object obj = this_object();
 
-    message_vision("$N用" + ob->name() + "點燃了" + name() +"。\n", me);
+    message_vision("$N用" + ob->name() + "點燃了" + name() + "。\n", me);
 
-    message_vision("一道火光沖天而起，“砰”的一聲散開，化作滿天美麗的圖案....\n",me,ob);
+    message_vision("一道火光沖天而起，“砰”的一聲散開，化作滿天美麗的圖案....\n", me, ob);
     switch(random(15))
     {
-        case 0:
-        tell_room(environment(me),BLINK+HIM@TEXT
+    case 0:
+        tell_room(environment(me), BLINK + HIM@TEXT
 
 　　　　　　　　|愛|↘ ㊣◥ 〖ILOVEYOU〗◤㊣ ↙ |永|
 　　　　　　　　|妳|≈● ☆╓══╦══╖☆ ○≈|遠|
@@ -33,8 +31,8 @@ int fire(object me, object ob)
 TEXT NOR);
         break;
 
-        case 1:
-        tell_room(environment(me),BLINK+HIY@TEXT
+    case 1:
+        tell_room(environment(me), BLINK + HIY@TEXT
 
 　　　　　　　　　　　　　　　\\\|///
 　　　　　　　　　　　　　　\\　.-.-　//
@@ -48,8 +46,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 2:
-        tell_room(environment(me),BLINK+HIC@TEXT
+    case 2:
+        tell_room(environment(me), BLINK + HIC@TEXT
 
 　　　　　　　　︵︵︵oοΟミ ╱╲╱╲ ミΟοo︵︵︵
   　　　　　　　　〔雲淡〕  ╲封╲╱  〔心如〕
@@ -59,8 +57,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 3:
-        tell_room(environment(me),BLINK+HIG@TEXT
+    case 3:
+        tell_room(environment(me), BLINK + HIG@TEXT
 
 　　　　　　　　　︵︵︵oοΟミ┏永┓ミΟοo︵︵︵
 　　　　　　　　〔愛妳〕 oO天║遠║地0o 〔永不..〕
@@ -70,8 +68,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 4:
-        tell_room(environment(me),BLINK+HIR@TEXT
+    case 4:
+        tell_room(environment(me), BLINK + HIR@TEXT
 
 　　　　　　　　◢◣◢◣ 我現在最  ╓══╦══╖
 　　　　　　　　████ 大的願望╭╩╮我‖好╭╩╮
@@ -81,8 +79,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 5:
-        tell_room(environment(me),BLINK+HIC@TEXT
+    case 5:
+        tell_room(environment(me), BLINK + HIC@TEXT
 
 　　　　　　　　::∴★∵**☆．∴★∵**☆．
 　　　　　　　　  █████．☆．∵★∵∴☆．
@@ -96,8 +94,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 6:
-        tell_room(environment(me),BLINK+HIM@TEXT
+    case 6:
+        tell_room(environment(me), BLINK + HIM@TEXT
 
 
 　　　　　　　　         ★★ ★★       ★★  ★★
@@ -110,8 +108,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 7:
-        tell_room(environment(me),BLINK+HIR@TEXT
+    case 7:
+        tell_room(environment(me), BLINK + HIR@TEXT
 
                     * *   * *   *    * *
                   *     *     *   *      *
@@ -123,8 +121,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 8:
-        tell_room(environment(me),BLINK+HIB@TEXT
+    case 8:
+        tell_room(environment(me), BLINK + HIB@TEXT
 
 　　　　　　　　記得我們的星空嗎？好美！
 　　　　　　　　　　　　   . ☆   .   ?  .  ?     .  ? .
@@ -137,8 +135,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 9:
-        tell_room(environment(me),BLINK+HIB@TEXT
+    case 9:
+        tell_room(environment(me), BLINK + HIB@TEXT
 
 　　　　　　　　∴°★．☆° ．★·°∴°★．° ．·。∴°
 　　　　　　　　☆ ．·°∴° ☆．．·°∴°．☆°★°∴°
@@ -151,8 +149,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 10:
-        tell_room(environment(me),BLINK+HIY@TEXT
+    case 10:
+        tell_room(environment(me), BLINK + HIY@TEXT
 
 　　　　　　　　    ☆☆ ☆☆  ☆☆ ☆☆
 　　　　　　　　  ★★       ★      ★★
@@ -167,8 +165,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 11:
-        tell_room(environment(me),BLINK+HIC@TEXT
+    case 11:
+        tell_room(environment(me), BLINK + HIC@TEXT
 
 　　　　　　　　█◤☆◥◤☆◥█ 送星星千百顆...
 　　　　　　　　█☆☆☆☆☆☆█
@@ -179,8 +177,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 12:
-        tell_room(environment(me),BLINK+HIG@TEXT
+    case 12:
+        tell_room(environment(me), BLINK + HIG@TEXT
 
 　　　　　　　　@* .☆ / ＊/　.　/ * . ☆/ ＊。
 　　　　　　　　   ◢◣。       ◢◣。
@@ -193,8 +191,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 13:
-        tell_room(environment(me),BLINK+HIW@TEXT
+    case 13:
+        tell_room(environment(me), BLINK + HIW@TEXT
 
 　　　　　　　　::.--.-.::
 　　　　　　　　:( (    ):::::  東邊日出西邊雨
@@ -211,8 +209,8 @@ TEXT NOR);
 TEXT NOR);
         break;
 
-        case 14:
-        tell_room(environment(me),BLINK+HIW@TEXT
+    case 14:
+        tell_room(environment(me), BLINK + HIW@TEXT
 
 　　　　　　　　　★　　 ◢◣　
 　　　　　　　　　　　　　　　　　　　　　◢◢◣　　　☆　

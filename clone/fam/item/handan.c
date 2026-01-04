@@ -2,21 +2,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(NOR + CYN "邯鄲石" NOR, ({"handan shi", "handan", "shi"}));
-        set_weight(1000);
-        set("long", CYN "這是一塊通體烏黑的石頭，觸手處清涼光滑。\n" NOR);
-                set("unit", "塊");
-                set("value", 8000);
-                set("item_origin", 1);
-                set("material_attrib", "stone");
-                set("material_name", NOR + CYN "邯鄲石" NOR);
-                set("can_make", ({ "指套" }));
-                set("power_point", 50);
+void create() {
+    set_name(NOR + CYN "邯鄲石" NOR, ({"handan shi", "handan", "shi"}));
+    set_weight(1000);
+    set("long", CYN "這是一塊通體烏黑的石頭，觸手處清涼光滑。\n" NOR);
+    set("unit", "塊");
+    set("value", 8000);
+    set("item_origin", 1);
+    set("material_attrib", "stone");
+    set("material_name", NOR + CYN "邯鄲石" NOR);
+    set("can_make", ({ "指套" }));
+    set("power_point", 50);
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

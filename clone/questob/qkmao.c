@@ -4,13 +4,12 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("乾坤帽", ({ "qiankun mao", "mao" }));
-        set_weight(200);
-        set("unit", "頂");
-                set("long", "這是一頂小小的黑帽子，上面繡了幾顆寶石。\n");
-                set("value", 10000);
-                set("material", "cloth");
-        setup();
+void create() {
+    set_name("乾坤帽", ({ "qiankun mao", "mao" }));
+    set_weight(200);
+    set("unit", "頂");
+    set("long", "這是一頂小小的黑帽子，上面繡了幾顆寶石。\n");
+    set("value", 10000);
+    set("material", "cloth");
+    setup();
 }

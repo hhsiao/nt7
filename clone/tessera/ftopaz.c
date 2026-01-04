@@ -7,21 +7,20 @@
 
 inherit TESSERA;
 
-void create()
-{
-//**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
-        set_name(HIY "稀世黃寶石" NOR, ({ "flawless topaz" }) );   /* NAME_EXIT  */
-        set_weight(20);
-        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
-                set("long", HIY "一顆美得無與倫比的大黃寶石。\n" NOR);  /* DBASE_EXIT  */
-                set("value", 100000);
-                set("unit", "顆");
-                set("level", 3);
-                set("material", "ftopaz");
-                set("can_be_enchased", 1);
-                set("magic/type", "earth");
-                set("magic/power", 200);
-                set("auto_load", 1);
-        set("no_identify", 1);
-        setup();
+void create() {
+    //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
+    set_name(HIY "稀世黃寶石" NOR, ({ "flawless topaz" }) );   /* NAME_EXIT  */
+    set_weight(20);
+    //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+    set("long", HIY "一顆美得無與倫比的大黃寶石。\n" NOR);  /* DBASE_EXIT  */
+    set("value", 100000);
+    set("unit", "顆");
+    set("level", 3);
+    set("material", "ftopaz");
+    set("can_be_enchased", 1);
+    set("magic/type", "earth");
+    set("magic/power", 200);
+    set("auto_load", 1);
+    set("no_identify", 1);
+    setup();
 }

@@ -4,14 +4,13 @@
 
 inherit MACE;
 
-void create()
-{
-        set_name("竹節鞭", ({"bamboo mace", "mace"}));
-        set_weight(4000);
-        set("unit", "把");
-                set("value", 500);
-                set("material", "wood");
+void create() {
+    set_name("竹節鞭", ({"bamboo mace", "mace"}));
+    set_weight(4000);
+    set("unit", "把");
+    set("value", 500);
+    set("material", "wood");
 
-        init_mace(15);
-        setup();
+    init_mace(15);
+    setup();
 }

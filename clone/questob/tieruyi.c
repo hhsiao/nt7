@@ -4,13 +4,12 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("鐵如意", ({ "tie ruyi", "ruyi" }));
-        set_weight(300);
-        set("unit", "朵");
-                set("long", "這是一個鐵如意，黑不溜秋的，毫不起眼。\n");
-                set("value", 1000);
-                set("material", "iron");
-        setup();
+void create() {
+    set_name("鐵如意", ({ "tie ruyi", "ruyi" }));
+    set_weight(300);
+    set("unit", "朵");
+    set("long", "這是一個鐵如意，黑不溜秋的，毫不起眼。\n");
+    set("value", 1000);
+    set("material", "iron");
+    setup();
 }

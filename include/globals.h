@@ -242,9 +242,9 @@
 #define TESSERA                 "/inherit/item/tessera"
 #define WAREHOUSE               "/inherit/room/warehouse"
 #define WORM                    "/inherit/char/worm"
-#define SKILL_MODEL_UNARMED     "/inherit/meskill/skill_model_unarmed.c"
-#define SKILL_MODEL_WEAPON      "/inherit/meskill/skill_model_weapon.c"
-#define SKILL_MODEL_DEFAULT     "/inherit/meskill/skill_model_default.c"
+//#define SKILL_MODEL_UNARMED     "/inherit/meskill/skill_model_unarmed.c"
+//#define SKILL_MODEL_WEAPON      "/inherit/meskill/skill_model_weapon.c"
+//#define SKILL_MODEL_DEFAULT     "/inherit/meskill/skill_model_default.c"
 
 #define MENGZHU                 "/adm/npc/meng-zhu"
 #define FAE                     "/adm/npc/fa-e"

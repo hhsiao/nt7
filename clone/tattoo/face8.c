@@ -2,16 +2,15 @@
 
 inherit __DIR__"tattoo";
 
-void create()
-{
-        set_name(NOR + WHT "閃電圖騰" NOR, ({ "shandian tu", "shandian", "tu" }));
-        set_weight(300);
-        set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
-                set("unit", "張");
-                set("value", 1500);
-                set("material", "paper");
-                set("tattoo_long", "一道閃電");
-                set("can_tattoo", ({ "臉部", "臀部", "左臂", "右臂" }));
-                set("tattoo_type", ({ "悟性" }));
-                set("tattoo_int", 1);
+void create() {
+    set_name(NOR + WHT "閃電圖騰" NOR, ({ "shandian tu", "shandian", "tu" }));
+    set_weight(300);
+    set("long", "這是一張古舊的圖片，上面繪著些紋樣。");
+    set("unit", "張");
+    set("value", 1500);
+    set("material", "paper");
+    set("tattoo_long", "一道閃電");
+    set("can_tattoo", ({ "臉部", "臀部", "左臂", "右臂" }));
+    set("tattoo_type", ({ "悟性" }));
+    set("tattoo_int", 1);
 }

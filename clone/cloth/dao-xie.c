@@ -5,14 +5,13 @@
 
 inherit BOOTS;
 
-void create()
-{
-        set_name( HIY "麻鞋" NOR, ({ "ma xie", "xie" }) );
-        set_weight(1000);
-        set("unit", "雙");
-                set("long", "一雙青布麻鞋。\n");
-                set("value", 0);
-                set("material", "boots");
-                set("armor_prop/dodge", 5);
-        setup();
+void create() {
+    set_name(HIY "麻鞋" NOR, ({ "ma xie", "xie" }) );
+    set_weight(1000);
+    set("unit", "雙");
+    set("long", "一雙青布麻鞋。\n");
+    set("value", 0);
+    set("material", "boots");
+    set("armor_prop/dodge", 5);
+    setup();
 }

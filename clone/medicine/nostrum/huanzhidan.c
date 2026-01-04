@@ -6,42 +6,39 @@ inherit ITEM;
 void setup()
 {}
 
-void init()
-{
-        add_action("do_eat", "eat");
-        add_action("do_eat", "fu");
+void init() {
+    add_action("do_eat", "eat");
+    add_action("do_eat", "fu");
 }
 
-void create()
-{
-        set_name(HIY"三清換質丹"NOR, ({"huanzhi dan", "dan"}));
-                set("unit", "顆");
-                set("long", "一顆深黃色的丹藥。\n");
-                set("value", 10000);
-                set("no_sell", 1);
-                set("no_drop", 1);
-                set("no_give", 1);
-                set("no_get", 1);
-        set("pour_type", "1");
-        setup();
+void create() {
+    set_name(HIY"三清換質丹"NOR, ({"huanzhi dan", "dan"}));
+    set("unit", "顆");
+    set("long", "一顆深黃色的丹藥。\n");
+    set("value", 10000);
+    set("no_sell", 1);
+    set("no_drop", 1);
+    set("no_give", 1);
+    set("no_get", 1);
+    set("pour_type", "1");
+    setup();
 }
 
-int do_eat(string arg)
-{
-        object me = this_player();
+int do_eat(string arg) {
+    object me = this_player();
 
-        if (!id(arg)) return notify_fail("你要吃什麼藥？\n");
-        if (!present(this_object(), this_player()))
-                return notify_fail("你要吃什麼？\n");
-        if (me->is_busy() )
-                return notify_fail("別急，慢慢吃，小心別噎著了。\n");
+    if (!id(arg)) return notify_fail("你要吃什麼藥？\n");
+    if (!present(this_object(), this_player()))
+        return notify_fail("你要吃什麼？\n");
+    if (me->is_busy() )
+        return notify_fail("別急，慢慢吃，小心別噎著了。\n");
 
-        addn("neili", 100, me);
-        addn("jingli", 50, me);
-        if( query("jingli", me)>query("max_jingli", me) )
-                set("jingli",query("max_jingli",  me), me);
-        message_vision("$N吃下一顆三清換質丹，全身無比的舒坦。\n", me);
-        me->start_busy(2);
-        destruct(this_object());
-        return 1;
+    addn("neili", 100, me);
+    addn("jingli", 50, me);
+    if(query("jingli", me)>query("max_jingli", me) )
+        set("jingli", query("max_jingli", me), me);
+    message_vision("$N吃下一顆三清換質丹，全身無比的舒坦。\n", me);
+    me->start_busy(2);
+    destruct(this_object());
+    return 1;
 }

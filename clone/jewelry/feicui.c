@@ -4,12 +4,11 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(GRN"翡翠"NOR, ({ "fei cui", "feicui" }) );
-        set_weight(50);
-        set("long", "一塊暗綠如深潭古水般的翡翠。\n");
-                set("unit", "塊");
-                set("value", 60000 );
+void create() {
+    set_name(GRN"翡翠"NOR, ({ "fei cui", "feicui" }) );
+    set_weight(50);
+    set("long", "一塊暗綠如深潭古水般的翡翠。\n");
+    set("unit", "塊");
+    set("value", 60000 );
 
 }

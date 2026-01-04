@@ -4,13 +4,12 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("玉葫蘆", ({ "yu hulu", "hulu" }));
-        set_weight(300);
-        set("unit", "只");
-                set("long", "這是一個美玉雕刻的葫蘆，玲瓏精緻。\n");
-                set("value", 8000);
-                set("material", "jade");
-        setup();
+void create() {
+    set_name("玉葫蘆", ({ "yu hulu", "hulu" }));
+    set_weight(300);
+    set("unit", "只");
+    set("long", "這是一個美玉雕刻的葫蘆，玲瓏精緻。\n");
+    set("value", 8000);
+    set("material", "jade");
+    setup();
 }

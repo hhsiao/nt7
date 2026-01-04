@@ -4,14 +4,13 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("斑鳩肉", ({"banjiu rou", "bird meat"}));
-        set_weight(100);
-        set("long", "一隻死的斑鳩。\n");
-                set("unit", "只");
-                set("value", 20);
-                set("food_remaining", 1);
-                set("food_supply", 40);
-//                set("food_race","野獸");
+void create() {
+    set_name("斑鳩肉", ({"banjiu rou", "bird meat"}));
+    set_weight(100);
+    set("long", "一隻死的斑鳩。\n");
+    set("unit", "只");
+    set("value", 20);
+    set("food_remaining", 1);
+    set("food_supply", 40);
+    //                set("food_race","野獸");
 }

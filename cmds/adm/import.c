@@ -11,56 +11,53 @@ inherit F_CLEAN_UP;
 #include "/adm/etc/database.h"
 
 void resolve_data(string line);
-int main(object me, string arg)
-{
-        int lines;
-        int i;
-        string line;
+int main(object me, string arg) {
+    int lines;
+    int i;
+    string line;
 
-        if (! SECURITY_D->valid_grant(me, "(admin)"))
-                return 0;
+    if (! SECURITY_D->valid_grant(me, "(admin)"))
+        return 0;
 
-        lines = file_lines(IP_FILE);
+    lines = file_lines(IP_FILE);
 
-        write(HIR "正在轉換...\n\n" NOR);
-        for (i = 1; i <= lines; i++)
-        {
-                line = read_file(IP_FILE, i, 1);
-                line = line[0..<2];
-                resolve_data(line);
+    write(HIR "正在轉換...\n\n" NOR);
+    for (i = 1; i <= lines; i++)
+    {
+        line = read_file(IP_FILE, i, 1);
+        line = line[0..<2];
+        resolve_data(line);
 
-                if (i % 100) reset_eval_cost();
-        }
-        write(HIR "\n一共轉換了 " + (i - 1) + " 條 IP 數據。\n" NOR);
+        if (i % 100) reset_eval_cost();
+    }
+    write(HIR "\n一共轉換了 " + (i - 1) + " 條 IP 數據。\n" NOR);
 
-        return 1;
+    return 1;
 }
 
-void resolve_data(string line)
-{
-        string start, end, desc, addr, place;
+void resolve_data(string line) {
+    string start, end, desc, addr, place;
 
-        if (sscanf(line, "%s||%s||%s||%s", start, end, place, addr) == 4)
-        {
-                desc = place + addr;
-                /*
-                write(sprintf(CYN "INSERT INTO %s "
-                              "VALUES (\"%s\", \"%s\", \"%s\")\n" NOR,
-                              IP_TABLE, start, end, desc));
-                */
+    if (sscanf(line, "%s||%s||%s||%s", start, end, place, addr) == 4)
+    {
+        desc = place + addr;
+        /*
+         * write(sprintf(CYN "INSERT INTO %s "
+         * "VALUES (\"%s\", \"%s\", \"%s\")\n" NOR,
+         * IP_TABLE, start, end, desc));
+         */
 
-                DATABASE_D->db_query(sprintf("INSERT INTO %s "
-                                     "VALUES (\"%s\", \"%s\", \"%s\")",
-                                     IP_TABLE, start, end, desc));
-        }
+        DATABASE_D->db_query(sprintf("INSERT INTO %s "
+            "VALUES (\"%s\", \"%s\", \"%s\")",
+            IP_TABLE, start, end, desc));
+    }
 }
 
-int help()
-{
-        write(@TEXT
+int help() {
+    write(@TEXT
 指令格式: import
 
 導入 IP 數據文件。
 TEXT);
-        return 1;
+    return 1;
 }

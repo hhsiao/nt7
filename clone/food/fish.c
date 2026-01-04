@@ -1,12 +1,11 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("烤魚", ({"kao yu", "yu"}));
-        set_weight(100);
-        set("long", "一條香噴噴的烤魚。\n");
-                set("unit", "條");
-                set("food_remaining", 4);
-                set("food_supply", 30);
+void create() {
+    set_name("烤魚", ({"kao yu", "yu"}));
+    set_weight(100);
+    set("long", "一條香噴噴的烤魚。\n");
+    set("unit", "條");
+    set("food_remaining", 4);
+    set("food_supply", 30);
 }

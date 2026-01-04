@@ -2,14 +2,13 @@
 
 inherit TESSERA;
 
-void create()
-{
-        set_name(HIB "玄武·水" NOR, ({"xuan wu", "water"}));
-        set_weight(20);
-        set("long", HIB "可用於鑲嵌10LV，屬性水。\n" NOR);
-                set("value", 100000);
-                set("unit", "塊");
-                set("level", 4);
-                set("no_identify", 1);
-        setup();
+void create() {
+    set_name(HIB "玄武·水" NOR, ({"xuan wu", "water"}));
+    set_weight(20);
+    set("long", HIB "可用於鑲嵌10LV，屬性水。\n" NOR);
+    set("value", 100000);
+    set("unit", "塊");
+    set("level", 4);
+    set("no_identify", 1);
+    setup();
 }

@@ -6,28 +6,27 @@ inherit ITEM;
 inherit F_FRUIT;
 
 
-void create()
-{
-        set_name(HIY"芒果"NOR, ({"mang guo", "mangguo"}));
-        set_weight(4000);
-        set("long", "一個大大的黃澄澄的芒果。\n");
-        set("unit", "個");
-        set("life", 3);
-        set("value", 0);
-        set("fruit_remaining", 5); 
-        set("food_supply", 15);   
-        set("water_supply", 5);  
-        set("eat_msg", "$N拿起$n，剝開皮，大大的啃了一口。\n"); 
-        set("end_msg", "$N仔細的啃完了這個$n。\n");  
-        set("over_msg", "吃這麼多？小心撐破肚皮！！！！\n"); 
-        set("core", "芒果核");         //name
-        set("core_id", ({"mangguo hu", "hu", "core"}) ); //id
-        set("core_unit", "個");        //unit
-        set("core_long", "一個芒果核。\n"); //long
-        set("gifts", ([
-                "con" : 1,
-                "per" : 1,
-                "spi" : 1,
+void create() {
+    set_name(HIY"芒果"NOR, ({"mang guo", "mangguo"}));
+    set_weight(4000);
+    set("long", "一個大大的黃澄澄的芒果。\n");
+    set("unit", "個");
+    set("life", 3);
+    set("value", 0);
+    set("fruit_remaining", 5);
+    set("food_supply", 15);
+    set("water_supply", 5);
+    set("eat_msg", "$N拿起$n，剝開皮，大大的啃了一口。\n");
+    set("end_msg", "$N仔細的啃完了這個$n。\n");
+    set("over_msg", "吃這麼多？小心撐破肚皮！！！！\n");
+    set("core", "芒果核");     //name
+    set("core_id", ({ "mangguo hu", "hu", "core" }) );  //id
+    set("core_unit", "個");  //unit
+    set("core_long", "一個芒果核。\n");   //long
+    set("gifts", ([
+        "con": 1,
+        "per": 1,
+        "spi": 1
         ]));
-        setup();
+    setup();
 }

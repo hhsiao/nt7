@@ -2,20 +2,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("五毒真經", ({ "jing", "book" }));
-        set_weight(50);
-        set("unit", "本");
-                set("long", "這是一本薄薄的小冊，上面繪了許多打坐的人像。\n");
-                set("value", 0);
-                set("material", "paper");
-                set("skill", ([
-                        "name": "wudu-shengong",        // name of the skill
-                        "family_name" : "五毒教",
-						"exp_required": 0,      // minimum combat experience required
-                        "jing_cost":    20,     // jing cost every time study this
-                        "difficulty":   20,     // the base int to learn this skill
-                        "max_skill":    40      // the maximum level you can learn
-                ]) );
+void create() {
+    set_name("五毒真經", ({ "jing", "book" }));
+    set_weight(50);
+    set("unit", "本");
+    set("long", "這是一本薄薄的小冊，上面繪了許多打坐的人像。\n");
+    set("value", 0);
+    set("material", "paper");
+    set("skill", ([
+        "name": "wudu-shengong",    // name of the skill
+        "family_name": "五毒教",
+        "exp_required": 0,  // minimum combat experience required
+        "jing_cost": 20,    // jing cost every time study this
+        "difficulty": 20,   // the base int to learn this skill
+        "max_skill": 40     // the maximum level you can learn
+        ]) );
 }

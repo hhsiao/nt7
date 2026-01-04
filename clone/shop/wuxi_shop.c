@@ -3,38 +3,36 @@
 
 inherit SHOP;
 
-void create()
-{
-        set("short", "聚豐園");
-        set("no_fight", 1);
-        set("no_beg", 1);
-        set("owner", "VOID_SHOP");
-        set("exits", ([
-                "down" : "/d/wuxi/majiu",
+void create() {
+    set("short", "聚豐園");
+    set("no_fight", 1);
+    set("no_beg", 1);
+    set("owner", "VOID_SHOP");
+    set("exits", ([
+        "down": "/d/wuxi/majiu"
         ]));
-        set("no_steal", 1);
-        set("objects", ([
-                __DIR__"waiter" : 1,
+    set("no_steal", 1);
+    set("objects", ([
+        __DIR__"waiter": 1
         ]));
-        set("no_clean_up", 0);
-        set("shop_type", 0);
+    set("no_clean_up", 0);
+    set("shop_type", 0);
 
-        setup();
+    setup();
 }
 
-void init()
-{
-        if (query("shop_type") == 0)
-                set("long", @LONG
+void init() {
+    if (query("shop_type") == 0)
+        set("long", @LONG
 聚豐園是無錫城裡最著名的店鋪，整個鋪面裝修得相當精美雅緻，
 顯出江南大都會繁華大方的氣派。不過店裡的貨櫃上卻空無一物，看樣
 子已經很久沒人來打理了。
 LONG);
-        else
-                set("long", @LONG
+    else
+        set("long", @LONG
 聚豐園是無錫城裡最著名的店鋪，整個鋪面裝修得相當精美雅緻，
 顯出江南大都會繁華大方的氣派。店鋪裡的夥計正招呼著客人，忙得滿
 頭大汗。
 LONG);
-        return;
+    return;
 }

@@ -8,17 +8,16 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("一袋大米", ({"dami"}));
-        set_weight(4000);
-        set("long", "一袋大米，不過是生的．\n");
-                set("unit", "袋");
-                set("value", 200);
-                set("food_remaining", 100);
-                set("food_supply", 5);
-                set("wield_msg", "$N抓起一袋大米，好象要和人拼命．\n");
-     set("eat_msg", "$N拿出幾粒大米放到嘴裡嚼了嚼，差點把牙崩調！\n");
-                set("material", "bone");
-        setup();
+void create() {
+    set_name("一袋大米", ({"dami"}));
+    set_weight(4000);
+    set("long", "一袋大米，不過是生的．\n");
+    set("unit", "袋");
+    set("value", 200);
+    set("food_remaining", 100);
+    set("food_supply", 5);
+    set("wield_msg", "$N抓起一袋大米，好象要和人拼命．\n");
+    set("eat_msg", "$N拿出幾粒大米放到嘴裡嚼了嚼，差點把牙崩調！\n");
+    set("material", "bone");
+    setup();
 }

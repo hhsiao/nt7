@@ -4,13 +4,12 @@
 #include <weapon.h>
 inherit WHIP;
 
-void create()
-{
-        set_name("綵綢", ({"whip"}));
-        set_weight(1000);
-        set("long","一條長長的綵綢，是用於舞蹈的道具。\n");
-                set("unit", "條");
-                set("value", 500);
-        init_whip(10);
-        setup();
+void create() {
+    set_name("綵綢", ({"whip"}));
+    set_weight(1000);
+    set("long", "一條長長的綵綢，是用於舞蹈的道具。\n");
+    set("unit", "條");
+    set("value", 500);
+    init_whip(10);
+    setup();
 }

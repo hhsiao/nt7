@@ -3,22 +3,20 @@
 
 inherit HAIRPIN;
 
-void create()
-{
-        set_name(HIG "碧玉釵" NOR, ({ "biyu chai", "biyu", "chai" }));
-        set_weight(100);
-        set("unit", "只");
-                set("value", 200000);
-                set("material", "stone");
-                set("armor_prop/armor", 1);
-                set("armor_prop/int", 2);
-                set("limit", ([
-                        "sex" : 1, // 1 為女性
-                ]));
-        setup();
+void create() {
+    set_name(HIG "碧玉釵" NOR, ({ "biyu chai", "biyu", "chai" }));
+    set_weight(100);
+    set("unit", "只");
+    set("value", 200000);
+    set("material", "stone");
+    set("armor_prop/armor", 1);
+    set("armor_prop/int", 2);
+    set("limit", ([
+        "sex": 1,   // 1 為女性
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

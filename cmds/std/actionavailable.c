@@ -8,290 +8,287 @@ inherit F_CLEAN_UP;
 int room_path(object, object);
 int user_path(object, object);
 
-int main(object me, string arg)
-{
-        object ob, *inv;
-        string win,*ids;
+int main(object me, string arg) {
+    object ob, *inv;
+    string win,*ids;
 
-        if (! arg || sscanf(arg, "%s,%s", arg, win) != 2)
-                return 0;
+    if (! arg || sscanf(arg, "%s,%s", arg, win) != 2)
+        return 0;
 
-        switch (win)
-        {
-                case "0" :
-                        ob=present(arg,environment(me));
-                        if(!objectp(ob)) {
-                                inv=all_inventory(environment(me));
-                                for(int i = 0; i<sizeof(inv); i++) {
-                                        if(inv[i]==me) continue;
-                                        if( ids=query_temp("apply/id", inv[i]) )
-                                        for(int j=0;j<sizeof(ids);j++) {
-                                                if(ids[j]==arg)
-                                                ob=inv[i];
-                                        }
-                                }
-                        }
-                        room_path(me,ob);
-                        break;
-                case "1" :
-                        ob=present(arg,me);
-                        user_path(me,ob);
-                        break;
+    switch (win)
+    {
+    case "0":
+        ob = present(arg, environment(me));
+        if(!objectp(ob)) {
+            inv = all_inventory(environment(me));
+            for(int i = 0; i<sizeof(inv); i++) {
+                if(inv[i]==me) continue;
+                if(ids = query_temp("apply/id", inv[i]) )
+                    for(int j = 0;j<sizeof(ids);j++) {
+                    if(ids[j]==arg)
+                        ob = inv[i];
+                }
+            }
         }
-        return 1;
+        room_path(me, ob);
+        break;
+    case "1":
+        ob = present(arg, me);
+        user_path(me, ob);
+        break;
+    }
+    return 1;
 }
 
-int room_path(object me, object ob)
-{
-        mapping skills,meskills;
-        object *inv;
-        string *str,*ids;
-        string id,name,tmp;
-        int i,my_skill;
+int room_path(object me, object ob) {
+    mapping skills, meskills;
+    object *inv;
+    string *str,*ids;
+    string id, name, tmp;
+    int i, my_skill;
 
-        if(!objectp(ob)) return 1;
+    if(!objectp(ob)) return 1;
 
-        if(stringp(tmp=ob->query_menu(me,0)))//如果對象能解釋菜單，則直接返回菜單
+    if(stringp(tmp = ob->query_menu(me, 0)))    //如果對象能解釋菜單，則直接返回菜單
+    {
+        write(tmp);
+        return 1;
+    }
+
+
+    if(!query("apply/id", ob))id = query("id", ob);
+    else {
+        ids = query_temp("apply/id", ob);
+        id = ids[sizeof(ids) - 1];
+    }
+
+    //      if(ob->query_temp("apply/name")) name=ob->query_temp("apply/name");
+    tmp = TMI("mbegin "+ob->name(1) + ";"+id) + TMI("mitem 觀察$U;look "+id);
+    if(living(ob))
+    {
+        if(interactive(ob))
         {
-                write(tmp);
-                return 1;
+            tmp += TMI("mitem 告訴$U...;tell "+id + " ...") + TMI("mitem 對$U耳語...;whisper "+id + " ...");
+            if(id == query_temp("reply", me) )
+                write(TMI("mitem 回答$U...;reply ..."));
+        }
+        if(query("ridable", ob) )
+        {
+            tmp += TMI("mitem 騎上$U;ride "+id);
         }
 
-
-        if( !query("apply/id", ob))id=query("id", ob);
-        else {
-                ids=query_temp("apply/id", ob);
-                id=ids[sizeof(ids)-1];
-        }
-
-//      if(ob->query_temp("apply/name")) name=ob->query_temp("apply/name");
-        tmp=TMI("mbegin "+ob->name(1)+";"+id)+TMI("mitem 觀察$U;look "+id);
-        if(living(ob))
+        tmp += (me->query_leader()==ob)?TMI("mitem 停止跟隨$U;follow none"):TMI("mitem 跟隨$U;follow "+id);
+        if(!query("no_fight", environment(me)) )
         {
-                if(interactive(ob))
+            tmp += TMI("mitem 與$U切磋;fight "+id);
+            if(query("age", ob)>17 || !interactive(ob) )
+                tmp += TMI("mitem 攻擊$U;hit "+id) + TMI("mitem 殺死$U;kill "+id) + TMI("mitem 偷襲$U;touxi "+id) + TMI("mitem 偷$U的...;steal ... from "+id);
+        }
+        if(query("inquiry", ob)){
+            str = keys(query("inquiry", ob));
+            for(i = 0; i<sizeof(str); i++)
+                tmp += TMI("mitem 向$U打聽關於"+str[i] + "的信息;ask "+id + " about "+str[i] + "");
+        }
+        tmp += TMI("mitem 給$U...東西;give ... to "+id );
+        if(query("owner", ob) == query("id", me) )
+        {
+
+            if(query("magic/become", ob) )
+            {
+                if(query_temp("is_changing", me) )
                 {
-                        tmp+=TMI("mitem 告訴$U...;tell "+id+" ...")+TMI("mitem 對$U耳語...;whisper "+id+" ...");
-                        if( id == query_temp("reply", me) )
-                                write(TMI("mitem 回答$U...;reply ..."));
+                    tmp += TMI("mitem 解除-->〖鎧化〗 ;recall recover "+id + "");
                 }
-                if( query("ridable", ob) )
+                else
                 {
-                        tmp+=TMI("mitem 騎上$U;ride "+id);
+                    tmp += TMI("mitem 幻獸-->〖鎧化〗 ;recall change "+id + "");
                 }
 
-                tmp+=(me->query_leader()==ob)?TMI("mitem 停止跟隨$U;follow none"):TMI("mitem 跟隨$U;follow "+id);
-                if( !query("no_fight", environment(me)) )
-                {
-                        tmp+=TMI("mitem 與$U切磋;fight "+id);
-                        if( query("age", ob)>17 || !interactive(ob) )
-                                tmp+=TMI("mitem 攻擊$U;hit "+id)+TMI("mitem 殺死$U;kill "+id)+TMI("mitem 偷襲$U;touxi "+id)+TMI("mitem 偷$U的...;steal ... from "+id);
-                }
-                if( query("inquiry", ob)){
-                        str=keys(query("inquiry", ob));
-                        for(i=0; i<sizeof(str); i++)
-                                tmp+=TMI("mitem 向$U打聽關於"+str[i]+"的信息;ask "+id+" about "+str[i]+"");
-                }
-                tmp+=TMI("mitem 給$U...東西;give ... to "+id );
-                if( query("owner", ob) == query("id", me) )
-                {
+            }
+            if(query("magic/owner", ob) )
+            {
+                tmp += TMI("mitem 供能-->〖$U〗 ;upgrade "+id + "");
 
-                        if( query("magic/become", ob) )
-                        {
-                                if( query_temp("is_changing", me) )
-                                {
-                                        tmp+=TMI("mitem 解除-->〖鎧化〗 ;recall recover "+id+"");
-                                }
-                                else
-                                {
-                                        tmp+=TMI("mitem 幻獸-->〖鎧化〗 ;recall change "+id+"");
-                                }
-
-                        }
-                        if( query("magic/owner", ob) )
-                        {
-                                tmp+=TMI("mitem 供能-->〖$U〗 ;upgrade "+id+"");
-
-                        }
-                        // tmp+=TMI("mitem 教導-->〖$U〗 ;teach "+"...");
-                        // tmp+=TMI("mitem 技能-->〖$U〗 ;skills "+id+"");
-                }
-                if( query("family/family_name", me) == "丐幫"){
-                        if ( me->query_skill("checking",1) >= 10 )
-                                tmp+=TMI("mitem 打探...的技能;check ...");
-                        if( query("family/family_name", ob) != "丐幫" )
-                                tmp+=TMI("mitem 乞討$U的...;beg ... from "+id);
-                }
-                if( query("vendor_goods", ob)){
-                        tmp+=TMI("mitem 查詢$U出售的東西;list "+id+"");
-                        tmp+=TMI("mitem 向$U買...;buy ...");
-                }
-                if( query("dealer", ob) == "pawn"){
-                        if( !query("vendor_goods", ob)){
-                                tmp+=TMI("mitem 查詢$U出售的東西;list");
-                                tmp+=TMI("mitem 向$U買...;buy ...");
-                        }
-                        tmp+=TMI("mitem 估價...;value ...");
-                        tmp+=TMI("mitem 賣...給$U;sell ...");
-                        tmp+=TMI("mitem 典當...給$U;pawn ...");
-                        if( query("pawns", me) )
-                                tmp+=TMI("mitem 贖回物品...;redeem ...");
-                }
-                if( query("dealer", ob) == "bank"){
-                        tmp+=TMI("mitem 兌換貨幣;convert ...");
-                        tmp+=TMI("mitem 存錢;deposit ...");
-                        if( query("balance", me)){
-                                tmp+=TMI("mitem 查詢存款;check");
-                                tmp+=TMI("mitem 取錢;withdraw ...");
-                        }
-                }
-                if( query("family/master_name", me) != ob->name(1)){
-                        if(ob->is_master())
-                                tmp+=TMI("mitem 拜$U為師;bai "+id);
-                } else {
-                        tmp+=TMI("mitem 向師父$U磕頭;bai "+id);
-                        tmp+=TMI("mitem 查詢師父$U技能;skills "+id);
-                        if( ob->query_skills() && query("jing", me) >= 1
-                                 && query("potential", me)>query("learned_points", me)){
-                                skills=ob->query_skills();
-                                str=keys(skills);
-                                for(i=0; i<sizeof(str); i++) {
-                                        if(me->query_skills()) {
-                                                meskills=me->query_skills();
-                                                my_skill = me->query_skill(str[i], 1);
-                                                if( (string)SKILL_D(str[i])->type()=="martial"
-                                                         && my_skill*my_skill*my_skill/10>query("combat_exp", me) )
-                                                        continue;
-                                                if(skills[str[i]]>my_skill && str[i]!="idle")
-                                                        tmp+=TMI("mitem 學習"+to_chinese(str[i])+";learn "+id+" "+str[i]+" ...");
-                                        } else
-                                        tmp+=TMI("mitem 學習"+to_chinese(str[i])+";learn "+id+" "+str[i]+" ...");
-                                }
-                        }
-                }
+            }
+            // tmp+=TMI("mitem 教導-->〖$U〗 ;teach "+"...");
+            // tmp+=TMI("mitem 技能-->〖$U〗 ;skills "+id+"");
+        }
+        if(query("family/family_name", me) == "丐幫"){
+            if (me->query_skill("checking", 1) >= 10 )
+                tmp += TMI("mitem 打探...的技能;check ...");
+            if(query("family/family_name", ob) != "丐幫" )
+                tmp += TMI("mitem 乞討$U的...;beg ... from "+id);
+        }
+        if(query("vendor_goods", ob)){
+            tmp += TMI("mitem 查詢$U出售的東西;list "+id + "");
+            tmp += TMI("mitem 向$U買...;buy ...");
+        }
+        if(query("dealer", ob) == "pawn"){
+            if(!query("vendor_goods", ob)){
+                tmp += TMI("mitem 查詢$U出售的東西;list");
+                tmp += TMI("mitem 向$U買...;buy ...");
+            }
+            tmp += TMI("mitem 估價...;value ...");
+            tmp += TMI("mitem 賣...給$U;sell ...");
+            tmp += TMI("mitem 典當...給$U;pawn ...");
+            if(query("pawns", me) )
+                tmp += TMI("mitem 贖回物品...;redeem ...");
+        }
+        if(query("dealer", ob) == "bank"){
+            tmp += TMI("mitem 兌換貨幣;convert ...");
+            tmp += TMI("mitem 存錢;deposit ...");
+            if(query("balance", me)){
+                tmp += TMI("mitem 查詢存款;check");
+                tmp += TMI("mitem 取錢;withdraw ...");
+            }
+        }
+        if(query("family/master_name", me) != ob->name(1)){
+            if(ob->is_master())
+                tmp += TMI("mitem 拜$U為師;bai "+id);
         } else {
-                if( !query("no_get", ob) )
-                        tmp+=TMI("mitem 把$U撿起來;get "+id);
-                if(ob->is_container()) {
-                        inv = all_inventory(ob);
-                        if(sizeof(inv)) {
-                                tmp+=TMI("mitem 把$U裡的東西都拿出來;get all from "+id);
-                                tmp+=TMI("mitem 從$U裡拿出...;get ... from "+id);
-                        }
-                        tmp+=TMI("mitem 把...裝進$U裡;put ... in "+id);
+            tmp += TMI("mitem 向師父$U磕頭;bai "+id);
+            tmp += TMI("mitem 查詢師父$U技能;skills "+id);
+            if(ob->query_skills() && query("jing", me) >= 1
+                && query("potential", me)>query("learned_points", me)){
+                    skills = ob->query_skills();
+                    str = keys(skills);
+                for(i = 0; i<sizeof(str); i++) {
+                    if(me->query_skills()) {
+                        meskills = me->query_skills();
+                        my_skill = me->query_skill(str[i], 1);
+                        if((string)SKILL_D(str[i])->type()=="martial"
+                            && my_skill*my_skill*my_skill / 10>query("combat_exp", me) )
+                            continue;
+                        if(skills[str[i]]>my_skill && str[i]!="idle")
+                            tmp += TMI("mitem 學習"+to_chinese(str[i]) + ";learn "+id + " "+str[i] + " ...");
+                    } else
+                    tmp += TMI("mitem 學習"+to_chinese(str[i]) + ";learn "+id + " "+str[i] + " ...");
                 }
-                if(id=="board") {
-                        tmp+=TMI("mitem 讀新的留言;read new");
-                        tmp+=TMI("mitem 讀第...條留言;read ...");
-                        tmp+=TMI("mitem 寫新的留言;post ...");
-                        tmp+=TMI("mitem 刪除留言...;discard ...");
-                }
+            }
         }
-        tmp+=TMI("mendd");
-        tell_object(me,tmp);
-        return 1;
+    } else {
+        if(!query("no_get", ob) )
+            tmp += TMI("mitem 把$U撿起來;get "+id);
+        if(ob->is_container()) {
+            inv = all_inventory(ob);
+            if(sizeof(inv)) {
+                tmp += TMI("mitem 把$U裡的東西都拿出來;get all from "+id);
+                tmp += TMI("mitem 從$U裡拿出...;get ... from "+id);
+            }
+            tmp += TMI("mitem 把...裝進$U裡;put ... in "+id);
+        }
+        if(id=="board") {
+            tmp += TMI("mitem 讀新的留言;read new");
+            tmp += TMI("mitem 讀第...條留言;read ...");
+            tmp += TMI("mitem 寫新的留言;post ...");
+            tmp += TMI("mitem 刪除留言...;discard ...");
+        }
+    }
+    tmp += TMI("mendd");
+    tell_object(me, tmp);
+    return 1;
 }
 
-int user_path(object me, object ob)
-{
-        mapping prop;
-        string id,tmp;
+int user_path(object me, object ob) {
+    mapping prop;
+    string id, tmp;
 
-        if(!objectp(ob)) return 1;
+    if(!objectp(ob)) return 1;
 
-        if(stringp(tmp=ob->query_menu(me,1)))//如果對象能解釋菜單，則直接返回菜單
-        {
-                write(tmp);
-                return 1;
-        }
-
-        id=query("id", ob);
-        tmp=TMI("mbegin "+ob->name(1)+";"+id)+TMI("mitem 觀察$U;look "+id);
-
-        if( !query("no_drop", ob) )
-                tmp+=TMI("mitem 丟棄$U;drop "+id);
-
-        if( !query("no_give", ob) )
-                tmp+=TMI("mitem 把$U給...;give "+id+" to ...");
-
-        if( query("ridable", ob) && query_temp("is_rided_by", ob) == me && 
-           query_temp("is_riding", me) == ob )
-        {
-                tmp+=TMI("mitem 跳下$U;unride "+id);
-        }
-
-        if( query("liquid", ob)){
-                if( query("liquid/remaining", ob) )
-                        tmp+=TMI("mitem 喝$U;drink "+id);
-                if( query("resource/water", environment(me)) )
-                        tmp+=TMI("mitem 把$U裝滿水;fill "+id);
-        }
-
-        if( query("food_remaining", ob) )
-                tmp+=TMI("mitem 吃$U;eat "+id);
-
-        if(ob->is_container()) {
-                tmp+=TMI("mitem 把$U裡的東西都拿出來;get all from "+id);
-                tmp+=TMI("mitem 從$U裡拿出...;get ... from "+id);
-                tmp+=TMI("mitem 把...裝進$U裡;put ... in "+id);
-        }
-        if(mapp(prop=query("armor_prop",ob)) && stringp(query("armor_type", ob)) ) {
-                if( !query("equipped", ob) )
-                        tmp+=TMI("mitem 穿上$U;wear "+id);
-                else
-                        tmp+=TMI("mitem 脫下$U;remove "+id);
-        }
-
-        if(mapp(prop=query("weapon_prop", ob)) && stringp(query("skill_type", ob))) {
-                if( !query("equipped", ob) )
-                        tmp+=TMI("mitem 裝備$U;wield "+id);
-                else
-                        tmp+=TMI("mitem 解除裝備$U;unwield "+id);
-        }
-
-        if( query("skill", ob) )
-                tmp+=TMI("mitem 讀$U;study "+id);
-
-        // "幻獸笛使用列表
-        if(id=="shou shao")
-        {
-                if( query("can_whistle", me) )
-                {
-                        string *huanshou_str;
-
-                        huanshou_str=keys(query("can_whistle", me));
-                        if( query_temp("pet_id", me) )
-                        {
-                                tmp+=TMI("mitem 驅使〖攻擊〗 ;attack "+"...");
-                                tmp+=TMI("mitem 停止〖攻擊〗 ;stop "+huanshou_str[0]+"");
-                                tmp+=TMI("mitem 查看〖幻獸〗 ;shape "+huanshou_str[0]+"");
-                                tmp+=TMI("mitem 召回〖幻獸〗 ;whistle "+huanshou_str[0]+"");
-                        }
-                        else
-                        {
-                                tmp+=TMI("mitem 召喚〖幻獸〗 ;whistle "+huanshou_str[0]+"");
-                        }
-                                // tmp+=TMI("mitem 描述〖幻獸〗 ;modify "+huanshou_str[0]+"");
-                        if( query_temp("beastdied", me) )
-                        {
-                                tmp+=TMI("mitem 復活〖幻獸〗 ;recall reborn "+huanshou_str[0]+"");
-                        }
-                }
-        }
-        //毒藥使用加強
-        if( query("poison_type", ob) == "poison" )
-        {
-                if( query("can_pour", ob) )
-                        tmp+=TMI("mitem 在〖容器〗中淬毒 ;pour "+id+" in ...");
-                if( query("can_drug", ob) )
-                        tmp+=TMI("mitem 在〖食物〗中淬毒 ;drug "+id+" in ...");
-                if( query("can_daub", ob) )
-                {
-                        tmp+=TMI("mitem 在〖武器〗上淬毒 ;daub "+id+" on ...");
-                        tmp+=TMI("mitem 在〖防具〗上淬毒(危險) ;daub "+id+" on ...");
-                        tmp+=TMI("mitem 在〖手上〗上淬毒(危險) ;daub "+id+" on hand ...");
-                }
-        }
-        tmp+=TMI("mendd");
-        tell_object(me,tmp);
+    if(stringp(tmp = ob->query_menu(me, 1)))    //如果對象能解釋菜單，則直接返回菜單
+    {
+        write(tmp);
         return 1;
+    }
+
+    id = query("id", ob);
+    tmp = TMI("mbegin "+ob->name(1) + ";"+id) + TMI("mitem 觀察$U;look "+id);
+
+    if(!query("no_drop", ob) )
+        tmp += TMI("mitem 丟棄$U;drop "+id);
+
+    if(!query("no_give", ob) )
+        tmp += TMI("mitem 把$U給...;give "+id + " to ...");
+
+    if(query("ridable", ob) && query_temp("is_rided_by", ob) == me &&
+        query_temp("is_riding", me) == ob )
+    {
+        tmp += TMI("mitem 跳下$U;unride "+id);
+    }
+
+    if(query("liquid", ob)){
+        if(query("liquid/remaining", ob) )
+            tmp += TMI("mitem 喝$U;drink "+id);
+        if(query("resource/water", environment(me)) )
+            tmp += TMI("mitem 把$U裝滿水;fill "+id);
+    }
+
+    if(query("food_remaining", ob) )
+        tmp += TMI("mitem 吃$U;eat "+id);
+
+    if(ob->is_container()) {
+        tmp += TMI("mitem 把$U裡的東西都拿出來;get all from "+id);
+        tmp += TMI("mitem 從$U裡拿出...;get ... from "+id);
+        tmp += TMI("mitem 把...裝進$U裡;put ... in "+id);
+    }
+    if(mapp(prop = query("armor_prop", ob)) && stringp(query("armor_type", ob)) ) {
+        if(!query("equipped", ob) )
+            tmp += TMI("mitem 穿上$U;wear "+id);
+        else
+            tmp += TMI("mitem 脫下$U;remove "+id);
+    }
+
+    if(mapp(prop = query("weapon_prop", ob)) && stringp(query("skill_type", ob))) {
+        if(!query("equipped", ob) )
+            tmp += TMI("mitem 裝備$U;wield "+id);
+        else
+            tmp += TMI("mitem 解除裝備$U;unwield "+id);
+    }
+
+    if(query("skill", ob) )
+        tmp += TMI("mitem 讀$U;study "+id);
+
+    // "幻獸笛使用列表
+    if(id=="shou shao")
+    {
+        if(query("can_whistle", me) )
+        {
+            string *huanshou_str;
+
+            huanshou_str = keys(query("can_whistle", me));
+            if(query_temp("pet_id", me) )
+            {
+                tmp += TMI("mitem 驅使〖攻擊〗 ;attack "+"...");
+                tmp += TMI("mitem 停止〖攻擊〗 ;stop "+huanshou_str[0] + "");
+                tmp += TMI("mitem 查看〖幻獸〗 ;shape "+huanshou_str[0] + "");
+                tmp += TMI("mitem 召回〖幻獸〗 ;whistle "+huanshou_str[0] + "");
+            }
+            else
+            {
+                tmp += TMI("mitem 召喚〖幻獸〗 ;whistle "+huanshou_str[0] + "");
+            }
+            // tmp+=TMI("mitem 描述〖幻獸〗 ;modify "+huanshou_str[0]+"");
+            if(query_temp("beastdied", me) )
+            {
+                tmp += TMI("mitem 復活〖幻獸〗 ;recall reborn "+huanshou_str[0] + "");
+            }
+        }
+    }
+    //毒藥使用加強
+    if(query("poison_type", ob) == "poison" )
+    {
+        if(query("can_pour", ob) )
+            tmp += TMI("mitem 在〖容器〗中淬毒 ;pour "+id + " in ...");
+        if(query("can_drug", ob) )
+            tmp += TMI("mitem 在〖食物〗中淬毒 ;drug "+id + " in ...");
+        if(query("can_daub", ob) )
+        {
+            tmp += TMI("mitem 在〖武器〗上淬毒 ;daub "+id + " on ...");
+            tmp += TMI("mitem 在〖防具〗上淬毒(危險) ;daub "+id + " on ...");
+            tmp += TMI("mitem 在〖手上〗上淬毒(危險) ;daub "+id + " on hand ...");
+        }
+    }
+    tmp += TMI("mendd");
+    tell_object(me, tmp);
+    return 1;
 }

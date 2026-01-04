@@ -5,13 +5,12 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name("狼皮裙", ({"wolf skirt", "skirt"}));
-        set_weight(1000);
-        set("material", "cloth");
-                set("unit", "件");
-                set("value", 100);
-                set("armor_prop/armor", 5);
-        setup();
+void create() {
+    set_name("狼皮裙", ({"wolf skirt", "skirt"}));
+    set_weight(1000);
+    set("material", "cloth");
+    set("unit", "件");
+    set("value", 100);
+    set("armor_prop/armor", 5);
+    setup();
 }

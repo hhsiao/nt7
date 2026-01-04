@@ -6,21 +6,20 @@
 inherit ITEM;
 inherit F_LIQUID;
 
-void create()
-{
-   set_name("淨瓶", ({"jingping", "bottle"}));
-   set_weight(1000);
-   set("long", "南海觀音盛水的淨瓶。\n");
-     set("unit", "個");
-     set("value", 5000);
-     set("max_liquid", 500);
+void create() {
+    set_name("淨瓶", ({"jingping", "bottle"}));
+    set_weight(1000);
+    set("long", "南海觀音盛水的淨瓶。\n");
+    set("unit", "個");
+    set("value", 5000);
+    set("max_liquid", 500);
 
-   // because a container can contain different liquid
-   // we set it to contain wine at the beginning
-   set("liquid", ([
-     "type": "water",
-     "name": "淨水",
-     "remaining": 400,
-     "drunk_apply": 20,
-   ]));
+    // because a container can contain different liquid
+    // we set it to contain wine at the beginning
+    set("liquid", ([
+        "type": "water",
+        "name": "淨水",
+        "remaining": 400,
+        "drunk_apply": 20
+        ]));
 }

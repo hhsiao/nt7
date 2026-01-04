@@ -9,166 +9,159 @@ inherit NPC;
 inherit F_CLEAN_UP;
 inherit F_UNIQUE;
 string * name_msg = ({
-        "惡霸",
-        "小偷",
-        "惡僧",
-        "小毛賊",
-        "醉漢",
-        "山賊",
-        "蠻兵",
-        "惡奴",
-        "土匪",
-        "小混混",
-        "採花賊",
-        "蒙面人",
-        "惡丐",
-        "惡商",
-        "刀客",
-        "劍客",
+    "惡霸",
+    "小偷",
+    "惡僧",
+    "小毛賊",
+    "醉漢",
+    "山賊",
+    "蠻兵",
+    "惡奴",
+    "土匪",
+    "小混混",
+    "採花賊",
+    "蒙面人",
+    "惡丐",
+    "惡商",
+    "刀客",
+    "劍客"
 });
 string * long_id = ({
-        "e ba",
-        "xiao tou",
-        "e seng",
-        "xiao maozei",
-        "zui han",
-        "shan zei",
-        "man bing",
-        "e nu",
-        "tu fei",
-        "xiao hunhun",
-        "caihua zei",
-        "mengmian ren",
-        "e gai",
-        "e shang",
-        "dao ke",
-        "jian ke",
+    "e ba",
+    "xiao tou",
+    "e seng",
+    "xiao maozei",
+    "zui han",
+    "shan zei",
+    "man bing",
+    "e nu",
+    "tu fei",
+    "xiao hunhun",
+    "caihua zei",
+    "mengmian ren",
+    "e gai",
+    "e shang",
+    "dao ke",
+    "jian ke"
 });
 
-void create()
-{
-        int i;
-        i = random(sizeof(name_msg));
-        set_name(name_msg[i], ({ long_id[i]}) );
-        set("gender", random(2)>0 ? "女性" : "男性" );
-        set("attitude", "friendly");
-        set("max_qi",2000+random(1000));
-        set("max_jing",1000+random(500));
-        set("int", 30);
-        set("str", 30+random(30));
-        set("con", 30);
-        set("dex", 30+random(30));
-  
-    /*   set("chat_chance", 60);
-        set("chat_msg", ({
-          (:call_out,"random_move",0:),
-        }) );
-       */
-        set("chat_chance_combat", 60);
-        set("chat_msg_combat", ({                        
-                (: exert_function, "powerup" :),
-                (: exert_function, "shield" :),                
-                (: exert_function, "recover" :),
-                (: exert_function, "regenerate" :),
-        }) );
-        set("no_steal", 1);
-        setup();
-        carry_object("/d/city/npc/obj/tiejia")->wear();
-}
-                        
+void create() {
+    int i;
+    i = random(sizeof(name_msg));
+    set_name(name_msg[i], ({ long_id[i] }) );
+    set("gender", random(2)>0 ? "女性" : "男性" );
+    set("attitude", "friendly");
+    set("max_qi", 2000 + random(1000));
+    set("max_jing", 1000 + random(500));
+    set("int", 30);
+    set("str", 30 + random(30));
+    set("con", 30);
+    set("dex", 30 + random(30));
 
-int random_move()
-{
-        mapping exits;
-        string *dirs, dir, dest;
-
-        if( !mapp(exits=query("exits", environment())))return 0;
-        dirs = keys(exits);
-        dir = dirs[random(sizeof(dirs))];
-        dest = exits[dir];
-        if( query("no_fight", find_object(dest)))return 0;
-        if( this_object()->is_fighting() ) return 0;
-        command("go " + dir);
-        return 1;
+    /*
+     * set("chat_chance", 60);
+     * set("chat_msg", ({
+     * (:call_out,"random_move",0:),
+     * }) );
+     */
+    set("chat_chance_combat", 60);
+    set("chat_msg_combat", ({
+        (: exert_function, "powerup": ),
+        (: exert_function, "shield": ),
+        (: exert_function, "recover": ),
+        (: exert_function, "regenerate": )
+    }) );
+    set("no_steal", 1);
+    setup();
+    carry_object("/d/city/npc/obj/tiejia")->wear();
 }
 
-void init()
-{
-        object ob, me;
-        me= this_object();
-        if(interactive(ob = this_player()) && living(this_object()))
-          if( query("owner", me) == query("id", ob) )
-                {         
-                        command("kao"+query("id", ob));
-                        ob->start_busy(1+random(3));
-                        command("say 你這個混蛋，沒事跑來巡城？敢管大爺閒事！");
-                        command("kick"+query("id", ob));}
-         add_action("do_hit","hit");
-         add_action("do_hit","kill");    
-         add_action("do_hit","touxi");
-         add_action("do_hit","ansuan");
-         add_action("do_hit","steal");   
-         add_action("do_halt","halt");
-         add_action("do_halt","go");
-         add_action("do_halt","surrender");
-         add_action("do_look","look");
+
+int random_move() {
+    mapping exits;
+    string *dirs, dir, dest;
+
+    if(!mapp(exits = query("exits", environment())))return 0;
+    dirs = keys(exits);
+    dir = dirs[random(sizeof(dirs))];
+    dest = exits[dir];
+    if(query("no_fight", find_object(dest)))return 0;
+    if(this_object()->is_fighting() ) return 0;
+    command("go " + dir);
+    return 1;
 }
 
-int do_look(string arg)
-{
-        object ob = this_object();
-        object me = this_player();
-        if( !arg || arg != query("id", ob) )
-                return 0;
-
-        else
-        {
-          message_vision(query("name", ob)+"大喝到：看什麼看，快滾！\n",me);
-          return 1;
-        }
-
+void init() {
+    object ob, me;
+    me = this_object();
+    if(interactive(ob = this_player()) && living(this_object()))
+        if(query("owner", me) == query("id", ob) )
+    {
+        command("kao"+query("id", ob));
+        ob->start_busy(1 + random(3));
+        command("say 你這個混蛋，沒事跑來巡城？敢管大爺閒事！");
+        command("kick"+query("id", ob));
+    }
+    add_action("do_hit", "hit");
+    add_action("do_hit", "kill");
+    add_action("do_hit", "touxi");
+    add_action("do_hit", "ansuan");
+    add_action("do_hit", "steal");
+    add_action("do_halt", "halt");
+    add_action("do_halt", "go");
+    add_action("do_halt", "surrender");
+    add_action("do_look", "look");
 }
 
-           
-int do_hit(string arg)
-{
-        object ob = this_object();
-        object me = this_player();
-        int i,j;
-        if( !arg || arg != query("id", ob) )
-                return 0;              
-         if( !(query("id", me) == query("owner", ob)) )
-        {
-                if (userp(me) )
-                {
-                        tell_object(me,HIW"不是你要抓的人，湊什麼熱鬧！\n"NOR);
-                        return 1;
-                }
-                else return 0;
-        }
-  
-}
-
-int do_halt()
-{
-        object me = this_player();
-        object ob = this_object();
-        
-        if ( me->is_fighting(ob))
-        {
-                message_vision(HIW"$N喝道：“嘿嘿，想打架？不分出個高下怎麼行！”\n"NOR, ob, me);
-                return 1;
-        }
+int do_look(string arg) {
+    object ob = this_object();
+    object me = this_player();
+    if(!arg || arg != query("id", ob) )
         return 0;
+
+    else
+    {
+        message_vision(query("name", ob) + "大喝到：看什麼看，快滾！\n", me);
+        return 1;
+    }
+
 }
-void die()
-{
-        object ob = this_object();
-        object me;
-        int pot,exp,score;
-        me = query_temp("last_damage_from");       
-        if( query("owner", ob) == query("id", me )
+
+
+int do_hit(string arg) {
+    object ob = this_object();
+    object me = this_player();
+    if(!arg || arg != query("id", ob) )
+        return 0;
+    if(!(query("id", me) == query("owner", ob)) )
+    {
+        if (userp(me) )
+        {
+            tell_object(me, HIW"不是你要抓的人，湊什麼熱鬧！\n"NOR);
+            return 1;
+        }
+        else return 0;
+    }
+
+}
+
+int do_halt() {
+    object me = this_player();
+    object ob = this_object();
+
+    if (me->is_fighting(ob))
+    {
+        message_vision(HIW"$N喝道：“嘿嘿，想打架？不分出個高下怎麼行！”\n"NOR, ob, me);
+        return 1;
+    }
+    return 0;
+}
+void die() {
+    object ob = this_object();
+    object me;
+    me = query_temp("last_damage_from");
+    if(query("owner", ob) == query("id", me )
         && (int)me->query_condition("dali_xuncheng"))
         addn_temp("xuncheng_kill_num", 1, me);
-         ::die();    
+    ::die();
 }

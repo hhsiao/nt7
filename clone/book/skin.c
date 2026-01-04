@@ -3,20 +3,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name( "羊皮書", ({ "skin" , "shu", "book" }));
-        set_weight(200);
-        set("unit", "本");
-                set("long", "這是一張羊皮，上面畫著舞劍的小人。\n");
-                set("value", 0);
-                set("material", "paper");
-                set("skill", ([
-                        "name": "sword",        // name of the skill
-                        "exp_required": 10000,  // minimum combat experience required
-                        "jing_cost":    40,     // jing cost every time study this
-                        "difficulty":   20,     // the base int to learn this skill
-                        "max_skill":    149,    // the maximum level you can learn
-                        "min_skill":    100,    // the minimum level you can learn
-                ]) );
+void create() {
+    set_name("羊皮書", ({ "skin" , "shu", "book" }));
+    set_weight(200);
+    set("unit", "本");
+    set("long", "這是一張羊皮，上面畫著舞劍的小人。\n");
+    set("value", 0);
+    set("material", "paper");
+    set("skill", ([
+        "name": "sword",    // name of the skill
+        "exp_required": 10000,  // minimum combat experience required
+        "jing_cost": 40,    // jing cost every time study this
+        "difficulty": 20,   // the base int to learn this skill
+        "max_skill": 149,   // the maximum level you can learn
+        "min_skill": 100,   // the minimum level you can learn
+        ]) );
 }

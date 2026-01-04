@@ -4,12 +4,11 @@
 #include <armor.h>
 inherit WAIST;
 
-void create()
-{
-        set_name("腰帶", ({"waist"}));
-        set_weight(1000);
-        set("material", "leather");
-                set("unit", "條");
-                set("armor_prop/armor", 1);
-        setup();
+void create() {
+    set_name("腰帶", ({"waist"}));
+    set_weight(1000);
+    set("material", "leather");
+    set("unit", "條");
+    set("armor_prop/armor", 1);
+    setup();
 }

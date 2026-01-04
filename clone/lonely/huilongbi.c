@@ -3,19 +3,18 @@
 
 inherit THROWING;
 
-void create()
-{
-        set_name(HIC "回龍璧" NOR, ({ "huilong bi", "huilong", "bi" }));
-        set_weight(100);
-        set("long", HIC "一支溫瑩剔透的玉壁，上面雕紋著一條蛟龍。\n" NOR);
-                set("unit", "支");
-                set("value", 80000);
-                set("no_sell", 1);
-                set("material", "stone");
-                set("base_unit", "支");
-                set("base_weight", 100);
-                set("base_value", 1000);
-        set_amount(1);
-        init_throwing(120);
-        setup();
+void create() {
+    set_name(HIC "回龍璧" NOR, ({ "huilong bi", "huilong", "bi" }));
+    set_weight(100);
+    set("long", HIC "一支溫瑩剔透的玉壁，上面雕紋著一條蛟龍。\n" NOR);
+    set("unit", "支");
+    set("value", 80000);
+    set("no_sell", 1);
+    set("material", "stone");
+    set("base_unit", "支");
+    set("base_weight", 100);
+    set("base_value", 1000);
+    set_amount(1);
+    init_throwing(120);
+    setup();
 }

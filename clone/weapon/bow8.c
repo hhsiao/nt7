@@ -61,7 +61,7 @@ void create() {
     set("long",
         HIR"天下第一神弓——落日弓，據聞自後羿射日後，天下已無人能拉開此弓。\n
 此弓一出，直可驚天地，泣鬼神！！！\n"NOR);
-    set("unit", "把");
+        set("unit", "把");
     set("value", 200000);
     set("consistence", 85);
     set("dam", 1800);
@@ -137,7 +137,7 @@ int do_she(string arg) {
 
         message_vision(HIY"$N從箭囊內抽出一支"HIW"羽箭"HIY"，搭在"
             +query("name", bow) + HIY"上，隨後立了一個霸王上弓式，\n朝"HIR
-                        + exits_name[what] + HIY"把弓拉滿.......\n"NOR, me);
+            + exits_name[what] + HIY"把弓拉滿.......\n"NOR, me);
 
         tell_object(all_inventory(room), HIB"你覺得一股猛烈的殺機從"HIR
             + exits_name[exits_reverse(what)] + HIB"傳來！！\n"NOR);
@@ -192,27 +192,27 @@ int do_shoot(string id, object me, object bow, object room, string what, int m) 
             if (damage > 2000)
                 message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                     + exits_name[exits_reverse(what)]
-                                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"額頭"HIY"上！\n"NOR,
+                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"額頭"HIY"上！\n"NOR,
                     ob);
             else if (damage > 1500)
                 message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                     + exits_name[exits_reverse(what)]
-                                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"胸口"HIY"上！\n"NOR,
+                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"胸口"HIY"上！\n"NOR,
                     ob);
             else if (damage > 1000)
                 message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                     + exits_name[exits_reverse(what)]
-                                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"肩膀"HIY"上！\n"NOR,
+                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"肩膀"HIY"上！\n"NOR,
                     ob);
             else if (damage > 500)
                 message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                     + exits_name[exits_reverse(what)]
-                                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"小腿"HIY"上！\n"NOR,
+                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"小腿"HIY"上！\n"NOR,
                     ob);
             else
                 message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                     + exits_name[exits_reverse(what)]
-                                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"手臂"HIY"上！\n"NOR,
+                    + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"手臂"HIY"上！\n"NOR,
                     ob);
             damage = damage / 4 + random(damage / 2);
             ob->receive_damage("qi", damage, me);
@@ -246,27 +246,27 @@ int do_shoot(string id, object me, object bow, object room, string what, int m) 
                 if (damage > 2000)
                     message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                         + exits_name[exits_reverse(what)]
-                                            + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"額頭"HIY"上！\n"NOR,
+                        + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"額頭"HIY"上！\n"NOR,
                         obj);
                 else if (damage > 1500)
                     message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                         + exits_name[exits_reverse(what)]
-                                            + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"胸口"HIY"上！\n"NOR,
+                        + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"胸口"HIY"上！\n"NOR,
                         obj);
                 else if (damage > 1000)
                     message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                         + exits_name[exits_reverse(what)]
-                                            + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"肩膀"HIY"上！\n"NOR,
+                        + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"肩膀"HIY"上！\n"NOR,
                         obj);
                 else if (damage > 500)
                     message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                         + exits_name[exits_reverse(what)]
-                                            + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"小腿"HIY"上！\n"NOR,
+                        + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"小腿"HIY"上！\n"NOR,
                         obj);
                 else
                     message_vision(HIY"“嗖”地一聲，一枚"HIW"羽箭從"HIR
                         + exits_name[exits_reverse(what)]
-                                            + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"手臂"HIY"上！\n"NOR,
+                        + HIY"飛來，"HIR"“噗嗤”"HIY"一聲紮在$N"HIR"手臂"HIY"上！\n"NOR,
                         obj);
                 damage = damage / 4 + random(damage / 2);
                 obj->receive_damage("qi", damage, me);

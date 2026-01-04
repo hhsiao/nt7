@@ -14,53 +14,49 @@ nosave mapping visited;
 nosave object mapdb;
 int visit(string room, mapping info, mixed args);
 
-#define DEBUG 
+#define DEBUG
 // #define DEBUG printf
 
-void create()
-{
+void create() {
     queue = 0;
     traverse_done = 0;
 }
 
-int traverse_finish()
-{
+int traverse_finish() {
     return traverse_done;
 }
 
-mixed thread_route(string room)
-{
+mixed thread_route(string room) {
     mixed route;
     mapping info;
     string cur;
-    int   i, n;
+    int i, n;
 
     if (! traverse_done) return 0;
     info = visited[room];
-    if (! mapp(info)) return 1;         // no route
+    if (! mapp(info)) return 1;     // no route
 
-    n = info["dist"]+1;
+    n = info["dist"] + 1;
     route = allocate(n);
     cur = room;
-    for (i=n-1; i>=0; i--) {
-        route[i]=([cur : visited[cur]]);
+    for (i = n - 1; i>=0; i--) {
+        route[i] = ([cur : visited[cur]]);
         info = visited[cur];
-        if (! mapp(info)) return 0;        // problem
+        if (! mapp(info)) return 0;     // problem
         cur = info["from"];
     }
     return route;
 }
 
-int push_in(mapping exits, string room, function callback, mixed args)
-{
-    string *dirs, key, err;
+int push_in(mapping exits, string room, function callback, mixed args) {
+    string *dirs, key;
     string next_room;
     mapping info;
-    int     i;
+    int i;
 
     dirs = keys(exits);
     if (sizeof(dirs) == 0) return 0;
-    for (i=0; i<sizeof(dirs); i++) {
+    for (i = 0; i<sizeof(dirs); i++) {
         key = dirs[i];
         next_room = exits[key];
         if (mapp(visited[next_room])) continue;
@@ -70,24 +66,23 @@ int push_in(mapping exits, string room, function callback, mixed args)
         total ++;
         current_total ++;
 
-            info = ([ "from": room, "dir" : key, "dist": visited[room]["dist"]+1]);
+        info = ([ "from": room, "dir": key, "dist": visited[room]["dist"] + 1]);
         visited[next_room] = info;
-        switch (evaluate(callback, next_room, info, 
-                         mapdb->query_room_info(next_room), args)) {
-        case 0:       // normal, enque this room
-          queue->enque(next_room);
-          break;
-        case 1:       // ignore.  Don't enque this room
-          break;
-        default:      // abort or done.  Let's finish it.
-          return 1;
+        switch (evaluate(callback, next_room, info,
+            mapdb->query_room_info(next_room), args)) {
+        case 0:     // normal, enque this room
+            queue->enque(next_room);
+            break;
+        case 1:     // ignore.  Don't enque this room
+            break;
+        default:    // abort or done.  Let's finish it.
+            return 1;
         }
     }
     return 0;
 }
 
-mixed enque_exits(string room, function callback, mixed args)
-{
+mixed enque_exits(string room, function callback, mixed args) {
     mapping exits;
 
     exits = mapdb->query_room_exits(room);
@@ -97,10 +92,9 @@ mixed enque_exits(string room, function callback, mixed args)
     return 0;
 }
 
-int traverse_with_limit(string from, function callback, mixed args)
-{
+int traverse_with_limit(string from, function callback, mixed args) {
     string cur;
-    int    ret;
+    int ret;
 
     if (! objectp(queue)) return 0;
     if (traverse_done) return 0;
@@ -108,7 +102,7 @@ int traverse_with_limit(string from, function callback, mixed args)
     current_total = 0;
     DEBUG("Traversing map, nodes evaluated: %d.\n", total);
     while (!queue->empty()) {
-        if (current_total > MAX_NODE) {        // limit number of nodes we search each time
+        if (current_total > MAX_NODE) { // limit number of nodes we search each time
             current_total = 0;
             call_out("traverse_with_limit", 2, from, args);
             traverse_done = 0;
@@ -122,8 +116,8 @@ int traverse_with_limit(string from, function callback, mixed args)
             destruct(queue);
             queue = 0;
             traverse_done = 1;
-            DEBUG("Traversal terminated by callback, evaluated %d nodes.\n", 
-                  total);
+            DEBUG("Traversal terminated by callback, evaluated %d nodes.\n",
+                total);
             return ret;
         }
     }
@@ -135,9 +129,8 @@ int traverse_with_limit(string from, function callback, mixed args)
     return 1;
 }
 
-int traverse(string from, function callback, mixed args)
-{
-    if (objectp(queue)) return 0;  // synchronization, avoid race conditions 
+int traverse(string from, function callback, mixed args) {
+    if (objectp(queue)) return 0;   // synchronization, avoid race conditions
 
     seteuid(getuid());
 
@@ -151,13 +144,13 @@ int traverse(string from, function callback, mixed args)
     total = 0;
     traverse_done = 0;
     visited = ([ ]);
-    visited[from]=(["dist":0]);
+    visited[from] = (["dist": 0]);
 
-    if (evaluate(callback, from, visited[from], 
-                 mapdb->query_room_info(from),
-                 args) == -1) {
-      traverse_done = 1;
-      return 1;
+    if (evaluate(callback, from, visited[from],
+        mapdb->query_room_info(from),
+        args) == -1) {
+        traverse_done = 1;
+        return 1;
     }
     queue = new (QUEUE);
     queue->enque(from);
@@ -166,15 +159,13 @@ int traverse(string from, function callback, mixed args)
 }
 
 // The method visit() is the key to customize the traverser.
-// This specific example is to find the shortest path 
-int visit_room(string room, mapping info, mapping mapdb_info, mixed args)
-{
-  string to = (string)args;
-  if (room == to) return -1;   // found room, done
-  return 0;      // otherwise, keep going
+// This specific example is to find the shortest path
+int visit_room(string room, mapping info, mapping mapdb_info, mixed args) {
+    string to = (string)args;
+    if (room == to) return -1;  // found room, done
+    return 0;   // otherwise, keep going
 }
 
-int find_route(string from, string to)
-{
-  return traverse(from, (: visit_room :), to);
+int find_route(string from, string to) {
+    return traverse(from, (: visit_room :), to);
 }

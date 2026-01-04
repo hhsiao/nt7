@@ -7,11 +7,10 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-  set_name("水煮蛋", ({"egg", "dan"}));
-  set_weight(60);
-  set("long", "一隻煮熟的雞蛋。\n");
+void create() {
+    set_name("水煮蛋", ({"egg", "dan"}));
+    set_weight(60);
+    set("long", "一隻煮熟的雞蛋。\n");
     set("unit", "只");
     set("value", 50);
     set("food_remaining", 1);

@@ -7,21 +7,20 @@
 
 inherit TESSERA;
 
-void create()
-{
-//**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
-        set_name(HIB "稀世藍寶石" NOR, ({ "flawless sapphire" }) );   /* NAME_EXIT  */
-        set_weight(20);
-        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
-                set("long", HIB "一顆美得無與倫比的大藍寶石。\n" NOR);  /* DBASE_EXIT  */
-                set("value", 100000);
-                set("unit", "顆");
-                set("level", 3);
-                set("material", "fsapphire");
-                set("can_be_enchased", 1);
-                set("magic/type", "water");
-                set("magic/power", 200);
-                set("auto_load", 1);
-        set("no_identify", 1);
-        setup();
+void create() {
+    //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
+    set_name(HIB "稀世藍寶石" NOR, ({ "flawless sapphire" }) );   /* NAME_EXIT  */
+    set_weight(20);
+    //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+    set("long", HIB "一顆美得無與倫比的大藍寶石。\n" NOR);  /* DBASE_EXIT  */
+    set("value", 100000);
+    set("unit", "顆");
+    set("level", 3);
+    set("material", "fsapphire");
+    set("can_be_enchased", 1);
+    set("magic/type", "water");
+    set("magic/power", 200);
+    set("auto_load", 1);
+    set("no_identify", 1);
+    setup();
 }

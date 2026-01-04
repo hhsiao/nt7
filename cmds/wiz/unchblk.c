@@ -6,42 +6,40 @@
 
 inherit F_CLEAN_UP;
 
-int main(object me, string arg)
-{
-        object ob;
-        
-        if (! SECURITY_D->valid_grant(me, "(wizard)"))
-                return 0;
+int main(object me, string arg) {
+    object ob;
 
-        if (! arg)
-                return notify_fail("指令格式: unchblk <player id>\n");
-                
-        ob = UPDATE_D->global_find_player(arg);
-        if (! ob)
-                return notify_fail(LOCAL_MUD_NAME() + "並沒有這個人！\n");
+    if (! SECURITY_D->valid_grant(me, "(wizard)"))
+        return 0;
 
-        if( !query("chblk_on", ob) )
-        {
-                UPDATE_D->global_destruct_player(ob);
-                return notify_fail("這個人的頻道目前好好的。\n");
-        }
+    if (! arg)
+        return notify_fail("指令格式: unchblk <player id>\n");
 
-        delete("chblk_on", ob);
-        delete("chblk_by", ob);
-        write("你打開了" + ob->name(1) + "的頻道。\n");
-        tell_object(ob, me->name(1) + "打開了你的頻道。\n");
+    ob = UPDATE_D->global_find_player(arg);
+    if (! ob)
+        return notify_fail(LOCAL_MUD_NAME() + "並沒有這個人！\n");
 
-        UPDATE_D->global_destruct_player(ob, 1);
-        return 1;
+    if(!query("chblk_on", ob) )
+    {
+        UPDATE_D->global_destruct_player(ob);
+        return notify_fail("這個人的頻道目前好好的。\n");
+    }
+
+    delete("chblk_on", ob);
+    delete("chblk_by", ob);
+    write("你打開了" + ob->name(1) + "的頻道。\n");
+    tell_object(ob, me->name(1) + "打開了你的頻道。\n");
+
+    UPDATE_D->global_destruct_player(ob, 1);
+    return 1;
 }
 
-int help(object me)
-{
-        write(@HELP
+int help(object me) {
+    write(@HELP
 指令格式 : unchblk <玩家>
 
 此命令將打開某個玩家的頻道。
 
 HELP );
-        return 1;
+    return 1;
 }

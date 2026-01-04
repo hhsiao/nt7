@@ -63,8 +63,8 @@ void resetup_char(object ob) {
     int max_qi, max_jing;
     int i, flag = 0;
     string *app_props = ({
-            "int", "str", "con", "add_skill", "max_qi", "max_jing"
-        });
+        "int", "str", "con", "add_skill", "max_qi", "max_jing"
+    });
 
     if(!playerp(ob) && !ob->is_baby() ) return;
     // 戰場上無效

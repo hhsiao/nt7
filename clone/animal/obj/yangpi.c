@@ -4,13 +4,12 @@
 #include <armor.h>
 inherit CLOTH;
 
-void create()
-{
-        set_name("羊皮", ({ "yang pi", "pi", "lamb skin" }) );
-        set_weight(3000);
-        set("unit", "塊");
-                set("material", "fur");
-                set("value", 400);
-                set("armor_prop/armor", 3);
-        setup();
+void create() {
+    set_name("羊皮", ({ "yang pi", "pi", "lamb skin" }) );
+    set_weight(3000);
+    set("unit", "塊");
+    set("material", "fur");
+    set("value", 400);
+    set("armor_prop/armor", 3);
+    setup();
 }

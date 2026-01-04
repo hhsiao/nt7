@@ -6,14 +6,15 @@
 inherit MYMASK;
 
 void create() {
-    /*string *sname = ({
-        "玉面修羅",
-        "無名修羅",
-        "紫煞修羅",
-        "餓修羅",
-        "七絕修羅",
-        "金肢修羅"
-    });*/
+    /*
+     * string *sname = ({
+     * "玉面修羅",
+     * "無名修羅",
+     * "紫煞修羅",
+     * "餓修羅",
+     * "七絕修羅",
+     * "金肢修羅"
+     * });*/
 
     set_name(HIM "修羅面具" NOR, ({ "xiuluo mianju", "xiuluo", "mianju" }) );
     set_weight(100);

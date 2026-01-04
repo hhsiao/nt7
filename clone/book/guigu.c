@@ -4,21 +4,20 @@
 
 inherit BOOK;
 
-void create()
-{
-        set_name(WHT "鬼穀神算" NOR, ({ "guigu book", "book", "shu" }));
-        set_weight(300);
+void create() {
+    set_name(WHT "鬼穀神算" NOR, ({ "guigu book", "book", "shu" }));
+    set_weight(300);
 
-        set("unit", "本");
-                set("long", "傳說是當年鬼谷子所著的奇書。\n");
-                set("value", 100);
-                set("no_sell", "這...這值什麼錢？\n");
-                set("material", "silk");
-                set("skill", ([
-                        "name": "mathematics", // name of the skill
-                        "jing_cost":   180,    // jing cost every time study this
-                        "difficulty":   38,    // the base int to learn this skill
-                        "max_skill":   400,    // the maximum level you can learn to
-                        "min_skill":   150,    // minimun level required
-                ]));
+    set("unit", "本");
+    set("long", "傳說是當年鬼谷子所著的奇書。\n");
+    set("value", 100);
+    set("no_sell", "這...這值什麼錢？\n");
+    set("material", "silk");
+    set("skill", ([
+        "name": "mathematics",  // name of the skill
+        "jing_cost": 180,   // jing cost every time study this
+        "difficulty": 38,   // the base int to learn this skill
+        "max_skill": 400,   // the maximum level you can learn to
+        "min_skill": 150,   // minimun level required
+        ]));
 }

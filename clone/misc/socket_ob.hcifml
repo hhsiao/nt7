@@ -41,7 +41,7 @@ void on_send(int fd)
     // 如果有緩存的數據，則一起寫進去
     if (strlen(buf) > 0)
         socket_write(s_fd, buf);
-        
+
     if (functionp(callback["on_send"]))
         // 存在發送數據時的回調函數
         evaluate(callback["on_send"], fd);
@@ -60,7 +60,7 @@ void on_close(int fd)
 {
 /*
     CHECK_FD_VALID();
-*/  
+*/
     DEBUG("套接字(" + fd + ")連接被關閉了.\n");
     if (functionp(callback["on_close"]))
             evaluate(callback["on_close"], fd);
@@ -81,13 +81,13 @@ void on_recv(int fd, string data)
 int do_open(string ip, int port, mapping callback_arg)
 {
     string addr;
-    
+
     // 包裝目標地址格式
     addr = sprintf("%s %d", ip, port);
-    
+
     // 設定回調通知函數
     callback = callback_arg;
-    
+
     // 連接目標
     return socket_connect(s_fd, addr, "on_recv", "on_send");
 }
@@ -96,7 +96,7 @@ int do_open(string ip, int port, mapping callback_arg)
 int do_send(string data)
 {
     int write_ret;
-    
+
     DEBUG("開始寫套接字\n");
     write_ret = socket_write(s_fd, buf + data);
     switch (write_ret)
@@ -111,18 +111,18 @@ int do_send(string data)
         buf += data;
         call_out("do_send", 1, "");
         break;
-        
+
     case EECALLBACK:
         // 等待完成
     case EESUCCESS :
         // 寫成功，則清掉緩存
         buf = "";
         break;
-     
+
     default :
         DEBUG(HIR "寫套接字失敗，" + write_ret + "\n" NOR);
     }
-    
+
     return write_ret;
 }
 

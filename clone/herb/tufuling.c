@@ -1,14 +1,13 @@
 #include "herb.h"
 
-void create()
-{
-        set_name(YEL "土茯苓" NOR, ({ "tu fuling" }));
-        set("base_unit", "根");
-                set("long", "草本植物，補氣血，潤五臟，是不可多得的上佳藥材。\n");
-                set("base_value", 4000);
-                set("base_weight", 60);
-                set("cure_s", 30);
-                set("cure_d", 20);
-                set("cure_n", 40);
-        setup();
+void create() {
+    set_name(YEL "土茯苓" NOR, ({ "tu fuling" }));
+    set("base_unit", "根");
+    set("long", "草本植物，補氣血，潤五臟，是不可多得的上佳藥材。\n");
+    set("base_value", 4000);
+    set("base_weight", 60);
+    set("cure_s", 30);
+    set("cure_d", 20);
+    set("cure_n", 40);
+    setup();
 }

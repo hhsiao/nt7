@@ -4,54 +4,52 @@
 
 #include "gift.h"
 
-void create()
-{
-        set_name(HIG "天香玉露" NOR, ({"magic water", "yvlu", "lu"}));
-        set("unit", "些");
-                set("base_unit", "滴");
-                set("long", HIG "這是附著在靈芝上的一滴晶瑩剔透的玉露，傳說採自\n"
-                                "靈山，千年來以靈芝為母，不斷的吸取著日精月華，\n"
-                                "具有著無比神奇的功效。\n");
-                set("base_value", 100000);
-                set("base_weight", 200);
-                set("only_do_effect", 1);
-        setup();
+void create() {
+    set_name(HIG "天香玉露" NOR, ({"magic water", "yvlu", "lu"}));
+    set("unit", "些");
+    set("base_unit", "滴");
+    set("long", HIG "這是附著在靈芝上的一滴晶瑩剔透的玉露，傳說採自\n"
+        "靈山，千年來以靈芝為母，不斷的吸取著日精月華，\n"
+        "具有著無比神奇的功效。\n");
+    set("base_value", 100000);
+    set("base_weight", 200);
+    set("only_do_effect", 1);
+    setup();
 }
 
-int do_effect(object me)
-{
-        string force;
-        int neili_limit;
+int do_effect(object me) {
+    string force;
+    int neili_limit;
 
-        neili_limit = me->query_current_neili_limit();
-        message_vision(HIG "$N" HIG "小心翼翼的將玉露含在嘴中，登時覺得"
-                       "靈臺一陣空明，渾身上\n下飄飄欲仙，一時間竟有不在"
-                       "塵世的感覺。\n" NOR,
-                       me);
+    neili_limit = me->query_current_neili_limit();
+    message_vision(HIG "$N" HIG "小心翼翼的將玉露含在嘴中，登時覺得"
+        "靈臺一陣空明，渾身上\n下飄飄欲仙，一時間竟有不在"
+        "塵世的感覺。\n" NOR,
+        me);
 
-        if( query("max_neili", me)<neili_limit )
-        {
-                addn("max_neili", 120+random(150), me);
-                if( query("max_neili", me)>neili_limit )
-                        set("max_neili", neili_limit, me);
-                set("neili",query("max_neili",  me), me);
+    if(query("max_neili", me)<neili_limit )
+    {
+        addn("max_neili", 120 + random(150), me);
+        if(query("max_neili", me)>neili_limit )
+            set("max_neili", neili_limit, me);
+        set("neili", query("max_neili", me), me);
 
-        }
+    }
 
-        if( query("gift/tianxiang", me) <= 200 )
-        {
+    if(query("gift/tianxiang", me) <= 200 )
+    {
         force = me->query_skill_mapped("force");
         if (me->can_improve_skill("force"))
-                me->improve_skill("force", 40000);
+            me->improve_skill("force", 40000);
         if (stringp(force) && me->can_improve_skill(force))
-                me->improve_skill(force, 40000);
-        }
+            me->improve_skill(force, 40000);
+    }
 
-        addn("gift/tianxiang", 1, me);
-        // me->start_busy(random(5) + 5);
-        add_amount(-1);
-        if (query_amount() < 1)
-                destruct(this_object());
+    addn("gift/tianxiang", 1, me);
+    // me->start_busy(random(5) + 5);
+    add_amount(-1);
+    if (query_amount() < 1)
+        destruct(this_object());
 
-        return 1;
+    return 1;
 }

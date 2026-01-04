@@ -3,73 +3,71 @@
 #include <ansi.h>
 #include "gift.h"
 
-void create()
-{
-        set_name(HIY "九轉金丹" NOR, ({ "jiuzhuan jindan", "dan" }) );
-        set("long", "一顆金色的仙丹，傳說是太上老君"
-                              "精心修煉的靈丹妙藥。成功幾率100%"
-                            "增加先天各四點\n");
-                set("base_value", 150000);
-                set("base_weight", 200);
-                set("base_unit", "顆");
-                set("only_do_effect", 1);
-        }
-        setup();
+void create() {
+    set_name(HIY "九轉金丹" NOR, ({ "jiuzhuan jindan", "dan" }) );
+    set("long", "一顆金色的仙丹，傳說是太上老君"
+        "精心修煉的靈丹妙藥。成功幾率100%"
+        "增加先天各四點\n");
+    set("base_value", 150000);
+    set("base_weight", 200);
+    set("base_unit", "顆");
+    set("only_do_effect", 1);
+}
+setup();
 
-int do_effect(object me)
-{
-        int effect;
+int do_effect(object me) {
+    int effect;
 
-        /*
-        log_file("static/using", sprintf("%s(%s) eat 九轉金丹 at %s.\n",
-                 me->name(1),query("id", me),ctime(time())));
-        */
+    /*
+     * log_file("static/using", sprintf("%s(%s) eat 九轉金丹 at %s.\n",
+     * me->name(1),query("id", me),ctime(time())));
+     */
 
-        effect = 0;
-        message_vision("$N一仰脖，吞下了一顆" + this_object()->name() +
-                       "。\n", me);
-        if( query("gift/int/succeed", me)<4 && random(2) )
-        {
-                effect++;
-                write(HIM "你覺得自己的頭腦更清醒了。\n" NOR);
-                addn("gift/xiandan", 1, me);
-                addn("gift/int/succeed", 1, me);
-                addn("int", 1, me);
-        }
+    effect = 0;
+    message_vision("$N一仰脖，吞下了一顆" + this_object()->name() +
+        "。\n", me);
+    if(query("gift/int/succeed", me)<4 && random(2) )
+    {
+        effect++;
+        write(HIM "你覺得自己的頭腦更清醒了。\n" NOR);
+        addn("gift/xiandan", 1, me);
+        addn("gift/int/succeed", 1, me);
+        addn("int", 1, me);
+    }
 
-        if( query("gift/dex/succeed", me)<4 && random(2) )
-        {
-                effect++;
-                write(HIR "你覺得自己的腿腳更靈活了。\n" NOR);
-                addn("gift/unknowdan", 1, me);
-                addn("dex", 1, me);
-                addn("gift/dex/succeed", 1, me);
-        }
+    if(query("gift/dex/succeed", me)<4 && random(2) )
+    {
+        effect++;
+        write(HIR "你覺得自己的腿腳更靈活了。\n" NOR);
+        addn("gift/unknowdan", 1, me);
+        addn("dex", 1, me);
+        addn("gift/dex/succeed", 1, me);
+    }
 
-        if( query("gift/con/succeed", me)<4 && random(2) )
-        {
-                effect++;
-                write(HIC "你覺得自己的內息更通暢了。\n" NOR);
-                addn("gift/xisuidan", 1, me);
-                addn("con", 1, me);
-                addn("gift/con/succeed", 1, me);
-        }
+    if(query("gift/con/succeed", me)<4 && random(2) )
+    {
+        effect++;
+        write(HIC "你覺得自己的內息更通暢了。\n" NOR);
+        addn("gift/xisuidan", 1, me);
+        addn("con", 1, me);
+        addn("gift/con/succeed", 1, me);
+    }
 
-        if( query("gift/str/succeed", me)<4 && random(2) )
-        {
-                effect++;
-                write(HIG "你覺得自己的膂力更強健了。\n" NOR);
-                addn("gift/shenliwan", 1, me);
-                addn("str", 1, me);
-                addn("gift/str/succeed", 1, me);
-        }
+    if(query("gift/str/succeed", me)<4 && random(2) )
+    {
+        effect++;
+        write(HIG "你覺得自己的膂力更強健了。\n" NOR);
+        addn("gift/shenliwan", 1, me);
+        addn("str", 1, me);
+        addn("gift/str/succeed", 1, me);
+    }
 
-        write(HIM "冥冥中你有所感悟。只覺得靈臺一片空明，純淨無比。\n" NOR);
-        addn("magic_points", 1000+random(1000), me);
+    write(HIM "冥冥中你有所感悟。只覺得靈臺一片空明，純淨無比。\n" NOR);
+    addn("magic_points", 1000 + random(1000), me);
 
-        add_amount(-1);
-        if (query_amount() < 1)
-                destruct(this_object());
+    add_amount(-1);
+    if (query_amount() < 1)
+        destruct(this_object());
 
-        return 1;
+    return 1;
 }

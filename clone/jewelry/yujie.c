@@ -5,14 +5,13 @@
 
 inherit FINGER;
 
-void create()
-{
-        set_name(CYN"玉戒指"NOR, ({"yu jiezhi", "jiezhi", "finger"}));
-        set_weight(500);
-        set("long", "白玉雕成的戒指，瑩白圓潤\n");
-                set("unit", "枚");
-                set("value", 30000);
-                set("material", "jade");
-                set("armor_prop/armor", 3);
-        setup();
+void create() {
+    set_name(CYN"玉戒指"NOR, ({"yu jiezhi", "jiezhi", "finger"}));
+    set_weight(500);
+    set("long", "白玉雕成的戒指，瑩白圓潤\n");
+    set("unit", "枚");
+    set("value", 30000);
+    set("material", "jade");
+    set("armor_prop/armor", 3);
+    setup();
 }

@@ -11,8 +11,8 @@ inherit EQUIP;
 int is_armor() { return 1; }
 varargs void setup()
 {
-        //if( !clonep(this_object()) )
-                set("armor_type", TYPE_HANDS);
+    //if( !clonep(this_object()) )
+    set("armor_type", TYPE_HANDS);
 
-        ::setup();
+    ::setup();
 }

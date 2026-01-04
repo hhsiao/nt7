@@ -3,25 +3,24 @@
 
 inherit ITEM;
 
-string *name = ({"飼料", "飯糰", "麵糰", "肉塊", "肉團"});
-string *id = ({"si liao", "fan tuan", "mian tuan", "rou kuai", "rou tuan"});
-string *unit = ({"把", "個", "個","塊", "個"});
-string *value = ({200, 400, 400, 800, 1600});
-string *remaining = ({ 5, 3, 4, 3, 2});
-string *supply = ({5, 10, 12, 20, 25});
-string *effect = ({1, 2, 2, 4, 8});
+string *name = ({ "飼料", "飯糰", "麵糰", "肉塊", "肉團" });
+string *id = ({ "si liao", "fan tuan", "mian tuan", "rou kuai", "rou tuan" });
+string *unit = ({ "把", "個", "個", "塊", "個" });
+string *value = ({ 200, 400, 400, 800, 1600 });
+string *remaining = ({ 5, 3, 4, 3, 2 });
+string *supply = ({ 5, 10, 12, 20, 25 });
+string *effect = ({ 1, 2, 2, 4, 8 });
 
-void create()
-{
-//        int i = random(sizeof(name));
-        int i = 3;
+void create() {
+    //        int i = random(sizeof(name));
+    int i = 3;
 
-        set_name(name[i], ({id[i]}));
-        set_weight(100);
-        set("long","一"+unit[i]+"餵養寵物的"+name[i]+"。看起來好象髒乎乎的。\n");
-                set("unit", unit[i]);
-                set("value", value[i]);
-                set("siliao_remaining", remaining[i]);
-                set("siliao_supply", supply[i]);
-                set("siliao_effect", effect[i]);
+    set_name(name[i], ({id[i]}));
+    set_weight(100);
+    set("long", "一"+unit[i] + "餵養寵物的"+name[i] + "。看起來好象髒乎乎的。\n");
+    set("unit", unit[i]);
+    set("value", value[i]);
+    set("siliao_remaining", remaining[i]);
+    set("siliao_supply", supply[i]);
+    set("siliao_effect", effect[i]);
 }

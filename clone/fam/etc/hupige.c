@@ -1,17 +1,15 @@
 #include <ansi.h>
 inherit ITEM;
 
-void create()
-{
-        set_name(HIW "白虎皮革" NOR, ({ "baihu pige", "pige" }));
-        set_weight(5000);
-        set("long", HIW "一張巨大的白虎皮革，乃世間珍品。\n" NOR);
-                set("unit", "張");
-                set("value", 1000000);
-        setup();
+void create() {
+    set_name(HIW "白虎皮革" NOR, ({ "baihu pige", "pige" }));
+    set_weight(5000);
+    set("long", HIW "一張巨大的白虎皮革，乃世間珍品。\n" NOR);
+    set("unit", "張");
+    set("value", 1000000);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

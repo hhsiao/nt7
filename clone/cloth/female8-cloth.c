@@ -4,16 +4,15 @@
 #include <ansi.h>
 inherit CLOTH;
 
-void create()
-{
-        set_name(MAG"紫紗小夾衫"NOR, ({ "cloth" }) );
-        set_weight(1000);
-        set("long", "這是件紫紗小夾衫。\n");
-                set("unit", "件");
-                set("value", 0);
-                set("material", "cloth");
-                set("armor_prop/armor", 1);
-                set("armor_prop/per", 3);
-                set("female_only", 1);
-        setup();
+void create() {
+    set_name(MAG"紫紗小夾衫"NOR, ({ "cloth" }) );
+    set_weight(1000);
+    set("long", "這是件紫紗小夾衫。\n");
+    set("unit", "件");
+    set("value", 0);
+    set("material", "cloth");
+    set("armor_prop/armor", 1);
+    set("armor_prop/per", 3);
+    set("female_only", 1);
+    setup();
 }

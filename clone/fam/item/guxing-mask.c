@@ -6,14 +6,15 @@
 inherit MYMASK;
 
 void create() {
-    /*string *sname = ({
-        "天煞孤星",
-        "無名孤星",
-        "夙世孤星",
-        "六道孤星",
-        "天命孤星",
-        "夜影孤星"
-    });*/
+    /*
+     * string *sname = ({
+     * "天煞孤星",
+     * "無名孤星",
+     * "夙世孤星",
+     * "六道孤星",
+     * "天命孤星",
+     * "夜影孤星"
+     * });*/
 
     set_name(HIW "孤星面具" NOR, ({ "guxing mianju", "guxing", "mianju" }) );
     set_weight(100);

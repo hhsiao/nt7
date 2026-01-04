@@ -4,79 +4,75 @@ int do_eat(string);
 int do_name(string);
 void setup(){}
 
-void init()
-{
-        add_action("do_eat", "eat");
-        add_action("do_name", "name");
+void init() {
+    add_action("do_eat", "eat");
+    add_action("do_name", "name");
 }
 
-void create()
-{
-        set_name(HIB "還魂丹" NOR, ({ "huanhun dan", "compensation dan", "dan" }));
-        set("unit", "粒");
-                set("long", "這是一粒非常奇異的藥丸，據說一吃就死，但也或許有某些奇效。\n");
-        setup();
+void create() {
+    set_name(HIB "還魂丹" NOR, ({ "huanhun dan", "compensation dan", "dan" }));
+    set("unit", "粒");
+    set("long", "這是一粒非常奇異的藥丸，據說一吃就死，但也或許有某些奇效。\n");
+    setup();
 }
 
-int do_eat(string arg)
-{
-        int i,level;
-        mixed exp, pot, mar;
-        object me;
-        mapping skill_status;
-        string *sname;
+int do_eat(string arg) {
+    int i, level;
+    mixed exp, pot, mar;
+    object me;
+    mapping skill_status;
+    string *sname;
 
-        me = this_player();
-        skill_status = me->query_skillc();
+    me = this_player();
+    skill_status = me->query_skillc();
 
-        if (! id(arg))
-                return notify_fail("你要吃什麼？\n");
+    if (! id(arg))
+        return notify_fail("你要吃什麼？\n");
 
-        if (! living(me))
-                return notify_fail("什麼？\n");
+    if (! living(me))
+        return notify_fail("什麼？\n");
 
-        if( !query("me_id") || query("me_id") != query("id", me) )
-                return notify_fail("你用力朝一吃就死丹一口咬下去，“哎呀！”燙得趕緊吐出來，嘴裡起了一圈泡！\n");
+    if(!query("me_id") || query("me_id") != query("id", me) )
+        return notify_fail("你用力朝一吃就死丹一口咬下去，“哎呀！”燙得趕緊吐出來，嘴裡起了一圈泡！\n");
 
-        sname = keys(skill_status);
-        for(i = 0; i < sizeof(skill_status); i++)
-        {
-                level = skill_status[sname[i]] + 1;
-                me->set_skill(sname[i], level);
-        }
+    sname = keys(skill_status);
+    for(i = 0; i < sizeof(skill_status); i++)
+    {
+        level = skill_status[sname[i]] + 1;
+        me->set_skill(sname[i], level);
+    }
 
-        exp=query("combat/last_dieexp", me);
-        pot=query("potential", me)-query("learned_points", me);
-        mar=query("experience", me)-query("learned_experience", me);
-        addn("combat_exp", exp, me);
-        addn("potential", pot, me);
-        addn("experience", mar, me);
-        addn("max_neili", 20, me);
-        addn("combat/dietimes", -1, me);
-        me->save();
-        log_file("static/eat_dan",
-                 sprintf("(%s)%s(%s)服用一吃就死丹一次\n",
-                         ctime(time()),me->name(),query("id", me)));
+    exp = query("combat/last_dieexp", me);
+    pot = query("potential", me) - query("learned_points", me);
+    mar = query("experience", me) - query("learned_experience", me);
+    addn("combat_exp", exp, me);
+    addn("potential", pot, me);
+    addn("experience", mar, me);
+    addn("max_neili", 20, me);
+    addn("combat/dietimes", -1, me);
+    me->save();
+    log_file("static/eat_dan",
+        sprintf("(%s)%s(%s)服用一吃就死丹一次\n",
+            ctime(time()), me->name(), query("id", me)));
 
-        message_vision(HIB "只見$N" HIB "渾身一顫，七竅都冒出藍煙來。\n", me);
+    message_vision(HIB "只見$N" HIB "渾身一顫，七竅都冒出藍煙來。\n", me);
 
-        write("你失去的技能、潛能和經驗被神力恢復回來了。\n");
-        destruct(this_object());
-        return 1;
+    write("你失去的技能、潛能和經驗被神力恢復回來了。\n");
+    destruct(this_object());
+    return 1;
 }
 
-int do_name(string arg)
-{
-        object me;
+int do_name(string arg) {
+    object me;
 
-        me = this_player();
+    me = this_player();
 
-        if (! wizardp(me)) return 0;
+    if (! wizardp(me)) return 0;
 
-        if (! arg) return notify_fail("name id!\n");
+    if (! arg) return notify_fail("name id!\n");
 
-        set("me_id", arg);
+    set("me_id", arg);
 
-        write("這粒一吃就死丹被設為" + arg + "專用的，別人無法吃！\n");
-        return 1;
+    write("這粒一吃就死丹被設為" + arg + "專用的，別人無法吃！\n");
+    return 1;
 }

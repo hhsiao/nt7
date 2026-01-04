@@ -2,12 +2,11 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIM "瑪瑙" NOR, ({ "ma nao", "ma", "nao" }));
-        set_weight(1000);
-        set("long", HIM "這是一塊上等瑪瑙，相信可以"
-                            "賣個好價錢。\n");
-                set("value", 120000);
-                set("unit", "塊");
+void create() {
+    set_name(HIM "瑪瑙" NOR, ({ "ma nao", "ma", "nao" }));
+    set_weight(1000);
+    set("long", HIM "這是一塊上等瑪瑙，相信可以"
+        "賣個好價錢。\n");
+    set("value", 120000);
+    set("unit", "塊");
 }

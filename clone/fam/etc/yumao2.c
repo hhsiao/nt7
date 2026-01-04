@@ -3,18 +3,16 @@
 
 inherit HEAD;
 
-void create()
-{
-        set_name(HIR "鳳凰羽毛" NOR, ({ "fenghuang feather", "feather", "fenghuang" }));
-        set_weight(100);
-        set("long", HIR "一根鳳凰身上的羽毛，呈火紅色。\n" NOR);
+void create() {
+    set_name(HIR "鳳凰羽毛" NOR, ({ "fenghuang feather", "feather", "fenghuang" }));
+    set_weight(100);
+    set("long", HIR "一根鳳凰身上的羽毛，呈火紅色。\n" NOR);
 
-                set("unit", "根");
-                set("value", 10000);
-        setup();
+    set("unit", "根");
+    set("value", 10000);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

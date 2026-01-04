@@ -3,11 +3,10 @@ inherit ITEM;
 
 int is_bag() { return 1; }
 
-void create()
-{
-        set_name(NOR + WHT "包裹" NOR, ({ "bag" }));
-        set("unit", "個");
-                set("long", "這是一個包裹。\n");
-                set("value", 0);
-        setup();
+void create() {
+    set_name(NOR + WHT "包裹" NOR, ({ "bag" }));
+    set("unit", "個");
+    set("long", "這是一個包裹。\n");
+    set("value", 0);
+    setup();
 }

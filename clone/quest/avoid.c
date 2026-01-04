@@ -9,10 +9,9 @@ inherit QUEST_OB;
 #define ZONE            my["zone"]      // 接收對象所處的區域
 
 // 任務對象創建
-void create()
-{
-        seteuid(getuid());
-        setup();
+void create() {
+    seteuid(getuid());
+    setup();
 }
 
 // 這是提示信息任務：凡是啟動了這個任務，那麼玩家詢問的話就
@@ -25,86 +24,80 @@ void create()
 // 在調用這個初始化的函數之前，調用者必須先處理好所有需要散
 // 布的消息，這通過設置/rumor這個映射對象來實現。比如需要散
 // 布“位置”這個消息，就需要設置“/rumor/位置”為位置消息。
-void init_quest(string quest_name, object env)
-{
-        mapping my;
-        string zone;
+void init_quest(string quest_name, object env) {
+    mapping my;
+    string zone;
 
-        my = query_entire_dbase();
+    my = query_entire_dbase();
 
-        // 生成任務的名字
-        set_name(quest_name);
+    // 生成任務的名字
+    set_name(quest_name);
 
-        // 檢索場景
-        if (objectp(env))
-        {
-                zone = base_name(env);
-                if (sscanf(zone, "/d/%s/%*s", zone) == 2)
-                        zone = "/d/" + zone + "/";
-                else
-                        zone = "/";
-        } else
-                zone = "/";
-        ZONE = zone;
+    // 檢索場景
+    if (objectp(env))
+    {
+        zone = base_name(env);
+        if (sscanf(zone, "/d/%s/%*s", zone) == 2)
+            zone = "/d/" + zone + "/";
+        else
+            zone = "/";
+    } else
+    zone = "/";
+    ZONE = zone;
 
-        // 切換到正常狀態
-        change_status(QUEST_READY);
+    // 切換到正常狀態
+    change_status(QUEST_READY);
 
-        // 設置任務最長存活時間：60分鐘
-        set("live_time", 540);
+    // 設置任務最長存活時間：60分鐘
+    set("live_time", 540);
 
-        // 登記謠言消息
-        register_information();
+    // 登記謠言消息
+    register_information();
 }
 
 // 任務介紹
-string query_introduce(object knower)
-{
-        return query("introduce");
+string query_introduce(object knower) {
+    return query("introduce");
 }
 
 // 登記該任務的消息
-void register_information()
-{
-        mapping my = query_entire_dbase();
-        mapping rumor;
-        string  key;
+void register_information() {
+    mapping my = query_entire_dbase();
+    mapping rumor;
+    string key;
 
-        if (! clonep() || ! mapp(my))
-                // 不是任務，所以不登記
-                return;
+    if (! clonep() || ! mapp(my))
+    // 不是任務，所以不登記
+    return;
 
-        if (! mapp(rumor = query("rumor")))
-                // 沒有可以散佈的消息
-                return;
+    if (! mapp(rumor = query("rumor")))
+    // 沒有可以散佈的消息
+    return;
 
-        // 登記所有可以散佈的消息
-        foreach (key in keys(rumor))
-        {
-                if (! stringp(key))
-                        continue;
+    // 登記所有可以散佈的消息
+    foreach (key in keys(rumor))
+    {
+        if (! stringp(key))
+            continue;
 
-                set_information(key, rumor[key]);
-        }
+        set_information(key, rumor[key]);
+    }
 }
 
 // 這個任務可以被某人散佈嗎？
-int can_know_by(object knower)
-{
-        mapping my = query_entire_dbase();
-        string fname;
+int can_know_by(object knower) {
+    string fname;
 
-        fname = file_name(environment(knower));
-        if (! stringp(ZONE) || strlen(ZONE) < 1 ||
-            ZONE == fname[0..strlen(ZONE) - 1])
-                // 和小二在同一個區域
-                return 1;
+    fname = file_name(environment(knower));
+    if (! stringp(ZONE) || strlen(ZONE) < 1 ||
+        ZONE == fname[0..strlen(ZONE) - 1])
+    // 和小二在同一個區域
+    return 1;
 
-        return 0;
+    return 0;
 }
 
 // 不能被散佈
-int can_rumor_by()
-{
-        return 0;
+int can_rumor_by() {
+    return 0;
 }

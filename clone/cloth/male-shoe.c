@@ -7,29 +7,28 @@
 inherit BOOTS;
 
 string* shoename = ({
-        "布鞋",
-        "皮靴",
+    "布鞋",
+    "皮靴"
 });
 string* shoeid = ({
-        "cloth shoes",
-        "skin shoes",
+    "cloth shoes",
+    "skin shoes"
 });
 string* shoelong = ({
-        "這是一雙很普通的粗布鞋。\n",
-        "這是一雙用上好牛皮作的皮靴。\n",
+    "這是一雙很普通的粗布鞋。\n",
+    "這是一雙用上好牛皮作的皮靴。\n"
 });
 
-void create()
-{
-        int i = random(sizeof(shoename));
+void create() {
+    int i = random(sizeof(shoename));
 
-        set_name(shoename[i], ({ shoeid[i], "shoe" }));
-        set_weight(900);
-        set("long", shoelong[i]);
-        set("material", "cloth");
-                set("unit", "雙");
-        //        set("long", shoelong[i]);
-                set("value", 0);
-                set("armor_prop/armor", 1 );
-        setup();
+    set_name(shoename[i], ({ shoeid[i], "shoe" }));
+    set_weight(900);
+    set("long", shoelong[i]);
+    set("material", "cloth");
+    set("unit", "雙");
+    //        set("long", shoelong[i]);
+    set("value", 0);
+    set("armor_prop/armor", 1 );
+    setup();
 }

@@ -20,7 +20,7 @@ int do_effect(object me) {
 
     message_vision(WHT "$N" WHT "一仰脖，吞下了一" +
         query("base_unit") + name() + WHT
-            "。\n" NOR, me);
+        "。\n" NOR, me);
 
     if(query("gift/clearcount", me) >= 3 )
     {

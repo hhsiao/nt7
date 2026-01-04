@@ -5,14 +5,13 @@
 
 inherit ARMOR;
 
-void create()
-{
-        set_name("獸骨甲", ({"shougu jia","shougujia","jia","armor"}));
-        set_weight(8000);
-        set("unit", "件");
-        set("long", "一件獸骨甲。\n");
-                set("value", 2500);
-                set("material", "bone");
-                set("armor_prop/armor", 35);
-        setup();
+void create() {
+    set_name("獸骨甲", ({"shougu jia", "shougujia", "jia", "armor"}));
+    set_weight(8000);
+    set("unit", "件");
+    set("long", "一件獸骨甲。\n");
+    set("value", 2500);
+    set("material", "bone");
+    set("armor_prop/armor", 35);
+    setup();
 }

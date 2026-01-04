@@ -5,20 +5,18 @@
 
 inherit HANDS;
 
-void create()
-{
-        set_name(HIW "鐵手套" NOR, ({ "tie shoutao2", "tie", "shoutao2" }) );
-        set_weight(500);
-        set("unit", "雙");
-                set("long", HIW "這是一雙鋼鐵鑄造的手套，上面似乎有硬物刻過的痕跡。\n" NOR);
-                set("value", 350000);
-                set("material", "tie");
-                set("armor_prop/armor", 200);
-                set("armor_prop/unarmed_damage", 400);
-        setup();
+void create() {
+    set_name(HIW "鐵手套" NOR, ({ "tie shoutao2", "tie", "shoutao2" }) );
+    set_weight(500);
+    set("unit", "雙");
+    set("long", HIW "這是一雙鋼鐵鑄造的手套，上面似乎有硬物刻過的痕跡。\n" NOR);
+    set("value", 350000);
+    set("material", "tie");
+    set("armor_prop/armor", 200);
+    set("armor_prop/unarmed_damage", 400);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

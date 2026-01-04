@@ -4,14 +4,13 @@
 #include <weapon.h>
 inherit STAFF;
 
-void create()
-{
-         set_name("樹幹", ({ "shugan", "staff" }) );
-         set_weight(1000);
-         set("unit", "根");
-                 set("material", "wood");
-                 set("long", "這是一根粗長的樹枝。\n");
-                 set("weapon_prop/courage", -4);
-         init_staff(5);
-         setup();
+void create() {
+    set_name("樹幹", ({ "shugan", "staff" }) );
+    set_weight(1000);
+    set("unit", "根");
+    set("material", "wood");
+    set("long", "這是一根粗長的樹枝。\n");
+    set("weapon_prop/courage", -4);
+    init_staff(5);
+    setup();
 }

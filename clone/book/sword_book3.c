@@ -3,20 +3,19 @@
 #include <ansi.h>
 inherit ITEM;
 
-void create()
-{
-        set_name(HIW"雪山劍譜"NOR, ({ "swordbook","book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long","這是一本凌霄城的劍法秘籍，封面上寫著四個字“雪山劍法”。\n");
-                set("value", 1000);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "xueshan-sword",
-                        "exp_required": 10000,
-                        "jing_cost" :   30,
-                        "difficulty":   30,
-                        "max_skill":    100,
-                        "min_skill":    0
-                ]) );
+void create() {
+    set_name(HIW"雪山劍譜"NOR, ({ "swordbook", "book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long", "這是一本凌霄城的劍法秘籍，封面上寫著四個字“雪山劍法”。\n");
+    set("value", 1000);
+    set("material", "paper");
+    set("skill", ([
+        "name": "xueshan-sword",
+        "exp_required": 10000,
+        "jing_cost": 30,
+        "difficulty": 30,
+        "max_skill": 100,
+        "min_skill": 0
+        ]) );
 }

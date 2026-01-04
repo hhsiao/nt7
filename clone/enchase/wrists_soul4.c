@@ -3,20 +3,18 @@
 
 inherit EQUIP_SOUL;
 
-void create()
-{
-        set_name(HIM "護腕之魂" NOR, ({"wrists soul4", "wrists", "soul4"}));
-        set_weight(100);
+void create() {
+    set_name(HIM "護腕之魂" NOR, ({"wrists soul4", "wrists", "soul4"}));
+    set_weight(100);
 
-        set("long", HIM "這是一個護腕之魂。\n" NOR);
-        set("unit", "個");
-        set("value", 200000);
-        set("no_sell", 1);
+    set("long", HIM "這是一個護腕之魂。\n" NOR);
+    set("unit", "個");
+    set("value", 200000);
+    set("no_sell", 1);
 
-        set("type", "wrists");
-        set("status", 4);
-        set("auto_load", 1);
-        
-        setup();
+    set("type", "wrists");
+    set("status", 4);
+    set("auto_load", 1);
+
+    setup();
 }
-

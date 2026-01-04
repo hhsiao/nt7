@@ -6,13 +6,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-   set_name("五香花生", ({"huasheng", "peanut"}));
-   set_weight(60);
-   set("long", "一碟香噴噴的花生米。\n");
-     set("unit", "碟");
-     set("value", 20);
-     set("food_remaining", 1);
-     set("food_supply", 30);
+void create() {
+    set_name("五香花生", ({"huasheng", "peanut"}));
+    set_weight(60);
+    set("long", "一碟香噴噴的花生米。\n");
+    set("unit", "碟");
+    set("value", 20);
+    set("food_remaining", 1);
+    set("food_supply", 30);
 }

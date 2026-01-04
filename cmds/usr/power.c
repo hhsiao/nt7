@@ -11,209 +11,208 @@
 inherit F_CLEAN_UP;
 inherit F_SSERVER;
 
-int main(object me, string arg)
-{
-        object ob;
-        string line;
-        int str, damage_bonus;
-        int ap1, ap2, ap3, ap4;
-        int damage1, damage2, damage3, damage4;
-        int pp1, pp2, dp1, dp2;
-        object weapon, weapon2;
-        mapping action, prepare;
-        string *sk;
-        string skill, skill2;
+int main(object me, string arg) {
+    object ob;
+    string line;
+    int str, damage_bonus;
+    int ap1, ap2, ap3, ap4;
+    int damage1, damage2, damage3, damage4;
+    int pp1, pp2, dp1, dp2;
+    object weapon, weapon2;
+    mapping action, prepare;
+    string *sk;
+    string skill, skill2;
 
-        if( !wizardp(me) && time()-query_temp("last_power", me)<5 )
-                return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
+    if(!wizardp(me) && time() - query_temp("last_power", me)<5 )
+        return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
 
-        set_temp("last_power", time(), me);
-        MYGIFT_D->check_mygift(me, "newbie_mygift/power");
+    set_temp("last_power", time(), me);
+    MYGIFT_D->check_mygift(me, "newbie_mygift/power");
 
-        if( arg && wizardp(me) )
+    if(arg && wizardp(me) )
+    {
+        ob = present(arg, environment(me));
+        if (!ob) ob = find_player(arg);
+        if (!ob) ob = find_living(arg);
+        if (!ob) return notify_fail("你要察看誰的狀態？\n");
+    } else
+    ob = me;
+
+    if(objectp(weapon = query_temp("weapon", ob)) )
+    {
+        skill = query("skill_type", weapon);
+        ap1 = COMBAT_D->skill_power(ob, skill, SKILL_USAGE_ATTACK);
+        ap2 = attack_power(ob, skill);
+        if (objectp(weapon2 = query_temp("secondary_weapon", ob)) )
         {
-                ob = present(arg, environment(me));
-                if (!ob) ob = find_player(arg);
-                if (!ob) ob = find_living(arg);
-                if (!ob) return notify_fail("你要察看誰的狀態？\n");
-        } else
-                ob = me;
-
-        if( objectp(weapon = query_temp("weapon", ob)) )
-        {
-                skill = query("skill_type", weapon);
-                ap1 = COMBAT_D->skill_power(ob, skill, SKILL_USAGE_ATTACK);
-                ap2 = attack_power(ob, skill);
-                if ( objectp(weapon2 = query_temp("secondary_weapon", ob)) )
-                {
-                        skill2 = query("skill_type", weapon2);
-                        ap3 = COMBAT_D->skill_power(ob, skill2, SKILL_USAGE_ATTACK);
-                        ap4 = attack_power(ob, skill2);
-                }
-                else
-                {
-                        // 左手是空手
-                        prepare = ob->query_skill_prepare();
-                        if( !prepare ) prepare = ([]);
-                        sk = keys(prepare);
-
-                        if( sizeof(sk) ) skill2 = sk[0];
-                        else skill2 = "unarmed";
-                        ap3 = COMBAT_D->skill_power(ob, skill2, SKILL_USAGE_ATTACK);
-                        ap4 = attack_power(ob, skill2);
-                }
-        } else
-        {
-                prepare = ob->query_skill_prepare();
-
-                if( !prepare ) prepare = ([]);
-                sk = keys(prepare);
-
-                if( sizeof(sk) == 0 )
-                        skill = "unarmed";
-                else
-                {
-                        skill  = sk[0];
-                        if( sizeof(sk) > 1 ) skill2 = sk[1];
-                        else skill2 = "unarmed";
-                }
-                ap1 = COMBAT_D->skill_power(ob, skill, SKILL_USAGE_ATTACK);
-                ap2 = attack_power(ob, skill);
-                if( skill2 )
-                {
-                        ap3 = COMBAT_D->skill_power(ob, skill2, SKILL_USAGE_ATTACK);
-                        ap4 = attack_power(ob, skill2);
-                }
-        }
-
-        pp1 = COMBAT_D->skill_power(ob, "parry", SKILL_USAGE_DEFENSE);
-        dp1 = COMBAT_D->skill_power(ob, "dodge", SKILL_USAGE_DEFENSE);
-        pp2 = defense_power(ob, "parry");
-        dp2 = defense_power(ob, "dodge");
-
-        // 傷害等級
-        if( weapon )
-        {
-                damage1 = ob->query_all_buff("damage");
-                damage1 += ob->query_skill(skill, 1);
-
-                damage2 = damage_power(ob, skill)+ob->query_all_buff("damage");
-                if( skill2 )
-                {
-                        if( weapon2 )
-                        {
-                                damage3 = ob->query_all_buff("damage");
-                                damage3 += ob->query_skill(skill2, 1);
-                                damage4 = damage_power(ob, skill2)+ob->query_all_buff("damage");
-                        }
-                        else
-                        {
-                                damage3 = ob->query_all_buff("unarmed_damage");
-                                damage3 += ob->query_skill(skill2, 1);
-                                damage4 = damage_power(ob, skill2)+ob->query_all_buff("unarmed_damage");
-                        }
-                }
-
+            skill2 = query("skill_type", weapon2);
+            ap3 = COMBAT_D->skill_power(ob, skill2, SKILL_USAGE_ATTACK);
+            ap4 = attack_power(ob, skill2);
         }
         else
         {
-                damage1 = ob->query_all_buff("unarmed_damage");
-                damage1 += ob->query_skill(skill, 1);
+            // 左手是空手
+            prepare = ob->query_skill_prepare();
+            if(!prepare ) prepare = ([]);
+            sk = keys(prepare);
 
-                damage2 = damage_power(ob, skill)+ob->query_all_buff("unarmed_damage");;
-                if( skill2 )
-                {
-                        damage3 = ob->query_all_buff("unarmed_damage");
-                        damage3 += ob->query_skill(skill2, 1);
-                        damage4 = damage_power(ob, skill2)+ob->query_all_buff("unarmed_damage");
-                }
+            if(sizeof(sk) ) skill2 = sk[0];
+            else skill2 = "unarmed";
+            ap3 = COMBAT_D->skill_power(ob, skill2, SKILL_USAGE_ATTACK);
+            ap4 = attack_power(ob, skill2);
         }
+    } else
+    {
+        prepare = ob->query_skill_prepare();
 
-        damage1 += query("jiali", ob);
-        damage1 += damage1 / 10 * query("str", ob);
-        damage3 += query("jiali", ob);
-        damage3 += damage3 / 10 * query("str", ob);
+        if(!prepare ) prepare = ([]);
+        sk = keys(prepare);
 
-        action = ob->query_action();
-        if( mapp(action) && action["damage"] )
+        if(sizeof(sk) == 0 )
+            skill = "unarmed";
+        else
         {
-                damage1 += action["damage"] * damage1 / 100;
-                damage3 += action["damage"] * damage3 / 100;
+            skill = sk[0];
+            if(sizeof(sk) > 1 ) skill2 = sk[1];
+            else skill2 = "unarmed";
         }
-
-        if( query("character", ob) == "心狠手辣" )
+        ap1 = COMBAT_D->skill_power(ob, skill, SKILL_USAGE_ATTACK);
+        ap2 = attack_power(ob, skill);
+        if(skill2 )
         {
-                damage1 += damage1 * 20 / 100;
-                damage3 += damage3 * 20 / 100;
+            ap3 = COMBAT_D->skill_power(ob, skill2, SKILL_USAGE_ATTACK);
+            ap4 = attack_power(ob, skill2);
         }
+    }
 
-        if( query("breakup", ob) )
+    pp1 = COMBAT_D->skill_power(ob, "parry", SKILL_USAGE_DEFENSE);
+    dp1 = COMBAT_D->skill_power(ob, "dodge", SKILL_USAGE_DEFENSE);
+    pp2 = defense_power(ob, "parry");
+    dp2 = defense_power(ob, "dodge");
+
+    // 傷害等級
+    if(weapon )
+    {
+        damage1 = ob->query_all_buff("damage");
+        damage1 += ob->query_skill(skill, 1);
+
+        damage2 = damage_power(ob, skill) + ob->query_all_buff("damage");
+        if(skill2 )
         {
-                damage1 += damage1 * 10 / 100;
-                damage2 += damage2 * 10 / 100;
-                damage3 += damage3 * 10 / 100;
-                damage4 += damage4 * 10 / 100;
+            if(weapon2 )
+            {
+                damage3 = ob->query_all_buff("damage");
+                damage3 += ob->query_skill(skill2, 1);
+                damage4 = damage_power(ob, skill2) + ob->query_all_buff("damage");
+            }
+            else
+            {
+                damage3 = ob->query_all_buff("unarmed_damage");
+                damage3 += ob->query_skill(skill2, 1);
+                damage4 = damage_power(ob, skill2) + ob->query_all_buff("unarmed_damage");
+            }
         }
 
-        // 元神加成
-        if( query("yuanshen_level", ob) )
+    }
+    else
+    {
+        damage1 = ob->query_all_buff("unarmed_damage");
+        damage1 += ob->query_skill(skill, 1);
+
+        damage2 = damage_power(ob, skill) + ob->query_all_buff("unarmed_damage");;
+        if(skill2 )
         {
-                damage1 += damage1 * query("yuanshen_level", ob) / 100;
-                damage2 += damage2 * query("yuanshen_level", ob) / 100;
-                damage3 += damage3 * query("yuanshen_level", ob) / 100;
-                damage4 += damage4 * query("yuanshen_level", ob) / 100;
+            damage3 = ob->query_all_buff("unarmed_damage");
+            damage3 += ob->query_skill(skill2, 1);
+            damage4 = damage_power(ob, skill2) + ob->query_all_buff("unarmed_damage");
         }
+    }
 
-        str = ob->query_str();
+    damage1 += query("jiali", ob);
+    damage1 += damage1 / 10 * query("str", ob);
+    damage3 += query("jiali", ob);
+    damage3 += damage3 / 10 * query("str", ob);
 
-        damage_bonus = str;
-        if( mapp(action) && action["force"] )
-                damage_bonus += action["force"] * damage_bonus / 100;
+    action = ob->query_action();
+    if(mapp(action) && action["damage"] )
+    {
+        damage1 += action["damage"] * damage1 / 100;
+        damage3 += action["damage"] * damage3 / 100;
+    }
 
-        damage1 += damage_bonus;
-        damage3 += damage_bonus;
+    if(query("character", ob) == "心狠手辣" )
+    {
+        damage1 += damage1 * 20 / 100;
+        damage3 += damage3 * 20 / 100;
+    }
 
-        damage2 += damage2 / 30 * query("str", me);
-        damage4 += damage4 / 30 * query("str", me);
-        damage2 += damage2 / 300 * str;
-        damage4 += damage4 / 300 * str;
+    if(query("breakup", ob) )
+    {
+        damage1 += damage1 * 10 / 100;
+        damage2 += damage2 * 10 / 100;
+        damage3 += damage3 * 10 / 100;
+        damage4 += damage4 * 10 / 100;
+    }
+
+    // 元神加成
+    if(query("yuanshen_level", ob) )
+    {
+        damage1 += damage1 * query("yuanshen_level", ob) / 100;
+        damage2 += damage2 * query("yuanshen_level", ob) / 100;
+        damage3 += damage3 * query("yuanshen_level", ob) / 100;
+        damage4 += damage4 * query("yuanshen_level", ob) / 100;
+    }
+
+    str = ob->query_str();
+
+    damage_bonus = str;
+    if(mapp(action) && action["force"] )
+        damage_bonus += action["force"] * damage_bonus / 100;
+
+    damage1 += damage_bonus;
+    damage3 += damage_bonus;
+
+    damage2 += damage2 / 30 * query("str", me);
+    damage4 += damage4 / 30 * query("str", me);
+    damage2 += damage2 / 300 * str;
+    damage4 += damage4 / 300 * str;
 
 
-        line = HIY "\n"+(ob == me ? "你" : ob->name())+"的戰鬥屬性如下\n" NOR;
-        line += LINE;
-        line += LINE2;
-        line += "\n";
-        line += sprintf(NOR + WHT "右手攻擊：%-20d左手攻擊：%d\n" NOR,
-                        ap1, ap3);
+    line = HIY "\n"+(ob == me ? "你" : ob->name()) + "的戰鬥屬性如下\n" NOR;
+    line += LINE;
+    line += LINE2;
+    line += "\n";
+    line += sprintf(NOR + WHT "右手攻擊：%-20d左手攻擊：%d\n" NOR,
+        ap1, ap3);
 
-        line += sprintf(NOR + WHT "右手傷害：%-20d左手傷害：%d\n" WHT,
-                        damage1, damage3);
+    line += sprintf(NOR + WHT "右手傷害：%-20d左手傷害：%d\n" WHT,
+        damage1, damage3);
 
-        line += sprintf(NOR + WHT "招架防禦：%-20d躲閃防禦：%d\n" WHT,
-                        pp1, dp1);
+    line += sprintf(NOR + WHT "招架防禦：%-20d躲閃防禦：%d\n" WHT,
+        pp1, dp1);
 
-        line += "\n";
-        line += LINE;
-        line += LINE3;
-        line += "\n";
+    line += "\n";
+    line += LINE;
+    line += LINE3;
+    line += "\n";
 
-        ap2 *= 10000;
-        ap4 *= 10000;
-        pp2 *= 10000;
-        dp2 *= 10000;
-        line += sprintf(NOR + WHT "右手攻擊：%-20d左手攻擊：%d\n" NOR,
-                        ap2, ap4);
+    ap2 *= 10000;
+    ap4 *= 10000;
+    pp2 *= 10000;
+    dp2 *= 10000;
+    line += sprintf(NOR + WHT "右手攻擊：%-20d左手攻擊：%d\n" NOR,
+        ap2, ap4);
 
-        line += sprintf(NOR + WHT "右手傷害：%-20d左手傷害：%d\n" WHT,
-                        damage2, damage4);
+    line += sprintf(NOR + WHT "右手傷害：%-20d左手傷害：%d\n" WHT,
+        damage2, damage4);
 
-        line += sprintf(NOR + WHT "招架防禦：%-20d躲閃防禦：%d\n" WHT,
-                        pp2, dp2);
+    line += sprintf(NOR + WHT "招架防禦：%-20d躲閃防禦：%d\n" WHT,
+        pp2, dp2);
 
-        line += "\n";
-        line += LINE;
+    line += "\n";
+    line += LINE;
 
-        write(line);
+    write(line);
 
-        return 1;
+    return 1;
 }

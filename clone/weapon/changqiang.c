@@ -3,17 +3,16 @@
 #include <weapon.h>
 inherit SPEAR;
 
-void create()
-{
-        set_name("長槍", ({ "changqiang" }));
-        set_weight(5000);
-        set("unit", "杆");
-                set("long", "這是一根白纓長鋼槍，長可丈二，槍頭隱隱透出寒光。\n");
-                set("value", 1500);
-                set("rigidity",100);
-                set("material", "steel");
-                set("wield_msg", "$N掣出一杆$n握在手中。\n");
-                set("unwield_msg", "$N將手中的$n反別身後。\n");
-          init_spear(25);
-        setup();
+void create() {
+    set_name("長槍", ({ "changqiang" }));
+    set_weight(5000);
+    set("unit", "杆");
+    set("long", "這是一根白纓長鋼槍，長可丈二，槍頭隱隱透出寒光。\n");
+    set("value", 1500);
+    set("rigidity", 100);
+    set("material", "steel");
+    set("wield_msg", "$N掣出一杆$n握在手中。\n");
+    set("unwield_msg", "$N將手中的$n反別身後。\n");
+    init_spear(25);
+    setup();
 }

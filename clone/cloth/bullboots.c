@@ -4,14 +4,13 @@
 #include <armor.h>
 inherit BOOTS;
 
-void create()
-{
-        set_name("牛皮靴", ({"niupi xue", "leather boots", "boots"}));
-        set_weight(700);
-        set("unit", "雙");
-                set("long","一雙皮靴，上等牛皮製成。\n");
-                set("value", 400);
-                set("material", "cloth");
-                set("armor_prop/armor", 3);
-        setup();
+void create() {
+    set_name("牛皮靴", ({"niupi xue", "leather boots", "boots"}));
+    set_weight(700);
+    set("unit", "雙");
+    set("long", "一雙皮靴，上等牛皮製成。\n");
+    set("value", 400);
+    set("material", "cloth");
+    set("armor_prop/armor", 3);
+    setup();
 }

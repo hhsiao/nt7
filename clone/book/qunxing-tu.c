@@ -1,20 +1,19 @@
 // qunxing-tu.c
 inherit ITEM;
 
-void create()
-{
-        set_name("群星璀璨圖", ({ "qunxing tu" ,"tu" ,"book"}));
-        set_weight(600);
-        set("unit", "本");
-                set("long", "這是一本描寫著天上群星運動的書。\n"
-                        "但似乎並沒有那麼簡單。\n");
-                set("value", 1000);
-                set("material", "paper");
-                set("skill", ([
-                        "name":  "array",               // name of the skill
-                        "exp_required":  100,
-                        "jing_cost":  10,
-                        "difficulty":  20,                          // the base int to learn this skill
-                        "max_skill":  1000
-                ]) );
+void create() {
+    set_name("群星璀璨圖", ({ "qunxing tu" , "tu" , "book"}));
+    set_weight(600);
+    set("unit", "本");
+    set("long", "這是一本描寫著天上群星運動的書。\n"
+        "但似乎並沒有那麼簡單。\n");
+    set("value", 1000);
+    set("material", "paper");
+    set("skill", ([
+        "name": "array",    // name of the skill
+        "exp_required": 100,
+        "jing_cost": 10,
+        "difficulty": 20,   // the base int to learn this skill
+        "max_skill": 1000
+        ]) );
 }

@@ -15,53 +15,51 @@ string* _tp = ({ "苦", "鹹", "酸", "辛", "甘" });
 string* _op = ({ "寒", "涼", "平", "溫", "熱" });
 string* _xp = ({ "無", "有" });
 
-void create()
-{
-        set_name("藥材物件", ({ "herb", "object" }));
+void create() {
+    set_name("藥材物件", ({ "herb", "object" }));
 
-        setup();
+    setup();
 }
 
-int initialize(int id, string name, int *prop)
-{
-        mapping rt;
+int initialize(int id, string name, int *prop) {
+    mapping rt;
 
-        tp = prop[0];
-        op = prop[1];
-        xp = prop[2];
+    tp = prop[0];
+    op = prop[1];
+    xp = prop[2];
 
-        s_name = name;
-        eng  = ({ "herb" });
-        unit = "份";
-        desc = 0;
+    s_name = name;
+    eng = ({ "herb" });
+    unit = "份";
+    desc = 0;
 
-        rt = PHARMACY_D->query_relation(id);
-        if (mapp(rt))
-        {
-                eng  = rt["eng"];
-                unit = rt["unit"];
-                desc = rt["desc"];
-        }
+    rt = PHARMACY_D->query_relation(id);
+    if (mapp(rt))
+    {
+        eng = rt["eng"];
+        unit = rt["unit"];
+        desc = rt["desc"];
+    }
 
-        set_name(name, ({ eng }));
-        set("unit", unit);
-        set("desc", desc);
-        return 1;
+    set_name(name, ({ eng }));
+    set("unit", unit);
+    set("desc", desc);
+    return 1;
 }
 
-int *prop() { return ({ tp, op ,xp }); }
+int *prop() { return ({ tp, op , xp });
+}
 
-string long()
-{
-        string long;
+string long() {
+    string long;
 
-        long = WHT + s_name + "：\n";
+    long = WHT + s_name + "：\n";
 
-        if (stringp(desc))
-                long += desc + "\n";
+    if (stringp(desc))
+        long += desc + "\n";
 
-        long += "味性：" + _tp[tp] + " 藥性：" + _op[op];
-        long += " 毒性：" + _xp[xp] + "\n" + NOR;
+    long += "味性：" + _tp[tp] + " 藥性：" + _op[op];
+    long += " 毒性：" + _xp[xp] + "\n" + NOR;
 
-        return long;
+    return long;
 }

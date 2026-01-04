@@ -4,16 +4,15 @@
 #include <weapon.h>
 inherit BLADE;
 
-void create()
-{
-        set_name("鍘刀", ({ "zhadao", "blade", "dao" }) );
-        set_weight(3500);
-        set("long", "一把用來鍘草，砍小樹枝的鍘刀。\n");
-                set("unit", "把");
-                set("wield_msg", "$N抽出一柄$n橫握在手中，到也威風凜凜。\n");
-                set("unwield_msg", "$N放下手中$n，難到要立地成佛？\n");
-                set("value", 400);
-                set("material","wood");
-        init_blade(20);
-        setup();
+void create() {
+    set_name("鍘刀", ({ "zhadao", "blade", "dao" }) );
+    set_weight(3500);
+    set("long", "一把用來鍘草，砍小樹枝的鍘刀。\n");
+    set("unit", "把");
+    set("wield_msg", "$N抽出一柄$n橫握在手中，到也威風凜凜。\n");
+    set("unwield_msg", "$N放下手中$n，難到要立地成佛？\n");
+    set("value", 400);
+    set("material", "wood");
+    init_blade(20);
+    setup();
 }

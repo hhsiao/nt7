@@ -3,13 +3,12 @@
 #include <armor.h>
 inherit BOOTS;
 
-void create()
-{
-        set_name("絲鞋", ({ "si xie", "shoes"}) );
-        set_weight(1200);
-        set("value",300);
-                set("unit", "雙");
-                set("material", "cloth");
-                set("armor_prop/armor", 2);
-        setup();
+void create() {
+    set_name("絲鞋", ({ "si xie", "shoes" }) );
+    set_weight(1200);
+    set("value", 300);
+    set("unit", "雙");
+    set("material", "cloth");
+    set("armor_prop/armor", 2);
+    setup();
 }

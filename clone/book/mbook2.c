@@ -1,20 +1,19 @@
 #include <ansi.h>
 inherit BOOK;
 
-void create()
-{
-        set_name(YEL "「黃帝內經」" NOR, ({ "medical book2", "medical", "book2" }));
-        set_weight(500);
-        set("unit", "本");
-                set("long", YEL "黃帝內經乃是民間流傳甚廣的醫書。\n" NOR);
-                set("value", 10000);
-                set("material", "paper");
-                set("skill",
-                ([
-                        "name" : "medical",
-                        "jing_cost"  : 25,
-                        "difficulty" : 30,
-                        "max_skill"  : 49,
-                        "min_skill"  : 30,
-                ]) );
+void create() {
+    set_name(YEL "「黃帝內經」" NOR, ({ "medical book2", "medical", "book2" }));
+    set_weight(500);
+    set("unit", "本");
+    set("long", YEL "黃帝內經乃是民間流傳甚廣的醫書。\n" NOR);
+    set("value", 10000);
+    set("material", "paper");
+    set("skill",
+        ([
+            "name": "medical",
+            "jing_cost": 25,
+            "difficulty": 30,
+            "max_skill": 49,
+            "min_skill": 30
+            ]) );
 }

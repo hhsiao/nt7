@@ -3,19 +3,17 @@
 
 inherit NECK;
 
-void create()
-{
-        set_name(HIC "海之心" NOR, ({ "haizhi xin3", "haizhi", "xin3" }));
-        set_weight(500);
-        set("unit", "串");
-                set("value", 200000);
-                set("material", "gold");
-                set("armor_prop/damage", 200);
-                set("armor_prop/str", 5);
-        setup();
+void create() {
+    set_name(HIC "海之心" NOR, ({ "haizhi xin3", "haizhi", "xin3" }));
+    set_weight(500);
+    set("unit", "串");
+    set("value", 200000);
+    set("material", "gold");
+    set("armor_prop/damage", 200);
+    set("armor_prop/str", 5);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

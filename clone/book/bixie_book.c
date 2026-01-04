@@ -2,24 +2,23 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("辟邪劍譜", ({ "bixie_sword_book", "book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long","這是一本辟邪劍譜, 供自我修習辟邪劍法。\n不過這本書並不要求自宮, 真有點怪。\n");
-                set("value", 1000);
-                set("material", "paper");
-                set("skill", ([
-                        "name":        "bixie-sword",                // name of the skill
-                        "exp_required": 10000,                // minimum combat experience required
-                                                                                // to learn this skill.
-                        "sen_cost":     30,                        // gin cost every time study this
-                        "difficulty":   30,                        // the base int to learn this skill
-                                                                                // modify is gin_cost's (difficulty - int)*5%
-                        "max_skill":    100,                // the maximum level you can learn
-                        "min_skill":    0                        // the maximum level you can learn
-                                                                                // from this object.
-                ]) );
+void create() {
+    set_name("辟邪劍譜", ({ "bixie_sword_book", "book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long", "這是一本辟邪劍譜, 供自我修習辟邪劍法。\n不過這本書並不要求自宮, 真有點怪。\n");
+    set("value", 1000);
+    set("material", "paper");
+    set("skill", ([
+        "name": "bixie-sword",  // name of the skill
+        "exp_required": 10000,  // minimum combat experience required
+    // to learn this skill.
+        "sen_cost": 30,     // gin cost every time study this
+        "difficulty": 30,   // the base int to learn this skill
+    // modify is gin_cost's (difficulty - int)*5%
+        "max_skill": 100,   // the maximum level you can learn
+        "min_skill": 0  // the maximum level you can learn
+    // from this object.
+        ]) );
 }
 int query_autoload() { return 1; }

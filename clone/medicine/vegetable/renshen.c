@@ -5,36 +5,33 @@ inherit ITEM;
 void setup()
 {}
 
-void init()
-{
-        add_action("do_eat", "eat");
-        add_action("do_eat", "fu");
+void init() {
+    add_action("do_eat", "eat");
+    add_action("do_eat", "fu");
 }
 
-void create()
-{
-        set_name(HIY"人參"NOR, ({"ren shen", "shen"}));
-                set("unit", "株");
-                set("vegetable", 8);
-                set("nostrum", 32);
-                set("long", "這是一株保存了很久的千年人參。\n");
-                set("value", 10000);
-        set("pour_type", "1");
-        setup();
+void create() {
+    set_name(HIY"人參"NOR, ({"ren shen", "shen"}));
+    set("unit", "株");
+    set("vegetable", 8);
+    set("nostrum", 32);
+    set("long", "這是一株保存了很久的千年人參。\n");
+    set("value", 10000);
+    set("pour_type", "1");
+    setup();
 }
 
-int do_eat(string arg)
-{
-        object me = this_player();
+int do_eat(string arg) {
+    object me = this_player();
 
-        if(!id(arg)) return notify_fail("你要吃什麼？\n");
-        if(!present(this_object(), me))
-                return notify_fail("你要吃什麼？\n");
-        if( me->is_busy() )
-                return notify_fail("別急，慢慢吃，小心別噎著了。\n");
+    if(!id(arg)) return notify_fail("你要吃什麼？\n");
+    if(!present(this_object(), me))
+        return notify_fail("你要吃什麼？\n");
+    if(me->is_busy() )
+        return notify_fail("別急，慢慢吃，小心別噎著了。\n");
 
-        me->receive_curing("qi", 200);
-        message_vision("$N吃下一株人參，頓覺渾身一股熱氣兜底冒了上來！\n",me);
-        destruct(this_object());
-        return 1;
+    me->receive_curing("qi", 200);
+    message_vision("$N吃下一株人參，頓覺渾身一股熱氣兜底冒了上來！\n", me);
+    destruct(this_object());
+    return 1;
 }

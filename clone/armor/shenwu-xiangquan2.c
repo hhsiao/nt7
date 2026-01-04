@@ -5,19 +5,17 @@
 
 inherit NECK;
 
-void create()
-{
-        set_name(HIY "神武項圈" NOR, ({ "shenwu xiangquan2", "shenwu", "xiangquan2" }));
-        set_weight(500);
-        set("unit", "串");
-                set("value", 200000);
-                set("material", "gold");
-                set("armor_prop/armor", 300);
-                set("armor_prop/int", 2);
-        setup();
+void create() {
+    set_name(HIY "神武項圈" NOR, ({ "shenwu xiangquan2", "shenwu", "xiangquan2" }));
+    set_weight(500);
+    set("unit", "串");
+    set("value", 200000);
+    set("material", "gold");
+    set("armor_prop/armor", 300);
+    set("armor_prop/int", 2);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

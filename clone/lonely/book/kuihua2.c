@@ -326,7 +326,7 @@ int do_yanjiu(string arg) {
                 "有所悟。\n" NOR, me);
             tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
                 "袈裟中所記載的辟邪劍法絕技「奪目神劍」的奧"
-                            "秘！\n" NOR + HIC "你學會了「奪目神劍」。\n" NOR);
+                "秘！\n" NOR + HIC "你學會了「奪目神劍」。\n" NOR);
 
             if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
@@ -378,7 +378,7 @@ int do_yanjiu(string arg) {
                 "有所悟。\n" NOR, me);
             tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
                 "袈裟中所記載的辟邪劍法絕技「鬼魅身法」的奧"
-                            "秘！\n" NOR + HIC "你學會了「鬼魅身法」。\n" NOR);
+                "秘！\n" NOR + HIC "你學會了「鬼魅身法」。\n" NOR);
 
             if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
@@ -430,7 +430,7 @@ int do_yanjiu(string arg) {
                 "有所悟。\n" NOR, me);
             tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
                 "袈裟中所記載的辟邪劍法絕技「群邪辟易」的奧"
-                            "秘！\n" NOR + HIC "你學會了「群邪辟易」。\n" NOR);
+                "秘！\n" NOR + HIC "你學會了「群邪辟易」。\n" NOR);
 
             if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);
@@ -482,7 +482,7 @@ int do_yanjiu(string arg) {
                 "有所悟。\n" NOR, me);
             tell_object(me, HIY "過得良久，陡然間你雙目一亮，終於領悟了"
                 "袈裟中所記載的辟邪劍法絕技「破元神劍」的奧"
-                            "秘！\n" NOR + HIC "你學會了「破元神劍」。\n" NOR);
+                "秘！\n" NOR + HIC "你學會了「破元神劍」。\n" NOR);
 
             if (me->can_improve_skill("sword"))
                 me->improve_skill("sword", 1500000);

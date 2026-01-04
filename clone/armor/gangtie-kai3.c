@@ -6,19 +6,17 @@
 
 inherit ARMOR;
 
-void create()
-{
-        set_name(NOR + WHT "鋼鐵鎧" NOR, ({ "gangtie kai3", "gangtie", "kai3" }) );
-        set_weight(30000);
-        set("unit", "件");
-                set("material", "steel");
-                                set("value", 300000);
-                set("armor_prop/armor", 300);
-                                set("armor_prop/parry", 20);
-        setup();
+void create() {
+    set_name(NOR + WHT "鋼鐵鎧" NOR, ({ "gangtie kai3", "gangtie", "kai3" }) );
+    set_weight(30000);
+    set("unit", "件");
+    set("material", "steel");
+    set("value", 300000);
+    set("armor_prop/armor", 300);
+    set("armor_prop/parry", 20);
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

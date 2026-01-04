@@ -4,26 +4,24 @@
 inherit MEDAL2;
 
 
-void create()
-{
-        set_name(HIG "轉世勳章（神劍）" NOR, ({ "shenjian xunzhang", "shenjian", "xunzhang" }));
-        set("long", HIG "轉世後獲得的勳章，上繪神劍刺月圖，閃閃發亮，甚是精緻。\n" NOR);
-        set_weight(500);
-        set("unit", "枚");
-                set("value", 200000);
-                set("material", "bronze");
-                set("armor_prop/damage", 500);
-                set("armor_prop/str", 10);
-                set("armor_prop/scborn", 1);
-                set("armor_prop/sword", "apply_armor() * 3");
-                set("special/desc", HIR "用莫邪聖符升級後可鑲嵌提高有效劍法等級。" NOR);
-                set("limit", ([
-                        "scborn" : 1,
-                ]));
-        setup();
+void create() {
+    set_name(HIG "轉世勳章（神劍）" NOR, ({ "shenjian xunzhang", "shenjian", "xunzhang" }));
+    set("long", HIG "轉世後獲得的勳章，上繪神劍刺月圖，閃閃發亮，甚是精緻。\n" NOR);
+    set_weight(500);
+    set("unit", "枚");
+    set("value", 200000);
+    set("material", "bronze");
+    set("armor_prop/damage", 500);
+    set("armor_prop/str", 10);
+    set("armor_prop/scborn", 1);
+    set("armor_prop/sword", "apply_armor() * 3");
+    set("special/desc", HIR "用莫邪聖符升級後可鑲嵌提高有效劍法等級。" NOR);
+    set("limit", ([
+        "scborn": 1
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

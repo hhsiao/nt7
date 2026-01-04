@@ -7,19 +7,18 @@
 inherit ITEM;
 inherit F_LIQUID;
 
-void create()
-{
-  set_name("羊皮大酒囊", ({"jiunang", "wineskin", "skin"}));
-  set_weight(800);
-  set("long", "一個用來裝羊奶酒的大酒囊，大概裝得十來升的酒。\n");
-     set("unit", "個");
-     set("value", 100);
-     set("max_liquid", 20);
+void create() {
+    set_name("羊皮大酒囊", ({"jiunang", "wineskin", "skin"}));
+    set_weight(800);
+    set("long", "一個用來裝羊奶酒的大酒囊，大概裝得十來升的酒。\n");
+    set("unit", "個");
+    set("value", 100);
+    set("max_liquid", 20);
 
-  set("liquid", ([
+    set("liquid", ([
         "type": "alcohol",
         "name": "羊奶酒",
         "remaining": 20,
-        "drunk_supply": 8,
-      ]));
+        "drunk_supply": 8
+        ]));
 }

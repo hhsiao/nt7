@@ -4,14 +4,13 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIM "幻綵衣" NOR, ({"huan caiyi", "huan", "caiyi"}));
-        set_weight(1);
-        set("unit", "件");
-                set("long", HIM "此衣只應天上有！\n");
-                set("material", "silk");
-                set("armor_prop/armor", 1000);
-                set("value",100);
-        setup();
+void create() {
+    set_name(HIM "幻綵衣" NOR, ({"huan caiyi", "huan", "caiyi"}));
+    set_weight(1);
+    set("unit", "件");
+    set("long", HIM "此衣只應天上有！\n");
+    set("material", "silk");
+    set("armor_prop/armor", 1000);
+    set("value", 100);
+    setup();
 }

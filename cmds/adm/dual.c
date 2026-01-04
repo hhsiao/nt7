@@ -3,32 +3,30 @@
 
 int help(object me);
 
-int main(object me, string arg)
-{
-        int flag;
-        
-        if (! SECURITY_D->valid_grant(me, "(admin)"))
-                return 0;
+int main(object me, string arg) {
+    int flag;
 
-        if( !me->is_admin() )
-                return notify_fail("你不能使用該命令。\n"); 
+    if (! SECURITY_D->valid_grant(me, "(admin)"))
+        return 0;
 
-        if (! arg) return help(me);
+    if(!me->is_admin() )
+        return notify_fail("你不能使用該命令。\n");
 
-        flag=query("env/dual_type", me);
+    if (! arg) return help(me);
 
-        if (flag)
-                return (int)me->evaluate_shell(arg, flag);
+    flag = query("env/dual_type", me);
 
-        printf("%O\n", me->evaluate_shell(arg, 0));
+    if (flag)
+        return (int)me->evaluate_shell(arg, flag);
 
-        return 1;
+    printf("%O\n", me->evaluate_shell(arg, 0));
+
+    return 1;
 
 }
 
-int help(object me)
-{
-        write(@HELP
+int help(object me) {
+    write(@HELP
 指令格式 : dual [detail]
 
 這個指令可以執行一段單獨的LPC代碼。
@@ -46,7 +44,6 @@ int help(object me)
 會隨機的選擇當前房間的一個出口行走。
 
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }
-

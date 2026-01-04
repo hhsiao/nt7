@@ -4,13 +4,12 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("夜光杯", ({ "ye guangbei", "cup", "bei" }));
-        set_weight(400);
-        set("unit", "只");
-                set("long", "這是一隻翡翠質地的酒杯。\n");
-                set("value", 10000);
-                set("material", "jade");
-        setup();
+void create() {
+    set_name("夜光杯", ({ "ye guangbei", "cup", "bei" }));
+    set_weight(400);
+    set("unit", "只");
+    set("long", "這是一隻翡翠質地的酒杯。\n");
+    set("value", 10000);
+    set("material", "jade");
+    setup();
 }

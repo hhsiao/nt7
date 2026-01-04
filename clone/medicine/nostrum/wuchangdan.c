@@ -12,7 +12,7 @@ void create() {
     set("unit", "顆");
     set("long", "這是一顆晶瑩火紅的無常丹，經桃花島主精心練制，
         有起死回生之功。\n");
-    set("value", 50000);
+        set("value", 50000);
     set("pour_type", "1");
     setup();
 }

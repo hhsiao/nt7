@@ -4,21 +4,20 @@
 #include <ansi.h>
 inherit ITEM;
 
-void create()
-{
-        set_name(HIW"冰雪心法"NOR, ({ "bingxue-book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long", "這是一本學冰雪心法的書。\n");
-                set("value", 1000);
-                set("material", "paper");
-                set("skill", ([
-                        "name": "bingxue-xinfa",
-                        "exp_required": 50000,
-                        "jing_cost" :   20,
-                        "difficulty":   20,
-                        "max_skill":    100,
-                        "min_skill":    10
-                ]) );
+void create() {
+    set_name(HIW"冰雪心法"NOR, ({ "bingxue-book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long", "這是一本學冰雪心法的書。\n");
+    set("value", 1000);
+    set("material", "paper");
+    set("skill", ([
+        "name": "bingxue-xinfa",
+        "exp_required": 50000,
+        "jing_cost": 20,
+        "difficulty": 20,
+        "max_skill": 100,
+        "min_skill": 10
+        ]) );
 }
 int query_autoload() { return 1; }

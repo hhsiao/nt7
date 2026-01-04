@@ -1,16 +1,15 @@
 #include <weapon.h>
 inherit BLADE;
 
-void create()
-{
-        set_name("柴刀", ({ "chai dao", "chai", "blade", "dao" }));
-        set_weight(5000);
-        set("unit", "柄");
-                set("long", "這是一柄普通的柴刀，不過上面已滿是鐵鏽。\n");
-                set("value", 80);
-                set("material", "steel");
-                set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
-                set("unwield_msg", "$N將手中的$n插回刀鞘。\n");
-        init_blade(15);
-        setup();
+void create() {
+    set_name("柴刀", ({ "chai dao", "chai", "blade", "dao" }));
+    set_weight(5000);
+    set("unit", "柄");
+    set("long", "這是一柄普通的柴刀，不過上面已滿是鐵鏽。\n");
+    set("value", 80);
+    set("material", "steel");
+    set("wield_msg", "$N「唰」的一聲抽出一柄$n握在手中。\n");
+    set("unwield_msg", "$N將手中的$n插回刀鞘。\n");
+    init_blade(15);
+    setup();
 }

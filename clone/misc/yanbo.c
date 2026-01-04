@@ -2,14 +2,13 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("研缽", ({ "yanbo", "bo" }));
-        set_weight(600);
-        set_max_encumbrance(200);
-        set("unit", "只");
-                set("long", "一隻沉甸甸的瓷碗，可以用來磨藥。\n");
-                set("value", 200);
+void create() {
+    set_name("研缽", ({ "yanbo", "bo" }));
+    set_weight(600);
+    set_max_encumbrance(200);
+    set("unit", "只");
+    set("long", "一隻沉甸甸的瓷碗，可以用來磨藥。\n");
+    set("value", 200);
 }
 
 int is_container() { return 1; }

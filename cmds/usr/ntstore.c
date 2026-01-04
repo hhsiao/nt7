@@ -5,80 +5,75 @@
 #endif
 
 int help(object me);
-int main(object me, string arg)
-{
-        string str1, str2;
-        object tar;
-        string me_id, tar_id;
-        int amount;
-        mapping buy_list;
-        string *str_buy_list;
-        int i;
-        
-        MYGIFT_D->check_mygift(me, "newbie_mygift/ntstore");  
+int main(object me, string arg) {
+    string str1, str2;
+    mapping buy_list;
+    string *str_buy_list;
+    int i;
 
-        if( !arg || arg == "") return help(me);
-        if( time()-query_temp("last_member", me)<3 )
-                return notify_fail("系統忙，請稍後再試！\n");
+    MYGIFT_D->check_mygift(me, "newbie_mygift/ntstore");
 
-        if( !wizardp(me) )
-                set_temp("last_member", time(), me);
-        
-        if( arg == "buylist" && wizardp(me) )
+    if(!arg || arg == "") return help(me);
+    if(time() - query_temp("last_member", me)<3 )
+        return notify_fail("系統忙，請稍後再試！\n");
+
+    if(!wizardp(me) )
+        set_temp("last_member", time(), me);
+
+    if(arg == "buylist" && wizardp(me) )
+    {
+        buy_list = DB_D->query_data("ntstore/buylist");
+
+        str_buy_list = DB_D->sort_mapping(buy_list, 0);
+
+        write(HIG " --== 商城銷售統計簡表（統計時間：2013年1月1日起） ==--\n" NOR);
+        write(HIC "---------------------------------------------------------\n" NOR);
+        write(sprintf(HIW "%-30s%-20s\n" NOR, "商品名稱", "累計購買"));
+        write(HIC "---------------------------------------------------------\n" NOR);
+        for(i = 0; i < sizeof(str_buy_list); i ++)
         {
-                buy_list = DB_D->query_data("ntstore/buylist");
-                
-                str_buy_list = DB_D->sort_mapping(buy_list, 0);
-
-                write(HIG " --== 商城銷售統計簡表（統計時間：2013年1月1日起） ==--\n" NOR);
-                write(HIC "---------------------------------------------------------\n" NOR);
-                write(sprintf(HIW "%-30s%-20s\n" NOR, "商品名稱", "累計購買"));
-                write(HIC "---------------------------------------------------------\n" NOR);
-                for( i = 0; i < sizeof(str_buy_list); i ++)
-                {
-                        if( buy_list[str_buy_list[i]] <= 5 )continue;
-                        write(sprintf(HIY"%-30s%-20d\n" NOR, str_buy_list[i], buy_list[str_buy_list[i]]));
-                }
-                write(HIC "---------------------------------------------------------\n" NOR);
-
-                return 1;
+            if(buy_list[str_buy_list[i]] <= 5 )continue;
+            write(sprintf(HIY"%-30s%-20d\n" NOR, str_buy_list[i], buy_list[str_buy_list[i]]));
         }
-          
-        if( sscanf(arg, "%s %s", str1, str2) != 2 )
-                return help(me);
-
-        switch(str1)
-        {
-        case "show":
-                return GOODS_D->show_goods(me, str2);
-
-        case "look":
-                return GOODS_D->do_look(me, str2);
-
-        case "buy":
-                if( !GOODS_D->buy_goods(me, str2))
-                {
-                        write("購買失敗！\n");
-                        return 1;
-                }
-                write("Successful!\n");
-                return 1;
-
-        default:
-                return help(me);
-        }
+        write(HIC "---------------------------------------------------------\n" NOR);
 
         return 1;
+    }
+
+    if(sscanf(arg, "%s %s", str1, str2) != 2 )
+        return help(me);
+
+    switch(str1)
+    {
+    case "show":
+        return GOODS_D->show_goods(me, str2);
+
+    case "look":
+        return GOODS_D->do_look(me, str2);
+
+    case "buy":
+        if(!GOODS_D->buy_goods(me, str2))
+        {
+            write("購買失敗！\n");
+            return 1;
+        }
+        write("Successful!\n");
+        return 1;
+
+    default:
+        return help(me);
+    }
+
+    return 1;
 }
 
-int help (object me)
-{
-        int money, buyvalue;
+int help (object me) {
+    int money, buyvalue;
 
-        money = MEMBER_D->db_query_member(me, "money");
-        buyvalue = MEMBER_D->db_query_member(me, "buyvalue");
+    money = MEMBER_D->db_query_member(me, "money");
+    buyvalue = MEMBER_D->db_query_member(me, "buyvalue");
 
-        write(HIY "□ 您目前的王者幣為 " + money + " (NT)
+    write(HIY "□ 您目前的王者幣為 " + money + " (NT)
 " WHT "——————————————————————————————————
 
 " HIM "輸入指令：    ntstore show all                  查看所有商城的貨物
@@ -103,5 +98,5 @@ int help (object me)
 
 " HIG "相關參考文件：help member\n\n" NOR);
 
-        return 1;
+    return 1;
 }

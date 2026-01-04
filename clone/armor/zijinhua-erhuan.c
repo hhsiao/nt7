@@ -3,22 +3,20 @@
 
 inherit EARRING;
 
-void create()
-{
-        set_name(HIR "紫金花耳環" NOR, ({ "zijinhua erhuan", "zijinhua", "erhuan" }));
-        set_weight(100);
-        set("unit", "副");
-                set("value", 200000);
-                set("material", "silver");
-                set("armor_prop/armor", 1);
-                set("armor_prop/dex", 6);
-                set("limit", ([
-                        "sex" : 1, // 1 為女性
-                ]));
-        setup();
+void create() {
+    set_name(HIR "紫金花耳環" NOR, ({ "zijinhua erhuan", "zijinhua", "erhuan" }));
+    set_weight(100);
+    set("unit", "副");
+    set("value", 200000);
+    set("material", "silver");
+    set("armor_prop/armor", 1);
+    set("armor_prop/dex", 6);
+    set("limit", ([
+        "sex": 1,   // 1 為女性
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

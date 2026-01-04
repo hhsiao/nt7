@@ -1,11 +1,10 @@
 #include "herb.h"
 
-void create()
-{
-        set_name(NOR + WHT "生地" NOR, ({ "sheng di", "sheng", "di", "herb_shengdi" }));
-        set("long", NOR + WHT "生地是常見的中藥藥材。\n" NOR);
-                set("base_unit", "塊");
-                set("base_value", 500);
-                set("base_weight", 60);
-        setup();
+void create() {
+    set_name(NOR + WHT "生地" NOR, ({ "sheng di", "sheng", "di", "herb_shengdi" }));
+    set("long", NOR + WHT "生地是常見的中藥藥材。\n" NOR);
+    set("base_unit", "塊");
+    set("base_value", 500);
+    set("base_weight", 60);
+    setup();
 }

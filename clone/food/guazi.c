@@ -6,11 +6,10 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-  set_name("瓜子", ({"gua zi", "guazi", "zi", "seed"}));
-  set_weight(100);
-  set("long", "一包噴香的瓜子。\n");
+void create() {
+    set_name("瓜子", ({"gua zi", "guazi", "zi", "seed"}));
+    set_weight(100);
+    set("long", "一包噴香的瓜子。\n");
     set("eat_msg", "$N抓出一顆瓜子往嘴裡一扔，啪地一聲脆響。\n");
     set("unit", "包");
     set("value", 130);

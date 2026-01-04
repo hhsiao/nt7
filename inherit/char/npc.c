@@ -539,10 +539,10 @@ int chat() {
 
     if(is_busy() )
         return 0;
-    if(!chance = (int)query(is_fighting() ? "chat_chance_combat" : "chat_chance") )
+    if(!chance = (int)query(is_fighting() ? "chat_chance_combat": "chat_chance") )
         return 0;
 
-    if(arrayp(msg = query(is_fighting() ? "chat_msg_combat" : "chat_msg")) && sizeof(msg) ) {
+    if(arrayp(msg = query(is_fighting() ? "chat_msg_combat": "chat_msg")) && sizeof(msg) ) {
         if(random(120) < chance ) {
             rnd = random(sizeof(msg));
             str = msg[rnd];
@@ -634,8 +634,7 @@ void remove(string euid) {
 }
 
 // environment destruct
-void move_or_destruct(object dest)
-{
+void move_or_destruct(object dest) {
     string euid = "環境摧毀";
     remove(euid);
 }
@@ -699,9 +698,9 @@ void full_self() {
     my["eff_jing"] = my["max_jing"];
     my["jing" ] = my["max_jing"];
     if(/*undefinedp*/(my["init_max_neili"]) )
-        my["max_neili"] = my["init_max_neili"];
+    my["max_neili"] = my["init_max_neili"];
     if(/*!undefinedp*/(my["init_max_jingli"]) )
-        my["max_jingli"] = my["init_max_jingli"];
+    my["max_jingli"] = my["init_max_jingli"];
     my["neili" ] = my["max_neili"];
     my["jingli" ] = my["max_jingli"];
     return;

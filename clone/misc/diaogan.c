@@ -155,7 +155,7 @@ int do_draw(string arg) {
     message_vision(random(2) ? "$N手急眼快，猛地一收釣竿，只見上面掛著一" +
         query("unit", ob) + "扭來扭去的"+
         ob->name() + "。\n"
-            :"$N順勢一拉桿，登時把一"+query("unit", ob)+
+        :"$N順勢一拉桿，登時把一"+query("unit", ob)+
         ob->name() + "釣了上來。\n", me);
     tell_object(me, HIG"你釣到了一"+query("unit", ob)+
         ob->name() + HIG + "。\n" NOR);

@@ -4,11 +4,10 @@
 #include <weapon.h>
 inherit HAMMER;
 
-void create()
-{
-        set_name("鼓錘", ({"guchui", "hammer"}));
-        set_weight(200);
-        set("unit", "個");
-        init_hammer(1);
-        setup();
+void create() {
+    set_name("鼓錘", ({"guchui", "hammer"}));
+    set_weight(200);
+    set("unit", "個");
+    init_hammer(1);
+    setup();
 }

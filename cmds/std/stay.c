@@ -4,43 +4,41 @@
 
 inherit F_CLEAN_UP;
 
-int main(object me)
-{
-        object ob;
+int main(object me) {
+    object ob;
 
-        seteuid(getuid());
+    seteuid(getuid());
 
-        if( !query_temp("comedby", me) )
-                return notify_fail("已經沒有野獸跟著你了！\n");
-        if( me->is_fighting() )
-                return notify_fail("一邊打架一邊馴獸？你真是活膩了！\n");
-        if( !objectp(ob=present(query_temp("comedby", me),environment(me))) )
-                return notify_fail("這裡沒有這隻野獸吧？\n");
-        if( !query_temp("owner", ob) )
-                return notify_fail(ob->name() + "是隻無主野獸，你得先馴服(train)它啊！\n");
-        if( query_temp("owner", ob) && 
-           (query_temp("owner", ob) != query("id", me)) )
-        {
-                ob->kill_ob(me);
-                return notify_fail(ob->name() + "是被人家馴服了，你不是找死啊！\n");
-        }
-        if ( ob == me )
-                return notify_fail("你沒問題吧，自己跟自己？\n");
-        if (!living(ob)) 
-                return notify_fail("這隻野獸暈倒了，你怎能讓它跟你呢？\n");
-        if (ob->is_fighting()) 
-                return notify_fail("它正在大打出手，沒空理你呢？\n");
+    if(!query_temp("comedby", me) )
+        return notify_fail("已經沒有野獸跟著你了！\n");
+    if(me->is_fighting() )
+        return notify_fail("一邊打架一邊馴獸？你真是活膩了！\n");
+    if(!objectp(ob = present(query_temp("comedby", me), environment(me))) )
+        return notify_fail("這裡沒有這隻野獸吧？\n");
+    if(!query_temp("owner", ob) )
+        return notify_fail(ob->name() + "是隻無主野獸，你得先馴服(train)它啊！\n");
+    if(query_temp("owner", ob) &&
+        (query_temp("owner", ob) != query("id", me)) )
+    {
+        ob->kill_ob(me);
+        return notify_fail(ob->name() + "是被人家馴服了，你不是找死啊！\n");
+    }
+    if (ob == me )
+        return notify_fail("你沒問題吧，自己跟自己？\n");
+    if (!living(ob))
+        return notify_fail("這隻野獸暈倒了，你怎能讓它跟你呢？\n");
+    if (ob->is_fighting())
+        return notify_fail("它正在大打出手，沒空理你呢？\n");
 
-        message_vision("只見$N衝著"+ob->name()+"手中擺了個手式，它衝著你點了點頭。\n\n",me);
+    message_vision("只見$N衝著"+ob->name() + "手中擺了個手式，它衝著你點了點頭。\n\n", me);
 
-        delete_temp("comedby", me);
-        ob->set_leader(0);
-        return 1;
+    delete_temp("comedby", me);
+    ob->set_leader(0);
+    return 1;
 }
 
-int help(object me)
-{
-        write(@HELP
+int help(object me) {
+    write(@HELP
 指令格式 : stay <動物>
 
 此指令可用於讓某動物停止跟隨你。對於已經馴服的動物，可以進行下述指令：
@@ -59,6 +57,6 @@ int help(object me)
         yin <動物名>:                   給動物飲水。
 
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

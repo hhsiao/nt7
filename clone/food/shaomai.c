@@ -3,13 +3,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("翡翠燒賣", ({"feicui shaomai", "shaomai" }) );
-        set_weight(50);//一兩
-        set("unit", "個");
-                set("value", 30);
-                set("food_remaining", 1);
-                set("food_supply", 40);
-        setup();
+void create() {
+    set_name("翡翠燒賣", ({ "feicui shaomai", "shaomai" }) );
+    set_weight(50);     //一兩
+    set("unit", "個");
+    set("value", 30);
+    set("food_remaining", 1);
+    set("food_supply", 40);
+    setup();
 }

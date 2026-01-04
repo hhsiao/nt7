@@ -10,7 +10,7 @@ void create() {
 
     set("long", HIY "一根金燦燦的金條，拿在手裡頗為舒適。\n"
         "使用 changing 指令將炎黃金條兌換為十萬YSG，會員可兌換十一萬YSG。\n"
-            "如果暫時不使用，最好將金條存入倉庫，以免丟失。\n" NOR);
+        "如果暫時不使用，最好將金條存入倉庫，以免丟失。\n" NOR);
     set("value", 1);
     set("no_sell", 1);
     set("unit", "根");

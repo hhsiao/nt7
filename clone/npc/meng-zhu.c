@@ -12,24 +12,22 @@ inherit F_MASTER;
 inherit F_UNIQUE;
 inherit F_SAVE;
 
-string query_save_file()
-{
-        return MENGZHU;
+string query_save_file() {
+    return MENGZHU;
 }
 
-void create()
-{
-        seteuid(getuid());
+void create() {
+    seteuid(getuid());
 
-        if (!restore()) {
+    if (!restore()) {
         set_name("魏無雙", ({ "wulin mengzhu", "mengzhu", "zhu" }) );
         set("title", "武林盟主" );
         set("gender", "男性" );
         set("age", 40);
-      set("long","他就是雄踞武林，號召天下，威風赫赫的當今武林盟主。\n");
+        set("long", "他就是雄踞武林，號召天下，威風赫赫的當今武林盟主。\n");
         set("attitude", "heroism");
-        set("generation",0);
-        set("winner","none");
+        set("generation", 0);
+        set("winner", "none");
 
         set("str", 25);
         set("con", 25);
@@ -46,14 +44,14 @@ void create()
         set("jiali", 40);
         set("shen_type", 0);
 
-        set("no_clean_up",1);
+        set("no_clean_up", 1);
         set("combat_exp", 500000);
 
-        set_skill("force",  100); 
-        set_skill("unarmed",100);
-        set_skill("sword",  100);
-        set_skill("dodge",  100);
-        set_skill("parry",  100);
+        set_skill("force", 100);
+        set_skill("unarmed", 100);
+        set_skill("sword", 100);
+        set_skill("dodge", 100);
+        set_skill("parry", 100);
 
         set("weapon", "/d/shaolin/obj/changjian");
         set("armor", "/d/city/obj/cloth");
@@ -61,373 +59,360 @@ void create()
         setup();
 
         carry_object("/d/shaolin/obj/changjian")->wield();
-        carry_object("/d/city/obj/cloth")->wear();        
-        }
-        else {
-                set("id", "mengzhu");
-                set_name(query("name"), ({ query("id") }));
-                setup();
-                if( this_object()->query("weapon") ) carry_object(this_object()->query("weapon"))->wield();
-                if( this_object()->query("armor") )  carry_object(this_object()->query("armor"))->wear();        
-        }
+        carry_object("/d/city/obj/cloth")->wear();
+    }
+    else {
+        set("id", "mengzhu");
+        set_name(query("name"), ({ query("id") }));
+        setup();
+        if(this_object()->query("weapon") ) carry_object(this_object()->query("weapon"))->wield();
+        if(this_object()->query("armor") )  carry_object(this_object()->query("armor"))->wear();
+    }
 }
 
-void init()
-{
-        object me = this_object();
+void init() {
 
-        add_action("do_recopy",  "recopy");
-        add_action("do_recover", "recover");
-        add_action("do_kill", "kill");
+    add_action("do_recopy", "recopy");
+    add_action("do_recover", "recover");
+    add_action("do_kill", "kill");
 
 }
 
-int do_kill()
-{
-        object ob;
-        int i;
+int do_kill() {
+    object ob;
+    int i;
 
-        command("say 你想謀害本盟主，當真是吃了熊心豹子膽了！！");
-        command("say 座下白衣武士何在！");
-        
-        message_vision("四周的白衣武士群起對$N發動攻擊！\n", this_player());
+    command("say 你想謀害本盟主，當真是吃了熊心豹子膽了！！");
+    command("say 座下白衣武士何在！");
 
-        for(i=0; i<4; i++) {
-                if( objectp( ob = present("wei shi " + (i+1), environment(this_object())) ) )
-                                 ob->kill_ob(this_player());        
-                else        this_object()->kill_ob(this_player());                
-        }
+    message_vision("四周的白衣武士群起對$N發動攻擊！\n", this_player());
 
-        return 1;
+    for(i = 0; i<4; i++) {
+        if(objectp(ob = present("wei shi " + (i + 1), environment(this_object())) ) )
+            ob->kill_ob(this_player());
+        else        this_object()->kill_ob(this_player());
+    }
+
+    return 1;
 }
 
-int accept_fight(object ob)
-{
-        object me  = this_object();
-                
-        if ( me->query("winner") == ob->query("id") ) 
-{
-//                remove_call_out("do_copy");
-//                call_out("do_copy", 1, me, ob);
-                return notify_fail("你跟你自己打什麼架？！\n");
+int accept_fight(object ob) {
+    object me = this_object();
+
+    if (me->query("winner") == ob->query("id") )
+    {
+        //                remove_call_out("do_copy");
+        //                call_out("do_copy", 1, me, ob);
+        return notify_fail("你跟你自己打什麼架？！\n");
+    }
+
+    if (wizardp(this_player()))
+        return notify_fail("巫師不能搶盟主之位！\n");
+
+    if (me->is_fighting() )
+        return notify_fail("已經有人正在挑戰武林盟主！\n");
+
+    me->set("eff_qi", me->query("max_qi"));
+    me->set("qi", me->query("max_qi"));
+    me->set("jing", me->query("max_jing"));
+    me->set("neili", me->query("max_neili"));
+
+    remove_call_out("checking");
+    call_out("checking", 1, me, ob);
+
+    return 1;
 }
 
-        if (wizardp(this_player()))
-                return notify_fail("巫師不能搶盟主之位！\n");
+int checking(object me, object ob) {
 
-        if ( me->is_fighting() ) 
-                return notify_fail("已經有人正在挑戰武林盟主！\n");
+    int my_max_qi, his_max_qi;
 
-        me->set("eff_qi", me->query("max_qi"));
-        me->set("qi",     me->query("max_qi"));
-        me->set("jing",   me->query("max_jing"));
-        me->set("neili",  me->query("max_neili"));
+    my_max_qi = me->query("max_qi");
+    his_max_qi = ob->query("max_qi");
 
-        remove_call_out("checking");
+    if (me->is_fighting()) {
+        if ((me->query("qi")*100 / my_max_qi) <= 80 )
+            command("exert recover");
+
         call_out("checking", 1, me, ob);
-        
         return 1;
-}
+    }
 
-int checking(object me, object ob)
-{
+    if (!present(ob, environment()) ) return 1;
 
-        object obj;
-        int my_max_qi, his_max_qi;
-
-        my_max_qi  = me->query("max_qi");
-        his_max_qi = ob->query("max_qi");
-
-        if (me->is_fighting()) {
-                if ( (me->query("qi")*100 / my_max_qi) <= 80 )
-                        command("exert recover");
-
-                call_out("checking", 1, me, ob);
-                return 1;
-        }
-
-        if ( !present(ob, environment()) ) return 1; 
-
-        if (( (int)me->query("qi")*100 / my_max_qi) <= 50 ) {
-                command("say 果然厲害，恭喜你成為當今武林盟主！\n");
-                command("chat 哈哈哈，到底是長江後浪推前浪，一代新人換舊人！\n");
-                command("chat 恭喜" + ob->query("name") + "被推舉為當今武林盟主！\n");
-                remove_call_out("do_copy");
-                call_out("do_copy", 1, me, ob);
-                return 1;
-        }
-
-        if (( (int)ob->query("qi")*100 / his_max_qi) < 50 ) {
-                command("say 看來" + RANK_D->query_respect(ob) + 
-                        "還得多加練習，方能在當今武林中出人頭地 !\n");
-                return 1;
-        }
-
-        return 1;  
-}
-
-int do_copy(object me, object ob)
-{
-        object ob1, ob2;
-        string mengzhu;
-
-        seteuid(getuid());
-
-        me->set("winner", ob->query("id"));
-        me->add("generation", 1);        
-
-        me->set("name",  ob->query("name") );
-        
-        me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
-        me->set("short", HIR + me->query("title") + NOR + " " + me->query("name") + "(" + capitalize(ob->query("id")) + ")");
-        me->delete("title");
-
-        ob->delete_temp("apply/short");
-        ob->set_temp("apply/short", ({me->short()}));
-// --record which mengzhu generataion this player got-------by ReyGod
-// = better to place this checking when players login.
-//        ob->set("mengzhu_gen",me->query("generation"));
-        
-        me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
-        me->set("short", me->query("title") + " " + me->query("name") + "(Wulin mengzhu)");
-        me->delete("title");
-
-        remove_call_out("do_clone");
-        call_out("do_clone", 0, me, ob);
-
+    if (((int)me->query("qi")*100 / my_max_qi) <= 50 ) {
+        command("say 果然厲害，恭喜你成為當今武林盟主！\n");
+        command("chat 哈哈哈，到底是長江後浪推前浪，一代新人換舊人！\n");
+        command("chat 恭喜" + ob->query("name") + "被推舉為當今武林盟主！\n");
+        remove_call_out("do_copy");
+        call_out("do_copy", 1, me, ob);
         return 1;
-}
+    }
 
-int do_recopy(object me, object ob)
-{
-        me = this_object();
-        ob = this_player();
-
-        if ( me->query("winner") != ob->query("id") ) 
-                return notify_fail("你不是現任武林盟主！\n");;
-
-        me->set("name",  ob->query("name") );
-        me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
-        me->set("short", HIR + me->query("title") + NOR + " " + me->query("name") + "(" + capitalize(ob->query("id")) + ")");
-        me->delete("title");
-
-        ob->delete_temp("apply/short");
-        ob->set_temp("apply/short", ({me->short()}));
-// --record which mengzhu generataion this player got-------by ReyGod
-// = better to place this checking when players login.        
-//        ob->set("mengzhu_gen",me->query("generation"));
-
-
-        me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
-        me->set("short", me->query("title") + " " + me->query("name") + "(Wulin mengzhu)");
-        me->delete("title");
-
-        remove_call_out("do_clone");
-        call_out("do_clone", 0, me, ob);
-
+    if (((int)ob->query("qi")*100 / his_max_qi) < 50 ) {
+        command("say 看來" + RANK_D->query_respect(ob) +
+            "還得多加練習，方能在當今武林中出人頭地 !\n");
         return 1;
+    }
+
+    return 1;
 }
 
-int do_clone(object me, object ob)
-{
-        object *inv, newobj;
-        mapping hp_status, skill_status, map_status, prepare_status;
-        string *sname, *mname, *pname;
-        int i, temp;
+int do_copy(object me, object ob) {
 
-        seteuid( geteuid(me) );
+    seteuid(getuid());
 
-/* delete and copy skills */
+    me->set("winner", ob->query("id"));
+    me->add("generation", 1);
 
-        if ( mapp(skill_status = me->query_skills()) ) {
-                skill_status = me->query_skills();
-                sname  = keys(skill_status);
+    me->set("name", ob->query("name") );
 
-                temp = sizeof(skill_status);
-                for(i=0; i<temp; i++) {
-                        me->delete_skill(sname[i]);
-                }
-        }
+    me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
+    me->set("short", HIR + me->query("title") + NOR + " " + me->query("name") + "(" + capitalize(ob->query("id")) + ")");
+    me->delete("title");
 
-        if ( mapp(skill_status = ob->query_skills()) ) {
-                skill_status = ob->query_skills();
-                sname  = keys(skill_status);
+    ob->delete_temp("apply/short");
+    ob->set_temp("apply/short", ({me->short()}));
+    // --record which mengzhu generataion this player got-------by ReyGod
+    // = better to place this checking when players login.
+    //        ob->set("mengzhu_gen",me->query("generation"));
 
-                for(i=0; i<sizeof(skill_status); i++) {
-                        me->set_skill(sname[i], skill_status[sname[i]]);
-                }
-        }
-        
-/* delete and copy skill maps */
+    me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
+    me->set("short", me->query("title") + " " + me->query("name") + "(Wulin mengzhu)");
+    me->delete("title");
 
-        if ( mapp(map_status = me->query_skill_map()) ) {
-                mname  = keys(map_status);
+    remove_call_out("do_clone");
+    call_out("do_clone", 0, me, ob);
 
-                temp = sizeof(map_status);
-                for(i=0; i<temp; i++) {
-                        me->map_skill(mname[i]);
-                }
-        }
-
-        if ( mapp(map_status = ob->query_skill_map()) ) {
-                mname  = keys(map_status);
-
-                for(i=0; i<sizeof(map_status); i++) {
-                        me->map_skill(mname[i], map_status[mname[i]]);
-                }
-        }
-        
-/* delete and copy skill prepares */
-
-        if ( mapp(prepare_status = me->query_skill_prepare()) ) {
-                pname  = keys(prepare_status);
-
-                temp = sizeof(prepare_status);
-                for(i=0; i<temp; i++) {
-                        me->prepare_skill(pname[i]);
-                }
-        }
-
-        if ( mapp(prepare_status = ob->query_skill_prepare()) ) {
-                pname  = keys(prepare_status);
-
-                for(i=0; i<sizeof(prepare_status); i++) {
-                        me->prepare_skill(pname[i], prepare_status[pname[i]]);
-                }
-        }
-
-/* unwield and remove weapon & armor */
-
-        inv = all_inventory(me);
-        for(i=0; i<sizeof(inv); i++) {
-                destruct(inv[i]);
-        }
-        set("weapon", 0);
-        set("armor", 0);
-
-/* wield and wear weapon & armor */
-
-        inv = all_inventory(ob);
-        for(i=0; i<sizeof(inv); i++) {
-                if( inv[i]->query("weapon_prop/damage") > 100 
-                ||  inv[i]->query("armor_prop/armor") > 100 ) continue;
-
-                if( inv[i]->query("weapon_prop") &&  inv[i]->query("equipped") ) {
-                        carry_object(base_name(inv[i]))->wield();
-                        me->set("weapon", base_name(inv[i]));
-                }
-                else if( inv[i]->query("armor_prop") &&  inv[i]->query("equipped") ) {
-                        carry_object(base_name(inv[i]))->wear();
-                        me->set("armor", base_name(inv[i]));
-                }
-        }
-
-/* copy entire dbase values */
-
-        hp_status = ob->query_entire_dbase();
-
-                me->set("str", hp_status["str"]);
-                me->set("int", hp_status["int"]);
-                me->set("con", hp_status["con"]);
-                me->set("dex", hp_status["dex"]);
-                me->set("age", hp_status["age"]);
-
-                me->set("max_qi",    hp_status["max_qi"]);
-                me->set("eff_qi",    hp_status["eff_qi"]);
-                me->set("qi",        hp_status["qi"]);
-                me->set("max_jing",  hp_status["max_jing"]);
-                me->set("eff_jing",  hp_status["eff_jing"]);
-                me->set("jing",      hp_status["jing"]);
-                me->set("max_neili", hp_status["max_neili"]);
-                me->set("neili",     hp_status["neili"]);
-                me->set("jiali",     hp_status["jiali"]);
-                me->set("gender",    hp_status["gender"]);
-                me->set("combat_exp",hp_status["combat_exp"]);
-
-        save();
-
-        tell_object(ob, "狀態儲存完畢。\n");
-
-        newobj = new("/clone/npc/meng-zhu");
-        newobj->move("/d/taishan/fengchan");
-        destruct(me);
-
-        return 1;
+    return 1;
 }
 
-int do_recover()
-{
-        object me, ob;
-        mapping skill_status, map_status, prepare_status;
-        string *sname, *mname, *pname;
-        int i;
+int do_recopy(object me, object ob) {
+    me = this_object();
+    ob = this_player();
 
-        me = this_object();
-        ob = this_player();
+    if (me->query("winner") != ob->query("id") )
+        return notify_fail("你不是現任武林盟主！\n");;
 
-        if ( me->query("winner") != ob->query("id") ) 
-                return notify_fail("你不是現任武林盟主！\n");;
+    me->set("name", ob->query("name") );
+    me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
+    me->set("short", HIR + me->query("title") + NOR + " " + me->query("name") + "(" + capitalize(ob->query("id")) + ")");
+    me->delete("title");
 
-/* delete and copy skills */
+    ob->delete_temp("apply/short");
+    ob->set_temp("apply/short", ({me->short()}));
+    // --record which mengzhu generataion this player got-------by ReyGod
+    // = better to place this checking when players login.
+    //        ob->set("mengzhu_gen",me->query("generation"));
 
-        if ( mapp(skill_status = ob->query_skills()) ) {
-                sname  = keys(skill_status);
 
-                for(i=0; i<sizeof(skill_status); i++) {
-                        ob->delete_skill(sname[i]);
-                }
-        }
+    me->set("title", "第" + chinese_number(me->query("generation")) + "代武林盟主");
+    me->set("short", me->query("title") + " " + me->query("name") + "(Wulin mengzhu)");
+    me->delete("title");
 
-        if ( mapp(skill_status = me->query_skills()) ) {
-                sname  = keys(skill_status);
+    remove_call_out("do_clone");
+    call_out("do_clone", 0, me, ob);
 
-                for(i=0; i<sizeof(skill_status); i++) {
-                        ob->set_skill(sname[i], skill_status[sname[i]]);
-                }
-        }
-        
-/* delete and copy skill maps */
-
-        if ( mapp(map_status = ob->query_skill_map()) ) {
-                mname  = keys(map_status);
-
-                for(i=0; i<sizeof(map_status); i++) {
-                        ob->map_skill(mname[i]);
-                }
-        }
-
-        if ( mapp(map_status = me->query_skill_map()) ) {
-                mname  = keys(map_status);
-
-                for(i=0; i<sizeof(map_status); i++) {
-                        ob->map_skill(mname[i], map_status[mname[i]]);
-                }
-        }
-        
-/* delete and copy skill prepares */
-
-        if ( mapp(prepare_status = ob->query_skill_prepare()) ) {
-                pname  = keys(prepare_status);
-
-                for(i=0; i<sizeof(prepare_status); i++) {
-                        ob->prepare_skill(pname[i]);
-                }
-        }
-
-        if ( mapp(prepare_status = me->query_skill_prepare()) ) {
-                pname  = keys(prepare_status);
-
-                for(i=0; i<sizeof(prepare_status); i++) {
-                        ob->prepare_skill(pname[i], prepare_status[pname[i]]);
-                }
-        }
-
-/* copy combat exp values */
-
-        ob->set("combat_exp", me->query("combat_exp"));
-
-        write("狀態復元完畢。\n");
-
-        return 1;
+    return 1;
 }
 
+int do_clone(object me, object ob) {
+    object *inv, newobj;
+    mapping hp_status, skill_status, map_status, prepare_status;
+    string *sname, *mname, *pname;
+    int i, temp;
+
+    seteuid(geteuid(me) );
+
+    /* delete and copy skills */
+
+    if (mapp(skill_status = me->query_skills()) ) {
+        skill_status = me->query_skills();
+        sname = keys(skill_status);
+
+        temp = sizeof(skill_status);
+        for(i = 0; i<temp; i++) {
+            me->delete_skill(sname[i]);
+        }
+    }
+
+    if (mapp(skill_status = ob->query_skills()) ) {
+        skill_status = ob->query_skills();
+        sname = keys(skill_status);
+
+        for(i = 0; i<sizeof(skill_status); i++) {
+            me->set_skill(sname[i], skill_status[sname[i]]);
+        }
+    }
+
+    /* delete and copy skill maps */
+
+    if (mapp(map_status = me->query_skill_map()) ) {
+        mname = keys(map_status);
+
+        temp = sizeof(map_status);
+        for(i = 0; i<temp; i++) {
+            me->map_skill(mname[i]);
+        }
+    }
+
+    if (mapp(map_status = ob->query_skill_map()) ) {
+        mname = keys(map_status);
+
+        for(i = 0; i<sizeof(map_status); i++) {
+            me->map_skill(mname[i], map_status[mname[i]]);
+        }
+    }
+
+    /* delete and copy skill prepares */
+
+    if (mapp(prepare_status = me->query_skill_prepare()) ) {
+        pname = keys(prepare_status);
+
+        temp = sizeof(prepare_status);
+        for(i = 0; i<temp; i++) {
+            me->prepare_skill(pname[i]);
+        }
+    }
+
+    if (mapp(prepare_status = ob->query_skill_prepare()) ) {
+        pname = keys(prepare_status);
+
+        for(i = 0; i<sizeof(prepare_status); i++) {
+            me->prepare_skill(pname[i], prepare_status[pname[i]]);
+        }
+    }
+
+    /* unwield and remove weapon & armor */
+
+    inv = all_inventory(me);
+    for(i = 0; i<sizeof(inv); i++) {
+        destruct(inv[i]);
+    }
+    set("weapon", 0);
+    set("armor", 0);
+
+    /* wield and wear weapon & armor */
+
+    inv = all_inventory(ob);
+    for(i = 0; i<sizeof(inv); i++) {
+        if(inv[i]->query("weapon_prop/damage") > 100
+            ||  inv[i]->query("armor_prop/armor") > 100 ) continue;
+
+        if(inv[i]->query("weapon_prop") &&  inv[i]->query("equipped") ) {
+            carry_object(base_name(inv[i]))->wield();
+            me->set("weapon", base_name(inv[i]));
+        }
+        else if(inv[i]->query("armor_prop") &&  inv[i]->query("equipped") ) {
+            carry_object(base_name(inv[i]))->wear();
+            me->set("armor", base_name(inv[i]));
+        }
+    }
+
+    /* copy entire dbase values */
+
+    hp_status = ob->query_entire_dbase();
+
+    me->set("str", hp_status["str"]);
+    me->set("int", hp_status["int"]);
+    me->set("con", hp_status["con"]);
+    me->set("dex", hp_status["dex"]);
+    me->set("age", hp_status["age"]);
+
+    me->set("max_qi", hp_status["max_qi"]);
+    me->set("eff_qi", hp_status["eff_qi"]);
+    me->set("qi", hp_status["qi"]);
+    me->set("max_jing", hp_status["max_jing"]);
+    me->set("eff_jing", hp_status["eff_jing"]);
+    me->set("jing", hp_status["jing"]);
+    me->set("max_neili", hp_status["max_neili"]);
+    me->set("neili", hp_status["neili"]);
+    me->set("jiali", hp_status["jiali"]);
+    me->set("gender", hp_status["gender"]);
+    me->set("combat_exp", hp_status["combat_exp"]);
+
+    save();
+
+    tell_object(ob, "狀態儲存完畢。\n");
+
+    newobj = new("/clone/npc/meng-zhu");
+    newobj->move("/d/taishan/fengchan");
+    destruct(me);
+
+    return 1;
+}
+
+int do_recover() {
+    object me, ob;
+    mapping skill_status, map_status, prepare_status;
+    string *sname, *mname, *pname;
+    int i;
+
+    me = this_object();
+    ob = this_player();
+
+    if (me->query("winner") != ob->query("id") )
+        return notify_fail("你不是現任武林盟主！\n");;
+
+    /* delete and copy skills */
+
+    if (mapp(skill_status = ob->query_skills()) ) {
+        sname = keys(skill_status);
+
+        for(i = 0; i<sizeof(skill_status); i++) {
+            ob->delete_skill(sname[i]);
+        }
+    }
+
+    if (mapp(skill_status = me->query_skills()) ) {
+        sname = keys(skill_status);
+
+        for(i = 0; i<sizeof(skill_status); i++) {
+            ob->set_skill(sname[i], skill_status[sname[i]]);
+        }
+    }
+
+    /* delete and copy skill maps */
+
+    if (mapp(map_status = ob->query_skill_map()) ) {
+        mname = keys(map_status);
+
+        for(i = 0; i<sizeof(map_status); i++) {
+            ob->map_skill(mname[i]);
+        }
+    }
+
+    if (mapp(map_status = me->query_skill_map()) ) {
+        mname = keys(map_status);
+
+        for(i = 0; i<sizeof(map_status); i++) {
+            ob->map_skill(mname[i], map_status[mname[i]]);
+        }
+    }
+
+    /* delete and copy skill prepares */
+
+    if (mapp(prepare_status = ob->query_skill_prepare()) ) {
+        pname = keys(prepare_status);
+
+        for(i = 0; i<sizeof(prepare_status); i++) {
+            ob->prepare_skill(pname[i]);
+        }
+    }
+
+    if (mapp(prepare_status = me->query_skill_prepare()) ) {
+        pname = keys(prepare_status);
+
+        for(i = 0; i<sizeof(prepare_status); i++) {
+            ob->prepare_skill(pname[i], prepare_status[pname[i]]);
+        }
+    }
+
+    /* copy combat exp values */
+
+    ob->set("combat_exp", me->query("combat_exp"));
+
+    write("狀態復元完畢。\n");
+
+    return 1;
+}

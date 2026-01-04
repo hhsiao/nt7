@@ -6,34 +6,31 @@ inherit ITEM;
 void setup()
 {}
 
-void init()
-{
-        add_action("do_tie", "tie");
+void init() {
+    add_action("do_tie", "tie");
 }
 
-void create()
-{
-        set_name("狗皮膏藥", ({"goupi gaoyao", "goupi", "gaoyao"}));
-        set("unit", "帖");
-                set("long", "這是一帖武林人士常貼(tie)的狗皮膏藥。\n");
-                set("value", 5000);
-        setup();
+void create() {
+    set_name("狗皮膏藥", ({"goupi gaoyao", "goupi", "gaoyao"}));
+    set("unit", "帖");
+    set("long", "這是一帖武林人士常貼(tie)的狗皮膏藥。\n");
+    set("value", 5000);
+    setup();
 }
 
-int do_tie(string arg)
-{
-        object me = this_player();
-        if (!id(arg))
-                return notify_fail("你要貼什麼藥？\n");
-        if (me->is_busy())
-                return notify_fail("現在你沒空貼狗皮膏藥了。\n");
-        if( query("eff_qi", me) == query("max_qi", me) )
-                return notify_fail("你現在不需要用狗皮膏藥。\n");
-        else {
-                me->receive_curing("qi", 50);
-                message_vision("$N啪的一聲在傷口上貼了一帖狗皮膏藥，氣色看起來好多了。\n", me);
-                me->start_busy(2);
-                destruct(this_object());
-                return 1;
-        }
+int do_tie(string arg) {
+    object me = this_player();
+    if (!id(arg))
+        return notify_fail("你要貼什麼藥？\n");
+    if (me->is_busy())
+        return notify_fail("現在你沒空貼狗皮膏藥了。\n");
+    if(query("eff_qi", me) == query("max_qi", me) )
+        return notify_fail("你現在不需要用狗皮膏藥。\n");
+    else {
+        me->receive_curing("qi", 50);
+        message_vision("$N啪的一聲在傷口上貼了一帖狗皮膏藥，氣色看起來好多了。\n", me);
+        me->start_busy(2);
+        destruct(this_object());
+        return 1;
+    }
 }

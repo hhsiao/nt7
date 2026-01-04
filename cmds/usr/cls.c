@@ -2,16 +2,14 @@
 
 void do_nothing(string nothing);
 
-int main(object who,string arg)
-{   
+int main(object who, string arg) {
     write(REF);
     if(arg=="-l")
-    input_to( (:do_nothing:) );
+        input_to((:do_nothing:) );
     return 1;
 }
 
-int help()
-{
+int help() {
     write(@HELP
 指令格式：cls [-l]
 這個指令可以清除當前屏幕內容。
@@ -20,7 +18,6 @@ HELP );
     return 1;
 }
 
-void do_nothing(string nothing)
-{
+void do_nothing(string nothing) {
     return;
 }

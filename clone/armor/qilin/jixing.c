@@ -3,24 +3,22 @@
 
 inherit BOOTS;
 
-void create()
-{
-        set_name( HIR "火麒麟·疾行" NOR, ({ "jixing xue", "jixing", "xue" }) );
-        set_weight(10);
-        set("unit", "雙");
-                set("long", HIR "這是一雙通體火紅的靴子，散發著令人窒息的光芒。\n");
-                set("value", 2000000);
+void create() {
+    set_name(HIR "火麒麟·疾行" NOR, ({ "jixing xue", "jixing", "xue" }) );
+    set_weight(10);
+    set("unit", "雙");
+    set("long", HIR "這是一雙通體火紅的靴子，散發著令人窒息的光芒。\n");
+    set("value", 2000000);
 
-                set("armor_prop/dex", 60); //後天身法+60
-                set("material", "boots");
-                set("limit", ([
-                        "exp"  :  50000000,
-                        "dex"  :  80,
-                ]));
-        setup();
+    set("armor_prop/dex", 60);  //後天身法+60
+    set("material", "boots");
+    set("limit", ([
+        "exp": 50000000,
+        "dex": 80
+        ]));
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

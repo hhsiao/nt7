@@ -10,572 +10,568 @@ inherit F_CLEAN_UP;
 //#define PREFIX(ob)    (ob->is_chatter() ? HIC "~" : interactive(ob) ? (query_idle(ob) > 120 ? HIG "*" NOR : " ") : stringp(query("doing", ob)) ? HIY "@" NOR : HIR "#" NOR)
 #define PREFIX(ob)    (ob->is_chatter() ? HIC "~" : interactive(ob) ? (query_idle(ob) > 120 ? HIG "*" NOR : " ") : stringp(query("doing", ob)) ? HIY " " NOR : HIR "#" NOR)
 
-int sort_user(object,object);
+int sort_user(object, object);
 int sort_user_by_name(object, object, int d);
 int help();
 
-mapping party=([
-        "duan":         "段氏皇族",
-        "emei":         "峨嵋派",
-        "gaibang":      "丐幫",
-        "gumu":         "古墓派",
-        "huashan":      "華山派",
-        "hu":           "關外胡家",
-        "kunlun":       "崑崙派",
-        "mingjiao":     "明教",
-        "murong":       "慕容世家",
-        "quanzhen":     "全真教",
-        "shaolin":      "少林派",
-        "shenlong":     "神龍教",
-        "songshan":     "嵩山派",
-        "taohua":       "桃花島",
-        "tang":         "唐門世家",
-        "tianlong":     "天龍寺",
-        "tiezhang":     "鐵掌幫",
-        "wudang":       "武當派",
-        "xingxiu":      "星宿派",
-        "xueshan":      "大輪寺",
-        "lingjiu":      "靈鷲宮",
-        "xiaoyao":      "逍遙派",
-        "riyue":        "日月神教",
-        "ouyang":       "歐陽世家",
-        "wudu":       "五毒教",
-        "mojiao":       "魔教",
-]);
+mapping party = ([
+    "duan": "段氏皇族",
+    "emei": "峨嵋派",
+    "gaibang": "丐幫",
+    "gumu": "古墓派",
+    "huashan": "華山派",
+    "hu": "關外胡家",
+    "kunlun": "崑崙派",
+    "mingjiao": "明教",
+    "murong": "慕容世家",
+    "quanzhen": "全真教",
+    "shaolin": "少林派",
+    "shenlong": "神龍教",
+    "songshan": "嵩山派",
+    "taohua": "桃花島",
+    "tang": "唐門世家",
+    "tianlong": "天龍寺",
+    "tiezhang": "鐵掌幫",
+    "wudang": "武當派",
+    "xingxiu": "星宿派",
+    "xueshan": "大輪寺",
+    "lingjiu": "靈鷲宮",
+    "xiaoyao": "逍遙派",
+    "riyue": "日月神教",
+    "ouyang": "歐陽世家",
+    "wudu": "五毒教",
+    "mojiao": "魔教"
+    ]);
 
 void create() { seteuid(getuid()); }
 
-mixed main(object me, string arg, int remote)
-{
-        string name, str, *option;
-        object *list, *ob, ob1;
-        int i, ppl_cnt;
-        int opt_interactive;
-        int opt_long, opt_wiz, opt_party;
-        int opt_chatter, opt_player;
-        int opt_male, opt_female, opt_sort;
-        int opt_number;
-        int opt_master;
-        int opt_closed;
-        int opt_reborn;
-        int cur_time;
-        int opt_employ;
+mixed main(object me, string arg, int remote) {
+    string name, str, *option;
+    object *list, *ob, ob1;
+    int i, ppl_cnt;
+    int opt_interactive;
+    int opt_long, opt_wiz, opt_party;
+    int opt_chatter, opt_player;
+    int opt_male, opt_female, opt_sort;
+    int opt_number;
+    int opt_master;
+    int opt_closed;
+    int opt_reborn;
+    int cur_time;
+    int opt_employ;
 
-        object vob;
-        string who_name;
-        string who_id;
-        string opt_family;
+    object vob;
+    string who_name;
+    string who_id;
+    string opt_family;
 
-        vob = me;
-        opt_chatter = 1;
-        opt_player = 1;
-        who_name = 0;
+    vob = me;
+    opt_chatter = 1;
+    opt_player = 1;
+    who_name = 0;
 
-        cur_time = time();
-        if( !wizardp(me) && cur_time-query_temp("last_who", me)<5 )
+    cur_time = time();
+    if(!wizardp(me) && cur_time - query_temp("last_who", me)<5 )
+    {
+        return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
+    }
+    set_temp("last_who", cur_time, me);
+
+
+    if (arg)
+    {
+        if (arg == "我愛笑傲江湖")
         {
-              return notify_fail("系統氣喘噓地嘆道：慢慢來 ....\n");
-        }
-        set_temp("last_who", cur_time, me);
-
-
-        if (arg)
-        {
-                if (arg == "我愛笑傲江湖")
+            str = "";
+            ob = users();
+            i = sizeof(ob);
+            while (i -- )
+            {
+                if (!ob[i] )
+                    continue;
+                if (! me->visible(ob[i]))
+                    continue;
+                if(!environment(ob[i]) && !query_temp("waiting_enter", ob[i]) )
                 {
-                        str = "";
-                        ob = users();
-                        i = sizeof(ob);
-                        while ( i -- )
-                        {
-                                if ( !ob[i] )
-                                        continue;
-                                if (! me->visible(ob[i]))
-                                        continue;
-                                if( !environment(ob[i]) && !query_temp("waiting_enter", ob[i]) )
-                                {
-                                        destruct(ob[i]);//有點危險
-                                        continue;
-                                }
-                                str += ADD2(ob[i]);
-                        }
-
-                        write(CLEAN2+str);
-                        return 1;
+                    destruct(ob[i]);    //有點危險
+                    continue;
                 }
+                str += ADD2(ob[i]);
+            }
 
-                option = explode(arg, " ");
-                i = sizeof(option);
-                while (i--)
-                        switch (option[i])
-                        {
-                                case "-h": return help();
-                                case "-l": opt_long = 1;        break;
-                                case "-w": opt_wiz = 1;         break;
-                                case "-p": opt_party = 1;       break;
-                                case "-fam":
-                                           if( !query("family/family_name", me) )
-                                                return notify_fail(me->name(1) + "現在還沒有加入任何一個門派。\n");
-                                           opt_family = me->query_family();    break;
-                                case "-f": opt_female = 1;      break;
-                                case "-m": opt_male = 1;        break;
-                                case "-c": opt_chatter = 1; opt_player = 0;     break;
-                                case "-r": opt_player = 1; opt_chatter = 0;     break;
-                                case "-u": opt_master = 1;      break;
-                                case "-i":
-                                case "-s": opt_sort = 1;        break;
-                                case "-S": opt_sort = -1;       break;
-                                case "-z": opt_reborn = 1;       break;
-                                case "-n": opt_number = 1;      break;
-                                case "-@": opt_closed = 1;      break;
-                                case "-!": opt_interactive = 1; break;
-                                case "-v": opt_employ = 1; MYGIFT_D->check_mygift(me, "newbie_mygift/who"); break;
-                                default:
-                                        if (wizardp(me) &&
-                                            option[i][0] == '@')
-                                        {
-                                                RWHO_Q->send_rwho_q(option[i][1..sizeof(option[i])],
-                                                                    me, opt_long);
-                                                write("網路訊息已送出，請稍候。\n");
-                                                return 1;
-                                        }
-
-                                        if (option[i][0] == '-' && !undefinedp(party[option[i][1..<1]]))
-                                        {
-                                                opt_family = party[option[i][1..<1]];
-                                                break;
-                                        }
-
-                                        if (i > 0 && option[i - 1] == "is")
-                                        {
-                                                who_name = option[i];
-                                                i--;
-                                                break;
-                                        }
-
-                                        if (! me) break;
-                                        if (environment(me))
-                                                ob1 = present(option[i], environment(me));
-                                        if (! ob1 || ! me->visible(ob1))
-                                                ob1 = find_player(option[i]);
-                                        if (! ob1 || ! me->visible(ob1))
-                                                ob1 = find_living(option[i]);
-                                        if (! ob1 || ! me->visible(ob1))
-                                                return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
-                                        if( !query("family/family_name", ob1) )
-                                                return notify_fail(ob1->name(1) + "現在還沒有加入任何一個門派。\n");
-
-                                        me = ob1;
-                                        opt_family = me->query_family();
-                        }
+            write(CLEAN2 + str);
+            return 1;
         }
 
-        if (opt_male && opt_female)
+        option = explode(arg, " ");
+        i = sizeof(option);
+        while (i--)
+            switch (option[i])
         {
-                write("參數 -f 和 -m 不能同時使用。\n");
+        case "-h": return help();
+        case "-l": opt_long = 1;        break;
+        case "-w": opt_wiz = 1;         break;
+        case "-p": opt_party = 1;       break;
+        case "-fam":
+            if(!query("family/family_name", me) )
+                return notify_fail(me->name(1) + "現在還沒有加入任何一個門派。\n");
+            opt_family = me->query_family();    break;
+        case "-f": opt_female = 1;      break;
+        case "-m": opt_male = 1;        break;
+        case "-c": opt_chatter = 1; opt_player = 0;     break;
+        case "-r": opt_player = 1; opt_chatter = 0;     break;
+        case "-u": opt_master = 1;      break;
+        case "-i":
+        case "-s": opt_sort = 1;        break;
+        case "-S": opt_sort = -1;       break;
+        case "-z": opt_reborn = 1;       break;
+        case "-n": opt_number = 1;      break;
+        case "-@": opt_closed = 1;      break;
+        case "-!": opt_interactive = 1; break;
+        case "-v": opt_employ = 1; MYGIFT_D->check_mygift(me, "newbie_mygift/who"); break;
+        default:
+            if (wizardp(me) &&
+                option[i][0] == '@')
+            {
+                RWHO_Q->send_rwho_q(option[i][1..sizeof(option[i])],
+                me, opt_long);
+                write("網路訊息已送出，請稍候。\n");
                 return 1;
+            }
+
+            if (option[i][0] == '-' && !undefinedp(party[option[i][1..<1]]))
+            {
+                opt_family = party[option[i][1..<1]];
+                break;
+            }
+
+            if (i > 0 && option[i - 1] == "is")
+            {
+                who_name = option[i];
+                i--;
+                break;
+            }
+
+            if (! me) break;
+            if (environment(me))
+                ob1 = present(option[i], environment(me));
+            if (! ob1 || ! me->visible(ob1))
+                ob1 = find_player(option[i]);
+            if (! ob1 || ! me->visible(ob1))
+                ob1 = find_living(option[i]);
+            if (! ob1 || ! me->visible(ob1))
+                return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
+            if(!query("family/family_name", ob1) )
+                return notify_fail(ob1->name(1) + "現在還沒有加入任何一個門派。\n");
+
+            me = ob1;
+            opt_family = me->query_family();
         }
+    }
 
-        if (opt_long && me && (vob == this_player()) && ! wizardp(me) && ! remote)
+    if (opt_male && opt_female)
+    {
+        write("參數 -f 和 -m 不能同時使用。\n");
+        return 1;
+    }
+
+    if (opt_long && me && (vob == this_player()) && ! wizardp(me) && ! remote)
+    {
+        if(query("jing", me)<5 )
+            return notify_fail("你的精神太差了，沒有辦法得知其他玩家的詳細資料。\n");
+        me->receive_damage("jing", 5);
+    }
+
+    if (opt_player) ob = users(); else ob = ({ });
+    if (opt_chatter && sizeof(MESSAGE_D->query_connection()))
+        ob += filter_array(values(MESSAGE_D->query_connection()),
+            (: objectp :));
+
+    if (opt_party)
+    {
+        if(!query("bunch/bunch_name", me) )
+            return notify_fail("你現在還沒有加入任何一個幫派。\n");
+        ob = filter_array(ob, (:query("bunch/bunch_name", $1) ==
+            query("bunch/bunch_name", $2):), me);
+    }
+
+    if (opt_family)
+    {
+        ob = filter_array(ob, (:query("family/family_name", $1) == $(opt_family) :) );
+        /*
+         * if( !query("family/family_name", me) )
+         * return notify_fail("你現在還沒有加入任何一個門派。\n");
+         * ob = filter_array(ob,(:query("family/family_name", $1) ==
+         * query("family/family_name", $2):),me);
+         */
+    }
+
+    if (opt_male)
+        ob = filter_array(ob, (:query("gender", $1) == "男性":));
+
+    if (opt_female)
+        ob = filter_array(ob, (:query("gender", $1) == "女性":));
+
+    if (who_name)
+    {
+        str = WHT + NAME_D->who_is(who_name) + "\n" NOR;
+        ob = filter_array(ob, (: $1->name(1) == $(who_name) :));
+    } else
+    str = "";
+
+    if (opt_wiz)
+        ob = filter_array(ob, (: wizardp :));
+
+    if (objectp(vob))
+        ob = filter_array(ob, (: $(vob)->visible($1) :));
+    else
+        ob = filter_array(ob, (:query("env/invisible", $1):));
+
+    if (opt_master)
+        ob = filter_array(ob, (: ultrap :));
+
+    if (opt_closed)
+    {
+        if(!wizardp(me) ) return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
+        ob = filter_array(ob, (:!interactive($1) && query("doing", $1):));
+    }
+
+    if (opt_interactive)
+    {
+        if(!wizardp(me) ) return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
+        ob = filter_array(ob, (: interactive($1) :));
+    }
+
+    if (opt_reborn)
+        ob = filter_array(ob, (:query("reborn/times", $1):));
+
+    if (! sizeof(ob))
+    {
+        str += "泥潭中現在沒有符合條件的玩家。\n";
+        if (remote) return str;
+        write(str);
+        return 1;
+    }
+
+    str += HIG "◎" + LOCAL_MUD_NAME() + HIG "◎" + NOR WHT + "  目前江湖中的";
+    if (opt_party)
+    {
+        if(query("bunch/bunch_name", me) )
+            str += HIR + " (" + query("bunch/bunch_name", me) + ") " + NOR WHT;
+        else    str += HIC + " (無幫派) " + NOR WHT;
+    } else
+    if (opt_family)
+    {
+        str += HIR + "("+opt_family + ")"+NOR + WHT;
+        /*
+         * if( query("family/family_name", me) )
+         * str+=HIR+"("+query("family/family_name", me)+")"+NOR+WHT;
+         * else    str += HIC + " (無門派) " + NOR WHT;
+         */
+    }
+
+    if (! who_name)
+        who_name = "";
+    else
+        who_name = "(" + who_name + ")";
+
+    if (opt_closed)
+        str += "修煉中的";
+
+    if (opt_reborn)
+        str += "轉世重生";
+
+    if (opt_wiz)
+        str += (opt_female ? "女性" : opt_male ? "男性" : "") +
+        "巫師" + who_name + "有：";
+    else
+        if (opt_long) str += (opt_female ? "女性" : opt_male ? "男性" : "") +
+        (opt_master ? "大宗師" : "玩家") + who_name + "有：";
+    else str += (opt_female ? "女性" : opt_male ? "男性" : "") +
+        (opt_master ? "大宗師" : "玩家") + who_name + "有：";
+
+    if (opt_employ)
+        str += "<在線的新手導師有>:";
+
+    if (opt_number)
+    {
+        str += chinese_number(sizeof(ob)) + " 人。\n";
+        if (remote) return str;
+        write(str);
+        return 1;
+    }
+
+    str += NOR"\n"HIC"≡" + HIY"---------------------------------------------------------------------------------"HIC"≡\n"NOR;
+
+    if (opt_employ)
+    {
+        object *virep_ob = ({ });
+        //              mapping db;
+        object cob, eob;
+        string *virlist;
+
+        for (i = 0; i < sizeof(ob); i++)
         {
-                if( query("jing", me)<5 )
-                        return notify_fail("你的精神太差了，沒有辦法得知其他玩家的詳細資料。\n");
-                me->receive_damage("jing", 5);
+            cob = ob[i];
+
+            if (query("viremploy/job", cob))
+            {
+                virep_ob += ({ cob });
+            }
+            continue;
         }
+        list = ({ });
+        list = virep_ob;
+        ppl_cnt = 0;
 
-        if (opt_player) ob = users(); else ob = ({ });
-        if (opt_chatter && sizeof(MESSAGE_D->query_connection()))
-                ob += filter_array(values(MESSAGE_D->query_connection()),
-                                   (: objectp :));
-
-        if (opt_party)
+        str += NOR + HIC "≡" + HIY " 新手導師 " + HIC + "≡\n" NOR;
+        ppl_cnt++;
+        i = sizeof(list);
+        while (i--)
         {
-                if( !query("bunch/bunch_name", me) )
-                        return notify_fail("你現在還沒有加入任何一個幫派。\n");
-                ob=filter_array(ob,(:query("bunch/bunch_name", $1) ==
-                        query("bunch/bunch_name", $2):),me);
-        }
-
-        if (opt_family)
-        {
-                ob = filter_array(ob,(:query("family/family_name", $1) == $(opt_family) :) );
-                /*
-                if( !query("family/family_name", me) )
-                        return notify_fail("你現在還沒有加入任何一個門派。\n");
-                ob = filter_array(ob,(:query("family/family_name", $1) ==
-                        query("family/family_name", $2):),me);
-                */
-        }
-
-        if (opt_male)
-                       ob=filter_array(ob,(:query("gender", $1) == "男性":));
-
-        if (opt_female)
-                       ob=filter_array(ob,(:query("gender", $1) == "女性":));
-
-        if (who_name)
-        {
-                str = WHT + NAME_D->who_is(who_name) + "\n" NOR;
-                ob = filter_array(ob, (: $1->name(1) == $(who_name) :));
-        } else
-                str = "";
-
-        if (opt_wiz)
-                ob = filter_array(ob, (: wizardp :));
-
-        if (objectp(vob))
-                ob = filter_array(ob, (: $(vob)->visible($1) :));
-        else
-                ob=filter_array(ob,(:query("env/invisible", $1):));
-
-        if (opt_master)
-                ob = filter_array(ob, (: ultrap :));
-
-        if (opt_closed)
-        {
-                if( !wizardp(me) ) return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
-                ob=filter_array(ob,(:!interactive($1) && query("doing", $1):));
-        }
-
-        if (opt_interactive)
-        {
-                if( !wizardp(me) ) return notify_fail("沒有這個玩家或參數錯誤。\n指令格式 : who [-h] [-l] [-w] [-p] [-fam] [-m] [-f] [<ID>]\n");
-                ob = filter_array(ob, (: interactive($1) :));
-        }
-
-        if (opt_reborn)
-                ob=filter_array(ob,(:query("reborn/times", $1):));
-
-        if (! sizeof(ob))
-        {
-                str += "泥潭中現在沒有符合條件的玩家。\n";
-                if (remote) return str;
-                write(str);
-                return 1;
-        }
-
-        str += HIG "◎" + LOCAL_MUD_NAME() + HIG "◎" + NOR WHT + "  目前江湖中的";
-        if (opt_party)
-        {
-                if( query("bunch/bunch_name", me) )
-                        str += HIR + " (" + query("bunch/bunch_name", me) + ") " + NOR WHT;
-                else    str += HIC + " (無幫派) " + NOR WHT;
-        } else
-        if (opt_family)
-        {
-                str += HIR+"("+opt_family+")"+NOR+WHT;
-                /*
-                if( query("family/family_name", me) )
-                        str+=HIR+"("+query("family/family_name", me)+")"+NOR+WHT;
-                else    str += HIC + " (無門派) " + NOR WHT;
-                */
-        }
-
-        if (! who_name)
-                who_name = "";
-        else
-                who_name = "(" + who_name + ")";
-
-        if (opt_closed)
-                str += "修煉中的";
-
-        if (opt_reborn)
-                str += "轉世重生";
-
-        if (opt_wiz)
-                str += (opt_female ? "女性" : opt_male ? "男性" : "") +
-                       "巫師" + who_name + "有：";
-        else
-                if (opt_long) str += (opt_female ? "女性" : opt_male ? "男性" : "") +
-                                     (opt_master ? "大宗師" : "玩家") + who_name + "有：";
-                else str += (opt_female ? "女性" : opt_male ? "男性" : "") +
-                            (opt_master ? "大宗師" : "玩家") + who_name + "有：";
-
-        if (opt_employ)
-                str += "<在線的新手導師有>:";
-
-        if (opt_number)
-        {
-                str += chinese_number(sizeof(ob)) + " 人。\n";
-                if (remote) return str;
-                write(str);
-                return 1;
-        }
-
-        str += NOR"\n"HIC"≡" + HIY"---------------------------------------------------------------------------------"HIC"≡\n"NOR;
-
-        if (opt_employ)
-        {
-                object *virep_ob = ({ });
-//              mapping db;
-                object cob, eob;
-                string *virlist;
-
-                for (i = 0; i < sizeof(ob); i++)
-                {
-                        cob = ob[i];
-
-                        if (query("viremploy/job", cob))
-                        {
-                                virep_ob += ({ cob });
-                        }
-                        continue;
-                }
-                list = ({ });
-                list = virep_ob;
-                ppl_cnt = 0;
-
-                str += NOR + HIC "≡" + HIY " 新手導師 " + HIC + "≡\n" NOR;
+            if (query("viremploy/job", list[i]) == "新手導師")
+            {
                 ppl_cnt++;
-                i = sizeof(list);
-                while (i--)
-                {
-                        if (query("viremploy/job", list[i]) == "新手導師")
-                        {
-                                ppl_cnt++;
-                                str = sprintf("%s%12s%s%s\n",
-                                str,
-                                RANK_D->query_rank(list[i]),
-                                PREFIX(list[i]),
-                                list[i]->short(1));
-                         }
-                }
-
-                if ((query("viremploy/job", me) == "新手導師" || wizardp(me)) && sizeof(virlist = DB_D->query_data("virlist/teacher")))
-                {
-                        str += NOR + HIC "\n≡"  + HIM "遊戲中所有在職導師" + HIC + "≡\n" NOR;
-                        for (i = 0; i < sizeof(virlist);i ++)
-                        {
-                                if (find_player(virlist[i]))
-                                {
-                                        str += HIY + find_player(virlist[i])->name() + HIY + "(" + virlist[i] + ")--在線\n";
-                                }
-                                else
-                                {
-                                        eob = UPDATE_D->global_find_player(virlist[i]);
-                                        if( !objectp(eob) ) continue;
-                                        str += HIY + eob->name() + HIY + "(" + virlist[i] + ") --離線時間：" + NOR;
-                                        str += HIY + sprintf("%d", (time() - query("last_on", eob)) / 86400) + "天\n" NOR;
-                                        UPDATE_D->global_destruct_player(eob, 1);
-
-                                }
-                        }
-                }
-
-                /*
-                ppl_cnt++;
-                str += NOR "\n" HIC "≡" + HIY " 遊戲宣傳 " + HIC + "≡\n\n" NOR;
-                ppl_cnt++;
-                i = sizeof(list);
-                while (i--)
-                {
-                        if (query("viremploy/job", list[i]) == "遊戲宣傳")
-                        {
-                                ppl_cnt++;
-                                str = sprintf("%s%12s%s%s\n",
-                                        str,
-                                        RANK_D->query_rank(list[i]),
-                                        PREFIX(list[i]),
-                                        list[i]->short(1));
-                        }
-                }
-                */
-
+                str = sprintf("%s%12s%s%s\n",
+                    str,
+                    RANK_D->query_rank(list[i]),
+                    PREFIX(list[i]),
+                    list[i]->short(1));
+            }
         }
-        else
+
+        if ((query("viremploy/job", me) == "新手導師" || wizardp(me)) && sizeof(virlist = DB_D->query_data("virlist/teacher")))
         {
+            str += NOR + HIC "\n≡" + HIM "遊戲中所有在職導師" + HIC + "≡\n" NOR;
+            for (i = 0; i < sizeof(virlist);i ++)
+            {
+                if (find_player(virlist[i]))
+                {
+                    str += HIY + find_player(virlist[i])->name() + HIY + "(" + virlist[i] + ")--在線\n";
+                }
+                else
+                {
+                    eob = UPDATE_D->global_find_player(virlist[i]);
+                    if(!objectp(eob) ) continue;
+                    str += HIY + eob->name() + HIY + "(" + virlist[i] + ") --離線時間：" + NOR;
+                    str += HIY + sprintf("%d", (time() - query("last_on", eob)) / 86400) + "天\n" NOR;
+                    UPDATE_D->global_destruct_player(eob, 1);
+
+                }
+            }
+        }
+
+        /*
+         * ppl_cnt++;
+         * str += NOR "\n" HIC "≡" + HIY " 遊戲宣傳 " + HIC + "≡\n\n" NOR;
+         * ppl_cnt++;
+         * i = sizeof(list);
+         * while (i--)
+         * {
+         * if (query("viremploy/job", list[i]) == "遊戲宣傳")
+         * {
+         * ppl_cnt++;
+         * str = sprintf("%s%12s%s%s\n",
+         * str,
+         * RANK_D->query_rank(list[i]),
+         * PREFIX(list[i]),
+         * list[i]->short(1));
+         * }
+         * }
+         */
+
+    }
+    else
+    {
 
         if (opt_sort)
-                list = sort_array(ob, (: sort_user_by_name :), opt_sort);
+            list = sort_array(ob, (: sort_user_by_name :), opt_sort);
 
         else
         {
-                // Why I sort the array use too many variable ?
-                // Only optimize for speed :)
-                // The normal_ob store the ob without family
-                // the wiz_ob story the wizards
-                // the mapping familys story all the others
-                // & why I create generation ? becuase I want
-                // to sort the player in one family by the
-                // generation, but I won't directly sort them
-                // use function:query, it too slow.
-                mapping familys = ([ ]);
-                mapping generation = ([ ]);
-                object *normal_ob = ({ }), *wiz_ob = ({ });
-                mapping db;
-                mapping fam;
-                string fam_name;
-                object cob;
-                mixed val;
+            // Why I sort the array use too many variable ?
+            // Only optimize for speed :)
+            // The normal_ob store the ob without family
+            // the wiz_ob story the wizards
+            // the mapping familys story all the others
+            // & why I create generation ? becuase I want
+            // to sort the player in one family by the
+            // generation, but I won't directly sort them
+            // use function:query, it too slow.
+            mapping familys = ([ ]);
+            mapping generation = ([ ]);
+            object *normal_ob = ({ }), *wiz_ob = ({ });
+            mapping db;
+            mapping fam;
+            string fam_name;
+            object cob;
+            mixed val;
 
-                for (i = 0; i < sizeof(ob); i++)
+            for (i = 0; i < sizeof(ob); i++)
+            {
+                cob = ob[i];
+                if (wizardp(cob))
                 {
-                        cob = ob[i];
-                        if (wizardp(cob))
-                        {
-                                wiz_ob += ({ cob });
-                                continue;
-                        }
-
-                        db = cob->query_entire_dbase();
-                        if (! mapp(fam = db["family"]) ||
-                            ! stringp(fam_name = fam["family_name"]))
-                        {
-                                normal_ob += ({ cob });
-                                continue;
-                        }
-
-                        if (! arrayp(familys[fam_name]))
-                                familys[fam_name] = ({ cob });
-                        else
-                                familys[fam_name] += ({ cob });
-                        generation[cob] = fam["generation"];
+                    wiz_ob += ({ cob });
+                    continue;
                 }
 
-                list = ({ });
-                for (i = 0; i < sizeof(val = values(familys)); i++)
-                        list += sort_array(val[i], (: $(generation)[$1] -
-                                                      $(generation)[$2] :));
-                list = wiz_ob + list + normal_ob;
+                db = cob->query_entire_dbase();
+                if (! mapp(fam = db["family"]) ||
+                    ! stringp(fam_name = fam["family_name"]))
+                {
+                    normal_ob += ({ cob });
+                    continue;
+                }
+
+                if (! arrayp(familys[fam_name]))
+                    familys[fam_name] = ({ cob });
+                else
+                    familys[fam_name] += ({ cob });
+                generation[cob] = fam["generation"];
+            }
+
+            list = ({ });
+            for (i = 0; i < sizeof(val = values(familys)); i++)
+                list += sort_array(val[i], (: $(generation)[$1] -
+                    $(generation)[$2] :));
+            list = wiz_ob + list + normal_ob;
         }
 
         list = sort_array(list, (: sort_user :));
         ppl_cnt = 0;
         if (opt_long)
         {
-                i = sizeof(list);
-                while (i--)
-                {
-                        // Skip those users in login limbo.
-                        ppl_cnt++;
-                        str = sprintf("%s%12s%s%s\n",
-                                str,
-                                RANK_D->query_rank(list[i]),
-                                PREFIX(list[i]),
-                                list[i]->short(1));
-                }
+            i = sizeof(list);
+            while (i--)
+            {
+                // Skip those users in login limbo.
+                ppl_cnt++;
+                str = sprintf("%s%12s%s%s\n",
+                    str,
+                    RANK_D->query_rank(list[i]),
+                    PREFIX(list[i]),
+                    list[i]->short(1));
+            }
         } else
         {
-                string fname = "";
-                int wiz_cnt,new_cnt;
-                int count = 0;
-                i = sizeof(list);
-                while (i--)
-                {
-                        // Skip those users in login limbo.
-                        who_id = query("id", list[i]);
-                        if (! stringp(who_id))
-                                who_id = "#" + geteuid(list[i]);
+            string fname = "";
+            int wiz_cnt, new_cnt;
+            int count = 0;
+            i = sizeof(list);
+            while (i--)
+            {
+                // Skip those users in login limbo.
+                who_id = query("id", list[i]);
+                if (! stringp(who_id))
+                    who_id = "#" + geteuid(list[i]);
 
-                        if (!wiz_level(list[i]) && fname != query("family/family_name", list[i])) {
-                                fname = query("family/family_name", list[i]);
-                                if (count % 5) str += "\n";
-                                str += sprintf(HIY "%-13s" NOR, (fname?fname:"普通百姓") + "：");
-                                count = 1;
-                        }
-
-                        if (!new_cnt && wiz_level(list[i]) == 1) {
-                                if (count % 5) str += "\n";
-                                str += sprintf(HIY "%-13s" NOR, "新手導師：");
-                                new_cnt = 1;
-                                count = 1;
-                        }
-
-                        if (!wiz_cnt && wiz_level(list[i]) > 1) {
-                                if (count % 5) str += "\n";
-                                str += sprintf(HIY "%-13s" NOR, "管理人員：");
-                                wiz_cnt = 1;
-                                count = 1;
-                        }
-                        if (!(count%5)) {
-                                count++;
-                                str += "             ";
-                        }
-                        name = query("name", list[i]) + "("+capitalize(who_id)+")";
-                        str += sprintf("%s%s%-20s%s",
-                                PREFIX(list[i]),
-                                wizardp(list[i])?HIY:query("gender", list[i]) == "女性"?HIM:NOR+WHT,
-                                name,
-                                ++count % 5 ? "" : "\n"
-                        );
-
-                        ppl_cnt++;
-
-                        /*
-                        name = sprintf("%s%s%-10s(%-12s",
-                                        PREFIX(list[i]),
-                                        wizardp(list[i])?HIY:query("gender", list[i]) == "女性"?HIM:NOR+WHT,
-                                        list[i]->name(1),
-                                        capitalize(who_id)+")");
-
-                        str = sprintf("%s%s%s", str, name,
-                                      ppl_cnt%3==2?"\n": HIY"│");
-                        ppl_cnt++;
-                        */
+                if (!wiz_level(list[i]) && fname != query("family/family_name", list[i])) {
+                    fname = query("family/family_name", list[i]);
+                    if (count % 5) str += "\n";
+                    str += sprintf(HIY "%-13s" NOR, (fname?fname:"普通百姓") + "：");
+                    count = 1;
                 }
-                if( count % 5 ) str += "\n";
-                //if (ppl_cnt % 3) str += "\n";
+
+                if (!new_cnt && wiz_level(list[i]) == 1) {
+                    if (count % 5) str += "\n";
+                    str += sprintf(HIY "%-13s" NOR, "新手導師：");
+                    new_cnt = 1;
+                    count = 1;
+                }
+
+                if (!wiz_cnt && wiz_level(list[i]) > 1) {
+                    if (count % 5) str += "\n";
+                    str += sprintf(HIY "%-13s" NOR, "管理人員：");
+                    wiz_cnt = 1;
+                    count = 1;
+                }
+                if (!(count % 5)) {
+                    count++;
+                    str += "             ";
+                }
+                name = query("name", list[i]) + "("+capitalize(who_id) + ")";
+                str += sprintf("%s%s%-20s%s",
+                    PREFIX(list[i]),
+                    wizardp(list[i])?HIY:query("gender", list[i]) == "女性"?HIM:NOR + WHT,
+                    name,
+                    ++count % 5 ? "" : "\n"
+                    );
+
+                ppl_cnt++;
+
+                /*
+                 * name = sprintf("%s%s%-10s(%-12s",
+                 * PREFIX(list[i]),
+                 * wizardp(list[i])?HIY:query("gender", list[i]) == "女性"?HIM:NOR+WHT,
+                 * list[i]->name(1),
+                 * capitalize(who_id)+")");
+
+                 * str = sprintf("%s%s%s", str, name,
+                 * ppl_cnt%3==2?"\n": HIY"│");
+                 * ppl_cnt++;
+                 */
+            }
+            if(count % 5 ) str += "\n";
+            //if (ppl_cnt % 3) str += "\n";
         }
-        }
+    }
 
-        str += HIC"≡"+HIY"---------------------------------------------------------------------------------"HIC"≡\n"NOR;
-        str = sprintf("%s共有 %s 位使用者連線中，系統負擔：%s\n "
-                      HIG "*" NOR " 表示發呆中，" HIC "~" NOR " 表示聊天中，"
-                      HIR "#" NOR " 表示斷線中，"HIY"@" NOR" 表示離線修煉中。\n",
-                      str, CHINESE_D->chinese_number(ppl_cnt),
-                      query_load_average());
+    str += HIC"≡"+HIY"---------------------------------------------------------------------------------"HIC"≡\n"NOR;
+    str = sprintf("%s共有 %s 位使用者連線中，系統負擔：%s\n "
+        HIG "*" NOR " 表示發呆中，" HIC "~" NOR " 表示聊天中，"
+        HIR "#" NOR " 表示斷線中，"HIY"@" NOR" 表示離線修煉中。\n",
+        str, CHINESE_D->chinese_number(ppl_cnt),
+        query_load_average());
 
-        if (remote) return str;
-        me->start_more(str);
-        return 1;
+    if (remote) return str;
+    me->start_more(str);
+    return 1;
 }
 
-int sort_user_by_name(object ob1, object ob2, int d)
-{
-        if (wizardp(ob1) && ! wizardp(ob2)) return -1;
-        if (wizardp(ob2) && ! wizardp(ob1)) return 1;
-        if (wizardp(ob1) && wizardp(ob2))
-                return (int)SECURITY_D->get_wiz_level(ob2)
-                        - (int)SECURITY_D->get_wiz_level(ob1);
+int sort_user_by_name(object ob1, object ob2, int d) {
+    if (wizardp(ob1) && ! wizardp(ob2)) return -1;
+    if (wizardp(ob2) && ! wizardp(ob1)) return 1;
+    if (wizardp(ob1) && wizardp(ob2))
+        return (int)SECURITY_D->get_wiz_level(ob2)
+    - (int)SECURITY_D->get_wiz_level(ob1);
 
-        return strcmp(query("id", ob2),query("id", ob1))*d;
+    return strcmp(query("id", ob2), query("id", ob1))*d;
 }
 
-int sort_user(object ob1, object ob2)
-{
-        string name1, name2;
-        int l1 = wiz_level(ob1), l2 = wiz_level(ob2);
+int sort_user(object ob1, object ob2) {
+    string name1, name2;
+    int l1 = wiz_level(ob1), l2 = wiz_level(ob2);
 
-        if (wizardp(ob1) && ! wizardp(ob2)) return -1;
-        if (wizardp(ob2) && ! wizardp(ob1)) return 1;
+    if (wizardp(ob1) && ! wizardp(ob2)) return -1;
+    if (wizardp(ob2) && ! wizardp(ob1)) return 1;
 
-        if( l1 != l2 ) return l2 - l1;
+    if(l1 != l2 ) return l2 - l1;
 
-        //reset_eval_cost();
+    //reset_eval_cost();
 
-        name1 = query("family/family_name", ob1);
-        name2 = query("family/family_name", ob2);
-        if( intp(name1) ) name1 = "";
-        if( intp(name2) ) name2 = "";
-        return strcmp(name2, name1);
-        /*
-        if( name1 > name2 ) return -1;
-        if( name1 < name2 ) return 1;
-        */
-        l1 = query("family/generation", ob1);
-        l2 = query("family/generation", ob2);
-        if( l1 != l2 ) return l1 - l2;
+    name1 = query("family/family_name", ob1);
+    name2 = query("family/family_name", ob2);
+    if(intp(name1) ) name1 = "";
+    if(intp(name2) ) name2 = "";
+    return strcmp(name2, name1);
+    /*
+     * if( name1 > name2 ) return -1;
+     * if( name1 < name2 ) return 1;
+     */
+    l1 = query("family/generation", ob1);
+    l2 = query("family/generation", ob2);
+    if(l1 != l2 ) return l1 - l2;
 
-        // sort by playing time.
-        return query("online_time", ob2) - query("online_time", ob1);
+    // sort by playing time.
+    return query("online_time", ob2) - query("online_time", ob1);
 }
 
-int help()
-{
-        string *p;
-        int i,j;
+int help() {
+    string *p;
+    int i, j;
 
-        write("
+    write("
 指令格式 : who [-h] [-l] [-w] [-p] [-c] [-fam] [-f] [-m] [-s] [-S] [-z] [<ID>] [-n] [is <中文名字>]
 
 這個指令可以列出所有在線上的玩家及其等級。
@@ -601,30 +597,30 @@ is   如果使用了這個選項，後面要跟隨玩家的中文名字。
 -英文代號 只列出該門派的玩家。
 
 "HIG"*"NOR" 表示"HIG"發呆"NOR"中，"HIC "~"NOR" 表示聊天中，"
-HIR"#"NOR" 表示"HIR"斷線"NOR"中，"HIY"@"NOR" 表示"HIY"離線修煉"NOR"中。
+        HIR"#"NOR" 表示"HIR"斷線"NOR"中，"HIY"@"NOR" 表示"HIY"離線修煉"NOR"中。
 
 " );
         p = sort_array(keys(party), 1);
-        i = sizeof(p);
-        j = i;
-        write(sprintf("   %-12s%-12s    %-12s%-12s\n","英文代號","門派名","英文代號","門派名"));
-        write("----------------------------------------------------------\n");
-        for (i=0;i<j/2;i++)
+    i = sizeof(p);
+    j = i;
+    write(sprintf("   %-12s%-12s    %-12s%-12s\n", "英文代號", "門派名", "英文代號", "門派名"));
+    write("----------------------------------------------------------\n");
+    for (i = 0;i<j / 2;i++)
+    {
+        if (i==(j / 2 - 1))
         {
-                if (i==(j/2-1))
-                {
-                        write(sprintf("   %-10s：%-12s\n", p[i], party[p[i]]));
-                        continue;
-                }
-                if (i/2*2==i)
-                        write(sprintf("   %-10s：%-12s|", p[i], party[p[i]]));
-                else
-                        write(sprintf("   %-10s：%-12s\n", p[i], party[p[i]]));
+            write(sprintf("   %-10s：%-12s\n", p[i], party[p[i]]));
+            continue;
         }
-        write("----------------------------------------------------------\n");
-        write(@HELP
+        if (i / 2*2==i)
+            write(sprintf("   %-10s：%-12s|", p[i], party[p[i]]));
+        else
+            write(sprintf("   %-10s：%-12s\n", p[i], party[p[i]]));
+    }
+    write("----------------------------------------------------------\n");
+    write(@HELP
 
 相關指令： finger
 HELP);
-        return 1;
+    return 1;
 }

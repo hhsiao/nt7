@@ -4,38 +4,36 @@
 #include <ansi.h>
 inherit NPC;
 
-void create()
-{
-        set_name("小豹子", ({ "xiao baozi", "baozi" }) );
-        set("race", "走獸");
-        set("age", 1);
-        set("long", "一隻身體不大可是很結實的小豹子，它正瞪著眼睛看著你。\n");
-        set("attitude", "aggressive");
-        set_weight(200000);
-        set("max_qi", 100);
-        set("max_jing", 100);
-        set("max_jingli", 100);
+void create() {
+    set_name("小豹子", ({ "xiao baozi", "baozi" }) );
+    set("race", "走獸");
+    set("age", 1);
+    set("long", "一隻身體不大可是很結實的小豹子，它正瞪著眼睛看著你。\n");
+    set("attitude", "aggressive");
+    set_weight(200000);
+    set("max_qi", 100);
+    set("max_jing", 100);
+    set("max_jingli", 100);
 
-        set("str", 30);
-        set("con", 80);
-        set("dex", 30);
-        set("int", 10);
+    set("str", 30);
+    set("con", 80);
+    set("dex", 30);
+    set("int", 10);
 
-        set("combat_exp", 20000);
+    set("combat_exp", 20000);
 
-        set_temp("apply/attack", 10);
-        set_temp("apply/damage", 10);
-        set_temp("apply/armor", 10);
+    set_temp("apply/attack", 10);
+    set_temp("apply/damage", 10);
+    set_temp("apply/armor", 10);
 
-        setup();
+    setup();
 }
 
-void die()
-{
-        object ob,ob2=this_object();
+void die() {
+    object ob, ob2 = this_object();
 
-        ob = new(__DIR__"obj/baodan");
-        ob->move(environment(this_object()));
-        message_vision("$N慘嚎一聲，死了！\n", this_object());
-        destruct(ob2);
+    ob = new(__DIR__"obj/baodan");
+    ob->move(environment(this_object()));
+    message_vision("$N慘嚎一聲，死了！\n", this_object());
+    destruct(ob2);
 }

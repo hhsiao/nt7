@@ -3,20 +3,18 @@
 
 inherit EQUIP_SOUL;
 
-void create()
-{
-        set_name(HIM "RP_NAME之魂" NOR, ({"RP_ID soulRP_STATUS", "RP_ID", "soulRP_STATUS"}));
-        set_weight(100);
+void create() {
+    set_name(HIM "RP_NAME之魂" NOR, ({"RP_ID soulRP_STATUS", "RP_ID", "soulRP_STATUS"}));
+    set_weight(100);
 
-        set("long", HIM "這是一個RP_NAME之魂。\n" NOR);
-        set("unit", "個");
-        set("value", 200000);
-        set("no_sell", 1);
+    set("long", HIM "這是一個RP_NAME之魂。\n" NOR);
+    set("unit", "個");
+    set("value", 200000);
+    set("no_sell", 1);
 
-        set("type", "RP_ID");
-        set("status", RP_STATUS);
-        set("auto_load", 1);
-        
-        setup();
+    set("type", "RP_ID");
+    set("status", RP_STATUS);
+    set("auto_load", 1);
+
+    setup();
 }
-

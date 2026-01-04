@@ -4,16 +4,15 @@
 
 inherit EQUIP;
 
-void create()
-{
-        set_name( HIR "結婚禮服" NOR, ({ "li fu", "dress" }) );
-        set_weight(700);
-        set("unit", "件");
-                set("value", 20000);
-                set("material", "cloth");
-                set("armor_type", "cloth");
-                set("armor_prop/per", 5);
-                set("armor_prop/armor", 3);
-                set("wear_msg","$N穿上一件$n。\n");
-                set("remove_msg","$將$n脫了下來。\n");
+void create() {
+    set_name(HIR "結婚禮服" NOR, ({ "li fu", "dress" }) );
+    set_weight(700);
+    set("unit", "件");
+    set("value", 20000);
+    set("material", "cloth");
+    set("armor_type", "cloth");
+    set("armor_prop/per", 5);
+    set("armor_prop/armor", 3);
+    set("wear_msg", "$N穿上一件$n。\n");
+    set("remove_msg", "$將$n脫了下來。\n");
 }

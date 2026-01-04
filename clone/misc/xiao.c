@@ -6,14 +6,13 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIG "寒玉蕭" NOR, ({"hanyu xiao", "xiao"}));
-        set_weight(4500);
-        set("long", HIG "這根寒玉蕭是鬼三的傳家寶。\n" NOR);
-                set("unit", "把");
-                set("value", 5000);
-                set("item_origin", 1);
-                set("material_attrib", "hanyu");
-                set("material_name", HIG "寒玉" NOR);
+void create() {
+    set_name(HIG "寒玉蕭" NOR, ({"hanyu xiao", "xiao"}));
+    set_weight(4500);
+    set("long", HIG "這根寒玉蕭是鬼三的傳家寶。\n" NOR);
+    set("unit", "把");
+    set("value", 5000);
+    set("item_origin", 1);
+    set("material_attrib", "hanyu");
+    set("material_name", HIG "寒玉" NOR);
 }

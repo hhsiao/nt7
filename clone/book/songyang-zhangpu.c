@@ -5,21 +5,20 @@
 inherit ITEM;
 inherit F_UNIQUE;
 
-void create()
-{
-        set_name(RED"大嵩陽掌譜" NOR, ({ "songyang zhangpu","zhangpu", }));
-        set_weight(1000);
-        set("unit","本");
-                set("long","這是一張麻紙小冊，上面好象還有一些小人揮舞拳腳的圖形。\n",
-         );
-         set("value", 0);
-         set("material", "paper");
-         set("skill", ([
-                        "name"         : "songyang-strike",
-			"family_name" : "嵩山派",
-                        "exp_required" : 10000,
-                        "jing_cost"    : 30,
-                        "difficulty"   : 20,
-                        "max_skill"    : 80
-                ]) );
+void create() {
+    set_name(RED"大嵩陽掌譜" NOR, ({ "songyang zhangpu", "zhangpu", }));
+    set_weight(1000);
+    set("unit", "本");
+    set("long", "這是一張麻紙小冊，上面好象還有一些小人揮舞拳腳的圖形。\n",
+    );
+    set("value", 0);
+    set("material", "paper");
+    set("skill", ([
+        "name": "songyang-strike",
+        "family_name": "嵩山派",
+        "exp_required": 10000,
+        "jing_cost": 30,
+        "difficulty": 20,
+        "max_skill": 80
+        ]) );
 }

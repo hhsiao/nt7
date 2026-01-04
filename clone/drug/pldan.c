@@ -27,8 +27,8 @@ void init();
 void create() {
     set_name(HIB "破立丹" NOR, ({"poli dan", "puoli", "dan"}));
     set("long", HIW"     一顆淡藍色的小藥丸，閃爍著晶瑩的光澤，這就是傳說中能夠讓
-人脫胎換骨，洗心革面，重新做人的破立丹了。如想了解更多關於破
-立丹的祥情，請看幫助(help help_pldan)"NOR"\n\n");
+        人脫胎換骨，洗心革面，重新做人的破立丹了。如想了解更多關於破
+        立丹的祥情，請看幫助(help help_pldan)"NOR"\n\n");
     set_weight(20);
     set("unit", "枚");
     set("value", 50000);

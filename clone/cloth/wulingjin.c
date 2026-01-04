@@ -4,15 +4,14 @@
 #include <armor.h>
 inherit HEAD;
 
-void create()
-{
-        set_name("烏綾巾", ({ "wuling jin", "jin" }) );
-        set_weight(700);
-        set("unit", "頂");
-                set("long", "一頂黑緞子製成的絲帶，用來束髮。\n");
-                set("value", 300);
-                set("material", "cloth");
-                set("armor_prop/armor", 1);
-                set("armor_prop/per", 1);
-        setup();
+void create() {
+    set_name("烏綾巾", ({ "wuling jin", "jin" }) );
+    set_weight(700);
+    set("unit", "頂");
+    set("long", "一頂黑緞子製成的絲帶，用來束髮。\n");
+    set("value", 300);
+    set("material", "cloth");
+    set("armor_prop/armor", 1);
+    set("armor_prop/per", 1);
+    setup();
 }

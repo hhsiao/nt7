@@ -4,97 +4,94 @@ inherit F_CLEAN_UP;
 
 int help(object me);
 
-int main(object me, string arg)
-{
-        string target;
-        object obj;
-        object *obs;
-        string ob_name;
-        int remove_flag;
+int main(object me, string arg) {
+    string target;
+    object obj;
+    object *obs;
+    int remove_flag;
 
-        if (! SECURITY_D->valid_grant(me, "(admin)"))
-                return 0;
+    if (! SECURITY_D->valid_grant(me, "(admin)"))
+        return 0;
 
-        seteuid(getuid(me));
+    seteuid(getuid(me));
 
-        if (! arg) return notify_fail("指令格式 : clear [-u] <物件之名"
-                                      "稱或檔名> | <玩家ID> <分項>\n" );
+    if (! arg) return notify_fail("指令格式 : clear [-u] <物件之名"
+        "稱或檔名> | <玩家ID> <分項>\n" );
 
-        if (sscanf(arg, "-u %s", arg) == 1)
+    if (sscanf(arg, "-u %s", arg) == 1)
+    {
+        if (sscanf(arg, "%s %s", target, arg) != 2)
         {
-                if (sscanf(arg, "%s %s", target, arg) != 2)
-                {
-                        write("你必須指明清除用戶的什麼數據。\n");
-                        return 1;
-                }
-
-                // clear the user data
-                write ("清除用戶(" + target + ")的數據：" +
-                       UPDATE_D->clear_user_data(target, arg));
-                return 1;
+            write("你必須指明清除用戶的什麼數據。\n");
+            return 1;
         }
 
-        if (arg == "-u")
-        {
-                help(me);
-                return 1;
-        }
-
-        // check the remove flag
-        remove_flag = sscanf(arg, "-remove %s", arg);
-
-        target = arg;
-        obj = find_object(target);
-        if ((! obj  || userp(obj)) && file_size(target + ".c") >0 )
-                catch(obj = load_object(target));
-        if (! obj || userp(obj)) obj = present(target, me);
-        if (! obj || userp(obj)) obj = present(target, environment(me));
-        if (! obj || userp(obj)) obj = find_object(resolve_path(query("cwd", me), target));
-        if (! obj || userp(obj)) catch(obj = load_object(resolve_path(query("cwd", me), target)));
-        if (obj && ! userp(obj))
-        {
-                message_vision(sprintf("$N將物件<%O>連同存盤記錄一起"
-                                       "徹底的摧毀了。\n", obj), me);
-                if (! clonep(obj))
-                {
-                        obs = filter_array(all_inventory(obj), (: userp :));
-                        obs->move(VOID_OB, 1);
-                } else
-                        obs = 0;
-
-                target = base_name(obj);
-
-                if (! DBASE_D->clear_object(obj))
-                        write ("你沒有能夠成功的摧毀物件和記錄。\n");
-                else
-                {
-                        if (remove_flag)
-                        {
-                                seteuid(getuid());
-                                if (rm(target + ".c") == 1)
-                                        write("文件 " + target + ".c 已經成功刪除。\n");
-                                else
-                                        write("刪除文件 " + target + ".c 失敗。\n");
-                        } else
-                        if (arrayp(obs) && sizeof(obs))
-                                obs->move(target, 1);
-                        write("Ok.\n");
-                }
-        } else
-        {
-                write("你試圖從數據庫中清除條目(" + target + ")的記錄。\n");
-                if (! DBASE_D->clear_object(target))
-                        write ("你沒有能夠成功的清除記錄。\n");
-                else
-                        write("Ok.\n");
-        }
-
+        // clear the user data
+        write ("清除用戶(" + target + ")的數據：" +
+            UPDATE_D->clear_user_data(target, arg));
         return 1;
+    }
+
+    if (arg == "-u")
+    {
+        help(me);
+        return 1;
+    }
+
+    // check the remove flag
+    remove_flag = sscanf(arg, "-remove %s", arg);
+
+    target = arg;
+    obj = find_object(target);
+    if ((! obj  || userp(obj)) && file_size(target + ".c") >0 )
+        catch(obj = load_object(target));
+    if (! obj || userp(obj)) obj = present(target, me);
+    if (! obj || userp(obj)) obj = present(target, environment(me));
+    if (! obj || userp(obj)) obj = find_object(resolve_path(query("cwd", me), target));
+    if (! obj || userp(obj)) catch(obj = load_object(resolve_path(query("cwd", me), target)));
+    if (obj && ! userp(obj))
+    {
+        message_vision(sprintf("$N將物件<%O>連同存盤記錄一起"
+            "徹底的摧毀了。\n", obj), me);
+        if (! clonep(obj))
+        {
+            obs = filter_array(all_inventory(obj), (: userp :));
+            obs->move(VOID_OB, 1);
+        } else
+        obs = 0;
+
+        target = base_name(obj);
+
+        if (! DBASE_D->clear_object(obj))
+            write ("你沒有能夠成功的摧毀物件和記錄。\n");
+        else
+        {
+            if (remove_flag)
+            {
+                seteuid(getuid());
+                if (rm(target + ".c") == 1)
+                    write("文件 " + target + ".c 已經成功刪除。\n");
+                else
+                    write("刪除文件 " + target + ".c 失敗。\n");
+            } else
+            if (arrayp(obs) && sizeof(obs))
+                obs->move(target, 1);
+            write("Ok.\n");
+        }
+    } else
+    {
+        write("你試圖從數據庫中清除條目(" + target + ")的記錄。\n");
+        if (! DBASE_D->clear_object(target))
+            write ("你沒有能夠成功的清除記錄。\n");
+        else
+            write("Ok.\n");
+    }
+
+    return 1;
 }
 
-int help(object me)
-{
-        write(@HELP
+int help(object me) {
+    write(@HELP
 指令格式 : clear -u <玩家ID> <分項>
                  [-remove] <物件之名稱或檔名>
 
@@ -122,5 +119,5 @@ int help(object me)
 
 參考資料： dest，query
 HELP );
-        return 1;
+    return 1;
 }

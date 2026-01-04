@@ -1,19 +1,16 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/3
-// /clone/board/swing_b.c 
+// /clone/board/swing_b.c
 #include <ansi.h>
-        
-inherit BULLETIN_BOARD; 
-        
-       void create() 
-       { 
-                   set_name(RED"無相石"NOR,({"stone"}));
-               set("location","/u/zhizhi/hualetian");
-                 set("board_id","stone_b");
-                   set("long","“化五塵而自樂，樂自在而化天。”\n");
-              setup(); 
-              set("capacity", 100); 
-              replace_program(BULLETIN_BOARD); 
-      } 
-       
-       
+
+inherit BULLETIN_BOARD;
+
+void create() {
+    set_name(RED"無相石"NOR, ({"stone"}));
+    set("location", "/u/zhizhi/hualetian");
+    set("board_id", "stone_b");
+    set("long", "“化五塵而自樂，樂自在而化天。”\n");
+    setup();
+    set("capacity", 100);
+    replace_program(BULLETIN_BOARD);
+}

@@ -4,16 +4,15 @@
 #include <weapon.h>
 inherit HAMMER;
 
-void create()
-{
-        set_name("金瓜", ({ "golden hammer", "gua", "hammer" }) );
-        set_weight(8500);
-        set("unit", "把");
-                set("long", "這是一把沉重的金瓜，是皇城衛士的專用武器。\n");
-                set("value", 1200);
-                set("material", "iron");
-                set("wield_msg", "$N拿出一把$n，試了試重量，然後握在手中。\n");
-                set("unwield_msg", "$N放下手中的$n。\n");
-        init_hammer(25);
-        setup();
+void create() {
+    set_name("金瓜", ({ "golden hammer", "gua", "hammer" }) );
+    set_weight(8500);
+    set("unit", "把");
+    set("long", "這是一把沉重的金瓜，是皇城衛士的專用武器。\n");
+    set("value", 1200);
+    set("material", "iron");
+    set("wield_msg", "$N拿出一把$n，試了試重量，然後握在手中。\n");
+    set("unwield_msg", "$N放下手中的$n。\n");
+    init_hammer(25);
+    setup();
 }

@@ -11,7 +11,7 @@ void create() {
         "這是一張"HIR"聖誕賀卡"NOR"，送給每位在聖誕節進入俠客行一百
 的玩家。你可以打開(dakai)來看看，記住自己的編號。
 新年鐘聲敲響的時候，等待著我們的抽獎禮品。\n");
-    set("value", 0);
+        set("value", 0);
     set_weight(10);
     setup();
 }
@@ -83,7 +83,7 @@ int do_chaikai(string arg) {
     {
         message_vision("$N充滿憧憬地拆開了聖誕卡，突然如魔術般，出現
             一個禮品盒！\n", me);
-        box = new(__DIR__"giftbox");
+            box = new(__DIR__"giftbox");
         newcard = new(__DIR__"card_cs_done");
         newcard->move(me);
         if (random(50) == 1)
@@ -111,7 +111,6 @@ int do_chaikai(string arg) {
     return 1;
 }
 
-string query_autoload()
-{
+string query_autoload() {
     return 1 + "";
 }

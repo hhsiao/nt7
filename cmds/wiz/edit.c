@@ -3,61 +3,58 @@
 #include <ansi.h>
 inherit F_CLEAN_UP;
 
-string string_name()
-{
-        return HIM "編輯器(Edit)";
+string string_name() {
+    return HIM "編輯器(Edit)";
 }
 
-int main(object me, string file)
-{
-        string dir;
-        
-        if (! SECURITY_D->valid_grant(me, "(apprentice)"))
-                return 0;
+int main(object me, string file) {
+    string dir;
 
-        if (! file) return notify_fail("指令格式：edit <檔名>\n");
-                
-        if (in_edit(me)) return notify_fail("你已經在使用編輯器了。\n");
+    if (! SECURITY_D->valid_grant(me, "(apprentice)"))
+        return 0;
 
-        file = resolve_path(query("cwd", me), file);
+    if (! file) return notify_fail("指令格式：edit <檔名>\n");
 
-        if (! me->is_admin()) 
-        {
-                dir = SECURITY_D->query_site_privilege("edit");
-                if( !dir && !sscanf(file, "/u/%*s") )
-                        return notify_fail("你只能在你自己的目錄下編輯。\n");
-                        
-                if( dir != "all" && !sscanf(file, "/%s/%*s", dir) )
-                        return notify_fail("你只能在你自己目錄以及在" + dir + "目錄下編輯。\n");
-        }
-        
-        foreach (object user in users())
+    if (in_edit(me)) return notify_fail("你已經在使用編輯器了。\n");
+
+    file = resolve_path(query("cwd", me), file);
+
+    if (! me->is_admin())
+    {
+        dir = SECURITY_D->query_site_privilege("edit");
+        if(!dir && !sscanf(file, "/u/%*s") )
+            return notify_fail("你只能在你自己的目錄下編輯。\n");
+
+        if(dir != "all" && !sscanf(file, "/%s/%*s", dir) )
+            return notify_fail("你只能在你自己目錄以及在" + dir + "目錄下編輯。\n");
+    }
+
+    foreach (object user in users())
         if (file == in_edit(user))
-                return notify_fail(HIM "共享衝突：" + user->name(1) + HIM "(" +
-                        capitalize(query("id", user)) + ")" +
-                        HIM "正在編輯該文件(" + file + ")。\n" NOR);
+        return notify_fail(HIM "共享衝突：" + user->name(1) + HIM "(" +
+            capitalize(query("id", user)) + ")" +
+            HIM "正在編輯該文件(" + file + ")。\n" NOR);
 
-        printf("編輯文件：%s\n", file);
-        CHANNEL_D->channel_broadcast("sys",
-                sprintf("%s(%s)正在編輯文件(%s)。",
-                me->name(1),
-                capitalize(query("id", me)),
-                file));
+    printf("編輯文件：%s\n", file);
+    CHANNEL_D->channel_broadcast("sys",
+        sprintf("%s(%s)正在編輯文件(%s)。",
+            me->name(1),
+            capitalize(query("id", me)),
+            file));
 
-        seteuid(geteuid(me));
-        set("cwf", file, me);
-        SECURITY_D->backup_file(file);
-        ed(file);
+    seteuid(geteuid(me));
+    set("cwf", file, me);
+    SECURITY_D->backup_file(file);
+    ed(file);
 
-        log_file("static/edit", sprintf("%s %-9s edit %s from %s.\n",
-                                        log_time(),
-                                        geteuid(me), file,
-                                        query_ip_name(me)));
-        return 1;
+    log_file("static/edit", sprintf("%s %-9s edit %s from %s.\n",
+        log_time(),
+        geteuid(me), file,
+        query_ip_name(me)));
+    return 1;
 }
-int help(object me)
-{
-        write(@HELP
+int help(object me) {
+    write(@HELP
 指令格式 : edit <檔名>, edit here
 利用此一指令可直接在線上編輯檔案。
                 /向前搜索匹配項
@@ -94,6 +91,6 @@ int help(object me)
                 Z顯示40行，可用 . + - 三種標記
 
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

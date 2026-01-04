@@ -3,20 +3,18 @@
 
 inherit EQUIP_SOUL;
 
-void create()
-{
-        set_name(HIM "戰衣之魂" NOR, ({"cloth soul6", "cloth", "soul6"}));
-        set_weight(100);
+void create() {
+    set_name(HIM "戰衣之魂" NOR, ({"cloth soul6", "cloth", "soul6"}));
+    set_weight(100);
 
-        set("long", HIM "這是一個戰衣之魂。\n" NOR);
-        set("unit", "個");
-        set("value", 200000);
-        set("no_sell", 1);
+    set("long", HIM "這是一個戰衣之魂。\n" NOR);
+    set("unit", "個");
+    set("value", 200000);
+    set("no_sell", 1);
 
-        set("type", "cloth");
-        set("status", 6);
-        set("auto_load", 1);
-        
-        setup();
+    set("type", "cloth");
+    set("status", 6);
+    set("auto_load", 1);
+
+    setup();
 }
-

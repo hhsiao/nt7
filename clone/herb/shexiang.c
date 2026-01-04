@@ -1,11 +1,10 @@
 #include "herb.h"
 
-void create()
-{
-        set_name(HIM "麝香" NOR, ({ "she xiang", "she", "xiang", "herb_shexiang" }));
-        set("long", HIM "散發著濃厚香味的麝香，可以入藥。\n" NOR);
-                set("base_unit", "塊");
-                set("base_value", 10000);
-                set("base_weight", 50);
-        setup();
+void create() {
+    set_name(HIM "麝香" NOR, ({ "she xiang", "she", "xiang", "herb_shexiang" }));
+    set("long", HIM "散發著濃厚香味的麝香，可以入藥。\n" NOR);
+    set("base_unit", "塊");
+    set("base_value", 10000);
+    set("base_weight", 50);
+    setup();
 }

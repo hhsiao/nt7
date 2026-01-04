@@ -118,10 +118,10 @@ void reset_pai() {
     who_play = 0;
     last_play = 0;
     last_pai = ({-1,-1,-1,-1,-1} );
-}
+        }
 
-int reset_all() {
-    has_start = 0;
+        int reset_all() {
+        has_start = 0;
     if(sizeof(player)!=0)
         msg(this_player()->name() + "重新置牌了。\n");
 

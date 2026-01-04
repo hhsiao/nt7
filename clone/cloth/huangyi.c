@@ -6,13 +6,12 @@
 
 inherit CLOTH;
 
-void create()
-{
-        set_name(HIY"黃色小褂"NOR, ({"huang gua", "yellow cloth", "cloth"}));
-        set_weight(1000);
-        set("material", "cloth");
-                set("unit", "件");
-                set("value", 100);
-                set("armor_prop/armor", 5);
-        setup();
+void create() {
+    set_name(HIY"黃色小褂"NOR, ({"huang gua", "yellow cloth", "cloth"}));
+    set_weight(1000);
+    set("material", "cloth");
+    set("unit", "件");
+    set("value", 100);
+    set("armor_prop/armor", 5);
+    setup();
 }

@@ -1,19 +1,18 @@
 #include <ansi.h>
 inherit __DIR__"pill";
 
-void create()
-{
-        set_name(NOR + CYN "百年靈芝丸" NOR, ({ "lingzhi wan", "lingzhi", "wan" }));
-        set("long", CYN "由百年靈芝混合數種珍貴藥材所煉製的靈藥。\n" NOR);
-                set("base_unit", "顆");
-                set("base_value", 20000);
-                set("base_weight", 100);
-                set("only_do_effect", 1);
-                set("pill_skill", "force");
-                set("skill_mapped", 1);
-                set("pill_point", 30000);
-                set("force_point", 50);
-                set("pill_msg1", HIR "你只覺一股暖氣散佈全身，說不出的舒服受用。\n" NOR);
-                set("pill_msg2", HIY "你只覺一股熱流湧上，內息得到了完全的補充。\n" NOR);
-        setup();
+void create() {
+    set_name(NOR + CYN "百年靈芝丸" NOR, ({ "lingzhi wan", "lingzhi", "wan" }));
+    set("long", CYN "由百年靈芝混合數種珍貴藥材所煉製的靈藥。\n" NOR);
+    set("base_unit", "顆");
+    set("base_value", 20000);
+    set("base_weight", 100);
+    set("only_do_effect", 1);
+    set("pill_skill", "force");
+    set("skill_mapped", 1);
+    set("pill_point", 30000);
+    set("force_point", 50);
+    set("pill_msg1", HIR "你只覺一股暖氣散佈全身，說不出的舒服受用。\n" NOR);
+    set("pill_msg2", HIY "你只覺一股熱流湧上，內息得到了完全的補充。\n" NOR);
+    setup();
 }

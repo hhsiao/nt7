@@ -1,21 +1,20 @@
 // lbook7.c
 #include <ansi.h>
 inherit ITEM;
-void create()
-{
-        set_name(YEL"「說律」"NOR, ({ "literateb7", "shu7", "book7" }));
-        set_weight(500);
-        set("unit", "本");
-                set("long","這本書封皮有點舊，上面寫著「說律」幾個字。\n");
-                set("value", 5000);
-                set("material", "paper");
-                set("skill",
-                ([
-                        "name": "literate",
-                        "exp_required": 0,
-                        "jing_cost":    10,
-                        "difficulty":   15,
-                        "max_skill":    19,
-                        "min_skill":    1,
-                ]) );
+void create() {
+    set_name(YEL"「說律」"NOR, ({ "literateb7", "shu7", "book7" }));
+    set_weight(500);
+    set("unit", "本");
+    set("long", "這本書封皮有點舊，上面寫著「說律」幾個字。\n");
+    set("value", 5000);
+    set("material", "paper");
+    set("skill",
+        ([
+            "name": "literate",
+            "exp_required": 0,
+            "jing_cost": 10,
+            "difficulty": 15,
+            "max_skill": 19,
+            "min_skill": 1
+            ]) );
 }

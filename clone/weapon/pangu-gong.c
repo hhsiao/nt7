@@ -4,18 +4,16 @@
 
 inherit __DIR__"bow";
 
-void create()
-{
-        set_name(HIY "盤古巨弓" NOR, ({ "pangu gong", "pangu", "gong" }));
-        set_weight(1000);
-        set("unit", "張");
-                set("long", HIY "一張看似非凡的巨弓。\n" NOR);
-                                set("value", 500000);
-                set("accuracy", 300);   // 準確度150%
-        setup();
+void create() {
+    set_name(HIY "盤古巨弓" NOR, ({ "pangu gong", "pangu", "gong" }));
+    set_weight(1000);
+    set("unit", "張");
+    set("long", HIY "一張看似非凡的巨弓。\n" NOR);
+    set("value", 500000);
+    set("accuracy", 300);   // 準確度150%
+    setup();
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

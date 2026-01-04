@@ -3,22 +3,21 @@
 inherit ITEM;
 
 string* titles = ({
-        "崑崙心法",
+    "崑崙心法"
 });
 
-void create()
-{
-        set_name(titles[random(sizeof(titles))], ({ "shu", "book" }));
-        set_weight(200);
-        set("unit", "本");
-                set("long", "這是崑崙派內功心法的秘籍。\n");
-                set("value", 500);
-                set("material", "paper");
-                set("skill", ([
-                        "name": "xuantian-wuji",     // name of the skill
-                        "exp_required": 3000,      // minimum combat experience required
-                        "jing_cost":    15,     // jing cost every time study this
-                        "difficulty":   20,     // the base int to learn this skill
-                        "max_skill":    41      // the maximum level you learn
-                ]) );
+void create() {
+    set_name(titles[random(sizeof(titles))], ({ "shu", "book" }));
+    set_weight(200);
+    set("unit", "本");
+    set("long", "這是崑崙派內功心法的秘籍。\n");
+    set("value", 500);
+    set("material", "paper");
+    set("skill", ([
+        "name": "xuantian-wuji",    // name of the skill
+        "exp_required": 3000,   // minimum combat experience required
+        "jing_cost": 15,    // jing cost every time study this
+        "difficulty": 20,   // the base int to learn this skill
+        "max_skill": 41     // the maximum level you learn
+        ]) );
 }

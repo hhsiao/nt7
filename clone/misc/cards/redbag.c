@@ -2,14 +2,13 @@
 
 inherit ITEM;
 #include <ansi.h>;
-void create()
-{
-        set_name(HIR"紅包"NOR, ({ "redbag", "bag" }));
-        set_weight(500);
-        set_max_encumbrance(10000);
-        set("unit", "個");
-                set("long", "一個裝著壓歲錢的紅包，鼓鼓囊囊地不知包著什麼好東西。\n\n    "HIR"過年好！！\n\n"NOR);
-                set("value", 0);
+void create() {
+    set_name(HIR"紅包"NOR, ({ "redbag", "bag" }));
+    set_weight(500);
+    set_max_encumbrance(10000);
+    set("unit", "個");
+    set("long", "一個裝著壓歲錢的紅包，鼓鼓囊囊地不知包著什麼好東西。\n\n    "HIR"過年好！！\n\n"NOR);
+    set("value", 0);
 }
 
 int is_container() { return 1; }

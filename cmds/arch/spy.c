@@ -5,45 +5,44 @@
 
 inherit F_CLEAN_UP;
 
-int main(object me, string arg)
-{        
-        object ob;
-        mapping mine;
-        string line;
-        int basic_data;
+int main(object me, string arg) {
+    object ob;
+    mapping mine;
+    string line;
+    int basic_data;
 
-        if (! SECURITY_D->valid_grant(me, "(arch)"))
-                return 0;
+    if (! SECURITY_D->valid_grant(me, "(arch)"))
+        return 0;
 
-        if (! arg)
-                ob = me;
-        else
-        {
-                ob = present(arg, environment(me));
-                if (! ob) ob = find_player(arg);
-                if (! ob) ob = find_living(arg);
-                if (! ob) return notify_fail("你要察看誰的狀態？\n");
-        }
-        
-        mine = ob->query_entire_dbase();
-        line = sprintf("\n-------先天資質-------\n");
-        line += sprintf(" 膂力：[%s]  悟性：[%s]  根骨：[%s]  身法：[%s]\n\n", 
-                        sprintf("%3d",mine["str"]),
-                        sprintf("%3d",mine["int"]),
-                        sprintf("%3d",mine["con"]),
-                        sprintf("%3d",mine["dex"]));
-        line += sprintf("-------後天資質-------\n");
-        line += sprintf(" 膂力：[%s]  悟性：[%s]  根骨：[%s]  身法：[%s]\n\n", 
-                        sprintf("%3d",ob->query_str()),
-                        sprintf("%3d",ob->query_int()),
-                        sprintf("%3d",ob->query_con()),
-                        sprintf("%3d",ob->query_dex()));
-        line+=sprintf(HIC"-------魔法提升先天根骨：%s\n\n"NOR,sprintf("%3d",query("con_improve_time", ob)));
+    if (! arg)
+        ob = me;
+    else
+    {
+        ob = present(arg, environment(me));
+        if (! ob) ob = find_player(arg);
+        if (! ob) ob = find_living(arg);
+        if (! ob) return notify_fail("你要察看誰的狀態？\n");
+    }
 
-        basic_data = mine["str"] + mine["int"] + mine["con"] + mine["dex"];
-        if( basic_data>(80+query("con_improve_time", ob)) )
-                 line += sprintf(HIY "先天資質異常, %3d - 80 = %3d\n\n" NOR, basic_data, (basic_data - 80));
+    mine = ob->query_entire_dbase();
+    line = sprintf("\n-------先天資質-------\n");
+    line += sprintf(" 膂力：[%s]  悟性：[%s]  根骨：[%s]  身法：[%s]\n\n",
+        sprintf("%3d", mine["str"]),
+        sprintf("%3d", mine["int"]),
+        sprintf("%3d", mine["con"]),
+        sprintf("%3d", mine["dex"]));
+    line += sprintf("-------後天資質-------\n");
+    line += sprintf(" 膂力：[%s]  悟性：[%s]  根骨：[%s]  身法：[%s]\n\n",
+        sprintf("%3d", ob->query_str()),
+        sprintf("%3d", ob->query_int()),
+        sprintf("%3d", ob->query_con()),
+        sprintf("%3d", ob->query_dex()));
+    line += sprintf(HIC"-------魔法提升先天根骨：%s\n\n"NOR, sprintf("%3d", query("con_improve_time", ob)));
 
-        write(line);
-        return 1;
+    basic_data = mine["str"] + mine["int"] + mine["con"] + mine["dex"];
+    if(basic_data>(80 + query("con_improve_time", ob)) )
+        line += sprintf(HIY "先天資質異常, %3d - 80 = %3d\n\n" NOR, basic_data, (basic_data - 80));
+
+    write(line);
+    return 1;
 }

@@ -4,13 +4,12 @@
 #include <armor.h>
 inherit HANDS;
 
-void create()
-{
-        set_name("手套", ({ "shou tao", "gloves" }) );
-        set_weight(800);
-        set("unit", "雙");
-                set("material", "cloth");
-                set("value", 100);
-                set("armor_prop/armor", 2);
-        setup();
+void create() {
+    set_name("手套", ({ "shou tao", "gloves" }) );
+    set_weight(800);
+    set("unit", "雙");
+    set("material", "cloth");
+    set("value", 100);
+    set("armor_prop/armor", 2);
+    setup();
 }

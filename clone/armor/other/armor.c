@@ -5,12 +5,11 @@
 
 inherit ARMOR;
 
-void create()
-{
-        set_name("鎧甲", ({"armor"}));
-        set_weight(3000);
-        set("material", "iron");
-                set("unit", "副");
-                set("armor_prop/armor", 5);
-        setup();
+void create() {
+    set_name("鎧甲", ({"armor"}));
+    set_weight(3000);
+    set("material", "iron");
+    set("unit", "副");
+    set("armor_prop/armor", 5);
+    setup();
 }

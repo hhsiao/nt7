@@ -4,18 +4,17 @@
 
 inherit EQUIP;
 
-void create()
-{
-        set_name( HIB "一字逍遙巾" NOR, ({ "xiaoyao jin", "xiaoyao", "jin" }) );
-        set_weight(1000);
-        set("unit", "條");
-                set("value", 300);
-                set("material", "cloth");
-                set("armor_type", "head");
-                set("armor_prop/armor", 4);
-                set("armor_prop/dodge", -1);
-                set("wear_msg","$N戴上一條$n。\n");
-                set("remove_msg","$N將$n解了下來。\n");
+void create() {
+    set_name(HIB "一字逍遙巾" NOR, ({ "xiaoyao jin", "xiaoyao", "jin" }) );
+    set_weight(1000);
+    set("unit", "條");
+    set("value", 300);
+    set("material", "cloth");
+    set("armor_type", "head");
+    set("armor_prop/armor", 4);
+    set("armor_prop/dodge", -1);
+    set("wear_msg", "$N戴上一條$n。\n");
+    set("remove_msg", "$N將$n解了下來。\n");
 
-        setup();
+    setup();
 }

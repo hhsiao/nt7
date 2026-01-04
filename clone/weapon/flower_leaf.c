@@ -4,17 +4,16 @@
 
 inherit THROWING;
 
-void create()
-{
-        set_name("花瓣", ({ "flower leaf", "hua ban", "ban" }) );
-        set("long", "新鮮的玫瑰花的花瓣，上面還掛這晶瑩的露珠。\n");
-                set("unit", "把");
-                set("value", 0);
-                set("base_unit", "片");
-                set("base_weight", 1);
-                set("base_value", 0);
-                set("damage", 2);        //Here the damage=int_throwing, added by King
-        set_amount(50);
-        init_throwing(2);
-        setup();
+void create() {
+    set_name("花瓣", ({ "flower leaf", "hua ban", "ban" }) );
+    set("long", "新鮮的玫瑰花的花瓣，上面還掛這晶瑩的露珠。\n");
+    set("unit", "把");
+    set("value", 0);
+    set("base_unit", "片");
+    set("base_weight", 1);
+    set("base_value", 0);
+    set("damage", 2);   //Here the damage=int_throwing, added by King
+    set_amount(50);
+    init_throwing(2);
+    setup();
 }

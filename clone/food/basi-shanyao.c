@@ -4,13 +4,12 @@
 inherit ITEM;
 inherit F_FOOD;
 
-void create()
-{
-        set_name("拔絲山藥", ({"basi shanyao", "shanyao"}));
-        set_weight(200);
-        set("long", "一盆色若玫瑰，甜嫩香嫩的拔絲山藥。\n");
-                set("unit", "盆");
-                set("value", 150);
-                set("food_remaining", 4);
-                set("food_supply", 40);
+void create() {
+    set_name("拔絲山藥", ({"basi shanyao", "shanyao"}));
+    set_weight(200);
+    set("long", "一盆色若玫瑰，甜嫩香嫩的拔絲山藥。\n");
+    set("unit", "盆");
+    set("value", 150);
+    set("food_remaining", 4);
+    set("food_supply", 40);
 }

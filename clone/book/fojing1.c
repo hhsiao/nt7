@@ -3,19 +3,18 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("摩訶僧詆律",({"moheseng diyu","shu", "book" }));
-        set_weight(200);
-        set("unit", "本");
-                set("long", "這是一冊佛經。\n");
-                set("value", 500);
-                set("material", "paper");
-                set("skill", ([
-                        "name":        "buddhism",
-                        "exp_required":        0,
-                        "jing_cost":        35,
-                        "difficulty":        20,
-                        "max_skill":        100
-                ]) );
+void create() {
+    set_name("摩訶僧詆律", ({"moheseng diyu", "shu", "book" }));
+    set_weight(200);
+    set("unit", "本");
+    set("long", "這是一冊佛經。\n");
+    set("value", 500);
+    set("material", "paper");
+    set("skill", ([
+        "name": "buddhism",
+        "exp_required": 0,
+        "jing_cost": 35,
+        "difficulty": 20,
+        "max_skill": 100
+        ]) );
 }

@@ -2,69 +2,65 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIR "日" HIY "月" NOR + WHT "鏡" NOR, ({ "riyue jing", "riyue", "jing" }) );
-        set_weight(3000);
-        set("unit", "面");
-                set("long", HIC "傳說女媧創造生靈的時候，為了時刻監視生靈的一舉一動，\n"
-                                "於是請求上天賜予了她一面寶鏡，名曰日月鏡，擁有日月\n"
-                                "鏡的人可以隨時查看到遊戲中的生物、玩家及NPC的位置。\n"
-                                "每次使用消耗黃金一兩，即從銀行扣除。\n" HIY
-                                "指令： echo 生物英文ID\n" NOR);
-                set("value", 800000);
-        set("can_summon", 1);
-        setup();
+void create() {
+    set_name(HIR "日" HIY "月" NOR + WHT "鏡" NOR, ({ "riyue jing", "riyue", "jing" }) );
+    set_weight(3000);
+    set("unit", "面");
+    set("long", HIC "傳說女媧創造生靈的時候，為了時刻監視生靈的一舉一動，\n"
+        "於是請求上天賜予了她一面寶鏡，名曰日月鏡，擁有日月\n"
+        "鏡的人可以隨時查看到遊戲中的生物、玩家及NPC的位置。\n"
+        "每次使用消耗黃金一兩，即從銀行扣除。\n" HIY
+        "指令： echo 生物英文ID\n" NOR);
+    set("value", 800000);
+    set("can_summon", 1);
+    setup();
 }
 
-void init()
-{
-        add_action("do_echo", "echo");
+void init() {
+    add_action("do_echo", "echo");
 }
 
-int do_echo(string arg)
-{
+int do_echo(string arg) {
 
-        object me, target;
-        string where;
+    object me, target;
+    string where;
 
-        me = this_player();
+    me = this_player();
 
-        if (environment(this_object()) != me)return 0;
+    if (environment(this_object()) != me)return 0;
 
-        if (! arg)return notify_fail("指令格式： echo 生物英文ID\n");
+    if (! arg)return notify_fail("指令格式： echo 生物英文ID\n");
 
-        target = find_living(arg);
+    target = find_living(arg);
 
-        if (! objectp(target))
-                return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
+    if (! objectp(target))
+        return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
 
-        // 不能查看隱身ID及巫師
-        if (wizardp(target))
-                return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
+    // 不能查看隱身ID及巫師
+    if (wizardp(target))
+        return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
 
-        // 扣除YSG
-        if( query("balance", me)<10000 )
-                return notify_fail("對不起，你的銀行存款不足，無法使用日月鏡！\n");
+    // 扣除YSG
+    if(query("balance", me)<10000 )
+        return notify_fail("對不起，你的銀行存款不足，無法使用日月鏡！\n");
 
-        if( (query_temp("apply/invisible", target) && !me->query_condition("niuyanlei")) || query("env/invisible", target) )
-                return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
+    if((query_temp("apply/invisible", target) && !me->query_condition("niuyanlei")) || query("env/invisible", target) )
+        return notify_fail(HIG "日月鏡發出一道亮光：沒有找到目標生物，可能該生物不存在或未被更新！\n" NOR);
 
-        addn("balance", -10000, me);
+    addn("balance", -10000, me);
 
-        if (! environment(target))
-                return notify_fail("對不起，該對象無法查詢到具體位置。\n");
+    if (! environment(target))
+        return notify_fail("對不起，該對象無法查詢到具體位置。\n");
 
-        where = query("short", environment(target)) ? query("short", environment(target))
-                                                                 : environment(target)->short();
+    where = query("short", environment(target)) ? query("short", environment(target))
+                                                : environment(target)->short();
 
-        tell_object(me, HIG "日月鏡發出一道亮光：" + target->name() + "(" + arg + ")現在在" +
-                         where + HIG "。\n" NOR);
+    tell_object(me, HIG "日月鏡發出一道亮光：" + target->name() + "(" + arg + ")現在在" +
+        where + HIG "。\n" NOR);
 
-        return 1;
+    return 1;
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

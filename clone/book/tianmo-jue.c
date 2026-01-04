@@ -6,22 +6,21 @@
 
 inherit BOOK;
 
-void create()
-{
-        set_name(HIR"天魔訣"NOR, ({ "tianmo jue", "book" }));
-        set_weight(600);
-        set("unit", "本");
-                set("long",HIR"天    魔    訣。\n"NOR);
-                set("value", 200);
-                set("material", "paper");
-                set("skill", ([
-                        "name":         "tianmo-jue",           // name of the skill
-                        "exp_required": 0,                      // minimum combat experience required
-                                                                // to learn this skill.
-                        "jing_cost":    20 + random(30),          // jing cost every time study this
-                        "difficulty":   25,                     // the base int to learn this skill
-                                                                // modify is jing_cost's (difficulty - int)*5%
-                        "max_skill":    100                     // the maximum level you can learn
-                                                                // from this object.
-                ]) );
+void create() {
+    set_name(HIR"天魔訣"NOR, ({ "tianmo jue", "book" }));
+    set_weight(600);
+    set("unit", "本");
+    set("long", HIR"天    魔    訣。\n"NOR);
+    set("value", 200);
+    set("material", "paper");
+    set("skill", ([
+        "name": "tianmo-jue",   // name of the skill
+        "exp_required": 0,  // minimum combat experience required
+    // to learn this skill.
+        "jing_cost": 20 + random(30),   // jing cost every time study this
+        "difficulty": 25,   // the base int to learn this skill
+    // modify is jing_cost's (difficulty - int)*5%
+        "max_skill": 100    // the maximum level you can learn
+    // from this object.
+        ]) );
 }

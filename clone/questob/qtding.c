@@ -4,13 +4,12 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name("青銅鼎", ({ "qingtong ding", "ding" }));
-        set_weight(1500);
-        set("unit", "只");
-                set("long", "這是一隻古代的青銅鼎，上面雕著精美的花紋。\n");
-                set("value", 10000);
-                set("material", "copper");
-        setup();
+void create() {
+    set_name("青銅鼎", ({ "qingtong ding", "ding" }));
+    set_weight(1500);
+    set("unit", "只");
+    set("long", "這是一隻古代的青銅鼎，上面雕著精美的花紋。\n");
+    set("value", 10000);
+    set("material", "copper");
+    setup();
 }

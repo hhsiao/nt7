@@ -2,21 +2,19 @@
 
 inherit ITEM;
 
-void create()
-{
-        set_name(HIG "碧魄玄天" NOR, ({ "bipo xuantian", "bipo", "xuantian" }));
-        set_weight(20000);
-        set("long", HIG "世間極為罕見的寶石，從萬年冰川中取得。\n" NOR);
-                set("unit", "塊");
-                set("value", 300000);
-                set("item_origin", 1);
-                set("material_attrib", "stone");
-                set("material_name", HIG "碧魄玄天" NOR);
-                set("can_make", "all");
-                set("power_point", 150);
+void create() {
+    set_name(HIG "碧魄玄天" NOR, ({ "bipo xuantian", "bipo", "xuantian" }));
+    set_weight(20000);
+    set("long", HIG "世間極為罕見的寶石，從萬年冰川中取得。\n" NOR);
+    set("unit", "塊");
+    set("value", 300000);
+    set("item_origin", 1);
+    set("material_attrib", "stone");
+    set("material_name", HIG "碧魄玄天" NOR);
+    set("can_make", "all");
+    set("power_point", 150);
 }
 
-int query_autoload()
-{
-        return 1;
+int query_autoload() {
+    return 1;
 }

@@ -7,21 +7,20 @@
 
 inherit TESSERA;
 
-void create()
-{
-//**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
-        set_name(HIW "細碎的水晶鑽" NOR, ({ "chipped diamond" }) ); /* NAME_EXIT  */
-        set_weight(20);
-        //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
-                set("long", HIW "一粒精光閃閃的如米粒般大小的鑽石碎粒。\n" NOR); /* DBASE_EXIT  */
-                set("value", 20000);
-                set("unit", "顆");
-                set("level", 1);
-                set("material", "cdiamond");
-                set("can_be_enchased", 1);
-                set("magic/type", "metal");
-                set("magic/power", 70);
-                set("auto_load", 1);
-        set("no_identify", 1);
-        setup();
+void create() {
+    //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
+    set_name(HIW "細碎的水晶鑽" NOR, ({ "chipped diamond" }) ); /* NAME_EXIT  */
+    set_weight(20);
+    //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
+    set("long", HIW "一粒精光閃閃的如米粒般大小的鑽石碎粒。\n" NOR); /* DBASE_EXIT  */
+    set("value", 20000);
+    set("unit", "顆");
+    set("level", 1);
+    set("material", "cdiamond");
+    set("can_be_enchased", 1);
+    set("magic/type", "metal");
+    set("magic/power", 70);
+    set("auto_load", 1);
+    set("no_identify", 1);
+    setup();
 }
