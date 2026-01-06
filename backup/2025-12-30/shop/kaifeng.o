@@ -1,3 +1,0 @@
-#/clone/shop/kaifeng_shop.c
-dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/kaifeng/majiu",]),"owner":"VOID_SHOP","open_long":"這裡是開封城內有名的店鋪萬景莊，店堂里人來人往，川流不息。開封為百年古都，出售的物品也是別具一格。鋪面寬敞明亮，櫃上擺滿了各式各樣、琳琅滿目的貨物。","long":"這裡是開封城內有名的店鋪萬景莊，開封為百年古都，民眾富饒。店鋪內裝飾得非常豪華，不過櫃上卻空無一物。夥計在一旁打著盹，看樣子已經很久沒人來打理了。","short":"萬景莊",])
-all_goods ({})

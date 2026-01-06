@@ -40,7 +40,7 @@ int do_use() {
     set("mud_age", age * 86400, ob);
     set("age", age, ob);
 
-    message_vision(append_color(NOR + "$N拿起一尊" + name() + "往$n的頭上一拍...\$n嚇得一個激靈，身形似乎變小了一點。\n" + NOR, YEL), me, ob);
+    message_vision(append_color(NOR + "$N拿起一尊" + name() + "往$n的頭上一拍...$n嚇得一個激靈，身形似乎變小了一點。\n" + NOR, YEL), me, ob);
     destruct(this_object());
     return 1;
 

@@ -131,8 +131,7 @@ public int db_make_card(object me, int amount, int ctype)
         string strtmpSn, strtmpPass;
         string strQZ, strPS;           //  卡號前綴，用以表示卡的類別面額
         int nCount, i;
-        mixed res, ret;
-        string sql;
+        mixed res;
 
         // 註冊碼組合序列
         string *codes = ({

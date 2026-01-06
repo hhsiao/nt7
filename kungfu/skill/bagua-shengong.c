@@ -33,21 +33,21 @@ mapping *action = ({
     ([
         "action": HIW "$N" HIW "單手一揮，剎那間狂風驟起， 令人不寒而慄。" NOR,
         "attack": 999,
-        "dodge" : 999,
-        "parry" : 999,
+        "dodge": 999,
+        "parry": 999,
         "damage": 999,
-        "force" : 999,
-        "damage_type":  "神傷"
+        "force": 999,
+        "damage_type": "神傷"
     ]),
-        ([
-            "action": HIG "$N" HIG "神情微變，猛然間狂風暴雨，天色大變。" NOR,
-            "attack": 999,
-            "dodge" : 999,
-            "parry" : 999,
-            "damage": 999,
-            "force" : 999,
-            "damage_type":  "神傷"
-        ])
+    ([
+        "action": HIG "$N" HIG "神情微變，猛然間狂風暴雨，天色大變。" NOR,
+        "attack": 999,
+        "dodge": 999,
+        "parry": 999,
+        "damage": 999,
+        "force": 999,
+        "damage_type": "神傷"
+    ])
 });
 
 string *usage_skills = ({ "unarmed", "strike", "claw", "hand", "cuff", "finger",
@@ -126,7 +126,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon) {
     {
         result = ([ "damage": -damage ]);
 
-        result += (["msg" : HIW "$n" HIW "凌空虛點幾下，猛然間不見了蹤影。\n" NOR]);
+        result += (["msg": HIW "$n" HIW "凌空虛點幾下，猛然間不見了蹤影。\n" NOR]);
 
         return result;
     }

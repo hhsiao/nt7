@@ -14,31 +14,28 @@ int success() { return 30; }
 int power_point(object me) { return 1; }
 
 //int valid_enable(string usage) { return usage=="taoism"; }
-int practice_skill(object me)
-{
-        return notify_fail("奇門五行能靠學(learn)來提高。\n");
+int practice_skill(object me) {
+    return notify_fail("奇門五行能靠學(learn)來提高。\n");
 }
-int valid_learn(object me)
-{
-        if ((int)me->query_skill("mathematics", 1) < 200)
-                return notify_fail("你的算術知識太差，無法理解奇門五行的奧妙。\n");
+int valid_learn(object me) {
+    if ((int)me->query_skill("mathematics", 1) < 200)
+        return notify_fail("你的算術知識太差，無法理解奇門五行的奧妙。\n");
 
-        if ((int)me->query_skill("mathematics", 1) < (int)me->query_skill("qimen-wuxing", 1))
-                return notify_fail("你的算術知識有限，無法理解更深奧的奇門五行。\n");
+    if ((int)me->query_skill("mathematics", 1) < (int)me->query_skill("qimen-wuxing", 1))
+        return notify_fail("你的算術知識有限，無法理解更深奧的奇門五行。\n");
 
-        return 1;
+    return 1;
 }
 
 /*
-string conjure_magic_file(string spell)
-{
-        return __DIR__ + "qimen-wuxing/" + spell;
-}
-*/
-int help(object me)
-{
-        write(HIC"\n奇門五行："NOR"\n");
-        write(@HELP
+ * string conjure_magic_file(string spell)
+ * {
+ * return __DIR__ + "qimen-wuxing/" + spell;
+ * }
+ */
+int help(object me) {
+    write(HIC"\n奇門五行："NOR"\n");
+    write(@HELP
 
 
     是東海桃花島的獨門功夫。相傳桃花島雖然地處海外，人跡罕
@@ -54,6 +51,6 @@ int help(object me)
         學習要求：
                 不能同時修習左右互博之術
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

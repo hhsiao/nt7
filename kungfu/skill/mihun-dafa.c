@@ -1,3 +1,3 @@
-// mihun-dafa.c 
+// mihun-dafa.c
 
 inherit SKILL;

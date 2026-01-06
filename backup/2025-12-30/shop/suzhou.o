@@ -1,3 +1,0 @@
-#/clone/shop/suzhou_shop.c
-dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/suzhou/majiu",]),"owner":"VOID_SHOP","open_long":"聽竹軒坐落於蘇州城北，雖稱之為軒，實際卻是一間裝潢雅緻的店鋪。蘇州城建築別具一格，這家店鋪也不例外。此時店堂夥計正忙上忙下，招呼著客人。","long":"聽竹軒坐落於蘇州城北，雖稱之為軒，實際卻是一間裝潢雅緻的店鋪。蘇州城建築別具一格，這家店鋪也不例外。不過貨櫃上卻空無一物，看樣子已很久沒人來打理了。","short":"聽竹軒",])
-all_goods ({})

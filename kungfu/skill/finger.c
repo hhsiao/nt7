@@ -11,16 +11,15 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point(object me) { return 1; }
 
-int help(object me)
-{
-        write(HIC"\n基本指法："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n基本指法："NOR"\n");
+    write(@HELP
 
     指法類武技的基本功，並能改善你後天的膂力。
 
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

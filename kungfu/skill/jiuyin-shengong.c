@@ -15,7 +15,7 @@ string *dodge_msg = ({
     "$n身形微微一抖，將$N迫退。\n",
     "$n手足忽的一晃，$N竟然無法進擊，只能自保。\n",
     "$n輕輕一格，將天下所有進攻招數全部封死。\n"
-    });
+});
 
 int query_neili_improve(object me) {
     int lvl;
@@ -32,104 +32,115 @@ int query_jingli_improve(object me) {
 }
 
 mapping *actionf = ({
-    ([      "action":"$N伸手一探，頓時氣流呼嘯而至，單手毫無花巧的插向$n$l",
-        "force" : 510,
+    ([
+        "action": "$N伸手一探，頓時氣流呼嘯而至，單手毫無花巧的插向$n$l",
+        "force": 510,
         "attack": 190,
-        "dodge" : 100,
-        "parry" : 90,
+        "dodge": 100,
+        "parry": 90,
         "damage": 180,
         "weapon": HIW "九陰無極勁" NOR,
-        "damage_type":  "刺傷"
+        "damage_type": "刺傷"
     ]),
-        ([      "action":"$N雙手齊抓，幻出千萬道耀眼的金光，齊齊照向$n的$l",
-            "force" : 510,
-            "attack": 185,
-            "dodge" : 90,
-            "parry" : 120,
-            "damage": 175,
-            "weapon": HIW "九陰無極勁" NOR,
-            "damage_type":  "割傷"
-        ]),
-            ([      "action":"$N身形一轉，拳頭攜著疾速旋轉的氣流揮出，疾如閃電，勢如雷霆，擊向$n",
-                "force" : 530,
-                "attack": 175,
-                "dodge" : 90,
-                "parry" : 110,
-                "damage": 200,
-                "weapon": HIW "九陰無極勁" NOR,
-                "damage_type":  "刺傷"
-            ]),
-                ([      "action":"$N移步向前，一掌不緊不慢的拍向$n的$l，空氣中頓時傳來一陣刺耳的暴響",
-                    "force" : 525,
-                    "attack": 185,
-                    "dodge" : 85,
-                    "parry" : 115,
-                    "damage": 185,
-                    "weapon": HIW "九陰無極勁" NOR,
-                    "damage_type":  "割傷"
-                ]),
-                    ([      "action":"$N身體一側，一掌凌空劈出，一股凜冽的氣流頓時澎湃湧至$n的$l處",
-                        "force" : 530,
-                        "attack": 165,
-                        "dodge" : 90,
-                        "parry" : 115,
-                        "damage": 200,
-                        "weapon": HIW "九陰無極勁" NOR,
-                        "damage_type":  "割傷"
-                    ]),
-                        ([      "action":"$N雙手合拳，驀的張開，只聽“嗤嗤”破空之聲，十道勁氣一齊射向$n的$l",
-                            "force" : 540,
-                            "attack": 200,
-                            "dodge" : 115,
-                            "parry" : 120,
-                            "damage": 280,
-                            "weapon": HIW "九陰無極勁" NOR,
-                            "damage_type":  "刺傷"
-                        ])
-                            });
+    ([
+        "action": "$N雙手齊抓，幻出千萬道耀眼的金光，齊齊照向$n的$l",
+        "force": 510,
+        "attack": 185,
+        "dodge": 90,
+        "parry": 120,
+        "damage": 175,
+        "weapon": HIW "九陰無極勁" NOR,
+        "damage_type": "割傷"
+    ]),
+    ([
+        "action": "$N身形一轉，拳頭攜著疾速旋轉的氣流揮出，疾如閃電，勢如雷霆，擊向$n",
+        "force": 530,
+        "attack": 175,
+        "dodge": 90,
+        "parry": 110,
+        "damage": 200,
+        "weapon": HIW "九陰無極勁" NOR,
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N移步向前，一掌不緊不慢的拍向$n的$l，空氣中頓時傳來一陣刺耳的暴響",
+        "force": 525,
+        "attack": 185,
+        "dodge": 85,
+        "parry": 115,
+        "damage": 185,
+        "weapon": HIW "九陰無極勁" NOR,
+        "damage_type": "割傷"
+    ]),
+    ([
+        "action": "$N身體一側，一掌凌空劈出，一股凜冽的氣流頓時澎湃湧至$n的$l處",
+        "force": 530,
+        "attack": 165,
+        "dodge": 90,
+        "parry": 115,
+        "damage": 200,
+        "weapon": HIW "九陰無極勁" NOR,
+        "damage_type": "割傷"
+    ]),
+    ([
+        "action": "$N雙手合拳，驀的張開，只聽“嗤嗤”破空之聲，十道勁氣一齊射向$n的$l",
+        "force": 540,
+        "attack": 200,
+        "dodge": 115,
+        "parry": 120,
+        "damage": 280,
+        "weapon": HIW "九陰無極勁" NOR,
+        "damage_type": "刺傷"
+    ])
+});
 
 mapping *actionw = ({
-    ([      "action" : "$N攻勢忽緩而不疏，$w變化無常，捉摸不定向$n慢慢捲去",
-        "force" : 470,
+    ([
+        "action": "$N攻勢忽緩而不疏，$w變化無常，捉摸不定向$n慢慢捲去",
+        "force": 470,
         "attack": 180,
-        "dodge" : 75,
-        "parry" : 115,
+        "dodge": 75,
+        "parry": 115,
         "damage": 225,
         "damage_type": "擦傷"
     ]),
-        ([      "action":"$N手中的$w突煥氣象森嚴，便似千軍萬馬奔馳而來，$w就如棍棒一般橫掃$n",
-            "force" : 450,
-            "attack": 160,
-            "dodge" : 85,
-            "parry" : 125,
-            "damage": 210,
-            "damage_type": "擦傷"
-        ]),
-            ([      "action":"$N捲起手中的$w，就如鐵錘一般對著$n亂砍亂砸，沒有半點章法",
-                "force" : 460,
-                "attack": 175,
-                "dodge" : 80,
-                "parry" : 125,
-                "damage": 205,
-                "damage_type": "割傷"
-            ]),
-                ([      "action":"$N運用$w幻化做一個一個圓圈，似乎要將$n團團包圍",
-                    "force" : 525,
-                    "attack": 160,
-                    "dodge" : 65,
-                    "parry" : 125,
-                    "damage": 190,
-                    "damage_type": "內傷"
-                ]),
-                    ([      "action":"$N含笑迴轉$w，伸手一指，頗得拈花指之意，點向$n的$l",
-                        "force" : 540,
-                        "attack": 180,
-                        "dodge" : 70,
-                        "parry" : 120,
-                        "damage": 260,
-                        "damage_type": "刺傷"
-                    ])
-                        });
+    ([
+        "action": "$N手中的$w突煥氣象森嚴，便似千軍萬馬奔馳而來，$w就如棍棒一般橫掃$n",
+        "force": 450,
+        "attack": 160,
+        "dodge": 85,
+        "parry": 125,
+        "damage": 210,
+        "damage_type": "擦傷"
+    ]),
+    ([
+        "action": "$N捲起手中的$w，就如鐵錘一般對著$n亂砍亂砸，沒有半點章法",
+        "force": 460,
+        "attack": 175,
+        "dodge": 80,
+        "parry": 125,
+        "damage": 205,
+        "damage_type": "割傷"
+    ]),
+    ([
+        "action": "$N運用$w幻化做一個一個圓圈，似乎要將$n團團包圍",
+        "force": 525,
+        "attack": 160,
+        "dodge": 65,
+        "parry": 125,
+        "damage": 190,
+        "damage_type": "內傷"
+    ]),
+    ([
+        "action": "$N含笑迴轉$w，伸手一指，頗得拈花指之意，點向$n的$l",
+        "force": 540,
+        "attack": 180,
+        "dodge": 70,
+        "parry": 120,
+        "damage": 260,
+        "damage_type": "刺傷"
+    ])
+});
 
 string main_skill() { return "jiuyin-shengong"; }
 
@@ -203,7 +214,7 @@ int get_finish(object me) {
 
     tell_object(me, HIW "一陣凡塵往事湧上心頭，你幾欲放聲長嘆。霎那間，你放眼回首，竟有一股莫名\n"
         "的悲哀。宗師泰斗那種高出不勝寒、登泰山而小天下之感猶然而生，你只覺得以\n往的"
-            "武學現在看來是多麼的渺小可笑。\n" NOR);
+        "武學現在看來是多麼的渺小可笑。\n" NOR);
     return 1;
 }
 
@@ -259,7 +270,7 @@ int valid_learn(object me) {
     for (i = 0; i < sizeof(usage_skills2); i++)
         if (me->query_skill(usage_skills2[i], 1) < level)
         return notify_fail("你對" + to_chinese(usage_skills2[i]) +
-                           "的理解還不夠，無法繼續領會更高深的九陰神功。\n");
+        "的理解還不夠，無法繼續領會更高深的九陰神功。\n");
 
     return 1;
 }
@@ -295,16 +306,16 @@ mixed valid_damage(object ob, object me, int damage, object weapon) {
         switch (random(3))
         {
         case 0:
-            result += (["msg" : HIR "$n" HIR "默運九陰神訣，護住全身。$N" HIR
+            result += (["msg": HIR "$n" HIR "默運九陰神訣，護住全身。$N" HIR
             "一招擊中$n" HIR "小腹，只覺落手處軟"
             "綿綿的，力道竟消失得無影無蹤。 \n" NOR]);
             break;
         case 1:
-            result += (["msg" : HIR "$N" HIR "一招攻出，$n" HIR "怒喝一聲，不退"
+            result += (["msg": HIR "$N" HIR "一招攻出，$n" HIR "怒喝一聲，不退"
             "反進，竟將$N" HIR "這招逼回。\n" NOR]);
             break;
         default:
-            result += (["msg" : HIR "$n" HIR "面帶微笑，輕描淡寫間，已將$N" HIR "所"
+            result += (["msg": HIR "$n" HIR "面帶微笑，輕描淡寫間，已將$N" HIR "所"
             "有進攻招式全部封死。\n" NOR]);
             break;
         }

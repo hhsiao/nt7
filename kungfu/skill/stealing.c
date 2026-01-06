@@ -10,10 +10,9 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point(object me) { return 1; }
 
-int help(object me)
-{
-        write(HIC"\n妙手空空："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n妙手空空："NOR"\n");
+    write(@HELP
 
     妙手空空是丐幫謀生伎倆。
     請help steal。
@@ -21,6 +20,6 @@ int help(object me)
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

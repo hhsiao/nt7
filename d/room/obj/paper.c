@@ -159,7 +159,6 @@ int do_draw(string arg) {
         } else
         {
             string msg;
-            object cloth;
 
             tell_object(me, "你隨意揮灑，" + me->name() +
                 "登時飄然躍在紙上。\n");

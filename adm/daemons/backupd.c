@@ -36,114 +36,110 @@ protected int assure_not_exist(string bkdir);
 protected int is_recent_time(int y, int m, int d, int cy, int cm, int cd);
 
 // return the time of prompt
-int is_backuping()              { return state != SLEEPING; }
+int is_backuping() { return state != SLEEPING; }
 
 // return the time of backup
-int query_backup_time()         { return tlist[BACKUPING]; }
+int query_backup_time() { return tlist[BACKUPING]; }
 
-void create()
-{
-        seteuid(ROOT_UID);
+void create() {
+    seteuid(ROOT_UID);
 
-        sys_info("備份系統已經啟動。");
-        state = SLEEPING;
-        set_heart_beat(hlist[state]);
+    sys_info("備份系統已經啟動。");
+    state = SLEEPING;
+    set_heart_beat(hlist[state]);
 }
 
-int clean_up()
-{
-        return 1;
+int clean_up() {
+    return 1;
 }
 
-void heart_beat()
-{
-        mixed lt;
-        int ti;
+void heart_beat() {
+    mixed lt;
+    int ti;
 
-        seteuid(ROOT_UID);
-        lt = localtime(time());
-        ti = lt[LT_HOUR] * 100 + lt[LT_MIN];
+    seteuid(ROOT_UID);
+    lt = localtime(time());
+    ti = lt[LT_HOUR] * 100 + lt[LT_MIN];
 
-        switch(state)
+    switch(state)
+    {
+    case SLEEPING:
+        if (ti < tlist[GET_READY] || ti > tlist[GET_READY_2])
+        // not change state
+        break;
+        // chanage state to "GET_READY";
+        change_state(GET_READY);
+        break;
+
+    case GET_READY:
+        if (ti < tlist[GET_READY_2])
+        break;
+
+        // change state to "GET_READY_2";
+        change_state(GET_READY_2);
+        break;
+
+    case GET_READY_2:
+        if (ti < tlist[BACKUPING])
+        break;
+
+        // change state to "GET_READY_2";
+        change_state(BACKUPING);
+
+        // the last function will change to "SLEEPING" state
+        // after backing
+        break;
+
+    default:
+        change_state(SLEEPING);
+        break;
+    }
+
+    // reset heart beat
+    set_heart_beat(hlist[state]);
+}
+
+protected void change_state(int new_state) {
+    mixed lt;
+
+    lt = localtime(time());
+    switch (new_state)
+    {
+    case GET_READY:
+    case GET_READY_2:
+        if (lt[LT_HOUR] * 100 + lt[LT_MIN] != tlist[BACKUPING])
         {
-        case SLEEPING:
-                if (ti < tlist[GET_READY] || ti > tlist[GET_READY_2])
-                        // not change state
-                        break;
-                // chanage state to "GET_READY";
-                change_state(GET_READY);
-                break;
+            message_system(sprintf("現在是 %d 點 %d 分，系統將在 %d 點 %d 分"
+            "自動備份所有玩家的數據，期間遊戲會有停滯。",
+            lt[LT_HOUR], lt[LT_MIN],
+            (tlist[BACKUPING] / 100) % 100,
+            tlist[BACKUPING] % 100));
+            break;
+        } else
+        new_state = BACKUPING;
 
-        case GET_READY:
-                if (ti < tlist[GET_READY_2])
-                        break;
-
-                // change state to "GET_READY_2";
-                change_state(GET_READY_2);
-                break;
-
-        case GET_READY_2:
-                if (ti < tlist[BACKUPING])
-                        break;
-
-                // change state to "GET_READY_2";
-                change_state(BACKUPING);
-
-                // the last function will change to "SLEEPING" state
-                // after backing
-                break;
-
-        default:
-                change_state(SLEEPING);
-                break;
-        }
-
-        // reset heart beat
-        set_heart_beat(hlist[state]);
-}
-
-protected void change_state(int new_state)
-{
-        mixed lt;
-
-        lt = localtime(time());
-        switch (new_state)
-        {
-        case GET_READY:
-        case GET_READY_2:
-                if (lt[LT_HOUR] * 100 + lt[LT_MIN] != tlist[BACKUPING])
-                {
-                        message_system(sprintf("現在是 %d 點 %d 分，系統將在 %d 點 %d 分"
-                                       "自動備份所有玩家的數據，期間遊戲會有停滯。",
-                                       lt[LT_HOUR], lt[LT_MIN],
-                                       (tlist[BACKUPING] / 100) % 100,
-                                       tlist[BACKUPING] % 100));
-                        break;
-                } else
-                        new_state = BACKUPING;
-
-        case BACKUPING:
-                state = new_state;
-                message_system(sprintf(HIY "現在是 %d 點 %d 分，系統開始"
-                                       "自動備份所有玩家數據，請稍候..." NOR,
-                                       lt[LT_HOUR], lt[LT_MIN]));
-
-                backup_data();
-
-                message_system(sprintf(HIC "系統已經處理完備份工作。" NOR,
-                                       lt[LT_HOUR], lt[LT_MIN]));
-
-                // after backup, change state to SLEEPING
-                new_state = SLEEPING;
-                break;
-
-        case SLEEPING:
-                break;
-        }
-
-        // change to new state
+    case BACKUPING:
         state = new_state;
-        return;
+        message_system(sprintf(HIY "現在是 %d 點 %d 分，系統開始"
+        "自動備份所有玩家數據，請稍候..." NOR,
+        lt[LT_HOUR], lt[LT_MIN]));
+
+        backup_data();
+
+        message_system(sprintf(HIC "系統已經處理完備份工作。" NOR,
+        lt[LT_HOUR], lt[LT_MIN]));
+
+        // after backup, change state to SLEEPING
+        new_state = SLEEPING;
+        break;
+
+    case SLEEPING:
+        break;
+    }
+
+    // change to new state
+    state = new_state;
+    return;
 }
 
 // backup
@@ -152,160 +148,153 @@ protected void change_state(int new_state)
 // after that, I will check wether the other directory in backup
 // directiry was the backup of recently(BACKUP_DATE days), if not,
 // I will remove it.
-void backup_data()
-{
-        string bkdir;
-        mixed lt;
-        int count;
+void backup_data() {
+    string bkdir;
+    mixed lt;
+    int count;
 
-        if (! is_root(previous_object()))
-        {
-                write(HIR "YOU HAVE NO ACCESS TO BACKUP\n" NOR);
-                return;
-        }
+    if (! is_root(previous_object()))
+    {
+        write(HIR "YOU HAVE NO ACCESS TO BACKUP\n" NOR);
+        return;
+    }
 
-        seteuid(getuid());
+    seteuid(getuid());
 
-        sys_info("備份工作開始。");
-        lt = localtime(time());
+    sys_info("備份工作開始。");
+    lt = localtime(time());
 
-        // because LT_MON is from 0..11, so I must add 1
-        lt[LT_MON]++;
-        bkdir = sprintf("%s%d-%d-%d", BACKUP_DIR,
-                        lt[LT_YEAR], lt[LT_MON], lt[LT_MDAY]);
-        if (! assure_not_exist(bkdir))
-        {
-                sys_info(sprintf("備份失敗：無法刪除(%s)。", bkdir));
-                return;
-        }
+    // because LT_MON is from 0..11, so I must add 1
+    lt[LT_MON]++;
+    bkdir = sprintf("%s%d-%d-%d", BACKUP_DIR,
+        lt[LT_YEAR], lt[LT_MON], lt[LT_MDAY]);
+    if (! assure_not_exist(bkdir))
+    {
+        sys_info(sprintf("備份失敗：無法刪除(%s)。", bkdir));
+        return;
+    }
 
-        // backup data
-        count = CMD_CP->copy_dir(DATA_DIR, bkdir);
-        if (count)
-                sys_info(sprintf("總共有%d個文件被保存到(%s)中。", count, bkdir));
+    // backup data
+    count = CMD_CP->copy_dir(DATA_DIR, bkdir);
+    if (count)
+        sys_info(sprintf("總共有%d個文件被保存到(%s)中。", count, bkdir));
 
-        call_out("remove_backup", 1, lt);
+    call_out("remove_backup", 1, lt);
 }
 
 // 刪除以前的備份
-void remove_backup(mixed lt)
-{
-        object *obs;
-        mixed *file;
-        int i;
+void remove_backup(mixed lt) {
+    object *obs;
+    mixed *file;
+    int i;
 
-        // clear the older backup data
-        file = get_dir(BACKUP_DIR, -1);
-        for (i = 0; i < sizeof(file); i++)
-        {
-                int y, m, d;
+    // clear the older backup data
+    file = get_dir(BACKUP_DIR, -1);
+    for (i = 0; i < sizeof(file); i++)
+    {
+        int y, m, d;
 
-                reset_eval_cost();
-                if (file[i][1] != -2)
-                        // not directory
-                        continue;
+        reset_eval_cost();
+        if (file[i][1] != -2)
+        // not directory
+        continue;
 
-                if (sscanf(file[i][0], "%d-%d-%d", y, m, d) != 3)
-                        // not backup directory
-                        continue;
+        if (sscanf(file[i][0], "%d-%d-%d", y, m, d) != 3)
+        // not backup directory
+        continue;
 
-                if (is_recent_time(y, m, d, lt[LT_YEAR], lt[LT_MON], lt[LT_MDAY]))
-                        // is the receant backup, won't delete
-                        continue;
+        if (is_recent_time(y, m, d, lt[LT_YEAR], lt[LT_MON], lt[LT_MDAY]))
+        // is the receant backup, won't delete
+        continue;
 
-                CMD_RM->rm_dir(BACKUP_DIR + file[i][0]);
-                sys_info(sprintf("備份(%s)已經被自動刪除。", file[i][0]));
-        }
+        CMD_RM->rm_dir(BACKUP_DIR + file[i][0]);
+        sys_info(sprintf("備份(%s)已經被自動刪除。", file[i][0]));
+    }
 
-        // update all loging object
-        obs = users();
-        for (i = 0; i < sizeof(obs); i++)
-                if (obs[i]->is_loging_now())
-                {
-                        obs[i]->end_log();
-                        obs[i]->start_log();
-                }
+    // update all loging object
+    obs = users();
+    for (i = 0; i < sizeof(obs); i++)
+        if (obs[i]->is_loging_now())
+    {
+        obs[i]->end_log();
+        obs[i]->start_log();
+    }
 
-        // 為了顯示正確的時間，所以使用 call_out 呼叫。
-        call_out("sys_info", 0, "備份工作完畢。");
+    // 為了顯示正確的時間，所以使用 call_out 呼叫。
+    call_out("sys_info", 0, "備份工作完畢。");
 
-        // 10s以後檢查所有的玩家
-        call_out("check_all_player", 1);
+    // 10s以後檢查所有的玩家
+    call_out("check_all_player", 1);
 }
 
 // 檢查所有玩家
-protected void check_all_player()
-{
-        message_system("系統開始核查所有玩家，並清除長時間不上線的使用者...");
-        sys_info("系統開始檢查所有玩家。");
+protected void check_all_player() {
+    message_system("系統開始核查所有玩家，並清除長時間不上線的使用者...");
+    sys_info("系統開始檢查所有玩家。");
 
-        EXAMINE_CMD->search_dir(0, 1);  // 不清理長時間不上線的使用者... 
+    EXAMINE_CMD->search_dir(0, 1);  // 不清理長時間不上線的使用者...
 
-        // 為了顯示正確的時間，所以使用 call_out 呼叫。
-        call_out("sys_info", 0, "系統檢查所有玩家完畢。");
+    // 為了顯示正確的時間，所以使用 call_out 呼叫。
+    call_out("sys_info", 0, "系統檢查所有玩家完畢。");
 }
 
 // check that y/m/d wether or not close cy/cm/cd(current time)
-protected int is_recent_time(int y, int m, int d, int cy, int cm, int cd)
-{
-        if (y > cy) return 1;   // future backup? laugh
-        if (y == cy)
+protected int is_recent_time(int y, int m, int d, int cy, int cm, int cd) {
+    if (y > cy) return 1;   // future backup? laugh
+    if (y == cy)
+    {
+        // the same year
+        if (m > cm) return 1;   // maybe future backup
+        if (m == cm)
         {
-                // the same year
-                if (m > cm) return 1;   // maybe future backup
-                if (m == cm)
-                {
-                        // the same month
-                        if (d <= cd - BACKUP_DATE) return 0;
-                        return 1;
-                }
-                if (m != cm - 1) return 0;
-                switch (m)
-                {
-                case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-                        cd += 31;
-                        break;
-                case 2:
-                        cd += 28;
-                        if ((y % 4) == 0 && (y % 100) != 0) cd++;
-                        break;
-                default:
-                        cd += 30;
-                        break;
-                }
-                if (d <= cd - BACKUP_DATE) return 0;
-                return 1;
+            // the same month
+            if (d <= cd - BACKUP_DATE) return 0;
+            return 1;
         }
-        if (y != cy - 1) return 0;
-        if (m != 12 || cm != 1) return 0;
-        cd += 31;
+        if (m != cm - 1) return 0;
+        switch (m)
+        {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            cd += 31;
+            break;
+        case 2:
+            cd += 28;
+            if ((y % 4) == 0 && (y % 100) != 0) cd++;
+            break;
+        default:
+            cd += 30;
+            break;
+        }
         if (d <= cd - BACKUP_DATE) return 0;
         return 1;
+    }
+    if (y != cy - 1) return 0;
+    if (m != 12 || cm != 1) return 0;
+    cd += 31;
+    if (d <= cd - BACKUP_DATE) return 0;
+    return 1;
 }
 
-protected int assure_not_exist(string bkdir)
-{
-        switch (file_size(bkdir))
-        {
-        case -1:
-                return 1;
+protected int assure_not_exist(string bkdir) {
+    switch (file_size(bkdir))
+    {
+    case -1:
+        return 1;
 
-        case -2:
-                CMD_RM->rm_dir(bkdir);
-                return (file_size(bkdir) == -1);
+    case -2:
+        CMD_RM->rm_dir(bkdir);
+        return (file_size(bkdir) == -1);
 
-        default:
-                return rm(bkdir);
-        }
+    default:
+        return rm(bkdir);
+    }
 }
 
-protected void sys_info(string msg)
-{
-        CHANNEL_D->channel_broadcast("sys", msg);
-        //log_file("backup", log_time() + ": " + msg + "\n");
+protected void sys_info(string msg) {
+    CHANNEL_D->channel_broadcast("sys", msg);
+    //log_file("backup", log_time() + ": " + msg + "\n");
 }
 
-string query_name()
-{
-        return "備份精靈(BACKUP_D)";
+string query_name() {
+    return "備份精靈(BACKUP_D)";
 }

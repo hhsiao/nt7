@@ -5,692 +5,699 @@
 //inherit FORCE;
 inherit SKILL;
 
-int valid_force(string force)
-{
-        return force == "riyue-xinfa" || force == "riyue-guanghua" || force == "kuihua-xinfa";
+int valid_force(string force) {
+    return force == "riyue-xinfa" || force == "riyue-guanghua" || force == "kuihua-xinfa";
 }
 
 string *dodge_msg = ({
-        "突然之間，白影急幌，$n向後滑出丈餘，立時又回到了原地，躲過了$N這一招。\n",
-        "$n手臂迴轉，在$N手肘下一推，順勢閃到一旁。\n",
-        "$n右手伸出，在$N手腕上迅速無比的一按，順勢跳到一旁。\n",
-        "$n身形飄忽，有如鬼魅，轉了幾轉，移步到$N的身後，躲過了$N這一招。\n",
-        "$N只覺眼前一花，似乎見到$n身形一幌，但隨即又見$n回到原地，卻似從未離開。\n",
-        "$N眼睛一花，$n已沒了蹤影。突然$n從身後拍了一下$N的頭，輕輕躍開。\n",
-        "$n嫣然一笑，詭異之極，$N竟不知如何是好，停住了攻擊。\n",
+    "突然之間，白影急幌，$n向後滑出丈餘，立時又回到了原地，躲過了$N這一招。\n",
+    "$n手臂迴轉，在$N手肘下一推，順勢閃到一旁。\n",
+    "$n右手伸出，在$N手腕上迅速無比的一按，順勢跳到一旁。\n",
+    "$n身形飄忽，有如鬼魅，轉了幾轉，移步到$N的身後，躲過了$N這一招。\n",
+    "$N只覺眼前一花，似乎見到$n身形一幌，但隨即又見$n回到原地，卻似從未離開。\n",
+    "$N眼睛一花，$n已沒了蹤影。突然$n從身後拍了一下$N的頭，輕輕躍開。\n",
+    "$n嫣然一笑，詭異之極，$N竟不知如何是好，停住了攻擊。\n"
 });
 
 string *finger_name = ({ "左手中指", "左手無名指", "左手食指",
-                         "右手中指", "右手無名指", "右手食指", });
+    "右手中指", "右手無名指", "右手食指", });
 
 mapping *weapon_action = ({
-([      "action":"突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
-        "force" : 160,
+    ([
+        "action": "突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
+        "force": 160,
         "attack": 40,
-        "parry" : 30,
-        "dodge" : 120,
+        "parry": 30,
+        "dodge": 120,
         "damage": 150,
-        "lvl" : 0,
-        "skill_name" : "白影急幌",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
-        "force" : 180,
+        "lvl": 0,
+        "skill_name": "白影急幌",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
+        "force": 180,
         "attack": 50,
-        "parry" : 30,
-        "dodge" : 135,
+        "parry": 30,
+        "dodge": 135,
         "damage": 160,
-        "lvl" : 20,
-        "skill_name" : "自己小腹",
-        "damage_type":  "刺傷"
-]),
-([      "action":"驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
-        "force" : 225,
+        "lvl": 20,
+        "skill_name": "自己小腹",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
+        "force": 225,
         "attack": 60,
-        "parry" : 35,
-        "dodge" : 155,
+        "parry": 35,
+        "dodge": 155,
         "damage": 170,
-        "lvl" : 40,
-        "skill_name" : "猱身而上",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N突然間招法一變，$w忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
-        "force" : 230,
+        "lvl": 40,
+        "skill_name": "猱身而上",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N突然間招法一變，$w忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
+        "force": 230,
         "attack": 70,
-        "parry" : 40,
-        "dodge" : 160,
+        "parry": 40,
+        "dodge": 160,
         "damage": 180,
-        "lvl" : 60,
-        "skill_name" : "招法一變",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
-        "force" : 240,
+        "lvl": 60,
+        "skill_name": "招法一變",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
+        "force": 240,
         "attack": 80,
-        "parry" : 50,
-        "dodge" : 170,
+        "parry": 50,
+        "dodge": 170,
         "damage": 200,
-        "lvl" : 80,
-        "skill_name" : "有如鬼魅",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，$w隨即遞出",
-        "force" : 260,
+        "lvl": 80,
+        "skill_name": "有如鬼魅",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，$w隨即遞出",
+        "force": 260,
         "attack": 70,
-        "parry" : 40,
-        "dodge" : 165,
+        "parry": 40,
+        "dodge": 165,
         "damage": 220,
-        "lvl" : 100,
-        "skill_name" : "疾衝上前",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N喝道：“好！”，便即拔出$w，反手刺出，跟著轉身離去",
-        "force" : 300,
+        "lvl": 100,
+        "skill_name": "疾衝上前",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N喝道：“好！”，便即拔出$w，反手刺出，跟著轉身離去",
+        "force": 300,
         "attack": 90,
-        "parry" : 45,
-        "dodge" : 180,
+        "parry": 45,
+        "dodge": 180,
         "damage": 230,
-        "lvl" : 120,
-        "skill_name" : "反手刺出",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
-        "force" : 340,
+        "lvl": 120,
+        "skill_name": "反手刺出",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
+        "force": 340,
         "attack": 80,
-        "parry" : 40,
-        "dodge" : 185,
+        "parry": 40,
+        "dodge": 185,
         "damage": 250,
-        "lvl" : 140,
-        "skill_name" : "眼前一花",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手中$w直指$n的$l",
-        "force" : 380,
+        "lvl": 140,
+        "skill_name": "眼前一花",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手中$w直指$n的$l",
+        "force": 380,
         "attack": 100,
-        "parry" : 50,
-        "dodge" : 190,
+        "parry": 50,
+        "dodge": 190,
         "damage": 270,
-        "lvl" : 160,
-        "skill_name" : "向後疾退",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N驀地衝到$n面前，手中$w直刺$n右眼！$n慌忙招架，不想$N的$w突然轉向",
-        "force" : 410,
+        "lvl": 160,
+        "skill_name": "向後疾退",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N驀地衝到$n面前，手中$w直刺$n右眼！$n慌忙招架，不想$N的$w突然轉向",
+        "force": 410,
         "attack": 130,
-        "parry" : 55,
-        "dodge" : 210,
+        "parry": 55,
+        "dodge": 210,
         "damage": 300,
-        "lvl" : 180,
-        "skill_name" : "直刺右眼",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，手中$w刺向$n的$l",
-        "force" : 440,
+        "lvl": 180,
+        "skill_name": "直刺右眼",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，手中$w刺向$n的$l",
+        "force": 440,
         "attack": 130,
-        "parry" : 50,
-        "dodge" : 230,
+        "parry": 50,
+        "dodge": 230,
         "damage": 320,
-        "lvl" : 200,
-        "skill_name" : "飛身躍起",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻$w一起刺向$n",
-        "force" : 480,
+        "lvl": 200,
+        "skill_name": "飛身躍起",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻$w一起刺向$n",
+        "force": 480,
         "attack": 140,
-        "parry" : 60,
-        "dodge" : 270,
+        "parry": 60,
+        "dodge": 270,
         "damage": 340,
-        "lvl" : 220,
-        "skill_name" : "腰枝猛擺",
-        "damage_type":  "刺傷"
-]),
+        "lvl": 220,
+        "skill_name": "腰枝猛擺",
+        "damage_type": "刺傷"
+    ])
 });
 
 mapping *unarmed_action = ({
-([      "action":"突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
-        "force" : 100,
+    ([
+        "action": "突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
+        "force": 100,
         "attack": 40,
-        "parry" : 20,
-        "dodge" : 70,
+        "parry": 20,
+        "dodge": 70,
         "damage": 50,
-        "lvl" : 0,
-        "skill_name" : "白影急幌",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
-        "force" : 120,
+        "lvl": 0,
+        "skill_name": "白影急幌",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
+        "force": 120,
         "attack": 50,
-        "parry" : 30,
-        "dodge" : 65,
+        "parry": 30,
+        "dodge": 65,
         "damage": 60,
-        "lvl" : 12,
-        "skill_name" : "自己小腹",
-        "damage_type":  "刺傷"
-]),
-([      "action":"驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
-        "force" : 125,
+        "lvl": 12,
+        "skill_name": "自己小腹",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
+        "force": 125,
         "attack": 60,
-        "parry" : 35,
-        "dodge" : 85,
+        "parry": 35,
+        "dodge": 85,
         "damage": 70,
-        "lvl" : 25,
-        "skill_name" : "猱身而上",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N突然間招法一變，手臂忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
-        "force" : 130,
+        "lvl": 25,
+        "skill_name": "猱身而上",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N突然間招法一變，手臂忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
+        "force": 130,
         "attack": 70,
-        "parry" : 40,
-        "dodge" : 60,
+        "parry": 40,
+        "dodge": 60,
         "damage": 80,
-        "lvl" : 5,
-        "skill_name" : "招法一變",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
-        "force" : 140,
+        "lvl": 5,
+        "skill_name": "招法一變",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
+        "force": 140,
         "attack": 80,
-        "parry" : 50,
-        "dodge" : 70,
+        "parry": 50,
+        "dodge": 70,
         "damage": 100,
-        "lvl" : 35,
-        "skill_name" : "有如鬼魅",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，手指隨即刺出",
-        "force" : 160,
+        "lvl": 35,
+        "skill_name": "有如鬼魅",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，手指隨即刺出",
+        "force": 160,
         "attack": 70,
-        "parry" : 40,
-        "dodge" : 65,
+        "parry": 40,
+        "dodge": 65,
         "damage": 120,
-        "lvl" : 45,
-        "skill_name" : "疾衝上前",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N喝道：“好！”，便即反手刺出一指，跟著轉身離去",
-        "force" : 200,
+        "lvl": 45,
+        "skill_name": "疾衝上前",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N喝道：“好！”，便即反手刺出一指，跟著轉身離去",
+        "force": 200,
         "attack": 90,
-        "parry" : 45,
-        "dodge" : 80,
+        "parry": 45,
+        "dodge": 80,
         "damage": 130,
-        "lvl" : 55,
-        "skill_name" : "反手刺出",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
-        "force" : 190,
+        "lvl": 55,
+        "skill_name": "反手刺出",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
+        "force": 190,
         "attack": 80,
-        "parry" : 40,
-        "dodge" : 85,
+        "parry": 40,
+        "dodge": 85,
         "damage": 150,
-        "lvl" : 65,
-        "skill_name" : "眼前一花",
-        "damage_type":  "刺傷"
-]),
-([      "action":"$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手掌忽的劈向$n的$l",
-        "force" : 180,
+        "lvl": 65,
+        "skill_name": "眼前一花",
+        "damage_type": "刺傷"
+    ]),
+    ([
+        "action": "$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手掌忽的劈向$n的$l",
+        "force": 180,
         "attack": 100,
-        "parry" : 50,
-        "dodge" : 70,
+        "parry": 50,
+        "dodge": 70,
         "damage": 170,
-        "lvl" : 75,
-        "skill_name" : "向後疾退",
-        "damage_type":  "震傷"
-]),
-([      "action":"$N驀地衝到$n面前，指尖直刺$n右眼！$n慌忙招架，不想$N的手腕突然轉向",
-        "force" : 250,
+        "lvl": 75,
+        "skill_name": "向後疾退",
+        "damage_type": "震傷"
+    ]),
+    ([
+        "action": "$N驀地衝到$n面前，指尖直刺$n右眼！$n慌忙招架，不想$N的手腕突然轉向",
+        "force": 250,
         "attack": 130,
-        "parry" : 55,
-        "dodge" : 74,
+        "parry": 55,
+        "dodge": 74,
         "damage": 200,
-        "lvl" : 85,
-        "skill_name" : "直刺右眼",
-        "damage_type":  "震傷"
-]),
-([      "action":"$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，揮掌砍向$n的$l",
-        "force" : 340,
+        "lvl": 85,
+        "skill_name": "直刺右眼",
+        "damage_type": "震傷"
+    ]),
+    ([
+        "action": "$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，揮掌砍向$n的$l",
+        "force": 340,
         "attack": 130,
-        "parry" : 50,
-        "dodge" : 80,
+        "parry": 50,
+        "dodge": 80,
         "damage": 220,
-        "lvl" : 94,
-        "skill_name" : "飛身躍起",
-        "damage_type":  "震傷"
-]),
-([      "action":"$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻手掌一起拍向$n",
-        "force" : 400,
+        "lvl": 94,
+        "skill_name": "飛身躍起",
+        "damage_type": "震傷"
+    ]),
+    ([
+        "action": "$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻手掌一起拍向$n",
+        "force": 400,
         "attack": 140,
-        "parry" : 60,
-        "dodge" : 110,
+        "parry": 60,
+        "dodge": 110,
         "damage": 240,
-        "lvl" : 120,
-        "skill_name" : "腰枝猛擺",
-        "damage_type":  "震傷"
-]),
+        "lvl": 120,
+        "skill_name": "腰枝猛擺",
+        "damage_type": "震傷"
+    ])
 });
 
-int valid_enable(string usage)
-{
-        return usage == "sword" ||
-               usage == "parry" ||
-               //usage == "force" ||
-               //usage == "unarmed" ||
-               usage == "dodge";
+int valid_enable(string usage) {
+    return usage == "sword" ||
+        usage == "parry" ||
+    //usage == "force" ||
+    //usage == "unarmed" ||
+    usage == "dodge";
 }
 
 int double_attack() { return 1; }
 
-int query_neili_improve(object me)
-{
-        int lvl;
+int query_neili_improve(object me) {
+    int lvl;
 
-        lvl = (int)me->query_skill("pixie-jian", 1);
-        return lvl * lvl * 17 * 15 / 100 / 200;
+    lvl = (int)me->query_skill("pixie-jian", 1);
+    return lvl * lvl * 17 * 15 / 100 / 200;
 }
 
-string query_skill_name(int level)
-{
-        int i;
-        for (i = sizeof(weapon_action) - 1; i >= 0; i--)
-                if (level >= weapon_action[i]["lvl"])
-                        return weapon_action[i]["skill_name"];
+string query_skill_name(int level) {
+    int i;
+    for (i = sizeof(weapon_action) - 1; i >= 0; i--)
+        if (level >= weapon_action[i]["lvl"])
+        return weapon_action[i]["skill_name"];
 }
 
-mapping query_action(object me, object weapon)
-{
-/* d_e=dodge_effect p_e=parry_effect f_e=force_effect m_e=damage_effect */
-        int d_e1 = -60;
-        int d_e2 = -40;
-        int p_e1 = -80;
-        int p_e2 = -60;
-        int f_e1 = 150;
-        int f_e2 = 230;
-        int m_e1 = 240;
-        int m_e2 = 340;
-        int i, lvl, seq, ttl;
-        mapping *action;
+mapping query_action(object me, object weapon) {
+    /* d_e = dodge_effect p_e = parry_effect f_e = force_effect m_e = damage_effect */
+    int d_e1 = -60;
+    int d_e2 = -40;
+    int p_e1 = -80;
+    int p_e2 = -60;
+    int f_e1 = 150;
+    int f_e2 = 230;
+    int m_e1 = 240;
+    int m_e2 = 340;
+    int i, lvl, seq, ttl;
+    mapping *action;
 
-        if (objectp(weapon))
-                action = weapon_action;
-        else
-                action = unarmed_action;
+    if (objectp(weapon))
+        action = weapon_action;
+    else
+        action = unarmed_action;
 
-        ttl = sizeof(action);
-        lvl = (int) me->query_skill("pixie-jian", 1);
-        for(i = ttl; i > 0; i--)
-                if(lvl > action[i-1]["lvl"])
-                {
-                        seq = i; /* 獲得招數序號上限 */
-                        break;
-                }
-        seq = random(seq);       /* 選擇出手招數序號 */
-        return ([
-                "action"      : action[seq]["action"],
-                "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
-                "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
-                "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : action[seq]["damage_type"],
+    ttl = sizeof(action);
+    lvl = (int) me->query_skill("pixie-jian", 1);
+    for(i = ttl; i > 0; i--)
+        if(lvl > action[i - 1]["lvl"])
+    {
+        seq = i; /* 獲得招數序號上限 */
+        break;
+    }
+    seq = random(seq);       /* 選擇出手招數序號 */
+    return ([
+        "action": action[seq]["action"],
+        "dodge": d_e1 + (d_e2 - d_e1) * seq / ttl,
+        "parry": p_e1 + (p_e2 - p_e1) * seq / ttl,
+        "force": f_e1 + (f_e2 - f_e1) * seq / ttl,
+        "damage": m_e1 + (m_e2 - m_e1) * seq / ttl,
+        "damage_type": action[seq]["damage_type"]
         ]);
 }
 
-string query_dodge_msg(string limb)
-{
-        return dodge_msg[random(sizeof(dodge_msg))];
+string query_dodge_msg(string limb) {
+    return dodge_msg[random(sizeof(dodge_msg))];
 }
 
-int valid_learn(object me)
-{
-        if( query("character", me) == "光明磊落" ||
-            query("character", me) == "狡黠多變" )
-                return notify_fail("你心中暗道：這辟邪劍法損人損己，修煉來何用。\n");
+int valid_learn(object me) {
+    if(query("character", me) == "光明磊落" ||
+        query("character", me) == "狡黠多變" )
+        return notify_fail("你心中暗道：這辟邪劍法損人損己，修煉來何用。\n");
 
-        if( query("gender", me) == "女性" &&
-            !query("special_skill/ghost", me) )
-                return notify_fail("自古以來沒聽說過女人可以修習葵花寶典。\n");
+    if(query("gender", me) == "女性" &&
+        !query("special_skill/ghost", me) )
+        return notify_fail("自古以來沒聽說過女人可以修習葵花寶典。\n");
 
-        if( query("gender", me) == "男性" &&
-            !query("special_skill/ghost", me) )
-        {
-                me->receive_wound("qi", 50);
-                return notify_fail(HIR "\n你試著修煉辟邪劍法，霎時只覺內息忽然大"
-                                   "亂，幾欲焚身。\n" NOR);
-        }
+    if(query("gender", me) == "男性" &&
+        !query("special_skill/ghost", me) )
+    {
+        me->receive_wound("qi", 50);
+        return notify_fail(HIR "\n你試著修煉辟邪劍法，霎時只覺內息忽然大"
+            "亂，幾欲焚身。\n" NOR);
+    }
 
-        /*
-        if( !query("family/family_name", me) ||
-            query("family/family_name", me) != "日月神教" )
-                return notify_fail("辟邪劍法只有日月神教的人方能領會。\n");
-        */
+    /*
+     * if( !query("family/family_name", me) ||
+     * query("family/family_name", me) != "日月神教" )
+     * return notify_fail("辟邪劍法只有日月神教的人方能領會。\n");
+     */
 
-        if( query("int", me)<34 )
-                return notify_fail("你的天資不足，無法理解辟邪劍法的深意。\n");
+    if(query("int", me)<34 )
+        return notify_fail("你的天資不足，無法理解辟邪劍法的深意。\n");
 
-        if( query("dex", me)<32 )
-                return notify_fail("你先天身法孱弱，難以修煉辟邪劍法。\n");
+    if(query("dex", me)<32 )
+        return notify_fail("你先天身法孱弱，難以修煉辟邪劍法。\n");
 
-        if (me->query_skill("sword", 1) < 100)
-                return notify_fail("你的基本劍法造詣太淺，無法理解辟邪劍法。\n");
+    if (me->query_skill("sword", 1) < 100)
+        return notify_fail("你的基本劍法造詣太淺，無法理解辟邪劍法。\n");
 
-        if (me->query_skill("dodge", 1) < 100)
-                return notify_fail("你的基本輕功造詣太淺，無法理解辟邪劍法。\n");
+    if (me->query_skill("dodge", 1) < 100)
+        return notify_fail("你的基本輕功造詣太淺，無法理解辟邪劍法。\n");
 
-        if (me->query_skill("parry", 1) < 100)
-                return notify_fail("你的基本架造造詣太淺，無法理解辟邪劍法。\n");
+    if (me->query_skill("parry", 1) < 100)
+        return notify_fail("你的基本架造造詣太淺，無法理解辟邪劍法。\n");
 
-        if (me->query_skill("sword", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本劍法造詣有限，無法理解更高深的辟邪劍法。\n");
+    if (me->query_skill("sword", 1) < me->query_skill("pixie-jian", 1))
+        return notify_fail("你的基本劍法造詣有限，無法理解更高深的辟邪劍法。\n");
 
-        if (me->query_skill("dodge", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本輕功造詣有限，無法理解更高深的辟邪劍法。\n");
+    if (me->query_skill("dodge", 1) < me->query_skill("pixie-jian", 1))
+        return notify_fail("你的基本輕功造詣有限，無法理解更高深的辟邪劍法。\n");
 
-        if (me->query_skill("parry", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本招架造詣有限，無法理解更高深的辟邪劍法。\n");
+    if (me->query_skill("parry", 1) < me->query_skill("pixie-jian", 1))
+        return notify_fail("你的基本招架造詣有限，無法理解更高深的辟邪劍法。\n");
 
-/*
-        if (me->query_skill("unarmed", 1) < me->query_skill("pixie-jian", 1))
-                return notify_fail("你的基本拳腳造詣有限，無法理解更高深的辟邪劍法。\n");
-*/
+    /*
+     * if (me->query_skill("unarmed", 1) < me->query_skill("pixie-jian", 1))
+     * return notify_fail("你的基本拳腳造詣有限，無法理解更高深的辟邪劍法。\n");
+     */
 
-        return 1;
+    return 1;
 }
 
-mixed valid_damage(object ob, object me, int damage, object weapon)
-{
-        mixed result;
-        int ap, dp, mp;
+mixed valid_damage(object ob, object me, int damage, object weapon) {
+    mixed result;
+    int ap, dp, mp;
 
-        if ((int)me->query_skill("pixie-jian", 1) < 100 ||
-            ! living(me))
-                return;
-
-        mp = ob->query_skill("count", 1);
-        ap = ob->query_skill("dodge") + mp;
-        dp = me->query_skill("dodge", 1) / 2 +
-             me->query_skill("pixie-jian", 1);
-
-        if (ap / 3 + random(ap) < dp)
-        {
-                result = ([ "damage": -damage ]);
-
-                switch (random(4))
-                {
-                case 0:
-                        result += (["msg" : HIR "$N" HIR "眼睛一花，$n" HIR "已沒了蹤"
-                                            "影。突然$n" HIR "從身後拍了一下$N" HIR "的"
-                                            "頭，輕輕躍開。\n" NOR]);
-                        break;
-                case 1:
-                        result += (["msg" : HIR "$N" HIR "眼前一花，似乎見到$n" HIR "身"
-                                            "形一晃，但隨即又見$n" HIR "回到原地，卻似"
-                                            "從未離開。\n" NOR]);
-                        break;
-                case 2:
-                        result += (["msg" : HIR "$n" HIR "身形飄忽，有如鬼魅，轉了幾轉"
-                                            "，移步到$N" HIR "的身後，躲過了$N" HIR "這"
-                                            "一招。\n" NOR]);
-                        break;
-                default:
-                        result += (["msg" : HIR "突然間白影急晃，$n" HIR "向後滑出丈餘"
-                                            "，立時又回到了原地，躲過了$N" HIR "這一招"
-                                            "。\n" NOR]);
-                        break;
-                }
-                return result;
-        } else
-        if (mp >= 100)
-        {
-                switch (random(4))
-                {
-                case 0:
-                        result = HIY "$N" HIY "眼睛一花，$n" HIY "已沒了蹤影"
-                                 "。可是$N" HIY "精通易理，絲毫不為所亂，儘自"
-                                 "出招。\n" NOR;
-                        break;
-                case 1:
-                        result = HIY "$N" HIY "眼前一花，似乎見到$n" HIY "身"
-                                 "形一晃。$N" HIY "一聲冷笑，已瞬間看破招中虛"
-                                 "實。\n" NOR;
-                        break;
-                case 2:
-                        result = HIY "$n" HIY "身形飄忽，有如鬼魅，轉了幾轉，"
-                                 "可是$N" HIY "理也不理，連續數招徑直攻出。\n"
-                                 NOR;
-                        break;
-                default:
-                        result = HIY "突然間白影急晃，$n" HIY "向後滑出丈餘，"
-                                 "可是$N" HIY "不假思索，追身攻上，更是巧妙無"
-                                 "方。\n" NOR;
-                        break;
-                }
-                COMBAT_D->set_bhinfo(result);
-        }
-}
-
-int query_effect_dodge(object attacker, object me)
-{
-        int lvl;
-
-        lvl = me->query_skill("pixie-jian", 1);
-        if (lvl < 50)  return 0;
-        if (lvl < 100) return 30;
-        if (lvl < 150) return 40;
-        if (lvl < 200) return 60;
-        if (lvl < 250) return 80;
-        if (lvl < 300) return 100;
-        if (lvl < 350) return 120;
-        return 130;
-}
-
-
-void cimu_end(object me, object target)
-{
-        if( target && query_temp("block_msg/all", target) )
-        {
-                if (living(target))
-                {
-                        message_combatd(HIC "$N" HIC "抹了抹流著的"
-                                        HIR "鮮血" HIC "，終於能看"
-                                        "見了。\n" NOR, target);
-
-                        tell_object(target, HIR "你終於抹掉了眼前的"
-                                            "鮮血，能看見了。\n" NOR);
-                }
-                delete_temp("block_msg/all", target);
-        }
+    if ((int)me->query_skill("pixie-jian", 1) < 100 ||
+        ! living(me))
         return;
-}
 
-void poyuan_end(object me, object target)
-{
-        if (target && target->query_condition("no_perform"))
+    mp = ob->query_skill("count", 1);
+    ap = ob->query_skill("dodge") + mp;
+    dp = me->query_skill("dodge", 1) / 2 +
+        me->query_skill("pixie-jian", 1);
+
+    if (ap / 3 + random(ap) < dp)
+    {
+        result = ([ "damage": -damage ]);
+
+        switch (random(4))
         {
-                if (living(target))
-                {
-                        message_combatd(HIC "$N" HIC "深深吸入一口"
-                                        "氣，臉色由白轉紅，看起來好"
-                                        "多了。\n" NOR, target);
-
-                        tell_object(target, HIY "你感到被擾亂的真氣"
-                                            "慢慢平靜了下來。\n" NOR);
-                }
-                target->clear_condition("no_perform");
+        case 0:
+            result += (["msg": HIR "$N" HIR "眼睛一花，$n" HIR "已沒了蹤"
+            "影。突然$n" HIR "從身後拍了一下$N" HIR "的"
+            "頭，輕輕躍開。\n" NOR]);
+            break;
+        case 1:
+            result += (["msg": HIR "$N" HIR "眼前一花，似乎見到$n" HIR "身"
+            "形一晃，但隨即又見$n" HIR "回到原地，卻似"
+            "從未離開。\n" NOR]);
+            break;
+        case 2:
+            result += (["msg": HIR "$n" HIR "身形飄忽，有如鬼魅，轉了幾轉"
+            "，移步到$N" HIR "的身後，躲過了$N" HIR "這"
+            "一招。\n" NOR]);
+            break;
+        default:
+            result += (["msg": HIR "突然間白影急晃，$n" HIR "向後滑出丈餘"
+            "，立時又回到了原地，躲過了$N" HIR "這一招"
+            "。\n" NOR]);
+            break;
         }
-        return;
-}
-
-void exert_end(object me, object target)
-{
-        if (target && target->query_condition("no_exert"))
+        return result;
+    } else
+    if (mp >= 100)
+    {
+        switch (random(4))
         {
-                if (living(target))
-                {
-                        message_combatd(HIC "$N" HIC "深深吸入一口"
-                                        "氣，臉色由白轉紅，看起來好"
-                                        "多了。\n" NOR, target);
-
-                        tell_object(target, HIY "你感到周身穴道不再疼痛，輕鬆多了。\n" NOR);
-                }
-                target->clear_condition("no_exert");
+        case 0:
+            result = HIY "$N" HIY "眼睛一花，$n" HIY "已沒了蹤影"
+            "。可是$N" HIY "精通易理，絲毫不為所亂，儘自"
+            "出招。\n" NOR;
+            break;
+        case 1:
+            result = HIY "$N" HIY "眼前一花，似乎見到$n" HIY "身"
+            "形一晃。$N" HIY "一聲冷笑，已瞬間看破招中虛"
+            "實。\n" NOR;
+            break;
+        case 2:
+            result = HIY "$n" HIY "身形飄忽，有如鬼魅，轉了幾轉，"
+            "可是$N" HIY "理也不理，連續數招徑直攻出。\n"
+            NOR;
+            break;
+        default:
+            result = HIY "突然間白影急晃，$n" HIY "向後滑出丈餘，"
+            "可是$N" HIY "不假思索，追身攻上，更是巧妙無"
+            "方。\n" NOR;
+            break;
         }
-        return;
+        COMBAT_D->set_bhinfo(result);
+    }
 }
 
-mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
-{
-        object weapon;
-        string name;
+int query_effect_dodge(object attacker, object me) {
+    int lvl;
 
-        // 辟邪劍影特效
-        if( random(20)<5 && query_temp("pixie-jian/pfm_jian", me) )
+    lvl = me->query_skill("pixie-jian", 1);
+    if (lvl < 50)  return 0;
+    if (lvl < 100) return 30;
+    if (lvl < 150) return 40;
+    if (lvl < 200) return 60;
+    if (lvl < 250) return 80;
+    if (lvl < 300) return 100;
+    if (lvl < 350) return 120;
+    return 130;
+}
+
+
+void cimu_end(object me, object target) {
+    if(target && query_temp("block_msg/all", target) )
+    {
+        if (living(target))
         {
-                switch(random(9))
-                {
-                        case 0:
-                        case 4:
-                        case 5:
-                        case 6:
-                                if( !query_temp("block_msg/all", victim) )
-                                {
-                                        set_temp("block_msg/all", 1, victim);
-                                        call_out("cimu_end", 20, me, victim);
-                                        message_combatd(HIR "$N" HIR "只覺雙目一陣劇痛，眼前一黑，就什麼"
-                                               "也看不見了，頓時長聲痛極而呼。\n" NOR, victim);
-                                }
-                                break;
-                        case 1:
-                                if (! victim->query_condition("no_perform"))
-                                {
-                                        victim->apply_condition("no_perform", 5);
-                                        call_out("poyuan_end", 15, me, victim);
-                                        message_combatd(HIR "$N" HIR "只覺眼前寒芒一閃而過，隨即全身一陣"
-                                                "刺痛，幾股血柱自身上射出。\n$N陡然間一提真氣，"
-                                                "竟發現周身力道竟似渙散一般，全然無法控制。\n" NOR, victim);
-                                }
-                                break;
-                        case 2:
-                                set("jiali", 0, victim);
-                                break;
-                        case 3:
-                                if (! victim->query_condition("no_exert"))
-                                {
-                                        victim->apply_condition("no_exert", 1);
-                                        call_out("exert_end", 30, me, victim);
-                                        message_combatd(HIR "$N" HIR "只覺寒光逼人，隨即全身一陣"
-                                                "刺痛，氣門已傷。\n$N陡然間一提真氣，"
-                                                "竟發現周身穴道具痛無比。\n" NOR, victim);
-                                }
-                                break;
-                        default:
-                                if (! victim->is_busy())
-                                        victim->start_busy(8);
-                                break;
-                }
+            message_combatd(HIC "$N" HIC "抹了抹流著的"
+                HIR "鮮血" HIC "，終於能看"
+                "見了。\n" NOR, target);
+
+            tell_object(target, HIR "你終於抹掉了眼前的"
+                "鮮血，能看見了。\n" NOR);
         }
-        weapon=query_temp("weapon", me);
+        delete_temp("block_msg/all", target);
+    }
+    return;
+}
 
-        if( query_temp("weapon", me) )
-                name = "手中" + weapon->name();
-        else
-                name = finger_name[random(sizeof(finger_name))];
-
-        attack_time = (int)(me->query_skill("pixie-jian", 1) / 40);
-
-        if (attack_time > 8)
-                attack_time = 8;
-
-        if (me->is_busy()
-           || ! living(victim)
-           || random(3) < 1
-           || damage_bonus < 120
-           || query_temp("px_link", me)
-           || query_temp("pixie-jian/hit_msg", me)
-           || query("neili", me)<300
-           || query_temp("action_flag", me) == 1
-           || me->query_skill("pixie-jian", 1) < 120)
-                return 0;
-
-        if( query_temp("pixie-jian/pfm_jian", me) ) tell_object(me,HIG"---------------------------=\n"NOR);
-        // 避免在使用Pfm時訊息重複
-        if( !query_temp("pixie-jian/hit_msg", me) )
-                message_combatd(HIW "\n霎時間只見$N" HIW "鬼魅般揉身衝上，" + name +
-                               HIW "指指點點，宛如夜雨流星，連續刺向$n" HIW "！\n"
-                               NOR, me, victim);
-
-//        me->start_busy(1 + random(attack_time / 10));
-        addn("neili", -200, me);
-        set_temp("px_link", 1, me);
-        for (i = 0; i < attack_time; i++)
+void poyuan_end(object me, object target) {
+    if (target && target->query_condition("no_perform"))
+    {
+        if (living(target))
         {
-                if (! me->is_fighting(victim))
-                        break;
-                COMBAT_D->do_attack(me, victim, weapon, 3);
+            message_combatd(HIC "$N" HIC "深深吸入一口"
+                "氣，臉色由白轉紅，看起來好"
+                "多了。\n" NOR, target);
+
+            tell_object(target, HIY "你感到被擾亂的真氣"
+                "慢慢平靜了下來。\n" NOR);
         }
-        delete_temp("px_link", me);
-        return 1;
+        target->clear_condition("no_perform");
+    }
+    return;
 }
 
-int practice_skill(object me)
-{
-        return notify_fail(HIC "辟邪劍法只能通過研習「辟邪劍譜」或「葵花"
-                           "寶典」來學習。\n" NOR);
+void exert_end(object me, object target) {
+    if (target && target->query_condition("no_exert"))
+    {
+        if (living(target))
+        {
+            message_combatd(HIC "$N" HIC "深深吸入一口"
+                "氣，臉色由白轉紅，看起來好"
+                "多了。\n" NOR, target);
+
+            tell_object(target, HIY "你感到周身穴道不再疼痛，輕鬆多了。\n" NOR);
+        }
+        target->clear_condition("no_exert");
+    }
+    return;
 }
 
-int difficult_level()
-{
-        return 800;
+mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time) {
+    object weapon;
+    string name;
+
+    // 辟邪劍影特效
+    if(random(20)<5 && query_temp("pixie-jian/pfm_jian", me) )
+    {
+        switch(random(9))
+        {
+        case 0:
+        case 4:
+        case 5:
+        case 6:
+            if(!query_temp("block_msg/all", victim) )
+            {
+                set_temp("block_msg/all", 1, victim);
+                call_out("cimu_end", 20, me, victim);
+                message_combatd(HIR "$N" HIR "只覺雙目一陣劇痛，眼前一黑，就什麼"
+                "也看不見了，頓時長聲痛極而呼。\n" NOR, victim);
+            }
+            break;
+        case 1:
+            if (! victim->query_condition("no_perform"))
+            {
+                victim->apply_condition("no_perform", 5);
+                call_out("poyuan_end", 15, me, victim);
+                message_combatd(HIR "$N" HIR "只覺眼前寒芒一閃而過，隨即全身一陣"
+                "刺痛，幾股血柱自身上射出。\n$N陡然間一提真氣，"
+                "竟發現周身力道竟似渙散一般，全然無法控制。\n" NOR, victim);
+            }
+            break;
+        case 2:
+            set("jiali", 0, victim);
+            break;
+        case 3:
+            if (! victim->query_condition("no_exert"))
+            {
+                victim->apply_condition("no_exert", 1);
+                call_out("exert_end", 30, me, victim);
+                message_combatd(HIR "$N" HIR "只覺寒光逼人，隨即全身一陣"
+                "刺痛，氣門已傷。\n$N陡然間一提真氣，"
+                "竟發現周身穴道具痛無比。\n" NOR, victim);
+            }
+            break;
+        default:
+            if (! victim->is_busy())
+                victim->start_busy(8);
+            break;
+        }
+    }
+    weapon = query_temp("weapon", me);
+
+    if(query_temp("weapon", me) )
+        name = "手中" + weapon->name();
+    else
+        name = finger_name[random(sizeof(finger_name))];
+
+    attack_time = (int)(me->query_skill("pixie-jian", 1) / 40);
+
+    if (attack_time > 8)
+        attack_time = 8;
+
+    if (me->is_busy()
+        || ! living(victim)
+        || random(3) < 1
+        || damage_bonus < 120
+        || query_temp("px_link", me)
+        || query_temp("pixie-jian/hit_msg", me)
+        || query("neili", me)<300
+        || query_temp("action_flag", me) == 1
+        || me->query_skill("pixie-jian", 1) < 120)
+    return 0;
+
+    if(query_temp("pixie-jian/pfm_jian", me) ) tell_object(me, HIG"---------------------------=\n"NOR);
+    // 避免在使用Pfm時訊息重複
+    if(!query_temp("pixie-jian/hit_msg", me) )
+        message_combatd(HIW "\n霎時間只見$N" HIW "鬼魅般揉身衝上，" + name +
+            HIW "指指點點，宛如夜雨流星，連續刺向$n" HIW "！\n"
+            NOR, me, victim);
+
+    //        me->start_busy(1 + random(attack_time / 10));
+    addn("neili", -200, me);
+    set_temp("px_link", 1, me);
+    for (i = 0; i < attack_time; i++)
+    {
+        if (! me->is_fighting(victim))
+            break;
+        COMBAT_D->do_attack(me, victim, weapon, 3);
+    }
+    delete_temp("px_link", me);
+    return 1;
 }
 
-string perform_action_file(string action)
-{
-            return __DIR__"pixie-jian/" + action;
+int practice_skill(object me) {
+    return notify_fail(HIC "辟邪劍法只能通過研習「辟邪劍譜」或「葵花"
+        "寶典」來學習。\n" NOR);
+}
+
+int difficult_level() {
+    return 800;
+}
+
+string perform_action_file(string action) {
+    return __DIR__"pixie-jian/" + action;
 }
 
 /*
-string exert_function_file(string action)
-{
-        return __DIR__"pixie-jian/exert/" + action;
-}
-*/
+ * string exert_function_file(string action)
+ * {
+ * return __DIR__"pixie-jian/exert/" + action;
+ * }
+ */
 /*
-void do_interlink(object me, object victim)
-{
-        int skill, i, j;
-        object *enemy;
-        object weapon;
+ * void do_interlink(object me, object victim)
+ * {
+ * int skill, i, j;
+ * object *enemy;
+ * object weapon;
 
-        if( userp(me) && !query("reborn/times", me) )
-                return;
+ * if( userp(me) && !query("reborn/times", me) )
+ * return;
 
-        skill = me->query_skill("pixie-jian", 1);
-        if( random(skill)>400 && objectp(weapon=query_temp("weapon", me)) )
-        {
-                enemy = me->query_enemy();
-                if (! sizeof(enemy)) return;
-                addn_temp("str", skill/10, me);
-                addn_temp("dex", skill/10, me);
-                // 對所有敵人均自動進行攻擊
-                for (i = 0; i < sizeof(enemy); i++)
-                {
-                        for (j = 0; j < (skill / (60 * sizeof(enemy))); j++)
-                        if( (me->is_fighting(enemy[i]) || enemy[i]->is_fighting(me)) && query("qi", enemy[i])>0 )
-                        {
-                                if (environment(me) == environment(enemy[i]))
-                                {
-                                        COMBAT_D->do_attack(me,enemy[i],query_temp("weapon", me),0);
-                                }
-                        } else break;
-                }
-                addn_temp("str", -skill/10, me);
-                addn_temp("dex", -skill/10, me);
-        }
-}
-*/
+ * skill = me->query_skill("pixie-jian", 1);
+ * if( random(skill)>400 && objectp(weapon=query_temp("weapon", me)) )
+ * {
+ * enemy = me->query_enemy();
+ * if (! sizeof(enemy)) return;
+ * addn_temp("str", skill/10, me);
+ * addn_temp("dex", skill/10, me);
+ * // 對所有敵人均自動進行攻擊
+ * for (i = 0; i < sizeof(enemy); i++)
+ * {
+ * for (j = 0; j < (skill / (60 * sizeof(enemy))); j++)
+ * if( (me->is_fighting(enemy[i]) || enemy[i]->is_fighting(me)) && query("qi", enemy[i])>0 )
+ * {
+ * if (environment(me) == environment(enemy[i]))
+ * {
+ * COMBAT_D->do_attack(me,enemy[i],query_temp("weapon", me),0);
+ * }
+ * } else break;
+ * }
+ * addn_temp("str", -skill/10, me);
+ * addn_temp("dex", -skill/10, me);
+ * }
+ * }
+ */
 
-int help(object me)
-{
-        write(HIC"\n辟邪劍法："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n辟邪劍法："NOR"\n");
+    write(@HELP
 
     要說辟邪劍法，就要從《葵花寶典》談起。
 
@@ -752,6 +759,6 @@ int help(object me)
         學習要求：
                 自宮做太監
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

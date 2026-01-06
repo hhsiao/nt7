@@ -434,7 +434,7 @@ int give_quest() {
     mapping questtemp, questdg;
     string msg;
     object ob, npc, thing;
-    int time, level, i;
+    int level, i;
     int exp;
     int all_lvl, lvl;
     object maze_target;
@@ -705,7 +705,7 @@ int give_quest() {
 
 
 int accept_object(object who, object ob) {
-    int exp, pot, level, bonus, time;
+    int exp, pot, level;
     int i, quest_count, mar, score, weiwang, all_quest_dg;
     int total_count;
     mapping questdg;
@@ -1140,7 +1140,8 @@ int accept_ask(object me, string topic) {
     {
     case "天地絕滅" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform": "can_perform/never-defeated/juemie",
+        ([
+        "perform": "can_perform/never-defeated/juemie",
         "name": "天地絕滅",
         "sk1": "never-defeated",
         "lv1": 120,
@@ -1150,7 +1151,8 @@ int accept_ask(object me, string topic) {
         break;
     case "天打雷劈" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform": "can_perform/never-defeated/lei",
+        ([
+        "perform": "can_perform/never-defeated/lei",
         "name": "天打雷劈",
         "sk1": "never-defeated",
         "lv1": 120,
@@ -1160,7 +1162,8 @@ int accept_ask(object me, string topic) {
         break;
     case "破字訣" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform": "can_perform/never-defeated/po",
+        ([
+        "perform": "can_perform/never-defeated/po",
         "name": "破字訣",
         "sk1": "never-defeated",
         "lv1": 120,
@@ -1170,7 +1173,8 @@ int accept_ask(object me, string topic) {
         break;
     case "天花亂墜" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform": "can_perform/never-defeated/tianhua",
+        ([
+        "perform": "can_perform/never-defeated/tianhua",
         "name": "天花亂墜",
         "sk1": "never-defeated",
         "lv1": 120,
@@ -1180,7 +1184,8 @@ int accept_ask(object me, string topic) {
         break;
     case "晴空萬里" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform": "can_perform/never-defeated/wanli",
+        ([
+        "perform": "can_perform/never-defeated/wanli",
         "name": "晴空萬里",
         "sk1": "never-defeated",
         "lv1": 120,
@@ -1190,7 +1195,8 @@ int accept_ask(object me, string topic) {
         break;
     case "御策訣" :
         return MASTER_D->teach_pfm(me, this_object(),
-        ([ "perform": "can_perform/never-defeated/yuce",
+        ([
+        "perform": "can_perform/never-defeated/yuce",
         "name": "御策訣",
         "sk1": "never-defeated",
         "lv1": 120,

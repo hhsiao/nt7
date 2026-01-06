@@ -13,14 +13,12 @@ int power_point(object me) { return 1; }
 void skill_improved(object me)
 {}
 
-int valid_learn(object me)
-{
-        return notify_fail("渡世濟人要在實踐中提高。\n");
+int valid_learn(object me) {
+    return notify_fail("渡世濟人要在實踐中提高。\n");
 }
-int help(object me)
-{
-        write(HIC"\n渡世濟人："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n渡世濟人："NOR"\n");
+    write(@HELP
 
     峨嵋弟子崇信大乘佛教，悲天憫人，講究渡人渡己，不僅僅是
 只顧自己修行，所以渡世濟人的功業乃是峨嵋派考量門人弟子的重
@@ -31,6 +29,6 @@ int help(object me)
         學習要求：
                 實踐中獲得
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

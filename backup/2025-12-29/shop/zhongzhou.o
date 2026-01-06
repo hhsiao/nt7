@@ -1,3 +1,0 @@
-#/clone/shop/zhongzhou_shop.c
-dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/zhongzhou/majiu",]),"owner":"VOID_SHOP","open_long":"這裡是中州城裡最著名的店鋪，整個鋪面裝修得相當精美雅緻，紅木鋪地，漆門雕窗，大堂正中掛著一幅百鶴圖。店鋪裡的夥計正招呼著客人，忙得滿頭大汗。","long":"這裡是中州城裡最著名的店鋪，整個鋪面裝修得相當精美雅緻，紅木鋪地，漆門雕窗，大堂正中掛著一幅百鶴圖。不過店裡的貨櫃上卻空無一物，看來已很久沒人打理了。","short":"百鶴齋",])
-all_goods ({})

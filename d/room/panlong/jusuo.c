@@ -2,33 +2,32 @@
 
 #include <room.h>
 
-//** inherit PRIVATE_ROOM;
+//**inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "居所");
-        set("long", @LONG
+    set("short", "居所");
+    set("long", @LONG
 這就是盤龍居主人休息，讀書的地方。樓上就是主人的臥室，西面則
 是書房。
 LONG );
 
-        set("default_long", "這就是ROOM_NAME主人ROOM_OWNER休息、讀書的" /* EXAMPLE */
-                            "地方。樓上就是主人的臥室，西面則是書房。");/* EXAMPLE */
-                                                                        /* EXAMPLE */
+    set("default_long", "這就是ROOM_NAME主人ROOM_OWNER休息、讀書的" /* EXAMPLE */
+                        "地方。樓上就是主人的臥室，西面則是書房。");  /* EXAMPLE */
+                                                                  /* EXAMPLE */
+    set("exits", ([
+        "up"   : __DIR__"woshi",
+        "west" : __DIR__"shufang",
+        "east" : __DIR__"huayuan",  /* EXAMPLE */
+    ]));
 
-        set("exits", ([
-                "up"   : __DIR__"woshi",
-                "west" : __DIR__"shufang",
-                "east" : __DIR__"huayuan",  /* EXAMPLE */
-        ]));
-
-        set("no_sleep_room", 1);
-        setup();
+    set("no_sleep_room", 1);
+    setup();
 
 //**    set("KEY_DOOR", ([
-//**            "exit" : "east",
-//**            "room" : __DIR__"huayuan",
+//**        "exit" : "east",
+//**        "room" : __DIR__"huayuan",
 //**    ]));
 //**
 //**    set("room_owner", "ROOM_OWNER");

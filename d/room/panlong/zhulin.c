@@ -1,28 +1,27 @@
 // zhulin.c 盤龍居竹林
 
-//** inherit PRIVATE_ROOM;
+//**inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "竹林");
-        set("long", @LONG
+    set("short", "竹林");
+    set("long", @LONG
 這裡種著好大一片竹林，非常幽靜。風一起就聽竹葉沙沙的響。
 LONG );
 
-        set("default_long", "這裡種著好大一片竹林，非常幽靜。風一起就" /* EXAMPLE */
-                            "聽竹葉沙沙的響，有時ROOM_OWNER就去聽濤閣" /* EXAMPLE */
-                            "默聽竹浪濤聲，參悟武功。");               /* EXAMPLE */
-                                                                       /* EXAMPLE */
+    set("default_long", "這裡種著好大一片竹林，非常幽靜。風一起就" /* EXAMPLE */
+                        "聽竹葉沙沙的響，有時ROOM_OWNER就去聽濤閣" /* EXAMPLE */
+                        "默聽竹浪濤聲，參悟武功。");               /* EXAMPLE */
+                                                                    /* EXAMPLE */
+    set("exits", ([
+        "west" : __DIR__"huayuan",
+        "east" : __DIR__"tingtao",
+    ]));
 
-        set("exits", ([
-                "west" : __DIR__"huayuan",
-                "east" : __DIR__"tingtao",
-        ]));
-
-        set("outdoors", "OUTDOORS");
-        set("sleep_room", 1);
-        setup();
+    set("outdoors", "OUTDOORS");
+    set("sleep_room", 1);
+    setup();
 
 //**    set("room_owner", "ROOM_OWNER");
 //**    set("room_name", "ROOM_NAME");

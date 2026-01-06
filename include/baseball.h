@@ -22,7 +22,7 @@
 #define TEAM1                   1       // 主場球隊
 #define TEAM2                   2       // 客場球隊
 #define INNING                  3       // 局數
-#define OUT                             4       // 出局數
+#define OUT                     4       // 出局數
 #define STRIKE                  5       // 好球
 #define BALL                    6       // 壞球
 #define RUNNER1ST               7       // 一壘跑者
@@ -56,8 +56,11 @@
 #define SCORETYPE_SACRIFICE             3       // 犧牲打
 #define SCORETYPE_HIT                   4       // 安打
 
-#define HINTTYPE_BATTER                 1       
-#define HINTTYPE_PITCHER                2       
-#define HINTTYPE_BUNT                   3       
+#define HINTTYPE_BATTER                 1
+#define HINTTYPE_PITCHER                2
+#define HINTTYPE_BUNT                   3
 #define HINTTYPE_WALK                   4
 
+#define BUFF_BATTER_POWER     "batter_power"
+#define BUFF_PITCHER_POWER    "pitcher_power"
+#define BUFF_FIELDER_POWER    "fielder_power"

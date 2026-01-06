@@ -8,170 +8,164 @@ inherit F_DBASE;
 mapping push_msg = ([]);
 string query_save_file() { return DATA_DIR + "broadcastd"; }
 
-/* 臨時通過pushmsg 指令推送的廣播消息
-格式：
-push_msg = ([
-   "msg編號" :  ([
-      "廣播內容"       : "xxx",
-      "間隔時間"       : N, // 單位秒
-      "循環次數"       : N, // int
-      "上次廣播時間：  : TIME,
-      "已循環次數"     : N, // int
-   ]),
-]);
-*/
-void create()
-{
-        seteuid(getuid());
-        set("channel_id", "廣播精靈");
-        CHANNEL_D->do_channel( this_object(), "sys", "廣播精靈已經啟動。");
+/*
+ * 臨時通過pushmsg 指令推送的廣播消息
+ * 格式：
+ * push_msg = ([
+ * "msg編號" :  ([
+ * "廣播內容"       : "xxx",
+ * "間隔時間"       : N, // 單位秒
+ * "循環次數"       : N, // int
+ * "上次廣播時間：  : TIME,
+ * "已循環次數"     : N, // int
+ * ]),
+ * ]);
+ */
+void create() {
+    seteuid(getuid());
+    set("channel_id", "廣播精靈");
+    CHANNEL_D->do_channel(this_object(), "sys", "廣播精靈已經啟動。");
 
-        if( !restore() && !mapp(push_msg) )
-                push_msg = ([]);
+    if(!restore() && !mapp(push_msg) )
+        push_msg = ([]);
 
-        SCHEDULE_D->set_event(10, 1, this_object(), "broadcast_push_msg");
+    SCHEDULE_D->set_event(10, 1, this_object(), "broadcast_push_msg");
 }
 
-void broadcast_push_msg()
-{
-        string *key;
-        int i;
+void broadcast_push_msg() {
+    string *key;
+    int i;
 
-        if (! sizeof(push_msg))return;
+    if (! sizeof(push_msg))return;
 
+    key = keys(push_msg);
+
+    for (i = 0; i < sizeof(key); i ++)
+    {
+        if(time() - push_msg[key[i]]["last_broadcast"] < push_msg[key[i]]["delay"] )
+            continue;
+
+        if(push_msg[key[i]]["broadcast_times"] >= push_msg[key[i]]["times"] )
+            continue;
+
+        message_system(HIW + push_msg[key[i]]["msg"] + "\n" NOR);
+        push_msg[key[i]]["last_broadcast"] = time();
+        push_msg[key[i]]["broadcast_times"] += 1;
+    }
+    return;
+}
+
+public int add_push_msg(string title, string info, int delay, int times) {
+    string *key;
+
+    if (! sizeof(push_msg)) key = ({});
+    else
         key = keys(push_msg);
 
-        for (i = 0; i < sizeof(key); i ++)
-        {
-                if( time() - push_msg[key[i]]["last_broadcast"] < push_msg[key[i]]["delay"] )
-                        continue;
+    // 檢查標題是否重複
+    if (sizeof(key))
+    {
+        if (member_array(title, key) != -1)
+            return notify_fail("標題重複！\n");
+    }
 
-                if( push_msg[key[i]]["broadcast_times"] >= push_msg[key[i]]["times"] )
-                        continue;
+    if (sizeof(info) > 300)
+        return notify_fail("信息長度超長" + sprintf("%d", sizeof(info) - 88) + "個字符！\n");
 
-                message_system(HIW + push_msg[key[i]]["msg"] + "\n" NOR);
-                push_msg[key[i]]["last_broadcast"] = time();
-                push_msg[key[i]]["broadcast_times"] += 1;
-        }
-        return;
-}
+    if (delay < 1)
+        return notify_fail("間隔時間不能低於1秒。\n");
 
-public int add_push_msg(string title, string info, int delay, int times)
-{
-        string *key;
+    if (times < 1)
+        return notify_fail("循環次數不能小於1。\n");
 
-        if (! sizeof(push_msg)) key = ({});
-        else
-                key = keys(push_msg);
-
-        // 檢查標題是否重複
-        if (sizeof(key))
-        {
-                if (member_array(title, key) != -1)
-                        return notify_fail("標題重複！\n");
-        }
-
-        if (sizeof(info) > 300)
-                return notify_fail("信息長度超長" + sprintf("%d", sizeof(info) - 88) + "個字符！\n");
-
-        if (delay < 1)
-                return notify_fail("間隔時間不能低於1秒。\n");
-
-        if (times < 1)
-                return notify_fail("循環次數不能小於1。\n");
-
-        if( !mapp(push_msg) ) push_msg = ([]);
-        push_msg += ([
-              title : ([
-                  "msg"       : info,
-                  "delay"     : delay, // 單位秒
-                  "times"     : times,
-                  "last_broadcast"   : 0,
-                  "broadcast_times"  : 0,
-              ])
+    if(!mapp(push_msg) ) push_msg = ([]);
+    push_msg += ([
+        title : ([
+            "msg": info,
+            "delay": delay,     // 單位秒
+            "times": times,
+            "last_broadcast": 0,
+            "broadcast_times": 0
+        ])
         ]);
 
-        save();
-        write("添加成功！使用指令 pushmsg list 查看當前信息列表。\n");
-        return 1;
+    save();
+    write("添加成功！使用指令 pushmsg list 查看當前信息列表。\n");
+    return 1;
 }
 
-public int show_push_lish()
-{
-        string *key, msg;
-        int i;
+public int show_push_lish() {
+    string *key, msg;
+    int i;
 
-        msg = HIC "\n=----------------------------------------=\n" NOR;
+    msg = HIC "\n=----------------------------------------=\n" NOR;
 
-        if (! sizeof(push_msg))
-                return notify_fail("當前沒有PUSHMSG信息！\n");
+    if (! sizeof(push_msg))
+        return notify_fail("當前沒有PUSHMSG信息！\n");
 
+    key = keys(push_msg);
+
+    for (i = 0; i < sizeof(key); i ++)
+    {
+        msg += HIY "[" + key[i] + "]    " HIC + "間隔" + sprintf("%d", push_msg[key[i]]["delay"]) + "秒    " +
+            "循環" + sprintf("%d/%d", push_msg[key[i]]["broadcast_times"], push_msg[key[i]]["times"] ) + "\n" NOR;
+        msg += HIY "內容：" + HIC + push_msg[key[i]]["msg"] + "\n\n";
+    }
+    msg += HIC "\n=----------------------------------------=\n" NOR;
+    msg += HIR "指令 pushmsg del [TITLE] 可刪除廣播！\n" NOR;
+
+    write(msg);
+    return 1;
+}
+
+public int delete_push_msg(string title) {
+    string *key;
+
+    if (! sizeof(push_msg))key = ({});
+    else
         key = keys(push_msg);
 
-        for (i = 0; i < sizeof(key); i ++)
-        {
-                msg += HIY "[" + key[i] + "]    " HIC + "間隔" + sprintf("%d", push_msg[key[i]]["delay"]) + "秒    " +
- "循環" + sprintf("%d/%d", push_msg[key[i]]["broadcast_times"],push_msg[key[i]]["times"] ) + "\n" NOR;
-            msg += HIY "內容：" + HIC + push_msg[key[i]]["msg"] + "\n\n";
-        }
-        msg += HIC "\n=----------------------------------------=\n" NOR;
-        msg += HIR "指令 pushmsg del [TITLE] 可刪除廣播！\n" NOR;
+    // 檢查標題是否重複
+    if (sizeof(key))
+    {
+        if (member_array(title, key) == -1)
+            return notify_fail("無此標題！\n");
+    }
+    else
+        return notify_fail("當前無PUSHMSG！\n");
 
-        write(msg);
-        return 1;
+    map_delete(push_msg, title);
+
+    write(title + " del OK.\n");
+    save();
+    return 1;
 }
 
-public int delete_push_msg(string title)
-{
-        string *key;
+void reback_lonely_book() {
+    mixed *file;
+    int iCount;
+    object book;
 
-        if (! sizeof(push_msg))key = ({});
-        else
-                key = keys(push_msg);
+    remove_call_out("reback_lonely_book");
+    call_out("reback_lonely_book", 3600*24);    // 24小時回收一次
 
-        // 檢查標題是否重複
-        if (sizeof(key))
-        {
-                if (member_array(title, key) == -1)
-                        return notify_fail("無此標題！\n");
-        }
-        else
-                return notify_fail("當前無PUSHMSG！\n");
+    file = get_dir("/clone/lonely/book/", -1);
 
-        map_delete(push_msg, title);
+    message_system(HIW "系統回收唯一物品。\n" NOR);
 
-        write(title + " del OK.\n");
-        save();
-        return 1;
-}
-
-void reback_lonely_book()
-{
-        mixed *file;
-        int iCount;
-        object book;
-
-        remove_call_out("reback_lonely_book");
-        call_out("reback_lonely_book", 3600*24); // 24小時回收一次
-
-        file = get_dir("/clone/lonely/book/", -1);
-
-        message_system(HIW "系統回收唯一物品。\n" NOR);
-
-        for (iCount = 0; iCount < sizeof(file); iCount ++)
-        {
-                book = find_object("/clone/lonely/book/" + file[iCount][0]);
-                if (objectp(book))destruct(book);
-        }
-        // 乾坤大挪移
-        book = find_object("/clone/book/qiankun_book" );
+    for (iCount = 0; iCount < sizeof(file); iCount ++)
+    {
+        book = find_object("/clone/lonely/book/" + file[iCount][0]);
         if (objectp(book))destruct(book);
+    }
+    // 乾坤大挪移
+    book = find_object("/clone/book/qiankun_book" );
+    if (objectp(book))destruct(book);
 
-        return;
+    return;
 }
 
-int remove()
-{
-        save();
-        return 1;
+int remove() {
+    save();
+    return 1;
 }

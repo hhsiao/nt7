@@ -13,37 +13,34 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point(object me) { return 1; }
 
-int valid_learn(object me)
-{
-        if( query("character", me) == "光明磊落" && 
-            query("family/family_name", me) != "關外胡家" )
-                return notify_fail("你心中暗想：我行事光明磊落，學什麼毒技！\n");
+int valid_learn(object me) {
+    if(query("character", me) == "光明磊落" &&
+        query("family/family_name", me) != "關外胡家" )
+        return notify_fail("你心中暗想：我行事光明磊落，學什麼毒技！\n");
 
-        return 1;
+    return 1;
 }
 /*
-void skill_improved(object me)
-{
-        if ((me->query_skill("poison",1) == 50) ||
-                (me->query_skill("poison",1) == 60) ||
-                (me->query_skill("poison",1) == 70) ||
-                (me->query_skill("poison",1) == 80) ||
-                (me->query_skill("poison",1) == 90) ||
-                (me->query_skill("poison",1) >= 100))
-        {
-                tell_object(me, "你體內的毒質開始反噬自身了，得找人散毒了。\n");
-                me->apply_condition("poison_sandu",1000);
-        }
+ * void skill_improved(object me)
+ * {
+ * if ((me->query_skill("poison",1) == 50) ||
+ * (me->query_skill("poison",1) == 60) ||
+ * (me->query_skill("poison",1) == 70) ||
+ * (me->query_skill("poison",1) == 80) ||
+ * (me->query_skill("poison",1) == 90) ||
+ * (me->query_skill("poison",1) >= 100))
+ * {
+ * tell_object(me, "你體內的毒質開始反噬自身了，得找人散毒了。\n");
+ * me->apply_condition("poison_sandu",1000);
+ * }
+ * }
+ */
+int practice_skill(object me) {
+    return notify_fail("基本毒技只能靠學習來提高。\n");
 }
-*/
-int practice_skill(object me)
-{
-        return notify_fail("基本毒技只能靠學習來提高。\n");
-}
-int help(object me)
-{
-        write(HIC"\n基本毒技："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n基本毒技："NOR"\n");
+    write(@HELP
 
     星宿弟子下毒必具武功，下毒的效果和基本毒技的高低有很大
 的關係。當體內毒素反噬自身時，得找人散毒。
@@ -52,6 +49,6 @@ int help(object me)
                 名門正派的心法不能學
                 非星宿派弟子不能學
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

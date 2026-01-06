@@ -10,10 +10,7 @@ int main(object me, string arg) {
     string lines, path, file, err, id;
     object eval_ob;
 
-    if (! SECURITY_D->valid_grant(me, "(arch)") )
-        return 0;
-
-    if(!me->is_admin() )
+    if (! SECURITY_D->valid_grant(me, "(admin)") )
         return notify_fail("你不能使用該命令。\n");
 
     if (!arg) return notify_fail("指令格式：eval <LPC Script>\n");

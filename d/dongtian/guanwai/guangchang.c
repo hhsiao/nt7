@@ -201,7 +201,7 @@ int halt_attacking2() {
 int attacking(object me) {
     object *t, tob;
     string coupid, *owns = ({});
-    int ti1, ti2, n = 0, i, plv, npci = random(2) + 2;
+    int ti1, ti2, n = 0;
 
     if (query("xiang_life") < 2 && objectp(me) && !playerp(me)) { //先玩家1點攻破
         CHANNEL_D->channel_broadcast("rumor", NOR + MAG + "據說" + dtname + "洞天被神秘人攻破。\n" NOR);

@@ -6,10 +6,10 @@ inherit F_LIQUID;
 void create() {
     set_name(HIW "湯碗" NOR, ({ "soup" }));
     set_weight(50);
-        set("long", "一碗香氣撲鼻的青菜湯。\n");
-        set("unit", "只");
-        set("value", 10);
-        set("max_liquid", 4);
+    set("long", "一碗香氣撲鼻的青菜湯。\n");
+    set("unit", "只");
+    set("value", 10);
+    set("max_liquid", 4);
 
     set("liquid", ([
         "type": "water",

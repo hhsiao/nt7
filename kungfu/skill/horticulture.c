@@ -12,25 +12,22 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point() { return 1; }
 
-int valid_learn(object me)
-{
-        int lvl;
+int valid_learn(object me) {
+    int lvl;
 
-        lvl = (int)me->query_skill("horticulture", 1);
+    lvl = (int)me->query_skill("horticulture", 1);
 
-        if( lvl>29 && query("kar", me) != 26 )
-                return notify_fail("限於天資，你只能修習這個程度了。\n");
-        else return 1;
+    if(lvl>29 && query("kar", me) != 26 )
+        return notify_fail("限於天資，你只能修習這個程度了。\n");
+    else return 1;
 }
 
-int practice_skill(object me)
-{
-        return notify_fail("園藝蒔花只能靠學習來提高。\n");
+int practice_skill(object me) {
+    return notify_fail("園藝蒔花只能靠學習來提高。\n");
 }
-int help(object me)
-{
-        write(HIC"\n園藝蒔花："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n園藝蒔花："NOR"\n");
+    write(@HELP
 
     逍遙派祖師逍遙子學究天人，胸中所學包羅萬象。他共傳下七
 門絕藝：繞樑琴藝 (luteplaying)、紋枰手談 (goplaying)、潑墨
@@ -40,6 +37,6 @@ int help(object me)
         學習要求：
                 無。但天賦才氣限制了對更高深境界的努力
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

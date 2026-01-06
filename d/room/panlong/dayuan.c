@@ -1,6 +1,6 @@
 // xiaoyuan.c 盤龍居大院
 
-//** inherit PRIVATE_ROOM;
+//**inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
 
 void create()
@@ -12,22 +12,21 @@ void create()
 影子。有一條大路通向裡面。
 LONG );
 
-        set("default_long", "這是一個寬闊的院落，種著各種樹木，陽光照"   /* EXAMPLE */
-                            "下來透過樹蔭投下層層影子。一條大路通向裡"   /* EXAMPLE */
-                            "面，踩得非常平滑的，看來是經常有人來往。"); /* EXAMPLE */
-                                                                         /* EXAMPLE */
+    set("default_long", "這是一個寬闊的院落，種著各種樹木，陽光照"   /* EXAMPLE */
+                        "下來透過樹蔭投下層層影子。一條大路通向裡"   /* EXAMPLE */
+                        "面，踩得非常平滑的，看來是經常有人來往。"); /* EXAMPLE */
+                                                                  /* EXAMPLE */
+    set("exits", ([
+        "north"  : __DIR__"qianting",
+        "east"   : __DIR__"caidi2",
+        "west"   : __DIR__"caidi1",
+        "out"    : "/d/room/xiaoyuan",
+    ]));
 
-        set("exits", ([
-                "north"  : __DIR__"qianting",
-                "east"   : __DIR__"caidi2",
-                "west"   : __DIR__"caidi1",
-                "out"    : "/d/room/xiaoyuan",
-        ]));
-
-        set("outdoors", "OUTDOORS");
-        set("no_sleep_room", 1);
-        set("valid_startroom", 1);
-        setup();
+    set("outdoors", "OUTDOORS");
+    set("no_sleep_room", 1);
+    set("valid_startroom", 1);
+    setup();
 
 //**    set("room_owner", "ROOM_OWNER");
 //**    set("room_name", "ROOM_NAME");

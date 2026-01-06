@@ -7,8 +7,6 @@ inherit F_CLEAN_UP;
 
 string name() { return HIY "鎮蘊七星" NOR; }
 
-int perform(object me, string skill)
-{
-        return notify_fail("這項技能能夠使你根骨更高，不需要運用。\n");
+int perform(object me, string skill) {
+    return notify_fail("這項技能能夠使你根骨更高，不需要運用。\n");
 }
-

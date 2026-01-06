@@ -9,8 +9,6 @@ nosave mapping room_type = ([
     ]);
 
 void create() {
-    //      object ob;
-
     set("short", "小院");
     set("long", @LONG
 這裡是一個不大的院子，到處擺放著木料磚瓦。院中坐著一個人，豐

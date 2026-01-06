@@ -40,15 +40,11 @@ int valid_leave(object me, string dir) {
     {
         if (!userp(me)) return 0;
         current_water = query("water", me);
-        if (current_water==0)
-        {
-        }
 
         if (current_water>0 && current_water<20)
         {
             set("water", 0, me);
-        }
-        if (current_water>20)
+        } else if (current_water>20)
         {
             if(!objectp(present("bigu fu", me)) && query("reborn/times", me) < 3 )
                 set("water", current_water - 20, me);

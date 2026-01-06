@@ -15,121 +15,84 @@ int power_point(object me) { return 1; }
 int valid_force(string force) { return 1; }
 
 // beiming 內力應該高10倍
-int query_neili_improve(object me)
-{
-        int lvl;
+int query_neili_improve(object me) {
+    int lvl;
 
-        lvl = (int)me->query_skill("beiming-shengong", 1);
-        return lvl /10 * lvl /10 * 28 * 15 / 10 / 10;
+    lvl = (int)me->query_skill("beiming-shengong", 1);
+    return lvl /10 * lvl /10 * 28 * 15 / 10 / 10;
 }
 
-int valid_learn(object me)
-{
-        int lvl = (int)me->query_skill("beiming-shengong", 1);
+int valid_learn(object me) {
+    int lvl = (int)me->query_skill("beiming-shengong", 1);
 
-        if( query("gender", me) == "無性" && lvl>49 )
-                return notify_fail("你無根無性，陰陽不調，難以領會高深的北冥神功。\n");
+    if(query("gender", me) == "無性" && lvl>49 )
+        return notify_fail("你無根無性，陰陽不調，難以領會高深的北冥神功。\n");
 
-        if( query("con", me)<24 )
-                return notify_fail("算了吧，你先天根骨不好，彆強學了。\n");
+    if(query("con", me)<24 )
+        return notify_fail("算了吧，你先天根骨不好，彆強學了。\n");
 
-        if( query("int", me)<30 )
-                return notify_fail("算了吧，你先天悟性不好，彆強學了。\n");
+    if(query("int", me)<30 )
+        return notify_fail("算了吧，你先天悟性不好，彆強學了。\n");
 
-        if (me->query_skill("force", 1) <= lvl)
-                return notify_fail("你的基本內功基礎不夠，再學下去會走火入魔的。\n");
+    if (me->query_skill("force", 1) <= lvl)
+        return notify_fail("你的基本內功基礎不夠，再學下去會走火入魔的。\n");
 
-        return ::valid_learn(me);
+    return ::valid_learn(me);
 }
 
-int practice_skill(object me)
-{
-        return notify_fail("北冥神功只能用學的，或是從運用(exert)中增加熟練度。\n");
+int practice_skill(object me) {
+    return notify_fail("北冥神功只能用學的，或是從運用(exert)中增加熟練度。\n");
 }
 
-mixed valid_damage(object ob, object me, int damage, object weapon)
-{
-        mapping result;
-        int ap, dp;
-        int jiali;
+mixed valid_damage(object ob, object me, int damage, object weapon) {
+    mapping result;
+    int ap, dp;
+    int jiali;
 
-        if ((int) me->query_skill("beiming-shengong", 1) < 80 ||
-            ob->query_skill_mapped("force") == "taixuan-gong" ||
-            ! living(me))
-                return;
+    if ((int) me->query_skill("beiming-shengong", 1) < 80 ||
+        ob->query_skill_mapped("force") == "taixuan-gong" ||
+        ! living(me))
+    return;
 
-        if( (jiali=query("jiali", ob))<1 )
-                return;
+    if((jiali = query("jiali", ob))<1 )
+        return;
 
-        ap = ob->query_skill("force") + ob->query_skill("dodge");
-        dp = me->query_skill("force") + me->query_skill("dodge");
-        if (ap / 2 + random(ap) < dp)
+    ap = ob->query_skill("force") + ob->query_skill("dodge");
+    dp = me->query_skill("force") + me->query_skill("dodge");
+    if (ap / 2 + random(ap) < dp)
+    {
+        result = ([ "damage": -damage ]);
+
+        switch (random(3))
         {
-                result = ([ "damage" : -damage ]);
+        case 0:
+            result += ([ "msg": HIM "$N" HIM "只覺得內力源源而瀉"
+            "，不由得大吃一驚。\n" NOR ]);
+            break;
+        case 1:
+            result += ([ "msg": HIM "$N" HIM "只覺得發出的內力猶"
+            "如石沉大海，不知所蹤。\n" NOR ]);
+            break;
 
-                switch (random(3))
-                {
-                case 0:
-                        result += ([ "msg" : HIM "$N" HIM "只覺得內力源源而瀉"
-                                             "，不由得大吃一驚。\n" NOR ]);
-                        break;
-                case 1:
-                        result += ([ "msg" : HIM "$N" HIM "只覺得發出的內力猶"
-                                             "如石沉大海，不知所蹤。\n" NOR ]);
-                        break;
-
-                default:
-                        result += ([ "msg" : HIM "$N" HIM "不住催動內力，但是"
-                                             "只覺得$n竟似毫不費力。\n" NOR ]);
-                        break;
-                }
-                return result;
+        default:
+            result += ([ "msg": HIM "$N" HIM "不住催動內力，但是"
+            "只覺得$n竟似毫不費力。\n" NOR ]);
+            break;
         }
+        return result;
+    }
 }
 
-/*
-// 連招刷內力，導致cpu負擔不了，故而取消
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
-{
-        int percent,force1,force2,dodge1,dodge2,lv1,lv2;
-
-        force1 = victim->query_skill("force");
-        force2 = me->query_skill("force");
-        dodge1 = victim->query_skill("dodge");
-        dodge2 = me->query_skill("dodge");
-
-        lv1= force1*dodge1;
-        lv2= force2*dodge2;
-
-        lv2 = lv2*3/2;
-        if ((int)me->query_skill("beiming-shengong",1)>100
-         && !query_temp("weapon", victim )
-         && query("max_neili", victim)>500
-        && lv1/2 + random(lv2) > lv1 )
-        {
-                addn("max_neili", -1*(5+(me->query_skill("beiming-shengong",1)/100)), victim);
-                if (((int)me->query_current_neili_limit()-me->query_all_buff("max_neili"))*3 >= query("max_neili", me)-me->query_all_buff("max_neili")) 
-                addn("max_neili", 1*(5+(me->query_skill("beiming-shengong",1)/100)), me);
-                return ([ "msg": HIR "$n只覺息關一開，一股內力被$N吸了過去！\n" NOR ]);
-        }
-
-        return damage_bonus;
-}
-*/
-
-int difficult_level()
-{
-        return 200;
+int difficult_level() {
+    return 200;
 }
 
-string exert_function_file(string func)
-{
-        return __DIR__"beiming-shengong/" + func;
+string exert_function_file(string func) {
+    return __DIR__"beiming-shengong/" + func;
 }
-int help(object me)
-{
-        write(HIC"\n北冥神功："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n北冥神功："NOR"\n");
+    write(@HELP
 
     北冥神功為逍遙派無上內功。
     莊子‘逍遙遊’有云：‘窮髮之北有冥海者，天池也。有魚焉，
@@ -150,6 +113,6 @@ int help(object me)
                 基本內功10級
                 太監無法學到50級以上的北冥神功
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

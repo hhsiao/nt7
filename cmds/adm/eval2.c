@@ -9,10 +9,7 @@ int main(object me, string arg) {
     mixed ret;
     int cost;
 
-    if (! SECURITY_D->valid_grant(me, "(arch)") )
-        return 0;
-
-    if(!me->is_admin() )
+    if (! SECURITY_D->valid_grant(me, "(admin)") )
         return notify_fail("你不能使用該命令。\n");
 
     if(!arg )
@@ -109,7 +106,7 @@ int help(object me) {
 
     執行指定的 LPC 命令。
 
-    例如：evalthis_player()->set("test", ({ "test_data" })
+    例如：eval this_player()->set("test", ({ "test_data" })
 HELP );
     return 1;
 }

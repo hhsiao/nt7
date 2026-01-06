@@ -3,18 +3,16 @@
 
 #include <ansi.h>
 
-int update_condition(object me, int duration)
-{
-        if (duration < 1)
-        {
-                tell_object(me, BLU"聽人說好象有支過絲綢之路的商隊要出發了！\n"NOR);
-                return 0;
-        }
-        me->apply_condition("xx_task2", duration - 1);
-        return 1;
+int update_condition(object me, int duration) {
+    if (duration < 1)
+    {
+        tell_object(me, BLU"聽人說好象有支過絲綢之路的商隊要出發了！\n"NOR);
+        return 0;
+    }
+    me->apply_condition("xx_task2", duration - 1);
+    return 1;
 }
 
-string query_type(object me)
-{
-        return "job";
+string query_type(object me) {
+    return "job";
 }

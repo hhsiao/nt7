@@ -7,104 +7,108 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 mapping *action = ({
-([        "action" : "$N一式"HIB"「靈蛇出洞」"NOR"，右手虛晃，左手揚起，突然拍向$n的背後二穴",
-        "lvl" : 0,
-        "skill_name" : "靈蛇出洞"
-]),
-([        "action" : "$N側身一晃，一式"HIY"「虎頭蛇尾」"NOR"，左手拿向$n的肩頭，右拳打向$n的胸口",
-        "lvl" : 10,
-        "skill_name" : "虎頭蛇尾"
-]),
-([        "action" : "$N一式"MAG"「畫蛇添足」"NOR"，右手環攏成爪，一出手就向扣$n的咽喉要害",
-        "lvl" : 20,
-        "skill_name" : "畫蛇添足"
-]),
-([        "action" : "$N左手虛招，右掌直立，一式"GRN"「杯弓蛇影」"NOR"，錯步飄出，疾拍$n的面門",
-        "lvl" : 30,
-        "skill_name" : "杯弓蛇影"
-]),
-([        "action" : "$N使一式"HIB"「蛇行鼠竄」"NOR"，左拳上格，右手探底突出，抓向$n的襠部",
-        "lvl" : 38,
-        "skill_name" : "蛇行鼠竄"
-]),
-([        "action" : "$N一式"CYN"「蛇磐青竹」"NOR"，十指伸縮，虛虛實實地襲向$n的全身要穴",
-        "lvl" : 51,
-        "skill_name" : "蛇磐青竹"
-]),
-([        "action" : "$N雙手抱拳，一式"GRN"「萬蛇洶湧」"NOR"，掌影翻飛，同時向$n施出九九八十一招",
-        "lvl" : 56,
-        "skill_name" : "萬蛇洶湧"
-]),
-([        "action" : "$N一式"RED"「白蛇吐信」"NOR"，拳招若隱若現，若有若無，急急地拍向$n的丹田",
-        "lvl" : 60,
-        "skill_name" : "白蛇吐信"
-]),
+    ([
+        "action": "$N一式"HIB"「靈蛇出洞」"NOR"，右手虛晃，左手揚起，突然拍向$n的背後二穴",
+        "lvl": 0,
+        "skill_name": "靈蛇出洞"
+    ]),
+    ([
+        "action": "$N側身一晃，一式"HIY"「虎頭蛇尾」"NOR"，左手拿向$n的肩頭，右拳打向$n的胸口",
+        "lvl": 10,
+        "skill_name": "虎頭蛇尾"
+    ]),
+    ([
+        "action": "$N一式"MAG"「畫蛇添足」"NOR"，右手環攏成爪，一出手就向扣$n的咽喉要害",
+        "lvl": 20,
+        "skill_name": "畫蛇添足"
+    ]),
+    ([
+        "action": "$N左手虛招，右掌直立，一式"GRN"「杯弓蛇影」"NOR"，錯步飄出，疾拍$n的面門",
+        "lvl": 30,
+        "skill_name": "杯弓蛇影"
+    ]),
+    ([
+        "action": "$N使一式"HIB"「蛇行鼠竄」"NOR"，左拳上格，右手探底突出，抓向$n的襠部",
+        "lvl": 38,
+        "skill_name": "蛇行鼠竄"
+    ]),
+    ([
+        "action": "$N一式"CYN"「蛇磐青竹」"NOR"，十指伸縮，虛虛實實地襲向$n的全身要穴",
+        "lvl": 51,
+        "skill_name": "蛇磐青竹"
+    ]),
+    ([
+        "action": "$N雙手抱拳，一式"GRN"「萬蛇洶湧」"NOR"，掌影翻飛，同時向$n施出九九八十一招",
+        "lvl": 56,
+        "skill_name": "萬蛇洶湧"
+    ]),
+    ([
+        "action": "$N一式"RED"「白蛇吐信」"NOR"，拳招若隱若現，若有若無，急急地拍向$n的丹田",
+        "lvl": 60,
+        "skill_name": "白蛇吐信"
+    ])
 });
 
 int valid_enable(string usage) { return usage=="hand" || usage=="parry"; }
 int valid_combine(string combo) { return combo=="hamagong"; }
 
-int valid_learn(object me)
-{
-        if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("練蛇形刁手必須空手。\n");
+int valid_learn(object me) {
+    if(query_temp("weapon", me) || query_temp("secondary_weapon", me) )
+        return notify_fail("練蛇形刁手必須空手。\n");
 
-        if( query("family/family_name", me) == "歐陽世家" )
-        {
-                if ((int)me->query_skill("hamagong",1) < 15)
-                        return notify_fail("你的蛤蟆功火候不夠，無法學蛇形刁手。\n");
-        }
-        else if ((int)me->query_skill("huntian-qigong", 1) < 15)
-                return notify_fail("你的混天氣功火候不夠，無法學蛇形刁手。\n");
-        if( query("max_neili", me)<50 )
-                return notify_fail("你的內力太弱，無法練蛇形刁手。\n");
-        return 1;
+    if(query("family/family_name", me) == "歐陽世家" )
+    {
+        if ((int)me->query_skill("hamagong", 1) < 15)
+            return notify_fail("你的蛤蟆功火候不夠，無法學蛇形刁手。\n");
+    }
+    else if ((int)me->query_skill("huntian-qigong", 1) < 15)
+        return notify_fail("你的混天氣功火候不夠，無法學蛇形刁手。\n");
+    if(query("max_neili", me)<50 )
+        return notify_fail("你的內力太弱，無法練蛇形刁手。\n");
+    return 1;
 }
 
-int practice_skill(object me)
-{
-        if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("你的必須空手才能練習。\n");
-        if( query("qi", me)<35 )
-                return notify_fail("你的體力太低了。\n");
-        if( query("neili", me)<25 )
-                return notify_fail("你的內力不夠練蛇形刁手。\n");
-        me->receive_damage("qi", 30);
-        addn("neili", -20, me);
-        return 1;
+int practice_skill(object me) {
+    if(query_temp("weapon", me) || query_temp("secondary_weapon", me) )
+        return notify_fail("你的必須空手才能練習。\n");
+    if(query("qi", me)<35 )
+        return notify_fail("你的體力太低了。\n");
+    if(query("neili", me)<25 )
+        return notify_fail("你的內力不夠練蛇形刁手。\n");
+    me->receive_damage("qi", 30);
+    addn("neili", -20, me);
+    return 1;
 }
-string query_skill_name(int level)
-{
-        int i;
-        for(i = sizeof(action); i > 0; i--)
-                if(level >= action[i-1]["lvl"])
-                        return action[i-1]["skill_name"];
+string query_skill_name(int level) {
+    int i;
+    for(i = sizeof(action); i > 0; i--)
+        if(level >= action[i - 1]["lvl"])
+        return action[i - 1]["skill_name"];
 }
-mapping query_action(object me, object weapon)
-{
-/* d_e=dodge_effect p_e=parry_effect f_e=force_effect m_e=damage_effect */
-        int d_e1 = -45;
-        int d_e2 = -10;
-        int p_e1 = 20;
-        int p_e2 = 45;
-        int f_e1 = 130;
-        int f_e2 = 230;
-        int i, lvl, seq, ttl = sizeof(action);
+mapping query_action(object me, object weapon) {
+    /* d_e = dodge_effect p_e = parry_effect f_e = force_effect m_e = damage_effect */
+    int d_e1 = -45;
+    int d_e2 = -10;
+    int p_e1 = 20;
+    int p_e2 = 45;
+    int f_e1 = 130;
+    int f_e2 = 230;
+    int i, lvl, seq, ttl = sizeof(action);
 
-        lvl = (int) me->query_skill("shexing-diaoshou", 1);
-        for(i = ttl; i > 0; i--)
-                if(lvl > action[i-1]["lvl"])
-                {
-                        seq = i; /* 獲得招數序號上限 */
-                        break;
-                }
-        seq = random(seq);       /* 選擇出手招數序號 */
-        return ([
-                "action"      : action[seq]["action"],
-                "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
-                "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
-                "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "內傷" : "瘀傷",
+    lvl = (int) me->query_skill("shexing-diaoshou", 1);
+    for(i = ttl; i > 0; i--)
+        if(lvl > action[i - 1]["lvl"])
+    {
+        seq = i; /* 獲得招數序號上限 */
+        break;
+    }
+    seq = random(seq);       /* 選擇出手招數序號 */
+    return ([
+        "action": action[seq]["action"],
+        "dodge": d_e1 + (d_e2 - d_e1) * seq / ttl,
+        "parry": p_e1 + (p_e2 - p_e1) * seq / ttl,
+        "force": f_e1 + (f_e2 - f_e1) * seq / ttl,
+        "damage_type": random(2) ? "內傷" : "瘀傷"
         ]);
 }
 int learn_bonus() { return 20; }
@@ -112,15 +116,13 @@ int practice_bonus() { return 20; }
 int success() { return 15; }
 int power_point(object me) { return 1.0; }
 
-string perform_action_file(string action)
-{
-        return __DIR__"shexing-diaoshou/" + action;
+string perform_action_file(string action) {
+    return __DIR__"shexing-diaoshou/" + action;
 }
 
-int help(object me)
-{
-        write(HIC"\n蛇形刁手："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n蛇形刁手："NOR"\n");
+    write(@HELP
 
     蛇形刁手是白駝山派武功，是老毒物歐陽鋒從蛇的蠕動中體會
 出來的武功。
@@ -129,6 +131,6 @@ int help(object me)
                 蛤蟆功20級
                 內力100
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

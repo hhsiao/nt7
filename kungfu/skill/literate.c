@@ -13,23 +13,21 @@ int power_point(object me) { return 1; }
 void skill_improved(object me)
 {}
 
-int valid_learn(object me)
-{
-//        if ( me->query("class") != "bonze" )
-//                return notify_fail("你現在不能學習讀書寫字。\n");
-        return 1;
+int valid_learn(object me) {
+    //        if ( me->query("class") != "bonze" )
+    //                return notify_fail("你現在不能學習讀書寫字。\n");
+    return 1;
 }
 
-int help(object me)
-{
-        write(HIC"\n讀書寫字："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n讀書寫字："NOR"\n");
+    write(@HELP
 
     讀書寫字是自學武籍的基礎，並能改善你後天的悟性。
 
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

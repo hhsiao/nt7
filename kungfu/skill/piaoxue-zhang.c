@@ -198,7 +198,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)     //by red
         (me->query_skill_mapped("claw") != "jiuyin-baiguzhao") ||
         (me->query_skill_mapped("parry") != "piaoxue-zhang") ||
     //                (me->query_skill_prepared("strike") != "piaoxue-zhang") ||
-            !living(me) || query_temp("weapon", me) )
+        !living(me) || query_temp("weapon", me) )
     return;
 
     mp = ob->query_skill("count", 1);

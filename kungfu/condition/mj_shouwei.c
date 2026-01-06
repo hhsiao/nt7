@@ -3,18 +3,16 @@
 #include <ansi.h>
 #include <login.h>
 
-int update_condition(object me, int duration)
-{
-        if (duration < 1) {
-                tell_object(me, HIW "守衛時間已到，快回去覆命(task ok)吧！\n" NOR);
+int update_condition(object me, int duration) {
+    if (duration < 1) {
+        tell_object(me, HIW "守衛時間已到，快回去覆命(task ok)吧！\n" NOR);
         set_temp("shouwei_ok", 1, me);
-                return 0;
-        }
-        me->apply_condition("mj_shouwei", duration - 1);
-        return 1;
+        return 0;
+    }
+    me->apply_condition("mj_shouwei", duration - 1);
+    return 1;
 }
 
-string query_type(object me)
-{
-        return "job";
+string query_type(object me) {
+    return "job";
 }

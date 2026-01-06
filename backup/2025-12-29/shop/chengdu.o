@@ -1,3 +1,0 @@
-#/clone/shop/chengdu_shop.c
-dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"shop_type":0,"no_clean_up":0,"no_beg":1,"exits":(["down":"/d/chengdu/majiu",]),"owner":"VOID_SHOP","open_long":"成都號稱天府之國，物產豐盛，富甲一時。這家殘月樓出售各式各樣的稀有物品，都是在別地難於購買的。整個店鋪裝潢雅緻，看得出店主是費了一番心思的。","long":"成都號稱天府之國，物產豐盛，富甲一時。整個店鋪裝潢雅緻，看得出店主是費了一番心思的，不過店裡的貨櫃上卻空無一物，看樣子已經很久沒人來打理了。","short":"殘月樓",])
-all_goods ({})

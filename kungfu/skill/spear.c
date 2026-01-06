@@ -11,10 +11,9 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point(object me) { return 1; }
 
-int help(object me)
-{
-        write(HIC"\n基本槍法："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n基本槍法："NOR"\n");
+    write(@HELP
 
     槍類武技的基本功。
     槍是歷代重要兵器之一，為「百兵之王」。武林中人稱「百日
@@ -23,6 +22,6 @@ int help(object me)
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

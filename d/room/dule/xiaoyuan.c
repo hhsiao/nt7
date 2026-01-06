@@ -5,28 +5,28 @@ inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "小院");             /* EXAMPLE */
+    set("short", "小院");             /* EXAMPLE */
 //**    set("short", "ROOM_NAME小院");
-        set("long", @LONG
+    set("long", @LONG
 這裡是一個不大的院子，角落裡栽了幾棵樹，地上零零散散有一些碎
 落葉片。院門虛掩，穿過院子就是一個小屋，非常精緻。
 LONG );
 
 //**    set("room_key", "ROOM_KEY");
-        setup();
+    setup();
 
-        set("exits", ([
-                "north"  : __DIR__"dulewu",     /* EXAMPLE */
-                "out"    : "/d/room/xiaoyuan",
-        ]));
+    set("exits", ([
+        "north"  : __DIR__"dulewu",     /* EXAMPLE */
+        "out"    : "/d/room/xiaoyuan",
+    ]));
 
-        set("outdoors", "OUTDOORS");
-        set("no_sleep_room", 1);
-        set("valid_startroom", 1);
+    set("outdoors", "OUTDOORS");
+    set("no_sleep_room", 1);
+    set("valid_startroom", 1);
 
 //**    set("KEY_DOOR", ([
-//**            "exit" : "north",
-//**            "room" : __DIR__"dulewu",
+//**        "exit" : "north",
+//**        "room" : __DIR__"dulewu",
 //**    ]));
 //**
 //**    set("room_owner", "ROOM_OWNER");

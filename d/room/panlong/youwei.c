@@ -1,29 +1,28 @@
 // youwei.c 右衛舍
 
-//** inherit PRIVATE_ROOM;
+//**inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
 //**    object ob;
 
-        set("short", "右衛舍");             /* EXAMPLE */
+    set("short", "右衛舍");             /* EXAMPLE */
 //**    set("short", "ROOM_NAME右衛舍");
-        set("long", @LONG
+    set("long", @LONG
 這裡是右衛舍，是看護大門的家丁放哨的地方。當然現在是空空
 蕩蕩，沒有一個人。
 LONG );
 
-        set("default_long", "這裡是右衛舍，是看護ROOM_NAME大門的家丁放" /* EXAMPLE */
-                            "哨的地方。");                              /* EXAMPLE */
-                                                                        /* EXAMPLE */
-
-        set("exits", ([
-                "east"   : __DIR__"qianting",
-        ]));
+    set("default_long", "這裡是右衛舍，是看護ROOM_NAME大門的家丁放" /* EXAMPLE */
+                        "哨的地方。");                            /* EXAMPLE */
+                                                                 /* EXAMPLE */
+    set("exits", ([
+        "east"   : __DIR__"qianting",
+    ]));
 
 //**    set("objects", ([
-//**            "/d/room/roomnpc/shouwei" : 2,
+//**        "/d/room/roomnpc/shouwei" : 2,
 //**    ]));
 
         set("no_sleep_room", 1);
@@ -31,26 +30,26 @@ LONG );
 
 //**    ob = present("shou wei", this_object());
 //**    ob->set("coagents", ({
-//**            ([ "startroom" : __DIR__"youwei",
-//**               "id"        : "shou wei 1" ]),
-//**            ([ "startroom" : __DIR__"youwei",
-//**               "id"        : "shou wei 2" ]),
-//**            ([ "startroom" : __DIR__"zuowei",
-//**               "id"        : "shou wei 2" ]),
-//**            ([ "startroom" : __DIR__"zuowei",
-//**               "id"        : "shou wei 1" ]),
+//**        ([ "startroom" : __DIR__"youwei",
+//**           "id"        : "shou wei 1" ]),
+//**        ([ "startroom" : __DIR__"youwei",
+//**           "id"        : "shou wei 2" ]),
+//**        ([ "startroom" : __DIR__"zuowei",
+//**           "id"        : "shou wei 2" ]),
+//**        ([ "startroom" : __DIR__"zuowei",
+//**           "id"        : "shou wei 1" ]),
 //**    }));
 
 //**    ob = present("shou wei 2", this_object());
 //**    ob->set("coagents", ({
-//**            ([ "startroom" : __DIR__"youwei",
-//**               "id"        : "shou wei 1" ]),
-//**            ([ "startroom" : __DIR__"youwei",
-//**               "id"        : "shou wei 2" ]),
-//**            ([ "startroom" : __DIR__"zuowei",
-//**               "id"        : "shou wei 2" ]),
-//**            ([ "startroom" : __DIR__"zuowei",
-//**               "id"        : "shou wei 1" ]),
+//**        ([ "startroom" : __DIR__"youwei",
+//**           "id"        : "shou wei 1" ]),
+//**        ([ "startroom" : __DIR__"youwei",
+//**           "id"        : "shou wei 2" ]),
+//**        ([ "startroom" : __DIR__"zuowei",
+//**           "id"        : "shou wei 2" ]),
+//**        ([ "startroom" : __DIR__"zuowei",
+//**           "id"        : "shou wei 1" ]),
 //**    }));
 
 //**    set("room_owner", "ROOM_OWNER");

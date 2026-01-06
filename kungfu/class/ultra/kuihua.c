@@ -532,7 +532,7 @@ int give_quest() {
 }
 
 int accept_object(object who, object ob) {
-    int exp, pot, level, bonus, i, all_quest_kh;
+    int exp, pot, level, i, all_quest_kh;
     mapping questkh;
     object me, gold, obj;
     int mar, weiwang, score, quest_count;

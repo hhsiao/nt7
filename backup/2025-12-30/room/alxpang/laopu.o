@@ -1,8 +1,0 @@
-#/adm/npc/laopu.c
-killer ({})
-want_kills ({})
-dbase (["qi":4000,"per":17,"shen":0,"str":16,"jiali":600,"kar":20,"max_vip":10,"auto_perform":1,"chat_msg_combat":({,}),"shen_type":0,"startroom":"/data/room/alxpang/qianting","max_jingli":10000,"no_get":1,"con":29,"vip":({"licz","top","alp","wangzha","levelup","jobb",}),"eff_qi":4000,"long":"這是一個掃地的老僕人，不過看上去似乎身懷絕技。","unit":"位","max_qi":4000,"int":29,"chat_chance_combat":80,"can_speak":1,"race":"人類","jingli":10000,"dex":21,"name":"掃地老僕","eff_jing":8000,"limbs":({"頭部","頸部","胸口","後心","左肩","右肩","左臂","右臂","左手","右手","兩肋","左臉","腰間","小腹","左腿","右腿","右臉","左腳","右腳","左耳","右耳",}),"id":"lao pu","default_actions":,"jing":8000,"gender":"男性","combat_exp":51008239,"max_jing":8000,"attitude":"friendly","neili":4000,"owner":"風四郎","max_neili":4000,"age":50,])
-mail_log ({})
-skills (["jiuyin-baiguzhao":800,"claw":800,"force":800,"cuixin-zhang":800,"qiankun-danuoyi":800,"jiuyang-shengong":800,"lingbo-weibu":800,"dodge":800,"strike":800,"parry":800,])
-skill_map (["claw":"jiuyin-baiguzhao","force":"jiuyang-shengong","dodge":"lingbo-weibu","strike":"cuixin-zhang","parry":"qiankun-danuoyi",])
-skill_prepare (["claw":"jiuyin-baiguzhao","strike":"cuixin-zhang",])

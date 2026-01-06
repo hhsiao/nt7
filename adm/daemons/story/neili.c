@@ -4,67 +4,63 @@ inherit F_CLEAN_UP;
 mixed random_gift();
 
 nosave mixed *story = ({
-        "某人走在叢林中，忽然間一頭野豬向你衝了過來……",
-        "某人搭弓就是一箭，野豬應聲而倒… 某人將野豬皮毛清理乾淨，便生起一堆火來……",
-        "一柱香後……",
-        "賞善使：“哇！真香啊！”",
-        "罰惡使：是啊！走，咱們過去瞧瞧。",
-        "某人一邊烤著野豬肉，一邊享受著從肉中散發出來的香味。",
-        "這時只見兩個人走了過來，其中一人說道：“這肉真香啊！”",
-        "某人連忙說道：“二位若不嫌棄，就一同吃吧！反正這麼大一塊我一個人也吃不完。”",
-        "賞善使：“閣下真是心地善良，二弟咱們就吃吧！”",
-        "罰惡使：“好，來大哥把咱們酒拿出來喝吧……”",
-        "某人說道：“二位英雄你們這酒我能喝嗎？”",
-        "賞善使：“這酒不是普通的酒，內力不濟之人喝了輕則傷身，重則性命不保！我勸你還是不要喝得好。”",
-        "罰惡使：“對，不要喝得好！”",
-        "某人實在可渴得厲害，拿起兩個酒葫蘆便喝了起來……",
-        "賞善使：“？？？”",
-        "罰惡使：“！！！”",
-        "不一會兒，某人感覺體內有兩股真氣在不斷相沖，趕忙運功化解……",
-        (: random_gift :),
+    "某人走在叢林中，忽然間一頭野豬向你衝了過來……",
+    "某人搭弓就是一箭，野豬應聲而倒… 某人將野豬皮毛清理乾淨，便生起一堆火來……",
+    "一柱香後……",
+    "賞善使：“哇！真香啊！”",
+    "罰惡使：是啊！走，咱們過去瞧瞧。",
+    "某人一邊烤著野豬肉，一邊享受著從肉中散發出來的香味。",
+    "這時只見兩個人走了過來，其中一人說道：“這肉真香啊！”",
+    "某人連忙說道：“二位若不嫌棄，就一同吃吧！反正這麼大一塊我一個人也吃不完。”",
+    "賞善使：“閣下真是心地善良，二弟咱們就吃吧！”",
+    "罰惡使：“好，來大哥把咱們酒拿出來喝吧……”",
+    "某人說道：“二位英雄你們這酒我能喝嗎？”",
+    "賞善使：“這酒不是普通的酒，內力不濟之人喝了輕則傷身，重則性命不保！我勸你還是不要喝得好。”",
+    "罰惡使：“對，不要喝得好！”",
+    "某人實在可渴得厲害，拿起兩個酒葫蘆便喝了起來……",
+    "賞善使：“？？？”",
+    "罰惡使：“！！！”",
+    "不一會兒，某人感覺體內有兩股真氣在不斷相沖，趕忙運功化解……",
+    (: random_gift :)
 });
 
-void create()
-{
-        seteuid(getuid());
+void create() {
+    seteuid(getuid());
 }
 
 string prompt() { return HIR "【奇遇】" NOR; }
 
-mixed query_story_message(int step)
-{
-        return step < sizeof(story) ? story[step] : 0;
+mixed query_story_message(int step) {
+    return step < sizeof(story) ? story[step] : 0;
 }
 
-mixed random_gift()
-{
-        object *obs;
-        object ob;
-        string msg;
-        int max_neili;
+mixed random_gift() {
+    object *obs;
+    object ob;
+    string msg;
 
-        obs = filter_array(all_interactive(), (: ! wizardp($1) &&
-                                                 environment($1) &&
-                                                 query("outdoors", environment($1)) && 
-                                                 !query("env/no_story", $1) && 
-                                                 !query("doing", $1):));
-        if (! sizeof(obs))
-                return 0;
+    obs = filter_array(all_interactive(), (: ! wizardp($1) &&
+        environment($1) &&
+        query("outdoors", environment($1)) &&
+        !query("env/no_story", $1) &&
+        !query("doing", $1):));
+    if (! sizeof(obs))
+        return 0;
 
-        ob = obs[random(sizeof(obs))];
-       
-        if( query("gift/max_neili", ob) || random(5 )
-             || query("character", ob) != "光明磊落"
-             || query("max_neili", ob)<3000 )
-        {
-                msg = HIR + ob->name(1) + "一聲慘叫，昏了過去。" NOR;
-                ob->unconcious();
-        } else
-        {
-                msg = HIY "過了良久" + ob->name(1) +
-                      HIY "運功完畢，只覺得神清氣爽，內力大增。" NOR;
-                ob->improve_neili(100000);
-                set("gift/max_neili", 1, ob);
-        }
-        return msg;
+    ob = obs[random(sizeof(obs))];
+
+    if(query("gift/max_neili", ob) || random(5 )
+        || query("character", ob) != "光明磊落"
+        || query("max_neili", ob)<3000 )
+    {
+        msg = HIR + ob->name(1) + "一聲慘叫，昏了過去。" NOR;
+        ob->unconcious();
+    } else
+    {
+        msg = HIY "過了良久" + ob->name(1) +
+            HIY "運功完畢，只覺得神清氣爽，內力大增。" NOR;
+        ob->improve_neili(100000);
+        set("gift/max_neili", 1, ob);
+    }
+    return msg;
 }

@@ -7,11 +7,11 @@ inherit F_FOOD;
 
 void create() {
     set_name(WHT "白米飯" NOR, ({ "rice", "mi fan" }) );
-        set("long", "一碗香噴噴的白米飯。\n");
-        set("unit", "碗");
-        set("value", 10);
-        set("food_remaining", 4);
-        set("food_supply", 30);
-        set("material", "rice");
+    set("long", "一碗香噴噴的白米飯。\n");
+    set("unit", "碗");
+    set("value", 10);
+    set("food_remaining", 4);
+    set("food_supply", 30);
+    set("material", "rice");
     setup();
 }

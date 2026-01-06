@@ -7,166 +7,170 @@ string type() { return "martial"; }
 string martialtype() { return "skill"; }
 
 string *dodge_msg = ({
-        "突然之間，白影急幌，$n向後滑出丈餘，立時又回到了原地，躲過了$N這一招。\n",
-        "$n手臂迴轉，在$N手肘下一推，順勢閃到一旁。\n",
-        "$n右手伸出，在$N手腕上迅速無比的一按，順勢跳到一旁。\n",
-        "$n身形飄忽，有如鬼魅，轉了幾轉，移步到$N的身後，躲過了$N這一招。\n",
-        "$N只覺眼前一花，似乎見到$n身形一幌，但隨即又見$n回到原地，卻似從未離開。\n",
-        "$N眼睛一花，$n已沒了蹤影。突然$n從身後拍了一下$N的頭，輕輕躍開。\n",
-        "$n嫣然一笑，詭異之極，$N竟不知如何是好，停住了攻擊。\n",
+    "突然之間，白影急幌，$n向後滑出丈餘，立時又回到了原地，躲過了$N這一招。\n",
+    "$n手臂迴轉，在$N手肘下一推，順勢閃到一旁。\n",
+    "$n右手伸出，在$N手腕上迅速無比的一按，順勢跳到一旁。\n",
+    "$n身形飄忽，有如鬼魅，轉了幾轉，移步到$N的身後，躲過了$N這一招。\n",
+    "$N只覺眼前一花，似乎見到$n身形一幌，但隨即又見$n回到原地，卻似從未離開。\n",
+    "$N眼睛一花，$n已沒了蹤影。突然$n從身後拍了一下$N的頭，輕輕躍開。\n",
+    "$n嫣然一笑，詭異之極，$N竟不知如何是好，停住了攻擊。\n"
 });
 
 mapping *action = ({
-([        "action":"突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
-        "lvl" : 0,
-        "skill_name" : "白影急幌"
-]),
-([        "action":"$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
-        "lvl" : 10,
-        "skill_name" : "自己小腹"
-]),
-([        "action":"驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
-        "lvl" : 25,
-        "skill_name" : "猱身而上"
-]),
-([        "action":"$N突然間招法一變，$w忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
-        "lvl" : 35,
-        "skill_name" : "招法一變"
-]),
-([        "action":"$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
-        "lvl" : 40,
-        "skill_name" : "有如鬼魅"
-]),
-([        "action":"$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，$w隨即遞出",
-        "lvl" : 45,
-        "skill_name" : "疾衝上前"
-]),
-([        "action":"$N喝道：“好！”，便即拔出$w，反手刺出，跟著轉身離去",
-        "lvl" : 45,
-        "skill_name" : "反手刺出"
-]),
-([        "action":"$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
-        "lvl" : 20,
-        "skill_name" : "眼前一花"
-]),
-([        "action":"$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手中$w直指$n的$l",
-        "lvl" : 5,
-        "skill_name" : "向後疾退"
-]),
-([        "action":"$N驀地衝到$n面前，手中$w直刺$n右眼！$n慌忙招架，不想$N的$w突然轉向",
-        "lvl" : 45,
-        "skill_name" : "直刺右眼"
-]),
-([        "action":"$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，手中$w刺向$n的$l",
-        "lvl" : 64,
-        "skill_name" : "飛身躍起"
-]),
-([        "action":"$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻$w一起刺向$n",
-        "lvl" : 79,
-        "skill_name" : "腰枝猛擺"
-]),
+    ([
+        "action": "突然之間，白影急幌，$N向後滑出丈餘，立時又回到了原地",
+        "lvl": 0,
+        "skill_name": "白影急幌"
+    ]),
+    ([
+        "action": "$N右手伸出，在$n手腕上迅速無比的一按，$n險些擊中自己小腹",
+        "lvl": 10,
+        "skill_name": "自己小腹"
+    ]),
+    ([
+        "action": "驀地裡$N猱身而上，躥到$n的身後，又躍回原地",
+        "lvl": 25,
+        "skill_name": "猱身而上"
+    ]),
+    ([
+        "action": "$N突然間招法一變，$w忽伸忽縮，招式詭奇絕倫。$n驚駭之中方寸大亂",
+        "lvl": 35,
+        "skill_name": "招法一變"
+    ]),
+    ([
+        "action": "$N身形飄忽，有如鬼魅，轉了幾轉，移步到$n的左側",
+        "lvl": 40,
+        "skill_name": "有如鬼魅"
+    ]),
+    ([
+        "action": "$N一聲冷笑，驀地裡疾衝上前，一瞬之間，與$n相距已不到一尺，$w隨即遞出",
+        "lvl": 45,
+        "skill_name": "疾衝上前"
+    ]),
+    ([
+        "action": "$N喝道：“好！”，便即拔出$w，反手刺出，跟著轉身離去",
+        "lvl": 45,
+        "skill_name": "反手刺出"
+    ]),
+    ([
+        "action": "$n只覺眼前一花，似乎見到$N身形一幌，但隨即又見$N回到原地，卻似從未離開",
+        "lvl": 20,
+        "skill_name": "眼前一花"
+    ]),
+    ([
+        "action": "$N向後疾退，$n緊追兩步，突然間$N閃到$n面前，手中$w直指$n的$l",
+        "lvl": 5,
+        "skill_name": "向後疾退"
+    ]),
+    ([
+        "action": "$N驀地衝到$n面前，手中$w直刺$n右眼！$n慌忙招架，不想$N的$w突然轉向",
+        "lvl": 45,
+        "skill_name": "直刺右眼"
+    ]),
+    ([
+        "action": "$N飛身躍起，$n抬眼一望，但見得$N從天直落而下，手中$w刺向$n的$l",
+        "lvl": 64,
+        "skill_name": "飛身躍起"
+    ]),
+    ([
+        "action": "$N腰枝猛擺，$n眼前彷彿突然出現了七八個$N，七八隻$w一起刺向$n",
+        "lvl": 79,
+        "skill_name": "腰枝猛擺"
+    ])
 });
-int valid_enable(string usage)
-{
-        return usage == "sword" || usage == "dodge" || usage == "parry";
+int valid_enable(string usage) {
+    return usage == "sword" || usage == "dodge" || usage == "parry";
 }
-string query_dodge_msg(string limb)
-{
-        return dodge_msg[random(sizeof(dodge_msg))];
+string query_dodge_msg(string limb) {
+    return dodge_msg[random(sizeof(dodge_msg))];
 }
-int valid_learn(object me)
-{
-        return notify_fail("辟邪劍法只能通過研習《葵花寶典》來學習。\n");
+int valid_learn(object me) {
+    return notify_fail("辟邪劍法只能通過研習《葵花寶典》來學習。\n");
 }
-string query_skill_name(int level)
-{
-        int i;
-        for(i = sizeof(action); i > 0; i--)
-                if(level >= action[i-1]["lvl"])
-                        return action[i-1]["skill_name"];
+string query_skill_name(int level) {
+    int i;
+    for(i = sizeof(action); i > 0; i--)
+        if(level >= action[i - 1]["lvl"])
+        return action[i - 1]["skill_name"];
 }
-mapping query_action(object me, object weapon)
-{
-/* d_e=dodge_effect p_e=parry_effect f_e=force_effect m_e=damage_effect */
-        int d_e1 = -40;
-        int d_e2 = -20;
-        int p_e1 = -60;
-        int p_e2 = -40;
-        int f_e1 = 150;
-        int f_e2 = 230;
-        int m_e1 = 240;
-        int m_e2 = 340;
-        int i, lvl, seq, ttl = sizeof(action);
+mapping query_action(object me, object weapon) {
+    /* d_e = dodge_effect p_e = parry_effect f_e = force_effect m_e = damage_effect */
+    int d_e1 = -40;
+    int d_e2 = -20;
+    int p_e1 = -60;
+    int p_e2 = -40;
+    int f_e1 = 150;
+    int f_e2 = 230;
+    int m_e1 = 240;
+    int m_e2 = 340;
+    int i, lvl, seq, ttl = sizeof(action);
 
-        lvl = (int) me->query_skill("bixie-jian", 1);
-        for(i = ttl; i > 0; i--)
-                if(lvl > action[i-1]["lvl"])
-                {
-                        seq = i; /* 獲得招數序號上限 */
-                        break;
-                }
-        seq = random(seq);       /* 選擇出手招數序號 */
-        return ([
-                "action"      : action[seq]["action"],
-                "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
-                "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
-                "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage"      : m_e1 + (m_e2 - m_e1) * seq / ttl,
-                "damage_type" : random(2) ? "割傷" : "刺傷",
+    lvl = (int) me->query_skill("bixie-jian", 1);
+    for(i = ttl; i > 0; i--)
+        if(lvl > action[i - 1]["lvl"])
+    {
+        seq = i; /* 獲得招數序號上限 */
+        break;
+    }
+    seq = random(seq);       /* 選擇出手招數序號 */
+    return ([
+        "action": action[seq]["action"],
+        "dodge": d_e1 + (d_e2 - d_e1) * seq / ttl,
+        "parry": p_e1 + (p_e2 - p_e1) * seq / ttl,
+        "force": f_e1 + (f_e2 - f_e1) * seq / ttl,
+        "damage": m_e1 + (m_e2 - m_e1) * seq / ttl,
+        "damage_type": random(2) ? "割傷" : "刺傷"
         ]);
 }
 int learn_bonus() { return 0; }
 int practice_bonus() { return 0; }
 int success() { return 5; }
-int power_point(object me)
-{
-        if(me->query_skill("kuihua-xinfa",1) > 10) return 1.0;
-        else return 0.6;
+int power_point(object me) {
+    if(me->query_skill("kuihua-xinfa", 1) > 10) return 1.0;
+    else return 0.6;
 }
 
-string perform_action_file(string action)
-{
-        return __DIR__"bixie-jian/" + action;
+string perform_action_file(string action) {
+    return __DIR__"bixie-jian/" + action;
 }
 
 /*
-void double_attack(object me, object victim)
-{
-        int i,j;
-        object other=offensive_target(me);
-        if (objectp(other)) victim = other;
+ * void double_attack(object me, object victim)
+ * {
+ * int i,j;
+ * object other=offensive_target(me);
+ * if (objectp(other)) victim = other;
 
-        i = me->query_skill("bixie-jian",1)/15; // taiji lian的每招遞增 sword/15
-        j = (me->query_skill("bixie-jian",1)-1)/100; // 100 = 0 101 = 1 200 = 1 201 = 2
+ * i = me->query_skill("bixie-jian",1)/15; // taiji lian的每招遞增 sword/15
+ * j = (me->query_skill("bixie-jian",1)-1)/100; // 100 = 0 101 = 1 200 = 1 201 = 2
 
-  if( j>1 && !query_temp("bixie/guimei", me) && userp(me))j=1;
+ * if( j>1 && !query_temp("bixie/guimei", me) && userp(me))j=1;
 
-        if (userp(me))
-        j = 1; //多於平時的double attack改成pfm出招
-                                 //注意變量 query_temp("bixie_hit")表示即將出手的是第多少招
-         //不如這樣，對於npc直接在單招中使用 對於玩家在pfm中使用
-        if( query_temp("bixie_hit", me)<j &&
-  objectp(query_temp("weapon", me)) &&
-  (query_temp("weapon",query("skill_type",  me))) == "sword" &&
-  me->query_skill_mapped("sword") == "bixie-jian" &&
-  me->is_fighting(victim) )
-        {
-                addn_temp("bixie_hit", 1, me);
-                addn_temp("apply/attack", i, me);
-          set_temp("action_flag", 1, me);
-                COMBAT_D->do_attack(me,victim,query_temp("weapon", me),2);
-                set_temp("action_flag", 0, me);
-                addn_temp("apply/attack", -i, me);
-                addn_temp("bixie_hit", -1, me);
-        }
-}
-*/
+ * if (userp(me))
+ * j = 1; //多於平時的double attack改成pfm出招
+ * //注意變量 query_temp("bixie_hit")表示即將出手的是第多少招
+ * //不如這樣，對於npc直接在單招中使用 對於玩家在pfm中使用
+ * if( query_temp("bixie_hit", me)<j &&
+ * objectp(query_temp("weapon", me)) &&
+ * (query_temp("weapon",query("skill_type",  me))) == "sword" &&
+ * me->query_skill_mapped("sword") == "bixie-jian" &&
+ * me->is_fighting(victim) )
+ * {
+ * addn_temp("bixie_hit", 1, me);
+ * addn_temp("apply/attack", i, me);
+ * set_temp("action_flag", 1, me);
+ * COMBAT_D->do_attack(me,victim,query_temp("weapon", me),2);
+ * set_temp("action_flag", 0, me);
+ * addn_temp("apply/attack", -i, me);
+ * addn_temp("bixie_hit", -1, me);
+ * }
+ * }
+ */
 int double_attack() { return 1; }
 
-int help(object me)
-{
-        write(HIC"\n辟邪劍法："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n辟邪劍法："NOR"\n");
+    write(@HELP
 
     要說辟邪劍法，就要從《葵花寶典》談起。
 
@@ -228,6 +232,6 @@ int help(object me)
         學習要求：
                 自宮做太監
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

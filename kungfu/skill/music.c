@@ -11,19 +11,17 @@ void create() { seteuid(getuid()); }
 
 string type() { return "knowledge"; }
 
-int valid_learn(object me) 
-{
-        int lvl, lvl2;
-        
-        lvl = (int)me->query_skill("music", 1);
+int valid_learn(object me) {
+    int lvl;
 
-        if ( lvl > 100 && me->query_int()-15 < lvl/10 )
-                return notify_fail("你悟性有限，難以領會音律中更高的意境。\n");
+    lvl = (int)me->query_skill("music", 1);
 
-        return 1;
+    if (lvl > 100 && me->query_int() - 15 < lvl / 10 )
+        return notify_fail("你悟性有限，難以領會音律中更高的意境。\n");
+
+    return 1;
 }
 
-int practice_skill(object me)
-{       
-        return notify_fail("基本音律只能靠學(learn)來提高。\n");
+int practice_skill(object me) {
+    return notify_fail("基本音律只能靠學(learn)來提高。\n");
 }

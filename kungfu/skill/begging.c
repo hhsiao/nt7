@@ -10,10 +10,9 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point(object me) { return 1; }
 
-int help(object me)
-{
-        write(HIC"\n叫化絕活："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n叫化絕活："NOR"\n");
+    write(@HELP
 
     丐幫乞討技能。丐幫弟子不能購買物品，乞討是獲得物品的一
 種手段。乞討(beg) 不成功不會帶來對方的攻擊。
@@ -21,6 +20,6 @@ int help(object me)
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

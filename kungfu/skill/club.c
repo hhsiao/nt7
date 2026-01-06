@@ -11,19 +11,18 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point(object me) { return 1; }
 
-int help(object me)
-{
-        write(HIC"\n基本棍法："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n基本棍法："NOR"\n");
+    write(@HELP
 
     棍類武技的基本功。
     所謂“槍扎一條線，棍打一大片”，一掃一劈全身著力。棍練
 起來虎虎生風，節奏生動，棍法密集，快速勇猛。它既能強身健體，
-又能克敵制勝，在歷代抗敵禦侮中，少林棍發揮過重要的作用。 
+又能克敵制勝，在歷代抗敵禦侮中，少林棍發揮過重要的作用。
 
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

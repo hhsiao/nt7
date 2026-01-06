@@ -86,7 +86,8 @@ void create() {
     set_temp("handing", carry_object("/d/henshan/npc/obj/zhuxiao"));
 }
 
-void init(object ob) {
+void init() {
+    object ob;
     string startroom;
 
     if (interactive(ob = this_player())

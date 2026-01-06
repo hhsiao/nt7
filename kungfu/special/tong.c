@@ -9,40 +9,38 @@ int is_scborn() { return 1; }
 
 string name() { return HIC "通慧神眼" NOR; }
 
-int perform(object me, string skill, string arg)
-{
-        int i;
-      
-        object ob;
+int perform(object me, string skill, string arg) {
 
-        if( query("neili", me)<500)return notify_fail("你內力不足，通慧神眼！\n");
+    object ob;
 
-        if (me->is_busy())return notify_fail("等你忙完再說吧！\n");
-                
-        if (! objectp(ob = present(arg, environment(me))))
-                return notify_fail("這裡沒有這個人！可能是你的格式有錯誤！\n"
-                                   "格式 ： special tong <對象id> \n");
+    if(query("neili", me)<500)return notify_fail("你內力不足，通慧神眼！\n");
 
-        if( query_temp("apply/invisible", ob) )
-                return notify_fail("這裡沒有這個人！可能是你的格式有錯誤！\n"
-                                   "格式 ： special tong <對象id> \n");                
+    if (me->is_busy())return notify_fail("等你忙完再說吧！\n");
 
-        if( query("special_skill/emperor", ob) )
-                return notify_fail("此人乃真命天子，你無法查看到他的情況。\n");
-                
-        if( query("special_skill/lonely", ob) )
-                return notify_fail("此人乃天煞孤星，你無法查看到他的情況。\n");
-                                
-        if( query("yanjiu_test", ob) )
-                return notify_fail("此人乃天煞孤星，你無法查看到他的情況。\n");        
-                                                   
-        write(HIW "你施展出通慧神眼之術 ……\n" NOR, me);
-        
-        addn("neili", -500, me);
-        me->start_busy(2);
+    if (! objectp(ob = present(arg, environment(me))))
+        return notify_fail("這裡沒有這個人！可能是你的格式有錯誤！\n"
+            "格式 ： special tong <對象id> \n");
 
-        "/cmds/usr/hp"->main(me, arg, 1);
-        "/cmds/skill/cha"->main(me, arg, 1);
+    if(query_temp("apply/invisible", ob) )
+        return notify_fail("這裡沒有這個人！可能是你的格式有錯誤！\n"
+            "格式 ： special tong <對象id> \n");
 
-        return 1;
+    if(query("special_skill/emperor", ob) )
+        return notify_fail("此人乃真命天子，你無法查看到他的情況。\n");
+
+    if(query("special_skill/lonely", ob) )
+        return notify_fail("此人乃天煞孤星，你無法查看到他的情況。\n");
+
+    if(query("yanjiu_test", ob) )
+        return notify_fail("此人乃天煞孤星，你無法查看到他的情況。\n");
+
+    write(HIW "你施展出通慧神眼之術 ……\n" NOR, me);
+
+    addn("neili", -500, me);
+    me->start_busy(2);
+
+    "/cmds/usr/hp"->main(me, arg, 1);
+    "/cmds/skill/cha"->main(me, arg, 1);
+
+    return 1;
 }

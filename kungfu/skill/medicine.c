@@ -12,39 +12,36 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point(object me) { return 1; }
 
-int valid_learn(object me)
-{
-        int lvl;
+int valid_learn(object me) {
+    int lvl;
 
-        lvl = (int)me->query_skill("medicine", 1);
+    lvl = (int)me->query_skill("medicine", 1);
 
-        if( query("age", me)<16 )
-                return notify_fail("你的年紀太輕，無法修習濟世之術。\n");
+    if(query("age", me)<16 )
+        return notify_fail("你的年紀太輕，無法修習濟世之術。\n");
 
-        if( !query("medicine", me) )
+    if(!query("medicine", me) )
+    {
+        if (random(6) == 1)
         {
-                if (random(6) == 1)
-                {
-                        set("medicine", 2, me);
-                }
-                else
-                {
-                        set("medicine", 1, me);
-                }
+            set("medicine", 2, me);
         }
-        if( lvl>29 && query("medicine", me) == 1 )
-                return notify_fail("限於天資，你只能修習這個程度了。今後還是努力練功，自求多福吧。\n");
-        else return 1;
+        else
+        {
+            set("medicine", 1, me);
+        }
+    }
+    if(lvl>29 && query("medicine", me) == 1 )
+        return notify_fail("限於天資，你只能修習這個程度了。今後還是努力練功，自求多福吧。\n");
+    else return 1;
 }
 
-int practice_skill(object me)
-{
-        return notify_fail("濟世之術只能靠學習來提高。\n");
+int practice_skill(object me) {
+    return notify_fail("濟世之術只能靠學習來提高。\n");
 }
-int help(object me)
-{
-        write(HIC"\n濟世之術："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n濟世之術："NOR"\n");
+    write(@HELP
 
     逍遙派祖師逍遙子學究天人，胸中所學包羅萬象。他共傳下七
 門絕藝：繞樑琴藝 (luteplaying)、紋枰手談 (goplaying)、潑墨
@@ -55,6 +52,6 @@ int help(object me)
         學習要求：
                 無。但天賦才氣限制了對更高深境界的努力
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

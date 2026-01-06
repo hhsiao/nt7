@@ -50,99 +50,93 @@
 //        connect() 傳回的物件，會當作初始使用者物件 (initial user object)。
 //        請注意，之後你可以使用 exec() 外部函式將改變使用者物件。
 
-object connect(int port)
-{
-        object login_ob;
-        mixed err;
+object connect(int port) {
+    object login_ob;
+    mixed err;
 
-        err = catch(login_ob = new(LOGIN_OB));
+    err = catch(login_ob = new(LOGIN_OB));
 
-        if( err )
-        {
-                debug_message("現在有人正在修改使用者連線部份的程式，請待會再來。\n");
-                debug_message(err);
-                destruct(this_object());
-        }
+    if(err )
+    {
+        debug_message("現在有人正在修改使用者連線部份的程式，請待會再來。\n");
+        debug_message(err);
+        destruct(this_object());
+    }
 
-        /*if (port == 5555)
-        {
-                set_encoding("GBK");
-        }*/
+    /*
+     * if (port == 5555)
+     * {
+     * set_encoding("GBK");
+     * }*/
 
-        // if( port == BIG5_PORT )
-        //         set_temp("big5", 1, login_ob);
+    // if( port == BIG5_PORT )
+    //         set_temp("big5", 1, login_ob);
 
-        // else
-        // if( port == TOMUD_PORT )
-        //         set_temp("tomud", 1, login_ob);
+    // else
+    // if( port == TOMUD_PORT )
+    //         set_temp("tomud", 1, login_ob);
 
-        //else
-        //if( port == UTF8_PORT )
-        //      set_encoding("utf-8", login_ob);
+    //else
+    //if( port == UTF8_PORT )
+    //      set_encoding("utf-8", login_ob);
 
-        return login_ob;
+    return login_ob;
 }
 
-string get_root_uid()
-{
-        return ROOT_UID;
+string get_root_uid() {
+    return ROOT_UID;
 }
 
-string get_bb_uid()
-{
-        return BACKBONE_UID;
+string get_bb_uid() {
+    return BACKBONE_UID;
 }
 
 
-string object_name(object ob)
-{
-        if( ob ) return ob->name();
+string object_name(object ob) {
+    if(ob ) return ob->name();
 }
 
 // 是否直接運行BINARY，不調用文件。
-int direct_run_binary(string file)
-{
-        // object ob;
-        // object vob;
+int direct_run_binary(string file) {
+    // object ob;
+    // object vob;
 
 #ifndef BINARY_SUPPORT
-        return 0;
+    return 0;
 #else
-        if( sscanf(file, DATA_DIR "%*s") )
-                // 如果是DATA下面的文件，不能直接運行BIN代碼，
-                // 需要進行常規的版本有效檢查。
-                return 0;
+    if(sscanf(file, DATA_DIR "%*s") )
+    // 如果是DATA下面的文件，不能直接運行BIN代碼，
+    // 需要進行常規的版本有效檢查。
+    return 0;
 
-        if( objectp(ob = find_object(CONFIG_D)) &&
-            objectp(vob = find_object(VERSION_D)) ) {
-                // 找到了CONFIG_D，查看本地是否是版本發佈站
-                // 點，如果是，則查看是否是發佈的源程序，是
-                // 則返回否，表示需要檢查BIN。
-                return query("release server", ob) != "local" &&
-                       !VERSION_D->is_need_release_source(file);
-        }
+    if(objectp(ob = find_object(CONFIG_D)) &&
+        objectp(vob = find_object(VERSION_D)) ) {
+        // 找到了CONFIG_D，查看本地是否是版本發佈站
+        // 點，如果是，則查看是否是發佈的源程序，是
+        // 則返回否，表示需要檢查BIN。
+        return query("release server", ob) != "local" &&
+            !VERSION_D->is_need_release_source(file);
+    }
 
-        // 沒有找到CONFIG_D && VERSION_D，不編譯，直接運行
-        // BIN代碼。
-        return 1;
+    // 沒有找到CONFIG_D && VERSION_D，不編譯，直接運行
+    // BIN代碼。
+    return 1;
 #endif
 }
 
-void create()
-{
-        if( clonep() )   return;
+void create() {
+    if(clonep() )   return;
 
-        write("master: loaded successfully.\n");
+    write("master: loaded successfully.\n");
 }
 
-void check_daemons()
-{
-        string *sp;
-        int i;
+void check_daemons() {
+    string *sp;
+    int i;
 
-        sp = epilog(0);
-        if( !sp ) return;
+    sp = epilog(0);
+    if(!sp ) return;
 
-        for (i = 0; i < sizeof(sp); i++)
-                if( stringp(sp[i])) preload(sp[i]);
+    for (i = 0; i < sizeof(sp); i++)
+        if(stringp(sp[i])) preload(sp[i]);
 }

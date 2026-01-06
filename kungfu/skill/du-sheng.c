@@ -1,4 +1,4 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/11
 // 賭聖
 
@@ -6,11 +6,9 @@ inherit SKILL;
 
 string type() { return "knowledge"; }
 
-void skill_improved(object me)
-{
+void skill_improved(object me) {
 }
 
-int valid_learn(object me)
-{
-        return 0;
+int valid_learn(object me) {
+    return 0;
 }

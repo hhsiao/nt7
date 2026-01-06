@@ -1,34 +1,32 @@
 // chashi.c 盤龍居茶室
-
 #include <room.h>
 
-//** inherit PRIVATE_ROOM;
+//**inherit PRIVATE_ROOM;
 inherit ROOM;                                   /* EXAMPLE */
 
 void create()
 {
-        set("short", "茶室");
-        set("long", @LONG
+    set("short", "茶室");
+    set("long", @LONG
 這是一個玲瓏小巧的茶室，很是顯得精緻。正中有一茶几。
 LONG );
 
-        set("default_long", "是一個玲瓏小巧的茶室，很是顯得精緻。正" /* EXAMPLE */
-                            "中有一茶几，兩旁立著兩個妙齡少女，正在" /* EXAMPLE */
-                            "聽候主人的吩咐(tea)。" );               /* EXAMPLE */
-                                                                     /* EXAMPLE */
-
-        set("exits", ([
-                "west"  : __DIR__"yingke",
-        ]));
+    set("default_long", "是一個玲瓏小巧的茶室，很是顯得精緻。正" /* EXAMPLE */
+                        "中有一茶几，兩旁立著兩個妙齡少女，正在" /* EXAMPLE */
+                        "聽候主人的吩咐(tea)。" );             /* EXAMPLE */
+                                                             /* EXAMPLE */
+    set("exits", ([
+        "west"  : __DIR__"yingke",
+    ]));
 
 //**    set("objects", ([
-//**            "/d/room/roomnpc/teagirl" : 2,
+//**        "/d/room/roomnpc/teagirl" : 2,
 //**    ]));
 
-        create_door("west", "木門", "east", DOOR_CLOSED);
+    create_door("west", "木門", "east", DOOR_CLOSED);
 
-        set("no_sleep_room", 1);
-        setup();
+    set("no_sleep_room", 1);
+    setup();
 
 //**    set("room_owner", "ROOM_OWNER");
 //**    set("room_name", "ROOM_NAME");

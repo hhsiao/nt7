@@ -8,48 +8,45 @@ string martialtype() { return "skill"; }
 int is_pbsk() { return 1; }
 
 string *msg = ({
-"$N飛身躍起，半空中一腳踢向$n面門，卻是個虛招。 \n說時遲那時快，只見$N一個倒翻，一招「過眼煙雲」，雙掌已到了$n的$l",
-"$N使一招「塵土雲月」，左拳虛晃右掌斜飛，擊向$n的$l",
-"$N一招「朝天闕」，斜步扭身，手肘猛地向$n的胸口撞去",
-"$N左掌斜穿，右手前探做虎爪，一招「壯志飢餐」抓向$n的$l",
-"$N的左手虛引額前，驀地進步跟身，右手並指如劍，一招「笑談渴飲」刺向$n的$l",
-"$N提步上前，一記「莫等閒」，雙掌緩緩推出，擊向$n的前胸",
-"$N腳踩七星方位，雙掌翻飛施出「瀟瀟雨歇」，無數掌影擊向$n的$l",
-"$N大喝一聲，一招「怒髮衝冠」，雙掌帶著天罡正氣，迅捷無比的擊向$n的$l",
-"$N左手遞出，長臂竟如殘月般彎轉，一招「從頭收拾舊山河」右手反手對準$n$l扎去",
+    "$N飛身躍起，半空中一腳踢向$n面門，卻是個虛招。 \n說時遲那時快，只見$N一個倒翻，一招「過眼煙雲」，雙掌已到了$n的$l",
+    "$N使一招「塵土雲月」，左拳虛晃右掌斜飛，擊向$n的$l",
+    "$N一招「朝天闕」，斜步扭身，手肘猛地向$n的胸口撞去",
+    "$N左掌斜穿，右手前探做虎爪，一招「壯志飢餐」抓向$n的$l",
+    "$N的左手虛引額前，驀地進步跟身，右手並指如劍，一招「笑談渴飲」刺向$n的$l",
+    "$N提步上前，一記「莫等閒」，雙掌緩緩推出，擊向$n的前胸",
+    "$N腳踩七星方位，雙掌翻飛施出「瀟瀟雨歇」，無數掌影擊向$n的$l",
+    "$N大喝一聲，一招「怒髮衝冠」，雙掌帶著天罡正氣，迅捷無比的擊向$n的$l",
+    "$N左手遞出，長臂竟如殘月般彎轉，一招「從頭收拾舊山河」右手反手對準$n$l扎去"
 });
 
 int valid_enable(string usage) { return usage=="hand" || usage=="parry"; }
 int valid_combine(string combo) { return combo=="changquan"; }
 
-int valid_learn(object me)
-{
-        if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
-                return notify_fail("練岳家散手必須空手。\n");
-        return 1;
+int valid_learn(object me) {
+    if(query_temp("weapon", me) || query_temp("secondary_weapon", me) )
+        return notify_fail("練岳家散手必須空手。\n");
+    return 1;
 }
-int practice_skill(object me)
-{
-        if( query("jing", me)<30 )
-                return notify_fail("你的精神無法集中了，休息一下再練吧。\n");
-        if( query("qi", me)<30 )
-                return notify_fail("你現在手足痠軟，休息一下再練吧。\n");
-        if( query("neili", me)<10 )
-                return notify_fail("你的內力不夠了。\n");
+int practice_skill(object me) {
+    if(query("jing", me)<30 )
+        return notify_fail("你的精神無法集中了，休息一下再練吧。\n");
+    if(query("qi", me)<30 )
+        return notify_fail("你現在手足痠軟，休息一下再練吧。\n");
+    if(query("neili", me)<10 )
+        return notify_fail("你的內力不夠了。\n");
 
-        me->receive_damage("qi", 30);
-        addn("neili", -10, me);
+    me->receive_damage("qi", 30);
+    addn("neili", -10, me);
 
-        return 1;
+    return 1;
 }
-mapping query_action(object me, object weapon)
-{
-        return ([
-                "action" : msg[random(sizeof(msg))],
-                "dodge"  : -30+random(30),
-                "parry"  : 30+random(30),
-                "force"  : 50+random(100),
-                "damage_type" : random(2)?"內傷":"瘀傷",
+mapping query_action(object me, object weapon) {
+    return ([
+        "action": msg[random(sizeof(msg))],
+        "dodge": -30 + random(30),
+        "parry": 30 + random(30),
+        "force": 50 + random(100),
+        "damage_type": random(2)?"內傷":"瘀傷"
         ]);
 }
 
@@ -58,10 +55,9 @@ int practice_bonus() { return 30; }
 int success() { return 20; }
 int power_point(object me) { return 1.0; }
 
-int help(object me)
-{
-        write(HIC"\n岳家散手："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n岳家散手："NOR"\n");
+    write(@HELP
 
     【岳家散手】又稱岳氏散手、岳氏散掌，屬於岳家拳。據考證，
 宋代著名抗金將領岳飛曾創編子母拳，後其子岳震、岳霆隱居於湖北
@@ -81,6 +77,6 @@ int help(object me)
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

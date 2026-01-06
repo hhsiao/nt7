@@ -8,14 +8,12 @@ string name() { return "shenzhao"; }
 
 string chinese_name() { return "神照經內勁"; }
 
-string update_msg_others()
-{
-       return HIR "只見$N" HIR "嗆嗆退了數步，身子搖晃，雙"
-              "腿漸漸彎曲，似乎喝醉了一般。\n" NOR;
+string update_msg_others() {
+    return HIR "只見$N" HIR "嗆嗆退了數步，身子搖晃，雙"
+    "腿漸漸彎曲，似乎喝醉了一般。\n" NOR;
 }
 
-string update_msg_self()
-{
-        return HIW "你只感內息頓滯，真氣不暢，一張臉漲得通"
-               "紅，便要跌倒。\n" NOR;
+string update_msg_self() {
+    return HIW "你只感內息頓滯，真氣不暢，一張臉漲得通"
+    "紅，便要跌倒。\n" NOR;
 }

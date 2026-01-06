@@ -10,10 +10,9 @@ int practice_bonus() { return 30; }
 int success() { return 30; }
 int power_point() { return 1; }
 
-int help(object me)
-{
-        write(HIC"\n道聽途說："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n道聽途說："NOR"\n");
+    write(@HELP
 
     丐幫幫眾遍及大江南北，消息靈通，凡江湖上發生什麼事，往
 往他們最先得知。身具此藝的丐幫幫眾，可以在江湖上打探(check)
@@ -22,6 +21,6 @@ int help(object me)
         學習要求：
                 無
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }

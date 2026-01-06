@@ -21,14 +21,14 @@ string *dodge_msg = ({
     "$N憑著高速身法，在$n的攻擊範圍內進退趨避，險險閃過一道又一道的攻擊",
     "$N騰挪快速，竟然在空中形成身影殘像，有如無數$N一起挪動",
     "$n眼前忽然一花，眼前$N的身影似乎有些淡化，而另外一個$N竟爾出現在面前不足一尺的近處"
-    });
+});
 
 string *parry_msg = ({
     "眼看$n轉眼已攻至，$N輕描淡寫，卻又快絕無比，把$n的招式化於無形",
     "$n眼看得手之際，突覺一股陰柔勁道蝕$W急上，沒等接觸，整條手臂已劇痛起來，忙叫一聲不好，慌然急退",
     "$n陡覺手上勁力如泥牛入海，摸不著底處，暗叫不妙，$N卻又已經攻至",
     "$n心下一凜，但見對手守勢，如萬里長空，曠遠不知其深，包容萬物，無從下手"
-    });
+});
 
 
 string *action_msg = ({
@@ -42,17 +42,17 @@ string *action_msg = ({
     "$N催運明玉功，，進似神龍矯捷，退若靈蛇竄動，$n只覺得眼花撩亂",
     "$N微一揚手，繞身明玉勁如毒蛇洪水似地爆起，群蛇亂舞，亂攻向$n",
     "$n只覺得股陰柔內勁傳來，跟著便是手上一沉，好似有什麼東西，讓手臂變成千斤重物，拖的自己直往前跌"
-    });
+});
 
 mapping query_action(object me, object weapon) {
     return ([
         "action": action_msg[random(sizeof(action_msg))],
-        "force" : 500 + random(120),
+        "force": 500 + random(120),
         "attack": 200 + random(60),
-        "dodge" : -80 - random(60),
-        "parry" : -80 - random(60),
-        "damage" : 180 + random(60),
-        "damage_type" : random(2)?"刺傷":"內傷"
+        "dodge": -80 - random(60),
+        "parry": -80 - random(60),
+        "damage": 180 + random(60),
+        "damage_type": random(2)?"刺傷":"內傷"
         ]);
 }
 
@@ -129,18 +129,18 @@ mixed valid_damage(object ob, object me, int damage, object weapon) {
         switch (random(2))
         {
         case 0:
-            result += (["msg" : HIR "$n" HIR "默唸明玉功總訣，收斂"
+            result += (["msg": HIR "$n" HIR "默唸明玉功總訣，收斂"
             "內勁，承下$N" + HIR "這一招，$N" HIR
             "只覺猶如進入綿綿長河中，絲毫不起作用。\n"
             NOR]);
             break;
         case 1:
-            result += (["msg" : HIR "$N" HIR "一招擊中$n" HIR "上身"
+            result += (["msg": HIR "$N" HIR "一招擊中$n" HIR "上身"
             "，可卻猶如擊在棉花上一般，力道頓時"
             "消失得無影無蹤。\n" NOR]);
             break;
         default:
-            result += (["msg" : HIR "但見$n" HIR "微微一笑，渾若無事"
+            result += (["msg": HIR "但見$n" HIR "微微一笑，渾若無事"
             "的接下了$N" HIR "這一招，純陰之勁隨之而起，"
             "沒有受到半點傷害。\n" NOR]);
             break;

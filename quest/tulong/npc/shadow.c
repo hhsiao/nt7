@@ -3,15 +3,15 @@ inherit NPC;
 
 void create()
 {
-        set_name("嶽不群--空", ({ "yue buqun shadow", "shadow" }) );
+        set_name("岳不群--空", ({ "yue buqun shadow", "shadow" }) );
         set("title", "華山派掌門");
         set("nickname", "君子劍");
         set("gender", "男性");
         set("class", "swordsman");
         set("age", 55);
         set("long",
-                "嶽不群自幼執掌華山派，乃當今武林中一等一的高手。不過面前這個\n"
-    +"嶽不群，似乎讓人有些不真實感。\n");
+                "岳不群自幼執掌華山派，乃當今武林中一等一的高手。不過面前這個\n"
+    +"岳不群，似乎讓人有些不真實感。\n");
         set("attitude", "peaceful");
         set("str", 126);
         set("con", 130);
@@ -31,11 +31,11 @@ void create()
 
         set("chat_chance_combat", 30);
         set("chat_msg_combat", ({
-                (: exert_function, "powerup" :), 
-                (: perform_action, "sword.cimu" :),  
-                (: perform_action, "sword.cimu" :), 
-                (: perform_action, "sword.cimu" :), 
-                (: perform_action, "sword.cimu" :), 
+                (: exert_function, "powerup" :),
+                (: perform_action, "sword.cimu" :),
+                (: perform_action, "sword.cimu" :),
+                (: perform_action, "sword.cimu" :),
+                (: perform_action, "sword.cimu" :),
                 (: perform_action, "sword.cimu" :),         }) );
         set("inquiry", ([
             "過關": "要想過關，得先打敗我。\n",
@@ -68,7 +68,7 @@ void create()
 
 int accept_fight(object ob)
 {
-        ob=this_player();   
+        ob=this_player();
         if( !query("fighter", ob)){
         command("say 來得好！我可是不會手下留情的。\n");
         set("fighter", 1, ob);
@@ -90,4 +90,4 @@ void die()
         ob = new("/quest/tulong/npc/shadow1");
         ob->move(environment(this_object()));
         destruct(this_object());
-} 
+}

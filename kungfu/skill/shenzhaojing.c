@@ -10,188 +10,181 @@ int learn_bonus() { return 0; }
 int practice_bonus() { return 0; }
 int success() { return 10; }
 int power_point(object me) { return 1; }
-int valid_force(string force)
-{
-        return 1;
+int valid_force(string force) {
+    return 1;
 }
 
-int query_neili_improve(object me)
-{
-        int lvl;
+int query_neili_improve(object me) {
+    int lvl;
 
-        lvl = (int)me->query_skill("shenzhaojing", 1);
-        return lvl * lvl * 15 * 18 / 100 / 200;
+    lvl = (int)me->query_skill("shenzhaojing", 1);
+    return lvl * lvl * 15 * 18 / 100 / 200;
 }
 
 mapping *action = ({
-([      "action" : "$N倏然躍近，擊出一拳，這一拳無聲無影，去勢快極，向$n的胸口打去",
-        "dodge"  : 81,
-        "force"  : 323,
-        "attack" : 119,
-        "parry"  : 94,
-        "damage" : 68,
-        "lvl"    : 0,
+    ([
+        "action": "$N倏然躍近，擊出一拳，這一拳無聲無影，去勢快極，向$n的胸口打去",
+        "dodge": 81,
+        "force": 323,
+        "attack": 119,
+        "parry": 94,
+        "damage": 68,
+        "lvl": 0,
         "damage_type": "內傷"
-]),
-([      "action" : "$N絲毫不動聲色，右掌平伸，左掌運起神照經神功的勁力，呼的一聲拍向$n",
-        "dodge"  : 73,
-        "force"  : 362,
-        "attack" : 138,
-        "parry"  : 51,
-        "damage" : 73,
-        "lvl"    : 200,
+    ]),
+    ([
+        "action": "$N絲毫不動聲色，右掌平伸，左掌運起神照經神功的勁力，呼的一聲拍向$n",
+        "dodge": 73,
+        "force": 362,
+        "attack": 138,
+        "parry": 51,
+        "damage": 73,
+        "lvl": 200,
         "damage_type": "內傷"
-]),
-([      "action" : "$N身形微微一展，已然遊走至$n跟前，陡然間雙掌齊施，向$n猛拍而去",
-        "dodge"  : 78,
-        "force"  : 389,
-        "attack" : 152,
-        "parry"  : 53,
-        "damage" : 87,
-        "lvl"    : 220,
+    ]),
+    ([
+        "action": "$N身形微微一展，已然遊走至$n跟前，陡然間雙掌齊施，向$n猛拍而去",
+        "dodge": 78,
+        "force": 389,
+        "attack": 152,
+        "parry": 53,
+        "damage": 87,
+        "lvl": 220,
         "damage_type": "內傷"
-]),
-([      "action" : "$N退後一步，雙掌回收，凌空劃出一個圓圈，頓時一股澎湃的氣勁直湧$n而出",
-        "dodge"  : 75,
-        "force"  : 410,
-        "attack" : 163,
-        "parry"  : 67,
-        "damage" : 93,
-        "lvl"    : 250,
+    ]),
+    ([
+        "action": "$N退後一步，雙掌回收，凌空劃出一個圓圈，頓時一股澎湃的氣勁直湧$n而出",
+        "dodge": 75,
+        "force": 410,
+        "attack": 163,
+        "parry": 67,
+        "damage": 93,
+        "lvl": 250,
         "damage_type": "內傷"
-]),
+    ])
 });
 
-int valid_enable(string usage)
-{
-        int lvl;
-        lvl = (int)this_player()->query_skill("shenzhaojing", 1);
+int valid_enable(string usage) {
+    int lvl;
+    lvl = (int)this_player()->query_skill("shenzhaojing", 1);
 
-        if(lvl >= 180)
-                return usage == "force" || usage == "unarmed" || usage == "parry";
-        else
-                return usage == "force";
+    if(lvl >= 180)
+        return usage == "force" || usage == "unarmed" || usage == "parry";
+    else
+        return usage == "force";
 
 }
 
-int valid_learn(object me)
-{
-        if( query("str", me)<32 )
-                return notify_fail("你先天膂力孱弱，無法修煉神照經神功。\n");
+int valid_learn(object me) {
+    if(query("str", me)<32 )
+        return notify_fail("你先天膂力孱弱，無法修煉神照經神功。\n");
 
-        if( query("con", me)<32 )
-                return notify_fail("你先天根骨孱弱，無法修煉神照經神功。\n");
+    if(query("con", me)<32 )
+        return notify_fail("你先天根骨孱弱，無法修煉神照經神功。\n");
 
-        if( query("gender", me) == "無性" && query("shenzhaojing", me)>29 )
-                return notify_fail("你無根無性，陰陽不調，難以領會高深的神照經神功。\n");
+    if(query("gender", me) == "無性" && query("shenzhaojing", me)>29 )
+        return notify_fail("你無根無性，陰陽不調，難以領會高深的神照經神功。\n");
 
-        if( query("family/family_name", me) != "密宗" )
-                return notify_fail("神照經神功乃是血刀門的不傳神功，你無法理解其中精髓。\n");
+    if(query("family/family_name", me) != "密宗" )
+        return notify_fail("神照經神功乃是血刀門的不傳神功，你無法理解其中精髓。\n");
 
-        if ((int)me->query_skill("force", 1) < 200)
-                return notify_fail("你的基本內功火候不足，不能學神照經神功。\n");
+    if ((int)me->query_skill("force", 1) < 200)
+        return notify_fail("你的基本內功火候不足，不能學神照經神功。\n");
 
-        if ((int)me->query_skill("unarmed", 1) < 200)
-                return notify_fail("你的基本拳腳火候不足，不能學神照經神功。\n");
+    if ((int)me->query_skill("unarmed", 1) < 200)
+        return notify_fail("你的基本拳腳火候不足，不能學神照經神功。\n");
 
-        if( query("max_neili", me)<4000 )
-                return notify_fail("你的內力修為不足，不能學神照經神功。\n");
+    if(query("max_neili", me)<4000 )
+        return notify_fail("你的內力修為不足，不能學神照經神功。\n");
 
-        if (me->query_skill("force", 1) < me->query_skill("shenzhaojing", 1))
-                return notify_fail("你的基本內功水平不夠，難以鍛鍊更深厚的神照經神功。\n");
+    if (me->query_skill("force", 1) < me->query_skill("shenzhaojing", 1))
+        return notify_fail("你的基本內功水平不夠，難以鍛鍊更深厚的神照經神功。\n");
 
-        if (me->query_skill("unarmed", 1) < me->query_skill("shenzhaojing", 1))
-                return notify_fail("你的基本拳腳水平不夠，難以鍛鍊更深厚的神照經神功。\n");
+    if (me->query_skill("unarmed", 1) < me->query_skill("shenzhaojing", 1))
+        return notify_fail("你的基本拳腳水平不夠，難以鍛鍊更深厚的神照經神功。\n");
 
-        return ::valid_learn(me);
+    return ::valid_learn(me);
 }
 
-mapping query_action(object me, object weapon)
-{
-/* d_e=dodge_effect p_e=parry_effect f_e=force_effect m_e=damage_effect */
-        int d_e1 = 25;
-        int d_e2 = 45;
-        int p_e1 = -30;
-        int p_e2 = 10;
-        int f_e1 = 140;
-        int f_e2 = 240;
-        int i, lvl, seq, ttl = sizeof(action);
+mapping query_action(object me, object weapon) {
+    /* d_e = dodge_effect p_e = parry_effect f_e = force_effect m_e = damage_effect */
+    int d_e1 = 25;
+    int d_e2 = 45;
+    int p_e1 = -30;
+    int p_e2 = 10;
+    int f_e1 = 140;
+    int f_e2 = 240;
+    int i, lvl, seq, ttl = sizeof(action);
 
-        lvl = (int) me->query_skill("shenzhaojing", 1);
-        for(i = ttl; i > 0; i--)
-                if(lvl > action[i-1]["lvl"])
-                {
-                        seq = i; /* 獲得招數序號上限 */
-                        break;
-                }
-        seq = random(seq);       /* 選擇出手招數序號 */
-        return ([
-                "action"      : action[seq]["action"],
-                "dodge"       : d_e1 + (d_e2 - d_e1) * seq / ttl,
-                "parry"       : p_e1 + (p_e2 - p_e1) * seq / ttl,
-                "force"       : f_e1 + (f_e2 - f_e1) * seq / ttl,
-                "damage_type" : random(2) ? "內傷" : "瘀傷",
+    lvl = (int) me->query_skill("shenzhaojing", 1);
+    for(i = ttl; i > 0; i--)
+        if(lvl > action[i - 1]["lvl"])
+    {
+        seq = i; /* 獲得招數序號上限 */
+        break;
+    }
+    seq = random(seq);       /* 選擇出手招數序號 */
+    return ([
+        "action": action[seq]["action"],
+        "dodge": d_e1 + (d_e2 - d_e1) * seq / ttl,
+        "parry": p_e1 + (p_e2 - p_e1) * seq / ttl,
+        "force": f_e1 + (f_e2 - f_e1) * seq / ttl,
+        "damage_type": random(2) ? "內傷" : "瘀傷"
         ]);
 }
 
 
-mixed hit_ob(object me, object victim, int damage_bonus, int factor)
-{
-        int lvl;
+mixed hit_ob(object me, object victim, int damage_bonus, int factor) {
+    int lvl;
 
-        lvl = me->query_skill("shenzhaojing", 1);
+    lvl = me->query_skill("shenzhaojing", 1);
 
-        if (damage_bonus < 160
-           || lvl < 180
-           || query("neili", me)<300
-           || query_temp("weapon", me )
-           || query_temp("secondary_weapon", me )
-           || me->query_skill_mapped("force") != "shenzhaojing"
-           || me->query_skill_mapped("unarmed") != "shenzhaojing"
-           || me->query_skill_prepared("unarmed") != "shenzhaojing")
-                return 0;
+    if (damage_bonus < 160
+        || lvl < 180
+        || query("neili", me)<300
+        || query_temp("weapon", me )
+        || query_temp("secondary_weapon", me )
+        || me->query_skill_mapped("force") != "shenzhaojing"
+        || me->query_skill_mapped("unarmed") != "shenzhaojing"
+        || me->query_skill_prepared("unarmed") != "shenzhaojing")
+    return 0;
 
-        // 神照經神功所具有的既添設額外傷害又使對手中
-        // 毒的max_hit 在所有武功中是絕無僅有的，但是
-        // 它出現的幾率以及傷害值又及毒性傷害相對於其
-        // 他武功大大減弱。
-        if (damage_bonus > victim->query_con()/10)
-        {
-                victim->receive_wound("qi", damage_bonus, me);
-                victim->affect_by("shenzhao",
-                               (["level":query("jiali", me)+random(query("jiali", me)),
-                                  "id":query("id", me),
-                                  "duration" : lvl / 100 + random(lvl / 10) ]));
-                return HIR "$n" HIR "一聲慘嚎，全身骨骼格格格格爆聲不"
-                       "絕，肋骨、臂骨、腿骨同時斷折。\n" NOR;
-        }
+    // 神照經神功所具有的既添設額外傷害又使對手中
+    // 毒的max_hit 在所有武功中是絕無僅有的，但是
+    // 它出現的幾率以及傷害值又及毒性傷害相對於其
+    // 他武功大大減弱。
+    if (damage_bonus > victim->query_con() / 10)
+    {
+        victim->receive_wound("qi", damage_bonus, me);
+        victim->affect_by("shenzhao",
+            (["level": query("jiali", me) + random(query("jiali", me)),
+                "id": query("id", me),
+                "duration": lvl / 100 + random(lvl / 10) ]));
+        return HIR "$n" HIR "一聲慘嚎，全身骨骼格格格格爆聲不"
+        "絕，肋骨、臂骨、腿骨同時斷折。\n" NOR;
+    }
 }
 
-int practice_skill(object me)
-{
-        return notify_fail("神照經神功只能用學(learn)的來增加熟練度。\n");
+int practice_skill(object me) {
+    return notify_fail("神照經神功只能用學(learn)的來增加熟練度。\n");
 }
 
-int difficult_level()
-{
-        return 400;
+int difficult_level() {
+    return 400;
 }
 
-string perform_action_file(string action)
-{
-        return __DIR__"shenzhaojing/perform/" + action;
+string perform_action_file(string action) {
+    return __DIR__"shenzhaojing/perform/" + action;
 }
 
-string exert_function_file(string action)
-{
-        return __DIR__"shenzhaojing/exert/" + action;
+string exert_function_file(string action) {
+    return __DIR__"shenzhaojing/exert/" + action;
 }
 
 
-int help(object me)
-{
-        write(HIC"\n神照經："NOR"\n");
-        write(@HELP
+int help(object me) {
+    write(HIC"\n神照經："NOR"\n");
+    write(@HELP
 
     丁典是荊門人，出生於武林世家。父母雙亡，家財不少，卻不
 想結親，只是勤於練武，結交江湖上的朋友。
@@ -212,6 +205,6 @@ int help(object me)
         學習要求：
                 憑機緣向丁典學習
 HELP
-        );
-        return 1;
+    );
+    return 1;
 }
