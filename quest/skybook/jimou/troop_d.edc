@@ -52,7 +52,7 @@ void troop_heart()
 		object ob;
 		int is_auto=1;
 		if(illegal_troop(p_id))
-		{	
+		{
 			TROOP_D->remove_troop(p_id);
 			continue;
 		}
@@ -60,7 +60,7 @@ void troop_heart()
 		foreach(string p_char in troops[p_id]["chars"])
 		{	object o_char;
 			o_char=CHAR_D->find_char(p_char);
-			if(!objectp(o_char)||(o_char->query_room()!=ob)) 
+			if(!objectp(o_char)||(o_char->query_room()!=ob))
 				CHAR_D->put_char(p_char,file_name(ob));
 			if(objectp(find_body(p_char)))
 				is_auto=0;
@@ -124,7 +124,7 @@ mixed get_troop_position(int p_id)
 string get_troop_name(int p_id)
 {
 	string p_nation,p_nationname;
-	string p_ret;	
+	string p_ret;
 	p_nation=troops[p_id]["nation"];
 	p_nationname=COUNTRY_D->get_country(p_nation,"name");
 	if(!p_nationname)
@@ -141,7 +141,7 @@ int get_troop_canbeseen(int t_id)
         string *trs;
 	string p_m;
 	string p_area;
-	
+
 
 	p_area=troops[t_id]["area"];
 	p_side=troops[t_id]["side"];
@@ -152,7 +152,7 @@ int get_troop_canbeseen(int t_id)
 		trs=MAP_D->get_map_cell(p_area,y,x,"t");
                 if(sizeof(trs))
 		{	if(troops[trs[0]]["side"]!=p_side &&
-				!TROOP_D->get_troops(t_id,"qibing") && 
+				!TROOP_D->get_troops(t_id,"qibing") &&
 				!TROOP_D->get_troops(t_id,"maifu"))
 				return 1;
                         if(TROOP_D->get_troops(t_id,"appear"))
@@ -227,7 +227,7 @@ mixed get_troops(int p_id,string p_name)
 			return get_troop_attack_kills(p_id);
                 case "area":
  			return get_troop_area(p_id);
-	}	
+	}
         if(!troops[p_id][p_name])
                 return 0;
         return troops[p_id][p_name];
@@ -254,7 +254,7 @@ void create()
     if(sizeof(troops)) {
         int *ts;
         ts=keys(troops);
-        foreach(int p in ts) 
+        foreach(int p in ts)
 		recover_troop( p);
     }
     return;
@@ -370,7 +370,7 @@ void remove_troop(int p_id)
 				if(p_s[t]["number"]) {
 					p_num=p_s[t]["number"];
 					p_oldsoldier=AREA_D->get_area(s_area,"soldier");
-// adding 
+// adding
 		if( t == "commando" )
 			AREA_D->set_area(s_area,"population",
 				AREA_D->get_area(s_area,"population")+p_num);
@@ -407,7 +407,7 @@ void remove_troop(int p_id)
 
 
 					switch(t) {
-					case "infantry": 
+					case "infantry":
 						AREA_D->set_area(s_area,"soldier",
 							AREA_D->get_area(s_area,"soldier")+p_num);
 						break;
@@ -417,8 +417,8 @@ void remove_troop(int p_id)
 						AREA_D->set_area(s_area,"horse",
 							AREA_D->get_area(s_area,"horse")+p_num);
 						break;
-						
-					case "bowman"  : 
+
+					case "bowman"  :
 						AREA_D->set_area(s_area,"soldier",
 							AREA_D->get_area(s_area,"soldier")+p_num);
 						AREA_D->set_area(s_area,"bow",
@@ -432,7 +432,7 @@ void remove_troop(int p_id)
 */
 				}
 			}
-		
+
 		}
 	}
 	map_delete(troops,p_id);
@@ -446,7 +446,7 @@ void clear_all()
 	for(i=0;i<sum;++i)
 	{
 		remove_troop(keys[i]);
-	}	
+	}
 }
 mixed check_troop(string para_name,mixed para_value)
 {
@@ -492,9 +492,9 @@ mixed add_soldier(int p_id,
 				AREA_D->set_area(s_area, "soldier",oldsol);
 		}
 	}
-/*		switch(p_type) 
+/*		switch(p_type)
         {
-		case "infantry": 
+		case "infantry":
 			AREA_D->set_area(s_area,"soldier",
 				AREA_D->get_area(s_area,"soldier")-p_num);
 			break;
@@ -504,8 +504,8 @@ mixed add_soldier(int p_id,
 			AREA_D->set_area(s_area,"horse",
 				AREA_D->get_area(s_area,"horse")-p_num);
 			break;
-			
-        case "bowman"  : 
+
+        case "bowman"  :
 			AREA_D->set_area(s_area,"soldier",
 				AREA_D->get_area(s_area,"soldier")-p_num);
 			AREA_D->set_area(s_area,"bow",
@@ -549,7 +549,7 @@ int illegal_troop(int t_id)
 	int task_id,*t;
     	object o,env;
 
-	if(!troops[t_id]) return 1; 
+	if(!troops[t_id]) return 1;
 	p_side=troops[t_id]["side"];
 	if((p_side!="a")&&(p_side!="d")) return 1;
 	task_id=troops[t_id]["task_id"];
@@ -617,14 +617,14 @@ private void recover_energy(int p_id)
 void recover_troop(int p_id) {
    string p_room;
    p_room=troops[p_id]["room"];
-   put_troop(p_id,p_room);   
+   put_troop(p_id,p_room);
 
 }
-void remove() {
+varargs void remove(string euid) {
 	save_mark=20;
 	save_data();
 }
-int clean_up() {
+int clean_up(int inherited) {
    return 0; // means never_again
 }
 void add_morale(mixed p_id, int va) {

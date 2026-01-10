@@ -22,7 +22,7 @@ void init() {
     add_action("do_get", "get");
     add_action("do_drop", "drop");
 }
-int do_get() {
+int do_get(string arg) {
     write(query("name", this_player()) + "！！那麼多手多腳做什麼！！\n");
     return 1;
 }

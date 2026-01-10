@@ -13,7 +13,7 @@ void init() {
     add_action("do_dingwei", "dingwei");
 }
 
-int do_dingwei() {
+int do_dingwei(string arg) {
     int stepe, stepw, steps, stepn;
     object me, where;
     string msg;

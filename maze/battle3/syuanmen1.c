@@ -1,5 +1,5 @@
 // Copyright (C) 2003, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 
 #include <ansi.h>
@@ -17,18 +17,18 @@ void create()
 LONG );
         set("defence",120);
         set("no_magic", "1");
-        set("exits", ([ /* sizeof() == 5 */   
+        set("exits", ([ /* sizeof() == 5 */
                "south" : __DIR__"sying",
                "east"  : __DIR__"conglin4",
                "west"  : __DIR__"sying6",
                "up"    : __DIR__"sying5",
-        ]));    
+        ]));
 
         create_door("up", "鐵門", "down", DOOR_CLOSED);
         create_door("west", "石門", "east", DOOR_CLOSED);
         setup();
 }
-              
+
 void init()
 {
         object me = this_player();
@@ -66,18 +66,18 @@ int do_repair()
         }
 }
 
-int do_break()
+int do_break(string arg)
 {
         object room = this_object(), me = this_player();
 
-        if (me->is_busy())        
+        if (me->is_busy())
                 return notify_fail("你正忙著呢！\n");
 
         if( query("defence", room)<1 )
         {
                 set("defence", 0, room);
                 write("轅門的的防禦已經被擊破了，快衝進去啊！\n");
-                return 1; 
+                return 1;
         } else
         {
                 message_vision(
@@ -87,4 +87,3 @@ int do_break()
                 return 1;
         }
 }
-

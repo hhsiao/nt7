@@ -117,7 +117,7 @@ int do_answer(string arg) {
     return 1;
 }
 
-int do_enjoy() {
+int do_enjoy(string arg) {
     object me;
     string msg, me_msg;
     int jin, e_jin, m_jin, bonus;

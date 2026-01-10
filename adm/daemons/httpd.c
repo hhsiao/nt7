@@ -47,7 +47,7 @@ int query_accesses()
 }
 
 protected void create()
-{ 
+{
     seteuid( ROOT_UID );
     accesses = 0;
     set_persistent(1);
@@ -90,9 +90,10 @@ varargs string query_hostname(int fd, int t)
     return 0;
 }
 
-protected void clean_up()
+protected int clean_up(int inherited)
 {
-} 
+    return 1;
+}
 
 protected void setup()
 {
@@ -359,7 +360,7 @@ protected void close_connection(int fd)
 
 // respond to a client request for a file.
 //
-    
+
 protected void do_get(int fd, string file, string line0)
 {
     string dir;

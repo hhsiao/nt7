@@ -26,7 +26,7 @@ void create() {
     setup();
 }
 
-int do_bawan() {
+int do_bawan(string arg) {
     object me = this_player();
 
     if(!present(this_object(), me))

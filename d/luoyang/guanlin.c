@@ -37,7 +37,7 @@ void init() {
     add_action("do_ketou", "kneel");
 }
 
-int do_ketou() {
+int do_ketou(string arg) {
     object *inv, pai, me = this_player();
     //      string partynm;
     int i, j/*, mylvl, oblvl*/;

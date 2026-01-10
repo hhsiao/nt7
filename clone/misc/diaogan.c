@@ -28,7 +28,7 @@ void create() {
     setup();
 }
 
-int do_fish() {
+int do_fish(string arg) {
     object yr;
     object me = this_player();
 
@@ -181,7 +181,7 @@ int do_draw(string arg) {
     return 1;
 }
 
-int move(mixed dest, int raw) {
+varargs int move(mixed dest, int raw) {
     object me;
 
     if (me = query_temp("owner"))

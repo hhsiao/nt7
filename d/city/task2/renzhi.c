@@ -464,9 +464,9 @@ void do_check1() {
     if(query("qi", ob)<10 )
     {
         message_vision(HIR"$N一聲慘叫，轟地一聲倒在地上。\n"NOR, ob);
-        ob -> receive_damage("qi", 100);
-        ob -> receive_wound("qi", 100);
-        ob -> die();
+        ob->receive_damage("qi", 100);
+        ob->receive_wound("qi", 100);
+        ob->die();
     }
     else
     {

@@ -9,7 +9,7 @@ inherit F_NOCLONE;
 inherit F_OBSAVE;
 
 int is_cruise_ob() { return 1; }
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 int store_item(object me, object ob, int amount);
 
 class store {

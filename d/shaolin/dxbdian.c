@@ -29,7 +29,7 @@ void init() {
     add_action("do_ketou", "ketou");
 }
 
-int do_ketou() {
+int do_ketou(string arg) {
     object me, ob;
 
     me = this_player();

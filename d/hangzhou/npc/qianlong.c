@@ -24,7 +24,7 @@ void init() {
     add_action("do_kneel", "kneel");
 }
 
-int do_kneel() {
+int do_kneel(string arg) {
     int i;
     object *chen, me = this_player();
 

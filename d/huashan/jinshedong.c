@@ -73,7 +73,7 @@ void init() {
     add_action("do_wa", "wa");
 }
 
-int do_wa() {
+int do_wa(string arg) {
     object me = this_player();
     object ob;
 

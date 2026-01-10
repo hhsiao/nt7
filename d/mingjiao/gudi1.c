@@ -16,7 +16,7 @@ LONG );
 void init() {
     add_action("do_climb", "climb");
 }
-int do_climb() {
+int do_climb(string arg) {
     int n = this_player()->query_skill("dodge", 1);
     message_vision("$N深吸了一口氣，慢慢沿著雪壁向上爬。\n", this_player());
     if(n >40)

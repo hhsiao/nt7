@@ -5,7 +5,7 @@
 inherit ROOM;
 
 int do_sit(string arg);
-int do_stand();
+int do_stand(string arg);
 void delete_served(object me);
 
 void create() {
@@ -77,7 +77,7 @@ int do_sit(string arg) {
     return 1;
 }
 
-int do_stand() {
+int do_stand(string arg) {
     object me = this_player();
 
     if(!query_temp("marks/sit", me) )

@@ -389,20 +389,20 @@ void heart_beat_p() {
     call_out("heart_beat_p", 1);
 }
 
-int receive_damage(string type, int n) {
+varargs int receive_damage(string type, int n, object who) {
     int lv = query("levelp");
     if (query("jinchan_msgtime")<time()){
         set("jinchan_msgtime", time());
         message_combatd(HIY "$N" HIY "背上的六對金色翅膀一扇，堅若磐石。\n" NOR, this_object());
-        return ::receive_damage(type, 0);
+        return ::receive_damage(type, 0, who);
     }
-    if (lv >= 99 && random(2)) return ::receive_damage(type, 0);
+    if (lv >= 99 && random(2)) return ::receive_damage(type, 0, who);
     n /= 1<<query("ab/reduce_damage-bdjcg");
-    return ::receive_damage(type, n / (10<<lv / 7));    //1e≈19
+    return ::receive_damage(type, n / (10<<lv / 7), who);    //1e≈19
 }
 
-int receive_wound(string type, int n) {
-    return;
+varargs int receive_wound(string type, int n, object who) {
+    return 0;
 }
 
 varargs void die(object killer)

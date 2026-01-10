@@ -1,7 +1,7 @@
 /* *********************網路即時通訊系統***********************
-*  
+*
 *                                                  By Whatup *
-*                                               
+*
 * 離線
 :whatup_!whatup@mail2000.com.tw QUIT :Leaving...
 上線
@@ -44,7 +44,7 @@ void create()
 
 #ifdef DEBUG
         TELL(sprintf("[%s]啟始完成。", TIME_D->replace_ctime(time()) ));
-#endif 
+#endif
 
         call_out((:send_ping:),PING_TIME);
 }
@@ -58,7 +58,7 @@ void send_ping()
         call_out((:send_ping:),PING_TIME);
 }
 
-void remove()
+varargs void remove(string euid)
 {
         foreach(int fd,mapping m in users)
         {
@@ -74,7 +74,7 @@ void reset()
         foreach(int fd,mapping m in users)
         {
                 if(!m["obj"]) {
-                        close_socket(fd);                       
+                        close_socket(fd);
                         map_delete(users,fd);
                 }
         }
@@ -110,14 +110,14 @@ void login_irc(object user)
 #ifdef DEBUG
                 TELL(sprintf("[%s] %s 成功\啟動 Socket ,開始準備登入 irc.fd = %d",
                         TIME_D->replace_ctime(time()) ,id,fd));
-#endif 
+#endif
         }
         else
         {
 #ifdef DEBUG
                 TELL(sprintf("[%s]啟動 Socket 失敗,無法送連結網路主機.",
                         TIME_D->replace_ctime(time()) ));
-#endif 
+#endif
                 return ;
         }
         call_out((:process_identify:),3,user,crypt(id,id)[0..10]);
@@ -127,7 +127,7 @@ void login_irc(object user)
 protected int process_identify(object me,string pass)
 {
         int fd=query_temp("im_fd", me);
-        if( fd < -1 ) 
+        if( fd < -1 )
         {
                 tell_object(me,"[IM Message]:連線失敗，請稍後再試！\n");
                 return 1;
@@ -153,7 +153,7 @@ protected void read_callback(int fd,mixed message)
         if(regexp(message ,"PING :PinglBee") ) //PING :PinglBee
         {
                 socket_write(fd,"PONG\r\n");
-        } 
+        }
 
         if( !mapp(users[fd]) ) return;
 
@@ -184,8 +184,8 @@ protected void read_callback(int fd,mixed message)
                 {
                         string name,mail,msg,id;
                         //:whatup_!whatup@mail2000.com.tw PRIVMSG #bitlbee :whatup: test
-                        foreach(string m in explode(message,"\r\n")) 
-                        { 
+                        foreach(string m in explode(message,"\r\n"))
+                        {
                                 if(sscanf(m,":%s!%s PRIVMSG #bitlbee :%s",name,mail,msg) == 3 )
                                 {
                                         //:root!root@localhost.localdomain PRIVMSG #bitlbee :The user whatup.tw@gmail.com (□蝻-舀踵) wants to add you to his/her buddy list. Do you want to allow this?
@@ -198,7 +198,7 @@ protected void read_callback(int fd,mixed message)
                                                 tell_object(users[fd]["obj"],sprintf(HIW HBBLU"%s 用即時訊息傳給你 : %s\n"NOR,
                                                         users[fd]["list"][name][4]+"("+users[fd]["list"][name][0]
                                                         +"@"+users[fd]["list"][name][1]+")\n["+name+"]",msg));
-                                        else 
+                                        else
                                                 switch(msg)
                                         {
                                         case "The nick is (probably) not registered":
@@ -263,11 +263,11 @@ protected void read_callback(int fd,mixed message)
                                         send_who(fd,id);
                                         continue;
                                 }
-                                if(sscanf(m,":%*s 352 %*s %*s %*s %*s %*s %*s %*s :%*d %*s") == 10) 
+                                if(sscanf(m,":%*s 352 %*s %*s %*s %*s %*s %*s %*s :%*d %*s") == 10)
                                 {
                                         process_who(fd,m);
-                                } else 
-                                if(sscanf(m,":%*s 352 %*s #bitlbee %*s %*s %*s %*s %*s :%*d %*s") == 9) 
+                                } else
+                                if(sscanf(m,":%*s 352 %*s #bitlbee %*s %*s %*s %*s %*s :%*d %*s") == 9)
                                 {
                                         process_who(fd,m);
                                 }
@@ -276,7 +276,7 @@ protected void read_callback(int fd,mixed message)
                         }
                 }
         }
-        users[fd]["steps"]++;   
+        users[fd]["steps"]++;
 }
 
 #ifdef DEBUG
@@ -324,7 +324,7 @@ protected void close_socket(int fd)
 void send_command(int fd,mixed message)
 {
         socket_write(fd,message+"\r\n");
-#ifdef DEBUG    
+#ifdef DEBUG
         TELL(sprintf("[%s] %d,%s",
                 TIME_D->replace_ctime(time()),fd,message ));
 #endif
@@ -341,12 +341,12 @@ void process_who(int fd,string str)
         string id,ip,status,nick,name;
         //:rw.twku.net 352 whatup #bitlbee whatup 218-184-22-55.cm.dynamic.apol.com.tw rw.twku.net whatup H :0 小ｘ兒
         if(sscanf(str,":%*s 352 %*s #bitlbee %s %s %*s %s %s :%*d %s",
-                id,ip,name,status,nick) == 9) 
+                id,ip,name,status,nick) == 9)
                 users[fd]["list"][name] = ({ id,ip,name,status,nick});
         //:rw.twku.net 352 whatup whatup_ whatup mail2000.com.tw rw.twku.net whatup_ H :0 魚缸-有誰要 gmail 帳號，我有一堆-.
         //:%*s 352 %*s %*s %s %s %*s %s %s :%*d %*s
         if(sscanf(str,":%*s 352 %*s %*s %s %s %*s %s %s :%*d %s",
-                id,ip,name,status,nick) == 10) 
+                id,ip,name,status,nick) == 10)
                 users[fd]["list"][name] = ({ id,ip,name,status,nick});
 }
 
@@ -368,7 +368,7 @@ int process_send_msg(object me,string who,string msg)
         return 1;
 }
 
-int del_account(int fd,string protocol) 
+int del_account(int fd,string protocol)
 {
         // 要先離線，才能刪掉
         socket_write(fd,"PRIVMSG #bitlbee :account off "+protocol+"\r\n");

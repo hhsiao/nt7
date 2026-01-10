@@ -49,7 +49,7 @@ class team
 nosave class team *all = ({});
 nosave class team team1, team2;
 
-int clean_up() {
+int clean_up(int inherited) {
     return 1;
 }
 
@@ -964,7 +964,7 @@ void restore_status(object me) {
         me->apply_condition(ks[i], cnd[ks[i]]);
 }
 
-int remove() {
+varargs void remove(mixed euid) {
     if(sizeof(battle_player) )
     {
         object player;

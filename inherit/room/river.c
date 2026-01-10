@@ -107,7 +107,7 @@ void arrival(object me, object boat, object arrive) {
         destruct(boat);
 }
 
-int do_cross() {
+int do_cross(string arg) {
     object me, arrive;
     string msg;
     string to;

@@ -1174,7 +1174,7 @@ void ban_say_until(int ban_period, string msg) {
     ban_say_msg = msg;
 }
 
-int ban_say(int raw) {
+varargs int ban_say(int raw) {
     int t;
 
     if(wizardp(this_object()) )

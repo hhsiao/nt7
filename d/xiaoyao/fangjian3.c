@@ -47,7 +47,7 @@ int do_kneel(string arg) {
     return 1;
 }
 
-int do_ketou() {
+int do_ketou(string arg) {
     object me, ob;
 
     me = this_player();

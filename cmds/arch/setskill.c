@@ -38,7 +38,7 @@ int main(object me, string arg) {
      * return notify_fail("不能用此命令將巫師的功夫刪除。\n");
      */
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("call"))
         {

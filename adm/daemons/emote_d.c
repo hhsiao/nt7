@@ -245,9 +245,9 @@ void save()
         save_object(DATA);
 }
 
-int remove()
+varargs void remove(mixed euid)
 {
-        return save_object(DATA);
+        save_object(DATA);
 }
 
 string query_name()

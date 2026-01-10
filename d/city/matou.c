@@ -57,7 +57,7 @@ void init() {
     add_action("do_go", "qu");
 }
 
-int do_work() {
+int do_work(string arg) {
     object me = this_player();
     //      if ( query("worktimes") < 0)
     //              return notify_fail("碼頭上現在不需要人幹活，下次吧！\n");

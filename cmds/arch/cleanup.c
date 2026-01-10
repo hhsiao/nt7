@@ -14,7 +14,7 @@ int main(object me, string str) {
     str = resolve_path(query("cwd", me), str);
     ob_list = children(str);
     old_size = sizeof(ob_list);
-    ob_list->clean_up();
+    ob_list->clean_up(0);
     for (i = 0; i < sizeof(ob_list); i++)
         if (ob_list[i] && clonep(ob_list[i]) && ! environment(ob_list[i]))
         destruct(ob_list[i]);

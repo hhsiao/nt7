@@ -268,10 +268,10 @@ int accept_ansuan(object who) {
     return notify_fail("你剛想暗算，可是眼前一花，看不太清楚。\n");
 }
 
-void receive_damage(string type, int n) {
-    return;
+varargs int receive_damage(string type, int n, object who) {
+    return 0;
 }
 
-void receive_wound(string type, int n) {
-    return;
+varargs int receive_wound(string type, int n, object who) {
+    return 0;
 }

@@ -36,7 +36,7 @@ void init() {
     // add_action("do_expiate", "expiate");
 }
 
-int clean_up() {
+int clean_up(int inherited) {
     return 0;
 }
 

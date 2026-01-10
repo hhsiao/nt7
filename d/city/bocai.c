@@ -29,7 +29,7 @@ void init() {
     add_action("do_getnum", "getnum");
 }
 
-int do_getnum() {
+int do_getnum(string arg) {
     object me = this_player();
     int i, n;
     string num = "機選號碼：";

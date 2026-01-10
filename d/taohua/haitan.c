@@ -82,7 +82,7 @@ int do_put(string arg) {
 
 }
 
-int do_pozhen() {
+int do_pozhen(string arg) {
     object me;
 
     me = this_player();

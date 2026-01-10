@@ -949,7 +949,7 @@ protected string converts(string arg, int max_len, int no_color)
         return arg;
 }
 
-int do_finish()
+int do_finish(string arg)
 {
         object me;
         object ob;

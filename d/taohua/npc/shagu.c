@@ -80,7 +80,7 @@ string ask_rudao() {
 }
 
 
-int do_agree() {
+int do_agree(string arg) {
     int i, k;
 
     write(CYN"\n傻姑拍著手高興的跳起來，大叫道：開打啦！開打啦！\n"NOR);

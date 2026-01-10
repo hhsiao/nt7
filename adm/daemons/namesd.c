@@ -20,9 +20,9 @@ nomask int query_sur_size(){ return sur_size; }
 nomask int query_f_size(){ return f_size; }
 nomask int query_m_size(){ return m_size; }
 
-void create() 
-{ 
-        seteuid( getuid() ); 
+void create()
+{
+        seteuid( getuid() );
         key_sur = keys(sur_name);
         key_fname = keys(f_name);
         key_mname = keys(m_name);
@@ -32,37 +32,37 @@ void create()
 }
 
 nomask string *query_s_name(string str)
-{       
+{
         if( str )
                 return sur_name[str];
 
-        return key_sur; 
+        return key_sur;
 }
 nomask string *query_m_name(string str)
-{       
+{
         if( str )
                 return m_name[str];
 
-        return key_mname; 
+        return key_mname;
 }
 nomask string *query_f_name(string str)
-{       
+{
         if( str )
                 return f_name[str];
 
-        return key_fname; 
+        return key_fname;
 }
 
-void remove()
+varargs void remove(string euid)
 {
 }
 
 protected nomask string *selete_namestring(string key, int sex)
-{ 
+{
         if( sex )
-                return f_name[key]; 
+                return f_name[key];
         return m_name[key];
-} 
+}
 
 /*
 傳回一個mapping：
@@ -70,7 +70,7 @@ protected nomask string *selete_namestring(string key, int sex)
         name 為中文姓名，id 為拼音。
         如：
                 ([ name : "高圓圓", id : ({ "gao yuanyuan", "gao", "yuanyuan" }) ])
-        
+
 可以指定的包括：
  gender = 性別, 1 = female, 0 = male.
  long_name = 名子的數目。long_name = -1， 只有一個名字，long_name = 0，隨即1-2個名字，long_name > 0，兩個名字。
@@ -85,21 +85,21 @@ protected nomask string *selete_namestring(string key, int sex)
         random_name(0, -1, 0, 0, 0) -> 隨機男性姓名，名一個字。
         random_name(1, 1, 0, 0, 0) -> 隨機女性姓名，名兩個字。
         random_name(0, -1, 0, 0, 0) -> 隨機女性姓名，名一個字。
-        
+
         random_name(0, 0, "李", 0, 0) -> 男姓，姓為李，名為隨機一個或兩個字。
         random_name(0, 0, 0, "強", 0) -> 男姓，姓隨機，名為隨機一個或兩個字，但最後一個字為強。
         random_name(0, 1, "李", "強", 0) -> 男姓，姓李，名為兩個字，最後一個字為強，中間隨機。
         random_name(0, 1, "李", 0, "強") -> 男姓，姓李，名為兩個字，中間一個字為強，最後隨機。
-        
+
         random_name(0, 0, 0, 0, "強") -> 男姓，姓隨機，名隨機，但如果是兩個字，中間一個字為強。
 */
 varargs nomask mapping random_name(int gender, int long_name, string name_a, string name_b, string name_c)
-{       
+{
         string str, str2, key, *names, vor, nach;
         int i;
 
         // write("name_a = " + name_a + ", name_b = " + name_b + ", name_c = " + name_c + "\n");
-        
+
         // 給出了姓。
         if( name_a ){
                 if( member_array(name_a, key_sur) != -1 ){
@@ -112,12 +112,12 @@ varargs nomask mapping random_name(int gender, int long_name, string name_a, str
                 str = key_sur[i];
                 vor = sur_name[str];
         }
-        
+
         // 表格裡沒有這個字。
         if( !str || !vor )
                 return 0;
-        
-        
+
+
         // 給出了中間名字(有long_name)，或名字(無long_name)。
         if( name_b ){
                 if( gender ){
@@ -141,8 +141,8 @@ varargs nomask mapping random_name(int gender, int long_name, string name_a, str
                         }
                 }
         }
-        
-        else {  
+
+        else {
                 if( gender ){
                         i = random(f_size);
                         key = key_fname[i];
@@ -151,16 +151,16 @@ varargs nomask mapping random_name(int gender, int long_name, string name_a, str
                         i = random(m_size);
                         key = key_mname[i];
                 }
-        
+
                 names = selete_namestring(key, gender);
                 str2 = names[random(sizeof(names))];
                 nach = key;
         }
-        
+
         // 表格裡沒有這個字。
         if( !str2 || !nach )
                 return 0;
-                
+
         // long_name = -1， 只有一個名字，long_name = 0，隨即1-2個名字，long_name > 0，兩個名字。
         if( ((!random(3) && !long_name) || long_name > 0) && long_name >= 0 ){
                 if( name_c ){
@@ -200,7 +200,7 @@ varargs nomask mapping random_name(int gender, int long_name, string name_a, str
                 }
         }
 
-        return ([ "name": str + str2,  "id": ({ vor + " " + nach, vor, nach }) ]); 
+        return ([ "name": str + str2,  "id": ({ vor + " " + nach, vor, nach }) ]);
 }
 
 mapping man_name()

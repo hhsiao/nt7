@@ -26,7 +26,7 @@ void init() {
     add_action("do_zhengli", "zhengli");
 }
 
-int do_zhengli() {
+int do_zhengli(string arg) {
     object ob, me = this_player();
     addn("qi", -5, me);
     if ((query("book_count") > 0) && (random(5) == 3))

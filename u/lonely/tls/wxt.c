@@ -2,7 +2,7 @@
 // 1997.2.13
 
 #include <ansi.h>
-#include <room.h> 
+#include <room.h>
 inherit ROOM;
 string tree(object);
 void create()
@@ -32,20 +32,20 @@ LONG);
 
 
 string tree(object me)
-{   
+{
     if((int)me->query_skill("kurong-changong", 1) < 40)
         return  "這是一棵老樹。\n";
     if((int)me->query_skill("kurong-changong", 1) >= 40)
-        return  "這是一棵老樹,你仔細看了看，這樹長的甚是奇怪，一半邊樹都枯了，可另半邊的樹幹還長出了綠葉。\n"; 
+        return  "這是一棵老樹,你仔細看了看，這樹長的甚是奇怪，一半邊樹都枯了，可另半邊的樹幹還長出了綠葉。\n";
 }
 
 void init()
 {
-	add_action("do_jingzuo","jingzuo");	
-        add_action("do_jingzuo","靜坐");	
+	add_action("do_jingzuo","jingzuo");
+        add_action("do_jingzuo","靜坐");
 }
 
-int do_jingzuo()
+int do_jingzuo(string arg)
 {
 	object me = this_player();
        if ( (int)me->query_skill("kurong-changong", 1) < 40 )
@@ -56,14 +56,14 @@ int do_jingzuo()
                return notify_fail("你現在的內功不對。\n");
        if ( (int)me->query_skill("buddhism", 1) < 120 )
                return notify_fail("你看了半天，可是你佛學造詣太淺，沒有什麼體會。\n");
-       if ( (int)me->query("jing")<30) 
+       if ( (int)me->query("jing")<30)
         { write("你太累了，還是歇會再研讀吧！\n");
         return 1;
          }
-   
+
 	message_vision("$N看著這棵半枯半榮的老樹，你暗印佛法，心中若有所思。\n", me);
        	me->receive_damage("jing", 30);
-              me->receive_damage("jingli", 10); 
+              me->receive_damage("jingli", 10);
 		me->improve_skill("kurong-changong", (int)me->query("int"));
 	return 1;
 }

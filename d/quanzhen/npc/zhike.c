@@ -5,7 +5,7 @@ inherit NPC;
 
 string ask_me();
 //string ask_for_join();
-//int do_kneel();
+//int do_kneel(string arg);
 
 void create() {
     set_name("知客道長", ({"zhike daozhang", "zhike"}));

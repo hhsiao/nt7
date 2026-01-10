@@ -70,7 +70,7 @@ string *faint_msg = ({
     HIM"$n覺得全身飄飄欲仙，臉上露出迷惘而滿足的神情，情不自禁的手舞足蹈起來......\n"
 });
 
-int do_play() {
+int do_play(string arg) {
     int i, count;
     object me, ob, weapon;
     string msg, play_type, *shape;

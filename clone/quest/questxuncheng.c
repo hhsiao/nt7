@@ -145,7 +145,7 @@ int do_hit(string arg) {
 
 }
 
-int do_halt() {
+int do_halt(string arg) {
     object me = this_player();
     object ob = this_object();
 

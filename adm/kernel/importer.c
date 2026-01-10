@@ -331,7 +331,7 @@ int do_merge(string arg) {
     return 1;
 }
 
-int do_batch() {
+int do_batch(string arg) {
     int i;
     string *user_list;
     string user;

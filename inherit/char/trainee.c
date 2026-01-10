@@ -182,7 +182,7 @@ int do_yao(string victim) {
     return 1;
 }
 
-int do_ting() {
+int do_ting(string arg) {
     object me = this_object(), ob = this_player();
 
     if(me->query_lord()==ob && !me->query("rider"))

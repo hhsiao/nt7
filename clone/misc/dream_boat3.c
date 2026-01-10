@@ -119,7 +119,7 @@ int do_enter (string arg ) {
     return 1;
 }
 
-int do_out() {
+int do_out(string arg) {
     object me = this_player();
 
     if (environment(me) != this_object())return 0;

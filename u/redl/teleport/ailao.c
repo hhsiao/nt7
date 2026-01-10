@@ -4,7 +4,7 @@
 #include <room.h>
 inherit __DIR__"normal.c";
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 void create() {
     set("short", "哀牢山");

@@ -64,7 +64,7 @@ void die() {
     revive();
 }
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     object money, ob, weapon, armor, armor2;
     int amount;
 
@@ -161,7 +161,7 @@ int receive_damage(string type, int damage, object who) {
             if (objectp(ob))
             {
                 ob->move(who, 1);
-                tell_object(who, HIR "你從" + name() + HIG "身上獲得了一" +                                         					ob->query("base_unit") + ob->name() + "。\n" NOR);
+                tell_object(who, HIR "你從" + name() + HIG "身上獲得了一" + ob->query("base_unit") + ob->name() + "。\n" NOR);
             }
         }
         if (random(80000) == 1 && random(5) == 1)

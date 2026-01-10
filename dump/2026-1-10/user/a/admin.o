@@ -1,0 +1,10 @@
+#/clone/user/user.c
+killer ({})
+want_kills ({})
+dbase (["last_read_news":971000000,"per":28,"newbie":1,"env":(["wimpy":60,"no_more":"YES","show_way":1,]),"krok":(["count":0,"award":1766941699,]),"shen":0,"character":"光明磊落","msg":(["size":100,"time":1766939862,"emotion":1,"say":1,"tell":1,"chat":1,"rumor":1,]),"last_on":1767713938,"level":1,"shen_type":0,"on_time":675,"max_jingli":1200,"con":20,"newbie_quest_completed":(["can_out":1,]),"eff_qi":1092,"unit":"位","on_birthday":0,"max_qi":1092,"registered":0,"int":20,"can_speak":1,"race":"人類","name":"管理員","dex":20,"jingli":1200,"eff_jing":638,"potential":2116,"sec_id":"$6$m.duYRiKFtZH1HIq$JEWurGkFYpqjziDzYD6eZCIfxVZTWpFX//fGmHHjxzbaHYYfjwvdgB9MMB/4jPepPRcAgxmYsHkRc/KwajYEe0","limbs":({"頭部","頸部","胸口","後心","左肩","右肩","左臂","右臂","左手","右手","兩肋","左臉","腰間","小腹","左腿","右腿","右臉","左腳","右腳","左耳","右耳",}),"purename":"理員","jing":638,"surname":"管","combat_exp":1941,"max_jing":638,"redlworkroom":(["prison":(["atlogin":4,]),]),"drug_addneili":1000,"neili":6400,"max_neili":3200,"online_time":1000935,"qi":1092,"born_family":"沒有","eff_jingli":1200,"special_skill":(["self":1,"youth":1,]),"str":20,"score":122,"board_last_read":(["wiz_b":1364130355,]),"title":"普通百姓","kar":28,"analecta_last_read":(["2025":1766939862,]),"startroom":"/d/register/regroom","water":0,"monfee":1775579858,"born":"古村","gift_xinshoucun":1,"mud_age":911946,"food":0,"channels":2087263,"id":"admin","default_actions":,"gender":"男性","last_save":1768023633,"attitude":"peaceful","chann":(["tch":1,"sos":1,"auc":1,]),"cwf":"/adm/kernel/master/valid_database.c","birthday":1766939858,"NO_PK":1,"age":12,"newbie_mygift":(["cur_quest_number":"2","help":1,]),"active":2,])
+mail_log ({})
+skills (["force":164,"sword":164,"dodge":164,"parry":164,"blade":164,"unarmed":164,])
+learned (["force":16211,"sword":16211,"dodge":16211,"parry":16211,"blade":16211,"unarmed":16211,])
+autoload ({"/clone/goods/zhufu_cloth**1",})
+all ({})
+ban_say_msg ""

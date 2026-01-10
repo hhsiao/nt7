@@ -2,7 +2,7 @@
 #include <ansi.h>
 #include <localtime.h>
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 void create() {
     seteuid(ROOT_UID);

@@ -10,7 +10,7 @@ void flydown(object);
 int do_jump(string);
 int do_climb(string);
 int do_push(string);
-int do_fill();
+int do_fill(string arg);
 void maintaining(object, int);
 int trap_power(object);
 
@@ -262,7 +262,7 @@ int do_push(string arg) {
     return notify_fail("陷阱太深了，看來得另想辦法。\n");
 }
 
-int do_fill() {
+int do_fill(string arg) {
     object me, roomtrap, roomto, roomfrom, *inv;
     int depth, power_me, i;
 

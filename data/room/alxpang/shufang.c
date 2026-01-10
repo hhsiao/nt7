@@ -11,7 +11,7 @@ void create()
 	set ("long", @LONG
 這裡是海景房的主人風四郎讀書寫字的地方，乾淨明亮。文房四
 寶整整齊齊的擺在桌子上面。有時風四郎也在這裡簽發(sign)一些邀
-請客人的請柬。 
+請客人的請柬。
 LONG );
 
         set("exits", ([
@@ -33,7 +33,7 @@ void init()
         add_action("do_sign", "sign");
 }
 
-int do_sign()
+int do_sign(string arg)
 {
         object ob;
         object me;

@@ -45,7 +45,7 @@ void init() {
     add_action("do_look", "look");
 }
 
-int do_no() {
+int do_no(string arg) {
     object me;
     me = this_player();
     if (wizardp(me)) return 0;

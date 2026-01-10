@@ -24,7 +24,8 @@ LONG);
 void init() {
     add_action("do_go", "go");
 }
-int do_go() {
+
+int do_go(string arg) {
     if(random(40)<(query("kar", this_player())) )
     {
         this_player()->move(__DIR__"tree1");

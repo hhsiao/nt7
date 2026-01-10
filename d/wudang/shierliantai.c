@@ -23,7 +23,7 @@ void init() {
     add_action("do_find", "find");
 }
 
-int do_find() {
+int do_find(string arg) {
     object obj;
     object me = this_player();
 

@@ -1,7 +1,7 @@
 // clean_up.c
 // by Annihilator@ES2
 
-int clean_up() {
+int clean_up(int inherited) {
     object *inv;
     int i;
 

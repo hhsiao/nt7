@@ -236,7 +236,7 @@ int do_goumai(string arg) {
     return 1;
 }
 
-int do_return() {
+int do_return(string arg) {
     object me = this_player(), *ob;
     string id;
     int i;

@@ -12,19 +12,19 @@ LONG
 );
         set("defence",120);
         set("no_fly", "1");
-        set("exits", ([ /* sizeof() == 5 */   
+        set("exits", ([ /* sizeof() == 5 */
                "south" :   __DIR__"gate",
                "north"  : __DIR__"shibi",
-        ]));    
+        ]));
 
         set("objects", ([
 
         ]));
-    
+
         setup();
 }
 
-              
+
 /*
 void init()
 {
@@ -57,18 +57,18 @@ int do_repair()
       }
 }
 
-int do_break()
+int do_break(string arg)
 {
       object room=this_object(),me=this_player();
 
-      if( me->is_busy() )        
+      if( me->is_busy() )
       return notify_fail("你正忙著呢！\n");
 
       if( room->query("defence") < 1 )
       {
-       room->set("defence",0); 
+       room->set("defence",0);
        write("山側的的防禦已經被擊破了，快衝進去啊！\n");
-       return 1; 
+       return 1;
       }
       else
       {
@@ -79,4 +79,3 @@ int do_break()
        return 1;
       }
 }
-

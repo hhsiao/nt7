@@ -5,7 +5,7 @@
 #include <ansi.h>
 inherit ROOM;
 
-int do_check();
+int do_check(string arg);
 int f_set_jingtie(string);
 int f_set_didao(string);
 string word_string();
@@ -48,7 +48,7 @@ void init() {
     add_action("f_set_didao", "set_didao");
 }
 
-int do_check() {
+int do_check(string arg) {
     write("現有"+query("jingtie") + "塊精鐵\n");
     return 1;
 }

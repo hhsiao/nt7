@@ -84,7 +84,7 @@ void init() {
     return;
 }
 
-int clean_up() {
+int clean_up(int inherited) {
     if (time() - query("born_time") > MAZE_LIFT_CYCLE)
     {
         destruct_me();

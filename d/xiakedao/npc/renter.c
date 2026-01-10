@@ -331,7 +331,7 @@ void create_all_helper() {
     set_temp("helpers", obs);
 }
 
-void remove() {
+varargs void remove(string euid) {
     object *obs;
     object ob;
 

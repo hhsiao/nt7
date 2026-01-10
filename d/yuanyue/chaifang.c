@@ -27,7 +27,7 @@ LONG );
 void init() {
     add_action ("do_dight", "dight");
 }
-int do_dight() {
+int do_dight(string arg) {
     object mh, bo;
     int eff_qi;
     /*

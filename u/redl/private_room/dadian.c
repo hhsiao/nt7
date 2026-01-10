@@ -3,21 +3,21 @@
 
 inherit PRIVATE_ROOM;
 
-int clean_up() { return 1;} 
+int clean_up(int inherited) { return 1;}
 
 void create()
 {
-              set("short", "化樂天大殿"); 
-              set ("long", 
+              set("short", "化樂天大殿");
+              set ("long",
           "這裡是男主人紅蓮老祖和女主人芝芝品茶和接待朋友的地方("CYN"sit"NOR")。\n"
-      "側面是兩扇屏風，正中有些桌椅，上方懸掛一匾上書：\n" 
+      "側面是兩扇屏風，正中有些桌椅，上方懸掛一匾上書：\n"
           "    " BBLU CYN "╔───────╤───────╗\n" NOR
           "    " BBLU CYN "┃" NOR BBLU HIC "把盞銜杯意氣深，兄兄弟弟抑何親" NOR BBLU CYN "┃\n" NOR
           "    " BBLU CYN "┃" NOR BBLU HIC "一朝平地風波起，此際相交才見心" NOR BBLU CYN "┃\n" NOR
           "    " BBLU CYN "╚───────╧───────╝\n" NOR
 
 
-        ); 
+        );
 
 
         set("exits", ([
@@ -26,12 +26,12 @@ void create()
                 "south"  : __DIR__"dating",
         ]));
 
-        set("objects", ([ 
-                                "/u/redl/npc/queen" : 1, 
-                                "/u/redl/obj/table" : 1,  
-        ])); 
+        set("objects", ([
+                                "/u/redl/npc/queen" : 1,
+                                "/u/redl/obj/table" : 1,
+        ]));
 
-                set("no_fight", 1); 
+                set("no_fight", 1);
                 set("no_rideto", 1);
                 set("no_flyto", 1);
         set("no_sleep_room", 1);
@@ -59,17 +59,17 @@ int do_sit(string arg)
         int tea = 50000;
 
         me = this_player();
-        
+
         if (!query_temp("can_enterredlroom", me) && query("id", me) != "redl" && query("couple/couple_id", me) != "redl") return notify_fail("傀儡將軍對著你嘿嘿嘿奸笑了幾聲。\n");
-        
+
         if ( me->is_busy() ) {
                         tell_object(me, "你還是忙完手頭上的事情再說吧。\n");
                         return 1;
                 }
         me->start_busy(2);
-        
+
         sex = query("gender", me);
-        
+
         if( query_temp("has_sit", me) )
         {
                 switch(random(7)) {
@@ -97,7 +97,7 @@ int do_sit(string arg)
             return 1;
         }
 
-         me->set_short_desc("正在品茶。"); 
+         me->set_short_desc("正在品茶。");
                                 message_vision(CYN "$N尋了一把空椅子，輕輕坐了下來。\n" NOR, me);
                                 set_temp("has_sit", 1, me);
         return 1;
@@ -106,15 +106,13 @@ int do_sit(string arg)
 int valid_leave(object me, string dir)
 {
                 string sex = query("gender", me);
-                
+
         if( query_temp("has_sit", me) )
         {
-         me->set_short_desc(0); 
+         me->set_short_desc(0);
                         message_vision(CYN + ((sex=="男性")? "$N整了整衣衫，離開椅子站了起來。\n" : "$N抖了抖裙子，離開椅子站了起來。\n") + NOR, me);
                         delete_temp("has_sit", me);
         }
 
         return ::valid_leave(me, dir);
 }
-
-

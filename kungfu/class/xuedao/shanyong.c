@@ -10,7 +10,7 @@ inherit F_GUARDER;
 #include "xuedao.h"
 
 string ask_for_join();
-int do_kneel();
+int do_kneel(string arg);
 
 void create() {
     set_name("善勇", ({ "shan yong", "shan", "yong" }));
@@ -133,7 +133,7 @@ string ask_for_join() {
     return "阿彌陀佛！善哉！善哉！施主若真心皈依我佛，請跪下(kneel)受戒。\n";
 }
 
-int do_kneel() {
+int do_kneel(string arg) {
     object me = this_player();
 
     if(!query_temp("pending/join_bonze", me) )

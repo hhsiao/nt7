@@ -42,10 +42,10 @@ protected void out(string str)
         log_file("timed", str);
 }
 
-int clean_up()
+int clean_up(int inherited)
 {
-        CHANNEL_D->channel_broadcast("news", 
-                HIR + "MudOS CLEAN UP ALL NO ENVIRONMENT OBJECTS…\n" + NOR);   
+        CHANNEL_D->channel_broadcast("news",
+                HIR + "MudOS CLEAN UP ALL NO ENVIRONMENT OBJECTS…\n" + NOR);
         return 1;
 }
 void auto_relaim()
@@ -63,13 +63,13 @@ void auto_relaim()
         cpu_cost = CPU_D->get_current_cpu_cost();
 
         // cpu過高則降低mudos心跳
-     
+
         if( cpu_cost >= 95 && (int)get_config(__RC_HEARTBEAT_INTERVAL_MSEC__) == 1000 )
         {
                 set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 2000);
                 log_file("heartbeat", sprintf("System changed mudOS heartbeat to 2 at %s\n", TIME_D->replace_ctime(time())));
-        } 
-        else 
+        }
+        else
         if( cpu_cost <= 65 && (int)get_config(__RC_HEARTBEAT_INTERVAL_MSEC__) > 1000 )
         {
                 set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 1000);
@@ -406,7 +406,7 @@ void process_crontab(int *timearray, int flag)
 void process_per_second()
 {
 
-        
+
 }
 
 int reset_gametime(int time)
@@ -435,9 +435,9 @@ void process_realtime()
                 to_int(local_time[LT_MDAY])-1,
                 to_int(local_time[LT_MON]),
                 to_int(local_time[LT_YEAR]) });
-        
+
         process_per_second();
-        
+
         if( !local_time[LT_SEC] )
                 process_crontab(real_time, 0);
 }
@@ -471,7 +471,7 @@ void create()
         //write("時間精靈已經啟動。\n");
 
         init_crontab();
-        
+
         realtime = time();
         game_time = allocate(6);
         real_time = allocate(6);
@@ -486,24 +486,24 @@ void create()
 // 分配船隻
 void alloate_boat(int which)
 {
-        object ob_boat/*, ob_old_boat*/; 
+        object ob_boat/*, ob_old_boat*/;
         string *key_boats, *key_para;
         int i, n;
         object ob_place;
         object *obs;
-        
+
         mapping boats = ([
                 // 源地點 中文名 目的地點 中文名 默認等船時間 默認行使時間
                 "boat1" : ({ "/d/tulong/tulong/haian", "東海之濱海港", "/d/shenlong/haitan", "神龍島", 600, 600 }),
                 "boat2" : ({ "/d/beijing/haigang", "東海之濱海港", "/d/shenlong/japangames/japan0", "日本島", 600, 600 }),
                 "boat3" : ({ "/d/xiakedao/haibin", "南海之濱", "/d/penglai/haitan", "蓬萊仙島", 900, 900 }),
         ]);
-        
+
         key_boats = keys(boats);
 
         // 刪除掉當前環境中的BOAT
         for( i = 1; i <= sizeof(key_boats); i ++ )
-        {               
+        {
                 if( i == 1 )
                 {
                         if( sizeof(obs = children(BOAT_FILE)) )
@@ -511,18 +511,18 @@ void alloate_boat(int which)
                                         destruct(obs[n]);
                         continue;
                 }
-                
+
                 if( sizeof(obs = children(BOAT_FILE + sprintf("%d", i))) )
                         for( n = 0; n < sizeof(obs); n++ )
                                 destruct(obs[n]);
         }
-        
-        
+
+
         for( i = 0 ; i < sizeof(key_boats); i ++ )
         {
                 key_para = ({});
                 key_para = boats[key_boats[i]];
-                /*              
+                /*
                 if (i > 0)
                 {
                         ob_old_boat = find_object(BOAT_FILE + sprintf("%d", i + 1));
@@ -548,8 +548,8 @@ void alloate_boat(int which)
                 if (! ob_place)ob_place = load_object(key_para[0]);
                 ob_boat->move(ob_place);
         }
-        CHANNEL_D->channel_broadcast("news",  
-                HIG + "開往蓬萊仙島的巨型帆船出現在南海之濱…\n" + NOR); 
+        CHANNEL_D->channel_broadcast("news",
+                HIG + "開往蓬萊仙島的巨型帆船出現在南海之濱…\n" + NOR);
 }
 
 int give_money(int count)
@@ -559,29 +559,29 @@ int give_money(int count)
         string ip;
         string *ks;
 
-        CHANNEL_D->channel_broadcast("news",  
-                HIG + "系統開始給每個玩家饋贈NT，本次饋贈數量為"+count+"NT…\n" + NOR); 
+        CHANNEL_D->channel_broadcast("news",
+                HIG + "系統開始給每個玩家饋贈NT，本次饋贈數量為"+count+"NT…\n" + NOR);
 
         count = to_int(count);
         ips = ([ ]);
         //foreach( pob in all_interactive() )
         foreach( pob in users() )
         {
-                if( wizardp(pob) || !query("born", pob) ||  
-                !environment(pob) ) continue; 
+                if( wizardp(pob) || !query("born", pob) ||
+                !environment(pob) ) continue;
 
                 ip = query_ip_number(pob);
-                if( undefinedp(ips[ip]) ) ips[ip] = ({ pob }); else ips[ip] += ({ pob }); 
+                if( undefinedp(ips[ip]) ) ips[ip] = ({ pob }); else ips[ip] += ({ pob });
         }
 
-        if( sizeof(ips) >= 1 ) 
+        if( sizeof(ips) >= 1 )
         {
-                ks = keys(ips); 
-                foreach( ip in ks ) 
+                ks = keys(ips);
+                foreach( ip in ks )
                 {
-                        pob = ips[ip][random(sizeof(ips[ip]))]; 
+                        pob = ips[ip][random(sizeof(ips[ip]))];
                         if( MEMBER_D->is_member(pob) )
-                                MEMBER_D->db_pay_member(pob, count);  
+                                MEMBER_D->db_pay_member(pob, count);
                         else
                                 MEMBER_D->db_create_member(pob, count);
                 }
@@ -594,16 +594,16 @@ int pay_tutor_money(int count)
 {
         object *obs, pob;
 
-        CHANNEL_D->channel_broadcast("news",  
-                HIG + "系統開始給新手導師發放週薪，本次發放薪水為"+count+"NT…\n" + NOR); 
+        CHANNEL_D->channel_broadcast("news",
+                HIG + "系統開始給新手導師發放週薪，本次發放薪水為"+count+"NT…\n" + NOR);
 
         count = to_int(count);
-        
+
         obs = filter_array(users(), (: query("viremploy/job", $1) :));
-        foreach( pob in obs ) 
+        foreach( pob in obs )
         {
                 if( MEMBER_D->is_member(pob) )
-                        MEMBER_D->db_pay_member(pob, count);  
+                        MEMBER_D->db_pay_member(pob, count);
                 else
                         MEMBER_D->db_create_member(pob, count);
         }

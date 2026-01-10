@@ -21,7 +21,7 @@ void init() {
     add_action("do_pull", "clear");
 }
 
-int do_pull() {
+int do_pull(string arg) {
     object ob, me = this_player();
 
     if (me->is_busy())

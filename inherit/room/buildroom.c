@@ -53,7 +53,7 @@ void setup() {
     return 0;
 }
 
-void remove() {
+varargs void remove(string euid) {
     save();
 }
 
@@ -149,7 +149,7 @@ int destroy_room(string room_id) {
     object ob;
 
     ob = previous_object();
-    if (ob && getuid(ob) != ROOT_UID)
+    if (ob && getuid(ob) != ROOT_UID  && ! is_root(ob))
         return 0;
 
     delete("private_room/" + room_id);

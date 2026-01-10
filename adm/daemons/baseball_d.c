@@ -2206,7 +2206,7 @@ void set_listener(string listener_id, string target_team) {
     }
 }
 
-int remove() {
+varargs void remove(mixed euid) {
     return save();
 }
 

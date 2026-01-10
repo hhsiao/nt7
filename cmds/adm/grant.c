@@ -17,7 +17,7 @@ int main(object me, string arg) {
     if (! is_root(me) && ! SECURITY_D->valid_grant(me, "(admin)"))
         return notify_fail("只有管理員才能使用授權命令。\n");
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("grant"))
         {
@@ -108,7 +108,7 @@ int main(object me, string arg) {
     {
         if (opt_del)
         {
-            if (! me->is_admin())
+            if ((string)SECURITY_D->get_status(me) != "(boss)")
                 message_system(me->name(1) + "收回了 " + user +
                     " 使用 " + opts[i] + " 的權限。\n");
             write("清除了 " + user + " 使用 " + opts[i] +
@@ -119,7 +119,7 @@ int main(object me, string arg) {
                     " 的權限。\n");
         } else
         {
-            if (! me->is_admin())
+            if ((string)SECURITY_D->get_status(me) != "(boss)")
                 message_system(me->name(1) + "授予 " + user +
                     " 使用 " + opts[i] + " 的權限。\n");
             write("授予了 " + user + " 使用 " + opts[i] +

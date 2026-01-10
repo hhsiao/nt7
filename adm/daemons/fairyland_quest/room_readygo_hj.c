@@ -86,7 +86,7 @@ void hjset_long()
                         __   +
                      */____\\
                       \\    /  .
-                    +  \\  /  
+                    +  \\  /
                       . \\/  *
 
 
@@ -124,7 +124,7 @@ void init()
     add_action("do_nocmds", ({ "scheme", "drop", "put", "set", "unset", }) );
 }
 
-int do_nocmds()
+int do_nocmds(string arg)
 {
     write("這裡禁止使用這個指令。\n");
     return 1;
@@ -141,8 +141,8 @@ void get_out_here(object me)
 
 void reset()
 {
-    ::reset(); 
-    set("no_clean_up", 1); 
+    ::reset();
+    set("no_clean_up", 1);
 }
 
 string look_shuijing()
@@ -182,7 +182,7 @@ void sing_song(int i)
 
 int do_xuanze(string arg)
 {
-    object *all_mine,old_obj,qx_deng,me=this_player();
+    object *all_mine,qx_deng,me=this_player();
     int i,temp;
     mapping xuanze_arg;
 
@@ -263,9 +263,9 @@ int do_xuanze(string arg)
 
 // ############## 資訊更新 ###############
 
-    if( query("id", me) != id1 && 
-        query("id", me) != id2 && 
-        query("id", me) != id3 && 
+    if( query("id", me) != id1 &&
+        query("id", me) != id2 &&
+        query("id", me) != id3 &&
         query("id", me) != id4 )
     {
         pler1=pler2;

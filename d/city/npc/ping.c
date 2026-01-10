@@ -12,8 +12,8 @@ int ask_me();
 int ask_riyue();
 int do_join(string arg);
 int do_unjoin(string arg);
-int do_identify();
-int do_decide();
+int do_identify(string arg);
+int do_decide(string arg);
 
 void create() {
     set_name("平一指", ({ "ping yizhi", "ping", "yizhi" }));
@@ -382,7 +382,7 @@ int do_unjoin(string arg) {
     return 1;
 }
 
-int do_decide() {
+int do_decide(string arg) {
     object ob, me;
     int level;
     string *pro;

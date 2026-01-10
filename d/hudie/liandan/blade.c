@@ -23,7 +23,7 @@ void init() {
         add_action("do_search", "search");
 }
 
-int do_search() {
+int do_search(string arg) {
     object me = this_player();
     object ob = this_object();
     object weapon;

@@ -7,9 +7,6 @@ int main(object me, string arg) {
     int flag;
 
     if (! SECURITY_D->valid_grant(me, "(admin)"))
-        return 0;
-
-    if(!me->is_admin() )
         return notify_fail("你不能使用該命令。\n");
 
     if (! arg) return help(me);

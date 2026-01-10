@@ -17,7 +17,7 @@ long);
 	set("exits",([
 		"east" : __DIR__"duguangtai",
 	]));
-	
+
 	setup();
 }
 
@@ -28,7 +28,7 @@ void init()
 	add_action("do_look", "look");
 }
 
-int do_look()
+int do_look(string arg)
 {
 	object me = this_player();
 	mixed *local;
@@ -70,30 +70,30 @@ int do_jump(string arg)
 	object me = this_player();
 
 	mixed *local = localtime(time() * 60);
-	
+
 	if (me->is_busy() || me->is_fighting())
 	{
 		return notify_fail("你正忙著哪！\n");
 	}
-	
+
 	if(arg != "cliff")
 	{
 		return notify_fail("你要往哪裡跳？\n");
 	}
-	
-	if (me->query("quest/jiuyin2/fail") >= 3 
+
+	if (me->query("quest/jiuyin2/fail") >= 3
 		&& me->query("registered") < 3)
 	{
 		return notify_fail("你再也不敢拿生命開玩笑了。\n");
 	}
-	
-	if ( me->query("quest/jiuyin2/fail") 
-                >= (int)((me->query("combat_exp") - 1000000)/100000) 
+
+	if ( me->query("quest/jiuyin2/fail")
+                >= (int)((me->query("combat_exp") - 1000000)/100000)
 		|| (time() - me->query("quest/jiuyin2/time")) < 86400)
 	{
 		return notify_fail("你猶豫了半天，想想還是算了吧。\n");
 	}
-	
+
 	{
 		object *ob = deep_inventory(me);
 		int i = sizeof(ob);
@@ -120,7 +120,7 @@ int do_jump(string arg)
 			{
 				call_out("do_wait", 2, me);
 			}
-			else 
+			else
 			{
 				call_out("do_wait1", 2, me);
 			}
@@ -152,7 +152,7 @@ void do_wait1(object me)
 	ob = all_inventory(environment(me));
 	tell_object(me, HIR"你只覺得耳邊呼呼風聲作響，身體飛快的象下綴去....\n"NOR);
         me->move(__DIR__"shuitan");
-	me->set("water", 666); 
+	me->set("water", 666);
 	me->add("quest/jiuyin2/fail",1);
 	me->set("quest/jiuyin2/time", time());
 	log_file("quest/jiuyin",sprintf("%-18s從捨身崖往下跳失敗，娥眉九陰部分失敗%s次。\n",

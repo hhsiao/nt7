@@ -24,7 +24,7 @@ LONG );
 void init() {
     add_action("do_xidi", "xidi");
 }
-int do_xidi() {
+int do_xidi(string arg) {
     object fish, me = this_player();
     if ((this_player()->query_dex()<25) || query("fish_count")<=0)
     {

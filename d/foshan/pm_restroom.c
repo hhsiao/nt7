@@ -55,7 +55,7 @@ int valid_leave(object me, string dir) {
     return ::valid_leave(me);
 }
 
-int do_open() {
+int do_open(string arg) {
     object me = this_player();
 
     if (query("exits/south"))

@@ -170,7 +170,7 @@ int do_stand(string arg) {
     return 1;
 }
 
-int do_leave() {
+int do_leave(string arg) {
     object me;
 
     me = this_player();

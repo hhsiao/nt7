@@ -604,7 +604,7 @@ void init() {
     add_all_action();
 }
 
-int clean_up() {
+int clean_up(int inherited) {
     object *obs;
 
     // 聊天室裡面有玩家、聊天魂魄、LV10兵器則不析構

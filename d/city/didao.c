@@ -25,7 +25,7 @@ void init() {
     add_action("do_pull", "pull");
 }
 
-int do_pull() {
+int do_pull(string arg) {
     object ob, me = this_player();
     if (query("open_count") > 0)
     {

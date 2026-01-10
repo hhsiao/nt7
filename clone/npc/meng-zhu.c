@@ -342,7 +342,7 @@ int do_clone(object me, object ob) {
     return 1;
 }
 
-int do_recover() {
+int do_recover(string arg) {
     object me, ob;
     mapping skill_status, map_status, prepare_status;
     string *sname, *mname, *pname;

@@ -115,7 +115,7 @@ void init() {
     add_action("show_top", "top");
     add_action("ch", "ch");
 }
-int do_addin() {
+int do_addin(string arg) {
     object me = this_player();
     if(query("id", me) == P1Data["Id"]
         || query("id", me) == P2Data["Id"]

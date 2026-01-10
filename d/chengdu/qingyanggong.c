@@ -3,7 +3,7 @@ inherit ROOM;
 
 int do_open(string arg);
 int do_knock(string arg);
-int do_back();
+int do_back(string arg);
 
 void create() {
     set("short", "青羊宮");
@@ -60,7 +60,7 @@ void letter(object me) {
         "  ┗------------┛\n" NOR);
 }
 
-int do_back() {
+int do_back(string arg) {
     object me = this_player();
 
     if(query_temp("want_leave", me) )

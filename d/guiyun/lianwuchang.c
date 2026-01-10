@@ -4,7 +4,7 @@
 inherit ROOM;
 
 int do_jump(string arg);
-int do_squat();
+int do_squat(string arg);
 string look_zhuang();
 
 void create() {
@@ -115,7 +115,7 @@ int do_jump(string arg) {
     return notify_fail("你要往哪裡跳？\n");
 }
 
-int do_squat() {
+int do_squat(string arg) {
     object me = this_player();
     int level, qicost, exp;
 

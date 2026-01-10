@@ -5,19 +5,19 @@
  * Author : Cookys@RevivalWorld
  * Date   : 2001-01-22
  * Note   : 來和舊的 Intermud2 溝通的新版程式 , 改善原有 DNS_MASTER
- *	    有的 Bug , 大幅改寫, 預計將以 intersys.c 整合之( I2, I3, 
+ *	    有的 Bug , 大幅改寫, 預計將以 intersys.c 整合之( I2, I3,
  *          new protocol ).
  * Update :
  *  o 2001-01-22 Cookys 糟糕 , 好像不會有 DNS_FAKE 出現了噎 :Q
  *  o 2001-01-22 Cookys 自動加入達成條件的 mud 及刪除三天沒回應的mud
  *  o 2001-01-24 Cookys 降低進入 mudlist 標準, 並完成 mudlist a/q ,
  *			現在一慮不接受 mudlist 以外的任何 service
- *			request.(ping 除外) 
+ *			request.(ping 除外)
  *  o 2001-01-24 Cookys gwizmsg , warning , startup 完成
  *  o 2001-01-28 Cookys affirmation gtell support locate 完成
  *  o 2001-02-03 Cookys 解決 incoming_mudlist 造成無限迴圈送ping問題
  *  o 2001-07-25 Cookys 增加訊息進入站內後的過濾[使用 ansi package]
- * 
+ *
  * 注意   : 為避免對自己 mud 無限送 ping 的情形，請在 OS 系統中的 /etc/hosts 做正確設定。
  *
  -----------------------------------------
@@ -218,7 +218,7 @@ void send_all_shutdown()
 string start_message()
 {
         return sprintf( "||MUDNAME:%s||NAME:%s||VERSION:%s||DRIVER:%s||MUDLIB:%s"
-                "||HOST:%s||PORT:%d||PORTUDP:%d||TIME:%s||ENCODING:%s||USERS:%d||TCP:%s", 
+                "||HOST:%s||PORT:%d||PORTUDP:%d||TIME:%s||ENCODING:%s||USERS:%d||TCP:%s",
                 CHINESE_MUD_NAME,Mud_name(),MUDLIB_VERSION, __VERSION__, MUDLIB_NAME,
                 query_host_name(),mud_port(), my_port, ctime(time()), MUDLIB_ENCODING,
                 sizeof(users()), TCP_SERVICE_LEVEL);
@@ -226,7 +226,7 @@ string start_message()
 */
 
 nosave mapping this_host = ([
-        "NAME":         INTERMUD_MUD_NAME,      
+        "NAME":         INTERMUD_MUD_NAME,
         "MUDNAME":      CHINESE_MUD_NAME,
         "MUDGROUP":     MUD_GROUP,
         "HOST":         MUD_HOST_NAME,
@@ -285,12 +285,12 @@ void update_info()
                               "STATUS"          : ONLINE,
                               "TIME"            : ""+uptime(),
                               "USERS"           : ""+sizeof(users()), ]);
-                           
+
         mudlist[localhost+":"+udp_port] = data;
-                
+
         // 定時 MUDLIST_UPDATE_INTERVAL 秒更新一次資訊
         //call_out((: update_info :),MUDLIST_UPDATE_INTERVAL);
-        SCHEDULE_D->set_event(MUDLIST_UPDATE_INTERVAL, 1, this_object(), "update_info"); 
+        SCHEDULE_D->set_event(MUDLIST_UPDATE_INTERVAL, 1, this_object(), "update_info");
 }
 
 // 一開始從這被呼叫 , 這沒問題吧 :Q
@@ -310,11 +310,11 @@ void create()
                 udp_port++;
 
         NCH_CHANNEL("初始化完成 , 使用 UDP port: "+udp_port);
-                
+
         refresh_buffers();
         // 呼叫定時更新的函式
         refresh_ping_buffer();
-        
+
         // 送出 startup
         foreach(string mud,mapping info in mudlist)
         {
@@ -334,11 +334,11 @@ void create()
 }
 
 // destruct 的 simul_efun 會先 call 這個
-int remove()
+varargs void remove(string euid)
 {
         send_all_shutdown();
         socket_close(udp_socket);
-        return save();
+        save();
 }
 
 public void mud_shutdown()
@@ -427,11 +427,11 @@ void send_udp(string targ, mixed port, string service, mapping info)
         /*
         if( !undefinedp(mudlist[mudname]) && ( (mudlist[mudname]["STATUS"]& GB_CODE) || ( !undefinedp(mudlist[mudname]["ENCODING"]) && lower_case(mudlist[mudname]["ENCODING"])=="gb") ))
                 //if( (mudlist[mudname]["STATUS"]& GB_CODE) || ( !undefinedp(mudlist[mudname]["ENCODING"]) && lower_case(mudlist[mudname]["ENCODING"])=="gb") )
-                msg = (string)LANGUAGE_D->toGB(msg); 
+                msg = (string)LANGUAGE_D->toGB(msg);
         */
         if( !undefinedp(mudlist[mudname]) && ( /*!(mudlist[mudname]["STATUS"]& GB_CODE) ||*/ ( !undefinedp(mudlist[mudname]["ENCODING"]) && lower_case(mudlist[mudname]["ENCODING"])=="big5") ))
                 msg = (string)LANGUAGE_D->toBig5(msg);  // 轉換成big5碼發出信息
-                
+
         // 送出訊息.
         socket_write(socket, "@@@" + msg + "@@@", targ + " " + port);
         // debug msg
@@ -820,7 +820,7 @@ void receive_ping_request(mapping info)
 
         // UDP_PORT 格式錯誤
         if( undefinedp(info["PORTUDP"]) || !sscanf(info["PORTUDP"],"%d",port) ) return;
-        
+
         if( (info["HOSTADDRESS"]==my_address || info["HOSTADDRESS"]==localhost) && port == udp_port )
                 return;
         // 如果我們 mudlist 裡還沒有此 mud , 我們也要求他回 ping.
@@ -850,15 +850,13 @@ void receive_ping_request(mapping info)
 // 收到 PING 回應
 void receive_ping_answer(mapping info)
 {
-        int status;
-        
         string mudname=get_mud_name(info);
         // 有要求對方回 ping 嗎?
         if( !test_buffer(mudname,PING_B) )
         {
                 //if( !sscanf(info["PORTUDP"],"%*d") ) return;
                 NCH_CHANNEL("收到不明 Ping Answer From: "+info["HOSTADDRESS"]+":"+info["PORTUDP"]+" [ "+info["NAME"]+" ] ");
-                                
+
                 if(get_info_level(mudname)<1)
                         receive_ping_request(info); // 發送ping
 
@@ -1062,7 +1060,7 @@ void receive_gchannel_msg(mapping info)
 
         mudname = get_mud_name(info);
         status = fetch_data(get_mud_name(info))["STATUS"];
-        
+
         // 系統自動識別gb/big5碼站點
         if( !(status & ENCODE_CONFIRM) && strlen(msg) > 20 )
         {
@@ -1091,7 +1089,7 @@ void receive_gchannel_msg(mapping info)
         if( status & ANTI_AD ) info["CHANNEL"]="ad";
         if( info["CHANNEL"]!="ad" )
         compare_last_msg(mudname,info["MSG"],id);
-                               
+
         // 交付給 CHANNEL_D 處理
         // 作為其他非NTlib的mud，可直接用CHANNEL_D->do_channel(this_object(), info["CHANNEL"], msg, info["EMOTE"]);替換以下的內容
         //if( !(status & ANTI_AD) && accept_channel(info["CHANNEL"]) )
@@ -1174,7 +1172,7 @@ void receive_gwiz_msg(mapping info)
         //id = info["WIZNAME"] + "@" + info["NAME"];
         // 有無中文 name ?
         if( info["CNAME"] ) id = info["CNAME"] + "(" + id + ")";
-        
+
         // 是否為 Emote ?
         if( !undefinedp(info["EMOTE"]) )
                 set("channel_id", id);
@@ -1207,7 +1205,7 @@ void receive_gwiz_msg(mapping info)
                 // id = (string)LANGUAGE_D->toGB(id);
                 msg = (string)LANGUAGE_D->toGB(msg);
         }
-        
+
         // 作為其他非NTlib的mud，可直接用CHANNEL_D->do_channel(this_object(), info["CHANNEL"], msg, info["EMOTE"]);替換以下的內容
         if( status & ANTI_AD ) // 垃圾廣告站點
         {
@@ -1626,4 +1624,3 @@ string query_name()
 {
         return "INTERMUD2 系統(INTERMUD2_D)";
 }
-

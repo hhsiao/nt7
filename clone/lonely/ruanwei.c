@@ -23,7 +23,7 @@ void create() {
     setup();
 }
 
-mixed valid_damage(object ob, object me, int damage) {
+varargs mixed valid_damage(object ob, object me, int damage, object weapon) {
     if(!query_temp("weapon", ob )
         && !query_temp("secondary_weapon", ob )
         && !random(query("score", ob))<100000

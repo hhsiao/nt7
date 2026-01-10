@@ -46,7 +46,7 @@ void create() {
         set("dest_des", "");
 }
 
-int do_read() {
+int do_read(string arg) {
     object me = this_player();
 
     tell_object(me, HIG"你這次的任務是："+query("describe") + "。\n"NOR);

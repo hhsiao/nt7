@@ -4,7 +4,7 @@
 inherit ROOM;
 
 int is_chat_room() { return 1; }
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 void create() {
     set("short", "巫師休息室");
     set("long", @LONG

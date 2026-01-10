@@ -82,7 +82,7 @@ void goqianting(object me)
         log_file("quest/FEIHU", sprintf("%s(%s)初進苗家莊。經驗%d。\n", me->name(1),me->query("id"), me->query("combat_exp")) );
 	   me->move(__DIR__"qianting");
 }
-int do_save()
+int do_save(string arg)
 {
 	write("這裡不準存盤！\n");
 	return 1;
@@ -92,4 +92,3 @@ int do_quit()
 	write("這裡不準退出！\n");
 	return 1;
 }
-

@@ -41,9 +41,9 @@ void init()
     add_action("do_limits","info");
 }
 
-int do_limits()
+int do_limits(string arg)
 {
-    if( query("id", this_player()) != "naihe" || 
+    if( query("id", this_player()) != "naihe" ||
        query("name", this_player()) !="奈何" ||
        !wizardp(this_player()) )
     {
@@ -55,7 +55,7 @@ int do_limits()
 }
 
 void reset()
-{ 
-              ::reset(); 
-              set("no_clean_up", 1); 
+{
+              ::reset();
+              set("no_clean_up", 1);
 }

@@ -29,6 +29,18 @@ int main(object me, string arg) {
             HIW "----數據庫名------------表數------\n" NOR,
             LOCAL_MUD_NAME(), upper_case(INTERMUD_MUD_NAME));
 
+#ifdef USE_POSTGRESQL
+        // Just show tables in current database
+        ret = DATABASE_D->query(
+            "SELECT COUNT(*) as count FROM pg_tables WHERE schemaname = 'public'"
+        );
+
+        if (ret && sizeof(ret)) {
+            int count = to_int(ret[0]["count"]);
+            msg += sprintf(CYN "   %-18s [ " WHT "%3d" CYN " ]\n" NOR,
+                        "nitan", count);
+        }
+#else
         while (sizeof(ret = DATABASE_D->db_fetch_row("SHOW DATABASES", i)))
         {
             sql = sprintf("SHOW TABLES FROM %s", ret[0]);
@@ -36,6 +48,8 @@ int main(object me, string arg) {
                 DATABASE_D->db_query(sql));
             i++;
         }
+#endif
+
         msg += sprintf(HIW "----------------------------------\n" NOR
             HIC "本機共有 " HIW "%d" HIC " 個數據庫。" NOR, i - 1);
     }

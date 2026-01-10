@@ -33,7 +33,7 @@ void init() {
     add_action("do_push", "zuan");
 }
 
-int do_push(){
+int do_push(string arg){
 
     object room;
     object me = this_player();

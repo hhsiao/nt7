@@ -318,7 +318,7 @@ void die(object killer)
 	        return;
 }
 
-void remove()
+varargs void remove(string euid)
 {
 	if (GIFT_D->is_open_pld())MAP_D->update_boss(BOSS_FILE,UPDATE_PLACE,UPDATE_TIME);
 	return ::remove();

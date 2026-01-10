@@ -378,12 +378,12 @@ void new_life() {
     return;
 }
 
-int receive_wound(string type, int damage, object who) {
+varargs int receive_wound(string type, int damage, object who) {
     object landie;
 
     object me = this_object();
 
-    if (! who)return 0;
+    if (! who) return 0;
 
     // 藍蝶仙子在，不受任何傷害
     landie = query("mylandie", me);
@@ -397,13 +397,13 @@ int receive_wound(string type, int damage, object who) {
 
 }
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     object landie;
     int tzlv;
 
     object me = this_object();
 
-    if (! who)return 0;
+    if (! who) return 0;
 
     // 藍蝶仙子在，不受任何傷害
     landie = query("mylandie", me);
@@ -438,7 +438,7 @@ int receive_damage(string type, int damage, object who) {
         }
     }
 
-    if(!query("my_life", me))return ::receive_damage(type, damage, who);
+    if(!query("my_life", me)) return ::receive_damage(type, damage, who);
 
     if(query("qi", me)<query("max_qi", me) / 10 )
     {

@@ -558,7 +558,7 @@ int translate_position(string s, int *x_ptr, int *y_ptr) {
     else  return  0;
 }
 
-int do_undo() {
+int do_undo(string arg) {
     int *x_ptr = allocate(1);
     int *y_ptr = allocate(1);
     object me = this_player();

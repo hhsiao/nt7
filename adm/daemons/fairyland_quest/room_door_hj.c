@@ -719,7 +719,7 @@ int do_maipiao( )
     return 1;
 }
 
-int do_create_room_file()
+int do_create_room_file(string arg)
 {
     object me = this_player();
     int last_num;

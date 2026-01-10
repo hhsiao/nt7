@@ -53,10 +53,10 @@
 // valid_override: controls which simul_efuns may be overridden with
 // efun:: prefix and which may not.  This function is only called at
 // object compile-time
-int valid_override( string file, string name )
+int valid_override( string file, string name, string mainfile )
 {
         // simul_efun can override any simul_efun by Annihilator
-        if( file == SIMUL_EFUN_OB || file == MASTER_OB )
+        if( file == SIMUL_EFUN_OB || file == MASTER_OB  || mainfile == SIMUL_EFUN_OB || mainfile == MASTER_OB )
                 return 1;
 
         // Must use the move() defined in F_MOVE.

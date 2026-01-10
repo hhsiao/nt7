@@ -24,7 +24,7 @@ void init() {
     add_action("do_parry", "dang");
     add_action("do_parry", "parry");
 }
-int do_parry() {
+int do_parry(string arg) {
     object weapon, me = this_player();
     int skilllvl = me->query_skill("parry", 1);
     int exp = query("combat_exp", me);

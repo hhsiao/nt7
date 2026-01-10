@@ -48,7 +48,7 @@ int valid_leave(object me, string dir)
         return ::valid_leave(me, dir);
 }
 
-int do_quit()
+int do_quit(string arg)
 {
         write("這裡不能退出遊戲。\n");
         return 1;

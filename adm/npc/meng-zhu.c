@@ -87,8 +87,8 @@ void init()
                 return;
 
         if( base_name(environment()) != query("startroom", me))return ;
-        if( query("winner", me) == query("id", ob) && 
-            query("age", me) <= query("age", ob) && 
+        if( query("winner", me) == query("id", ob) &&
+            query("age", me) <= query("age", ob) &&
             time()-query("recover", me)>60){
                 set("eff_jing",query("max_jing",  ob), ob);
                 set("jing",query("max_jing",  ob), ob);
@@ -371,7 +371,7 @@ int do_clone(object me, object ob)
         return 1;
 }
 
-int do_recover()
+int do_recover(string arg)
 {
         object me, ob;
         mapping skill_status, map_status;
@@ -386,7 +386,7 @@ int do_recover()
         if( me->is_fighting() || ob->is_fighting() || query("fighting", me) )
                 return notify_fail("現在這裡正打的不亦樂乎！等會吧！\n");
 
-        if( query("winner", me) != query("id", ob) || query("age", me)>query("age", ob) || 
+        if( query("winner", me) != query("id", ob) || query("age", me)>query("age", ob) ||
              query("birthday", me) != query("birthday", ob) )
                 return notify_fail("你不是現任武林盟主！\n");
 

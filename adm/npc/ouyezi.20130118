@@ -274,13 +274,13 @@ int accept_object(object me, object ob)
         for( i = 0; i < sizeof(obj); i++ ) {
                 if( ob->query_name() == obj[i]->query_name() ) {
                         if( ob->query_name() == "黑水" ) {
-                                if( query_temp("upgrade/level", me) && 
+                                if( query_temp("upgrade/level", me) &&
                                     query("enchase/level", ob) != query_temp("upgrade/level", me)){
                                         message_vision("$N對$n說：" + ob->name() + "的等級和要求不符！\n",
                                                 this_object(), me);
                                         return 0;
                                 }
-                                if( query_temp("upgrade/type", me) && 
+                                if( query_temp("upgrade/type", me) &&
                                     query("enchase/type", ob) != query_temp("upgrade/type", me)){
                                         message_vision("$N對$n說：" + ob->name() + "的類型和要求不符！\n",
                                                 this_object(), me);
@@ -556,12 +556,12 @@ int accept_ansuan(object who)
         return notify_fail("你剛想暗算，可是眼前一花，看不太清楚。\n");
 }
 
-void receive_damage(string type, int n)
+varargs void receive_damage(string type, int n, object who)
 {
         return;
 }
 
-void receive_wound(string type, int n)
+varargs void receive_wound(string type, int n, object who)
 {
         return;
 }

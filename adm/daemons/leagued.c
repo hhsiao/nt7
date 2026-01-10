@@ -31,7 +31,7 @@ void create()
         if (! mapp(league_fame)) league_fame = ([ ]);
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

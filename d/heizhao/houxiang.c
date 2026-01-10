@@ -29,7 +29,7 @@ void init() {
     add_action("do_serve", "serve");
 }
 
-int do_serve() {
+int do_serve(string arg) {
     object food, water, me = this_player(), ob = this_object();
 
     if(query("family/family_name", me) != "大理段家" )

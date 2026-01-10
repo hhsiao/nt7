@@ -25,6 +25,6 @@ void init() {
     add_action("do_yell", "yell");
 }
 
-int do_yell() {
+int do_yell(string arg) {
     return notify_fail("喊什麼喊，那邊還沒做好呢！\n");
 }

@@ -31,7 +31,7 @@ void init() {
     add_action("do_work", "work");
 }
 
-int do_work() {
+int do_work(string arg) {
     object me = this_player();
     object ob;
 

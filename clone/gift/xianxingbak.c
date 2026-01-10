@@ -19,7 +19,7 @@ void init() {
     add_action("do_bomb", "bomb");
 }
 
-int do_bomb() {
+int do_bomb(string arg) {
     object me;
     object *ob;
     string msg;

@@ -87,7 +87,7 @@ void greeting(object ob) {
     }
 }
 
-int do_choose() {
+int do_choose(string arg) {
     object warcraft;
     string filename;
     object me = this_player();

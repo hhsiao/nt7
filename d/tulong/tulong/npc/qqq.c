@@ -104,7 +104,7 @@ int do_get(string arg) {
     }
     return 0;
 }
-int do_bi() {
+int do_bi(string arg) {
     object obj = this_object();
     message_vision(CYN "$N對$n大喝一聲：比什麼比，去死吧！\n" NOR,
         obj, this_player());

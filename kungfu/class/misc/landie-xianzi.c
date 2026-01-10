@@ -119,15 +119,16 @@ mixed hit_ob(object me, object ob, int damage_bouns) {
 }
 
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     // 只有指定目標才能對我造成傷害
-    if (! who)return 0;
+    if (! who) return 0;
 
     if (who != query("mytarget"))
     {
         message_vision(HIG "$N" HIG "看透了$n" HIG "的攻勢，竟絲毫無傷！\n" NOR, this_object(), who);
         return 0;
     }
+    return ::receive_damage(type, damage, who);
 }
 
 void heart_beat() {
@@ -162,7 +163,7 @@ void die(object killer) {
     return;
 }
 
-void remove() {
+varargs void remove(string euid) {
     object dob;
 
     dob = query("jianling");    // 獲取對應的劍靈OB

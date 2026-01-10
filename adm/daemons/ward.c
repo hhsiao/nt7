@@ -117,7 +117,7 @@ int zhen_power(string type1, string type2)
         return zhen2[type1][type2_i];
 }
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 /*
 void remove(string euid)

@@ -7,7 +7,7 @@ inherit F_CLEAN_UP;
 
 int main(object me, string arg) {
     mapping log;
-    string *ks;
+    string *ks, wizlevel;
     object *obs;
     string msg;
     int i;
@@ -80,8 +80,12 @@ int main(object me, string arg) {
     if (wiz_level(me) < wiz_level(arg))
         return notify_fail("你不能為自己權限高的人紀錄日誌。\n");
 
-    if (wizhood(arg) == "(admin)" && ! me->is_admin())
-        return notify_fail("你不能記錄天神的日誌。\n");
+    if ((string)SECURITY_D->get_status(me) != "(boss)") {
+        wizlevel = wizhood(arg);
+        if (wizlevel == "(admin)" || wizlevel == "(boss)") {
+            return notify_fail("你不能記錄這個天神的日誌。\n");
+        }
+    }
 
     if(EXAMINE_D->start_log_player(arg, query("id", me)) )
     {

@@ -95,7 +95,7 @@ int do_think(string msg) {
     return 1;
 }
 
-int do_mianbi() {
+int do_mianbi(string arg) {
     object ob;
     int c_skill;
 

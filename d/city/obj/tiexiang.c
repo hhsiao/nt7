@@ -18,7 +18,7 @@ void init() {
     add_action("do_open", "open");
 }
 
-int do_open() {
+int do_open(string arg) {
     object ob, me = this_player();
 
     if (query("open_count") > 0)

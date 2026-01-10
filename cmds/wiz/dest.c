@@ -33,7 +33,7 @@ int main(object me, string arg) {
 
     seteuid(getuid());
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("dest"))
         {

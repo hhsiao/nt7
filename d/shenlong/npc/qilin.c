@@ -304,11 +304,11 @@ void new_life() {
     return;
 }
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
 
     object me = this_object();
 
-    if(!query("my_life", me))return ::receive_damage(type, damage, who);
+    if(!query("my_life", me)) return ::receive_damage(type, damage, who);
 
     if(query("qi", me)<query("max_qi", me) / 10 )
     {
@@ -316,7 +316,7 @@ int receive_damage(string type, int damage, object who) {
         return 0;
     }
 
-    return ::receive_damage(type, damage, who);
+    return::receive_damage(type, damage, who);
 }
 
 void unconcious() {

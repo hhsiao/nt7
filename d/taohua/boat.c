@@ -4,12 +4,12 @@
 inherit ROOM;
 
 int do_turn(string);
-int do_save();
-int do_quit();
-int do_goto();
-int do_home();
-int do_gg();
-int do_tiaowang();
+int do_save(string arg);
+int do_quit(string arg);
+int do_goto(string arg);
+int do_home(string arg);
+int do_gg(string arg);
+int do_tiaowang(string arg);
 int ABS(int x);
 
 void create() {
@@ -76,7 +76,7 @@ void init() {
     call_out("weizhi", 3, ob);
 }
 
-int do_save() {
+int do_save(string arg) {
     write("這裡不準存盤！\n");
     return 1;
 }

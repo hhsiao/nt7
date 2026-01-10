@@ -94,7 +94,7 @@ private void do_bonus(object room) {
 }
 
 // 事件觸發
-void trigger_event() {
+void trigger_event(mixed para...) {
     object room;
     // 衡山水簾洞瀑布
     if (objectp(room = find_object("/d/henshan/shuiliandong")))

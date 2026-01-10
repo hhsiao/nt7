@@ -165,7 +165,6 @@ void reback_lonely_book() {
     return;
 }
 
-int remove() {
+varargs void remove(mixed euid) {
     save();
-    return 1;
 }

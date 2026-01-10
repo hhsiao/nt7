@@ -28,7 +28,7 @@ void init() {
     add_action("do_yao", "yao");
 }
 
-int do_yao() {
+int do_yao(string arg) {
     object me;
     object food;
     object water;

@@ -27,7 +27,7 @@ string *quest_msg2 = ({
 });
 
 int ask_juxianzhuang();
-int do_report();
+int do_report(string arg);
 
 void create()
 {
@@ -149,7 +149,7 @@ void quest_stage2(object ob, int stage)
         ob->set_temp("juxianzhuang_step", 4);
 }
 
-int do_report()
+int do_report(string arg)
 {
         object me, ob;
 

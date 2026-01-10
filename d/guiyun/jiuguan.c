@@ -6,13 +6,13 @@
 inherit ROOM;
 
 int do_sit(string arg);
-int do_stand();
+int do_stand(string arg);
 int do_order(string arg);
 int do_eat(string arg);
 int do_drink(string arg);
-int do_pay();
-int do_buy();
-int do_quit();
+int do_pay(string arg);
+int do_buy(string arg);
+int do_quit(string arg);
 string look_sign();
 string look_table();
 void quarter_pass();
@@ -547,7 +547,7 @@ int do_buy() {
     return 1;
 }
 
-int do_quit() {
+int do_quit(string arg) {
     if(query_temp("total_pay", this_player()) )
     {
         write("吃飽喝足了不付錢就想退出？！\n");

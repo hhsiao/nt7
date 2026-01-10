@@ -23,7 +23,7 @@ void init() {
     add_action("do_clap", "clap");
 }
 
-int do_clap() {
+int do_clap(string arg) {
     message_vision(HIC "\n池內忽然有蛙大鳴一聲，接著群蛙次第相"
         "合，最後又是一蛙大\n鳴，群蛙便嘎然而止，其"
         "數正好為八。\n", this_player());

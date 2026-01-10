@@ -47,27 +47,27 @@ void connect()
         int port;
         int socket_fd;
         int i;
-        
+
         if( sizeof(connectsort) ) return;
-        
+
         /*
          * 多線程同時獲取所有的mud信息
          */
-        
+
         cnt = keys(mudlist);
-        
+
         for( i=0;i<sizeof(cnt);i++ )
         {
                 connect_times = 0;
-                
+
                 ipport = cnt[i];
-                
+
                 map_delete(mudlist[ipport], "USERS");
                 mudlist[ipport]["LAST_CONNECT_CHECK_TIME"] = time();
                 mudlist[ipport]["CONNECT_FAILED_TIMES"]++;
-                
+
                 sscanf(ipport, "%s %d", address, port);
-                
+
                 if( sscanf(address, "%*d.%*d.%*d.%*d") != 4 )
                 {
                         if( undefinedp(resolvedaddress[address]) )
@@ -79,12 +79,12 @@ void connect()
                                 address = resolvedaddress[address];
                         }
                 }
-                
-                DEBUG((i+1)+". "+ipport+" 連線檢查");                
-                
+
+                DEBUG((i+1)+". "+ipport+" 連線檢查");
+
                 socket_fd = SOCKET_D->socket_open(address, port, STREAM,
                                 (: get_each_mud_rece :),(: get_each_mud_close :), (: get_each_mud_status :));
-                                
+
                 if( socket_fd >= 0 )
                 {
                         socket_obs += ([ socket_fd : ({ ipport, address, port }) ]);
@@ -96,14 +96,14 @@ void connect()
                         DEBUG((i+1)+". "+ipport+" 連線逾時"+connect_times+"次");
                         socket_fd = SOCKET_D->socket_open(address, port, STREAM,
                                         (: get_each_mud_rece :),(: get_each_mud_close :), (: get_each_mud_status :));
-                                        
+
                         if( socket_fd >= 0 )
                         {
                                 socket_obs += ([ socket_fd : ({ ipport, address, port }) ]);
                                 SOCKET_D->socket_send(socket_fd, "gb\n");
                         }
                         else
-                        {                              
+                        {
                                 DEBUG((i+1)+". "+ipport+" 連線逾時失敗");
                         }
                 }
@@ -121,12 +121,12 @@ void connect_check()
         }
 
         ipport = connectsort[0];
-        
+
         sscanf(ipport, "%s %*d", address);
         if( sscanf(address, "%*d.%*d.%*d.%*d") == 4 )
         {
-                DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名無需解析"); 
-                connectsort = connectsort[1..];  
+                DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名無需解析");
+                connectsort = connectsort[1..];
                 connect_check();
                 return;
         }
@@ -134,15 +134,15 @@ void connect_check()
         {
                 if( !undefinedp(resolvedaddress[address]) )
                 {
-                        DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名已經解析"); 
-                        connectsort = connectsort[1..];                        
+                        DEBUG(sizeof(connectsort)+". "+connectsort[0]+" 域名已經解析");
+                        connectsort = connectsort[1..];
                         connect_check();
                         return;
                 }
-                
+
                 DEBUG(sizeof(connectsort)+". "+address+" 進行名稱解析");
                 resolve(address, "resolve_callback");
-        }                    
+        }
 }
 
 void resolve_callback(string address, string resolved, int key)
@@ -173,7 +173,7 @@ void resolve_callback(string address, string resolved, int key)
                 DEBUG(sizeof(connectsort)+". "+ipport+" 域名解析成功");
                 sscanf(ipport, "%s %*d", addr);
                 resolvedaddress[addr] = resolved;
-                
+
                 resolve_times = 0;
                 connectsort = connectsort[1..];
                 connect_check();
@@ -212,21 +212,21 @@ void get_each_mud_close(int fd)
                 socket_close(fd);
                 return;
         }
-        
+
         ipport = socket_obs[fd][IPPORT];
         address = socket_obs[fd][ADDRESS];
         port = socket_obs[fd][PORT];
-        
+
         msg = mud_data[fd];
-        
+
         if( !sizeof(msg) )
         {
-                // 讀取不成功，再來一次      
+                // 讀取不成功，再來一次
                 if( member_array(ipport,connect_obs) == -1 )
                 {
                         socket_fd = SOCKET_D->socket_open(address, port, STREAM,
                                 (: get_each_mud_rece :),(: get_each_mud_close :), (: get_each_mud_status :));
-                                
+
                         if( socket_fd >= 0 )
                         {
                                 socket_obs += ([ socket_fd : ({ ipport, address, port }) ]);
@@ -240,10 +240,10 @@ void get_each_mud_close(int fd)
                 mudlist[ipport]["LAST_CONTACT_TIME"] = time();
 
                 map_delete(mudlist[ipport], "CONNECT_FAILED_TIMES");
-                
+
                 map_delete(mud_data, fd);
         }
-        
+
         if( sizeof(msg)>0 && sizeof(mudlist[ipport]["USERS_COUNT_PARSE"])>0 && !mudlist[ipport]["USERS"] )
         {
 
@@ -261,7 +261,7 @@ void get_each_mud_close(int fd)
         socket_close(fd);
         SOCKET_D->close_socket(fd);
         map_delete(socket_obs, fd);
-        
+
         // 所有的mud數據都讀取完畢
         if( sizeof(socket_obs) < 1 )
         {
@@ -423,11 +423,10 @@ mapping query_mudlist()
         return mudlist;
 }
 
-int remove()
+varargs void remove(string euid)
 {
         //socket_close(fd);
-
-        return save();
+        save();
 }
 
 void create()

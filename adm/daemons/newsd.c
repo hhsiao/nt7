@@ -53,7 +53,7 @@ void create()
 }
 
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

@@ -63,14 +63,14 @@ int accept_touxi(object ob)
         return accept_fight(ob);
 }
 
-void receive_damage(string type, int n, object from)
+varargs int receive_damage(string type, int n, object from)
 {
-        return;
+        return 0;
 }
 
-void receive_wound(string type, int n, object from)
+varargs int receive_wound(string type, int n, object from)
 {
-        return;
+        return 0;
 }
 
 void heart_beat()
@@ -98,7 +98,7 @@ void die(object killer)
         return;
 }
 
-int clean_up()
+int clean_up(int inherited)
 {
         if (query_shadow_now())
                 return 0;
@@ -152,7 +152,7 @@ void telnet_resolve_callback(string address, string resolved, int key)
                         message("telnet", "SOCKET 初始化錯誤。\n", sob);
                         break;
                 }
-        
+
                 ret = socket_connect(fd, fulladdr,
                                      "telnet_read_callback",
                                      "telnet_write_callback");
@@ -161,7 +161,7 @@ void telnet_resolve_callback(string address, string resolved, int key)
                         message("telnet", "網絡連接錯誤。\n", sob);
                         break;
                 }
-        
+
                 message("telnet", "正在連接" + address +
                                   "(" + fulladdr + ")...\n", sob);
                 return;
@@ -204,7 +204,7 @@ void telnet_close_callback(int fd)
         destruct(this_object());
 }
 
-void remove()
+varargs void remove(string euid)
 {
 }
 

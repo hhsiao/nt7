@@ -4,7 +4,7 @@
 inherit NPC;
 
 int ask_me();
-int do_qiecuo();
+int do_qiecuo(string arg);
 
 void create() {
     set_name("阿拉木罕", ({ "alamuhan", "ala", "muhan" }));

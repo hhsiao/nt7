@@ -24,9 +24,6 @@ int main(object me, string arg) {
     if (! SECURITY_D->valid_grant(me, "(admin)"))
         return 0;
 
-    if (! me->is_admin())
-        return 0;
-
     seteuid(getuid(me));
 
     if (! arg)

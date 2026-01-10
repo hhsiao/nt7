@@ -22,7 +22,7 @@ void init() {
     add_action("do_serve", "serve");
 }
 
-int do_serve() {
+int do_serve(string arg) {
     object ob, food, water;
     ob = this_player();
     food = new(__DIR__"obj/jiangnr");

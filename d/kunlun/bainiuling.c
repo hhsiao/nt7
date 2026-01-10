@@ -6,7 +6,7 @@
 inherit ROOM;
 
 int do_wo(string arg);
-int do_breathe();
+int do_breathe(string arg);
 void delete_done(object me);
 
 void create() {
@@ -49,7 +49,7 @@ int do_wo(string arg) {
     return notify_fail("你側身躺於青石上，意守丹田，口眼輕閉，雙腿自然微曲，全身放鬆。\n");
 }
 
-int do_breathe() {
+int do_breathe(string arg) {
     object me = this_player();
 
     if(!query_temp("marks/wo", me) )

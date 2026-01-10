@@ -80,7 +80,7 @@ int ask_me() {
     return 1;
 }
 
-int do_decide() {
+int do_decide(string arg) {
     object me;
     me = this_player ();
     if(query_temp("yinsusu", me) != 1 )

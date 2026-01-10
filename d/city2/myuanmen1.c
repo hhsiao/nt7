@@ -28,7 +28,7 @@ void init() {
         add_action("do_break", "break");
 }
 
-int do_break() {
+int do_break(string arg) {
     object room = this_object(), me = this_player();
 
     if (me->is_busy())

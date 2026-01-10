@@ -67,7 +67,7 @@ void die() {
     return;
 }
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     object ob, weapon, armor, armor2;
     string money;
 
@@ -124,13 +124,13 @@ int receive_damage(string type, int damage, object who) {
         "/clone/armor/biyu-chai"
     });
 
-    if (! objectp(who))return 1;
+    if (! objectp(who)) return 0;
 
     /*
      * // 轉世後無效
      * if( query("reborn/times", who) )
      * {
-     * return 1;
+     * return 0;
      * }
      */
 

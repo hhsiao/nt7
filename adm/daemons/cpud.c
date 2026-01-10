@@ -7,7 +7,7 @@ inherit F_DBASE;
 
 #include <ansi.h>
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 #define CHECK_PERIOD    60     // 60s檢查一次
 #define EXPECTATION     50      // 希望心跳50次

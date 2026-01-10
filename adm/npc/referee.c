@@ -4,7 +4,7 @@ inherit NPC;
 #include <ansi.h>;
 
 int do_bihua(string arg);
-int do_no();
+int do_no(string arg);
 void shout_message(string msg);
 
 void create()
@@ -222,7 +222,7 @@ void player_lost(object env, object me)
         message_vision("只見$N咕嚕咕嚕的滾下了擂臺，哼哼呀呀的在地上躺了半天。\n", me);
 }
 
-int do_no()
+int do_no(string arg)
 {
         command("say " + this_player()->name() + "！這裡眾目睽睽，豈能做此不才之事？");
         return 1;
@@ -237,7 +237,9 @@ int accept_ansuan(object ob)
         return notify_fail("人家武功太高，你還是老老實實的不要亂動。\n");
 }
 
-void receive_damage(string type, int count) {}
+varargs int receive_damage(string type, int count, object who) {
+    return 0;
+}
 
 void kill_ob(object ob) {}
 

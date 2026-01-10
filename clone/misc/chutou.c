@@ -3,7 +3,7 @@
 
 inherit ITEM;
 #include <ansi.h>;
-int do_wajue();
+int do_wajue(string arg);
 
 void create() {
     set_name(HIG"鋤頭"NOR, ({ "chu tou", "bao chu", "chu" }));
@@ -29,7 +29,7 @@ void init() {
     add_action("do_wajue", "wajue");
 }
 
-int do_wajue() {
+int do_wajue(string arg) {
     int t, time;
     string *dir;
     object ob, me = this_player(), where = environment(me), obj;

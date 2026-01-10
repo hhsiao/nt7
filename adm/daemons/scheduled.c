@@ -21,7 +21,7 @@ nosave int last_update_time;
 nosave int handle_id;
 nosave mapping events = allocate_mapping(0);
 
-int clean_up() { return 1; } 
+int clean_up(int inherited) { return 1; }
 
 void remove(string euid)
 {
@@ -121,7 +121,7 @@ void heart_beat()
         last_update_time = time();      // 記錄最後一次心跳時間
 
         foreach( int id, mixed event in events ) {
-                if( undefinedp(events[id]) ) continue; 
+                if( undefinedp(events[id]) ) continue;
                 if( !event[EVENT_OBJECT] ) {       // 刪除已遺失物件或函式指標的事件
                         map_delete(events, id);
                         continue;
@@ -148,5 +148,5 @@ void create()
 void start_events()
 {
         if( !query_heart_beat() )
-                set_heart_beat(1); 
+                set_heart_beat(1);
 }

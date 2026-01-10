@@ -91,7 +91,7 @@ nosave int last_update_time;
 nosave int handle_id = 1;
 nosave mapping events = allocate_mapping(0);
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 int evaluate_event(int id) {
     mixed event;

@@ -37,7 +37,7 @@ int do_climb(string arg) {
     message_vision("$N從太乙池中爬了上去。\n", me);
     return 1;
 }
-int do_swim() {
+int do_swim(string arg) {
     int c_exp, c_skill;
     object me = this_player();
 

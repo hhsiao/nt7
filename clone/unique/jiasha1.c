@@ -83,7 +83,7 @@ int do_force(string arg) {
     return 1;
 }
 
-mixed valid_damage(object ob, object me, int damage) {
+varargs mixed valid_damage(object ob, object me, int damage, object weapon) {
     if (query("force") > 0)
     {
         addn("force", -1);

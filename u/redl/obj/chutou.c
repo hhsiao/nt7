@@ -1,5 +1,5 @@
-// This program is a part of NITAN MudLIB 
-// redl 2013/4/1 
+// This program is a part of NITAN MudLIB
+// redl 2013/4/1
 #include <ansi.h>
 
 inherit ITEM;
@@ -27,7 +27,7 @@ int diging(object me)
             me->stop_busy();
             me->start_busy(6);
                 return 1;
-        }        
+        }
 
         if (query("nj", tool) < 1 ){
                         message_vision(NOR + "$N手裡的"+query("name")+ NOR + "咔嚓一聲散架了。\n" + NOR,  me);
@@ -37,7 +37,7 @@ int diging(object me)
                         destruct(this_object());
                 return 1;
         }
-        
+
         switch(stage=query_temp("toucai", me) )
         {
         case 1:
@@ -61,7 +61,7 @@ int diging(object me)
                         rnd = random(1000);
                         exp = 280 + random(100);
                 if (rnd<12){//魯智深出現
-                        tell_object(me, CYN + "你面前突然出現一個胖大和尚暴喝道：哪裡來的潑皮，敢來灑家地裡偷菜！\n" + 
+                        tell_object(me, CYN + "你面前突然出現一個胖大和尚暴喝道：哪裡來的潑皮，敢來灑家地裡偷菜！\n" +
                                                                   "說完一個醋缽大小的拳頭撲面飛至，你慌忙地舉起小鋤頭一擱架，“咔嚓”一聲\n" +
                                                                   "你的鋤頭快斷了，鼻子也被打破了...\n" + NOR);
                         set("nj", 0, tool);
@@ -99,7 +99,7 @@ int diging(object me)
                 //stage = 1;
                 //me->set_short_desc(0);
                 //break;
-                
+
                                 halt_diging(me);
                                 return 1;
                 default:
@@ -108,12 +108,12 @@ int diging(object me)
                         me->start_busy(2);
                                 return 1;
         }
-        
+
         set_temp("toucai", stage, me);
         return 1;
 }
 
-int move(mixed dest, int raw)
+varargs int move(mixed dest, int raw)
 {
         object me;
 
@@ -129,23 +129,23 @@ int do_dig()//string arg)
         object *obs;
         object where;
         object me = this_player();
-        
+
 //              if (! arg || arg != "cai"){
 //                      tell_object(me, "你要挖什麼？\n");
 //                      return 1;
 //              }
-               
+
         if (me->is_busy() || me->is_fighting()){
                         tell_object(me, "你還是忙完手頭上的事情再說吧。\n");
                         return 1;
                 }
   if ( !interactive(this_player()) ) return 1;
-                
+
 //         if (query("combat_exp", me)>5000000){
 //              tell_object(me, "你實戰經驗大於五百萬了，別再做這種丟臉的事了。\n");
 //                      return 1;
 //              }
-// 
+//
 //         if (query("combat_exp", me)<1000000){
 //              tell_object(me, "你實戰經驗還不足一百萬，放棄這想法吧。\n");
 //                      return 1;
@@ -216,10 +216,9 @@ void create()
                 set("no_store", "這樣東西不能放在那兒。\n");
                 set("no_steal", "這樣東西不能離開那兒。\n");
                 set("no_beg", "這樣東西不能離開那兒。\n");
-                                set("set_data", 1); 
-                                set("auto_load", 1); 
+                                set("set_data", 1);
+                                set("auto_load", 1);
                         //}
 
         setup();
 }
-

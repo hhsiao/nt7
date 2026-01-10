@@ -43,7 +43,7 @@ int save_name(string arg) {
     return 1;
 }
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 string dtname = load_name();
 

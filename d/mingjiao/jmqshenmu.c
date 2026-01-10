@@ -21,7 +21,7 @@ void init() {
     add_action("do_climb", "climb");
 }
 
-int do_climb() {
+int do_climb(string arg) {
     object me = this_player();
     me->receive_damage("qi", 15);
     me->receive_wound("qi", 15);

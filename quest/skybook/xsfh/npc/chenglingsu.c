@@ -107,7 +107,7 @@ string ask_jindi()
 
 
 }
-int do_yes()
+int do_yes(string arg)
 {
 
    object jxdan, me, ob;

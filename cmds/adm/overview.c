@@ -6,9 +6,6 @@ int main(object me, string arg) {
     object *ob;
     int i, m;
 
-    if (! me->is_admin())
-        return 0;
-
     if (! SECURITY_D->valid_grant(me, "(admin)"))
         return 0;
 

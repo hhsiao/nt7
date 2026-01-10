@@ -48,7 +48,7 @@ addn("qi", -20, 		me);
 	add_action("do_look", "look");
 }
 
-int do_look()
+int do_look(string arg)
 {
 	object me = this_player();
 	mixed *local;
@@ -75,7 +75,7 @@ addn_temp("mark/steps", -1, 		me);
 addn_temp("mark/step", 1, 		me);
 
 /**for 營救段譽 ***/
-// Modify By River 關於不能太簡單獲得 lbwb ，只給三次機會 
+// Modify By River 關於不能太簡單獲得 lbwb ，只給三次機會
 
 // Modify By tangfeng Quest本身誰可以解的，問題是拿到帛卷是否領悟到凌波微步
 
@@ -135,13 +135,13 @@ addn_temp("mark/step", 1, 		me);
 	if (i
 	 && (random(query("kar", me))+random(query("int", me)))>50
 	 && (random(me->query_con(1))+random(me->query_int(1))) > 75
-	 && local[2] < 6 
+	 && local[2] < 6
 	 && local[2] >= 3
 	 && query_temp("duanyu/find2", me)){
 		me->move(__DIR__"gaoshan");
 		log_file("quest/lbwb",
 			sprintf("%-18s順利通過山路，走上尋找凌波微步之路，福：%d，悟：%d，根：%d，悟：%d。\n",
-				me->name(1)+"("+capitalize(getuid(me))+")", 
+				me->name(1)+"("+capitalize(getuid(me))+")",
 query("kar", 				me),
 query("int", 				me),
 				me->query_con(1),
@@ -163,9 +163,9 @@ addn("quest/dali/fail", 1, 			me);
 set("quest/dali/time", time(), 			me);
 			log_file("quest/lbwb",
 				sprintf("%-18s第%d次機會沒有掌握，未能順利通過山路。\n",
-					me->name(1)+"("+capitalize(getuid(me))+")", 
+					me->name(1)+"("+capitalize(getuid(me))+")",
 query("quest/dali/fail", 					me )
-				), 
+				),
 			me);
 		}
 		me->move(__DIR__"xiaoxi");

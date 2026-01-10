@@ -396,12 +396,12 @@ string *tossText = ({
 int init_tab();
 int do_display(string arg);
 int do_move(string arg);
-int do_toss();
+int do_toss(string arg);
 string long();
 string query_save_file();
 void do_check();
-int do_save();
-int do_deploy();
+int do_save(string arg);
+int do_deploy(string arg);
 
 void create() {
     set_name("中國象棋盤", ({ "chinese chess board", "ccb", "board" }) );
@@ -827,7 +827,7 @@ int do_move(string arg) {
     return 1;
 }
 
-int do_toss() {
+int do_toss(string arg) {
     int num;
     string text;
     object me, ob;

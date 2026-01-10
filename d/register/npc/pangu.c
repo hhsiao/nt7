@@ -48,7 +48,7 @@ void greeting(object me) {
         tell_object(me, CYN "特別提示：雖然性格對你拜哪個門派並沒有影響，但是它會影響你學某些武功！\n" NOR);
         tell_object(me, HIY "新手導師：請輸入 help start 來獲知針對各個門派所推薦的性格。(拜師之前可以在北京文廟調整性格)\n" NOR);
         tell_object(me, "您可以選擇(choose)的角色性格如下：\n"
-            HIC " 1" NOR ".光明磊落  "
+            HIC "1" NOR ".光明磊落  "
             HIC "2" NOR ".狡黠多變  "
             HIC "3" NOR ".心狠手辣  "
             HIC "4" NOR ".陰險奸詐 ("

@@ -83,16 +83,16 @@ void init()
     add_action("do_nocmds", ({ "scheme", "drop", "put"}) );
 }
 
-int do_nocmds()
+int do_nocmds(string arg)
 {
     write("這裡禁止使用這個指令。\n");
     return 1;
 }
 
 void reset()
-{ 
-    ::reset(); 
-    set("no_clean_up", 1); 
+{
+    ::reset();
+    set("no_clean_up", 1);
 }
 
 int valid_leave(object me, string dir)
@@ -194,7 +194,7 @@ int do_mewiz(string arg)
 void dispersion_again()
 {
     int times;
-    
+
     remove_call_out("dispersion_again");
     if( !is_gameing )
         return;
@@ -297,7 +297,7 @@ void random_dispersion_to_hj( string *dis_list, int times )
 // 此函數清除幻境世界。
 void clean_hj()
 {
-    int i,j, c1, c2;
+    int i,c1, c2;
     string f, *files;
     object ob;
 

@@ -77,9 +77,15 @@ private void do_bonus(object room) {
 }
 
 // 事件觸發
-void trigger_event(int status) {
+void trigger_event(mixed para...) {
+    int num_args = sizeof(para);
+    int status;
     object room;
 
+    if (num_args < 1)
+        return;
+
+    status = para[0];
     room = find_object("/d/henshan/wangyuetai");
 
     // 錢塘江潮信

@@ -112,7 +112,7 @@ void greeting(object ob) {
     else        say("靈虛道長「唰」抽出長劍：這位" + RANK_D->query_respect(ob) + "滿臉殺氣，如果不是來武當敬香就請回吧！\n");
 }
 
-int do_volunteer() {
+int do_volunteer(string arg) {
     object me = this_player();
     object *ob;
     object *obs;

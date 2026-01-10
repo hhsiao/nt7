@@ -196,7 +196,7 @@ int do_check(string arg) {
 string query_flower_file(string arg) {
     return sprintf(DATA_DIR "flower/%c/%s", arg[0], arg );
 }
-int do_check_flower() {
+int do_check_flower(string arg) {
     object *ob, ob_letter;
     string file;
     int i;

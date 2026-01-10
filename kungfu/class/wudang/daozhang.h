@@ -3,7 +3,7 @@
 
 #include <ansi.h>
 #include "wudang.h"
-int do_yes();
+int do_yes(string arg);
 
 void attempt_apprentice(object ob) {
     int i;
@@ -83,7 +83,7 @@ void attempt_apprentice(object ob) {
     delete("class", ob);
 }
 
-int do_yes() {
+int do_yes(string arg) {
     object me, ob;
 
     me = this_object();

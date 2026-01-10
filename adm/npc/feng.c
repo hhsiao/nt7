@@ -29,13 +29,13 @@ int begin_auction();                        // 等待玩家競投的守護程序
 int stop_auction();                        // 結束當前店鋪的拍賣
 int do_jupai(string arg);                // 玩家競投中斷
 int go_jupai();                                // 玩家競投的守護程序
-int do_qiao();                                // 巫師宣價以及落棰
-int do_auctionlist();                        // 查詢拍賣店鋪列表
+int do_qiao(string arg);                                // 巫師宣價以及落棰
+int do_auctionlist(string arg);                        // 查詢拍賣店鋪列表
 int do_ban(string arg);                        // 取消|恢復 玩家拍賣資格
 int finish_auction(string arg);                // 結束拍賣
 void heart_beat();                        // 心跳線，手工拍賣守護進程
 object check_operator();                // 檢查主持巫師狀態函數
-int do_autoauction();                        // 將手工進程轉為自動進程
+int do_autoauction(string arg);                        // 將手工進程轉為自動進程
 int last_time = 0;                        // 最後一次手工操作的時間
 object operator;                        // 本變量記錄拍賣主持者
 
@@ -818,7 +818,7 @@ int go_jupai()
         return 1;
 }
 
-int do_qiao()
+int do_qiao(string arg)
 {
         object ob,me;
         int m;

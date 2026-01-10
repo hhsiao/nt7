@@ -62,7 +62,7 @@ int do_unlock() {
     message_vision(HIG "$N掏出鑰匙，輕輕一旋，舉手推開房門。\n" NOR, me);
     return 1;
 }
-int do_lock() {
+int do_lock(string arg) {
     object here;
     object me = this_player();
     object room;

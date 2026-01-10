@@ -49,7 +49,7 @@ void create() {
     set_heart_beat(hlist[state]);
 }
 
-int clean_up() {
+int clean_up(int inherited) {
     return 1;
 }
 

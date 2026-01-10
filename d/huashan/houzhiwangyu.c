@@ -35,7 +35,7 @@ void init() {
     }
 }
 
-int do_open() {
+int do_open(string arg) {
     object me = this_player();
 
     if (query("exits/up"))

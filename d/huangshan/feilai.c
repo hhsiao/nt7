@@ -27,7 +27,7 @@ LONG
 void init() {
     add_action("do_push", "push");
 }
-int do_push() {
+int do_push(string arg) {
     object me = this_player();
     me->receive_damage("qi", 30);
     message_vision("$N用盡全身力氣，用力推了推飛來石，飛來石似乎晃了晃！\n", me);

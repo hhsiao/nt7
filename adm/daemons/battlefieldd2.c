@@ -35,7 +35,7 @@ void add_bouns_score(object me, int score);
 void calculate_score();
 void refresh_battlefield();
 
-int clean_up() {
+int clean_up(int inherited) {
     return 1;
 }
 
@@ -709,7 +709,7 @@ void refresh_battlefield() {
         destruct(maze);
 }
 
-int remove() {
+varargs void remove(mixed euid) {
     if(sizeof(battle_player) )
     {
         object player;
@@ -738,7 +738,6 @@ int remove() {
     }
 
     refresh_battlefield();
-    return 1;
 }
 
 void heart_beat() {

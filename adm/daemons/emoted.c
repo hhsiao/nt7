@@ -49,10 +49,10 @@ void create()
                 emote = ([]);
 }
 
-int remove()
+varargs void remove(string euid)
 {
         save();
-        return 1;
+        //return 1;
 }
 
 string query_save_file() { return DATA_DIR + "emoted"; }

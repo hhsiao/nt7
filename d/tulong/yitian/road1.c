@@ -27,7 +27,7 @@ void mes(object me) {
     message_vision(HIR "你是否願意離開(leave)萬安寺？\n"NOR, me);
 }
 
-int do_leave() {
+int do_leave(string arg) {
     object me = this_player();
     if(query_temp("want_leave", me) )
     {

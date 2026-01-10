@@ -171,7 +171,7 @@ void answer(object me) {
     tell_object(me, HIR "\n你願意接受(accept)十殿閻羅的請求嗎？\n" NOR);
 }
 
-int do_accept() {
+int do_accept(string arg) {
     object me = this_player();
     if(query_temp("to_answer", me) )
     {

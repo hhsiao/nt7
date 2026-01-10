@@ -366,11 +366,11 @@ void new_life() {
     return;
 }
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     object *ppl;
 
     if(!who ) who = this_object()->query_last_damage_from();
-    if(!who ) return;
+    if(!who ) return 0;
     ppl = query_temp("damage_from");
     if(!arrayp(ppl) || !sizeof(ppl) ) ppl = ({});
     if(userp(who) && member_array(who, ppl) == -1 )

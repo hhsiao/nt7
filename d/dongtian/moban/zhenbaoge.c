@@ -8,7 +8,7 @@ inherit __DIR__"normal.c";
 #define ENCRND 4
 #define DELAY_T 1000
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 void create() {
     set("short", "珍寶閣");

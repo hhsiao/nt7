@@ -69,7 +69,7 @@ void init () {
     }
 }
 
-int do_xunlu() {
+int do_xunlu(string arg) {
     object me;
 
     me = this_player();

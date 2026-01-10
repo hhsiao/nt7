@@ -33,7 +33,7 @@ string *low_msg = ({
         "從鞦韆上站了起來，以顯示高超的技術。\n",
 });
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 int do_clean()
  {
@@ -231,7 +231,7 @@ int do_sit(string arg)
         return 1;
 }
 
-int do_lift()
+int do_lift(string arg)
 {
         string sitter;
         object me,ob;

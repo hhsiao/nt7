@@ -15,6 +15,6 @@ void create() {
     setup();
 }
 
-int clean_up() {
+int clean_up(int inherited) {
     return 0;
 }

@@ -28,7 +28,7 @@ class goods *all_goods = ({});
 mixed query_goods() { return all_goods; }
 void init_goods() { all_goods = ({});
 }
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 int add_one_good(object obj, mixed price, int amount) {
     mapping data, temp;

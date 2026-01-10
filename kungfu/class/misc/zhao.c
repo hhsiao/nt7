@@ -205,7 +205,7 @@ void smart_fight() {
 }
 
 
-mixed valid_damage(object victim, object attacker, int damage) {
+varargs mixed valid_damage(object victim, object attacker, int damage, object weapon) {
     mapping data = ([]);
     object thr;
     if (!thr = query_temp("weapon", attacker))

@@ -49,7 +49,7 @@ void init() {
     }
 }
 
-int do_dispersion() {
+int do_dispersion(string arg) {
     string master_room = HJ_DIR + "room_master_hj";
     write("開始調用主控房間內函數……\n");
     master_room-> dispersion(this_player() );

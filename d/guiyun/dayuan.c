@@ -34,7 +34,7 @@ LONG );
 void init() {
     //        add_action("do_ride", "ride");
 }
-int do_ride () {
+int do_ride(string arg) {
     mapping myfam;
     object room;
     object ob = this_player ();

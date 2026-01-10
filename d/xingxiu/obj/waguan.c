@@ -98,7 +98,7 @@ int do_hold(string arg) {
 
 }
 
-int do_xiulian() {
+int do_xiulian(string arg) {
     if(this_player()->is_busy()) return notify_fail("你正忙著呢。\n");
     if (query("bug_hold")!=1) return notify_fail("沒有毒蟲，你想要用空氣修行嗎？\n");
     message_vision(HIR"$N運起內力護住全身大穴，然後閉上眼睛將手指伸入瓦罐。\n"NOR, this_player());

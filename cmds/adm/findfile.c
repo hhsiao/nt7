@@ -192,11 +192,11 @@ nomask int main(object me, string arg) {
     }
 }
 
-int clean_up() {
+int clean_up(int inherited) {
     if(building_database)
         return 1;
     else
-        return ::clean_up();
+        return ::clean_up(inherited);
 }
 
 int help(object me) {

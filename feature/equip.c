@@ -389,7 +389,7 @@ mixed hit_ob(object me, object victim, int damage_bonus) {
 }
 
 // other one hit me as an armor
-mixed valid_damage(object me, object victim, int damage_bonus) {
+varargs mixed valid_damage(object me, object victim, int damage_bonus, object weapon) {
     ITEM_D->enchase_attack(this_object(), me, victim, damage_bonus);
     ITEM_D->reduce_consistence(this_object(), me, victim, damage_bonus);
 

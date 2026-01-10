@@ -17,7 +17,7 @@ void init() {
     add_action("do_zhonghua", "zhonghua");
 }
 
-int do_zhonghua() {
+int do_zhonghua(string arg) {
     object me, ob, where;
 
     me = this_player();

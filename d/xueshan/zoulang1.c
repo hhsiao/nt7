@@ -28,7 +28,7 @@ void init() {
     add_action("do_watch", "face");
 }
 
-int do_watch() {
+int do_watch(string arg) {
     object ob = this_player();
     int lvl = this_player()->query_skill("yujiamu-quan", 1);
 

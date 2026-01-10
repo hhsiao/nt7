@@ -41,7 +41,7 @@ int main(object me, string arg) {
     if (! is_root(me) && playerp(tob) && ! wizardp(tob))
         return notify_fail("只有天神才能給普通玩家複製武功。\n");
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("copyskill"))
         {

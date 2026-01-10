@@ -70,96 +70,96 @@ string *info =
         "noemote": 1
     ])
     }),
-        ({
-            CHAT,
-            "chat",
-            PLAYER,
-            CYN "【"HIC"閒"NOR CYN"聊"HIC"】"NOR,
+    ({
+        CHAT,
+        "chat",
+        PLAYER,
+        CYN "【"HIC"閒"NOR CYN"聊"HIC"】"NOR,
     ([
         "msgcolor": NOR HIC
     ])
-        }),
-            ({
-                RUMOR,
-                "rumor",
-                PLAYER,
-                MAG "【"NOR HIM"謠"NOR MAG"言"NOR HIM"】"NOR,
+    }),
+    ({
+        RUMOR,
+        "rumor",
+        PLAYER,
+        MAG "【"NOR HIM"謠"NOR MAG"言"NOR HIM"】"NOR,
     ([
         "wizlevel": 1,
         "msgcolor": NOR HIM
     ])
-            }),
-                ({
-                    MESS,
-                    "mess",
-                    PLAYER,
-                    HIK "【"HIW"江"NOR HIK"湖"HIW"】"NOR,
+    }),
+    ({
+        MESS,
+        "mess",
+        PLAYER,
+        HIK "【"HIW"江"NOR HIK"湖"HIW"】"NOR,
     ([
         "time": 1,
         "msgcolor": NOR HIW,
         "samecolor": 1,
         "notalk": 1
     ])
-                }),
-                    ({
-                        WIZ,
-                        "wiz",
-                        IMMORTAL,
-                        YEL "【"HIY"巫師"NOR YEL"】"NOR,
+    }),
+    ({
+        WIZ,
+        "wiz",
+        IMMORTAL,
+        YEL "【"HIY"巫師"NOR YEL"】"NOR,
     ([
         "msgcolor": NOR HIG,
         "nameraw": 1
     ])
-                    }),
-                        ({
-                            SYS,
-                            "sys",
-                            WIZARD,
-                            RED "【"HIR"系"NOR RED"統"HIR"】"NOR,
+    }),
+    ({
+        SYS,
+        "sys",
+        WIZARD,
+        RED "【"HIR"系"NOR RED"統"HIR"】"NOR,
     ([
         "time": 1,  // 顯示時間
         "msgcolor": NOR RED
     ])
-                        }),
-                            ({
-                                NCH,
-                                "nch",
-                                WIZARD,
-                                BLU "【"HIB"監"NOR BLU"測"HIB"】"NOR,
+    }),
+    ({
+        NCH,
+        "nch",
+        WIZARD,
+        BLU "【"HIB"監"NOR BLU"測"HIB"】"NOR,
     ([
         "time": 1,
         "msgcolor": NOR HIB,
 //"listener"    : ({ get_object(INTERMUD2_D) });
     ])
-                            }),
-                                ({
-                                    DEBUG,
-                                    "debug",
-                                    WIZARD,
-                                    WHT "【"HIW"調"NOR WHT"試"HIW"】"NOR,
+    }),
+    ({
+        DEBUG,
+        "debug",
+        WIZARD,
+        WHT "【"HIW"調"NOR WHT"試"HIW"】"NOR,
     ([
         "time": 1,
         "msgcolor": NOR HIW
     ])
-                                }),
-                                    ({
-                                        NEWS,
-                                        "news",
-                                        PLAYER,
-                                        GRN "【"HIG"新"NOR GRN"聞"HIG"】"NOR,
+    }),
+    ({
+        NEWS,
+        "news",
+        PLAYER,
+        GRN "【"HIG"新"NOR GRN"聞"HIG"】"NOR,
     ([
         "time": 1,
         "nameraw": 1,
         "msgcolor": NOR YEL,
         "notalk": 1
     ])
-                                    }),
-                                        ({
+    }),
+    ({
 //GWIZ 被別的地方定義過
-                                            256,
-                                            "gwiz",
-                                            WIZARD,
-                                            GRN "【"HIG"網際%T"NOR GRN"】"NOR,
+        256,
+        "gwiz",
+        WIZARD,
+        GRN "【"HIG"網際%T"NOR GRN"】"NOR,
     ([
         "nameraw": 1,
         "msgcolor": NOR HIG,
@@ -168,12 +168,12 @@ string *info =
         "subchannel": 1,
         "newtitle": (: stringp($1) ? "-"+$1 : "" :)
     ])
-                                        }),
-                                            ({
-                                                OTHER,
-                                                "other",
-                                                PLAYER,
-                                                CYN "【"HIC"未"NOR CYN"知"CYN"%T"HIC"】"NOR,
+    }),
+    ({
+        OTHER,
+        "other",
+        PLAYER,
+        CYN "【"HIC"未"NOR CYN"知"CYN"%T"HIC"】"NOR,
     ([
         "msgcolor": NOR CYN,
         "intermud": INTERMUD2_D,
@@ -181,93 +181,93 @@ string *info =
         "subchannel": 1,
         "newtitle": (: stringp($1) ? ("-"+HIG+$1 + NOR) : "" :)
     ])
-                                            }),
-                                                ({
-                                                    AD,
-                                                    "ad",
-                                                    PLAYER,
-                                                    HIK "【"WHT"廣"NOR HIK"告"WHT"】"NOR,
+    }),
+    ({
+        AD,
+        "ad",
+        PLAYER,
+        HIK "【"WHT"廣"NOR HIK"告"WHT"】"NOR,
     ([
         "nameraw": 1,
         "noemote": 1,
         "msgcolor": NOR HIK
     ])
-                                                }),
-                                                    ({
-                                                        FAMILY,
-                                                        "family",
-                                                        PLAYER,
-                                                        HIW"【"NOR"%T"NOR HIW"】"NOR,
+    }),
+    ({
+        FAMILY,
+        "family",
+        PLAYER,
+        HIW"【"NOR"%T"NOR HIW"】"NOR,
     ([
         "msgcolor": NOR HIG,
         "subchannel": 1,
         "filter": (: $1->query_family() == (stringp($2) ? $2 : $2->query_family()) || wiz_level($1) > 1 :),
         "newtitle": (: (stringp($1) ? $1 : $1->query_family()) || "無門派":)
     ])
-                                                    }),
-                                                        ({
-                                                            PARTY,
-                                                            "party",
-                                                            PLAYER,
-                                                            HIW"【"NOR"%T"NOR HIW"】"NOR,
+    }),
+    ({
+        PARTY,
+        "party",
+        PLAYER,
+        HIW"【"NOR"%T"NOR HIW"】"NOR,
     ([
         "msgcolor": NOR HIG,
         "subchannel": 1,
         "filter": (: $1->query_bunch() == (stringp($2) ? $2 : $2->query_bunch()) || wiz_level($1) > 1 :),
         "newtitle": (: (stringp($1) ? $1 : $1->query_bunch()) || "無幫派":)
     ])
-                                                        }),
-                                                            ({
-                                                                STOCK,
-                                                                "stock",
-                                                                PLAYER,
-                                                                YEL "【"NOR HIY"股"NOR YEL"市" NOR HIY"】"NOR,
+    }),
+    ({
+        STOCK,
+        "stock",
+        PLAYER,
+        YEL "【"NOR HIY"股"NOR YEL"市" NOR HIY"】"NOR,
     ([
         "time": 1,
         "nameraw": 1,
         "notalk": 1,
         "msgcolor": NOR HIR
     ])
-                                                            }),
-                                                                ({
-                                                                    AUC,
-                                                                    "auc",
-                                                                    PLAYER,
-                                                                    BLU "【" HIB "拍"NOR BLU"賣" HIB "】"NOR,
+    }),
+    ({
+        AUC,
+        "auc",
+        PLAYER,
+        BLU "【" HIB "拍"NOR BLU"賣" HIB "】"NOR,
     ([
         "time": 1,
         "notalk": 1,
         "msgcolor": NOR HIB
     ])
-                                                                }),
-                                                                    ({
-                                                                        COMBAT,
-                                                                        "combat",
-                                                                        PLAYER,
-                                                                        RED "【"NOR HIR"戰" NOR RED"鬥" HIR"】"NOR,
+    }),
+    ({
+        COMBAT,
+        "combat",
+        PLAYER,
+        RED "【"NOR HIR"戰" NOR RED"鬥" HIR"】"NOR,
     ([
         "time": 1,
         "notalk": 1,
         "msgcolor": NOR HIR
     ])
-                                                                    }),
-                                                                        ({
-                                                                            GROUP,
-                                                                            "gt",
-                                                                            PLAYER,
-                                                                            HIW"【"NOR WHT"%T"HIW"】"NOR,
+    }),
+    ({
+        GROUP,
+        "gt",
+        PLAYER,
+        HIW"【"NOR WHT"%T"HIW"】"NOR,
     ([
         "msgcolor": NOR HIW,
         "subchannel": 1,
         "filter": (: query_temp("battle/team_name", $1) == (stringp($2) ? $2 : query_temp("battle/team_name", $2)) || wiz_level($1) > 1 :),
         "newtitle": (: (stringp($1) ? $1 : query_temp("battle/team_name", $1)) || "無隊伍":)
     ])
-                                                                        }),
-                                                                            ({
-                                                                                DT,
-                                                                                "dt",
-                                                                                PLAYER,
-                                                                                WHT "【"NOR HIW"洞"NOR WHT"天" NOR HIW"】"NOR,
+    }),
+    ({
+        DT,
+        "dt",
+        PLAYER,
+        WHT "【"NOR HIW"洞"NOR WHT"天" NOR HIW"】"NOR,
     ([
         "msgcolor": NOR HIW,
         "time": 1,

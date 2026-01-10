@@ -35,7 +35,7 @@ void init() {
     add_action("do_order", "order");
 }
 
-int do_order() {
+int do_order(string arg) {
     object ob1, ob2, *inv, me = this_player();
     int food_ind, water_ind, f, w, i;
     mapping myfam;

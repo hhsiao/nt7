@@ -30,7 +30,7 @@ int set_owner(string arg) {
     return 1;
 }
 
-int do_give() {
+int do_give(string arg) {
     return notify_fail("你正扛著大木頭呢，怎麼給人？\n");
 }
 

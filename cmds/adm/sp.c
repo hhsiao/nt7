@@ -34,7 +34,7 @@ int main(object me, string arg) {
         return 1;
     }
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
         return notify_fail("你不能修改這個站點的使用權限。\n");
 
     if (sscanf(arg, "%s %s", item, desc) != 2)

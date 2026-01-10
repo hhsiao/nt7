@@ -39,7 +39,7 @@ void init()
         add_action("do_answer","answer");
 }
 
-int do_qiuqian()
+int do_qiuqian(string arg)
 {
         object me,ob,qian;
         int i;
@@ -192,7 +192,7 @@ int accept_object(object me, object ob)
                 return 0;
         }
 
-        if( !mapp(qianwen=query("qianwen", ob)) || 
+        if( !mapp(qianwen=query("qianwen", ob)) ||
             query("owner", ob) != query("id", me) )
         {
                 command("haha");
@@ -243,4 +243,3 @@ int accept_object(object me, object ob)
         set_temp("qian", ob, me);
         return 1;
 }
-

@@ -60,7 +60,7 @@ int accept_fight(object who) {return accept_hit(who);}
 int accept_kill(object who) {return accept_hit(who);}
 int accept_ansuan(object who) {return accept_hit(who);}
 int accept_touxi(object who) {return accept_hit(who);}
-int do_halt() {
+int do_halt(string arg) {
     object me = this_player();
     object ob = this_object();
 

@@ -291,10 +291,9 @@ void create()
                 distributed_system_preload();
 }
 
-int remove()
-{
+varargs void remove(string euid)
+{}
 
-}
 string query_name()
 {
         return "中央管理系統(SYSTEM_D)";

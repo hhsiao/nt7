@@ -1,34 +1,34 @@
-// This program is a part of NITAN MudLIB 
-// redl 2013/1/1 
-#include <ansi.h> 
-inherit ITEM; 
+// This program is a part of NITAN MudLIB
+// redl 2013/1/1
+#include <ansi.h>
+inherit ITEM;
 
-void create() 
-{ 
-              set_name(NOR"隨機播放器"NOR, ({"rplayer"}) ); 
-              set_weight(1); 
+void create()
+{
+              set_name(NOR"隨機播放器"NOR, ({"rplayer"}) );
+              set_weight(1);
               if( clonep() ) {
-                      set_default_object(__FILE__); 
+                      set_default_object(__FILE__);
                               call_out("reborn", 1);
                       }
-              else { 
-                      set("long", "    這是一個隨機播放文選的設備，使用指令是(rr)。\n");  
-                      set("unit", "個"); 
+              else {
+                      set("long", "    這是一個隨機播放文選的設備，使用指令是(rr)。\n");
+                      set("unit", "個");
                       set("value", 10000);
-              } 
-              setup(); 
-} 
+              }
+              setup();
+}
 
 
 int query_autoload()
 {
         return 1;
 }
-       
-void init() 
-{ 
-        add_action("do_rr","rr"); 
-} 
+
+void init()
+{
+        add_action("do_rr","rr");
+}
 
 void rr2(object me)
 {
@@ -61,12 +61,12 @@ void do_flood(object me)
         //me->command("wenxuan 2011 1");
         for( i=12; i>0; i-- )
                 me->command("hp");
-                
+
         return;
 }
-       
-int do_rr()  
-{ 
+
+int do_rr(string arg)
+{
                 object me = this_player();
                 if (query_temp("rr")) {
                         delete_temp("rr");
@@ -79,7 +79,7 @@ int do_rr()
                                 call_out("rr2", 4, me);
                         }
                 return 1;
-} 
+}
 
 
 
@@ -94,7 +94,3 @@ void reborn()
                 do_flood(me);
                 return;
 }
-
-
-
-

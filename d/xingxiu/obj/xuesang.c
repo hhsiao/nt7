@@ -28,7 +28,7 @@ void init() {
     add_action("do_look", "l");
 }
 
-int do_search() {
+int do_search(string arg) {
     object me = this_player();
 
     if(query_temp("find_can", me) )

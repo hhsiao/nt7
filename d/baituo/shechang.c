@@ -9,7 +9,7 @@ int THE_POISON = 0;
 int AMOUNT = 0;
 int MANAGE = 0;
 
-int do_count();
+int do_count(string arg);
 
 void create() {
     set("short", "蛇場");
@@ -74,7 +74,7 @@ int do_manage() {
     return 1;
 }
 
-int do_count() {
+int do_count(string arg) {
     mapping snakes;
     string *names, str;
     int flag, average, i, num, sort, sort2, per;

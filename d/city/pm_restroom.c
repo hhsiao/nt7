@@ -37,7 +37,7 @@ void init() {
     }
 }
 
-int do_open() {
+int do_open(string arg) {
     if (query("exits/north"))
         return notify_fail("門已經是開著的了。\n");
     set("exits/north", "/clone/SHOP/pmc");

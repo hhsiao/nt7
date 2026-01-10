@@ -9,8 +9,8 @@ inherit ROOM;
 #define ATTACKER_LV 10
 
 
-int do_clear();
-int do_expel_allusers();
+varargs int do_clear(string arg);
+varargs int do_expel_allusers(string arg);
 void add_ownlist(object me);
 int add_qy2(int addnum);
 int query_dt_qy();
@@ -146,7 +146,7 @@ mapping *REQ_ITEMS = ({
 });
 
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 string load_name() {
     if (file_size(__DIR__"name.o")>0) {return replace_string(read_file(__DIR__"name.o"), "\n", "");}
@@ -1345,7 +1345,7 @@ int discmds() {
     return 1;
 }
 
-int do_clear() {
+varargs int do_clear(string arg) {
     __DIR__"data.c"->do_clear();
     reload_object(this_object());
     return 1;
@@ -1494,7 +1494,7 @@ int valid_leave(object me, string dir) {
  * return 1;
  * }*/
 
-int do_expel_allusers()     //驅逐所有的生物到傳送陣，刪除他們的startroom，包括水牢裡的，無條件釋放
+varargs int do_expel_allusers(string arg)     //驅逐所有的生物到傳送陣，刪除他們的startroom，包括水牢裡的，無條件釋放
 {
     object room, me, enemy;
     object *enemies;

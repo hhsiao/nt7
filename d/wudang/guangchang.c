@@ -33,7 +33,7 @@ void init() {
     add_action("do_float", "piao");
 }
 
-int do_float() {
+int do_float(string arg) {
     object me;
 
     me = this_player();

@@ -163,7 +163,7 @@ void clean_chat_room() {
 
     remove_call_out("clean_chat_room");
     rooms = query_chat_room();
-    rooms->clean_up();
+    rooms->clean_up(0);
     rooms -= ({ 0 });
     if (sizeof(rooms))
         call_out("clean_chat_room", 15 * 60);

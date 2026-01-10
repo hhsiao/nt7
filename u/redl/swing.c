@@ -2,7 +2,7 @@
  * TLBB MUDLIB
  * $Header: /home/mud/cvsroot/tlbbmud/tlbb/tlbb_mudlib/t/ly/swing.c,v 1.4 2000/04/15 05:30:46 mud Exp $
  */
- 
+
 // Room: /t/ly/swing.c
 
 #include <ansi.h>
@@ -38,7 +38,7 @@ string *low_msg = ({
 void create()
 {
         set("short", "鞦韆園");
-        set("long", 
+        set("long",
         "一個廢棄的花園，雜草叢生，落葉繽紛。左邊有一個小石桌，\n"
         "幾尊石凳。右邊有兩棵大樹，樹中間掛著一架"+CYN"鞦韆"NOR+"。一陣風吹過，\n"
         "枯葉在空中飛舞，那曾經熱鬧過的鞦韆也輕輕蕩了起來，彷彿訴\n"
@@ -47,7 +47,7 @@ void create()
         set("exits", ([ /* sizeof() == 2 */
                         "east" : __DIR__"workroom",
                         "west" : "/u/gigi/workroom",
-                        "south" : "/u/redl/private_room/houyuan",  
+                        "south" : "/u/redl/private_room/houyuan",
                         "down" : "/d/city/swing",
 ]));
         set("item_desc", ([
@@ -60,7 +60,7 @@ void create()
         set("no_clean_up", 0);
 
         setup();
-        
+
 }
 
 string look_swing(object me)
@@ -101,11 +101,11 @@ int do_sit(string arg)
         write("你可以自己盪鞦韆(dang)，也可以讓別人推一把(push)。\n");
         set("marks/sitted",query("id", me));
         set_temp("marks/sitted", 1, me);
-me->set_short_desc("正坐在鞦韆上。"); 
+me->set_short_desc("正坐在鞦韆上。");
         return 1;
 }
 
-int do_lift()
+int do_lift(string arg)
 {
         string sitter;
         object me,ob;
@@ -136,7 +136,7 @@ int do_lift()
         tell_object(ob, "你可以自己盪鞦韆(dang)，也可以讓別人推一把(push)。\n");
         set("marks/sitted",query("id", ob));
         set_temp("marks/sitted", 1, ob);
-ob->set_short_desc("正坐在鞦韆上。"); 
+ob->set_short_desc("正坐在鞦韆上。");
         return 1;
 }
 
@@ -164,11 +164,11 @@ int do_dang()
                 delete_temp("marks/sitted", me);
                 delete_temp("marks/swingm", me);
                 delete("marks/sitted", this_object());
-me->set_short_desc(0); 
+me->set_short_desc(0);
 
                 return 1;
         }
-        
+
         message_vision(YEL"$N使勁蕩了一下，鞦韆蕩的更高更快了！\n"NOR,me);
         i = i + 3;
         set_temp("marks/swingm", i, me);
@@ -209,7 +209,7 @@ int do_push(string arg)
                 delete("marks/sitted", this_object());
                 return 1;
         }
-        
+
         message_vision(YEL"$N又輕輕推了$n一下，鞦韆蕩的更高更快了！\n"NOR,me,ob);
         i = i + 3;
         set_temp("marks/swingm", i, ob);
@@ -230,7 +230,7 @@ int do_down()
         delete_temp("marks/sitted", me);
         delete_temp("marks/swingm", me);
         delete("marks/sitted", this_object());
-me->set_short_desc(0); 
+me->set_short_desc(0);
         return 1;
 }
 
@@ -300,4 +300,3 @@ int valid_leave(object me, string dir)
         return ::valid_leave(me, dir);
         return 1;
 }
-

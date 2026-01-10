@@ -3,7 +3,7 @@
 // Created by Zen(SnowMan.ZD) 19/09/2002
 
 mapping sur_name = ([
-"趙":"zhao",    "錢":"qian",    "孫":"sun",     "李":"li",      
+"趙":"zhao",    "錢":"qian",    "孫":"sun",     "李":"li",
 "周":"zhou",    "吳":"wu",      "鄭":"zhen",    "王":"wang",
 "馮":"feng",    "陳":"chen",    "褚":"zhu",     "衛":"wei",
 "蔣":"jiang",   "沈":"shen",    "韓":"han",     "楊":"yang",
@@ -54,7 +54,7 @@ mapping sur_name = ([
 "江":"jiang",   "白":"bai",     "廖":"liao",    "池":"chi",
 "夏":"xia",     "古":"gu",      "滿":"man",     "屠":"tu",
 "宮":"gong",    "秋":"qiu",     "邱":"qiu",     "田":"tian",
-"仁":"ren",     "永":"yong",    "霄":"xiao",    "傅":"fu", 
+"仁":"ren",     "永":"yong",    "霄":"xiao",    "傅":"fu",
 
 "司馬":"sima",          "上官":"shangguan",     "歐陽":"ouyang",
 "夏候":"xiahou",        "諸葛":"zhuge",         "聞人":"wenren",
@@ -75,7 +75,7 @@ mapping sur_name = ([
 "南郭":"nanguo",        "呼延":"huyan",         "歸海":"guihai",
 "羊舌":"yangshe",       "微生":"weisheng",      "梁丘":"liangqiu",
 "左丘":"zuoqiu",        "東門":"dongmen",       "西門":"ximen",
-"佰賞":"baishang",      "南宮":"nangong",       "納蘭":"nalan",   
+"佰賞":"baishang",      "南宮":"nangong",       "納蘭":"nalan",
 "鮮于":"xianyu",
 ]);
 
@@ -352,7 +352,7 @@ mapping m_name = ([
 "kong" : ({ "空", "孔", "崆" }),
 "kou"  : ({ "寇", "蔻" }),
 "ku"   : ({ "庫", "枯", "窟", "絝" }),
-"kuai" : ({ "膾", "獪", "儈", "蒯" }), 
+"kuai" : ({ "膾", "獪", "儈", "蒯" }),
 "kuang": ({ "匡", "況", "狂", "誆", "曠", "夼" }),
 "kuo"  : ({ "闊", "括", "擴" }),
 "kun"  : ({ "困", "昆", "坤", "琨" }),
@@ -486,5 +486,3 @@ mapping m_name = ([
 ]);
 
 // End Of File.
-
-

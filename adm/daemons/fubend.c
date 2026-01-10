@@ -32,7 +32,7 @@ public mapping query_fuben_all() { return fuben_all; }
 public mapping query_fuben_list() { return fuben_list; }
 public mapping query_fuben_data() { return fuben_data; }
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 void create()
 {

@@ -108,7 +108,7 @@ int shoot_arrow(object me) {
     return 0;
 }
 
-int do_put() {
+int do_put(string arg) {
     write("什麼？\n");
     return 1;
 }

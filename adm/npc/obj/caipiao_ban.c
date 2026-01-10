@@ -386,7 +386,7 @@ string show_player() {
     return str;
 }
 
-int do_duijiang()   //兌獎指令
+int do_duijiang(string arg)   //兌獎指令
 {
     int i, j, k, m, n, money;
     object me;

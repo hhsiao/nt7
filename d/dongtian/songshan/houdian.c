@@ -89,7 +89,7 @@ void create() {
     setup();
 }
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 int discmdkill() {
     tell_object(this_player(), "你不能在這裡毛手毛腳。\n");

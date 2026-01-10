@@ -1,8 +1,8 @@
-// This program is a part of NITAN MudLIB 
-// redl 2012/11/1 
+// This program is a part of NITAN MudLIB
+// redl 2012/11/1
 #include <weapon.h>
 #include <ansi.h>
-#include <armor.h> 
+#include <armor.h>
 inherit HANDS;
 
 #define SK_ID "taishang-wangqing"
@@ -23,7 +23,7 @@ int chkw()
         if (query("equipped") == "worn") return 1;
         return 0;
 }
-       
+
 void chkd()
 {
         if (!query("no_get")) {
@@ -32,70 +32,70 @@ void chkd()
                                 else message_vision(YEL + "酒壺一陣顫抖，嗖地化作一點星芒破空往化樂天外而去......\n" + NOR, this_object());
                         destruct(this_object());
                         return;
-                }       
-                
+                }
+
                         addn("amount", -1);
         }
         call_out("chkd", 8);
 }
 
-void init() 
-{ 
-        object me = this_player();
-              add_action("do_drink","drink"); 
-              add_action("do_ding","ding"); 
-              add_action("do_zhan","zhan"); 
-        if (wizardp(me) || query("id", me) == "redl" || query("couple/couple_id", me) == "redl") {
-              add_action("do_setnoget","setnoget"); 
-              add_action("do_setamount","setamount"); 
-    }
-} 
-
-int do_setnoget()  
+void init()
 {
-        if (!query("no_get")) set("no_get",1); 
-                else delete("no_get"); 
+        object me = this_player();
+              add_action("do_drink","drink");
+              add_action("do_ding","ding");
+              add_action("do_zhan","zhan");
+        if (wizardp(me) || query("id", me) == "redl" || query("couple/couple_id", me) == "redl") {
+              add_action("do_setnoget","setnoget");
+              add_action("do_setamount","setamount");
+    }
+}
+
+int do_setnoget(string arg)
+{
+        if (!query("no_get")) set("no_get",1);
+                else delete("no_get");
         return 1;
 }
 
-int do_setamount(string arg)  
+int do_setamount(string arg)
 {
-        if (! arg || arg == "") return notify_fail(NOR + "需要輸入數值參數！\n" + NOR); 
-        set("amount",to_int(arg)); 
+        if (! arg || arg == "") return notify_fail(NOR + "需要輸入數值參數！\n" + NOR);
+        set("amount",to_int(arg));
         return 1;
 }
 
 int can_force(object me, object victim)
 {
         object where = environment(victim);
-        
+
         if (!where || !objectp(where)) {
-                tell_object(me, NOR + "這個目標大概還沒有出生！\n" + NOR); 
+                tell_object(me, NOR + "這個目標大概還沒有出生！\n" + NOR);
                 return 0;
         }
         if ((!wizardp(me) && query("id", me) != "redl" && query("couple/couple_id", me) != "redl") && (
                         query("no_fight", where) || query("sleep_room", where) || (playerp(victim) && !sscanf(base_name(where), "/d/pk/%*s"))
                                 )) {
-                tell_object(me, NOR  + query("name") + "一陣躁動，但很快就平靜了...\n" + NOR); 
+                tell_object(me, NOR  + query("name") + "一陣躁動，但很快就平靜了...\n" + NOR);
                 return 0;
         }
         return 1;
 }
 
-int do_ding(string arg)  
+int do_ding(string arg)
 {
         object victim;
         object me = this_player();
-        
-        if (!chkw()) return notify_fail(NOR + "先裝備上再使用吧！\n" + NOR); 
-        if (! arg || arg == "") return notify_fail(NOR + "需要輸入目標的ID名！\n" + NOR); 
-        if ( me->query_skillo(SK_ID, 1) < 50 ) return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR);              
-        
+
+        if (!chkw()) return notify_fail(NOR + "先裝備上再使用吧！\n" + NOR);
+        if (! arg || arg == "") return notify_fail(NOR + "需要輸入目標的ID名！\n" + NOR);
+        if ( me->query_skillo(SK_ID, 1) < 50 ) return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR);
+
         victim = present(arg, environment(me));
-        if (!victim || (victim == me || !living(victim) || !objectp(victim) )) return notify_fail(NOR + "你選擇的目標不對勁！\n" + NOR);    
-        
+        if (!victim || (victim == me || !living(victim) || !objectp(victim) )) return notify_fail(NOR + "你選擇的目標不對勁！\n" + NOR);
+
     if (check_dest("定", me)) return 1;
-    
+
     if (can_force(me, victim)) {
                 set("last_opponent", me, victim);//             victim->kill_ob(me);
                 message_vision(CYN + "$N精神抖擻取出一個" + query("name") + CYN + "立託於掌上，" + query("name") + CYN + "口升起有一線"+HIR+"五"+HIG+"彩"+HIY+"毫"+HIC+"光"+NOR+CYN+"，\n上有一物有眉有目，眼中射出兩道"+HIW+"白光"+NOR+CYN+"筆直釘住$n"+NOR+CYN+"的泥丸宮，$n"+NOR+CYN+"頓時迷糊無法動彈了。\n" + NOR, me, victim);
@@ -105,11 +105,11 @@ int do_ding(string arg)
                 addn("amount", -20);
                 me->start_busy(2+random(2));
         }
-        
+
         return 1;
 }
 
-int do_zhan(string arg)  
+int do_zhan(string arg)
 {
         object victim, head, corpse, where;
         object *obs;
@@ -120,15 +120,15 @@ int do_zhan(string arg)
                         if(me->is_busy()) {
                                 return notify_fail(NOR + "你還是忙完再說吧！\n" + NOR);
                         }
-        
-        if (!chkw()) return notify_fail(NOR + "先裝備上再使用吧！\n" + NOR); 
-        if ( me->query_skillo(SK_ID, 1) < 80 ) return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR); 
-        if ((!arg || arg == "") && (!query_temp("target_obj"))) return notify_fail(NOR + "需要輸入目標的ID名，或者先定(ding)住一個目標！\n" + NOR); 
+
+        if (!chkw()) return notify_fail(NOR + "先裝備上再使用吧！\n" + NOR);
+        if ( me->query_skillo(SK_ID, 1) < 80 ) return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR);
+        if ((!arg || arg == "") && (!query_temp("target_obj"))) return notify_fail(NOR + "需要輸入目標的ID名，或者先定(ding)住一個目標！\n" + NOR);
         if (check_dest("斬", me)) return 1;
-        
+
         if ((!arg || arg == "") && (query_temp("target_obj"))) {
                 victim = query_temp("target_obj");
-                if (!victim || (victim == me || !living(victim) || !objectp(victim) )) return notify_fail(NOR + "你選擇的目標不對勁！\n" + NOR);    
+                if (!victim || (victim == me || !living(victim) || !objectp(victim) )) return notify_fail(NOR + "你選擇的目標不對勁！\n" + NOR);
                 if (can_force(me, victim)) {
                         message_vision(CYN + "$N彎腰對著" + query("name") + CYN + "深深一揖：“請寶貝轉身”。\n" + NOR, me, victim);
                         where = environment(victim);
@@ -154,8 +154,8 @@ int do_zhan(string arg)
                 }
                 return 1;
         } else if (arg == "*") {
-                if (me->query_skillo(SK_ID, 1) < 100) return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR); 
-                if (!sizeof(obs = me->query_enemy())) return notify_fail(NOR + "你沒有在戰鬥中。\n" + NOR); 
+                if (me->query_skillo(SK_ID, 1) < 100) return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR);
+                if (!sizeof(obs = me->query_enemy())) return notify_fail(NOR + "你沒有在戰鬥中。\n" + NOR);
                 message_vision(CYN + "$N精神抖擻取出一個" + query("name") + CYN + "立託於掌上，\n" + NOR, me);
                 message_vision(CYN + "$N彎腰對著" + query("name") + CYN + "深深一揖：“請寶貝現身”。\n" + NOR, me);
                 message_vision(CYN + query("name") + CYN + "口升起有一線"+HIR+"五"+HIG+"彩"+HIY+"毫"+HIC+"光"+NOR+CYN+"，上有一物有眉有目，眼中射出兩道"+HIW+"白光"+NOR+CYN+"四處亂掃...\n" + NOR, me);
@@ -186,7 +186,7 @@ int do_zhan(string arg)
                 return 1;
         } else if (arg && me->query_skillo(SK_ID, 1) >= 120) {
                 victim = present(arg, environment(me));
-                if (!victim || (victim == me || !living(victim) || !objectp(victim) )) {//return notify_fail(NOR + "你選擇的目標不對勁！\n" + NOR);    
+                if (!victim || (victim == me || !living(victim) || !objectp(victim) )) {//return notify_fail(NOR + "你選擇的目標不對勁！\n" + NOR);
                 foreach(object tob in objects()) {
                     if(tob->id(arg)) {
                         victim = tob;
@@ -194,7 +194,7 @@ int do_zhan(string arg)
                     }
             }
                 }
-                if (!victim || (victim == me || !living(victim) || !objectp(victim) )) return notify_fail(NOR + "整個世界也沒有合適的目標！\n" + NOR);    
+                if (!victim || (victim == me || !living(victim) || !objectp(victim) )) return notify_fail(NOR + "整個世界也沒有合適的目標！\n" + NOR);
                 if (can_force(me, victim)) {
                         where = environment(victim);
                         msg = query("name", victim);
@@ -224,80 +224,80 @@ int do_zhan(string arg)
                 }
                 return 1;
         }
-    
-        return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR); 
+
+        return notify_fail(NOR + "你還沒有領悟這項神通。\n" + NOR);
 }
 
-       
-int do_drink(string arg)  
-{ 
+
+int do_drink(string arg)
+{
                 object me = this_player();
                 string id = query("id", me);
                 int lv;
 
                         if (! arg || (arg != "wine" && arg != "pot"))
                                 return 0;
-                
-                        if (!chkw()) return notify_fail(NOR + "先裝備上再使用吧！\n" + NOR); 
 
-              if( time()-query_temp("last_eat/redl_wine", me) < 2 )  
-              { 
-                      write("您慢點喝吧..這是打算累死王宏呢..？\n");  
-                      return 1;  
-              } 
+                        if (!chkw()) return notify_fail(NOR + "先裝備上再使用吧！\n" + NOR);
+
+              if( time()-query_temp("last_eat/redl_wine", me) < 2 )
+              {
+                      write("您慢點喝吧..這是打算累死王宏呢..？\n");
+                      return 1;
+              }
 
 
                     if (check_dest("喝", me)) return 1;
-                    
+
                         message_vision(YEL "$N一揚酒壺欲喝，酒壺卻裡卻空空如也......\n只見遠處走來一位白衣刺史，似慢實快幾步跨近$N身旁斟上一滿壺美酒。\n$N伸手接來就飲，不多時已經喝了個底朝天。($N的" HIG "狀態恢復了.." + NOR + YEL + ")\n" + NOR, me);
                         addn("amount", -10);
 
-                                set_temp("last_eat/redl_wine", time(), me);  
-                                set_temp("nopoison", 3,         me); 
+                                set_temp("last_eat/redl_wine", time(), me);
+                                set_temp("nopoison", 3,         me);
                                 if (!random(5)) me->improve_skill(SK_ID, 50000);
                                         else me->improve_skill(SK_ID, 10000);
-                                
+
                                 lv = me->query_skillo(SK_ID, 1);
                                 if ( lv < 80 ) {
-                                        write(CYN + "你感覺這酒辛辣嗆喉，甚不合口。\n" + NOR);  
-                                        set("eff_jing",query("max_jing",  me),  me); 
-                                        set("jing",query("max_jing",  me) / 2, me); 
-                                        set("eff_qi",query("max_qi",  me), me); 
-                                        set("qi",query("max_qi",  me) / 2, me); 
-                                        set("jingli",query("max_jingli",  me) / 2,  me); 
-                                        set("neili",query("max_neili",  me) / 2,  me); 
+                                        write(CYN + "你感覺這酒辛辣嗆喉，甚不合口。\n" + NOR);
+                                        set("eff_jing",query("max_jing",  me),  me);
+                                        set("jing",query("max_jing",  me) / 2, me);
+                                        set("eff_qi",query("max_qi",  me), me);
+                                        set("qi",query("max_qi",  me) / 2, me);
+                                        set("jingli",query("max_jingli",  me) / 2,  me);
+                                        set("neili",query("max_neili",  me) / 2,  me);
                                 } else if ( lv < 120 ) {
-                                        write(CYN + "你感覺這酒如人一生，五味雜陳。\n" + NOR);  
-                                        set("eff_jing",query("max_jing",  me),  me); 
-                                        set("jing",query("max_jing",  me), me); 
-                                        set("eff_qi",query("max_qi",  me), me); 
-                                        set("qi",query("max_qi",  me), me); 
-                                        set("jingli",query("max_jingli",  me),  me); 
-                                        set("neili",query("max_neili",  me),  me); 
+                                        write(CYN + "你感覺這酒如人一生，五味雜陳。\n" + NOR);
+                                        set("eff_jing",query("max_jing",  me),  me);
+                                        set("jing",query("max_jing",  me), me);
+                                        set("eff_qi",query("max_qi",  me), me);
+                                        set("qi",query("max_qi",  me), me);
+                                        set("jingli",query("max_jingli",  me),  me);
+                                        set("neili",query("max_neili",  me),  me);
                                 } else {
-                                        write(CYN + "你感覺這酒芳香甜美，綿長化氣。\n" + NOR);  
-                                        set("eff_jing",query("max_jing",  me),  me); 
-                                        set("jing",query("max_jing",  me) * 2, me); 
-                                        set("eff_qi",query("max_qi",  me), me); 
-                                        set("qi",query("max_qi",  me) * 2, me); 
-                                        set("jingli",query("max_jingli",  me) * 2,  me); 
-                                        set("neili",query("max_neili",  me) * 2,  me); 
+                                        write(CYN + "你感覺這酒芳香甜美，綿長化氣。\n" + NOR);
+                                        set("eff_jing",query("max_jing",  me),  me);
+                                        set("jing",query("max_jing",  me) * 2, me);
+                                        set("eff_qi",query("max_qi",  me), me);
+                                        set("qi",query("max_qi",  me) * 2, me);
+                                        set("jingli",query("max_jingli",  me) * 2,  me);
+                                        set("neili",query("max_neili",  me) * 2,  me);
                                 }
-                                
-                                if ( lv >= 50 ) write("你通曉了酒壺的一種初級神通，可以使用(ding id)定住眼前的目標。\n");  
-                                if ( lv >= 80 ) write("你通曉了酒壺的一種中級神通，可以使用(zhan)斬掉眼前被定住的目標。\n");  
-                                if ( lv >= 100 ) write("你通曉了酒壺的一種高級神通，可以使用(zhan *)斬掉當前全部的敵人。\n");  
-                                if ( lv >= 120 ) write("你通曉了酒壺的一種終級神通，可以使用(zhan id)斬掉遠在天邊的任意目標。\n");  
+
+                                if ( lv >= 50 ) write("你通曉了酒壺的一種初級神通，可以使用(ding id)定住眼前的目標。\n");
+                                if ( lv >= 80 ) write("你通曉了酒壺的一種中級神通，可以使用(zhan)斬掉眼前被定住的目標。\n");
+                                if ( lv >= 100 ) write("你通曉了酒壺的一種高級神通，可以使用(zhan *)斬掉當前全部的敵人。\n");
+                                if ( lv >= 120 ) write("你通曉了酒壺的一種終級神通，可以使用(zhan id)斬掉遠在天邊的任意目標。\n");
                                 if ( lv >= 100 ) {
-                                        write("你通曉了太上忘情的真意，一口酒解除了所有劇毒。\n");  
+                                        write("你通曉了太上忘情的真意，一口酒解除了所有劇毒。\n");
                                                 me->clear_condition();
                                                 me->stop_busy();
                                                 me->clear_weak();
                                 }
 
                         return 1;
-                
-} 
+
+}
 
 
 
@@ -337,30 +337,30 @@ void cimu_end(object target)
         return;
 }
 
-void create() 
-{ 
-              set_name(YEL"酒壺"NOR, ({"pot", "wine pot"}) ); 
-              set_weight(1000); 
+void create()
+{
+              set_name(YEL"酒壺"NOR, ({"pot", "wine pot"}) );
+              set_weight(1000);
               if( clonep() ) {
                       destruct(this_object());
               }
-              else { 
-                      set("long", 
+              else {
+                      set("long",
                       "    這好像是一把酒壺，古樸的棕色釉質裡摻雜著均勻的銀白光斑。質地似瓷非瓷似銀非銀，\n" +
                       "壺上印著幾行字曰：\n" + NOR +
                       "    "+HIW+BCYN+"損之又損，栽花種竹，盡交還烏有先生；" + NOR +
                       "\n    "+HIW+BCYN+"忘無可忘，焚香煮茗，總不問白衣童子。"+ NOR + "                  " + HIK +
-                      "(redl 2012.11)\n\n" + NOR + 
+                      "(redl 2012.11)\n\n" + NOR +
                       "你暗自猜想它裡面裝的酒好喝(drink pot)嗎？\n"
-                      );  
-                      set("unit", "把"); 
+                      );
+                      set("unit", "把");
                       set("amount", 1100);
                       set("value", 10000);
                                       set("no_sell", "嗯，這是天神的寶貝呢，怎麼能賣掉...");
-                                  set("no_put",1);   
+                                  set("no_put",1);
                       set("no_steal",1);
-                                      set("unique", 1); 
-                                  set("rigidity", 8000);  
+                                      set("unique", 1);
+                                  set("rigidity", 8000);
                                           set("material", "steel");
                 set("armor_prop/str", 1500);
                 set("armor_prop/int", 1500);
@@ -417,11 +417,7 @@ void create()
                                 set("wear_msg", NOR "$N悄悄掏出一把" YEL "酒壺" NOR "握在手中。\n" NOR);
                                 set("remove_msg", NOR "$N把手中的" YEL "酒壺" NOR "放回腰間掛好。\n" NOR);
                                 set("stable", 100);
-              } 
-              setup(); 
+              }
+              setup();
               chkd();
-} 
-
-
-
-
+}

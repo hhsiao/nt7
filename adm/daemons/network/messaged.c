@@ -1318,7 +1318,7 @@ mixed query_sending_queue(object user)
         return sending_queue[user];
 }
 
-void remove()
+varargs void remove(string euid)
 {
 }
 

@@ -96,7 +96,7 @@ varargs mixed addn(string prop, mixed data, object ob)
     return ::addn(prop, data, ob);
 }
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 void create() {
     set_name("寶寶", ({ "xiao baobao", "baby" }) );

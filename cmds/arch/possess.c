@@ -9,11 +9,11 @@ int main(object me, string arg) {
     if (! SECURITY_D->valid_grant(me, "(admin)"))
         return 0;
 
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
+        return notify_fail("你不能附身。\n");
+
     if (! arg)
         return notify_fail("你要附誰的身？\n");
-
-    if (! me->is_admin())
-        return notify_fail("你不能附身。\n");
 
     ob = present(arg, environment(me));
 

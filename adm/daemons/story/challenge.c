@@ -355,7 +355,7 @@ void accept_for_challenge(object me) {
     cob->competition_with(me);
 }
 
-void remove() {
+varargs void remove(string euid) {
     if (cob)
     {
         if (environment(cob))

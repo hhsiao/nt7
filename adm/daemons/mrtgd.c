@@ -11,7 +11,7 @@
 
 mapping mrtglist = allocate_mapping(0);
 
- 
+
 /*
 #  to get bits instead of bytes and graphs growing to the right
 # Options[_]: growright, bits
@@ -42,79 +42,79 @@ Legend2[memory]: Memory  狀態&nbsp&nbsp---&nbsp&nbsp尚未使用
 Title[memory]: Lonely' server Memory USAGE Monitor
 PageTop[memory]: <H1>主機 Memory 使用率監測</H1>
  */
- 
+
 //
 // 建立 MRTG 設定檔(由主機定期執行此設定檔)
 //
 int generate_mrtg_conf()
 {
         string finaloutput="";
-        
+
         finaloutput+="IconDir: /icons/\n";
         finaloutput+="Language: gb2312\n";
         finaloutput+="WorkDir: "LIBRARY_PATH"/www/muds\n";
-        
+
         if( !sizeof(mrtglist) ) return 0 ;
-        
+
         foreach(string name, mapping data in mrtglist)
         {
                 string output="\n\n#########################################################################\n";
                 output+= "#" + name + "\n";
                 output+= "#########################################################################\n";
-                
+
                 name=replace_string(name," ","_");
-                
+
                 // 標準格式
                 output+= "Directory[" + name +"]: "+ data["Directory"] + "\n";
-                
+
                 if( undefinedp(data["Options"]) )
                         output+= "Options["+name+"]: gauge, integer, noinfo, nopercent\n";
                 else    output+= "Options[" + name +"]: "+ data["Options"] + "\n";
-                
+
                 output+= "Target[" + name +"]: "+ data["Target"] + "\n";
-                
+
                 if( !undefinedp(data["MaxBytes"]) )
                         output+= "MaxBytes[" + name +"]: "+ data["MaxBytes"] + "\n";
                 else    output+= "MaxBytes[" + name +"]: 100\n";
-                
+
                 if( !undefinedp(data["AbsMax"]) )
                         output+= "AbsMax[" + name +"]: "+ data["AbsMax"] + "\n";
                 else    output+= "AbsMax[" + name +"]: 1500\n";
-                        
+
                 output+= "YLegend[" + name +"]: "+ data["YLegend"] + "\n";
                 output+= "LegendI[" + name +"]: "+ data["LegendI"] + "\n";
                 output+= "LegendO[" + name +"]: "+ data["LegendO"] + "\n";
                 output+= "Legend1[" + name +"]: "+ data["Legend1"] + "\n";
                 output+= "Legend2[" + name +"]: "+ data["Legend2"] + "\n";
-                
+
                 /*output+= "YLegend[" + name +"]: "+ data["YLegend"] + "\n";
-                
+
                 if( !undefinedp(data["ShortLegend"]) )
                         output+= "ShortLegend[" + name +"]: "+ data["ShortLegend"] + "\n";
-                */      
+                */
                 if( !undefinedp(data["SetEnv"]) )
                         output+= "SetEnv[" + name +"]: "+data["SetEnv"]+ "\n";
-                        
+
                 if( !undefinedp(data["ShortLegend"]) )
                         output+= "ShortLegend[" + name +"]: "+ data["ShortLegend"] + "\n";
-                        
+
                 if( !undefinedp(data["Unscaled"]) )
                         output+= "Unscaled[" + name +"]: "+ data["Unscaled"] + "\n";
                 else    output+= "Unscaled[" + name +"]: ymwd\n";
-                
+
                 output += "Title[" + name +"]: "+ data["Title"] + "\n";
                 output += "PageTop[" + name +"]: "+ data["PageTop"] + "\n\n";
-                
+
                 finaloutput += output;
         }
 
         write_file(MRTGCONF, finaloutput, 1);
 }
 
- 
+
 int save()
 {
-        return save_object(DATA_PATH);  
+        return save_object(DATA_PATH);
 }
 
 // 增加 MRTG 資料
@@ -140,13 +140,13 @@ int addmrtg(string name, mapping info)
                         return 0;
                 if( undefinedp(info["PageTop"]))
                         return 0;
-                                
+
         } else return 0;
 
         mrtglist[name] = info;
-        
+
         generate_mrtg_conf();
-        
+
         save();
 
         return 1;
@@ -155,17 +155,17 @@ int addmrtg(string name, mapping info)
 // 移除 MRTG
 int removemrtg(string name)
 {
-        if( !mapp(mrtglist[name]) ) 
+        if( !mapp(mrtglist[name]) )
                 return 0;
-        
+
         map_delete(mrtglist, name);
 
         generate_mrtg_conf();
 
         save();
-        
+
         return 1;
-} 
+}
 
 //
 // 移除預設的 MRTG
@@ -233,7 +233,7 @@ void add_default_mrtg()
                 "PageTop":      "<H1>Memory Monitor For Mudos (NT) </H1>",
                 "YLegend":      "MudOS MEM(kb)",
                 "ShortLegend":  "&nbsp;&nbsp;",
-                
+
         ]));
         // MEMORY USAGE
         addmrtg("0system_mem",([
@@ -267,16 +267,16 @@ void add_default_mrtg()
                 "PageTop":      "<H1>主機 CPU 負載 (%)</H1>",
                 "YLegend":      "CPU Utilization",
                 "ShortLegend":  " %",
-                
+
         ]));
 }
 
 //
 // 移除
 //
-int remove()
-{       
-        return save();
+varargs void remove(string euid)
+{
+        save();
 }
 
 void create()
@@ -285,14 +285,14 @@ void create()
         {
                 // 加入預設項目
                 add_default_mrtg();
-                
-                // 取得 MNLMUDLIST_D 目前資料 
+
+                // 取得 MNLMUDLIST_D 目前資料
                 MUDLIST_D->update_mrtg_data();
-                
+
                 // 建立設定檔
                 generate_mrtg_conf();
 
-                save();       
+                save();
         }
 }
 string query_name()

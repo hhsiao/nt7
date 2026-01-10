@@ -63,7 +63,7 @@ void init() {
     }
 }
 
-int do_accept() {
+int do_accept(string arg) {
     object me, room, bai;
 
     me = this_player();

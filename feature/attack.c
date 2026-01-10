@@ -358,7 +358,7 @@ int remove_killer(object ob) {
 // Stop all fighting, but killer remains.
 // If force set to 1, it will clear all enemy, or it will only
 // clear the enemy who doesn't kill you.
-void remove_all_enemy(int force) {
+varargs void remove_all_enemy(int force) {
     int i;
 
     if(!(i = sizeof(enemy)) )
@@ -432,7 +432,7 @@ void lost() {
 }
 
 // return the next action of this object
-mixed query_action(int flag) {
+varargs mixed query_action(int flag) {
     if(flag || !functionp(next_action) )
         return next_action;
 

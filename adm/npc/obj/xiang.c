@@ -24,7 +24,7 @@ int set_passwd(string pass, object ob);
 int store_item(object me, object obj, int amount);
 int store_data(object me, object ob, int sn);
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 mixed *store_signs()
 {
@@ -608,7 +608,9 @@ int store_data(object me, object ob, int sn)
         return 1;
 }
 
-int remove() { save(); }
+varargs void remove(string euid) {
+    save();
+}
 
 string query_save_file()
 {

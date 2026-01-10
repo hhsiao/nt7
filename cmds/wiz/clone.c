@@ -38,7 +38,7 @@ int main(object me, string file) {
         }
     }
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("clone"))
         {
@@ -55,7 +55,7 @@ int main(object me, string file) {
             return notify_fail("你不能複製物品。\n");
         }
 
-        if (! me->is_admin())
+        if ((string)SECURITY_D->get_status(me) != "(boss)")
             message_system(sprintf("%s(%s)複製了物品：%s(%s)。\n",
         me->name(1), query("id", me),
         filter_color(file->name(1)), query("id", get_object(file))));

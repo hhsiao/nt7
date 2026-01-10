@@ -26,7 +26,7 @@ void create()
         set_heart_beat(3);
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

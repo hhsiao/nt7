@@ -5,8 +5,8 @@ inherit F_BANKER;
 
 int do_join(string arg);
 int do_unjoin(string arg);
-int do_yao();
-int do_decide();
+int do_yao(string arg);
+int do_decide(string arg);
 
 void create() {
     set_name("黃真", ({ "huang zhen", "zhen", "huang" }));
@@ -134,7 +134,7 @@ int do_unjoin(string arg) {
     return 1;
 }
 
-int do_decide() {
+int do_decide(string arg) {
     object ob, me;
     string *pro;
     me = this_player();
@@ -183,7 +183,7 @@ int do_decide() {
     return notify_fail(CYN "黃真瞄了你一眼，皺了皺眉，沒理你。\n" NOR);
 }
 
-int do_yao() {
+int do_yao(string arg) {
     object ob, me = this_player();
 
     if(query("bad_vendor", me) )

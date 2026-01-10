@@ -483,7 +483,7 @@ void create() {
         delete(bang + "/efficient");
 }
 
-void remove() {
+varargs void remove(string euid) {
     save();
 }
 // 要在 CMDS:REBOOT 裡面加上調用

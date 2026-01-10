@@ -24,7 +24,7 @@ void create()
         restore();
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

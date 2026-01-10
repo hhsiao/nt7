@@ -23,7 +23,7 @@ void init() {
         add_action("do_kanfa", "kanfa");
 }
 
-int do_kanfa() {
+int do_kanfa(string arg) {
     object me = this_player();
     object ob = this_object();
     object weapon;

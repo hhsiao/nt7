@@ -132,7 +132,7 @@ void init()
 	add_action("do_nod",  ({ "nod" }));
 }
 
-int do_swear()
+int do_swear(string arg)
 {
 	object ob, me = this_player();
 	object where = environment(me);
@@ -187,7 +187,7 @@ int do_huzhuo()
 	message_vision("只見$N一手執刀，一手持劍，運起內力，刀劍互斫。\n"+
 			"只聽見‘哧’的一聲輕響，這兩把舉世無雙的屠龍刀和倚天劍就此消失了。\n", me);
 	destruct(ob1);
-	destruct(ob2);	
+	destruct(ob2);
 	book = unew(__DIR__"obj/emei-jiuyin");
 	if(book){
 		message_vision("滅絕師太從斷刀斷劍中取出了幾張帛卷，看了幾眼，拿出一張帛卷交給了$N。\n", me);

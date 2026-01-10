@@ -34,7 +34,7 @@ void mes(object me) {
         message_vision(HIR "你是否願意進入(enter)萬安寺？\n"NOR, me);
 }
 
-int do_enter() {
+int do_enter(string arg) {
     object me = this_player();
     if(query_temp("want_enter", me) )
     {

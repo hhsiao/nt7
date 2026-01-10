@@ -37,7 +37,7 @@ void init() {
     add_action("do_mianbi", "mianbi");
 }
 
-int do_mianbi() {
+int do_mianbi(string arg) {
     object me = this_player();
 
     message_vision("$N面對著達摩洞後半邊的石壁跌坐靜思，良久，似有所悟。\n", me);

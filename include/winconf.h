@@ -1,13 +1,15 @@
-
 //分站是否不接受新玩家註冊
 #undef REFUSE_NEW_PLAYER
 
 //多少天后清除未上線的未交費用戶
 #define UNLOG_IDLE      90
 
+//支持網絡傳輸壓縮功能
+#define MCCP_SUPPORT    1
+
 //是否使用MYSQL數據庫及是否存儲用戶數據到MYSQL庫裡，不使用數據庫則#undef DB_SAVE！
 #ifdef  __PACKAGE_DB__
-// #define DB_SAVE         1
+//#define DB_SAVE         1
 #endif
 
 //是否存儲用戶數據到文本文件裡，定義了 1 就表示是，如果定義了 0 就表示否！

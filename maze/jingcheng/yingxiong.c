@@ -29,7 +29,7 @@ void init()
        //add_action("do_order","yaoma");
 }
 
-int do_order()
+int do_order(string arg)
 {
       object me=this_player(),*ilist;
       int i;

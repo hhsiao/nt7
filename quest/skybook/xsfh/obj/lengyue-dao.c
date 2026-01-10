@@ -118,7 +118,7 @@ int do_guanzhu(string arg)
 	    me->start_busy(2);
      	return 1;
 }
-int do_search()
+int do_search(string arg)
 {
      object me, obj;
      me = this_player();

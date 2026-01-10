@@ -58,7 +58,7 @@ int ask_me() {
     }
 }
 
-int do_bihua() {
+int do_bihua(string arg) {
     object me, obj, book;
     int current_qi;
 

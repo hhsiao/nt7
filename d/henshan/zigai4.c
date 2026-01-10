@@ -31,7 +31,7 @@ void init() {
     else delete_temp("marks/點", me);
 }
 
-int do_zou() {
+int do_zou(string arg) {
     object me = this_player();
 
     if(!query_temp("marks/點", me) )

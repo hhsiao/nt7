@@ -58,13 +58,13 @@ void init()
 }
 
 void greeting(object ob)
-{ 
+{
 int change=0;
 if( !ob || environment(ob) != environment() ) return;
 message_vision( "\n$N微笑道：這位"+RANK_D->query_respect(ob) + "，來到這裡一定很辛苦，歇歇再走吧。\n",this_object());
 }
 
-int do_hunting()
+int do_hunting(string arg)
 {
         object me=this_player();
         object* ob;
@@ -94,46 +94,46 @@ void clone_beast(object me)
         if (! me) return;
         tell_room(environment(me),"幾隻野獸從樹林裡警惕地走出來，要打獵就是現在了！\n");
         switch (random(6)) {
-         case 0: 
-        ob=new("/quest/tulong/npc/wolf");
-        ob->move("/d/dragon/liechang"); 
-        ob=new("/quest/tulong/npc/huananhu");
-        ob->move("/d/dragon/liechang");         call_out("clone_beast", 100, me); 
-          break;
-         case 1: 
-        ob=new("/quest/tulong/npc/dog");
-        ob->move("/d/dragon/liechang"); 
-        ob=new("/quest/tulong/npc/fox");
-        ob->move("/d/dragon/liechang");
-         call_out("clone_beast", 100, me);  
-          break;
-         case 2: 
-        ob=new("/quest/tulong/npc/huananhu");
-        ob->move("/d/dragon/liechang"); 
+         case 0:
         ob=new("/quest/tulong/npc/wolf");
         ob->move("/d/dragon/liechang");
-         call_out("clone_beast", 100, me);  
+        ob=new("/quest/tulong/npc/huananhu");
+        ob->move("/d/dragon/liechang");         call_out("clone_beast", 100, me);
           break;
-         case 3: 
+         case 1:
         ob=new("/quest/tulong/npc/dog");
-        ob->move("/d/dragon/liechang"); 
+        ob->move("/d/dragon/liechang");
         ob=new("/quest/tulong/npc/fox");
         ob->move("/d/dragon/liechang");
-         call_out("clone_beast", 100, me);  
-          break; 
-         case 4: 
-        ob=new("/quest/tulong/npc/dog");
-        ob->move("/d/dragon/liechang"); 
+         call_out("clone_beast", 100, me);
+          break;
+         case 2:
         ob=new("/quest/tulong/npc/huananhu");
         ob->move("/d/dragon/liechang");
-         call_out("clone_beast", 100, me);  
-          break; 
-         case 5: 
+        ob=new("/quest/tulong/npc/wolf");
+        ob->move("/d/dragon/liechang");
+         call_out("clone_beast", 100, me);
+          break;
+         case 3:
         ob=new("/quest/tulong/npc/dog");
-        ob->move("/d/dragon/liechang"); 
+        ob->move("/d/dragon/liechang");
+        ob=new("/quest/tulong/npc/fox");
+        ob->move("/d/dragon/liechang");
+         call_out("clone_beast", 100, me);
+          break;
+         case 4:
+        ob=new("/quest/tulong/npc/dog");
+        ob->move("/d/dragon/liechang");
+        ob=new("/quest/tulong/npc/huananhu");
+        ob->move("/d/dragon/liechang");
+         call_out("clone_beast", 100, me);
+          break;
+         case 5:
+        ob=new("/quest/tulong/npc/dog");
+        ob->move("/d/dragon/liechang");
         ob=new("/quest/tulong/npc/songshu");
         ob->move("/d/dragon/liechang");
-         call_out("clone_beast", 100, me);  
+         call_out("clone_beast", 100, me);
           break;
              }
 }

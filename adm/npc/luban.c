@@ -204,17 +204,16 @@ private void    tell_user_status(object me);
 private void    luban_say(string msg);
 private void    user_say(string msg);
 private int     do_answer(string arg);
-private int     do_stop();
+private int     do_stop(string arg);
 private int     do_desc(string arg);
 private int     do_show(string arg);
 private int     do_changename(string arg);
 private int     do_changeid(string arg);
 private int     do_changetype(string arg);
 private int     do_changedesc(string arg);
-private int     do_finish();
-private int     do_withdraw();
+private int     do_finish(string arg);
+private int     do_withdraw(string arg);
 private int     decide_withdraw();
-private int     do_destory();
 private void    show_desc(mixed player, string arg);
 private void    promote_type(object me);
 private int     quest_user(object me);
@@ -1082,7 +1081,7 @@ private void user_say(string msg)
 }
 
 // 用戶中止商談
-private int do_stop()
+private int do_stop(string arg)
 {
     object me;
     me = this_player();
@@ -1333,7 +1332,7 @@ private int do_changedesc(string arg)
 }
 
 // 結束輸入
-private int do_finish()
+private int do_finish(string arg)
 {
     object me;
     int value;
@@ -1371,14 +1370,14 @@ private int do_finish()
 }
 
 // 撤消表單
-private int do_withdraw()
+private int do_withdraw(string arg)
 {
     object me;
 
     me = this_player();
     if( query_temp("contract/luban", me) )
     {
-        do_stop();
+        do_stop(arg);
         return 1;
     }
     if( !query("form/"+query("id", me)) )
@@ -1435,7 +1434,7 @@ private int decide_withdraw()
 
 // 拆毀房屋
 // 必須先詢問魯班有關拆房的信息
-private int do_demolish()
+private int do_demolish(string arg)
 {
     object me;
 

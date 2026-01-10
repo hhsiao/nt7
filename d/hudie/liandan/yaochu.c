@@ -23,7 +23,7 @@ void init() {
         add_action("do_wajue", "wajue");
 }
 
-int do_wajue() {
+int do_wajue(string arg) {
     object me = this_player();
     object ob = this_object();
     object weapon;

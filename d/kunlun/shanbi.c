@@ -25,7 +25,7 @@ LONG        );
 void init() {
     add_action("do_dig", "dig");
 }
-int do_dig() {
+int do_dig(string arg) {
     object book1, book2, me = this_player();
     int books = 0;
 

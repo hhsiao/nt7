@@ -23,7 +23,7 @@ string query_save_file()
         return DATA_DIR "examined";
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

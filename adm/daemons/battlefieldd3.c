@@ -87,7 +87,7 @@ string *master2 = ({
 nosave string fam1;
 nosave string fam2;
 
-int clean_up() {
+int clean_up(int inherited) {
     return 1;
 }
 
@@ -782,7 +782,7 @@ mapping query_battle_player() {
     return battle_player;
 }
 
-int remove() {
+varargs void remove(mixed euid) {
     if(sizeof(battle_player) )
     {
         object player;
@@ -810,7 +810,6 @@ int remove() {
         }
     }
     fam1 = fam2 = "";
-    return 1;
 }
 
 void heart_beat() {

@@ -85,7 +85,7 @@ void create()
                 delete(fam+"/efficient");
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

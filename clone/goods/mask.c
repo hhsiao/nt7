@@ -83,7 +83,7 @@ int do_pretend(string arg) {
     return 1;
 }
 
-int move(mixed dest) {
+varargs int move(mixed dest, int raw) {
     object me;
 
     if (me = query_temp("owner"))

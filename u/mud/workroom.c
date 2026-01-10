@@ -5,8 +5,8 @@
 inherit CREATE_CHAT_ROOM;
 
 int is_chat_room() { return 1; }
-int do_hy(string arg); 
-int do_pick();
+int do_hy(string arg);
+int do_pick(string arg);
 
 void create()
 {
@@ -22,7 +22,7 @@ LONG );
                 "up" : __DIR__"check",
         ]));
 
-          set("objects", ([ 
+          set("objects", ([
 //          "/u/mud/charm.c":1,
       "/kungfu/class/misc/haigui":1,
           ]));
@@ -60,7 +60,7 @@ int do_hy(string arg)
 
       return 1;
 }
-int do_pick()
+int do_pick(string arg)
 {
         object ob;
         object me = this_player();

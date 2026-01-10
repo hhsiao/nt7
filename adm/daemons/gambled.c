@@ -21,15 +21,15 @@ mapping item_data = ([
                                 "伍上下注吧！",
                        "end_time" : 1210996409,
                        "status"   : OPENING,
-                       "min_money" : 10000, 
+                       "min_money" : 10000,
                        "number" : 3,
-                       "subject" : ([ "中國隊" : 10, 
-                                      "法國隊" : 20, 
-                                      "德國隊" : 50, 
-                                      "英國隊" : 70, 
-                                      "美國隊" : 80, 
+                       "subject" : ([ "中國隊" : 10,
+                                      "法國隊" : 20,
+                                      "德國隊" : 50,
+                                      "英國隊" : 70,
+                                      "美國隊" : 80,
                                       "巴西隊" : 100, ]),
-                     ]), 
+                     ]),
 ]);
 
 mapping user_data = ([
@@ -117,7 +117,7 @@ private void get_name_end(string arg, object me);
  * 的 heart_beat 設定值為 30，即結束時間精確率為 +- 60s。       *
  *                                                              *
  ****************************************************************/
- 
+
 // 創建存盤文件
 void create()
 {
@@ -131,7 +131,7 @@ string query_save_file()
         return DATA_FILE;
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }
@@ -175,41 +175,41 @@ private void get_type(string arg, object me)
         array  users, items;
         string msg = "";
         int i, j;
-        
+
         switch (arg)
         {
-        case "a": 
+        case "a":
         case "A":
                 items = keys(item_data);
                 msg = "目前的項目有：\n\n";
-                
+
                 for (i = 0; i < sizeof(items); i++)
                 {
                         msg += WHT + (i+1) + NOR "、" + items[i] + "\n";
                 }
-                
+
                 if (! sizeof(items)) msg = "";
-                
+
                 write(msg);
                 write("\n您打算創建新的博彩項目。\n");
                 write("請輸入新建的項目名稱：");
                 input_to("get_name", me);
                 return;
-        case "b": 
-        case "B": 
+        case "b":
+        case "B":
                 items = keys(item_data);
-                
+
                 if (! sizeof(items))
                 {
                         write("\n目前沒有可修改項目。\n\n");
-                        
+
                         write("查詢完畢。\n");
                         write_prompt(me);
                         return;
                 }
-                
+
                 msg = "目前的項目有：\n\n";
-                
+
                 for (i = 0; i < sizeof(items); i++)
                 {
                         msg += WHT + (i+1) + NOR "、" + items[i] + "\n";
@@ -219,24 +219,24 @@ private void get_type(string arg, object me)
                 write("請輸入您要修改的項目名稱：");
                 input_to("get_name", me);
                 return;
-        case "c": 
-        case "C": 
+        case "c":
+        case "C":
                 users = keys(user_data);
-                
+
                 write("您打算查看玩家投注情況。\n");
-                
+
                 if (! sizeof(users))
                 {
                         write("\n目前沒有任何玩家投注。\n\n");
-                        
+
                         write("查詢完畢。\n");
                         write_prompt(me);
                         return;
                 }
-                
+
                 write("目前投注的玩家有：\n\n");
                 msg = WHT "";
-                
+
                 for (i = 0; i < sizeof(users); i++ )
                 {
                         msg += sprintf("%10s", users[i]);
@@ -248,25 +248,25 @@ private void get_type(string arg, object me)
                 write("\n請選擇你具體查看的玩家：");
                 input_to("get_user", me);
                 return;
-        case "d": 
-        case "D": 
+        case "d":
+        case "D":
                 write("你打算結束一個博彩項目。\n");
-                
+
                 items = keys(item_data);
                 // 必須是已經停止的項目才行
                 items = filter_array(items, (: query_status($1) == OPENING :));
-                
+
                 if (! sizeof(items))
                 {
                         write("\n目前沒有可修改項目。\n\n");
-                        
+
                         write("查詢完畢。\n");
                         write_prompt(me);
                         return;
                 }
-                
+
                 msg = "目前的項目有：\n\n";
-                
+
                 for (i = 0; i < sizeof(items); i++)
                 {
                         msg += WHT + (i+1) + NOR "、" + items[i] + "\n";
@@ -275,23 +275,23 @@ private void get_type(string arg, object me)
                 write("\n請輸入您要結束的項目名稱：");
                 input_to("get_name_end", me);
                 return;
-        case "e": 
-        case "E": 
+        case "e":
+        case "E":
                 write("你打算刪除一個博彩項目。\n");
-                
+
                 items = keys(item_data);
-                
+
                 if (! sizeof(items))
                 {
                         write("\n目前沒有可修改項目。\n\n");
-                        
+
                         write("查詢完畢。\n");
                         write_prompt(me);
                         return;
                 }
 
                 msg = "目前的項目有：\n\n";
-                
+
                 for (i = 0; i < sizeof(items); i++)
                 {
                         msg += WHT + (i+1) + NOR "、" + items[i] + "\n";
@@ -300,11 +300,11 @@ private void get_type(string arg, object me)
                 write("\n請輸入您要刪除的項目序號：");
                 input_to("get_name_todel", me);
                 return;
-        default: 
+        default:
                 end_manage();
                 return;
         }
-        
+
 }
 
 // 選擇管理的項目名稱
@@ -314,7 +314,7 @@ private void get_name(string arg, object me)
         string msg = "", team;
         int i, num;
         mapping item;
-        
+
         if (arg == "")
         {
                 end_manage();
@@ -324,20 +324,20 @@ private void get_name(string arg, object me)
         if (mapp(item_data[arg]) && sizeof(item_data[arg]) >= 5)
         {
                 teams = keys(item_data[arg]["subject"]);
-                
+
                 for (i = 0; i < sizeof(teams); i++)
                 {
                         team = teams[i];
                         msg += sprintf("%10s：" WHT "1 : %d\n" NOR , team, item_data[arg]["subject"][team]);
                 }
-                
+
                 change_status(arg, INITING);
                 write("\n1、名稱：" WHT + arg + NOR "\n"
                       "2、描述：\n\n" WHT + sort_msg(item_data[arg]["long"]) + NOR "\n\n"
-                      "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item_data[arg]["end_time"])) + 
+                      "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item_data[arg]["end_time"])) +
                       (item_data[arg]["end_time"] > time() ? "" : HIR "(已結束)") + NOR "\n"
-                      "4、可投注數量：" WHT + item_data[arg]["number"] + " 個\n" NOR 
-                      "5、最小投注量：" WHT + item_data[arg]["min_money"] + " 兩黃金\n" NOR 
+                      "4、可投注數量：" WHT + item_data[arg]["number"] + " 個\n" NOR
+                      "5、最小投注量：" WHT + item_data[arg]["min_money"] + " 兩黃金\n" NOR
                       "6、隊伍及賠率：\n\n" + msg + "\n" );
                 write("請選擇您要修改的項目：");
                 input_to("select_change_type", me, arg);
@@ -348,19 +348,19 @@ private void get_name(string arg, object me)
         {
                 teams = keys(item["subject"]);
                 arg = keys(item_data)[num - 1];
-                
+
                 for (i = 0; i < sizeof(teams); i++)
                 {
                         team = teams[i];
                         msg += sprintf("%10s：" WHT "1 : %d\n" NOR , team, item["subject"][team]);
                 }
-                
+
                 change_status(arg, INITING);
                 write("\n1、名稱：" WHT + arg + NOR "\n"
                       "2、描述：\n\n" WHT + sort_msg(item["long"]) + NOR "\n\n"
-                      "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item["end_time"])) +  
+                      "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item["end_time"])) +
                       (item["end_time"] > time() ? "" : HIR "(已結束)") + NOR "\n"
-                      "4、可投注數量：" WHT + item["number"] + " 個\n" NOR 
+                      "4、可投注數量：" WHT + item["number"] + " 個\n" NOR
                       "5、最小投注量：" WHT + item["min_money"] + " 兩黃金\n" NOR
                       "6、隊伍及賠率：\n\n" + msg + "\n" );
                 write("請選擇您要修改的項目：");
@@ -392,28 +392,28 @@ private void select_change_type(string arg, object me, string name)
                 write("\n你打算修改這個項目的長描述。\n");
                 write("你打算改成什麼呢：");
                 me->edit((: call_other, __FILE__, "change_long", me, name :));
-                return; 
-        case "3": 
+                return;
+        case "3":
                 write("\n你打算修改這個項目的結束時間。\n");
                 write("這個項目將在多少天后結束？");
                 input_to("change_date", me, name);
-                return; 
-        case "4": 
+                return;
+        case "4":
                 write("\n你打算修改這個項目的可投注隊伍數。\n");
                 write("這個項目允許的投注隊伍數為：");
                 input_to("change_number", me, name);
-                return; 
-        case "5": 
+                return;
+        case "5":
                 write("\n你打算修改這個項目的最小投注量。\n");
                 write("你打算改成多少呢：");
                 input_to("change_money", me, name);
                 return;
-        case "6": 
+        case "6":
                 write("\n你打算修改這個項目的隊伍數據。\n");
                 write("你要怎麼修改？[" WHT "1" NOR "、修改 " WHT "2" NOR "、刪除]");
                 input_to("change_team_type", me, name);
                 return;
-        default: 
+        default:
                 change_status(name, OPENING);
                 write("\n你放棄了修改。\n\n");
                 write("修改完畢。\n");
@@ -426,7 +426,7 @@ private void select_change_type(string arg, object me, string name)
 private void change_name(string arg, object me, string name)
 {
         mapping item;
-        
+
         if (arg == "")
         {
                 change_status(name, OPENING);
@@ -446,7 +446,7 @@ private void change_name(string arg, object me, string name)
         map_delete(item_data, name);
         change_status(arg, OPENING);
         save();
-        
+
         log_file("gamble",sprintf("%schangetheitem%s'snameto%son%s.\n",query("id", me),
                            name, arg, ctime(time())));
 
@@ -469,7 +469,7 @@ private void change_long(object me, string arg, string long)
         item_data[arg]["long"] = replace_string(long, "\n", "");
         change_status(arg, OPENING);
         save();
-                
+
         write("\n項目" WHT + arg + NOR "的描述已經被成功改為了\n " WHT + sort_msg(long) + NOR "\n\n");
         write("修改完畢，你回到了管理系統主界面。\n");
         write_prompt(me);
@@ -479,28 +479,28 @@ private void change_long(object me, string arg, string long)
 private void change_date(string arg, object me, string name)
 {
         int day, time;
-        
+
         if (arg == "")
         {
                 change_status(name, OPENING);
                 end_manage();
                 return;
         }
-        
+
         if (! sscanf(arg, "%d", day) || day <= 0)
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請問這個項目將在多少天后結束投注？[格式：" WHT "5" NOR "]");
                 input_to("change_date", me, name);
                 return;
         }
-        
-        time = time() + 86400 * day;       
+
+        time = time() + 86400 * day;
         item_data[name]["end_time"] = time;
         change_status(name, OPENING);
         save();
-                
+
         write("\n項目" WHT + name + NOR "的結束時間已經被成功改為了 " WHT + chinese_number(day) + NOR " 天左右結束。\n\n");
         write("修改完畢，你回到了管理系統主界面。\n");
         write_prompt(me);
@@ -510,27 +510,27 @@ private void change_date(string arg, object me, string name)
 private void change_number(string arg, object me, string name)
 {
         int number;
-        
+
         if (arg == "")
         {
-                change_status(name, OPENING);       
+                change_status(name, OPENING);
                 end_manage();
                 return;
         }
-        
+
         if (! sscanf(arg, "%d", number) || number <= 0)
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請輸入允許玩家選擇的隊伍數目：");
                 input_to("change_number", me, name);
                 return;
         }
-        
+
         item_data[name]["number"] = number;
         change_status(name, OPENING);
         save();
-        
+
         write("\n項目 " WHT + name + NOR + " 的投注隊伍數已經被成功改為了 " WHT + chinese_number(number) + NOR + "個。\n\n");
         write("修改完畢，你回到了管理系統主界面。\n");
         write_prompt(me);
@@ -540,23 +540,23 @@ private void change_number(string arg, object me, string name)
 private void change_money(string arg, object me, string name)
 {
         int money;
-        
+
         if (arg == "")
         {
                 change_status(name, OPENING);
                 end_manage();
                 return;
         }
-        
+
         if (! sscanf(arg, "%d", money) || money <= 0)
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請輸入項目的最少投注黃金量：[格式：" WHT "10000" NOR "]");
                 input_to("get_least_money", me, name);
                 return;
         }
-        
+
         item_data[name]["min_money"] = money;
         change_status(name, OPENING);
         save();
@@ -582,7 +582,7 @@ private void change_team_type(string arg, object me, string name)
                 input_to("change_team_info", me, name);
                 return;
         }
-        else 
+        else
         {
                 write("\n你打算刪除項目" + name + "的一個隊伍數據。\n");
                 input_to("del_team_info", me, name);
@@ -601,10 +601,10 @@ private void get_long(object me, string arg, string long)
 
         item_data[arg]["long"] = replace_string(long, "\n", "");
         save();
-        
+
         write("\n請輸入項目包含的隊伍數目：");
         input_to("get_team_number", me, arg);
-        
+
         return;
 }
 
@@ -612,32 +612,32 @@ private void get_long(object me, string arg, string long)
 private void get_team_number(string arg, object me, string name)
 {
         int times;
-        
+
         if (arg == "")
         {
                 end_manage();
                 return;
         }
-        
+
         sscanf(arg, "%d", times);
-        
+
         if (times > 20 || times <= 0)
         {
                 write("對不起，這個數目是不合法的。\n");
-                
+
                 write("請輸入項目包含的隊伍數目：");
                 input_to("get_team_number", me, name);
-                
+
                 return;
         }
-        
+
         // 初始化隊伍映射
         item_data[name]["subject"] = ([ ]);
         save();
-        
+
         write("\n請輸入第一個隊伍的名稱及賠率[格式：" WHT "中國隊:30" NOR "]：");
         input_to("get_team_info", me, name, times);
-        
+
         return;
 }
 
@@ -646,34 +646,34 @@ private void get_team_info(string arg, object me, string name, int times)
 {
         string team;
         int bonus;
-        
+
         if (arg == "")
         {
                 end_manage();
                 return;
         }
-        
+
         if (sscanf(arg, "%s:%d", team, bonus) != 2)
         {
                 write("格式錯誤，請重新輸入。\n");
                 write("請輸入第一個隊伍的名稱及賠率[格式：" WHT "中國隊:30" NOR "]：");
                 input_to("get_team_info", me, name, times);
-        
+
                 return;
         }
-        
+
         // 防止出現重複輸入
         if (item_data[name]["subject"][team])
         {
                 write("這個隊伍已經輸入過了。\n");
                 write("請輸入下一個隊伍的名稱及賠率[格式：" WHT "中國隊:30" NOR "]：");
                 input_to("get_team_info", me, name, times);
-        
+
                 return;
         }
-        
-        item_data[name]["subject"][team] = bonus; 
-        
+
+        item_data[name]["subject"][team] = bonus;
+
         // 如果所有的隊伍都輸入完了
         if (times == sizeof(item_data[name]["subject"]))
         {
@@ -681,15 +681,15 @@ private void get_team_info(string arg, object me, string name, int times)
                 input_to("get_date_off", me, name);
                 return;
         }
-        
+
         write("目前還剩下：" + (times - sizeof(item_data[name]["subject"])) + "個隊。\n");
-        
+
         item_data[name]["subject"][team] = bonus;
         save();
-        
+
         write("\n請輸入下一個隊伍的名稱及賠率[格式：" WHT "中國隊:30" NOR "]：");
         input_to("get_team_info", me, name, times);
-        
+
         return;
 }
 
@@ -697,30 +697,30 @@ private void get_team_info(string arg, object me, string name, int times)
 private void get_date_off(string arg, object me, string name)
 {
         int day, time;
-        
+
         if (arg == "")
         {
                 end_manage();
                 return;
         }
-        
+
         if (! sscanf(arg, "%d", day) || day <= 0)
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請問這個項目將在多少天后結束投注？[格式：" WHT "5" NOR "]");
                 input_to("get_date_off", me, name);
                 return;
         }
-        
+
         time = time() + 86400 * day;
-        
+
         item_data[name]["end_time"] = time;
         save();
-        
+
         write("\n項目" WHT + name + NOR "將在 " WHT + CHINESE_D->chinese_time(5, ctime(time)) +
               NOR " 左右結束。\n\n");
-              
+
         write("請輸入項目的最少投注黃金量：[格式：" WHT "10000" NOR "]");
         input_to("get_least_money", me, name);
         return;
@@ -730,28 +730,28 @@ private void get_date_off(string arg, object me, string name)
 private void get_least_money(string arg, object me, string name)
 {
         int money;
-        
+
         if (arg == "")
         {
                 end_manage();
                 return;
         }
-        
+
         if (! sscanf(arg, "%d", money) || money <= 0)
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請輸入項目的最少投注黃金量：[格式：" WHT "10000" NOR "]");
                 input_to("get_least_money", me, name);
                 return;
         }
-        
+
         item_data[name]["min_money"] = money;
         save();
-        
+
         write("\n項目" WHT + name + NOR "的最小投注量是 " WHT + money +
               NOR " 兩黃金。\n\n");
-        
+
         write("請輸入允許玩家選擇的隊伍數目：");
         input_to("get_chip_number", me, name);
         return;
@@ -761,41 +761,41 @@ private void get_least_money(string arg, object me, string name)
 private void get_chip_number(string arg, object me, string name)
 {
         int number;
-        
+
         if (arg == "")
         {
                 end_manage();
                 return;
         }
-        
-        if (! sscanf(arg, "%d", number) 
+
+        if (! sscanf(arg, "%d", number)
             || number <= 0
             || number >= sizeof(item_data[name]["subject"]))
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請輸入允許玩家選擇的隊伍數目：");
                 input_to("get_chip_number", me, name);
                 return;
         }
-        
+
         item_data[name]["number"] = number;
         save();
-        
+
         write("項目" WHT + name + NOR "允許玩家選擇的隊伍數目是 " WHT + chinese_number(number) +
               NOR " 個。\n\n");
-              
+
         // 全部內容編輯完畢
         change_status(name, OPENING);
         save();
-        
+
         log_file("gamble",sprintf("%screateagambleitemcalled%son%s.\n",query("id", me),
                            name, ctime(time())));
 
         write("全部內容編輯保存完畢。\n");
-        
-        write("你回到的管理系統主界面。\n"); 
-        write_prompt(me);        
+
+        write("你回到的管理系統主界面。\n");
+        write_prompt(me);
         return;
 }
 
@@ -804,40 +804,40 @@ private void get_name_todel(string arg, object me)
 {
         int number;
         array names;
-        
+
         if (arg == "")
         {
                 end_manage();
                 return;
         }
-        
+
         if (! sscanf(arg, "%d", number) || number <= 0)
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請輸入你要刪除的項目序號：");
                 input_to("get_name_todel", me);
                 return;
         }
-        
+
         names = keys(item_data);
         if (! mapp(item_data[names[number - 1]]))
         {
                 write("\n沒有這個項目。\n\n");
-                
+
                 write("請輸入你要刪除的項目序號：");
                 input_to("get_name_todel", me);
                 return;
         }
-        
+
         write("項目" WHT + names[number - 1] + NOR "被成功刪除了。\n\n");
         map_delete(item_data, names[number - 1]);
         log_file("gamble",sprintf("%sdeleteagambleitemcalled%son%s.\n",query("id", me),
                            names[number - 1], ctime(time())));
         save();
-        
-        write("你回到的管理系統主界面。\n"); 
-        write_prompt(me);        
+
+        write("你回到的管理系統主界面。\n");
+        write_prompt(me);
         return;
 }
 
@@ -847,17 +847,17 @@ public void do_chip(object me)
         array items = keys(item_data);
         string msg = "目前允許投注的項目有：\n\n";
         int i;
-        
+
         write(HIW "－－－－－－－－－－－－－－－－－－－－－－－－－－－－\n" NOR);
         write("\t\t  「" HIW + MUD_NAME + "博彩公司" NOR "」\n\n");
-        
+
         if (! sizeof(items))
         {
                 write("沒有可供下注的項目。\n");
                 write(HIW "－－－－－－－－－－－－－－－－－－－－－－－－－－－－\n" NOR);
                 return;
         }
-        
+
         for (i = 0; i < sizeof(items); i++)
         {
                 // 如果沒有開放
@@ -868,7 +868,7 @@ public void do_chip(object me)
         write(msg);
         write("\n請選擇您要參與博彩的項目[" WHT "Enter" NOR " 退出]：");
         input_to("select_name_tochip", me);
-        
+
         return;
 }
 
@@ -879,7 +879,7 @@ private void select_name_tochip(string arg, object me)
         int i;
         mapping item;
         string id=query("id", me);
-                
+
         if (arg == "")
         {
                 write("\n你放棄了投注。\n");
@@ -892,21 +892,21 @@ private void select_name_tochip(string arg, object me)
                 write("\n你發燒了？怎麼可能會有這個項目？\n");
                 write("請選擇您要參與博彩的項目[" WHT "Enter" NOR " 退出]：");
                 input_to("select_name_tochip", me);
-        
+
                 return;
         }
-        
+
         name = keys(item_data)[i - 1];
-        
+
         if (! mapp(item = item_data[name]))
         {
                 write("\n沒發燒？但確實沒有這個項目呀。\n");
                 write("請選擇您要參與博彩的項目[" WHT "Enter" NOR " 退出]：");
                 input_to("select_name_tochip", me);
-        
+
                 return;
         }
- 
+
         if (mapp(user_data[id]) &&
             sizeof(user_data[id][name]) >= 2)
         {
@@ -914,43 +914,43 @@ private void select_name_tochip(string arg, object me)
                 for (i = 0; i < sizeof(teams); i++)
                 {
                         msg += sprintf("%10s：" WHT "1 : %d\n" NOR , teams[i], item["subject"][teams[i]]);
-                }                
+                }
                 write("\n這個項目你不是已經投注了嗎？可不能反悔哦。\n");
                 write("\n1、名稱：" WHT + name + NOR "\n"
                         "2、描述：\n\n" WHT + sort_msg(item["long"]) + NOR "\n\n"
-                        "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item["end_time"])) + 
+                        "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item["end_time"])) +
                         (item["end_time"] > time() ? "" : HIR "(已結束)") + NOR "\n"
-                        "4、可投注數量：" WHT + item["number"] + " 個\n" NOR 
+                        "4、可投注數量：" WHT + item["number"] + " 個\n" NOR
                         "5、已投注黃金：" WHT + user_data[id][name]["money"] + " 兩黃金\n" NOR
                         "6、隊伍及賠率：\n\n" + msg + "\n" );
 
                 write("請選擇您要參與博彩的項目[" WHT "Enter" NOR " 退出]：");
                 input_to("select_name_tochip", me);
-                return; 
+                return;
         }
-                
+
         if (item["status"] != OPENING)
         {
                 write("\n這個項目還沒開放或者是已經停止了，你還是換一個吧。\n");
                 write("請選擇您要參與博彩的項目[" WHT "Enter" NOR " 退出]：");
                 input_to("select_name_tochip", me);
-        
+
                 return;
         }
-        
+
         /*
         // 投注是分開來一隊一隊的投
-        if (mapp(user_data[id]) && 
-            arrayp(teams = user_data[id][name]["team"]) && 
+        if (mapp(user_data[id]) &&
+            arrayp(teams = user_data[id][name]["team"]) &&
             sizeof(teams) >= item_data[name]["number"])
         {
                 write("你下注的隊伍已經夠多的了。\n");
                 return;
         }
-        */                  
-        
+        */
+
         teams = keys(item["subject"]);
-                
+
         for (i = 0; i < sizeof(teams); i++)
         {
                 msg += sprintf("%10s：" WHT "1 : %d\n" NOR , teams[i], item["subject"][teams[i]]);
@@ -958,9 +958,9 @@ private void select_name_tochip(string arg, object me)
 
         write("\n1、名稱：" WHT + name + NOR "\n"
                         "2、描述：\n\n" WHT + sort_msg(item["long"]) + NOR "\n\n"
-                        "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item["end_time"])) + 
+                        "3、結束時間：" WHT + CHINESE_D->chinese_time(5, ctime(item["end_time"])) +
                         (item["end_time"] > time() ? "" : HIR "(已結束)") + NOR "\n"
-                        "4、可投注數量：" WHT + item["number"] + " 個\n" NOR 
+                        "4、可投注數量：" WHT + item["number"] + " 個\n" NOR
                         "5、最小投注量：" WHT + item["min_money"] + " 兩黃金\n" NOR
                         "6、隊伍及賠率：\n\n" + msg + "\n" );
 
@@ -976,7 +976,7 @@ protected void select_team_tochip(string arg, object me, string name)
 {
         array teams, all_teams;
         int i, n;
-        
+
         if (arg == "")
         {
                 write("\n你放棄了投注。\n");
@@ -999,7 +999,7 @@ protected void select_team_tochip(string arg, object me, string name)
                 input_to("select_team_tochip", me, name);
                 return;
         }
-        
+
         all_teams = keys(item_data[name]["subject"]);
         if (n != item_data[name]["number"])
         {
@@ -1008,7 +1008,7 @@ protected void select_team_tochip(string arg, object me, string name)
                 input_to("select_team_tochip", me, name);
                 return;
         }
-        
+
         for (i = 0; i < n; i++)
         {
                 if (member_array(teams[i], all_teams) == -1)
@@ -1019,13 +1019,13 @@ protected void select_team_tochip(string arg, object me, string name)
                         return;
                 }
         }
-        
+
         user_data+=([query("id", me):([name:(["team":teams])])]);
-        
+
         write("\n你選擇下注的隊伍是" WHT + implode(teams, NOR "、" WHT) + NOR + "。\n\n");
         write("\n請輸入你要下注的黃金：");
         input_to("get_money_tochip", me, name);
-        
+
         return;
 }
 
@@ -1033,43 +1033,43 @@ protected void get_money_tochip(string arg, object me, string name)
 {
         string id;
         int money;
-        
+
         if (arg == "")
         {
                 end_manage();
                 return;
         }
-        
+
         if (! sscanf(arg, "%d", money) || money <= 0)
         {
                 write("\n非法的格式，請重新輸入。\n\n");
-                
+
                 write("請輸入最少投注黃金量：[格式：" WHT "10000" NOR "]");
                 input_to("get_money_tochip", me, name);
                 return;
         }
-        
+
         id=query("id", me);
-        
+
         if (count_lt(money, item_data[name]["min_money"]))
         {
                 write("你至少要下注" + chinese_number(item_data[name]["min_money"]) + "兩黃金吧。\n");
                 input_to("get_money_tochip", me, name);
                 return;
         }
-        
+
         if( count_le(query("balance", me),count_mul(money,10000)) )
         {
-                write("\n你銀行的存款餘額不足，請重新輸入。\n\n");                                 
+                write("\n你銀行的存款餘額不足，請重新輸入。\n\n");
                 write("請輸入最少投注黃金量：[格式：" WHT "10000" NOR "]");
                 input_to("get_money_tochip", me, name);
                 return;
         }
-        
+
         set("balance", count_sub(query("balance", me),count_mul(money,10000)), me);
-        user_data[id][name] += ([ "money" : money ]);                               
+        user_data[id][name] += ([ "money" : money ]);
         save();
-        
+
         write("投注成功。\n");
         return;
 }
@@ -1078,7 +1078,7 @@ protected void get_money_tochip(string arg, object me, string name)
 private void get_user(string arg, object me)
 {
         mapping user;
-        
+
         if (arg == "")
         {
                 end_manage();
@@ -1092,10 +1092,10 @@ private void get_user(string arg, object me)
                 return;
         }
         write("用戶 " + WHT + arg + NOR " 參加投注的項目有：\n\n" WHT + implode(keys(user), NOR "/" WHT) + NOR "\n");
-        
+
         write("\n請選擇具體查看的項目：");
         input_to("get_user_info", me, arg);
-        
+
         return;
 }
 
@@ -1103,7 +1103,7 @@ private void get_user(string arg, object me)
 private void get_user_info(string arg, object me, string id)
 {
         mapping user;
-        
+
         if (arg == "")
         {
                 end_manage();
@@ -1120,9 +1120,9 @@ private void get_user_info(string arg, object me, string id)
         write("項目名：" + WHT + arg + NOR + "\n");
         write("投注量：" + WHT + user_data[id][arg]["money"] + NOR " 兩黃金" + NOR + "\n");
         write("投注隊伍：" WHT + implode(user_data[id][arg]["team"], NOR " & " WHT) + NOR + "\n\n");
-        
-        write("查詢完畢，你回到的管理系統主界面。\n"); 
-        write_prompt(me); 
+
+        write("查詢完畢，你回到的管理系統主界面。\n");
+        write_prompt(me);
         return;
 }
 
@@ -1133,10 +1133,10 @@ private void get_name_end(string arg, object me)
                 end_manage();
                 return;
         }
-              
-        change_status(arg, STOPPED);        
-        write("修改完畢，你回到的管理系統主界面。\n"); 
-        write_prompt(me); 
+
+        change_status(arg, STOPPED);
+        write("修改完畢，你回到的管理系統主界面。\n");
+        write_prompt(me);
         return;
 }
 

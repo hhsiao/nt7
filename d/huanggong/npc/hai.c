@@ -102,7 +102,7 @@ string ask_for_jingong() {
 }
 
 
-int do_decide() {
+int do_decide(string arg) {
     if(!query_temp("pending/zigong", this_player()) )
         return 0;
 

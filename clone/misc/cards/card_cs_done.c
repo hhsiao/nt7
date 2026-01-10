@@ -68,7 +68,7 @@ int do_dakai(string arg) {
     }
     return 1;
 }
-int do_chaikai() {
+int do_chaikai(string arg) {
     object me = this_player();
 
     if (!present(this_object(), this_player()))

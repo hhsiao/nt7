@@ -5,7 +5,7 @@
 #include <room.h>
 inherit ROOM;
 
-int do_climb();
+int do_climb(string arg);
 
 void create() {
     set("short", "扶峰山");
@@ -35,7 +35,7 @@ LONG );
 void init() {
     add_action("do_climb", "climb");
 }
-int do_climb() {
+int do_climb(string arg) {
     object me = this_player();
 
     if(random((int)me->query_skill("dodge", 1))<=30)

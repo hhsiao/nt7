@@ -171,7 +171,7 @@ void goto_heimuya(object ob) {
     ob->move(__DIR__"chengdedian");
 }
 
-int do_float() {
+int do_float(string arg) {
     object me;
 
     me = this_player();

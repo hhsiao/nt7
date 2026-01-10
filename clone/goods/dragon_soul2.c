@@ -18,7 +18,7 @@ void init() {
         add_action("do_reset", "reset");
 }
 
-int do_reset() {
+int do_reset(string arg) {
     object ob = this_player();
     int times, n;
 

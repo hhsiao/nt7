@@ -184,7 +184,7 @@ void check(object me)
   call_out("check",1,me);
 }
 
-int do_leave()
+int do_leave(string arg)
 {
 	object ob,room,me = this_player();
   if(this_object()->query_temp("biwu")==2)

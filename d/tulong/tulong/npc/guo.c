@@ -109,7 +109,7 @@ int do_get(string arg) {
     return 0;
 }
 
-int do_bi() {
+int do_bi(string arg) {
     object me = this_player();
     if (objectp(present("mai jing", environment()))) return 0;
     begin(me);

@@ -37,7 +37,7 @@ void destme() {
     destruct(this_object());
 }
 
-int do_ride () {
+int do_ride(string arg) {
     object ob = this_player ();
     if(query("meili", ob)<20 )
     {

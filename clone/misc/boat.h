@@ -84,7 +84,7 @@ void dest(object ob) {
     destruct(ob);
 }
 
-int do_out() {
+int do_out(string arg) {
     object me = this_player(), room;
 
     if(!query("boat_of")) return notify_fail("你要跳海？請用 suicide 命令。\n");

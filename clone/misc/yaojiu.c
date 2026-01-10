@@ -53,7 +53,7 @@ int do_fill(string arg) {
     message_vision("$N往藥臼裡添了些清水。\n", this_player());
     return 1;
 }
-int do_burn() {
+int do_burn(string arg) {
     object *inv = all_inventory(this_object());
     object room = environment(this_player());
     object me = this_player();

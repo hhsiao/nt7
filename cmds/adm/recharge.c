@@ -10,8 +10,6 @@ int main(object me, string arg) {
     if (! SECURITY_D->valid_grant(me, "(boss)"))
         return 0;
 
-    if (! me->is_admin()) return 0;
-
     if (! arg || sscanf(arg, "%s %d", target, money) != 2)
         return notify_fail("指令格式：recharge <id> <amount>。\n");
 

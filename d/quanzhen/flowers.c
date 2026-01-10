@@ -4,7 +4,7 @@ inherit ROOM;
 
 #include <ansi.h>
 
-int do_hide();
+int do_hide(string arg);
 int do_look();
 int event_one(object me);
 int event_two(object me);
@@ -40,7 +40,7 @@ void init() {
     add_action("do_push", "tui");
 }
 
-int do_hide(){
+int do_hide(string arg){
 
     object me = this_player();
     if (me->is_busy())

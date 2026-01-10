@@ -38,7 +38,7 @@ int main(object me, string arg) {
             if (wiz_level(me) < 3)
                 return notify_fail("你的巫師等級不夠搜身。\n");
 
-            if (! me->is_admin())
+            if ((string)SECURITY_D->get_status(me) != "(boss)")
             {
                 switch (SECURITY_D->query_site_privilege("get"))
                 {

@@ -4,8 +4,8 @@
 inherit NPC;
 int pieqian(object me);
 int pieshuang(object me);
-int do_deal();
-int do_turn();
+int do_deal(string arg);
+int do_turn(string arg);
 int yesorno();
 string cstr(int i);
 
@@ -108,7 +108,7 @@ int accept_object(object who, object ob) {
     }
 }
 
-int do_deal() {
+int do_deal(string arg) {
     object me = this_player();
     int m3;
 

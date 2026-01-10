@@ -125,7 +125,7 @@ string ask_hunyin() {
     else   return "暫時還找不到與你相配的人。";
 }
 
-int do_agree() {
+int do_agree(string arg) {
     object who, ob = this_player();
 
     if(!query_temp("mameipo/who", ob) )

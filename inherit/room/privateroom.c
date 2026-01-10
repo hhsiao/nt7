@@ -105,7 +105,7 @@ int receive_dbase_data(mixed data) {
     return 1;
 }
 
-void remove() {
+varargs void remove(string euid) {
     this_close_door(1);
     save();
 }

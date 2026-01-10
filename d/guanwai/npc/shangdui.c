@@ -21,7 +21,7 @@ void init()
     add_action("do_rob", "jieche");
 }
 
-int do_rob() {
+int do_rob(string arg) {
     object me, ob;
     string arg;
     int stage;

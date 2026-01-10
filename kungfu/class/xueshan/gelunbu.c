@@ -227,7 +227,7 @@ string ask_for_join() {
     return "甚好，甚好！你若真心皈依我佛，請跪下(kneel)受戒。";
 }
 
-int do_kneel() {
+int do_kneel(string arg) {
     object me = this_player();
 
     if(!query_temp("pending/join_bonze", me) )

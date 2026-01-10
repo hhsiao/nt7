@@ -60,7 +60,7 @@ int do_kao(string arg) {
     return ob->broil(me, this_object());
 }
 
-int move(mixed dest, int raw) {
+varargs int move(mixed dest, int raw) {
     int res;
 
     if (objectp(dest) && dest->is_character())

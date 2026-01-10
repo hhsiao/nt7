@@ -40,7 +40,7 @@ int main(object me, string arg) {
     if (environment(ob) == me)
         return notify_fail("咦... 不就在你身上嗎？\n");
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("summon"))
         {

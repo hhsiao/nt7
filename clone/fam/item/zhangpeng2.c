@@ -96,7 +96,7 @@ int do_out() {
 }
 
 // 打開帳篷
-int do_open() {
+int do_open(string arg) {
     object me;
     object env;
     object obt, obj;

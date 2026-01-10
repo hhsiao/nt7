@@ -30,7 +30,7 @@ void init()
        add_action("do_giveup","giveup");
 }
 
-int do_join()
+int do_join(string arg)
 {
        string msg;
        object me,obj;

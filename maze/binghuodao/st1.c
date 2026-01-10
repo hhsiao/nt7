@@ -34,7 +34,7 @@ void init()
         }
 }
 
-int do_wang()
+int do_wang(string arg)
 {
         object ob = this_player();
 

@@ -4,7 +4,7 @@
 #include <ansi.h>
 inherit ROOM;
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 string look_pai(object me);
 

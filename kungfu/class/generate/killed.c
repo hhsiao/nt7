@@ -245,7 +245,7 @@ int filter_to_bonus(object ob, object aob)
 }
 
 // remove
-void remove()
+varargs void remove(string euid)
 {
         object qob;
 

@@ -127,7 +127,7 @@ int accept_touxi(object who) {return accept_hit(who);}
 void random_move() {
     return NPC_D->random_move(this_object());
 }
-int do_halt() {
+int do_halt(string arg) {
     object me = this_player();
     object ob = this_object();
 

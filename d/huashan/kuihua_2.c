@@ -15,7 +15,7 @@ void init() {
     add_action("do_climb", "climb");
 }
 
-int do_climb() {
+int do_climb(string arg) {
     object me = this_player();
     int n = me->query_skill("dodge", 1);
 

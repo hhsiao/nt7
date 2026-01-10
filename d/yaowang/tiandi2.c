@@ -47,6 +47,6 @@ int do_dig(string arg) {
     return 1;
 }
 
-int do_work() {
+int do_work(string arg) {
     return notify_fail("這裡不能使用這個指令！\n");
 }

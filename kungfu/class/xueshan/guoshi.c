@@ -143,7 +143,7 @@ string ask_for_join() {
     "我佛，請跪下(kneel)受戒。\n";
 }
 
-int do_kneel() {
+int do_kneel(string arg) {
     object me = this_player();
 
     if(!query_temp("pending/join_bonze", me) )

@@ -118,7 +118,7 @@ int ask_bijian() {
     return 1;
 }
 
-int do_accept() {
+int do_accept(string arg) {
     int eff;
     object weapon, obj;
     object me = this_player(), ob = this_object();

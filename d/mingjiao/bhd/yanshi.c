@@ -32,7 +32,7 @@ void init() {
     add_action("do_enter", "enter");
 }
 
-int do_enter() {
+int do_enter(string arg) {
     object me, sea, *inv;
     int i;
     me = this_player();

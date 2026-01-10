@@ -52,7 +52,7 @@ int main(object me, string arg) {
     if (! obj) return notify_fail("找不到指定的物件。\n");
 
     // check privilege
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("call"))
         {

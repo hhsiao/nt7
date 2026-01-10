@@ -34,7 +34,7 @@ void says(object me) {
     message_vision(msg, this_object());
 }
 
-int do_sleep() {
+int do_sleep(string arg) {
     object me = this_object();
     object who = this_player();
 

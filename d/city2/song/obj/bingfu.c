@@ -85,7 +85,7 @@ int do_yun(string arg) {
     return 0;
 }
 
-int do_escort() {
+int do_escort(string arg) {
     object me = this_player(), ob = this_object();
 
     if (file_name(environment(me)) != "/quest/quest_jun/sying1")

@@ -68,7 +68,7 @@ void setup() {
 // 如果是首先析構這個任務對象，則destructing這個標識必然為零，
 // 那麼我就設置標識，然後嘗試調用取消任務的重載函數。 這樣在
 // 取消任務的函數中調用析構函數就不會再次執行。
-void remove() {
+varargs void remove(string euid) {
     if(!destructing && this_object()->is_quest() ) {
         destructing = 1;
 

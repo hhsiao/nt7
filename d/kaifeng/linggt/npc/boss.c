@@ -969,11 +969,12 @@ int accept_hit(object ob) {
 }
 
 
-void receive_damage(string type, int n) {
+varargs int receive_damage(string type, int n, object who) {
     if (!random(4)) {
         this_object()->stop_busy();
-        return;
+        return 0;
     }
+    return ::receive_damage(type, n, who);
 }
 
 void unconcious() {

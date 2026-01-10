@@ -129,7 +129,7 @@ void init()
 	add_action("do_nod",  ({ "nod" }));
 }
 
-int do_swear()
+int do_swear(string arg)
 {
 	object ob, me = this_player();
 	object where = environment(me);

@@ -10,7 +10,7 @@ void create()
         set("short", "東北偏北前庭");
 	set ("long", @LONG
 這裡似乎非常安靜，聽不到什麼聲響，到是時不時聽見鳥兒唧唧
-喳喳的叫。院中不少樹木已然有遮天之勢，肅穆非常。 
+喳喳的叫。院中不少樹木已然有遮天之勢，肅穆非常。
 LONG );
 
         set("exits", ([
@@ -53,7 +53,7 @@ void init()
         add_action("do_close", "close");
 }
 
-int do_push()
+int do_push(string arg)
 {
         object ob;
         object me;

@@ -22,7 +22,7 @@ void init() {
     add_action("do_jump", "jump");
 }
 
-int do_jump() {
+int do_jump(string arg) {
     object me = this_player();
 
     if (me->is_busy() || me->is_fighting())

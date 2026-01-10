@@ -6,12 +6,12 @@
 inherit NPC;
 int ask_party();
 void start_party(object, object);
-int do_start();
-int do_serve();
+int do_start(string arg);
+int do_serve(string arg);
 void finish_party(object, object);
 int give_money(object, object);
 int do_kill(string);
-int do_exert();
+int do_exert(string arg);
 int do_steal(string);
 int kick(object);
 
@@ -219,7 +219,7 @@ int do_start() {
     return 1;
 }
 
-int do_serve() {
+int do_serve(string arg) {
     object ob, me, food;
     ob = this_object();
     me = this_player();

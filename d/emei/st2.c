@@ -20,7 +20,7 @@ void init() {
     add_action("do_wang", "wang");
 }
 
-int do_wang() {
+int do_wang(string arg) {
     object ob = this_player();
 
     message_vision(HIC "\n$N" HIC "極目四望，發現還是有出路的，於"

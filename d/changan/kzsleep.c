@@ -27,7 +27,7 @@ LONG );
 void init() {
     add_action("do_bed", "bed");
 }
-int do_bed()
+int do_bed(string arg)
 {       object me;
     me = this_player();
     message_vision(HIY "$N掀開紗帳，準備上床了。\n\n" NOR, me);

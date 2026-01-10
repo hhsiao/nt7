@@ -20,7 +20,7 @@ void delete_me()
                 message_vision("$N大聲哭道：“"+query("following_name")+"你又說帶我去，那麼久了都沒去到！”\n",ob);
                 message_vision("只見$N傷心地往旁邊的路上走去……又多了一個迷失兒童……\n",ob);
                 temp_obj=find_player(query("following_id"));
-                if( temp_obj && query_temp("huanjing", temp_obj) == "start" && 
+                if( temp_obj && query_temp("huanjing", temp_obj) == "start" &&
                    query_temp("hj_score", temp_obj)>200 )
                 {
                     award_score = 30 + random(21);
@@ -347,7 +347,7 @@ int do_huida(string arg)
     qxd = present("qixing deng",me);
     if(!qxd) return 0;
 
-    if( !query("hj_quest_info1", qxd) || !query("hj_quest_info2", qxd) || 
+    if( !query("hj_quest_info1", qxd) || !query("hj_quest_info2", qxd) ||
        !query("hj_quest_info3", qxd) || !query("hj_quest_info4", qxd) )
         return 0;
 
@@ -653,7 +653,7 @@ int do_answer(string arg)
 
 
 // naihe 05-9-12 8:09 glist 時為什麼要 cmd(say) ? 別人無緣無故就被 flood ，鬱悶。
-int do_glist()
+int do_glist(string arg)
 {
     object me=this_player();
     int i,iii;

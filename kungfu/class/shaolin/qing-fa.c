@@ -92,7 +92,7 @@ string ask_for_join() {
     return "阿彌陀佛！善哉！善哉！施主若真心皈依我佛，請跪下(kneel)受戒。\n";
 }
 
-int do_kneel() {
+int do_kneel(string arg) {
     object me = this_player();
 
     string *prename =

@@ -110,7 +110,7 @@ string check_beted_str     (string id );
 protected int do_chk              (string arg );
 protected int do_bet              (string arg );
 protected int do_mewiz            (string arg );
-protected int do_gogo             ();
+protected int do_gogo(string arg);
 protected void finish_bingo_check  ();
 protected void new_game            ();
 protected void game_start          (int stat );

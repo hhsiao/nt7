@@ -55,7 +55,7 @@ int do_finger() {
     return 1;
 }
 
-int do_strike() {
+int do_strike(string arg) {
     object me;
     int qi_cost, c_exp, c_skill;
     me = this_player();

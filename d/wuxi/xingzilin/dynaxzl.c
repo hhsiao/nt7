@@ -26,7 +26,7 @@ mixed *room_list, *npc_list, *temp_list;
 
 int regenerate_map();
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 void create() {
     seteuid(ROOT_UID);
     set("channel_id", "系統精靈");

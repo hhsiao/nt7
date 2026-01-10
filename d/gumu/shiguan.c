@@ -46,7 +46,7 @@ int do_dian(string arg) {
     return 0;
 }
 
-int do_search() {
+int do_search(string arg) {
     object me = this_player();
 
     if(!query_temp("marks/古墓1", me))return 0;

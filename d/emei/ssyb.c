@@ -33,7 +33,7 @@ void init() {
     add_action("do_bai", "bai");
 }
 
-int do_climb() {
+int do_climb(string arg) {
     object me;
     me = this_player();
     message("vision", me->name() + "使勁爬上去，花了九牛二虎之力。\n", environment(me), ({ me }) );

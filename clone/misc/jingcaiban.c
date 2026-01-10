@@ -217,7 +217,7 @@ void enough_rest() {
     delete_temp("busy");
 }
 // 兌獎指令
-int do_duijiang() {
+int do_duijiang(string arg) {
     int i, j;
     object ob, me = this_player();
     mapping jingcai;

@@ -3,7 +3,7 @@
 
 inherit ROOM;
 #include <ansi.h>
-int do_get();
+int do_get(string arg);
 
 string *book = ({
     "/clone/book/book-silk",
@@ -32,7 +32,7 @@ void init() {
     add_action("do_get", "chou");
     add_action("do_get", "qu");
 }
-int do_get() {
+int do_get(string arg) {
     object ob, me = this_player();
     addn("qi", -5, me);
     if ((query("book_count") > 0) && (random(5) == 3))

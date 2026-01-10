@@ -89,7 +89,7 @@ void create()
                 cache[i] = initialize(i);
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

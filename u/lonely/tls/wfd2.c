@@ -24,10 +24,10 @@ LONG);
 void init()
 {
         add_action("do_linghui","領會");
-        add_action("do_linghui","linghui");	
+        add_action("do_linghui","linghui");
 }
 
-int do_linghui()
+int do_linghui(string arg)
 {
 	object me = this_player();
 	message_vision("$N盤腿靜坐了下來，看著眼前的壁畫，良久，似有所悟。\n", me);
@@ -35,4 +35,3 @@ int do_linghui()
 //    me->set("shen",0);
 	return 1;
 }
-

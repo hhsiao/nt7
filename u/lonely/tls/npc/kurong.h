@@ -226,7 +226,7 @@ int do_kill(string arg)
 	return 0;
 }
 
-int do_yes()
+int do_yes(string arg)
 {
 	object me,ob,room;
 	ob = this_player();

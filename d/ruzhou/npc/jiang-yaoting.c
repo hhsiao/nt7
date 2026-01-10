@@ -4,8 +4,8 @@
 inherit NPC;
 int do_unmarry(string arg);
 int zou(object me);
-int do_kill();
-int do_chat();
+int do_kill(string arg);
+int do_chat(string arg);
 
 void create() {
     set_name("江耀亭", ({ "jiang yaoting", "jiang" }));
@@ -56,7 +56,7 @@ int accept_object(object me, object ob) {
     return 1;
 }
 
-int do_chat() {
+int do_chat(string arg) {
     object me;
     me = this_player();
 
@@ -80,7 +80,7 @@ int zou(object me) {
     return 1;
 }
 
-int do_kill() {
+int do_kill(string arg) {
     object ob;
     int i;
 

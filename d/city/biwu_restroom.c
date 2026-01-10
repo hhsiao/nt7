@@ -34,7 +34,7 @@ void init() {
     add_action("do_drop", "drop");
 }
 
-int do_get() {
+int do_get(string arg) {
     object me;
     me = this_player();
     if (wizardp(me)) return 0;

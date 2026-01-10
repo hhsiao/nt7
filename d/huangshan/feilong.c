@@ -25,7 +25,7 @@ void init() {
     add_action("do_search", "search");
     add_action("do_search", "sou");
 }
-int do_search() {
+int do_search(string arg) {
     string *names = ({ "髒髒的", "劃破的", "撕成條的", "沾滿汙泥的" });
     object clo, me = this_player();
 

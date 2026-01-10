@@ -31,7 +31,7 @@ void init() {
     set_temp("apply/long", ({ "夢遊者(dreamwalker)\n" }), me);
 }
 
-int do_wake() {
+int do_wake(string arg) {
     object me = this_player();
 
     message_vision("$N忽然輕飄飄地飛了起來，一下就飛走了。\n", me);

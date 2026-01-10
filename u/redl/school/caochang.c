@@ -1,18 +1,18 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/8
-#include <ansi.h> 
-#include <room.h> 
-inherit ROOM; 
+#include <ansi.h>
+#include <room.h>
+inherit ROOM;
 
 #define BONUS_EXP 36000
 #define BONUS_IMPROVE_SKILL 10000
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 void create()
 {
         set("short", "學堂操場");
-        set("long", 
+        set("long",
 "操場的前方高高聳立著一根銀白色的旗杆，旗杆的頂端是一面鮮豔的\n"
 "五星紅旗，襯著藍天，映著白雲，顯得更加莊嚴。操場旁邊有個小池塘，\n"
 "四周綠樹環繞，野花遍地……\n");
@@ -26,12 +26,12 @@ void create()
         set("no_kill",1);
         set("no_fight",1);
         set("no_steal",1);
-        set("no_beg",1);         
+        set("no_beg",1);
                 set("no_rideto", 1);
                 set("no_flyto", 1);
-                set("no_magic", 1); 
-        set("no_sleep_room", 1); 
-        
+                set("no_magic", 1);
+        set("no_sleep_room", 1);
+
         setup();
 }
 
@@ -88,19 +88,19 @@ int do_giftbaby2(object me, string msg, int p)
 void do_rndmove(object baby, string str)
 {
         object room;
-        
+
         if (!baby || !objectp(baby)) return;
         room = environment(baby);
         if (!room || base_name(room)!=str) return;
         if (!query_temp("school/init", baby)) return;
-        
+
         if (baby->is_busy()) {
                 call_out("do_rndmove", 2, baby, str);
                 return;
         }
-        
+
         delete_temp("school/init", baby);
-        
+
         if (!random(5)) {
                 if (!random(25)) {
                         baby->command("go north");
@@ -159,7 +159,7 @@ void do_rndmove(object baby, string str)
                         default:
                                 baby->command("think 我下一步該玩什麼呢？");
                                 break;
-                }               
+                }
 
                 set_temp("school/init", 1, baby);
                 call_out("do_rndmove", 8 + random(2), baby, str);
@@ -172,7 +172,7 @@ void init()
         if (base_name(ob)=="/clone/user/baby") {
                 ob->command("halt");
                 ob->command("think 我下一步該玩什麼呢？");
-                
+
                 set_temp("school/init", 1, ob);
                 call_out("do_rndmove", random(6) + 10, ob, base_name(this_object()));
         }
@@ -185,7 +185,7 @@ int valid_leave(object me, string dir)
                         me->start_busy(35+random(26));
                         return 0;
                 }
-                
+
                 if (!query_temp("school/pay", me)) {
                         me->start_busy(random(6) + 10);
                         message_vision(YEL "看門大叔氣喘吁吁地跑過來一把拉住$N" YEL "道：慢著，叫你父母來繳了學費再去教室上課...\n" NOR, me);
@@ -194,9 +194,6 @@ int valid_leave(object me, string dir)
                         return 0;
                 }
         }
-        
+
         return ::valid_leave(me, dir);
 }
-
-
-  

@@ -308,7 +308,7 @@ void die(object killer)
 	        return;
 }
 
-void remove()
+varargs void remove(string euid)
 {
 	MAP_D->update_boss(BOSS_FILE,UPDATE_PLACE,UPDATE_TIME);
 	return;

@@ -27,7 +27,7 @@ void init() {
     add_action("do_suicide", "suicide");
 }
 
-int do_suicide() {
+int do_suicide(string arg) {
     write("在這冥府你也想自殺，省省吧！\n");
     return 1;
 }

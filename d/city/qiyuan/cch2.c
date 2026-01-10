@@ -400,12 +400,12 @@ string *tossText = ({
 int init_tab();
 int do_display(string arg);
 int do_move(string arg);
-int do_toss();
+int do_toss(string arg);
 string long();
 string query_save_file();
 void do_check();
-int do_save();
-int do_deploy();
+int do_save(string arg);
+int do_deploy(string arg);
 
 int do_win(object me) {
     object ob;
@@ -1352,7 +1352,7 @@ int do_review() {
     return 1;
 }
 
-int do_reset() {
+int do_reset(string arg) {
     object me, ob;
     me = this_player();
     ob = this_object();

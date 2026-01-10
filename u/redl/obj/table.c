@@ -27,7 +27,7 @@ int can_take(object me)
         return 1;
 }
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 int do_take(string arg)
 {

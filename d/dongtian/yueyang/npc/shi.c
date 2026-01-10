@@ -84,8 +84,7 @@ string *gift = ({
 });
 
 
-//varargs void receive_damage(string type, int n)
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     object ob, room;
     int exp;
 
@@ -113,7 +112,7 @@ int receive_damage(string type, int damage, object who) {
             }
         }
     }
-    return 1;
+    return ::receive_damage(type, damage, who);
 }
 
 varargs void unconcious()

@@ -156,7 +156,7 @@ void init()
 
 int discmds()
 {
-    tell_object(this_player(),"還是老老實實打麻將吧？！\n");
+    tell_object(this_player(),"????????????\n");
     return 1;
 }
 
@@ -202,7 +202,7 @@ int test_record(string id, int aa, int bb, int cc, int dd, int ee, int ff)
     return 1;
 }
 
-int do_addin()
+int do_addin(string arg)
 {
     object me = this_player();
     if(!userp(me))

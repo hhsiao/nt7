@@ -3,7 +3,7 @@
 
 inherit BOOK;
 
-int do_xiulian();
+int do_xiulian(string arg);
 int finish(object me);
 
 void setup()
@@ -25,7 +25,7 @@ void create() {
     set("material", "paper");
 }
 
-int do_xiulian() {
+int do_xiulian(string arg) {
     object me, ob;
     object where_1;
     int poison_lvl;

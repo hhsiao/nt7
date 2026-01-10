@@ -16,7 +16,7 @@ void init() {
     add_action("do_pan", "climb");
 }
 
-int do_pan() {
+int do_pan(string arg) {
     object me = this_player();
     me->move(__DIR__"shiya");
     return 1;

@@ -5,7 +5,7 @@
 inherit ROOM;
 
 int do_findout(string);
-int do_out();
+int do_out(string arg);
 
 void create() {
     set("short", "迷宮樹林");
@@ -109,7 +109,7 @@ int do_findout(string arg) {
     return 0;
 }
 
-int do_out() {
+int do_out(string arg) {
     object me;
     me = this_player();
 

@@ -26,7 +26,7 @@ int set_object_data(object ob, mixed data);
 mapping query_save_dbase();
 string *query_saved_object();
 int clear_object(mixed ob);
-int remove(string euid);
+varargs void remove(mixed euidstring euid);
 void mud_shutdown();
 
 void create() {
@@ -40,7 +40,7 @@ void create() {
 }
 
 // 數據庫對象析構函數
-int remove(string euid) {
+varargs void remove(mixed euidstring euid) {
     if(previous_object() != find_object(SIMUL_EFUN_OB) || !is_root(euid) )
     // Must be called from simul_efun object
     return 0;

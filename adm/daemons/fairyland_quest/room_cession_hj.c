@@ -100,7 +100,7 @@ int do_take( string arg )
     object me = this_player();
     int amount;
     string type;
-    int times = "/adm/daemons/actiond"->query_action("task_reward"); 
+    int times = "/adm/daemons/actiond"->query_action("task_reward");
 
     if(!arg) return notify_fail("指令的正確格式請輸入 <look> 查看。\n");
 
@@ -128,7 +128,7 @@ int do_take( string arg )
         if( times ) amount *= times;
         addn("combat_exp", amount, me);
 #ifdef DB_SAVE
-        if (MEMBER_D->is_double_reward(me)) 
+        if (MEMBER_D->is_double_reward(me))
                 addn("combat_exp", amount, me);
 #endif
     }
@@ -140,7 +140,7 @@ int do_take( string arg )
         if( times ) amount *= times;
         addn("potential", amount, me);
 #ifdef DB_SAVE
-        if (MEMBER_D->is_double_reward(me)) 
+        if (MEMBER_D->is_double_reward(me))
                 addn("potential", amount, me);
 #endif
     }
@@ -153,7 +153,7 @@ int do_take( string arg )
         if( times ) amount *= times;
         addn("experience", amount, me);
 #ifdef DB_SAVE
-        if (MEMBER_D->is_double_reward(me)) 
+        if (MEMBER_D->is_double_reward(me))
                 addn("experience", amount, me);
 #endif
     }
@@ -174,7 +174,7 @@ int do_zhuan(string arg)
 
     // 無論格式正確與否，先給提示。
     target_id=query("huanjing2003/together_id", me);
-    if( !target_id ) 
+    if( !target_id )
         target_id = query("id", me);
         //return notify_fail("你並未登記你的相互ID！\n");
 
@@ -210,7 +210,7 @@ int do_zhuan(string arg)
         addn("huanjing2003/exp", -amount, me);
         addn("combat_exp", amount, target);
 #ifdef DB_SAVE
-        if (MEMBER_D->is_valid_member(me) && MEMBER_D->is_double_reward(target)) 
+        if (MEMBER_D->is_valid_member(me) && MEMBER_D->is_double_reward(target))
                 addn("combat_exp", amount, target);
 #endif
     }
@@ -220,7 +220,7 @@ int do_zhuan(string arg)
             return notify_fail("POT 的轉讓每次至少 500 點。\n");
         addn("huanjing2003/pot", -amount, me);
 #ifdef DB_SAVE
-        if (MEMBER_D->is_double_reward(me) && MEMBER_D->is_double_reward(target)) 
+        if (MEMBER_D->is_double_reward(me) && MEMBER_D->is_double_reward(target))
                 addn("potential", amount, target);
 #endif
         addn("potential", amount, target);
@@ -231,12 +231,12 @@ int do_zhuan(string arg)
             return notify_fail("MAR 的轉讓每次至少 100 點。\n");
         addn("huanjing2003/mar", -amount, me);
 #ifdef DB_SAVE
-        if (MEMBER_D->is_double_reward(me) && MEMBER_D->is_double_reward(target)) 
+        if (MEMBER_D->is_double_reward(me) && MEMBER_D->is_double_reward(target))
                 addn("experience", amount, target);
 #endif
         addn("experience", amount, target);
     }
-    
+
     message_vision( sprintf("$N將 %d 點幻境遊戲獎勵的 %s 轉給了$n。\n",amount,type ),
         me, target );
 
@@ -248,7 +248,7 @@ int do_zhuan(string arg)
 }
 
 
-int do_checkme()
+int do_checkme(string arg)
 {
     object me=this_player();
 
@@ -263,7 +263,7 @@ int do_checkme()
     if( query("huanjing2003/mart", me)>0 )
         write(HIY"你有"+query("huanjing2003/mar", me)+"點在本遊戲裡獲得的體會值。\n"NOR);
     else write(HIY"你沒有在本遊戲裡獲得的體會值。\n"NOR);
-    
+
     write("你可以直接把它們兌換成你的經驗值、潛能值或體會值；或者把它們轉給你所登記的相互ID。\n");
 
     if( query("huanjing2003/together_id", me) )

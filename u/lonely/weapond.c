@@ -85,7 +85,7 @@ mapping weapon_actions = ([
         ]),
 ]);
 
-varargs mapping query_action()
+mapping query_action()
 {
         string verb, *verbs;
 
@@ -97,7 +97,7 @@ varargs mapping query_action()
                 if( !undefinedp(weapon_actions[verb]) )
                         return weapon_actions[verb];
                 else return weapon_actions["hit"];
-        }        
+        }
 }
 
 void throw_weapon(object me, object victim, object weapon, int damage)
@@ -138,14 +138,14 @@ void bash_weapon(object me, object victim, object weapon, int damage)
                         set("value", 49, ob);
                         set("weapon_prop", 0, ob);
                         victim->reset_action();
-                } 
+                }
                 else if( wap > 3 * wdp )
                         {
                                 message_vision(HIY"$N只覺得手中"+ob->name()+HIY"把持不定，脫手飛出！\n"NOR,victim);
                                 ob->unequip();
                                 ob->move(environment(victim));
                                 victim->reset_action();
-                        } 
+                        }
                         else if( wap > wdp )
                                 {
                                         message_vision(HIW "$N只覺得手中" + ob->name() + HIW"一震，險些脫手！\n"NOR, victim);
@@ -159,9 +159,9 @@ void bash_weapon(object me, object victim, object weapon, int damage)
 
 void slash_weapon(object me, object victim, object weapon, int damage)
 {
-        object weapon1;        
+        object weapon1;
         string poison;
-        int poison1, wp, wp1, wp2;  
+        int poison1, wp, wp1, wp2;
         weapon1=query_temp("weapon", victim);
 
         if(objectp(weapon) && objectp(weapon1))
@@ -182,15 +182,15 @@ void slash_weapon(object me, object victim, object weapon, int damage)
                         set("value", 49, weapon1);
                         set("weapon_prop", 0, weapon1);
                         victim->reset_action();
-                } 
+                }
         }
 
-   if( objectp(weapon) && stringp(poison=query("poisoned", weapon)) && 
+   if( objectp(weapon) && stringp(poison=query("poisoned", weapon)) &&
                 (query("eff_qi", victim)<query("max_qi", victim)) )
                 if( intp(poison1=query("poison_number", weapon)) && random(10)>5
                         && poison1 > 1 && victim->query_condition(poison) < 50)
                 {
-                        if (poison1 == 2)                   
+                        if (poison1 == 2)
                                 set_temp("apply/long", ({query("long", weapon)+"好象是被餵過劇毒，不過效果已經不明顯了。\n"}), weapon);
                                 addn("poison_number", -1, weapon);
                                 victim->apply_condition(poison, victim->query_condition(poison) + random(10));

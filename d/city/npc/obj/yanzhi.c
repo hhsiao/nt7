@@ -1,7 +1,7 @@
 inherit ITEM;
 #include <ansi.h>
 
-int do_makeup();
+int do_makeup(string arg);
 void remove_effect(object);
 
 void create() {
@@ -16,7 +16,7 @@ void init() {
     add_action("do_makeup", "makeup");
 }
 
-int do_makeup() {
+int do_makeup(string arg) {
     object me;
     object huafen, you;
     string str;

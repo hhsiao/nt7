@@ -96,7 +96,7 @@ string ask_for_zigong() {
     不可後悔，你若決心已定(decide)，告訴我。\n"+ "(警告：血脈鬼體不用自宮，割了小雞雞巫師沒有義務替你恢復)\n";
 }
 
-int do_decide() {
+int do_decide(string arg) {
     if(!query_temp("pending/zigong", this_player()) )
         return 0;
 

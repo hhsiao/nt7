@@ -8,8 +8,8 @@ inherit ROOM;
 
 int do_start(string arg);
 int do_say(string msg);
-int do_over();
-int do_not();
+int do_over(string arg);
+int do_not(string arg);
 
 void create() {
     set("short", "巫師會議室");
@@ -108,7 +108,7 @@ int do_say(string msg) {
     return 1;
 }
 
-int do_over() {
+int do_over(string arg) {
     object /**ob,*/ me;
     //      int i;
     //      string wiz_status;

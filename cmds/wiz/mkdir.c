@@ -15,7 +15,7 @@ int main(object me, string arg) {
     if (! arg) return help(me);
 
     dir = resolve_path(query("cwd", me), arg);
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         grant = SECURITY_D->query_site_privilege("edit");
         if(!grant && !sscanf(dir, "/u/%*s") )

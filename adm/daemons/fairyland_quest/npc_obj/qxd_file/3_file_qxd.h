@@ -41,7 +41,7 @@ void init() {
     add_action("do_hjleave", "hjleave", );  // 臨時離開遊戲
 }
 
-int do_wizhg() {
+int do_wizhg(string arg) {
     object me = this_player();
     if(!wizardp(me) ) return 0;
     if(!me_ok(me) ) return 0;

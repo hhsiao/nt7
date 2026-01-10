@@ -39,7 +39,7 @@ void init() {
     add_action("do_hua", "hua");
 }
 
-int do_hua() {
+int do_hua(string arg) {
     object ob = this_player();
     if(ob->is_busy()) return notify_fail("你正忙著呢。\n");
     if(ob->query_temp("marks/劃1")) return notify_fail("你已經劃到岩石邊了。\n");

@@ -58,7 +58,7 @@ int do_jump(string arg) {
     return 1;
 }
 
-int do_cross() {
+int do_cross(string arg) {
     object me;
     object cloth;
 

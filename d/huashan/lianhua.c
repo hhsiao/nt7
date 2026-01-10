@@ -34,7 +34,7 @@ void init() {
     return;
 }
 
-int do_tiao() {
+int do_tiao(string arg) {
     write(@LONG
 但見遠處峭壁如一座極大的屏風，沖天而起，峭壁中部離地約二十餘丈處，生
 著一塊三四丈見方的大石，便似一個平臺，石上隱隱刻得有字。極目上望，瞧

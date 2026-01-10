@@ -270,7 +270,7 @@ varargs int receive_wound(string type, int damage, object who)
             last_damage_from = who;
             set_temp("last_damage_from", who);
         }
-        if(n = who->query_all_buff("add_damage", who) )
+        if(n = who->query_all_buff("add_damage") )
         {
             n = n * (100 - query("reborn/times")*10) / 100;
             damage += damage * n / 100;

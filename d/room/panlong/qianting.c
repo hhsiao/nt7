@@ -59,7 +59,7 @@ void init()
     add_action("do_close", "close");
 }
 
-int do_push()
+int do_push(string arg)
 {
     object ob;
     object me;

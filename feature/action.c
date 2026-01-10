@@ -116,7 +116,7 @@ void continue_action() {
     }
 }
 
-void interrupt_me(object who, mixed how) {
+varargs void interrupt_me(object who, mixed how) {
     mixed bak;
 
     bak = busy;

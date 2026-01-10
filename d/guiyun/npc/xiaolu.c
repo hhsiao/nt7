@@ -111,7 +111,7 @@ string ask_me() {
     me->move("/d/guiyun/dayuan");
 }
 
-int do_decide() {
+int do_decide(string arg) {
     object ob, me;
     me = this_player();
     if(!query_temp("guiyun/decide", me) )

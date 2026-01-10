@@ -296,7 +296,7 @@ int go_paimai(string id, string name, int money, int num, int m) {
     else
         call_out("finish_paimai", 5, num, 1);
 }
-int do_paimailist() {
+int do_paimailist(string arg) {
     int i;
 
     for(i = query("number") + 1;;i++)

@@ -1,7 +1,7 @@
 /* *********************網路即時通訊系統***********************
-*  
+*
 *                                                  By Whatup *
-*                                               
+*
 * 離線
 :whatup_!whatup@mail2000.com.tw QUIT :Leaving...
 上線
@@ -50,7 +50,7 @@ void create()
 	seteuid(getuid());
 #ifdef DEBUG
     TELL(sprintf("[%s]啟始完成。",ctime(time()) ));
-#endif 
+#endif
     call_out((:send_ping:),PING_TIME);
     call_out("auto_login",1);
 }
@@ -64,7 +64,7 @@ void send_ping()
     call_out((:send_ping:),PING_TIME);
 
 }
-void remove()
+varargs void remove(string euid)
 {
     foreach(int fd,mapping m in users)
     {
@@ -79,7 +79,7 @@ void reset()
 	foreach(int fd,mapping m in users)
 	{
 		if(!m["obj"]) {
-			close_socket(fd);			
+			close_socket(fd);
 			map_delete(users,fd);
 		}
 	}
@@ -114,14 +114,14 @@ void login_irc(object user)
 #ifdef DEBUG
     TELL(sprintf("[%s] %s 成功啟動 Socket ,開始準備登入 irc.fd = %d\n",
          ctime(time()) ,id,fd));
-#endif 
+#endif
     }
     else
     {
 #ifdef DEBUG
     TELL(sprintf("[%s]啟動 Socket 失敗,無法送連結網路主機.\n",
          ctime(time()) ));
-#endif 
+#endif
         return ;
     }
     call_out((:process_identify:),3,user,crypt(id,id)[0..10]);
@@ -131,7 +131,7 @@ private int process_identify(object me,string pass)
 {
     string str;
     int fd = me->query_temp("im_fd");
-    if( fd < -1 ) 
+    if( fd < -1 )
     {
         tell_object(me,"[IM Message]:連線失敗，請稍後再試！\n");
         return 1;
@@ -149,7 +149,7 @@ private int process_identify(object me,string pass)
 protected void write_callback(int fd)
 {
     socket_write(fd,"NICK "+users[fd]["id"]+"\r\n");
-    
+
     return ;
 }
 protected void read_callback(int fd,mixed message)
@@ -164,7 +164,7 @@ protected void read_callback(int fd,mixed message)
     if(regexp(message ,"PING :PinglBee") ) //PING :PinglBee
     {
         socket_write(fd,"PONG\r\n");
-    } 
+    }
 
     switch(users[fd]["steps"])
     {
@@ -189,12 +189,12 @@ protected void read_callback(int fd,mixed message)
 //            socket_write(fd,str);
         break;
         default:
-            
+
             {
                 string name,mail,msg,id;
                 //:whatup_!whatup@mail2000.com.tw PRIVMSG &bitlbee :whatup: test
-                foreach(string m in explode(message,"\n")) 
-                { 
+                foreach(string m in explode(message,"\n"))
+                {
 		    m = replace_string(m,"&bitlbee :","");
 		    m = replace_string(m,"account :","account:");
                     if(sscanf(m,":%s!%s PRIVMSG account:%s",name,mail,msg) == 3 )
@@ -224,21 +224,21 @@ protected void read_callback(int fd,mixed message)
 	                            		str1 = explode(msg,"):chat ");
 	                            		msg = str1[0] + "):" + str1[1];
 	                            		CH_D->do_channel(this_object(),"chat",msg);
-	                            	} else 	
+	                            	} else
 		                            	if (strsrch(msg,"):chat* ")!=-1)
 		                            	{
 		                            		str1 = explode(msg,"):chat* ");
 		                            		this_object()->set("name",str1[0]+")");
 		                            		msg = str1[1];
 		                            		CH_D->do_channel(this_object(),"chat*",msg[0..sizeof(msg)-2],1);
-		                            	} else 	
-			                            	if (replace_string(msg," ","")!="") 
+		                            	} else
+			                            	if (replace_string(msg," ","")!="")
 			                            		CH_D->do_channel(this_object(),"qq",msg);
 			                   }
                             }
-                        else 
+                        else
                         switch(msg)
-                        { 
+                        {
                             case "The nick is (probably) not registered":
                                 TELL("\n[IM Message]:第一次使用該精靈，自動註冊帳號！\n");
                                 socket_write(fd,"PRIVMSG &bitlbee :register "+crypt(users[fd]["id"],users[fd]["id"])[0..10]+"\r\n");
@@ -276,7 +276,7 @@ protected void read_callback(int fd,mixed message)
                             default:
                         }
                     }
-                    
+
                     // 上站訊息 :paiting!paiting@hotmail.com JOIN :&bitlbee
                     if(sscanf(m,":%s!%s JOIN :&bitlbee",id,name) == 2)
                     {
@@ -306,20 +306,20 @@ protected void read_callback(int fd,mixed message)
                         send_who(fd,id);
                         continue;
                     }
-                    if(sscanf(m,":%*s 352 %*s %*s %*s %*s %*s %*s %*s :%*d %*s") == 10) 
+                    if(sscanf(m,":%*s 352 %*s %*s %*s %*s %*s %*s %*s :%*d %*s") == 10)
                     {
                         process_who(fd,m);
-                    } else 
-                    if(sscanf(m,":%*s 352 %*s &bitlbee %*s %*s %*s %*s %*s :%*d %*s") == 9) 
+                    } else
+                    if(sscanf(m,":%*s 352 %*s &bitlbee %*s %*s %*s %*s %*s :%*d %*s") == 9)
                     {
                         process_who(fd,m);
                     }
 
-                    
+
                 }
             }
     }
-    users[fd]["steps"]++;   
+    users[fd]["steps"]++;
 }
 #ifdef DEBUG1
 void socket_write(int fd,mixed message)
@@ -365,10 +365,10 @@ protected void close_socket(int fd)
 
 void send_command(int fd,mixed message)
 {
-//		socket_write(fd,"PRIVMSG &bitlbee :set charset 'utf-8'\r\n");	
+//		socket_write(fd,"PRIVMSG &bitlbee :set charset 'utf-8'\r\n");
     socket_write(fd,message+"\r\n");
-//		socket_write(fd,"PRIVMSG &bitlbee :set charset 'gb2312'\r\n");	
-#ifdef DEBUG    
+//		socket_write(fd,"PRIVMSG &bitlbee :set charset 'gb2312'\r\n");
+#ifdef DEBUG
     TELL(sprintf("[%s] %d,%s\n",
          ctime(time()),fd,message ));
 #endif
@@ -385,12 +385,12 @@ void process_who(int fd,string str)
     string id,ip,status,nick,name;
     //:rw.twku.net 352 whatup &bitlbee whatup 218-184-22-55.cm.dynamic.apol.com.tw rw.twku.net whatup H :0 小ｘ兒
     if(sscanf(str,":%*s 352 %*s &bitlbee %s %s %*s %s %s :%*d %s",
-       id,ip,name,status,nick) == 9) 
+       id,ip,name,status,nick) == 9)
     users[fd]["list"][name] = ({ id,ip,name,status,nick});
     //:rw.twku.net 352 whatup whatup_ whatup mail2000.com.tw rw.twku.net whatup_ H :0 魚缸-有誰要 gmail 帳號，我有一堆-.
     //:%*s 352 %*s %*s %s %s %*s %s %s :%*d %*s
     if(sscanf(str,":%*s 352 %*s %*s %s %s %*s %s %s :%*d %s",
-       id,ip,name,status,nick) == 10) 
+       id,ip,name,status,nick) == 10)
         users[fd]["list"][name] = ({ id,ip,name,status,nick});
 }
 
@@ -400,13 +400,13 @@ int process_send_msg(object me,string who,string msg)
 	msg = replace_string(msg,"\n"," ");
 #ifdef DEBUG
     TELL("PRIVMSG &bitlbee :"+ who + ":"+msg+"\r\n" );
-#endif	
+#endif
     if(undefinedp(users[fd]) ||
        undefinedp(users[fd]["list"][who]))
         return notify_fail("[IM Message] 即時訊息上的好友名單沒有這個人！\n");
-//	socket_write(fd,"PRIVMSG &bitlbee :set charset 'utf-8'\r\n");	
+//	socket_write(fd,"PRIVMSG &bitlbee :set charset 'utf-8'\r\n");
     socket_write(fd,"PRIVMSG &bitlbee :"+ who + ":"+msg+"\r\n");
-//		socket_write(fd,"PRIVMSG &bitlbee :set charset 'gb2312'\r\n");	
+//		socket_write(fd,"PRIVMSG &bitlbee :set charset 'gb2312'\r\n");
     {
         string *n = users[fd]["list"][who];
         if (n[4]&&n[0]&&n[1])
@@ -415,7 +415,7 @@ int process_send_msg(object me,string who,string msg)
     }
     return 1;
 }
-int del_account(int fd,string protocol) 
+int del_account(int fd,string protocol)
 {
         // 要先離線，才能刪掉
         socket_write(fd,"PRIVMSG &bitlbee :account off "+protocol+"\r\n");
@@ -433,7 +433,7 @@ void auto_login()
 	object me = this_object();
 
 
-		
+
         if(me->query_temp("im_fd") && query_users()[me->query_temp("im_fd")]["obj"] == me)
         {
 //            TELL("[IM Message]:你正在登入中，請用 im quit 離線。");
@@ -458,12 +458,10 @@ void auto_login1()
 
 void relay_channel(object ob, string channel, string msg)
 {
-        string who, phrase;
-
         if( !userp(ob) || (channel != "qq") ) return;
         if (strsrch(msg,WHT+NOR)==-1)	//chat, not emote
         	msg = ob->name()+"("+capitalize(ob->query("id"))+"):"+msg;
-        
+
         msg = COLOR_D->uncolor(msg);
 		process_send_msg(this_object(),"mud",msg);
 		return;

@@ -1,10 +1,10 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/5/10
 
 #include <ansi.h>
 inherit ITEM;
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 
 void create()
 {
@@ -12,11 +12,11 @@ void create()
                 set("long",  NOR "原來這是具早就坐化的屍骨，手結千鈞血心印，衣襟上繡著朵小紅花。\n" NOR);
                 set("weight", 1000000000);
                 set("unit", "具");
-                set("no_store", "這是對死者的大不敬！\n"); 
-                set("no_steal", "這是對死者的大不敬！\n"); 
-                set("no_beg", "這是對死者的大不敬！\n"); 
-                set("no_get", "這是對死者的大不敬！\n"); 
-                set("no_uget", "這是對死者的大不敬！\n"); 
+                set("no_store", "這是對死者的大不敬！\n");
+                set("no_steal", "這是對死者的大不敬！\n");
+                set("no_beg", "這是對死者的大不敬！\n");
+                set("no_get", "這是對死者的大不敬！\n");
+                set("no_uget", "這是對死者的大不敬！\n");
         setup();
 }
 
@@ -31,7 +31,7 @@ int do_action(string arg)
 {
         string action = query_verb();
         object me = this_player();
-        //tell_object(me, YEL + "id:<" + query("id",me) + "> action:<" + action + ">" + ((arg != "") ? " "+arg : "") + "\n" + NOR); 
+        //tell_object(me, YEL + "id:<" + query("id",me) + "> action:<" + action + ">" + ((arg != "") ? " "+arg : "") + "\n" + NOR);
         if (action=="look" && arg=="dao ren" && !query_temp("looked")) {
                 me->start_busy(3);
                 set_temp("looked", 1);
@@ -59,22 +59,22 @@ int do_look(object me)
 {
         int ki = query_temp("has_kneelredl", me), i;
         delete_temp("has_kneelredl", me);
-        
+
         if (
-                !query_temp("can_enterredlroom", me) && 
-                query("id", me) != "redl" && query("couple/couple_id", me) != "redl" && 
-                (query("get_time", environment())>time() - 5400) 
+                !query_temp("can_enterredlroom", me) &&
+                query("id", me) != "redl" && query("couple/couple_id", me) != "redl" &&
+                (query("get_time", environment())>time() - 5400)
                 ) {
                         message_vision(YEL "在$N的凝目注視下，$n" YEL "的遺骸瞬間塌化成塵，隨風就飄散到九天外去了。\n" NOR, me, this_object());
                         destruct(this_object());
                         return 1;
                 }
-        
+
         if (ki > 10) ki = 10;
-        
+
         message_vision(YEL "在$N的凝目注視下，$n" YEL "的遺骸瞬間塌化成塵，隨風就飄散到九天外去了。\n" NOR, me, this_object());
 
-        if (!query_temp("has_getrune", me) && !random(5)) 
+        if (!query_temp("has_getrune", me) && !random(5))
                 if (ki > 2) {
                 set_temp("has_getrune", 1, me);
                 i = (11 - ki);
@@ -84,12 +84,9 @@ int do_look(object me)
                 if (query("redl/gethomerune", me)>2)
                         tell_object(me, YEL "你隱隱約約聽到一個聲音在你腦海裡響起：不要再回來了，不可對人說你是我徒弟。\n" NOR);
         }
-        
+
         if (!random(4)) new(__DIR__"mbox")->move(environment());
         set("get_time", time(), environment());
         destruct(this_object());
         return 1;
 }
-
-
-

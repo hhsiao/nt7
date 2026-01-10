@@ -6,7 +6,7 @@
 inherit ROOM;
 
 int do_wo(string arg);
-int do_breathe();
+int do_breathe(string arg);
 void delete_done(object me);
 
 void create()
@@ -50,12 +50,12 @@ int do_wo(string arg)
 	       return notify_fail("你側身躺於青石上，意守丹田，口眼輕閉，雙腿自然微曲，全身放鬆。\n");
 }
 
-int do_breathe()
+int do_breathe(string arg)
 {
 	 object me=this_player();
 	 string skill=me->query_skill_mapped("force");
 	 string* quest_skill = ({ "jiuyin-zhengong","hamagong", "kuihua-xinfa" });
-	 	 	 
+
  	 if( !me->query_temp("marks/wo") )
 		return notify_fail("你深深吸了幾口氣，只覺得寒氣衝進五臟六腑，體內的真氣幾乎提不起來。\n");
 
@@ -67,13 +67,13 @@ int do_breathe()
 
 	 if( me->query_skill("force", 1) < 51 )
 		return notify_fail("你內功基底太弱，不可以隨意控制內息。\n");
-		
+
 	 if(me->query_skill("force", 1) > 100)
-	        return notify_fail("你的內功已經有一定基礎了，在這裡呼吸已經沒什麼作用了。\n");	
+	        return notify_fail("你的內功已經有一定基礎了，在這裡呼吸已經沒什麼作用了。\n");
 
 	if(!skill) skill="force";
 	if( member_array(skill,quest_skill)!= -1 ) skill="force";
-				
+
 	 message_vision("$N集聚體內真氣，深深吸進幾口氣，緩緩呼出，只覺得全身透徹清涼，心定似水，彷彿已物我渾然一體。\n", me);
 	 me->receive_damage("jing", random(30));
  	 me->receive_damage("qi",   random(30));

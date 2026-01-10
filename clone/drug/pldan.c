@@ -75,7 +75,7 @@ int cure_ob(object me) {
 
 
 
-int do_one() {
+int do_one(string arg) {
     object me;
     me = this_player();
 
@@ -104,7 +104,7 @@ int do_one() {
 }
 
 
-int do_bl() {
+int do_bl(string arg) {
     int cbl;
     int fbl;
 

@@ -253,7 +253,7 @@ void greeting(object ob) {
     message_vision("桃實仙衝著$N擠擠橘皮老臉，一串串酒嗝衝著$N直冒。\n", ob);
 }
 
-int do_dajia() {
+int do_dajia(string arg) {
     object ob;
 
     ob = this_player();

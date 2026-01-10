@@ -1,5 +1,5 @@
-// This program is a part of NITAN MudLIB 
-// redl 2013/4/24 
+// This program is a part of NITAN MudLIB
+// redl 2013/4/24
 
 inherit NPC;
 #include <ansi.h>
@@ -20,7 +20,7 @@ void create()
         set("per", 29);
         set("kar", 22);
         set("level",20);
-        
+
         set("max_qi", 100000);
         set("eff_qi", 100000);
         set("qi", 100000);
@@ -31,7 +31,7 @@ void create()
         set("neili", 1);
         set("max_jingli", 1);
         set("jingli", 1);
-        
+
         set("combat_exp", 200000000);
 
                 set("inquiry", ([
@@ -44,7 +44,7 @@ void create()
         setup();
         //carry_object("/d/city/npc/cloth/moon-dress")->wear();
         carry_object("/d/city/npc/cloth/zi-dress")->wear();
-        
+
 }
 
 
@@ -53,9 +53,9 @@ void fullnow(object me)
     mapping my;
         delete_temp("block_msg/all", me);
         my = me->query_entire_dbase();
-        my["jing"]   = my["eff_jing"]   = my["max_jing"]; 
-        my["jingli"] = my["eff_jingli"] = my["max_jingli"]; 
-        my["qi"]     = my["eff_qi"]     = my["max_qi"]; 
+        my["jing"]   = my["eff_jing"]   = my["max_jing"];
+        my["jingli"] = my["eff_jingli"] = my["max_jingli"];
+        my["qi"]     = my["eff_qi"]     = my["max_qi"];
         my["neili"]  = my["max_neili"];
         my["water"]  = my["food"] = 0;
         me->clear_condition();
@@ -72,8 +72,8 @@ int is_owner(object me)
         return 1;
 }
 
-void init() 
-{ 
+void init()
+{
         object me = this_player();
         if (playerp(me)) {
                 if (!query_temp("has_healredlroom", me)){
@@ -82,23 +82,23 @@ void init()
                         fullnow(me);
                 }
                 if ( is_owner(me) ){
-                        add_action("do_expel", ({"expel", "quzhu"})); 
-                        add_action("do_sm", ({"sm", "da"})); 
-                        add_action("do_cpat", "cpat"); 
+                        add_action("do_expel", ({"expel", "quzhu"}));
+                        add_action("do_sm", ({"sm", "da"}));
+                        add_action("do_cpat", "cpat");
                 }
         }
-} 
+}
 
 int do_expel(string arg)
 {
         object me, ob, where, *ulist;
-        
+
         me = this_player();
         if ( !is_owner(me) ){
                 tell_object(me, NOR"你無法行使驅逐權！\n"NOR);
                 return 1;
         }
-        
+
         if (!arg || arg=="") {
                 ulist  =  users();
                 foreach (ob in ulist) {
@@ -119,7 +119,7 @@ int do_expel(string arg)
                 }
                 return 1;
         }
-        
+
         ob = find_player(arg);
         if (!ob || !objectp(ob) || !playerp(ob)) {
                 tell_object(me, "你沒有發現有這玩家。\n");
@@ -184,15 +184,10 @@ int do_sm(string arg)
         return 1;
 }
 
-int do_cpat()
+int do_cpat(string arg)
 {
         message_vision(YEL "$n" NOR YEL "輕輕拍了拍$N" NOR YEL "的腦袋，$N" NOR YEL "“喵嗚~”就地一滾變成了只小貓咪。\n" NOR, this_object(), this_player());
         new(__DIR__"lcat")->move(environment(this_object()));
         destruct(this_object());
         return 1;
 }
-
-
-
-
-

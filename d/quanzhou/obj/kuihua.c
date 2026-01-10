@@ -172,7 +172,7 @@ int do_du(string arg) {
 }
 
 
-int do_join() {
+int do_join(string arg) {
     if(query("rank_info/respect", this_player()) == "公公"){
         write("你已經加入東廠了，不需要重新加入。\n");
         return 1;

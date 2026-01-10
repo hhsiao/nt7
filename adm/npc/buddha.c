@@ -23,7 +23,7 @@ string query_save_file() {
 
 mapping reborn_data = ([]);
 int ask_reborn();
-void remove() { save(); }
+varargs void remove(string euid) { save(); }
 
 varargs mixed query_reborn_data(string ob) {
         if( !ob ) return reborn_data;
@@ -146,7 +146,7 @@ int ask_reborn()
         return 1;
 }
 
-int do_decide()
+int do_decide(string arg)
 {
         int i;
         string msg;
@@ -179,8 +179,7 @@ int reborn_player(object me, string msg)
         mapping all_skills, off_skills;
         mapping my, spc_data, tmp_data, mem_data;
         string *sname, *oname, *files;
-        string skill, dst;
-        object ob;
+        string skill;
         int i, n, vip, skill_lvl;
         int money, endtime, day;
 

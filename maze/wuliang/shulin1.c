@@ -18,11 +18,11 @@ LONG
         set("exits", ([
               "south" : __DIR__"donghubian",
 	]));
-        set("outdoors", "大理"); 
+        set("outdoors", "大理");
 	set("objects", ([
 	   __DIR__"obj/yeguo" : 2,
 	]));
- 
+
 	setup();
 }
 
@@ -42,14 +42,14 @@ int do_move(string arg)
 	return 1;
 }
 
-int do_look()
+int do_look(string arg)
 {
 	object me = this_player();
 	mixed *local;
 	local = localtime(time() * 60);
 
 
-	
+
 	if( (local[2]<2 || local[2] >= 23) && query("marks/xiaoyao", me) == "wait2" )
 	{
 		write(HIC"    你一瞥眼間，忽見身畔石壁上隱隱有彩光流動，凝神看去，赫然有一把長劍的影\n"
@@ -57,7 +57,7 @@ int do_look()
                                            set("marks/xiaoyao", "wait3", me);
 
 	}
-	
+
 		if( local[2] >= 2 && local[2]<4 && query("marks/xiaoyao", me) == "wait3" )
 	{
 		write(HIY"    你抬頭一看，原來皓月西沉，已經落到了西首峭壁之後，峭壁上有一洞孔，月光\n"
@@ -74,7 +74,7 @@ int do_look()
                 write(HIW"仰望高崖，白雲封谷，東西南北盡是懸崖峭壁，絕無出路。湖畔生著一叢叢的茶花，搖曳生姿。。\n"NOR, me);
                 set("marks/xiaoyao", "wait", me);
 	}
-	
+
 		if( local[2] >= 18 && local[2]<21 && query("marks/xiaoyao", me) == "wait" )
 	{
 		write(HIC"    你站起身來，抬頭只見月亮正圓，清光在湖面上便如同鍍了一層白銀一般，眼\n"
@@ -102,31 +102,31 @@ int do_jump(string arg)
 	object me = this_player();
 
 	mixed *local = localtime(time() * 60);
-	
+
 	if (me->is_busy() || me->is_fighting())
 	{
 		return notify_fail("你正忙著哪！\n");
 	}
-	
+
 	if(arg != "cliff")
 	{
 		return notify_fail("你要往哪裡爬？\n");
 	}
-	
+
 
 	if( query("quest/xiaoyao/pass", me) )
 	{
 		return notify_fail("你已經取得了崖壁空洞所藏武功秘籍了。\n");
 	}
-	
 
 
-	
+
+
 	if( (time()-query("quest/xiaoyao/time", me))<86400 )
 	{
 		return notify_fail("你見這山崖離地數十丈，猶豫了半天，想想還是回去練好輕功再來爬吧。\n");
 	}
-	
+
 
 	{
 		object *ob = deep_inventory(me);
@@ -156,7 +156,7 @@ int do_jump(string arg)
 			{
 				call_out("do_wait", 6, me);
 			}
-			else 
+			else
 			{
 				call_out("do_wait1", 6, me);
 			}
@@ -183,10 +183,10 @@ void do_wait(object me)
 
  //玩家在這裡得到凌波微步，bmsg和融合秘籍
   set("owner",query("id",  me), obj);
-  obj->move(me);       
+  obj->move(me);
 
 
-  me->move(__DIR__"gudi");       
+  me->move(__DIR__"gudi");
   delete("marks/xiaoyao", me);
   set("quest/xiaoyao/pass", 1, me);
 

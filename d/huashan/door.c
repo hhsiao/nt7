@@ -29,7 +29,7 @@ void init() {
     add_action("do_close", "close");
 }
 
-int do_open() {
+int do_open(string arg) {
     object me = this_player();
 
     if (query_temp("open") ) {

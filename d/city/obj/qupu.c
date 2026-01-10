@@ -41,7 +41,7 @@ void init() {
     add_action("do_sing", "chang");
     add_action("do_halt", "ting");
 }
-int do_halt() {
+int do_halt(string arg) {
     if (find_call_out("sing_stage") < 0) return 0;
     delete_temp("qupu", this_player());
 

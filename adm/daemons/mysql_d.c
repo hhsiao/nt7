@@ -2,11 +2,11 @@
 
 
 mapping mysql;
- 
+
 #define DEFAULT_HOSTNAME 	"localhost"
 #define DEFAULT_DATABASE        "mud"
 #define DEFAULT_USERNAME        "xkx"
- 
+
 //#define MSG(x, y)               CHANNEL_D->channel_broadcast("nch", "MYSQL_D["+x+"]: "+y)
 #define MSG(x, y)
 
@@ -16,7 +16,7 @@ varargs mixed exec(int handle, string sql);
 varargs mixed connect(string hostname, string database, string username)
 {
 	mixed handle;
-	
+
 	if( undefinedp(hostname) )
 		hostname = DEFAULT_HOSTNAME;
 
@@ -27,7 +27,7 @@ varargs mixed connect(string hostname, string database, string username)
 		username = DEFAULT_USERNAME;
 
 	handle = db_connect(hostname, database, username, 0);
-	
+
 	if( intp(handle) )
 	{
 		mysql[handle] = ({ hostname, database, username });
@@ -35,11 +35,11 @@ varargs mixed connect(string hostname, string database, string username)
                 //exec(handle, "SET CHARACTER SET BIG5");
 	}
 	else
-		MSG(0, handle); 
-		
+		MSG(0, handle);
+
 	return handle;
 }
- 
+
 // 關閉 MYSQL 連線
 varargs int close(int handle)
 {
@@ -58,7 +58,7 @@ varargs int close(int handle)
 		map_delete(mysql, handle);
 		return db_close(handle);
 	}
-	
+
 	return 1;
 }
 
@@ -67,15 +67,15 @@ varargs int close(int handle)
 varargs mixed exec(int handle, string sql)
 {
 	mixed value;
-	
+
 	value = db_exec(handle, sql);
-	
+
 	//if( !value )
 	//	MSG(handle, "exec \""+sql+"\"");
 	//else
 	if( value )
 		MSG(handle, "exec "+value);
-	
+
 	return value;
 }
 
@@ -109,7 +109,7 @@ void updatetime(int handle, string table)
         exec(handle, "UPDATE `updated` SET `time`=NOW() WHERE `table`='"+table+"'");
 }
 
-int remove()
+varargs void remove(string euid)
 {
 	close();
 }

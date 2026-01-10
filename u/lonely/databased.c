@@ -58,7 +58,7 @@ nosave string *cols = ({
 
 // 確定用戶返回數據時是否校驗數據和 臨時舉措
 int crc_status() { return crc_status; }
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 protected void chat(string msg) {
 #ifdef DEBUG

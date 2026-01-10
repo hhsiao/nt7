@@ -7,23 +7,23 @@ string *history;
 
 int save()
 {
-        return save_object(DATA_PATH);  
+        return save_object(DATA_PATH);
 }
 
-int remove()
+varargs void remove(string euid)
 {
-        return save();
+        save();
 }
 
 void add_history(string key, string id, string value)
 {
         object ob;
-        
+
         ob = UPDATE_D->global_find_player(id);
         if(!ob) return;//baby在此引發過錯誤，特添加此行
 
         history = ({ time(), key, id, value }) + history;
-        
+
         addn("achievement", 1, ob);
         tell_object(ob, HIY "恭喜你獲得新的成就，你獲得了１點的成就值獎勵！\n" NOR);
         UPDATE_D->global_destruct_player(ob, 1);

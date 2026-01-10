@@ -34,7 +34,7 @@ private string *check_canpfm = ({
 
 });
 
-int do_ask();
+int do_ask(string arg);
 
 int init() {
     add_action("do_ask", "ask");

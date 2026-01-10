@@ -82,7 +82,7 @@ void unconcious() {
     die();
 }
 
-int do_start() {
+int do_start(string arg) {
     object me = this_player();
     int times;
 

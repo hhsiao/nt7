@@ -37,7 +37,7 @@ void init() {
     add_action("do_exit", "save");
 }
 
-int do_exit() {
+int do_exit(string arg) {
     if (this_player()->query_temp("apply/mask_flag"))
     {
         return notify_fail("請取下面具後再進行該操作。\n");

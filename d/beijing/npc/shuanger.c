@@ -157,7 +157,7 @@ int do_attack(string arg) {
     fight_ob(ob);
     return 1;
 }
-int do_stop() {
+int do_stop(string arg) {
     string host_id;
     object me = this_player();
     if(query("id")=="shuang er")

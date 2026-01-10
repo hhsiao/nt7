@@ -6,7 +6,8 @@ void init() {
     call_out("do_check", 60 + random(120));
     add_action("do_check", "check");
 }
-int do_check() {
+
+varargs int do_check(string arg) {
     object env;
     env = environment(this_object());
     if(userp(env))

@@ -1,37 +1,37 @@
 // Copyright (C) 2005, by Lonely. All rights reserved.
-// This software can not be used, copied, or modified 
+// This software can not be used, copied, or modified
 // in any form without the written permission from authors.
 // dictd.c 字典精靈
 
 #include <ansi.h>
-#include <net/socket.h>  
+#include <net/socket.h>
 
-inherit F_DBASE; 
+inherit F_DBASE;
 
 nosave mapping socket_info = allocate_mapping(0);
 void get_translated(int);
 
-int clean_up() { return 1; } 
+int clean_up(int inherited) { return 1; }
 
-void create() 
-{ 
-        seteuid(ROOT_UID); 
-        set("channel_id", "字典精靈"); 
-        CHANNEL_D->do_channel(this_object(), "sys", "字典精靈已經啟動。"); 
-} 
+void create()
+{
+        seteuid(ROOT_UID);
+        set("channel_id", "字典精靈");
+        CHANNEL_D->do_channel(this_object(), "sys", "字典精靈已經啟動。");
+}
 
 void translate(object user, string sentence, string language)
 {
         int err, fd;
 
-        if( !objectp(user) || !stringp(sentence) || !stringp(language) ) 
+        if( !objectp(user) || !stringp(sentence) || !stringp(language) )
                 return ;
 
         fd = socket_create(STREAM, "read_callback", "close_socket");
 
         if( fd < 0 )
         {
-                tell_object(user, HIR "翻譯失敗, 請稍後在試。\n" NOR); 
+                tell_object(user, HIR "翻譯失敗, 請稍後在試。\n" NOR);
                 return;
         }
 
@@ -42,7 +42,7 @@ void translate(object user, string sentence, string language)
         {
                 tell_object(user, HIR "翻譯失敗, 請稍後在試。\n" NOR);
                 return;
-        }     
+        }
 
         sentence = replace_string(sentence, "\n", "_LINE_");
         sentence = replace_string(sentence, " ", "%20");
@@ -52,7 +52,7 @@ void translate(object user, string sentence, string language)
         socket_info[fd]["sentence"] = sentence;
         socket_info[fd]["language"] = language;
         socket_info[fd]["translate"] = "";
-        
+
         return ;
 }
 
@@ -73,10 +73,10 @@ void read_callback(int fd, mixed message)
 void write_callback(int fd)
 {
         if( socket_info[fd]["language"] == "en" )
-                socket_write(fd, sprintf("GET /translate_t?ie=gb&oe=gb&langpair=zh-CN|en&text=%s HTTP/1.1\n\n", 
+                socket_write(fd, sprintf("GET /translate_t?ie=gb&oe=gb&langpair=zh-CN|en&text=%s HTTP/1.1\n\n",
                                          socket_info[fd]["sentence"]));
         else
-                socket_write(fd, sprintf("GET /translate_t?ie=gb&oe=gb&langpair=en|zh-CN&text=%s HTTP/1.1\n\n", 
+                socket_write(fd, sprintf("GET /translate_t?ie=gb&oe=gb&langpair=en|zh-CN&text=%s HTTP/1.1\n\n",
                                          socket_info[fd]["sentence"]));
         return ;
 }
@@ -94,7 +94,7 @@ void get_translated(int fd)
 
         translate = replace_string(translate, "_LINE_", "\n");
 
-        translate = sprintf(HIC "您查詢的為 : %s "NOR"\n%s\n" HIR "%s\n\n" NOR, 
+        translate = sprintf(HIC "您查詢的為 : %s "NOR"\n%s\n" HIR "%s\n\n" NOR,
                             socket_info[fd]["sentence"], repeat_string("=", 50), translate);
 
 

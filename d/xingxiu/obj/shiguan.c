@@ -40,7 +40,7 @@ void over_liandu(object ob) {
     }
 }
 
-int do_liandu() {
+int do_liandu(string arg) {
     int neili_lost, times;
     object ob, me, corp;
 

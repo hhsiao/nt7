@@ -125,7 +125,7 @@ void init()
         add_action("show_top","top");
         add_action("ch","ch");
 }
-int do_sit()
+int do_sit(string arg)
 {
         object me=this_player();
         if( query("id", me) == P1Data["Id"]

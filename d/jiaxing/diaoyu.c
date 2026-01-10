@@ -47,7 +47,7 @@ int do_shuohua() {
     write ("別說話！別把魚嚇走了！\n");
     return 1;
 }
-int do_ban() {
+int do_ban(string arg) {
     write ("別妨礙人家釣魚！\n");
     return 1;
 }

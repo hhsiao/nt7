@@ -13,7 +13,7 @@ void init() {
     add_action("do_home", "home");
 }
 
-int do_home() {
+int do_home(string arg) {
     object me = this_player();
     object env;
 

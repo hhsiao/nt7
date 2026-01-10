@@ -59,7 +59,7 @@ void down2(object me) {
     message_vision(HIC "\n$N" HIC "乘坐吊籃從黑木崖上滑了下來。\n\n" NOR, me);
 }
 
-int do_float() {
+int do_float(string arg) {
     object me;
 
     me = this_player();

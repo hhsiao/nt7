@@ -24,7 +24,7 @@ int do_dive() {
     me = this_player();
 
     if(query_temp("marks/gateplace", me)){
-        message_vision("$N站起身來，深吸一口氣，一個猛子扎到了湖裡。\n\n", me);
+        message_vision("$N?????????????????????\n\n", me);
         room = find_object(__DIR__"gongmen");
         if(!objectp(room))  room = load_object(__DIR__"gongmen");
         me->move(room);
@@ -33,7 +33,7 @@ int do_dive() {
     return 0;
 }
 
-int do_sail() {
+int do_sail(string arg) {
     object me, land;
     int slvl;
 

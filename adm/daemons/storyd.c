@@ -84,7 +84,7 @@ private void go_on_process(object ob)
         call_out("process_story", 1, ob);
 }
 
-int clean_up()
+int clean_up(int inherited)
 {
         return 1;
 }
@@ -203,7 +203,7 @@ void give_gift(string gift, int amount, string msg)
         ips = ([ ]);
         foreach (pob in all_interactive())
         {
-                if( wizardp(pob) || !query("born", pob) || 
+                if( wizardp(pob) || !query("born", pob) ||
                     ! living(pob) || ! environment(pob) ||
                     pob->is_ghost() ||
                     environment(pob)->is_chat_room())

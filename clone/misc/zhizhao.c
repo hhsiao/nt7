@@ -24,7 +24,7 @@ void init() {
     add_action("do_unstock", "unstock");
 }
 
-int do_bantan() {
+int do_bantan(string arg) {
     object obj, me;
     obj = this_object();
     me = this_player();

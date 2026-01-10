@@ -28,7 +28,7 @@ LONG );
 void init() {
     add_action("do_xidi", "xidi");
 }
-int do_xidi() {
+int do_xidi(string arg) {
     object fish, me = this_player();
     if ((this_player()->query_dex()<25) || query("fish_count")<=0)
         message_vision("$N洗了一會，突然潑喇一聲，潭中跳起一尾大白魚，足有一尺多\n長，$N忙伸手去抓，雖然碰到了魚身，卻一滑滑脫了。\n", me);

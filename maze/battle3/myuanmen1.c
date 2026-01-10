@@ -11,14 +11,14 @@ void create()
 LONG );
         set("defence",120);
         set("no_magic", "1");
-        set("exits", ([ /* sizeof() == 5 */   
+        set("exits", ([ /* sizeof() == 5 */
                "south"  : __DIR__"caoyuan4",
-        ]));    
+        ]));
 
         set("objects", ([
 
         ]));
-    
+
         setup();
 }
 
@@ -30,7 +30,7 @@ void init()
                 add_action("do_break", "break");
 }
 
-int do_break()
+int do_break(string arg)
 {
         object room = this_object(), me = this_player();
 
@@ -70,4 +70,3 @@ void door_close(object room)
         }
         return;
 }
-

@@ -127,7 +127,7 @@ int do_send(string data)
 }
 
 // 析構函數
-void remove()
+varargs void remove(string euid)
 {
     DEBUG("套接字被關閉了.\n");
     socket_close(s_fd);

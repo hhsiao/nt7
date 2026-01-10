@@ -273,7 +273,7 @@ int accept_kill(object me) {
     return 1;
 }
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     object ob;
 
     if (! objectp(who))

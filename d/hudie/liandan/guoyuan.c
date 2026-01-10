@@ -104,7 +104,7 @@ void jiaoshui(object me) {
     set_temp("need_jiaoshui", 1, me);
 }
 
-int do_jiaoshui() {
+int do_jiaoshui(string arg) {
     object me = this_player();
     object ob;
 

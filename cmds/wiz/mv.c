@@ -22,7 +22,7 @@ int main(object me, string arg) {
         write("源文件名字錯誤。\n");
         return 1;
     }
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         dir = SECURITY_D->query_site_privilege("edit");
         if(!dir && (!sscanf(src, "/u/%*s") || !sscanf(dst, "/u/%*s")) )

@@ -182,7 +182,7 @@ void do_destroy(object ob) {
     if(ob) destruct(ob);
 }
 
-int do_giveup() {
+int do_giveup(string arg) {
     object ob;
 
     if(ob = present("bang zhong", environment(this_player())) ) {

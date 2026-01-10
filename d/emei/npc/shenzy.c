@@ -102,13 +102,13 @@ int accept_ansuan(object who) {
     return notify_fail(CYN + "沈芝毓在遠處對你眨眼，露出神秘的微笑 ... \n" + NOR + "你發現自己怎麼也捨不得下手！\n" + NOR);
 }
 
-void receive_damage(string type, int n) {
+varargs int receive_damage(string type, int n, object who) {
     full_self();
-    return;
+    return 0;
 }
 
-void receive_wound(string type, int n) {
-    return;
+varargs int receive_wound(string type, int n, object who) {
+    return 0;
 }
 
 void unconcious() {

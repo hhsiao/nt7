@@ -19,7 +19,7 @@ void init() {
     add_action("do_halt", "halt");
 }
 
-int do_halt() {
+int do_halt(string arg) {
 
     if (this_player() == query_temp("punish_ob"))
     {
@@ -30,12 +30,12 @@ int do_halt() {
     return 0;
 }
 
-void receive_damage(string type, int amount, object who) {
-    ::receive_damage(type, 1 + amount / 100, who);
+varargs int receive_damage(string type, int amount, object who) {
+    return ::receive_damage(type, 1 + amount / 100, who);
 }
 
-void receive_wound(string type, int amount, object who) {
-    ::receive_wound(type, 1 + amount / 100, who);
+varargs int receive_wound(string type, int amount, object who) {
+    return ::receive_wound(type, 1 + amount / 100, who);
 }
 
 mixed hit_ob(object me, object ob, int damage_bouns) {

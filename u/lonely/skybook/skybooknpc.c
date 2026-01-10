@@ -501,7 +501,7 @@ int check_family(object ob, string fam) {
 }
 
 // when remove
-void remove() {
+varargs void remove(string euid) {
     function *fun;
 
     if (functionp(fun = query_temp("override/destruct", 1)))

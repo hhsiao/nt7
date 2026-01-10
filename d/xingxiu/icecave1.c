@@ -10,7 +10,7 @@ inherit ROOM;
 
 private int blow_result(object victim);
 int blow();
-int do_dig();
+int do_dig(string arg);
 
 
 void create() {
@@ -44,7 +44,7 @@ void init() {
     call_out("blow", 4 + random(3) );
 }
 
-int do_dig() {
+int do_dig(string arg) {
     remove_call_out("blow");
     call_out("blow", 1 );
     return 1;

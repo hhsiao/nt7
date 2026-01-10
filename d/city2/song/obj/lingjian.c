@@ -80,7 +80,7 @@ int do_yun(string arg) {
     return 0;
 }
 
-int do_escort() {
+int do_escort(string arg) {
     object me = this_player(), ob = this_object();
 
     if(!query_temp("jun_quest/escort", me) )

@@ -32,7 +32,7 @@ string long() {
     "我往，殺個不停。\n";
 }
 
-int do_quit() {
+int do_quit(string arg) {
     object me;
 
     me = this_player();

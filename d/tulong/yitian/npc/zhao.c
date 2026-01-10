@@ -147,12 +147,12 @@ int accept_ansuan(object who) {
     return notify_fail("你剛想暗算，可是隻見樓上人影晃動，根本看不清楚。\n");
 }
 
-void receive_damage(string type, int n) {
-    return;
+varargs int receive_damage(string type, int n, object who) {
+    return 0;
 }
 
-void receive_wound(string type, int n) {
-    return;
+varargs int receive_wound(string type, int n, object who) {
+    return 0;
 }
 
 void greeting(object ob) {

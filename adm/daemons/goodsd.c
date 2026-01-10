@@ -39,7 +39,7 @@ nosave string *actions = ({});
 nosave class goods *all_goods = ({});
 void init_goods();
 void init_actions();
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 void set_rate(mixed r)
 {
         if( stringp(r) ) rate = to_int(r);
@@ -54,7 +54,7 @@ void set_item_value(string arg, int value)
 
 int query_rate() { return rate; }
 
-void remove() { save(); }
+varargs void remove(string euid) { save(); }
 
 void create()
 {
@@ -123,14 +123,14 @@ void init_actions()
         int i, n, flag = 0;
         class goods item;
         string good;
-        
+
         actions = ({});
         if( !sizeof(all_goods) ) return;
         for( i=0;i<sizeof(all_goods);i++ ) {
                 n = random(sizeof(all_goods));
                 item = all_goods[n];
                 good = item->name;
-                
+
                 if( member_array(good, actions) == -1 ) {
                         actions += ({ good });
                         flag++;
@@ -167,7 +167,7 @@ string chinese_type(string type)
 void log_buyinfo(object ob, class goods item)
 {
         string buyinfo;
-       
+
         buyinfo = MEMBER_D->db_query_member(ob, "buyinfo");
         if(!buyinfo)buyinfo="";
          if(strlen(buyinfo)>8192) buyinfo="";
@@ -184,7 +184,7 @@ void log_buyinfo(object ob, class goods item)
         MEMBER_D->db_set_member(ob, "last_buytime", time());
         MEMBER_D->db_set_member(ob, "last_buyob", item->name);
         MEMBER_D->db_set_member(ob, "last_buyvalue", item->value);
-        
+
         // 商品銷售統計
         DB_D->set_data("ntstore/buylist/" + item->name, DB_D->query_data("ntstore/buylist/" + item->name) + 1);
         return;
@@ -207,7 +207,7 @@ public varargs int show_goods(object me, string arg)
                 tell_object(me, sprintf("目前%s沒有可以賣的東西。\n", query("name")));
                 return 1;
         }
-        
+
         vip = MEMBER_D->db_query_member(me, "vip");
         if( vip == 3 )
         {
@@ -224,7 +224,7 @@ public varargs int show_goods(object me, string arg)
                 level = "白銀會員";
                 str = "9折";
         }
-        
+
         if( !arg ) arg = "all";
 
         msg  = sprintf("%s目前出售以下貨物：\n\n" NOR, query("name"));
@@ -251,7 +251,7 @@ public varargs int show_goods(object me, string arg)
         msg += HIG "請認真閱讀有關說明，購買前請考慮清楚， 如無差錯，恕不退貨！\n" NOR;
         msg += HIG "有關王者商城的說明及購買王者幣($NT)的方式，請輸入指令 help ntstore 查看。\n" NOR;
         msg += HIG "------------------------------------------------------------------------------------------\n" NOR;
-        
+
         buy_list = DB_D->query_data("ntstore/buylist");
         if( sizeof(buy_list) > 3 )
         {
@@ -263,7 +263,7 @@ public varargs int show_goods(object me, string arg)
         {
                 msg += HIM "八折商品：" HIW + actions[0] + "、" + actions[1] + "、" + actions[2] + "、" + actions[3] + "\n" NOR;
         }
-                
+
         if( sizeof(sp_items) > 0 )
         {
                 msg += HIW "特價商品：";
@@ -290,9 +290,9 @@ void get_element_id(string arg, object ob, int value, int num, class goods item)
         mapping data;
         object obj;
         string *ks;
-        string str, my_id, my_name; 
+        string str, my_id, my_name;
         int i, n, flag = 0;
-        
+
         if( !objectp(ob) ) return;
 
         if( !arg )
@@ -304,38 +304,38 @@ void get_element_id(string arg, object ob, int value, int num, class goods item)
 
         if( arg == "q" || arg == "Q" )
                 return;
-                        
+
         if( num == 2 ) str = "value_2_props";
         else if( num == 3 ) str = "value_3_props";
         else if( num == 5 ) str = "value_5_props";
         else if( num == 10 )str = "value_10_props";
         else return;
-        
+
         props = fetch_variable(str, get_object(EQUIPMENT_D));
         if( !mapp(props) || sizeof(props) < 1 ) return;
-        
+
         ks = keys(props);
         if( member_array(arg, ks) != -1 )
         {
                 my_id = arg;
-                my_name = EQUIPMENT_D->chinese(my_id)+"元素"; 
-                data = ([]); 
+                my_name = EQUIPMENT_D->chinese(my_id)+"元素";
+                data = ([]);
                 data["element"] = my_id;
-                data["name"] = my_name; 
-                obj = TEMPLATE_D->create_object("/inherit/template/element/element", my_id, data); 
-                obj->set_name(my_name, ({my_id, "element"})); 
+                data["name"] = my_name;
+                obj = TEMPLATE_D->create_object("/inherit/template/element/element", my_id, data);
+                obj->set_name(my_name, ({my_id, "element"}));
                 if( !MEMBER_D->player_pay(ob, value) )
                 {
                         write("\n購買物品失敗，請與本站ADMIN聯繫！\n");
                         destruct(obj);
                         return;
                 }
-                obj->move(ob, 1); 
+                obj->move(ob, 1);
                 log_buyinfo(ob, item);
                 write(HIG "\n購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
                 write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return;
-        } 
+        }
         else
         {
                 n = sizeof(ks);
@@ -345,30 +345,30 @@ void get_element_id(string arg, object ob, int value, int num, class goods item)
                         {
                                 flag = 1;
                                 my_id = ks[i];
-                                my_name = EQUIPMENT_D->chinese(my_id)+"元素"; 
-                                data = ([]); 
+                                my_name = EQUIPMENT_D->chinese(my_id)+"元素";
+                                data = ([]);
                                 data["element"] = my_id;
-                                data["name"] = my_name; 
-                                obj = TEMPLATE_D->create_object("/inherit/template/element/element", my_id, data); 
-                                obj->set_name(my_name, ({my_id, "element"})); 
+                                data["name"] = my_name;
+                                obj = TEMPLATE_D->create_object("/inherit/template/element/element", my_id, data);
+                                obj->set_name(my_name, ({my_id, "element"}));
                                 if( !MEMBER_D->player_pay(ob, value) )
                                 {
                                         write("\n購買物品失敗，請與本站ADMIN聯繫！\n");
                                         destruct(obj);
                                         return;
                                 }
-                                obj->move(ob, 1); 
+                                obj->move(ob, 1);
                                 log_buyinfo(ob, item);
                                 write(HIG "\n購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
                                 write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                                 return;
                         }
-                }       
+                }
         }
         write("沒有這個元素，請help element核查後再試！\n");
         return;
-}  
-        
+}
+
 // 購買指定銅人
 void get_tongren_id(string arg, object ob, int value, class goods item)
 {
@@ -579,13 +579,13 @@ public int buy_goods(object ob, string arg)
                         item->start_borrowing(7200);
                         item->move(ob, 1);
                         break;
-                }        
+                }
 
                 log_buyinfo(ob, all_goods[i]);
                 write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
                 write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
-                
+
         case "package":
                 if( !MEMBER_D->player_pay(ob, value) ) {
                         write("購買物品失敗，請與本站ADMIN聯繫！\n");
@@ -639,11 +639,11 @@ public int buy_goods(object ob, string arg)
                         item->move(ob, 1);
                         break;
 
-                    case "yuqingwan" : 
-                            item = new("/clone/medicine/yuqingwan"); 
-                            item->set_amount(20); 
-                            item->move(ob, 1); 
-                            break; 
+                    case "yuqingwan" :
+                            item = new("/clone/medicine/yuqingwan");
+                            item->set_amount(20);
+                            item->move(ob, 1);
+                            break;
                 case "yj-sword" :
                         level=query("level", ob)/10*10;
                         if( level < 10 ) level = 10;
@@ -907,75 +907,75 @@ public int buy_goods(object ob, string arg)
                 case "srv01" :
                         addn("time_reward/quest", 10800, ob);
                         break;
-                case "srv02" : 
-                        addn("time_reward/quest", 604800, ob); 
-                        break; 
-                case "srv03" : 
-                        addn("time_reward/study", 10800, ob); 
-                        break; 
-                case "srv04" : 
-                        addn("time_reward/study", 604800, ob); 
-                        break; 
-                case "tweapon" : 
-                        addn("teleport/tweapon", 1, ob); 
-                        break; 
-                case "tarmor" : 
-                        addn("teleport/tarmor", 1, ob); 
-                        break; 
-                 case "resetneili" :  
-                        set("max_neili", 100, ob);  
-                        break;  
-                 case "resetjingli" :  
-                        set("max_jingli", 100, ob);  
-                        break;  
-                 case "qiankunqi" :  
-                        addn("qiankunqipan/limit_guest", 1, ob);  
-                        write("你獲得了一顆白棋子。\n"); 
-                        if (query("qiankunqipan/limit_guest", ob) == 4) write("你獲得了一顆本命黑棋子。\n"); 
-                        break;  
+                case "srv02" :
+                        addn("time_reward/quest", 604800, ob);
+                        break;
+                case "srv03" :
+                        addn("time_reward/study", 10800, ob);
+                        break;
+                case "srv04" :
+                        addn("time_reward/study", 604800, ob);
+                        break;
+                case "tweapon" :
+                        addn("teleport/tweapon", 1, ob);
+                        break;
+                case "tarmor" :
+                        addn("teleport/tarmor", 1, ob);
+                        break;
+                 case "resetneili" :
+                        set("max_neili", 100, ob);
+                        break;
+                 case "resetjingli" :
+                        set("max_jingli", 100, ob);
+                        break;
+                 case "qiankunqi" :
+                        addn("qiankunqipan/limit_guest", 1, ob);
+                        write("你獲得了一顆白棋子。\n");
+                        if (query("qiankunqipan/limit_guest", ob) == 4) write("你獲得了一顆本命黑棋子。\n");
+                        break;
 
-                     case "mgenital" :  
+                     case "mgenital" :
                              if (query("gender", ob) == "男性") {
-                                write("你已經是男人了，不信你摸摸..\n"); 
+                                write("你已經是男人了，不信你摸摸..\n");
                                 return 1;
                              }
                              if (query("class", ob) == "eunach" ||
                                 query("gender", ob) == "無性") {
-                                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "接上了小丁丁，重振雄風，再戰江湖。\n" + NOR); 
-                                SKILLS_D->remove_id_from_abandon(ob, "pixie-jian"); 
-                                ob->delete_skill("pixie-jian"); 
+                                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "接上了小丁丁，重振雄風，再戰江湖。\n" + NOR);
+                                SKILLS_D->remove_id_from_abandon(ob, "pixie-jian");
+                                ob->delete_skill("pixie-jian");
                                 ob->reset_action();
                              } else {
-                                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "安裝了一根大傢伙，想去怡紅院玩玩。\n" + NOR); 
-                                SKILLS_D->remove_id_from_abandon(ob, "mingyu-gong"); 
-                                ob->delete_skill("mingyu-gong"); 
-                                ob->reset_action(); 
+                                CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "安裝了一根大傢伙，想去怡紅院玩玩。\n" + NOR);
+                                SKILLS_D->remove_id_from_abandon(ob, "mingyu-gong");
+                                ob->delete_skill("mingyu-gong");
+                                ob->reset_action();
                              }
-                             set("gender", "男性", ob);  
-                             delete("couple/couple_id", ob);  
-                             delete("couple/child_id", ob);  
-                             break;  
-                     case "fgenital" :  
+                             set("gender", "男性", ob);
+                             delete("couple/couple_id", ob);
+                             delete("couple/child_id", ob);
+                             break;
+                     case "fgenital" :
                              if (query("gender", ob) != "男性") {
-                                write("你沒有jj，無從割棄！\n"); 
+                                write("你沒有jj，無從割棄！\n");
                                 return 1;
                              }
                              if (query("gender", ob) == "女性") {
-                                write("你已經是女人了，不信你摳摳..\n"); 
+                                write("你已經是女人了，不信你摳摳..\n");
                                 return 1;
                              }
-                                 CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "去了趟泰國，是不是想先給兄弟們爽爽呢？\n" + NOR); 
-                             set("gender", "女性", ob);  
-                             delete("couple/couple_id", ob);  
-                             delete("couple/child_id", ob);  
-                             break;  
+                                 CHANNEL_D->channel_broadcast("rumor", "聽說" + query("name", ob) + "去了趟泰國，是不是想先給兄弟們爽爽呢？\n" + NOR);
+                             set("gender", "女性", ob);
+                             delete("couple/couple_id", ob);
+                             delete("couple/child_id", ob);
+                             break;
                 }
 
                 log_buyinfo(ob, all_goods[i]);
                 write(HIG "購買成功， 您的購買記錄已寫入文件，請使用 " HIR "member show buyinfo " HIG " 查詢！ \n" NOR);
                 write(HIC "您總共花費了 " HIY + value + HIC + " $NT, 祝您好運！\n" NOR);
                 return 1;
-                
+
         case "element":
                 switch( all_goods[i]->id )
                 {
@@ -1003,7 +1003,7 @@ public int buy_goods(object ob, string arg)
                         break;
                 }
                 return 1;
-                                
+
         case "other":
                 switch( all_goods[i]->id )
                 {
@@ -1064,7 +1064,7 @@ public int buy_goods(object ob, string arg)
                         break;
                 }
                 return 1;
-                
+
         case "card":
                 arg = all_goods[i]->id;
                 if( arg != "monthcard"
@@ -1198,7 +1198,7 @@ public int buy_goods(object ob, string arg)
                                 write("購買圖騰特技失敗，請與本站ADMIN聯繫！\n");
                                 return 0;
                         }
-                        
+
                         // 帝王之星
                         if( all_goods[i]->id == "diwang" )
                         {

@@ -8,7 +8,7 @@ inherit ROOM;
 
 void close_passage();
 string look_floor();
-//int do_open();
+//int do_open(string arg);
 int do_open(string arg);
 
 void create() {

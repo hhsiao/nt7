@@ -61,7 +61,7 @@ void init()
         */
 }
 
-int do_check()
+int do_check(string arg)
 {
         object me = this_player();
 

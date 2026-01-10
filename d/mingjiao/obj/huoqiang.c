@@ -20,7 +20,7 @@ void init() {
     add_action("do_fire", "shoot");
 }
 
-int do_load() {
+int do_load(string arg) {
     object me = this_player();
 
     if (me->query_skill_mapped("throwing") != "wuxing-jueji")

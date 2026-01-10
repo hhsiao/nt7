@@ -254,7 +254,7 @@ int ask_youju() {
     set("can_perform/meinv-quan/you", 1, ob);
     return 1;
 }
-int do_yuanyi() {
+int do_yuanyi(string arg) {
     object me = this_player();
 
     if(!query_temp("mark/youju", me) )

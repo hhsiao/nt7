@@ -9,8 +9,8 @@ inherit F_BANKER;
 
 int do_join(string arg);
 int do_unjoin(string arg);
-int do_yao();
-int do_decide();
+int do_yao(string arg);
+int do_decide(string arg);
 
 void create() {
     set_name("何三七", ({ "he sanqi", "he", "sanqi" }));
@@ -110,7 +110,7 @@ int do_unjoin(string arg) {
     return 1;
 }
 
-int do_decide() {
+int do_decide(string arg) {
     object ob, me = this_player();
 
     if(query_temp("want_join", me) )

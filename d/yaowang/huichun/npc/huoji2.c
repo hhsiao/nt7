@@ -111,7 +111,7 @@ int greeting(object ob) {
  * return 1;
  * }
  */
-int do_list() {
+int do_list(string arg) {
     string *goods;
     object *inv;
     object *inv1;

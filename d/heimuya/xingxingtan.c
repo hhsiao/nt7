@@ -139,7 +139,7 @@ void reset() {
         delete("yell_trigger", room);
 }
 
-int do_cross() {
+int do_cross(string arg) {
     object me = this_player();
 
     if(query("family/family_name", me) != "日月神教" )

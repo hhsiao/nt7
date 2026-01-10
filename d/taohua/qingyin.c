@@ -51,7 +51,7 @@ int do_use(string arg) {
     return 1;
 }
 
-int do_tanzhi() {
+int do_tanzhi(string arg) {
     object me, ob;
     int check;
 

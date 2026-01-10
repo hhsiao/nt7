@@ -37,7 +37,7 @@ void init()
 //**    add_action("do_sign", "sign");
 }
 
-int do_sign()
+int do_sign(string arg)
 {
     object ob;
     object me;

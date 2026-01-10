@@ -3,7 +3,7 @@
 inherit NPC;
 //inherit F_MASTER;
 //string ask_for_join();
-//int do_kneel();
+//int do_kneel(string arg);
 
 void create() {
     set_name("鹿清篤", ({"lu qingdu", "lu"}));

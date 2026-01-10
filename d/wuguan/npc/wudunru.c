@@ -344,12 +344,12 @@ void recover() {
     p["jing" ] = p["max_jing"];
 }
 
-void receive_damage(string type, int n) {
-    return;
+varargs int receive_damage(string type, int n, object who) {
+    return 0;
 }
 
-void receive_wound(string type, int n) {
-    return;
+varargs int receive_wound(string type, int n, object who) {
+    return 0;
 }
 
 void unconcious() {

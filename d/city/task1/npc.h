@@ -302,7 +302,7 @@ void random_move() {
     NPC_D->random_move(this_object());
 }
 
-int do_yes() {
+int do_yes(string arg) {
     object r_shen, me, ob;
     me = this_object();
     ob = this_player();

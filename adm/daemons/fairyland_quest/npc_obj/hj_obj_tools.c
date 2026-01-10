@@ -196,7 +196,7 @@ void delete_me()
     destruct(this_object());
 }
 
-int do_dingxiang()
+int do_dingxiang(string arg)
 {
     object me = this_player(), ob = this_object(), rooms;
     int temp_mark;

@@ -20,7 +20,7 @@ void init()
         add_action("do_smoke", "xiyan");
 }
 
-int do_smoke()
+int do_smoke(string arg)
 {
         object me = this_player();
         object obj = this_object();

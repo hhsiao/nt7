@@ -4,7 +4,7 @@
 #include <room.h>
 inherit CREATE_CHAT_ROOM;
 
-int clean_up() { return 1;}
+int clean_up(int inherited) { return 1;}
 string look_ting(object me);
 int is_chat_room() { return 1; }
 int climbing(object me);

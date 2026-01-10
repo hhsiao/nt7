@@ -19,7 +19,7 @@ int main(object me, string file) {
 
     file = resolve_path(query("cwd", me), file);
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         dir = SECURITY_D->query_site_privilege("edit");
         if(!dir && !sscanf(file, "/u/%*s") )

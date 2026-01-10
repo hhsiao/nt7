@@ -158,7 +158,7 @@ int checking(object ob1, object ob2) {
 
 }
 
-int do_halt() {
+int do_halt(string arg) {
     object me = this_player();
 
     if (me->is_fighting())

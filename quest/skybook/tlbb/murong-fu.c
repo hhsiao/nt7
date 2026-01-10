@@ -38,8 +38,8 @@ string ask_fuxing();
 string ask_yuxi();
 int ask_bishen();
 
-string* npc_where = ({"/d/mr/mtl/qianyuan","/d/mr/mtl/xiaojing7","/d/mr/mtl/liulin3","/d/mr/mtl/hc2","/d/mr/mtl/keting","/d/mr/mtl/cl","/d/mr/mtl/hhyuan",});                    
-                     
+string* npc_where = ({"/d/mr/mtl/qianyuan","/d/mr/mtl/xiaojing7","/d/mr/mtl/liulin3","/d/mr/mtl/hc2","/d/mr/mtl/keting","/d/mr/mtl/cl","/d/mr/mtl/hhyuan",});
+
 void create()
 {
 	object weapon;
@@ -126,12 +126,12 @@ void create()
 		"放棄" : (: ask_fangqi :),
 		"復興天下" : (: ask_fuxing :),//tlbb quest
 		"大燕國" : (: ask_fuxing :),
-		"復國" : (: ask_fuxing :),	
+		"復國" : (: ask_fuxing :),
 		"大燕國玉璽" : (: ask_yuxi :),
-		"秘密" : (: ask_yuxi :),		
-		"玉璽" : (: ask_yuxi :),	
+		"秘密" : (: ask_yuxi :),
+		"玉璽" : (: ask_yuxi :),
               "以彼之道還施彼身" : (: ask_bishen :),
-	
+
 	]));
 	set("dan_count", 2);
 	set("book_count",1);
@@ -154,7 +154,7 @@ void init()
 	object ob;
 	::init();
 	ob = this_player();
-	if (interactive(ob = this_player()) 
+	if (interactive(ob = this_player())
 		&&ob->query(QUESTDIR5+"start")
 		&&!ob->query(QUESTDIR5+"over")
 		&&ob->query_temp(QUESTDIR5+"dagouzhen")
@@ -171,15 +171,15 @@ void greeting(object me)
 {
 	int i,p;
 	if(!me) return;
-	if (!me->query(QUESTDIR5+"start") 
+	if (!me->query(QUESTDIR5+"start")
 		|| me->query(QUESTDIR5+"over")
 		|| !me->query_temp(QUESTDIR5+"dagouzhen")
 		|| !me->query_temp(QUESTDIR5+"zhenfa")
 		|| !me->query_temp(QUESTDIR5+"shaolinzhen"))
 		return;
-	if(environment(me)!=environment(this_object())) 
+	if(environment(me)!=environment(this_object()))
 	{
-		message_vision(HIC"\n$n疑惑地問道：$N，人呢？\n"NOR,me,this_object()); 
+		message_vision(HIC"\n$n疑惑地問道：$N，人呢？\n"NOR,me,this_object());
 		me->delete_temp("quest/天龍八部");
 		me->delete_temp("quest/busy");//任務衝突標誌取消
 		return;
@@ -204,7 +204,7 @@ void greeting(object me)
         me->add("combat_exp",me->query_skill("force")*2+500);
         i=100+random(100);
 	me->add("mana",i);
-        tell_object(me,HIY"\n你於"+NATURE_D->game_time()+"幫助慕容復打敗少林丐幫，實現復興天下的計劃，獲得"+p+"點最大內力、"+((int)me->query_skill("force")*2+500)+"點經驗獎勵、"+i+"點聲望。\n"NOR);   
+        tell_object(me,HIY"\n你於"+NATURE_D->game_time()+"幫助慕容復打敗少林丐幫，實現復興天下的計劃，獲得"+p+"點最大內力、"+((int)me->query_skill("force")*2+500)+"點經驗獎勵、"+i+"點聲望。\n"NOR);
         log_file("quest/TLBB", sprintf("%s(%s) 復興天下篇完成。獎勵：%d點最大內力，%d點經驗，%d點聲望。\n", me->name(1),me->query("id"), p,(me->query_skill("force")*2+500),i ) );
 }
 void attempt_apprentice(object ob)
@@ -238,7 +238,7 @@ string ask_fuxing()
 	if ( !fam )
 		return "這位"+ RANK_D->query_respect(ob) +"無門無派，此話從何說起？";
 	if( !ob->query(QUESTDIR3+"bad"))
-		return "我與"+ RANK_D->query_respect(ob) +"向來沒什麼往來，此話從何說起？"; 		
+		return "我與"+ RANK_D->query_respect(ob) +"向來沒什麼往來，此話從何說起？";
 
 	if( ob->query(QUESTDIR5+"over"))
 	{
@@ -267,8 +267,8 @@ string ask_fuxing()
 		command("whisper " + ob->query("id")+" "+ RANK_D->query_respect(ob) +"，確實不錯。");
 		if (random(2))return "今天天氣就是好，就是好。";
 		return "今天天氣真不錯。";
-	}		
-    
+	}
+
 	command("addoil "+ob->query("id"));
 	command("say "+ RANK_D->query_respect(ob) +"幫我把蕭峰趕出中原，已經幫我大忙了！");
 	//增加時間和經驗間隔限制
@@ -281,7 +281,7 @@ string ask_fuxing()
 	obj = users();
 	x = sizeof(obj);
 	while(x--) {
-		if ( obj[x]->query_temp(QUESTDIR5+"askfu") && obj[x]!=ob) 
+		if ( obj[x]->query_temp(QUESTDIR5+"askfu") && obj[x]!=ob)
 		{
 			command("sigh "+ob->query("id"));
 			return "只是關於這件事情，已經有"+obj[x]->query("name")+RANK_D->query_respect(obj[x]) +"幫我了.........";
@@ -289,7 +289,7 @@ string ask_fuxing()
 	}
 	//設定標誌
 	ob->set(QUESTDIR+"time",time());
-	ob->set(QUESTDIR+"combat_exp",ob->query("combat_exp"));  
+	ob->set(QUESTDIR+"combat_exp",ob->query("combat_exp"));
 
 	command("whisper " + ob->query("id")+" 恩，只是所謂復興天下，談何容易，而且......");
 	command("look " + ob->query("id"));
@@ -319,7 +319,7 @@ string ask_yuxi()
 	if ( !fam )
 		return "這位"+ RANK_D->query_respect(ob) +"無門無派，此話從何說起？";
 	if( !ob->query(QUESTDIR3+"bad"))
-		return "我與"+ RANK_D->query_respect(ob) +"向來沒什麼往來，此話從何說起？"; 		
+		return "我與"+ RANK_D->query_respect(ob) +"向來沒什麼往來，此話從何說起？";
 
 	if( ob->query(QUESTDIR5+"over"))
 	{
@@ -360,30 +360,30 @@ string ask_yuxi()
 	obj = users();
 	x = sizeof(obj);
 	while(x--) {
-		if ( obj[x]->query_temp(QUESTDIR5+"yuxi") && obj[x]!=ob) 
+		if ( obj[x]->query_temp(QUESTDIR5+"yuxi") && obj[x]!=ob)
 		{
 			command("sigh "+ob->query("id"));
 			return "還好，已經有"+obj[x]->query("name")+RANK_D->query_respect(obj[x]) +"幫我了.........";
 		}
 	}
 	ob->set(QUESTDIR+"time",time());
-	ob->set(QUESTDIR+"combat_exp",ob->query("combat_exp"));  
+	ob->set(QUESTDIR+"combat_exp",ob->query("combat_exp"));
 
-	where=npc_where[random(sizeof(npc_where))];  
+	where=npc_where[random(sizeof(npc_where))];
 	if(!room=find_object(where))
 		room=load_object(where);
 	if(!room) room=load_object("/d/mr/mtl/midao");
 	mrdizi=new(__DIR__"mrdizi");
-	mrdizi->set("party","mr"); 
-	mrdizi->set("fight_id",ob->query("id")); 
+	mrdizi->set("party","mr");
+	mrdizi->set("fight_id",ob->query("id"));
 	if(random(2)) mrdizi->move(room);
 	mrdizi=new(__DIR__"mrdizi");
-	mrdizi->set("party","mr"); 
-	mrdizi->set("fight_id",ob->query("id")); 
-	mrdizi->move(room);  
+	mrdizi->set("party","mr");
+	mrdizi->set("fight_id",ob->query("id"));
+	mrdizi->move(room);
 	mrdizi=new(__DIR__"mrdizi");
-	mrdizi->set("party","mr"); 
-	mrdizi->set("fight_id",ob->query("id")); 
+	mrdizi->set("party","mr");
+	mrdizi->set("fight_id",ob->query("id"));
 	mrdizi->set("yuxi_have",1);//帶玉璽的弟子
 	mrdizi->move(room);
 	ob->set_temp("quest/busy",1);//與任務系統衝突標誌
@@ -572,7 +572,7 @@ mixed ask_bo()
 	return 1;
 }
 
-int do_jiaoliang()
+int do_jiaoliang(string arg)
 {
 	object me, obj, jiaxin;
 	int current_qi;
@@ -727,10 +727,10 @@ int ask_fuming(string arg)
 	if (rate > 2) rate = 2;
 	if (rate < 0.6) rate = 0.6;
 	bouns *= rate;
-             
-              if (bouns > 300) bouns = 250 + random(50);		
+
+              if (bouns > 300) bouns = 250 + random(50);
 	bouns = me->add_exp_combat(bouns,this_object(),"慕容");
-	pot = bouns/5+random(bouns/10);        
+	pot = bouns/5+random(bouns/10);
 	if (me->add("potential", pot) > me->query("max_pot"))
 		me->set("potential", me->query("max_pot"));
 	write(GRN"你獲得了"+CHINESE_D->chinese_number(bouns)+"點經驗和"+CHINESE_D->chinese_number(pot)+"點潛能的獎勵。\n"NOR);
@@ -740,7 +740,7 @@ int ask_fuming(string arg)
 		me->name(1), "("+geteuid(me)+")", me->query_temp("skill_target"),
 		bouns,pot,me->query("job_time/慕容"),me->query("combat_exp")), me);
 */
-          
+
 	message_vision(CYN"慕容復仔細研究著$N記在紙捲上的武功精要，情不自禁地說道：好一個"+me->query_temp("skill_target")+"。\n"NOR, me);
               TASKREWARD_D->get_reward(me,"慕容",0,0,0,16+ random(5),0,0,0,this_object());
 	message_vision(CYN"慕容復拍了拍$N的頭，對$P說道：辛苦你了，下去休息吧。\n"NOR, me);
@@ -801,11 +801,11 @@ string ask_times()
 
 int accept_object(object who, object ob)
 {
-   if(userp(ob)) return 0;        
+   if(userp(ob)) return 0;
    if(ob->query("id") == "yu xi")
    {
       if(who->query_temp(QUESTDIR5+"yuxi")
-		  &&!who->query(QUESTDIR5+"start")) 
+		  &&!who->query(QUESTDIR5+"start"))
 	  {
       	if( ob->query("owner")==who->query("id"))
         {
@@ -840,7 +840,7 @@ int accept_object(object who, object ob)
 	  call_out("destroying", 1, ob);
 	  return 1;
    }
-   if(ob->query("id") == "shouji" 
+   if(ob->query("id") == "shouji"
 	   && ob->query("kill_by")
 	   && ob->query("kill_by")==who
 	   && (ob->query("victim_id")=="zhang sanfeng"
@@ -849,9 +849,9 @@ int accept_object(object who, object ob)
    {
 
       if(who->query_temp(QUESTDIR5+"askfu")
-		  &&!who->query_temp(QUESTDIR5+"give_shouji")) 
+		  &&!who->query_temp(QUESTDIR5+"give_shouji"))
 	  {
-		  command("smile "+who->query("id"));	  
+		  command("smile "+who->query("id"));
 		  if(ob->query("victim_id")=="zhang sanfeng")
 			  command("whisper "+who->query("id")+" 不錯，武當那個老雜毛沒想到也有今天，這裡有個天大的秘密可以告訴你。");
 		  if(ob->query("victim_id")=="zhang wuji")
@@ -922,7 +922,7 @@ int ask_bishen()
 		log_file("quest/bishen",
 			sprintf("%-18s想從慕容復處領悟鬥轉星移的精髓所在失敗，失敗%s次。\n",
 				ob->name(1)+"("+capitalize(getuid(ob))+")",
-				chinese_number(ob->query("quest/bishen/fail")) 
+				chinese_number(ob->query("quest/bishen/fail"))
 			), ob
 		);
 		return 1;
@@ -935,8 +935,8 @@ int ask_bishen()
 	log_file("quest/bishen",
 		sprintf("%-18s失敗%s次後，成功從慕容復處領悟鬥轉星移精髓所在，福：%d，悟：%d。\n",
 			ob->name(1)+"("+capitalize(getuid(ob))+")",
-			chinese_number(ob->query("quest/bishen/fail")), 
-			ob->query("kar"), 
+			chinese_number(ob->query("quest/bishen/fail")),
+			ob->query("kar"),
 			ob->query_int(1)
 		), ob
 	);
@@ -948,7 +948,7 @@ int ask_bishen()
 
 
 void destroying(object ob)
-{     
+{
 	destruct(ob);
 	return;
-}     
+}

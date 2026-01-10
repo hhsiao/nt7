@@ -1,132 +1,128 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2015/10
-#include <ansi.h> 
-#include <room.h> 
+#include <ansi.h>
+#include <room.h>
 #include <transmsg.h>
 
 inherit ROOM;
 
-int valid_leave(object me, string dir)
-{
-        if (random(2) && me->is_fighting())
-        {
-                tell_object(me, "你還是先解決目前的敵人吧！\n"); 
-                return 0;
-        }
-                
-        return ::valid_leave(me, dir);
+int valid_leave(object me, string dir) {
+    if (random(2) && me->is_fighting())
+    {
+        tell_object(me, "你還是先解決目前的敵人吧！\n");
+        return 0;
+    }
+
+    return ::valid_leave(me, dir);
 }
 
-int discmds() 
-{ 
-        tell_object(this_player(), "你不能在這裡毛手毛腳。\n");  
-        return -1;  
-} 
-
-int do_esc() 
-{ 
-        if (!query_temp("jinchuan/iesc", this_player())) {
-                tell_object(this_player(), "你已經沒有小乾坤符了。\n");  
-                return -1;
-        }
-        if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) {//處於10天干船艙時
-                tell_object(this_player(), "你沒法在這裡使用小乾坤符。\n");  
-                return -1;
-        }
-        addn_temp("jinchuan/iesc", -1, this_player());
-        message_vision(HIY "$N" HIY "一揮衣袖，灑出一片金光突然消失了。\n" NOR, this_player());
-        this_player()->move(get_object(__DIR__"chuan" + (string)random(50)));
-        message_vision(HIY "$N" HIY "隨著一片金光突然出現在這個船艙裡。\n" NOR, this_player());
-        return 1;  
-} 
-
-int do_get()
+varargs int discmds(string arg)
 {
-        if (this_player()->is_fighting())
-             {
-                if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) {//處於10天干船艙時不能在戰鬥結束前get勝利品
-                tell_object(this_player(), "戰鬥裡沒法去撿東西！\n"); 
-                return -1;
-            }
+    tell_object(this_player(), "你不能在這裡毛手毛腳。\n");
+    return -1;
+}
+
+varargs int do_esc(string arg)
+{
+    if (!query_temp("jinchuan/iesc", this_player())) {
+        tell_object(this_player(), "你已經沒有小乾坤符了。\n");
+        return -1;
+    }
+    if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) { //處於10天干船艙時
+        tell_object(this_player(), "你沒法在這裡使用小乾坤符。\n");
+        return -1;
+    }
+    addn_temp("jinchuan/iesc", -1, this_player());
+    message_vision(HIY "$N" HIY "一揮衣袖，灑出一片金光突然消失了。\n" NOR, this_player());
+    this_player()->move(get_object(__DIR__"chuan" + (string)random(50)));
+    message_vision(HIY "$N" HIY "隨著一片金光突然出現在這個船艙裡。\n" NOR, this_player());
+    return 1;
+}
+
+varargs int do_get(string arg)
+{
+    if (this_player()->is_fighting())
+    {
+        if (strsrch(base_name(this_object()), "yuanjiang/chuan7")!=-1) { //處於10天干船艙時不能在戰鬥結束前get勝利品
+            tell_object(this_player(), "戰鬥裡沒法去撿東西！\n");
+            return -1;
         }
+    }
     return 0;
 }
 
-int do_chou()
+varargs int do_chou(string arg)
 {
-        object me = this_player();
-        int rnd = random(5)+1;
-        int num = query("yuan_ci_num", this_object());
-        string msg = "";
-        
-        if (num<1) {
-                tell_object(me, NOR "此地元磁真氣已經匱乏。\n" NOR); 
-                return -1;
-        }
-        
-        if (me->is_busy())
-        {
-                tell_object(me, NOR BUSY_MESSAGE NOR); 
-                return -1;
-        }
-        else if (!random(3))
-                me->start_busy(1);      
-                        
-        addn("gcjinchuan_yuancizhenqi/" + (string)rnd, 1, me);
-        addn("yuan_ci_num", -1, this_object());
-        tell_object(me, NOR "你伸掌從艙底的破洞處，向著元江漩渦下面的地肺運功一吸，得到一條" + HIY + ({"","金","木","土","水","火"})[rnd] + NOR "行元磁真氣。\n" NOR); 
-        for (int i = 1; i <= 5; i++) {
-                msg += ({"","金","木","土","水","火"})[i] + "." + (string)(query("gcjinchuan_yuancizhenqi/" + (string)i, me)) + "  ";
-        }
-                tell_object(me, NOR + msg + "\n" + NOR);
-        return 1;
+    object me = this_player();
+    int rnd = random(5) + 1;
+    int num = query("yuan_ci_num", this_object());
+    string msg = "";
+
+    if (num<1) {
+        tell_object(me, NOR "此地元磁真氣已經匱乏。\n" NOR);
+        return -1;
+    }
+
+    if (me->is_busy())
+    {
+        tell_object(me, NOR BUSY_MESSAGE NOR);
+        return -1;
+    }
+    else if (!random(3))
+        me->start_busy(1);
+
+    addn("gcjinchuan_yuancizhenqi/" + (string)rnd, 1, me);
+    addn("yuan_ci_num", -1, this_object());
+    tell_object(me, NOR "你伸掌從艙底的破洞處，向著元江漩渦下面的地肺運功一吸，得到一條" + HIY + ({ "", "金", "木", "土", "水", "火" })[rnd] + NOR "行元磁真氣。\n" NOR);
+    for (int i = 1; i <= 5; i++) {
+        msg += ({ "", "金", "木", "土", "水", "火" })[i] + "." + (string)(query("gcjinchuan_yuancizhenqi/" + (string)i, me)) + "  ";
+    }
+    tell_object(me, NOR + msg + "\n" + NOR);
+    return 1;
 }
 
-void init()
-{
-        object room, who, *objs, *doors;
-        
-        add_action("do_esc", ({"esc", "escape"})); 
-        add_action("do_get", ({"get", "eat"})); 
-        if (!playerp(this_player())) return;
-        set("trans_msg_to", __DIR__"chuancenter");
-        set("trans_msg_id", query("id", this_player()));
-        add_action("do_chou", "xi"); 
-        if (wiz_level(this_player()) < 2) add_action("discmds", ({  
-                        "steal", "cast", "conjure", "array", "fight", "hit",   
-                        "home", "ansuan", "touxi", "ride", "qi", "stab", "fbattle",
-                        "surrender", "array", "battle", "accept", "swear",
-                        "recall", "quit", "exit", "miss", "rideto", "chatroom",
-        }));  
-        room = this_object();
-        doors = filter_array( all_inventory(room), (: strsrch(base_name($1), "yuanjiang/npc/obj/door")!=-1 :) );
-        if (sizeof(doors)>0) {
-                tell_object(this_player(), NOR"\n你發現了一個神秘的艙門(door)。\n\n"NOR); 
-                return;
-        }
+void init() {
+    object room, who, *objs, *doors;
 
-        if ( query("env/invisible", this_player()) ) return;//wiz
+    add_action("do_esc", ({"esc", "escape"}));
+    add_action("do_get", ({"get", "eat"}));
+    if (!playerp(this_player())) return;
+    set("trans_msg_to", __DIR__"chuancenter");
+    set("trans_msg_id", query("id", this_player()));
+    add_action("do_chou", "xi");
+    if (wiz_level(this_player()) < 2) add_action("discmds", ({
+        "steal", "cast", "conjure", "array", "fight", "hit",
+        "home", "ansuan", "touxi", "ride", "qi", "stab", "fbattle",
+        "surrender", "array", "battle", "accept", "swear",
+        "recall", "quit", "exit", "miss", "rideto", "chatroom"
+    }));
+    room = this_object();
+    doors = filter_array(all_inventory(room), (: strsrch(base_name($1), "yuanjiang/npc/obj/door")!=-1 :) );
+    if (sizeof(doors)>0) {
+        tell_object(this_player(), NOR"\n你發現了一個神秘的艙門(door)。\n\n"NOR);
+        return;
+    }
 
-        if(!query_temp("apply/shade_vision", this_player()) || query_temp("apply/shade_vision", this_player())<1 ) {            
-                objs = filter_array(all_inventory(room), (: playerp($1) && (query("id", $1)!=query("id", this_player())) :));
-                if (sizeof(objs)>0) {
-                        who = objs[random(sizeof(objs))];
-                        if(!query_temp("apply/shade_vision", who) || query_temp("apply/shade_vision", who)<1 ) {
-                                this_player()->kill_ob(who);
-                                who->kill_ob(this_player());
-                        }
-                }
+    if (query("env/invisible", this_player()) ) return;     //wiz
+
+    if(!query_temp("apply/shade_vision", this_player()) || query_temp("apply/shade_vision", this_player())<1 ) {
+        objs = filter_array(all_inventory(room), (: playerp($1) && (query("id", $1)!=query("id", this_player())) :));
+        if (sizeof(objs)>0) {
+            who = objs[random(sizeof(objs))];
+            if(!query_temp("apply/shade_vision", who) || query_temp("apply/shade_vision", who)<1 ) {
+                this_player()->kill_ob(who);
+                who->kill_ob(this_player());
+            }
         }
-        
-        if ( query("stop_run") ) return;
-        tell_object(this_player(), NOR"\n金船轟隆一搖，你摔了一跤崴了腳，半天都爬不起來。\n\n"NOR); 
-        if (query_temp("apply/shade_vision", this_player()) && !random(4)) {
-                delete_temp("apply/shade_vision", this_player());
+    }
+
+    if (query("stop_run") ) return;
+    tell_object(this_player(), NOR"\n金船轟隆一搖，你摔了一跤崴了腳，半天都爬不起來。\n\n"NOR);
+    if (query_temp("apply/shade_vision", this_player()) && !random(4)) {
+        delete_temp("apply/shade_vision", this_player());
         message_vision(HIK "$N" HIK "的身形逐漸顯露出來，變的清晰可見。\n" NOR, this_player());
-        }
-        this_player()->start_busy(2+ random(4));
-        set("stop_run", random(3), room);
-        
+    }
+    this_player()->start_busy(2 + random(4));
+    set("stop_run", random(3), room);
+
 }
-
-

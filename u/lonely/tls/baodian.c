@@ -9,7 +9,7 @@ void create()
 南無金剛不壞佛、南無寶光佛三尊寶像，通體鍍金，光芒四射。寶座
 下香爐中香菸繚繞，點的是那天竺檀香。蒲團前有一無量功德寶盒。
 西過去通往地藏殿，東邊是藥師殿。
-LONG);       
+LONG);
         set("exits", ([
             "southdown" : __DIR__"road1",
                 "north" : __DIR__"gfd",
@@ -27,7 +27,7 @@ void init()
        add_action("do_ketou", "ketou");
 }
 
-int do_ketou()
+int do_ketou(string arg)
 {
 object me=this_player();
 int i;
@@ -39,13 +39,13 @@ if (random(me->query("neili"))<i) {
 return 0;
 }
        message_vision("$N虔誠地跪下來，在如來佛祖面前磕頭。\n", me);
-       
-    if (me->query("shen") > i) 
-    { me->add("shen", -i);     
+
+    if (me->query("shen") > i)
+    { me->add("shen", -i);
    me->add("neili",-i/10);}
-    if (me->query("shen") <-i ) 
-    { me->add("shen", i);     
+    if (me->query("shen") <-i )
+    { me->add("shen", i);
    me->add("neili",-i/10);}
    me->start_busy(random(2));
        return 1;
-} 
+}

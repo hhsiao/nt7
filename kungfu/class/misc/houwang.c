@@ -311,7 +311,7 @@ void heart_beat() {
     return ::heart_beat();
 }
 
-int receive_damage(string type, int n, object who) {
+varargs int receive_damage(string type, int n, object who) {
     int lv = query("level");
     object ob = query_last_damage_from();
 
@@ -332,7 +332,7 @@ int receive_damage(string type, int n, object who) {
     return ::receive_damage(type, n / 3, who);
 }
 
-int receive_wound(string type, int n, object who) {
+varargs int receive_wound(string type, int n, object who) {
     int lv = query("level");
     object ob = query_last_damage_from();
 

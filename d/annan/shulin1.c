@@ -32,7 +32,7 @@ LONG);
 void init() {
     add_action("do_go", "go");;
 }
-int do_go() {
+int do_go(string arg) {
     if(random(3)){
         this_player()->move(this_object());
         return 1;

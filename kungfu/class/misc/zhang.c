@@ -66,7 +66,7 @@ void init() {
     add_action("do_halt", "halt");
 }
 
-int do_halt() {
+int do_halt(string arg) {
 
     if (this_player() == query_temp("catch_ob"))
     {

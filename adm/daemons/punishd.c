@@ -15,7 +15,7 @@ void create()
         call_out("monitor", 1);
 }
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 void family_punish();
 

@@ -74,7 +74,7 @@ void random_move()
         NPC_D->random_move(this_object());
 }
 
-void remove()
+varargs void remove(string euid)
 {
         if (! environment() || query_temp("die"))
         {

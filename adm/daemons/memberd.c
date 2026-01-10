@@ -25,7 +25,7 @@ public int db_transfer_member(mixed ob, mixed to, int value);
 public string db_str(string x);
 
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 protected int valid_caller() {
 #ifdef DEBUG

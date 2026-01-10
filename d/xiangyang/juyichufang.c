@@ -33,7 +33,7 @@ void init() {
     add_action("do_serve", "serve");
 }
 
-int do_serve() {
+int do_serve(string arg) {
     object me;
     object food;
     object water;

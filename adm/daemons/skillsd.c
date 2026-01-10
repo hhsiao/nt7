@@ -3759,7 +3759,7 @@ void broadcast_news()
         save();
 }
 
-void remove()
+varargs void remove(string euid)
 {
         save();
 }

@@ -61,7 +61,7 @@ protected object get_cnd_object(string cnd) {
 }
 
 // clear a condition of all the condition when cnd == 0
-nomask void clear_condition(string cnd) {
+nomask varargs void clear_condition(string cnd) {
     if(!cnd ) {
         conditions = 0;
         cond_applyer = 0;
@@ -179,7 +179,7 @@ nomask void apply_condition(string cnd, mixed info) {
 //
 // This function returns info about the specific condition if any.
 
-nomask mixed query_condition(string cnd) {
+nomask varargs mixed query_condition(string cnd) {
     if(!cnd ) return conditions;
 
     if(!mapp(conditions) || undefinedp(conditions[cnd]) )

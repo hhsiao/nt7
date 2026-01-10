@@ -382,7 +382,7 @@ void new_life() {
     return;
 }
 
-int receive_damage(string type, int damage, object who) {
+varargs int receive_damage(string type, int damage, object who) {
     int tzlv;
 
     object me = this_object();
@@ -413,7 +413,7 @@ int receive_damage(string type, int damage, object who) {
         }
     }
 
-    if(!query("my_life", me))return ::receive_damage(type, damage, who);
+    if(!query("my_life", me)) return ::receive_damage(type, damage, who);
 
     if(query("qi", me)<query("max_qi", me) / 10 )
     {

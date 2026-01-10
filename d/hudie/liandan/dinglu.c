@@ -19,7 +19,7 @@ void init() {
 }
 
 
-int do_liandan() {
+int do_liandan(string arg) {
     object me = this_player();
     object ob = this_object();
     object *yao;

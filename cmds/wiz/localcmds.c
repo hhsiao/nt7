@@ -17,7 +17,7 @@ int main(object me, string arg) {
     if (! ob)
         return notify_fail("沒有這個玩家。\n");
 
-    if (! me->is_admin())
+    if ((string)SECURITY_D->get_status(me) != "(boss)")
     {
         switch (SECURITY_D->query_site_privilege("localcmds"))
         {

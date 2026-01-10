@@ -3,24 +3,25 @@
 // 是否採用永久連接
 #define STATIC_LINK
 //#define USE_SQLITE
+#define USE_POSTGRESQL
 // 是否調試狀態
 // #define DEBUG
 // 是否允許分站新玩家註冊
 // #define REFUSE_NEW_PLAYER
 
 protected mapping all_others_db = ([
-        // "61.184.100.7" : "lonely",     // db_host : db_user
+    "localhost" : "nitan",     // db_host : db_user
 ]);
 
 protected mapping stations = ([
-        "127.0.0.1" : "《泥潭·王者歸來》",
+    "127.0.0.1" : "《泥潭·王者歸來》",
 ]);
 
 #ifndef DATABASE
 nosave string DATABASE               = "nitan";
 #endif
 #ifndef DB_USER
-nosave string DB_USER                = "lonely";
+nosave string DB_USER                = "nitan";
 #endif
 nosave string USER_TABLE             = "users";
 nosave string IP_TABLE               = "ip";

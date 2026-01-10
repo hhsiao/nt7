@@ -260,7 +260,7 @@ void burning(object me) {
     return;
 }
 
-int do_aoyao() {
+int do_aoyao(string arg) {
     object me;
     int time, s, d, n, ds, dd, dn, i;
 

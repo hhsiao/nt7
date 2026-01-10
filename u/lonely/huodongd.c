@@ -129,7 +129,7 @@ void create()
         set("channel_id", HIY "活動使者" NOR);
 }
 
-void remove(){save();}
+varargs void remove(string euid){save();}
 
 // 發佈全屏通告
 public void do_channel(string ch, string msg)

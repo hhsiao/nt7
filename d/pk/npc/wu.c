@@ -76,7 +76,7 @@ int do_join() {
     return 0;
 }
 
-int do_sign() {
+int do_sign(string arg) {
     object me;
     string msg;
     object ob;

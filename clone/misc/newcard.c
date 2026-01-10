@@ -64,7 +64,7 @@ int do_dakai(string arg) {
     }
     return 1;
 }
-int do_chaikai() {
+int do_chaikai(string arg) {
     object me = this_player();
     message_vision("$N試圖拆開聖誕卡，發現這張卡已經被拆開過了。\n", me);
     return 1;

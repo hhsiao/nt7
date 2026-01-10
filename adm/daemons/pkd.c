@@ -74,7 +74,7 @@ void create()
         set_heart_beat(30);
 }
 
-int clean_up()
+int clean_up(int inherited)
 {
         return 1;
 }

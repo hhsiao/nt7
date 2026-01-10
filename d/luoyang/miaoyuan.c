@@ -70,7 +70,7 @@ int do_peiyu() {
     return 1;
 }
 
-int do_jiaoshui() {
+int do_jiaoshui(string arg) {
     object me, ob;
     int exp, pot;
 

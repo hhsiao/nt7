@@ -9,7 +9,7 @@
 
 inherit F_DBASE;
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 #define auction_info    my["auction_info"]
 #define lot_percent     1 / 20

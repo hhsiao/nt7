@@ -9,9 +9,6 @@ int build_path(string arg);
 int main(object me, string arg) {
     string affix;
 
-    if (! me->is_admin())
-        return 0;
-
     if (! SECURITY_D->valid_grant(me, "(admin)"))
         return 0;
 

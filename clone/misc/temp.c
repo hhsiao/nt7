@@ -31,7 +31,7 @@ void heart_beat() {
     }
 }
 
-int clean_up() {
+int clean_up(int inherited) {
     heart_beat();
     destruct(this_object());
     return 0;

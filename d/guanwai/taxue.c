@@ -49,7 +49,7 @@ string long() {
     return sort_string(msg, 60, 4);
 }
 
-int do_amble() {
+int do_amble(string arg) {
     object me;
     int lvl;
 

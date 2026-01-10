@@ -25,7 +25,7 @@ CREATE TABLE `cards` (
 #define SN_LEN            16
 public varargs int db_create_card(mixed ob, string CardSn, string CardPass, int money);
 
-int clean_up() { return 1; }
+int clean_up(int inherited) { return 1; }
 
 protected int valid_caller()
 {
