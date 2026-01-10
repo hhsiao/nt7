@@ -19,3 +19,13 @@ data/storyd.o
 /data/template
 /data/warcraft
 /data/business
+d/dongtian/guanwai/data.o
+d/dongtian/guanwai/data2.o
+d/dongtian/guanwai/name.o
+d/dongtian/huanghe/data.o
+d/dongtian/huanghe/data2.o
+d/dongtian/huangshan/data.o
+d/dongtian/songshan/data.o
+d/dongtian/yueyang/data.o
+d/dongtian/yueyang/data2.o
+d/dongtian/yueyang/name.o
