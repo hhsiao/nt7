@@ -54,7 +54,7 @@ varargs void start_busy(mixed new_busy, mixed new_interrupt)
 
             if(objectp(ob = query_temp("last_opponent") ) &&
                 me->is_fighting(ob) ) {
-                    add_busy = ob->query_all_buff("add_busy", ob);
+                    add_busy = ob->query_all_buff("add_busy");
                     add_busy = add_busy * (100 - query("reborn/times")*10) / 100;
                 if(add_busy > 90 ) add_busy = 90;
                 if(query("reborn/times") > query("reborn/times", ob) )

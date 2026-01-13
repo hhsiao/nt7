@@ -60,8 +60,8 @@ public mixed db_query_card(string CardSn, string key)
         if( !stringp(key) || key == "" )
                 return 0;
 
-        sql = sprintf("SELECT %s FROM %s WHERE card = \"%s\"",
-                      key, CARD_TABLE, CardSn);
+        sql = sprintf("SELECT %s FROM %s WHERE card = %s",
+                      key, CARD_TABLE, DB_STR(CardSn));
 
         res = DATABASE_D->db_fetch_row(sql);
 
@@ -86,8 +86,8 @@ public mixed db_find_card(string key, mixed data)
                 sql = sprintf("SELECT card FROM %s WHERE %s = %d",
                               CARD_TABLE, key, data);
         else if (stringp(data))
-                sql = sprintf("SELECT card FROM %s WHERE %s = \"%s\"",
-                              CARD_TABLE, key, data);
+                sql = sprintf("SELECT card FROM %s WHERE %s = %s",
+                              CARD_TABLE, key, DB_STR(data));
         else
                 return 0;
 
@@ -219,12 +219,12 @@ public int db_make_card(object me, int amount, int ctype)
                         strtmpPass += codes[random(sizeof(codes))];
                 }
 /*
-                sql = sprintf("SELECT card FROM %s WHERE card = \"%s\"",
-                              CARD_TABLE, strtmpSn);
+                sql = sprintf("SELECT card FROM %s WHERE card = %s",
+                              CARD_TABLE, DB_STR(strtmpSn));
                 ret = DATABASE_D->db_query(sql);
                 if( ret ) continue; // 數據庫已經存在
-                sql = sprintf("SELECT password FROM %s WHERE password = \"%s\"",
-                              CARD_TABLE, strtmpPass);
+                sql = sprintf("SELECT password FROM %s WHERE password = %s",
+                              CARD_TABLE, DB_STR(strtmpPass));
                 ret = DATABASE_D->db_query(sql);
                 if( ret ) continue; // 數據庫已經存在
 */

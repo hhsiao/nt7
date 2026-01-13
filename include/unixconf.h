@@ -16,7 +16,7 @@
 
 //是否使用MYSQL數據庫儲用戶數據，不使用數據庫則#undef DB_SAVE！
 #ifdef  __PACKAGE_DB__
-//#define DB_SAVE         1
+#define DB_SAVE         1
 #endif
 
 //是否存儲用戶數據到文本文件裡，定義了 1 就表示是，如果定義了 0 就表示否！
@@ -32,7 +32,8 @@
 #undef QUIT_SAVE_ALL
 
 //對存入MYSQL的字符串做轉換!
-#define DB_STR(x)    "'" + replace_string(x, "'", "''") + "'"
+//#define DB_STR(x)    "'" + replace_string(x, "'", "''") + "'"
+#define DB_STR(x) ("'" + replace_string(replace_string((x), "\\", "\\\\"), "'", "''") + "'")
 
 //定義最多有多少個圖標可以使用!
 #define MAX_ICONS 2159

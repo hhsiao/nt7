@@ -75,7 +75,7 @@ string *unarmed_parry_msg = ({
     "$n使出“神女奔月”，$v化成漫天刀光，將攻勢化解於無形。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon )
         return parry_msg[random(sizeof(parry_msg))];
     else

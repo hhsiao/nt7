@@ -135,22 +135,22 @@ LONG);
 void init()
 {
 /*
-        object ob; 
+        object ob;
         ::init();
 
-        if (interactive(ob = this_player()) && ! is_fighting()) 
-        if (interactive(ob = this_player()) && ! is_fighting() && ! query("welcomegift", ob)) 
+        if (interactive(ob = this_player()) && ! is_fighting())
+        if (interactive(ob = this_player()) && ! is_fighting() && ! query("welcomegift", ob))
         {
-                remove_call_out("greeting"); 
-                call_out("greeting", 1, ob); 
+                remove_call_out("greeting");
+                call_out("greeting", 1, ob);
         }
 */
 }
 
-void greeting(object ob) 
+void greeting(object ob)
 {
-        if ( ! ob || environment(ob) != environment() ) return; 
-        say( CYN "南賢微微一笑道：這位" + RANK_D->query_respect(ob) + CYN + "是新人吧，我這裡有個禮物送給你(ask nan xian about 禮物)。\n" NOR); 
+        if ( ! ob || environment(ob) != environment() ) return;
+        say( CYN "南賢微微一笑道：這位" + RANK_D->query_respect(ob) + CYN + "是新人吧，我這裡有個禮物送給你(ask nan xian about 禮物)。\n" NOR);
 }
 
 // 接受詢問
@@ -367,26 +367,26 @@ mixed accept_ask(object who, string topic)
         if (topic == "修羅道")
         {
 
-                if( query("int", me)<32 || 
-                    query("con", me)<32 || 
-                    query("str", me)<32 || 
+                if( query("int", me)<32 ||
+                    query("con", me)<32 ||
+                    query("str", me)<32 ||
                     query("dex", me)<32 )
                     return "你的先天屬性還不足以修煉修羅道，我看你還是先回去吧。\n";
-        
+
                 if( query("reborn/times", me)<3 )
                         return "哼，沒事別來煩我，走開！\n";
-                
+
                 if( me->query_skill("yinyang-shiertian",1) && query("reborn/times", me)<4 )
-                        return "閣下武功已經獨步天下，恭喜恭喜！\n";                    
+                        return "閣下武功已經獨步天下，恭喜恭喜！\n";
 
                 if (me->query_skill("lunhui-sword",1))
                         return "哼，凡夫俗子，竟然如此貪心！\n";
-                                
+
                 // 已經完成任務
-                if( query("lunhui-sword_quest/xiuluodao/finish", me) && 
+                if( query("lunhui-sword_quest/xiuluodao/finish", me) &&
                     me->query_skill("xiuluodao", 1))
                         return "呵呵，多虧你上次幫我，這無敵劍氣我已經修煉成功了。\n";
-        
+
                 // 分配任務
                 if( !query("lunhui-sword_quest/xiuluodao/give_quest", me) )
                 {
@@ -399,32 +399,32 @@ mixed accept_ask(object who, string topic)
                         me->save();
                         return "事成之後，我會傳你幾招武功防身！";
                 }
-                
+
                 // 完成任務
-                
+
                 if (! objectp(ob_hlp = present("qinggang jian", me)))
                         return "怎麼樣，1把青罡劍蒐集夠了嗎？\n";
-                        
+
                 if (base_name(ob_hlp) != "/clone/weapon/qinggang-jian")
                         return "怎麼樣，1把青罡劍蒐集夠了嗎？\n";
 
                 destruct(ob_hlp);
-                
+
                 command("hehe");
                 command("nod");
                 command("say 既然你幫我了這個忙，我就順便傳你一招，相信你以後用得著 ...");
-                
+
                 message_sort(HIC "\n$N" HIC "走上前去，在$n" HIC "耳邊悄悄說了幾句，然後又拿出一本書，指指點點，"
                              "$n" HIC "不住地點頭，忽而眉頭深鎖，忽而低頭沉思 ……\n良久，$n" HIC "大笑一聲，似乎"
                              "對剛才的疑慮有所頓悟。\n", this_object(), me);
-                                        
+
                 tell_object(me, HIG "恭喜你領悟了「修羅道」劍法，目前等級為10級。\n");
                 me->set_skill("xiuluodao", 10);
                 set("lunhui-sword_quest/xiuluodao/finish", 1, me);
-                
-                return "明白了？";              
+
+                return "明白了？";
         }
-        
+
 
 
         return ULTRA_QUEST_D->accept_ask(this_object(), who, topic);
@@ -810,8 +810,8 @@ mixed ask_buchang()
                                 }
                         }
                 }
-                sql = sprintf("UPDATE %s SET jointime = %d, endtime = %d WHERE id = \"%s\"",
-                              "members", jointime, day, id);
+                sql = sprintf("UPDATE %s SET jointime = %d, endtime = %d WHERE id = %s",
+                              "members", jointime, day, DB_STR(id));
 
                 DATABASE_D->db_query(sql);
         }
@@ -835,20 +835,20 @@ mixed ask_duanwu()
 
         if( !MEMBER_D->is_member(id) ) // 非衝值用戶肯定不是會員
                 return "你還是先成為年度會員後再來領取禮物。";
-                
+
         endtime  = (int)MEMBER_D->db_query_member(id, "endtime");
         if( endtime < 0 ) endtime = 0; // 非會員
         if( endtime - time() < 15552000 )
                 return "你還是先成為年度會員後再來領取禮物。";
-        
+
         if( query("jingmai/finish", me) )
         {
                 tell_object(me, HIC "南賢對你說道：你如今大小周天經脈已經貫通了，無需老夫幫忙了，不過老夫可以送你一些NT幣！" NOR);
-                MEMBER_D->db_pay_member(id, 50); 
+                MEMBER_D->db_pay_member(id, 50);
                 set("gift_2013/duanwu", 1, me);
                 return 1;
         }
-                      
+
         delete("jingmai", me);
         set("jingmai/finish", 1, me);
         set("breakup", 1, me);
@@ -857,13 +857,13 @@ mixed ask_duanwu()
         addn("jm/int", 1, me);
         addn("str", 1, me);
         addn("jm/str", 1, me);
-        
+
         tell_object(me, HIR "只見南賢突然出手在你全身各大要穴連點一通，然後看著你，微笑不語。\n" NOR);
         tell_object(me, HIC "你頓時感覺有股洪流在體內順著周天經脈循環起來。\n" NOR);
         tell_object(me, HIR "恭喜你！你的大小周天經脈已然貫通！\n" NOR);
         return 1;
-}               
-                
+}
+
 mixed ask_reborn()
 {
         object ob, who, weapon;

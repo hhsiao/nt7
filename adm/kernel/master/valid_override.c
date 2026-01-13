@@ -66,7 +66,7 @@ int valid_override( string file, string name, string mainfile )
         if( (name == "destruct") && ! sscanf(file, "/adm/kernel/simul_efun/%s", file) )
                 return 0;
 
-        //  may also wish to protect destruct, shutdown, snoop, and exec.
+        //  may also wish to protect shutdown, snoop, and exec.
         return 1;
 }
 

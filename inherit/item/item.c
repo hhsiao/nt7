@@ -146,7 +146,7 @@ mixed query_autoload() {
     return param;
 }
 
-void autoload(string param) {
+varargs void autoload(string param, object t_object) {
     object shadow_ob;
 
 #ifdef NO_QUIT_DROP

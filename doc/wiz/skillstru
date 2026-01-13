@@ -91,13 +91,13 @@ mapping query_action(object me, object weapon)
 }
 
 /* 激發成招架武功的信息 */
-string query_parry_msg(string limb)
+varargs string query_parry_msg(object me, object weapon)
 {
         return parry_msg[random(sizeof(parry_msg))];
 }
 
 /* 激發成輕功的打鬥信息 */
-string query_dodge_msg(string limb)
+varargs query_dodge_msg(object me, string limb)
 {
         return dodge_msg[random(sizeof(dodge_msg))];
 }

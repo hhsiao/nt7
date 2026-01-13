@@ -20,7 +20,7 @@
 //   int db_query_user()          - 查詢用戶屬性
 //   int db_count_user()          - 計算用戶數量
 
-#ifndef DB_SAVE
+#ifdef DB_SAVE
 
 #include <mudlib.h>
 #include "/adm/etc/database.h"
@@ -98,6 +98,8 @@ int query_db_status() {
 
 #ifdef USE_SQLITE
     ret = DATABASE_D->db_fetch_row("SELECT * FROM sqlite_master WHERE type='table';");
+#elif defined(USE_POSTGRESQL)
+    return (db_handle > 0);
 #else
     ret = DATABASE_D->db_fetch_row("SHOW DATABASES");
 #endif
@@ -121,7 +123,7 @@ protected int connect_to_database()
     if(intp(n) && (n > 0) )     // 連接成功
     {
 #ifndef USE_POSTGRESQL
-        db_exec(n, "set names utf8mb4");
+        db_exec(n, "SET NAMES utf8mb4");
 #endif
 
 #ifdef STATIC_LINK
@@ -166,17 +168,23 @@ protected void create() {
 
 #ifdef STATIC_LINK
     connect_to_database();
+#ifndef USE_POSTGRESQL
+    // 這個很傻, PostgreSQL改成不需要心跳一直查連結狀態
     set_heart_beat(1);
+#endif
+
 #endif
 
     init_target();
     crc_status = 1;
 }
 
+#ifndef USE_POSTGRESQL
 protected void heart_beat() {
-    /*if(!query_db_status() )
-        connect_to_database();*/
+    if(!query_db_status() )
+        connect_to_database();
 }
+#endif
 
 protected int valid_caller() {
 #ifdef DEBUG
@@ -212,7 +220,7 @@ int db_remove_player(string id) {
         return 0;
 #endif
 
-    sql = "delete from users where id='" + id + "'";
+    sql = "DELETE FROM users WHERE id='" + id + "'";
     chat("執行刪除語句！" + sql);
     ret = db_exec(db, sql);
 
@@ -260,11 +268,11 @@ int db_set_player(string id, string prop, mixed value) {
 
     // 對於不同類型的屬性應該有不同的設置手段，分整型，MAPP，數組
     if(intp(value) )
-        sql = "update users set " + prop + "=" + value + " where id = '" + id + "'";
+        sql = "UPDATE users SET " + prop + "=" + value + " WHERE id = '" + id + "'";
     else if(mapp(value) || arrayp(value) )
-        sql = "update users set " + prop + "=" + DB_STR(save_variable(value)) + " where id = '" + id + "'";
+        sql = "UPDATE users SET " + prop + "=" + DB_STR(save_variable(value)) + " WHERE id = '" + id + "'";
     else if(stringp(value) )
-        sql = "update users set " + prop + "=" + DB_STR(value) + " where id = '" + id + "'";
+        sql = "UPDATE users SET " + prop + "=" + DB_STR(value) + " WHERE id = '" + id + "'";
     else
     {
 #ifndef STATIC_LINK
@@ -299,7 +307,7 @@ mixed db_query_player(string id, string prop) {
         return 0;
 
     if(member_array(prop, cols) == -1 &&
-        prop != "count(*)" )
+        prop != "COUNT(*)" )
         return 0;
 
 #ifdef STATIC_LINK
@@ -314,7 +322,7 @@ mixed db_query_player(string id, string prop) {
         return 0;
 #endif
 
-    sql = "select " + prop + " from users where id='" + id + "'";
+    sql = "SELECT " + prop + " FROM users WHERE id='" + id + "'";
     ret = db_exec(db, sql);
 
     if(!intp(ret) )
@@ -334,7 +342,7 @@ mixed db_query_player(string id, string prop) {
         return 0;
     }
 
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
 
 #ifndef STATIC_LINK
     close_database(db);
@@ -377,15 +385,11 @@ int db_new_player(object ob, object user) {
 
     // 不判斷數據庫裡是否已經有該項記錄
     // fee_time不在這裡做修改，故不存儲了
-    sql = "insert into users set id = '" + my["id"] + "',";
-    sql += "name = " + DB_STR(my["name"]) + ", surname = " +
-        DB_STR(myob["surname"]) + ", purename = " +
-        DB_STR(myob["purename"]) + ", password = " +
-        DB_STR(myob["password"]) + ", ad_password = " +
-        DB_STR(myob["ad_password"]);
-    sql += ", birthday = now(), online = 1, on_time = 0, fee_time = " + REG_BONUS;
-    sql += ", login_dbase = " + DB_STR(save_variable(myob));
-    sql += ", f_dbase = " + DB_STR(save_variable(my));
+    sql = "INSERT INTO users (id, name, surname, purename, password, ad_password, birthday, online, on_time, fee_time, login_dbase, f_dbase) VALUES ";
+    sql += "(" + DB_STR(my["id"]) + ", " + DB_STR(my["name"]) + ", " + DB_STR(myob["surname"]) + ", " +
+                 DB_STR(myob["purename"]) + ", " + DB_STR(myob["password"]) + ", " +
+                 DB_STR(myob["ad_password"]) + ", NOW(), 1, 0, " + REG_BONUS + ", " +
+                 DB_STR(save_variable(myob)) + ", " + DB_STR(save_variable(my)) + ")";
 
     chat("請求數據庫創建帳號！\n");
     ret = db_exec(db, sql);
@@ -437,8 +441,8 @@ int db_restore_all(object user) {
         return -1;
 #endif
 
-    sql = "select login_dbase, f_autoload, f_dbase, f_damage, f_condition, f_business, f_mail, " +
-        "f_attack, f_skill, f_alias, f_user, char_idname from users where id = '" + my["id"] + "'";
+    sql = "SELECT login_dbase, f_autoload, f_dbase, f_damage, f_condition, f_business, f_mail, " +
+        "f_attack, f_skill, f_alias, f_user, char_idname FROM users WHERE id = " + DB_STR(my["id"]);
 
     ret = db_exec(db, sql);
 
@@ -460,7 +464,7 @@ int db_restore_all(object user) {
         return 0;
     }
 
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
     if(sizeof(res) < 1 )
         n = 0;
     else
@@ -535,7 +539,7 @@ int db_save_all(object user) {
 
     // 不判斷數據庫裡是否已經有該項記錄
     // fee_time不在這裡做修改，故不存儲了
-    sql = "update users set ";
+    sql = "UPDATE users SET ";
     sql += "name = " + DB_STR(my["name"]);
 
     if(objectp(link_ob) && mapp(myob) )
@@ -547,10 +551,10 @@ int db_save_all(object user) {
         sql += ", login_dbase = " + DB_STR(save_variable(myob));
     }
     if(my["on_time"] > 0 )  // 認為已經挪移到on_time計費了
-        sql += ", online = 1, on_time = " + my["on_time"] + ", save_time = now()";
+        sql += ", online = 1, on_time = " + my["on_time"] + ", save_time = NOW()";
     else
     {
-        sql += ", online = 1, on_time = " + my["mud_age"] + ", save_time = now()";
+        sql += ", online = 1, on_time = " + my["mud_age"] + ", save_time = NOW()";
         // my["on_time"] = my["mud_age"]; 因為要重新計算sec_id，所以這裡不能這樣做
     }
     sql += ", char_idname = " + DB_STR(save_variable(user->query_IDNAME()));
@@ -564,7 +568,7 @@ int db_save_all(object user) {
     sql += ", f_skill = " + DB_STR(save_variable(user->query_SKILL()));
     sql += ", f_alias = " + DB_STR(save_variable(user->query_all_alias()));
     sql += ", f_user = " + DB_STR(save_variable(user->query_USER()));
-    sql += " where id = '" + my["id"] + "'";
+    sql += " WHERE id = " + DB_STR(my["id"]);
     ret = db_exec(db, sql);
     if(!intp(ret) )
     {
@@ -622,7 +626,7 @@ string *do_sql(string sql)
     }
 
     //只返回首行
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
 
 #ifndef STATIC_LINK
     close_database(db);
@@ -656,8 +660,8 @@ int db_find_user(string key, mixed data) {
         sql = sprintf("SELECT id FROM %s WHERE %s = %s",
             USER_TABLE, key, data);
     else if(stringp(data) )
-        sql = sprintf("SELECT id FROM %s WHERE %s = \"%s\"",
-            USER_TABLE, key, data);
+        sql = sprintf("SELECT id FROM %s WHERE %s = %s",
+            USER_TABLE, key, DB_STR(data));
     else sql = sprintf("SELECT id FROM %s WHERE %s = %O",
         USER_TABLE, key, data);
     ret = db_exec(db, sql);
@@ -696,8 +700,8 @@ int db_create_user(string id) {
         return 0;
 #endif
 
-    sql = sprintf("INSERT INTO %s SET id = \"%s\"",
-        USER_TABLE, id);
+    sql = sprintf("INSERT INTO %s (id) VALUES (%s)",
+        USER_TABLE, DB_STR(id));
     ret = db_exec(db, sql);
 
 #ifndef STATIC_LINK
@@ -734,8 +738,8 @@ int db_remove_user(string id) {
         return 0;
 #endif
 
-    sql = sprintf("DELETE FROM %s WHERE id = \"%s\"",
-        USER_TABLE, id);
+    sql = sprintf("DELETE FROM %s WHERE id = %s",
+        USER_TABLE, DB_STR(id));
     ret = db_exec(db, sql);
     if(!intp(ret) )
     {
@@ -779,13 +783,13 @@ int db_set_user(string id, string key, mixed data) {
 #endif
 
     if(intp(data) )
-        sql = sprintf("UPDATE %s SET %s = %d WHERE id = \"%s\"",
-            USER_TABLE, key, data, id);
+        sql = sprintf("UPDATE %s SET %s = %d WHERE id = %s",
+            USER_TABLE, key, data, DB_STR(id));
     else if(stringp(data) )
-        sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = \"%s\"",
-            USER_TABLE, key, data, id);
-    else sql = sprintf("UPDATE %s SET %s = %O WHERE id = \"%s\"",
-        USER_TABLE, key, data, id);
+        sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = %s",
+            USER_TABLE, key, data, DB_STR(id));
+    else sql = sprintf("UPDATE %s SET %s = %O WHERE id = %s",
+        USER_TABLE, key, data, DB_STR(id));
     ret = db_exec(db, sql);
     if(!intp(ret) )
     {
@@ -826,8 +830,8 @@ int db_add_user(string id, string key, int num) {
         return 0;
 #endif
 
-    sql = sprintf("UPDATE %s SET %s = %s + %d WHERE id = \"%s\"",
-        USER_TABLE, key, key, num, id);
+    sql = sprintf("UPDATE %s SET %s = %s + %d WHERE id = %s",
+        USER_TABLE, key, key, num, DB_STR(id));
     ret = db_exec(db, sql);
 
     if(!intp(ret) )
@@ -876,8 +880,8 @@ mixed db_query_user(string id, string key) {
         return 0;
 #endif
 
-    sql = sprintf("SELECT %s FROM %s WHERE id = \"%s\"",
-        key, USER_TABLE, id);
+    sql = sprintf("SELECT %s FROM %s WHERE id = %s",
+        key, USER_TABLE, DB_STR(id));
     ret = db_exec(db, sql);
 
     if(!intp(ret) )
@@ -897,7 +901,7 @@ mixed db_query_user(string id, string key) {
         return 0;
     }
 
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
 #ifndef STATIC_LINK
     close_database(db);
 #endif
@@ -925,8 +929,14 @@ mixed db_crypt(string passwd) {
         return 0;
 #endif
 
-    sql = sprintf("SELECT %s(\"%s\")",
-        DB_CRYPT, passwd);
+#ifdef USE_POSTGRESQL
+    // PostgreSQL 使用 crypt 函數需要 pgcrypto 擴展支持
+    sql = sprintf("SELECT crypt(%s, gen_salt('bf'))",
+        DB_STR(passwd));
+#else
+    sql = sprintf("SELECT %s(%s)",
+        DB_CRYPT, DB_STR(passwd));
+#endif
 
     ret = db_exec(db, sql);
     if(!intp(ret) )
@@ -946,13 +956,13 @@ mixed db_crypt(string passwd) {
         return 0;
     }
 
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
 
 #ifndef STATIC_LINK
     close_database(db);
 #endif
 
-    return ret[0];
+    return res[0];
 }
 
 // 查找一行
@@ -981,7 +991,6 @@ varargs mixed *db_fetch_row(string sql, int row)
         db_exec(db, sql);
     }
 
-    if(!row ) row = 1;
     ret = db_fetch(db, row);
 #ifndef STATIC_LINK
     close_database(db);
@@ -1055,7 +1064,7 @@ mixed *db_all_query(string sql)
     }
 
     ret = ({ });
-    for(i = 1; i <= max; i++ )
+    for(i = 0; i < max; i++ )
         ret += ({ db_fetch(db, i) });
 
 #ifndef STATIC_LINK
@@ -1091,13 +1100,13 @@ int db_count_user() {
         return 0;
     }
 
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
 
 #ifndef STATIC_LINK
     close_database(db);
 #endif
 
-    return res[0];
+    return to_int(res[0]);
 }
 
 int db_remove_item(string id) {
@@ -1122,7 +1131,7 @@ int db_remove_item(string id) {
         return 0;
 #endif
 
-    sql = "delete from items where id='" + id + "'";
+    sql = "DELETE FROM items WHERE id=" + DB_STR(id);
     chat("執行刪除語句！" + sql);
     ret = db_exec(db, sql);
 
@@ -1170,7 +1179,7 @@ mixed db_restore_item(mixed ob) {
         return 0;
 #endif
 
-    sql = "select dbase from items where id = '" + index + "'";
+    sql = "SELECT dbase FROM items WHERE id = " + DB_STR(index);
 
     ret = db_exec(db, sql);
 
@@ -1192,7 +1201,7 @@ mixed db_restore_item(mixed ob) {
         return 0;
     }
 
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
 #ifndef STATIC_LINK
     close_database(db);
 #endif
@@ -1234,7 +1243,7 @@ mixed db_restore_skill(mixed ob) {
         return 0;
 #endif
 
-    sql = "select skill from items where id = '" + index + "'";
+    sql = "SELECT skill FROM items WHERE id = " + DB_STR(index);
 
     ret = db_exec(db, sql);
 
@@ -1256,7 +1265,7 @@ mixed db_restore_skill(mixed ob) {
         return 0;
     }
 
-    res = db_fetch(db, 1);
+    res = db_fetch(db, 0);
 #ifndef STATIC_LINK
     close_database(db);
 #endif
@@ -1297,8 +1306,8 @@ int db_create_item(mixed ob, mixed data) {
         return -1;
 #endif
 
-    sql = "insert into items set id = '" + index +
-        "', dbase = " + DB_STR(save_variable(data));
+    sql = "INSERT INTO items (id, dbase) VALUES (" + DB_STR(index) +
+        ", " + DB_STR(save_variable(data)) + ")";
     ret = db_exec(db, sql);
     if(!intp(ret) )
     {
@@ -1355,8 +1364,8 @@ int db_save_item(mixed ob, mixed data) {
      * "', dbase = " + DB_STR(save_variable(data));
      * else
      */
-    sql = "update items set dbase = " + DB_STR(save_variable(data)) +
-        " where id = '" + index + "'";
+    sql = "UPDATE items SET dbase = " + DB_STR(save_variable(data)) +
+        " WHERE id = " + DB_STR(index);
     ret = db_exec(db, sql);
     if(!intp(ret) )
     {
@@ -1405,8 +1414,8 @@ int db_save_skill(mixed ob, mixed data) {
         return -1;
 #endif
 
-    sql = "update items set skill = " + DB_STR(save_variable(data)) +
-        " where id = '" + index + "'";
+    sql = "UPDATE items SET skill = " + DB_STR(save_variable(data)) +
+        " WHERE id = " + DB_STR(index);
     ret = db_exec(db, sql);
     if(!intp(ret) )
     {

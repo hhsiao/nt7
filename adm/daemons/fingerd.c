@@ -269,9 +269,9 @@ varargs string finger_user(string name, mixed me)
                     same = sizeof(uob);
 #ifdef DB_SAVE
                     ip_number = resolve_ip_number(query_ip_number(body));
-                    sql = sprintf("SELECT place,address FROM %s WHERE ipstart <= \"%s\" AND"
-                        " ipend >= \"%s\" ORDER BY ipend LIMIT 1", IP_TABLE,
-                        ip_number, ip_number);
+                    sql = sprintf("SELECT place, address FROM %s WHERE ipstart <= %s AND"
+                        " ipend >= %s ORDER BY ipend LIMIT 1", IP_TABLE,
+                        DB_STR(ip_number), DB_STR(ip_number));
                     if (sizeof(ret = DATABASE_D->db_fetch_row(sql)))
                     {
                         where = ret[0];
@@ -309,7 +309,7 @@ varargs string finger_user(string name, mixed me)
     }
 
 #ifdef DB_SAVE
-    res = DATABASE_D->do_sql("select online, last_station from users where id = '" + name + "'");
+    res = DATABASE_D->do_sql("SELECT online, last_station FROM users WHERE id = " + DB_STR(name));
     flag = arrayp(res);
     if (flag && MESSAGE_D->visible(me, name))
     {

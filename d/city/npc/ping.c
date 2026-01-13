@@ -444,7 +444,7 @@ int do_decide(string arg) {
     return notify_fail(CYN "平一指瞄了你一眼，皺了皺眉，沒理你。\n" NOR);
 }
 
-int do_identify() {
+int do_identify(string arg) {
     int level;
     object ob, me = this_player();
 

@@ -34,12 +34,12 @@ string  *msg = ({
 "$N左手一圈，倒轉$w，驀地刺出，刷刷刷急攻三式，招招盡是指向$n的要害"
 });
 
-int valid_enable(string usage) 
-{ 
-    return usage == "sword" || usage == "force" || usage =="parry"; 
+int valid_enable(string usage)
+{
+    return usage == "sword" || usage == "force" || usage =="parry";
 }
 mapping query_action(object me, object weapon)
-{               
+{
        return ([
           "action":msg[random(sizeof(msg))],
           "damage":(random(4)+1)*60,
@@ -48,7 +48,7 @@ mapping query_action(object me, object weapon)
           "force":(random(200)+60),
        ]);
 }
-string query_parry_msg()
+varargs string query_parry_msg(object me, object weapon)
 {
         return parry_msg[random(sizeof(parry_msg))];
 }
@@ -73,7 +73,7 @@ int practice_skill(object me)
 int valid_learn(object me)
 {
         if ((int)me->query_skill("kuihua-shengong", 1) < 180)
-        return notify_fail("葵花神功只能通過研習《葵花寶典》來學習。\n"); 
+        return notify_fail("葵花神功只能通過研習《葵花寶典》來學習。\n");
 }
 
 string perform_action_file(string action)

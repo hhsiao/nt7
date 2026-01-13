@@ -98,7 +98,7 @@ string *unarmed_parry_msg = ({
     "$n的身子忽然斜斜飛出，恰巧從邊緣掠過。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon )
         return parry_msg[random(sizeof(parry_msg))];
     else

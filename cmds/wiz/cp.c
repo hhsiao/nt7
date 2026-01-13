@@ -5,7 +5,7 @@
 
 inherit F_CLEAN_UP;
 
-int copy_dir(string src, string dst, int dir_existed, int copy_filter);
+varargs int copy_dir(string src, string dst, int dir_existed, int copy_filter);
 int help(object me);
 
 // value of call parameter
@@ -15,7 +15,7 @@ int help(object me);
 int main(object me, string arg) {
     string *fn;
     string src, dst, dir;
-    int copy_dir;
+    int is_dir;
     int copy_filter = 0;
     int count;
 
@@ -38,7 +38,7 @@ int main(object me, string arg) {
             return 1;
         }
 
-        copy_dir = 1;
+        is_dir = 1;
     } else
     if (sscanf(arg, "-F %s %s", src, dst) == 2)
     {
@@ -52,7 +52,7 @@ int main(object me, string arg) {
     } else
     if (sscanf(arg, "%s %s", src, dst) == 2)
     {
-        copy_dir = 0;
+        is_dir = 0;
     } else
     {
         write("格式錯誤！\n");
@@ -79,16 +79,16 @@ int main(object me, string arg) {
         return 1;
 
     case -2:
-        if (copy_dir) break;
+        if (is_dir) break;
         write("沒有指定 -R 參數，不能複製目錄(" + src + ")。\n");
         return 1;
     default:
         // copy file, not directory.
-        copy_dir = 0;
+        is_dir = 0;
         break;
     }
 
-    if (! copy_dir && ! copy_filter)
+    if (! is_dir && ! copy_filter)
     {
         if (file_size(dst) == -2)
         {
@@ -144,7 +144,7 @@ int main(object me, string arg) {
     return 1;
 }
 
-int copy_dir(string src, string dst, int dir_existed, int copy_filter) {
+varargs int copy_dir(string src, string dst, int dir_existed, int copy_filter) {
     mixed *file;
     int count;
     int i;

@@ -5,7 +5,7 @@
 inherit ROOM;
 void init();
 void close_gate();
-int valid_leave();
+int valid_leave(object me, string dir);
 string look_gate();
 int do_knock(string arg);
 string look_duilian();
@@ -79,7 +79,7 @@ string look_duilian() {
     "       ※※※※※※※            ※※※※※※※\n\n" NOR;
 }
 
-int close_gate() {
+void close_gate() {
     object room;
 
     if(!(room = find_object(__DIR__"datang1")) )

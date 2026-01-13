@@ -1216,7 +1216,7 @@ varargs int ban_say(int raw) {
     return 0;
 }
 
-void permit_say(int n) {
+varargs void permit_say(int n) {
     if(ban_to <= time() )
         return;
 

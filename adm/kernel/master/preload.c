@@ -10,21 +10,21 @@
 // Note:            must be declared static (else a security hole)
 protected string *update_file(string file)
 {
-        string *list;
-        string str;
-        int i;
+    string *list;
+    string str;
+    int i;
 
-        str = read_file(file);
-        if( !str )
-                return ({});
+    str = read_file(file);
+    if(!str )
+        return ({});
 
-        list = explode(str, "\n");
-        for (i = 0; i < sizeof(list); i++)
-                if( list[i][0] == '#')
-                        list[i] = 0;
+    list = explode(str, "\n");
+    for (i = 0; i < sizeof(list); i++)
+        if(list[i][0] == '#')
+        list[i] = 0;
 
-        list -= ({ 0 });
-        return list;
+    list -= ({ 0 });
+    return list;
 }
 
 // Function name:       epilog
@@ -34,32 +34,31 @@ protected string *update_file(string file)
 
 string *epilog(int flag)
 {
-        /*
-        string *items;
+    /*
+     * string *items;
 
-        items = update_file(CONFIG_DIR + "preload");
-        return items;
-        */
+     * items = update_file(CONFIG_DIR + "preload");
+     * return items;
+     */
 
-        if( flag )
-        {
-                printf("驅動程式取消預先載入程序。\n");
-                log_file("preload/preload","驅動程式取消預先載入程序。\n");
-                return allocate(0);
-        }
+    if(flag )
+    {
+        printf("驅動程式取消預先載入程序。\n");
+        log_file("preload/preload", "驅動程式取消預先載入程序。\n");
+        return allocate(0);
+    }
 
-        return ({ FIRST_PRELOAD });
+    return ({ FIRST_PRELOAD });
 }
 
 // preload an object
 // 預先載入物件
-void preload(string file)
-{
-        mixed err;
+void preload(string file) {
+    mixed err;
 
-        if( objectp(find_object(file)) )
-                return;
+    if(objectp(find_object(file)) )
+        return;
 
-        if( err = catch(load_object(file)) )
-                log_file("static/preload",sprintf("載入 %s 時發生錯誤: %O\n", file, err));
+    if(err = catch(load_object(file)) )
+        log_file("static/preload", sprintf("載入 %s 時發生錯誤: %O\n", file, err));
 }

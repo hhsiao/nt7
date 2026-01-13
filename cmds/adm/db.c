@@ -24,7 +24,7 @@ int main(object me, string arg) {
     // 無參數則列出服務器中所有數據庫
     if (! arg)
     {
-        i = 1;
+        i = 0;
         msg = sprintf(HIC "%s(" HIW "%s" HIC ")的數據庫列表：\n" NOR
             HIW "----數據庫名------------表數------\n" NOR,
             LOCAL_MUD_NAME(), upper_case(INTERMUD_MUD_NAME));

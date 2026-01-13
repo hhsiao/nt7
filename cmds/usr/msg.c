@@ -166,7 +166,9 @@ int main(object me, string arg) {
 
 void done(object me, string id, string msg) {
     object ob;
-    // string mail, *mail_log;
+#ifdef DB_SAVE
+    string mail, *mail_log;
+#endif
 
     if(!me || !msg || msg == "" )
         return;

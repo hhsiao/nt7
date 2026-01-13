@@ -56,8 +56,8 @@ public int is_member(mixed ob) {
     else
         return 0;
 
-    sql = sprintf("SELECT id FROM %s WHERE id = \"%s\"",
-        MEMBER_TABLE, id);
+    sql = sprintf("SELECT id FROM %s WHERE id = %s",
+        MEMBER_TABLE, DB_STR(id));
 
     ret = DATABASE_D->db_query(sql);
 
@@ -92,8 +92,8 @@ public int is_valid_member(mixed ob) {
     else
         return 0;
 
-    sql = sprintf("SELECT id FROM %s WHERE id = \"%s\" AND endtime > %d",
-        MEMBER_TABLE, id, time());
+    sql = sprintf("SELECT id FROM %s WHERE id = %s AND endtime > %d",
+        MEMBER_TABLE, DB_STR(id), time());
 
     ret = DATABASE_D->db_query(sql);
 
@@ -139,8 +139,8 @@ public mixed db_query_member(mixed ob, string key) {
         !stringp(key) || key == "")
         return 0;
 
-    sql = sprintf("SELECT %s FROM %s WHERE id = \"%s\"",
-        key, MEMBER_TABLE, id);
+    sql = sprintf("SELECT %s FROM %s WHERE id = %s",
+        key, MEMBER_TABLE, DB_STR(id));
 
     ret = DATABASE_D->db_fetch_row(sql);
 
@@ -162,11 +162,11 @@ public mixed db_find_member(string key, mixed data) {
         sql = sprintf("SELECT id FROM %s WHERE %s = %d",
             MEMBER_TABLE, key, data);
     else if (mapp(data) || arrayp(data))
-        sql = sprintf("SELECT id FROM %s WHERE %s = \"%s\"",
-            MEMBER_TABLE, key, save_variable(data));
+        sql = sprintf("SELECT id FROM %s WHERE %s = %s",
+            MEMBER_TABLE, key, DB_STR(save_variable(data)));
     else if (stringp(data))
-        sql = sprintf("SELECT id FROM %s WHERE %s = \"%s\"",
-            MEMBER_TABLE, key, data);
+        sql = sprintf("SELECT id FROM %s WHERE %s = %s",
+            MEMBER_TABLE, key, DB_STR(data));
     else
         sql = sprintf("SELECT id FROM %s WHERE %s = %O",
             MEMBER_TABLE, key, data);
@@ -209,9 +209,16 @@ public varargs int db_create_member(mixed ob, int money, string from_id)
         payinfo = sprintf("你於 %s 收到 %s 的轉帳 %d $NT。\n",
             TIME_D->replace_ctime(time()), from_id, money);
 
-    sql = sprintf("INSERT INTO %s SET id = \"%s\", uid = \"%s\", money = %d, paytimes = 1, payinfo = \"%s\",
+#ifdef USE_POSTGRESQL
+    sql = sprintf("INSERT INTO %s (id, uid, money, paytimes, payinfo, payvalue, last_payvalue, last_paytime) \
+        VALUES (%s, %s, %d, 1, %s, %d, %d, %d)",
+        MEMBER_TABLE, DB_STR(id), DB_STR(id), money,
+        DB_STR(payinfo), money, money, time());
+#else
+    sql = sprintf("INSERT INTO %s SET id = %s, uid = %s, money = %d, paytimes = 1, payinfo = %s,
         payvalue = %d, last_payvalue = %d, last_paytime = %d",
-        MEMBER_TABLE, id, id, money, payinfo, money, money, time());
+        MEMBER_TABLE, DB_STR(id), DB_STR(id), money, DB_STR(payinfo), money, money, time());
+#endif
 
     ret = DATABASE_D->db_query(sql);
     if (!intp(ret))
@@ -244,8 +251,8 @@ public int db_remove_member(mixed ob) {
     if (!stringp(id) || id == "")
         return 0;
 
-    sql = sprintf("DELETE FROM %s WHERE id = \"%s\"",
-        MEMBER_TABLE, id);
+    sql = sprintf("DELETE FROM %s WHERE id = %s",
+        MEMBER_TABLE, DB_STR(id));
     ret = DATABASE_D->db_query(sql);
 
     if (!intp(ret))
@@ -276,17 +283,17 @@ public int db_set_member(mixed ob, string key, mixed data) {
 
     /*
      * if (intp(data))
-     * sql = sprintf("UPDATE %s SET %s = %d WHERE id = \"%s\"",
-     * MEMBER_TABLE, key, data, id);
+     * sql = sprintf("UPDATE %s SET %s = %d WHERE id = %s",
+     * MEMBER_TABLE, key, data, DB_STR(id));
      * else if (mapp(data) || arrayp(data))
-     * sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = \"%s\"",
-     * MEMBER_TABLE, key, save_variable(data), id);
+     * sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = %s",
+     * MEMBER_TABLE, key, save_variable(data), DB_STR(id));
      * else if (stringp(data))
-     * sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = \"%s\"",
-     * MEMBER_TABLE, key, data, id);
+     * sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = %s",
+     * MEMBER_TABLE, key, data, DB_STR(id));
      * else
-     * sql = sprintf("UPDATE %s SET %s = %O WHERE id = \"%s\"",
-     * MEMBER_TABLE, key, data, id);
+     * sql = sprintf("UPDATE %s SET %s = %O WHERE id = %s",
+     * MEMBER_TABLE, key, data, DB_STR(id));
 
      */
 
@@ -294,14 +301,14 @@ public int db_set_member(mixed ob, string key, mixed data) {
 
 
     if (intp(data))
-        sql = "UPDATE members SET " + key + "=" + data + " WHERE id = '" + id + "'";
+        sql = "UPDATE members SET " + key + "=" + data + " WHERE id = " + DB_STR(id);
     else if (mapp(data) || arrayp(data))
-        sql = "UPDATE members SET " + key + "=" + db_str(save_variable(data)) + " WHERE id = '" + id + "'";
+        sql = "UPDATE members SET " + key + "=" + db_str(save_variable(data)) + " WHERE id = " + DB_STR(id);
     else if (stringp(data))
 
     // if(strlen(data)>8192);
     //data="";
-    sql = "UPDATE members SET " + key + "=" + db_str(data) + " WHERE id = '" + id + "'";
+    sql = "UPDATE members SET " + key + "=" + db_str(data) + " WHERE id = " + DB_STR(id);
 
     else
         return 0;
@@ -334,8 +341,8 @@ public int db_add_member(mixed ob, string key, int num) {
         !intp(num)    || !num)
     return 0;
 
-    sql = sprintf("UPDATE %s SET %s = %s + %d WHERE id = \"%s\"",
-        MEMBER_TABLE, key, key, num, id);
+    sql = sprintf("UPDATE %s SET %s = %s + %d WHERE id = %s",
+        MEMBER_TABLE, key, key, num, DB_STR(id));
 
     ret = DATABASE_D->db_query(sql);
     if (!intp(ret))
@@ -397,8 +404,8 @@ public varargs mixed db_fee_member(mixed ob, int day, int flag)
             day = endtime + day * 86400;
     }
 
-    sql = sprintf("UPDATE %s SET jointime = %d, endtime = %d WHERE id = \"%s\"",
-        MEMBER_TABLE, jointime, day, id);
+    sql = sprintf("UPDATE %s SET jointime = %d, endtime = %d WHERE id = %s",
+        MEMBER_TABLE, jointime, day, DB_STR(id));
 
     ret = DATABASE_D->db_query(sql);
     if (!intp(ret))
@@ -455,11 +462,11 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
     money += db_query_member(id, "money");
     /*
      * sql = sprintf("UPDATE %s SET money = %d, paytimes = %d, payinfo = \"%s\",
-     * payvalue = %d, last_payvalue = %d, last_paytime = %d WHERE id = \"%s\"",
-     * MEMBER_TABLE, money, paytimes, payinfo, payvalue, last_payvalue, time(), id);
+     * payvalue = %d, last_payvalue = %d, last_paytime = %d WHERE id = %s",
+     * MEMBER_TABLE, money, paytimes, payinfo, payvalue, last_payvalue, time(), DB_STR(id));
      */
     sql = "UPDATE members SET money=" + money + ", paytimes=" + paytimes + ", payinfo=" + DB_STR(payinfo) +
-        ", payvalue=" + payvalue + ", last_payvalue=" + last_payvalue + ", last_paytime=" +time() + " WHERE id= '" + id + "'";
+        ", payvalue=" + payvalue + ", last_payvalue=" + last_payvalue + ", last_paytime=" +time() + " WHERE id= " + DB_STR(id);
 
 
     ret = DATABASE_D->db_query(sql);
@@ -496,8 +503,8 @@ public varargs int player_pay(mixed from, int money, mixed to)
     if (!stringp(fid)  || fid  == "" || !money)
         return 0;
 
-    sql = sprintf("UPDATE %s SET money = money - %d WHERE id = \"%s\"",
-        MEMBER_TABLE, money, fid);
+    sql = sprintf("UPDATE %s SET money = money - %d WHERE id = %s",
+        MEMBER_TABLE, money, DB_STR(fid));
 
     ret = DATABASE_D->db_query(sql);
     if (!intp(ret))
@@ -741,7 +748,7 @@ public mixed show_all_members(int flag) {
     string name, jointime;
     mixed members;
 
-    members = DATABASE_D->db_all_query(sprintf("SELECT id from %s where endtime >= %d", MEMBER_TABLE, time()));
+    members = DATABASE_D->db_all_query(sprintf("SELECT id FROM %s WHERE endtime >= %d", MEMBER_TABLE, time()));
 
 
     if (!sizeof(members))

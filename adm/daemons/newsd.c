@@ -34,7 +34,7 @@ string *query_notes()
         if (! DATABASE_D->query_db_status())
                 DATABASE_D->connect_to_database();
 
-        snotes = DATABASE_D->db_all_query(sprintf("SELECT * from %s", NEWS_TABLE));
+        snotes = DATABASE_D->db_all_query(sprintf("SELECT * FROM %s", NEWS_TABLE));
 
         if (! pointerp(snotes) || ! sizeof(snotes))
         {
@@ -253,7 +253,7 @@ void done_post(object me, mapping note, int n, string text)
         for (i = 0; i < t; i++)
         {
                 if (stringp(note[i]))
-                        sql += sprintf("\"%s\"", note[i]);
+                        sql += sprintf("%s", DB_STR(note[i]));
                 else if (intp(note[i]))
                         sql += sprintf("%d", note[i]);
                 else sql += sprintf("%O", note[i]);
@@ -462,8 +462,8 @@ void do_discard(object me, string arg)
                 tell_object(me, "只有天神才能去掉他人發佈的新聞。\n");
                 return;
         }
-        sql = sprintf("DELETE FROM %s WHERE title = \"%s\" AND time = %d AND author = \"%s\" AND msg = \"%s\"",
-                      NEWS_TABLE, notes[num][TITLE], notes[num][TIME], notes[num][AUTHOR], notes[num][MSG]);
+        sql = sprintf("DELETE FROM %s WHERE title = %s AND time = %d AND author = %s AND msg = %s",
+                      NEWS_TABLE, DB_STR(notes[num][TITLE]), notes[num][TIME], DB_STR(notes[num][AUTHOR]), DB_STR(notes[num][MSG]));
         if (! DATABASE_D->query_db_status())
                 DATABASE_D->connect_to_database();
         DATABASE_D->db_query(sql);

@@ -167,8 +167,8 @@ mixed ask_gift2()
                 if (endtime < 1) day = time() + 2678400;
                 else day = endtime + 2678400;
 
-                sql = sprintf("UPDATE %s SET jointime = %d, endtime = %d WHERE id = \"%s\"",
-                              "members", jointime, day, id);
+                sql = sprintf("UPDATE %s SET jointime = %d, endtime = %d WHERE id = %s",
+                              "members", jointime, day, DB_STR(id));
 
                 DATABASE_D->db_query(sql);
         }

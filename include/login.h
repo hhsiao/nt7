@@ -21,8 +21,8 @@
 #define START_ROOM              "/d/city/kedian"
 #define DEATH_ROOM              "/d/death/gate"
 #define REVIVE_ROOM             "/d/city/wumiao"
-#define CHAT_ROOM               "/inherit/room/chatroom" 
-#define ENABLE_MD5_PASSWORD 
+#define CHAT_ROOM               "/inherit/room/chatroom"
+// #define ENABLE_MD5_PASSWORD
 
 // This is how much users can 'enter' the mud actually. Maintained
 // by LOGIN_D. The max number of connections can be built between
@@ -32,7 +32,7 @@
 // By Annihilator (02-22-95)
 #define MAX_USERS                ((int) CONFIG_D->query_int("max users"))
 
-// This defines the minimum wiz_level of users that are allowed to 
+// This defines the minimum wiz_level of users that are allowed to
 // enter the mud. Note players has wiz_level 0.
 #define WIZ_LOCK_LEVEL          ((int) CONFIG_D->query_int("wiz lock"))
 

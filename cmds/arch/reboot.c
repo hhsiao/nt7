@@ -38,7 +38,7 @@ int main(object me, string arg) {
         if (! find_object(SECURITY_D) ||
             ! find_object(SIMUL_EFUN_OB) ||
             ! find_object(MASTER_OB))
-        shutdown(0);
+        shutdown(-1);
 
         if (! is_root(me))
         {
@@ -47,7 +47,7 @@ int main(object me, string arg) {
         }
 
         message_system(str + "強行啟動了" + LOCAL_MUD_NAME() + "。");
-        shutdown(0);
+        shutdown(-1);
         return 1;
     }
 
@@ -179,12 +179,12 @@ protected void reboot_mud() {
     if (find_object(SKILLS_D))   SKILLS_D->mud_shutdown();
     if (find_object(STORAGE_D))  STORAGE_D->mud_shutdown();
 
-    shutdown(0);
+    shutdown(-1);
 }
 
 int help (object me) {
     write(@HELP
-指令格式: shutdown [-f] | soon | after <n> | cancel
+指令格式: reboot [-f] | soon | after <n> | cancel
 
 重新起動遊戲。如果採用 -f 參數，則系統強制啟動，而不保存任何
 進度，這是供系統出錯時使用的。如果使用了參數soon，則系統將立
