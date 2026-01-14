@@ -79,7 +79,7 @@ int do_tao() {
     return 1;
 }
 
-void do_start_hslj(string arg) {
+varargs void do_start_hslj(string arg) {
     //      int type;
     object cat;
     DEBUG_CHANNEL("TIME_D調用比武 " +(arg?arg:0) + "成功。\n");

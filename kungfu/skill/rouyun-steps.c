@@ -25,7 +25,7 @@ int valid_learn(object me) {
     return 1;
 }
 
-string query_dodge_msg() {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[random(sizeof(dodge_msg))];
 }
 

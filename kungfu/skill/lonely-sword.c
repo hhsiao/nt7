@@ -309,7 +309,7 @@ mapping *action2 = ({
 
 int valid_enable(string usage) { return usage=="sword" || usage=="parry"; }
 
-string query_parry_msg(string limb) {
+varargs string query_parry_msg(object me, object weapon) {
     return parry_msg[random(sizeof(parry_msg))];
 }
 

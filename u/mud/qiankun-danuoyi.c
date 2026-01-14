@@ -55,12 +55,12 @@ int valid_enable(string usage)
         return (usage == "parry") /*|| (usage == "dodge") || (usage=="move")*/;
 }
 
-string query_parry_msg(string limb)
+varargs string query_parry_msg(object me, object weapon)
 {
         return parry_msg[random(sizeof(parry_msg))];
 }
 
-string query_dodge_msg(string limb)
+varargs query_dodge_msg(object me, string limb)
 {
         return dodge_msg[random(sizeof(dodge_msg))];
 }
@@ -131,24 +131,24 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
         int ap, dp, mp;
         string wn, na;
                 string vid;
-                
+
         if (!ob || ! living(ob))
-                return; 
-                vid = query("id", ob);          
+                return;
+                vid = query("id", ob);
         sk = ob->query_skills();
         ma = ob->query_skill_map();
 
         if ((int)me->query_skill("qiankun-danuoyi", 1) < 100
            || ! living(me))
                 return;
-       
+
         mp = ob->query_skill("count", 1);
         ap = attack_power(ob,"force") + mp;
         dp = defense_power(me,"parry");
-        
+
                 //計算乾坤大挪移的層數
-                ap+= ap*qk_layer(me)/10; 
-                
+                ap+= ap*qk_layer(me)/10;
+
         // 挪移乾坤效果
         if (query_temp("nuozhuan", me))
         {
@@ -199,7 +199,7 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
                       "上，冷笑道：「區區" + CHINESE_D->chinese(na) +
                       HIM "，能奈我何？」\n$n" HIM "當即運起乾坤大挪"
                       "移第七層心法，企圖挪移$N" HIM "的攻勢。\n\n" NOR;
-                                          
+
                 set_temp("nuoyi/"+vid, 1, me);
                 me->start_call_out((: call_other, __FILE__, "nuoyi",
                                       ob, me, damage, vid :), 1);
@@ -316,20 +316,20 @@ void nuoyi(object ob, object me, int damage,string vid)
         msg = HIM "\n$N" HIM "乾坤大挪移第七層心法施展出來，頓將先前所積蓄"
               "的十餘道力量歸併為一掌，朝$n" HIM "疾拍而出，這便如一座大湖"
               "在山洪爆發時儲滿了洪水卻突然崩決，洪水急衝而出一般。\n" NOR;
-                          
+
         jy = me->query_skill("jiuyang-shengong",1);
                 qk = me->query_skill("qiankun-danuoyi",1);
                 fmsk = me->query_skill("guangming-jing",1);
-                
+
                 if(jy > 6000  || qk > 5000) flagremote = SPECIAL_ATTACK;
                 if(jy > 12000 || qk > 10000) flagremote = REMOTE_ATTACK;
-                
+
         ap = attack_power(me, "unarmed");
         dp = defense_power(ob, "force");
         ap+= ap*fmsk/100*5/100;
         // me->start_busy(2);
         delta = ABILITY_D->check_ability(me, "power-qkdny-nuozhuan"); // 門派ab
-        if( delta ) 
+        if( delta )
                 {
                     ap += ap*delta/100;
             damage += damage*delta/100;
@@ -347,7 +347,7 @@ void nuoyi(object ob, object me, int damage,string vid)
                 msg += HIC "$n" HIC "眼見$P來勢洶湧，不敢"
                        "大意，施出渾身解數化解開來。\n" NOR;
         }
- 
+
         message_sort(msg, me, ob);
 }
 
@@ -359,7 +359,7 @@ int qk_layer(object me)
 {
         int lvl;
                 lvl = me->query_skill("qiankun-danuoyi", 1);
-                
+
                 if(lvl < 30)    return 1;
                 if(lvl <240)    return 2;
                 if(lvl <810)    return 3;
@@ -422,4 +422,3 @@ HELP
         );
         return 1;
 }
-

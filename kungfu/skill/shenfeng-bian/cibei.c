@@ -1,5 +1,5 @@
 #include <ansi.h>
-#include <combat.h> 
+#include <combat.h>
 
 inherit F_SSERVER;
 #include "/kungfu/skill/eff_msg.h";
@@ -48,7 +48,7 @@ int perform(object me, object target)
             target->receive_damage("qi", damage, me);
             target->receive_wound("qi", damage/3, me);
             p=query("qi", target)*100/query("max_qi", target);
-            msg += "( $n"+eff_status_msg(p)+" )\n"; 
+            msg += "( $n"+eff_status_msg(p)+" )\n";
             message_vision(msg, me, target);
             target->start_busy(3);
             weapon=query_temp("weapon", me);
@@ -71,10 +71,10 @@ int perform(object me, object target)
             addn("jingli", -100, me);
             addn("shen", -5000, me);
         }
-        else { 
+        else {
               dodge_skill = target->query_skill_mapped("dodge");
               if( !dodge_skill ) dodge_skill = "dodge";
-              msg += SKILL_D(dodge_skill)->query_dodge_msg(target, 1);
+              msg += SKILL_D(dodge_skill)->query_dodge_msg(target);
               message_vision(msg, me, target);
               if( !target->is_killing(query("id", me))){
                        me->kill_ob(target);

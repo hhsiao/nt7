@@ -25,10 +25,9 @@ string die_msg_others() {
     "沒半點動靜了。\n" NOR;
 }
 
-string die_reason() {
+string die_reason(string name) {
     return "被寒冰真氣活活凍死了";
 }
-
 
 int dispel(object me, object ob, mapping cnd) {
     if ((me->query_skill("jiuyang-shengong", 1) > 180 &&
@@ -46,7 +45,6 @@ int dispel(object me, object ob, mapping cnd) {
     return ::dispel(me, ob, cnd);
 
 }
-
 
 void clear_dispel(object me) {
     if(!objectp(me) ) return;

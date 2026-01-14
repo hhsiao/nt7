@@ -25,7 +25,7 @@ int practice_skill(object me) {
     addn("neili", -4, me);
     return 1;
 }
-string query_dodge_msg(string limb) {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[random(sizeof(dodge_msg))];
 }
 

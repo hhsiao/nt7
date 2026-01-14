@@ -15,7 +15,7 @@ string *parry_msg = ({
     "卻見$n身子微轉，輕描淡寫的以$w輕輕擋開，口唇未離簫邊，樂聲竟未有片刻停滯。\n"
 });
 
-string query_parry_msg(object weapon, object me) {
+varargs string query_parry_msg(object me, object weapon) {
     if(!me ) me = this_player();
 
     if (! objectp(weapon)

@@ -16,7 +16,7 @@ string *unarmed_parry_msg = ({
     "但是$N感覺像打到棉花上一樣，力道已全被$n利用八卦勁卸去。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if (weapon)
         return parry_msg[random(sizeof(parry_msg))];
     else

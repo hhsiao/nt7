@@ -22,7 +22,7 @@ string die_msg_others() {
     return HIW "$N" HIW "倒在地上，抽搐了一陣，再也沒有半點生氣了。\n" NOR;
 }
 
-string die_reason() {
+string die_reason(string name) {
     return "亂氣之陰陽發作，力乏而盡";
 }
 

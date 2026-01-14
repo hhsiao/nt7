@@ -1562,8 +1562,8 @@ int do_protect(object me, object weapon,int ap, object victim)
                         parry_skill = ob->query_skill_mapped("parry");
                         if( !parry_skill)  parry_skill = "parry";
 
-                        output = SKILL_D(parry_skill)->query_parry_msg(weapon, ob);
-                        if( !output ) output = SKILL_D("parry")->query_parry_msg(weapon, ob);
+                        output = SKILL_D(parry_skill)->query_parry_msg(ob, weapon);
+                        if( !output ) output = SKILL_D("parry")->query_parry_msg(ob, weapon);
 
                         if( query_temp("weapon",ob) )
                                 output = replace_string( output, "$v", (query_temp("weapon",ob))->name());
@@ -1841,7 +1841,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type, 
                 // Does the victim dodge this hit?
                 if( random(ap + dp) < dp ) {
                         if( !defense_skill ) defense_skill = "dodge";
-                        result += SKILL_D(defense_skill)->query_dodge_msg(limb, victim);
+                        result += SKILL_D(defense_skill)->query_dodge_msg(victim, limb);
 
                         damage = RESULT_DODGE;
                 } else {
@@ -1923,7 +1923,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type, 
                                                 } else
                                                         parry_msg = unarm_parry_sixmai[random(sizeof(unarm_parry_sixmai))];
                                         } else
-                                                parry_msg = SKILL_D(defense_skill)->query_parry_msg(weapon2, victim);
+                                                parry_msg = SKILL_D(defense_skill)->query_parry_msg(victim, weapon2);
 
                                 } else
                                 if( defense_skill == "douzhuan-xingyi" || defense_skill == "qiankun-danuoyi" ) {
@@ -1979,16 +1979,16 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type, 
                                                 foo += report_status(me, 1);
                                                 parry_msg += foo;
                                         } else
-                                                parry_msg = SKILL_D(defense_skill)->query_parry_msg(weapon2, victim);
+                                                parry_msg = SKILL_D(defense_skill)->query_parry_msg(victim, weapon2);
                                 } else
                                 {
                                         // change to SKILL_D(defense_skill) after added parry msg to those
                                         // martial arts that can parry.
-                                        parry_msg = SKILL_D(defense_skill)->query_parry_msg(weapon2, victim);
+                                        parry_msg = SKILL_D(defense_skill)->query_parry_msg(victim, weapon2);
                                 }
 
                                 if( !stringp(parry_msg) )
-                                        parry_msg = SKILL_D("parry")->query_parry_msg(weapon2, victim);
+                                        parry_msg = SKILL_D("parry")->query_parry_msg(victim, weapon2);
 
                                 if( stringp(parry_msg) )
                                         result += parry_msg;

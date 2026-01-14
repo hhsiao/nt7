@@ -7,7 +7,7 @@ string *parry_msg = ({
     "但是$n身子微側，雙手同時一撥，已將$N的招數卸於無形。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     return parry_msg[random(sizeof(parry_msg))];
 }
 

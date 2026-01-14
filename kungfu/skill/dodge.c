@@ -19,7 +19,7 @@ string *dodge_msg = ({
     "但是$n已有準備，不慌不忙的躲開。\n"
 });
 
-string query_dodge_msg() {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[random(sizeof(dodge_msg))];
 }
 int help(object me) {

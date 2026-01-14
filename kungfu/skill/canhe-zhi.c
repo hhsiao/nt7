@@ -306,7 +306,7 @@ int practice_bonus() { return 15; }
 int success() { return 15; }
 int power_point() { return 1.0; }
 
-string query_parry_msg(object victim_weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     switch (random(3))
     {
     case 0:

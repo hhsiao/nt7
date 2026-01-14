@@ -25,7 +25,7 @@ string query_skill_name(int level) {
 mapping query_action(object me, object weapon) {
     return action[0];
 }
-string query_dodge_msg(string limb) {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[0];
 }
 int valid_learn(object me) {

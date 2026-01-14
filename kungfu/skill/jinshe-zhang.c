@@ -102,7 +102,7 @@ string *unarmed_parry_msg = ({
     "$n施展出金蛇遊身掌，輕描淡寫的化解了$N的攻勢。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if (weapon)
         return parry_msg[random(sizeof(parry_msg))];
     else

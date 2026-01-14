@@ -191,7 +191,7 @@ mapping query_action(object me, object weapon) {
         if(level > action[i - 1]["lvl"])
         return action[NewRandom(i, 20, level / 5)];
 }
-string query_dodge_msg(string limb) {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[random(sizeof(dodge_msg))];
 }
 string perform_action_file(string action) {

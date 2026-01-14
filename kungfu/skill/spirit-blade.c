@@ -80,7 +80,7 @@ string *unarmed_parry_msg = ({
     "$n微退一步，手中的$v劃出一條圓弧，一招「春眠不知嘵」，將$N的全身圍住。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon )
         return parry_msg[random(sizeof(parry_msg))];
     else

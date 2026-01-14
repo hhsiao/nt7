@@ -55,11 +55,11 @@ int valid_enable(string usage) {
     return (usage == "parry") /*|| (usage == "dodge") || (usage=="move")*/;
 }
 
-string query_parry_msg(string limb) {
+varargs string query_parry_msg(object me, object weapon) {
     return parry_msg[random(sizeof(parry_msg))];
 }
 
-string query_dodge_msg(string limb) {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[random(sizeof(dodge_msg))];
 }
 mapping query_action(object me, object weapon) {

@@ -65,7 +65,7 @@ string *unarmed_parry_msg = ({
     "$n一招「靈蛇出洞」，輕巧的擋開了$N的招式。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon )
         return parry_msg[random(sizeof(parry_msg))];
     else

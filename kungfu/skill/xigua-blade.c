@@ -13,7 +13,7 @@ string *parry_msg = ({
     HIG "西瓜刀\n" NOR
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     return parry_msg[random(sizeof(parry_msg))];
 }
 

@@ -87,7 +87,7 @@ string query_skill_name(int level) {
         if(level >= action[i]["lvl"])
         return action[i]["skill_name"];
 }
-mapping query_action(object me, object weapon) {
+varargs mapping query_action(object me, object weapon) {
     int d_e1 = -50;
     int d_e2 = -40;
     int p_e1 = -5;

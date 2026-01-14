@@ -73,7 +73,7 @@ string *unarmed_parry_msg = ({
     "$n身形急退，手中$W上下飛舞，一招「雨過天連青壁潤」，封住$N的招式。\n",
     "$n手中的$W挽出朵朵刀花，一招「金花玉萼影浮沉」，遊刃有餘。\n"
 });
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon ) return parry_msg[random(sizeof(parry_msg))];
     else return unarmed_parry_msg[random(sizeof(unarmed_parry_msg))];
 }

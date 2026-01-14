@@ -213,7 +213,7 @@ int practice_skill(object me) {
     addn("neili", -60, me);
     return 1;
 }
-string query_parry_msg(string limb) {
+varargs string query_parry_msg(object me, object weapon) {
     return parry_msg[random(sizeof(parry_msg))];
 }
 string query_skill_name(int level) {

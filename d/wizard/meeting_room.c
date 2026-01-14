@@ -138,7 +138,7 @@ int do_over(string arg) {
     return 1;
 }
 
-int do_not() {
+int do_not(string arg) {
     if (query("meeting_trigger"))
     {
         write("請專心開會！\n");

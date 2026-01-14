@@ -98,7 +98,7 @@ string *unarmed_parry_msg = ({
 	"$n手中的$v形成了一道網，死死的封住了$N的攻勢。\n",
 });
 
-string query_parry_msg(object weapon)
+varargs string query_parry_msg(object me, object weapon)
 {
         if( weapon )
                 return parry_msg[random(sizeof(parry_msg))];
@@ -110,4 +110,3 @@ string perform_action_file(string action)
 {
 	return __DIR__ + "/liuhua-sword/" + action;
 }
-

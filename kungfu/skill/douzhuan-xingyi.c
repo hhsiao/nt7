@@ -29,12 +29,14 @@ string *unarmed_parry_msg = ({
 });
 
 int valid_enable(string usage) { return usage=="parry"; }
-string query_parry_msg(object weapon) {
+
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon )
         return parry_msg[random(sizeof(parry_msg))];
     else
         return unarmed_parry_msg[random(sizeof(unarmed_parry_msg))];
 }
+
 int valid_learn(object me) {
     //      object ob;
     int d_lvl = (int) me->query_skill("douzhuan-xingyi", 1);

@@ -704,7 +704,7 @@ mapping query_action(object me, object weapon) {
         return action2[random(sizeof(action))];
 }
 
-string query_parry_msg(object victim_weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     switch (random(4))
     {
     case 0:

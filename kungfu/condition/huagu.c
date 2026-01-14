@@ -18,6 +18,6 @@ string update_msg_self() {
     return HIR "忽然渾身一陣劇痛，你中的化骨綿掌毒發了！\n" NOR;
 }
 
-string die_reason() {
+string die_reason(string name) {
     return "筋斷骨碎，死的慘不堪言";
 }

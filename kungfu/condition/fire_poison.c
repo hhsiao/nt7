@@ -25,6 +25,6 @@ string die_msg_others() {
     "半點動靜了。\n" NOR;
 }
 
-string die_reason() {
+string die_reason(string name) {
     return "被星宿毒焰活活燒死了";
 }

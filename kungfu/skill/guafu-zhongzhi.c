@@ -13,7 +13,7 @@ string *parry_msg = ({
     HIG "$N拇指斜伸，一招$NM，反身一頓，一指向$n的$l戳去。\n" NOR
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     return parry_msg[random(sizeof(parry_msg))];
 }
 

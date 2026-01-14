@@ -53,7 +53,7 @@ int valid_enable(string usage) {
 int valid_learn(object me) {
     return 1;
 }
-string query_dodge_msg(string limb) {
+varargs query_dodge_msg(object me, string limb) {
     object me, ob;
     mapping action;
 

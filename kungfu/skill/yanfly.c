@@ -35,7 +35,7 @@ int practice_skill(object me) {
 }
 
 /* 激發成輕功的打鬥信息 */
-string query_dodge_msg(string limb) {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[random(sizeof(dodge_msg))];
 }
 

@@ -70,12 +70,12 @@ int perform(object me, object target)
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
-        
+
         if (query("can_perform/surge-force/new", me) && me->query_skill("surge-force", 1) )
 	{
 		ap += ap / 2;
 	}
-	
+
         if (ap / 2 + random(ap) > dp)
         {
                 message_combatd(HIR "結果$n全身被劍氣所形成的氣渦所籠罩著，只覺得猶如身陷洪濤巨浪，跌跌撞撞。\n" NOR,
@@ -123,7 +123,7 @@ int perform(object me, object target)
                                 addn("neili", -100, me);
                                 dodge_skill = target->query_skill_mapped("dodge");
                                 if (! dodge_skill ) dodge_skill = "dodge";
-                                        msg = SKILL_D(dodge_skill)->query_dodge_msg(target, 1);
+                                        msg = SKILL_D(dodge_skill)->query_dodge_msg(target);
                                 message_combatd(msg, me, target);
                         }
                         return 1;
@@ -134,7 +134,7 @@ int perform(object me, object target)
                 addn("neili", -100, me);
                 dodge_skill = target->query_skill_mapped("dodge");
                 if (! dodge_skill ) dodge_skill = "dodge";
-                        msg = SKILL_D(dodge_skill)->query_dodge_msg(target, 1);
+                        msg = SKILL_D(dodge_skill)->query_dodge_msg(target);
                 message_combatd(msg, me, target);
         }
         return 1;
@@ -222,7 +222,7 @@ int perform2(object me, object target)
                 addn("neili", -100, me);
                 dodge_skill = target->query_skill_mapped("dodge");
                 if( !dodge_skill ) dodge_skill = "dodge";
-                        msg += SKILL_D(dodge_skill)->query_dodge_msg(target, 1);
+                        msg += SKILL_D(dodge_skill)->query_dodge_msg(target);
         }
         message_combatd(msg, me, target);
         return 1;

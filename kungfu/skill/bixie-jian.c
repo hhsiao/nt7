@@ -81,7 +81,7 @@ mapping *action = ({
 int valid_enable(string usage) {
     return usage == "sword" || usage == "dodge" || usage == "parry";
 }
-string query_dodge_msg(string limb) {
+varargs query_dodge_msg(object me, string limb) {
     return dodge_msg[random(sizeof(dodge_msg))];
 }
 int valid_learn(object me) {

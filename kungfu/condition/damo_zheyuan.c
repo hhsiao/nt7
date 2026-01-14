@@ -18,7 +18,7 @@ string update_msg_self() {
     "達摩折元劍的干擾。\n" NOR;
 }
 
-string die_reason() {
+string die_reason(string name) {
     return "真元崩潰而亡了";
 }
 

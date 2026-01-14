@@ -91,7 +91,7 @@ string *whip_msg = ({
     "卻見$n力貫鞭梢，手中$W舞出滿天鞭影，排山倒海般掃向$P的全身，$P一招擊下，有如石沉大海，不覺呆住了。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon )
     {
         switch(query("skill_type", weapon) )

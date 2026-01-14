@@ -96,7 +96,7 @@ string query_skill_name(int level) {
         if(level >= action[i - 1]["lvl"])
         return action[i - 1]["skill_name"];
 }
-mapping query_action(object me, object weapon) {
+varargs mapping query_action(object me, object weapon) {
     /* d_e = dodge_effect p_e = parry_effect f_e = force_effect m_e = damage_effect */
     int d_e1 = 55;
     int d_e2 = 35;

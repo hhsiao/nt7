@@ -164,7 +164,7 @@ string *unarmed_parry_msg = ({
     "$n不退反進，氣走周天，狠狠磕開了$N的$w。\n"
 });
 
-string query_parry_msg(object weapon) {
+varargs string query_parry_msg(object me, object weapon) {
     if(weapon )
         return parry_msg[random(sizeof(parry_msg))];
     else

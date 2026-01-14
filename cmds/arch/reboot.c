@@ -28,7 +28,7 @@ int main(object me, string arg) {
 
     if (! arg)
     {
-        write("指令格式: shutdown [-f] | soon | after <n>\n");
+        write("指令格式: reboot [-f] | soon | after <n>\n");
         return 1;
     }
 

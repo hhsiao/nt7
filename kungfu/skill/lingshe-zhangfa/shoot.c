@@ -87,7 +87,7 @@ int perform(object me, object target)
         else {
                 dodge_skill = target->query_skill_mapped("dodge");
                 if( !dodge_skill ) dodge_skill = "dodge";
-                str = SKILL_D(dodge_skill)->query_dodge_msg(limb);
+                str = SKILL_D(dodge_skill)->query_dodge_msg(target, limb);
                 message_vision(str, me, target);
         }
 

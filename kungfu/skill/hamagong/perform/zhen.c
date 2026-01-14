@@ -21,7 +21,7 @@ int perform(object me, object target)
         int ngxy = me->query_skill("force-cognize", 1);
         int hmg = me->query_skill("hamagong", 1);
         int poison = me->query_skill("poison", 1);
-        
+
         if (! target) target = offensive_target(me);
 
         if (! target || !target->is_character() ||
@@ -58,10 +58,10 @@ int perform(object me, object target)
 
         ap = attack_power(me, "force");
         dp = defense_power(target, "force");
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-hmg-zhen"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         if (ap / 5 * 4 + random(ap) > dp)
         {
             me->start_busy(1);
@@ -74,7 +74,7 @@ int perform(object me, object target)
             damage+= damage_power(me, "strike");
             damage*= query("jiali",me)/5000;
             damage*= fmsk/1000;
-            
+
 //            if(!userp(me) && userp(target))
 //            damage = damage /query("level", target);
             if(!userp(me) || query("yuanshen", me))
@@ -87,7 +87,7 @@ int perform(object me, object target)
             delta = ABILITY_D->check_ability(me, "da_power-hmg-zhen"); // 門派ab
             if( delta ) damage += damage*delta/100;
         if( damage < 1 ) damage = 1;
-    
+
             msg += COMBAT_D->do_damage(me, target, SPECIAL_ATTACK, damage, 300 + fmsk / 8,
                                            HIR "\n$n" HIR "不料$N" HIR "會使出如此功力非同小可且招式詭異招式\n"
                                            "立時招架散亂，連連出招，全身有如撕裂般痛苦，像斷線風箏般彈出丈之遠!\n" NOR);
@@ -103,7 +103,7 @@ int perform(object me, object target)
                 tell_object(target, HIY"你但覺一股微風撲面而來，風勢雖然不勁，然已逼得自己呼吸不暢，知道不妙，連忙躍開數尺。\n" NOR);
                 dodge_skill = target->query_skill_mapped("dodge");
                 if( !dodge_skill ) dodge_skill = "dodge";
-                msg += SKILL_D(dodge_skill)->query_dodge_msg(target, 1);
+                msg += SKILL_D(dodge_skill)->query_dodge_msg(target);
                 message_combatd(msg, me, target);
         }
         return 1;
@@ -130,7 +130,7 @@ int perform2(object me, object target, int p, int damage)
         dp = defense_power(target, "dodge");
         delta = ABILITY_D->check_ability(me, "ap_power-hmg-zhen"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         if (ap / 4 * 3 + random(ap) > dp)
         {
                 me->start_busy(1);
@@ -159,7 +159,7 @@ int perform2(object me, object target, int p, int damage)
                 tell_object(target, HIY"你喘息未定，又覺一股勁風撲面而來，連忙躍開數尺，狼狽地避開。\n" NOR);
                 dodge_skill = target->query_skill_mapped("dodge");
                 if( !dodge_skill ) dodge_skill = "dodge";
-                msg += SKILL_D(dodge_skill)->query_dodge_msg(target, 1);
+                msg += SKILL_D(dodge_skill)->query_dodge_msg(target);
                 message_combatd(msg, me, target);
         }
         return 1;
@@ -183,10 +183,10 @@ int perform3(object me, object target, int p, int damage)
 
         ap = attack_power(me, "force");
         dp = defense_power(target, "parry");
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-hmg-zhen"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         if (ap / 3 * 2 + random(ap) > dp)
         {
                 me->start_busy(1);
@@ -202,7 +202,7 @@ int perform3(object me, object target, int p, int damage)
                 if( delta ) damage += damage*delta/100;
 
                 msg += COMBAT_D->do_damage(me, target, SPECIAL_ATTACK, damage, 400 + fmsk / 8,
-                                               HIY "$n" HIR "全然無力阻擋，竟被$N" HIY "一拳擊得飛起，重重的跌落在地上。\n" NOR); 
+                                               HIY "$n" HIR "全然無力阻擋，竟被$N" HIY "一拳擊得飛起，重重的跌落在地上。\n" NOR);
         } else
         {
                 me->start_busy(2);
@@ -213,10 +213,9 @@ int perform3(object me, object target, int p, int damage)
                 tell_object(target, HIY"你用盡全身力量向右一縱一滾，搖搖欲倒地站了起來，但總算躲開了這致命的一擊！\n" NOR);
                 dodge_skill = target->query_skill_mapped("dodge");
                 if( !dodge_skill ) dodge_skill = "dodge";
-                msg += SKILL_D(dodge_skill)->query_dodge_msg(target, 1);
+                msg += SKILL_D(dodge_skill)->query_dodge_msg(target);
         }
 
         message_combatd(msg, me, target);
         return 1;
 }
-
