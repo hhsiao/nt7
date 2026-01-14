@@ -160,9 +160,22 @@ void exec_event(function fevent) {
     map_delete(event, fevent);
 }
 
-string replace_ctime(string t_string) {
-    int t = to_int(t_string);
-    string month, ctime = ctime(t);
+string replace_ctime(mixed t_string) {
+    int t;
+    string month, ctime;
+
+    // Cast to int regardless of input type
+    if (intp(t_string)) {
+        t = t_string;
+    }
+    else if (stringp(t_string)) {
+        t = to_int(t_string);
+    }
+    else {
+        return "";  // Invalid type
+    }
+
+    ctime = ctime(t);
 
     switch(ctime[4..6])
     {

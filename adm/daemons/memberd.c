@@ -643,7 +643,7 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
         value,
         to_id);
 
-    db_bulk_set_member(ob, ([
+    db_bulk_update_member(ob, ([
         "transferinfo": ({ "set", zhuaninfo }),
         "transfervalue": ({ "add", value }),
         "transfertimes": ({ "add", 1 }),
