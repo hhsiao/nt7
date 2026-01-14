@@ -62,10 +62,6 @@ nosave string *cols = ({
 int crc_status() { return crc_status; }
 int clean_up(int inherited) { return 1; }
 
-int db_affected(int db) {
-    return db;
-}
-
 protected void chat(string msg) {
     CHANNEL_D->channel_broadcast("nch", "MySQL："+(string)msg);
     log_file("database", "chat() call : " + msg + "\n");
@@ -224,14 +220,10 @@ int db_remove_player(string id) {
     chat("執行刪除語句！" + sql);
     ret = db_exec(db, sql);
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-
-    if(!intp(ret) )
+    if(ret < 0)
     {
         log_error("db_delete.db_exec", ret + "\n" + sql);
-        return 0;
+        return ret;
     }
 
     return ret;
@@ -275,20 +267,13 @@ int db_set_player(string id, string prop, mixed value) {
         sql = "UPDATE users SET " + prop + "=" + DB_STR(value) + " WHERE id = '" + id + "'";
     else
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫函數db_set的參數value類型不可識別！");
         return 0;
     }
 
     ret = db_exec(db, sql);
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-
-    if(!intp(ret) )
+    if(ret < 0)
     {
         log_error("db_set.db_exec", ret + "\n" + sql);
         return 0;
@@ -325,35 +310,20 @@ mixed db_query_player(string id, string prop) {
     sql = "SELECT " + prop + " FROM users WHERE id='" + id + "'";
     ret = db_exec(db, sql);
 
-    if(!intp(ret) )
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         log_error("db_query.db_exec", ret);
-        return 0;
-    }
-
-    if(ret < 1 )
-    {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return ret;
     }
 
     res = db_fetch(db, 0);
-
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
 
     chat("查詢" + id + "的" + prop + "屬性字段值。返回：" + save_variable(res[0]));
     return res[0];
 }
 
 int db_new_player(object ob, object user) {
-    int db, n;
+    int db;
     string sql;
     mixed ret;
     mapping my, myob;
@@ -393,23 +363,14 @@ int db_new_player(object ob, object user) {
 
     chat("請求數據庫創建帳號！\n");
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!");
         log_error(sprintf("db_new_player(%s).db_exec", my["id"]), ret);
-        return -1;
+        return ret;
     }
 
-    n = db_affected(db);
-
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-
-    return n;
+    return ret;
 }
 
 int db_restore_all(object user) {
@@ -446,22 +407,18 @@ int db_restore_all(object user) {
 
     ret = db_exec(db, sql);
 
-    if(!intp(ret) )
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!");
         log_error(sprintf("db_restore_all(%s).db_exec", my["id"]), ret);
-        return -1;
+        return ret;
     }
 
     if(ret < 1 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return ret;
+    } else if (ret == 0) {
+        return ret;
     }
 
     res = db_fetch(db, 0);
@@ -500,14 +457,11 @@ int db_restore_all(object user) {
         if(objectp(myob)) myob->set_dbase(restore_variable(login_dbase));
         n = 1;
     }
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return n;
+    return ret;
 }
 
 int db_save_all(object user) {
-    int db, n;
+    int db;
     string sql;
     mixed ret;
     mapping my, myob;
@@ -570,22 +524,14 @@ int db_save_all(object user) {
     sql += ", f_user = " + DB_STR(save_variable(user->query_USER()));
     sql += " WHERE id = " + DB_STR(my["id"]);
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!" + sql);
         log_error(sprintf("db_save_all(%s).db_exec", my["id"]), ret);
-        return -1;
+        return ret;
     }
 
-    n = db_affected(db);
-
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return n;
+    return ret;
 }
 
 string *do_sql(string sql)
@@ -608,29 +554,17 @@ string *do_sql(string sql)
 
     ret = db_exec(db, sql);
 
-    if(!intp(ret) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         log_error("do_sql.db_exec", ret);
-        return 0;
-    }
-
-    if(ret < 1 )
+        return ret;
+    } else if(ret < 1 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return ret;
     }
 
     //只返回首行
     res = db_fetch(db, 0);
-
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
 
     return res;
 }
@@ -666,14 +600,10 @@ int db_find_user(string key, mixed data) {
         USER_TABLE, key, data);
     ret = db_exec(db, sql);
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-
-    if(!intp(ret) )
+    if(ret < 0 )
     {
         log_error("db_find_user.db_exec", ret);
-        return 0;
+        return ret;
     }
 
     return ret;
@@ -704,14 +634,10 @@ int db_create_user(string id) {
         USER_TABLE, DB_STR(id));
     ret = db_exec(db, sql);
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-
-    if(!intp(ret) )
+    if(ret < 0)
     {
         log_error("db_create_user.db_exec", ret);
-        return 0;
+        return ret;
     }
 
     return ret;
@@ -719,7 +645,7 @@ int db_create_user(string id) {
 
 // 刪除用戶
 int db_remove_user(string id) {
-    int db, n;
+    int db;
     mixed ret;
     string sql;
 
@@ -741,28 +667,21 @@ int db_remove_user(string id) {
     sql = sprintf("DELETE FROM %s WHERE id = %s",
         USER_TABLE, DB_STR(id));
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         log_error(sprintf("db_romove_user(%s).db_exec", id), ret);
         return 0;
     }
 
-    n = db_affected(db);
-    if(n < 1 )
+    if(ret < 1 )
         log_error(sprintf("db_romove_user(%s).db_exec", id), "Fail to del.\n");
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return n;
+    return ret;
 }
 
 // 設定用戶屬性
 int db_set_user(string id, string key, mixed data) {
-    int db, n;
+    int db;
     mixed ret;
     string sql;
 
@@ -791,25 +710,18 @@ int db_set_user(string id, string key, mixed data) {
     else sql = sprintf("UPDATE %s SET %s = %O WHERE id = %s",
         USER_TABLE, key, data, DB_STR(id));
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         log_error(sprintf("db_set_user(%s).db_exec", id), ret);
-        return 0;
+        return ret;
     }
 
-    n = db_affected(db);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return n;
+    return ret;
 }
 
 // 增加用戶屬性點
 int db_add_user(string id, string key, int num) {
-    int db, n;
+    int db;
     mixed ret;
     string sql;
 
@@ -834,28 +746,19 @@ int db_add_user(string id, string key, int num) {
         USER_TABLE, key, key, num, DB_STR(id));
     ret = db_exec(db, sql);
 
-    if(!intp(ret) )
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         log_error(sprintf("db_add_user(%s).db_exec", id), ret);
-        return 0;
+        return ret;
     }
 
-    n = db_affected(db);
-
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-
-    if(n < 1 )
+    if(ret < 1 )
     {
         log_error(sprintf("db_set_user(%s).db_exec", id), "Fail to del.\n");
-        return 0;
+        return ret;
     }
 
-    return n;
+    return ret;
 }
 
 // 查詢用戶屬性
@@ -884,28 +787,20 @@ mixed db_query_user(string id, string key) {
         key, USER_TABLE, DB_STR(id));
     ret = db_exec(db, sql);
 
-    if(!intp(ret) )
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         log_error("db_query_user.db_exec", ret);
-        return 0;
+        return ret;
     }
 
     if(ret < 1 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return ret;
     }
 
     res = db_fetch(db, 0);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return res[0];
+
+    return res;
 }
 
 // 加密函數
@@ -939,28 +834,19 @@ mixed db_crypt(string passwd) {
 #endif
 
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         log_error("db_crypt.db_exec", ret);
-        return 0;
+        return ret;
     }
 
     if(ret < 1 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return ret;
     }
 
     res = db_fetch(db, 0);
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
 
     return res[0];
 }
@@ -969,7 +855,7 @@ mixed db_crypt(string passwd) {
 varargs mixed *db_fetch_row(string sql, int row)
 {
     int db;
-    mixed ret;
+    mixed ret, res;
 
     if(!stringp(sql) || sql == "")
         return 0;
@@ -988,14 +874,15 @@ varargs mixed *db_fetch_row(string sql, int row)
 
     if(stringp(sql) && sql != "" )
     {
-        db_exec(db, sql);
+        ret = db_exec(db, sql);
     }
 
-    ret = db_fetch(db, row);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return ret;
+    if(ret < 1 )
+        return 0;
+
+    res = db_fetch(db, row);
+
+    return res;
 }
 
 // 執行語句
@@ -1019,15 +906,6 @@ mixed db_query(string sql) {
 #endif
 
     ret = db_exec(db, sql);
-
-    if(!intp(ret) )
-        ret = 0;
-    else
-        ret = db_affected(db);
-
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
 
     return ret;
 }
@@ -1055,21 +933,15 @@ mixed *db_all_query(string sql)
 
     max = db_exec(db, sql);
 
-    if(!intp(max) || max < 1 )
+    if(max < 1 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return max;
     }
 
     ret = ({ });
     for(i = 0; i < max; i++ )
         ret += ({ db_fetch(db, i) });
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
     return ret;
 }
 
@@ -1091,20 +963,17 @@ int db_count_user() {
 #endif
 
     ret = db_exec(db, sprintf("SELECT COUNT(*) FROM %s", USER_TABLE));
-    //ret = db_exec(db, sprintf("SELECT MAX(id) FROM %s", USER_TABLE));
-    if(!intp(ret) || (ret < 1) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return ret;
+    }
+
+    if (ret < 1)
+    {
+        return ret;
     }
 
     res = db_fetch(db, 0);
-
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
 
     return to_int(res[0]);
 }
@@ -1135,14 +1004,10 @@ int db_remove_item(string id) {
     chat("執行刪除語句！" + sql);
     ret = db_exec(db, sql);
 
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-
-    if(!intp(ret) )
+    if(ret < 0)
     {
         log_error("db_remove_item.db_exec", ret + "\n" + sql);
-        return 0;
+        return ret;
     }
 
     return ret;
@@ -1153,7 +1018,6 @@ mixed db_restore_item(mixed ob) {
     string sql, *res;
     string index;
     mixed ret;
-    mapping data = ([]);
 
     if(!ob ) return 0;
 
@@ -1183,33 +1047,21 @@ mixed db_restore_item(mixed ob) {
 
     ret = db_exec(db, sql);
 
-    if(!intp(ret) )
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!");
         log_error(sprintf("db_restore_item(%s).db_exec", index), ret);
-        return 0;
+        return ret;
     }
 
     if(ret < 1 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
-        return 0;
+        return ret;
     }
 
     res = db_fetch(db, 0);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    if(!res[0] ) return 0;
-    if(mapp(restore_variable(res[0])) )
-        data = restore_variable(res[0]);
 
-    return data;
+    return restore_variable(res[0]);
 }
 
 mixed db_restore_skill(mixed ob) {
@@ -1217,7 +1069,6 @@ mixed db_restore_skill(mixed ob) {
     string sql, *res;
     string index;
     mixed ret;
-    mapping data = ([]);
 
     if(!ob ) return 0;
 
@@ -1247,37 +1098,25 @@ mixed db_restore_skill(mixed ob) {
 
     ret = db_exec(db, sql);
 
-    if(!intp(ret) )
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!");
         log_error(sprintf("db_restore_item(%s).db_exec", index), ret);
-        return 0;
+        return ret;
     }
 
     if(ret < 1 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         return 0;
     }
 
     res = db_fetch(db, 0);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    if(!res[0] ) return 0;
-    if(mapp(restore_variable(res[0])))
-        data = restore_variable(res[0]);
 
-    return data;
+    return restore_variable(res[0]);
 }
 
 int db_create_item(mixed ob, mixed data) {
-    int db, n;
+    int db;
     string sql;
     string index;
     mixed ret;
@@ -1309,25 +1148,18 @@ int db_create_item(mixed ob, mixed data) {
     sql = "INSERT INTO items (id, dbase) VALUES (" + DB_STR(index) +
         ", " + DB_STR(save_variable(data)) + ")";
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!" + sql);
         log_error(sprintf("db_create_item(%s).db_exec", index), ret);
-        return -1;
+        return ret;
     }
 
-    n = db_affected(db);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return n;
+    return ret;
 }
 
 int db_save_item(mixed ob, mixed data) {
-    int db, n;
+    int db;
     string sql;
     string index;
     mixed ret;
@@ -1355,37 +1187,24 @@ int db_save_item(mixed ob, mixed data) {
     if(!(db = connect_to_database()) )
         return -1;
 #endif
+    sql = "INSERT INTO items (id, dbase) " +
+          "VALUES (" + DB_STR(index) + ", " + DB_STR(save_variable(data)) + ") "+
+          "ON CONFLICT (id) " +
+          "DO UPDATE SET dbase = EXCLUDED.dbase";
 
-    /*
-     * sql = "select dbase from items where id = '" + index + "'";
-     * ret = db_exec(db, sql);
-     * if( ! intp(ret))
-     * sql = "insert into items set id = '" + index +
-     * "', dbase = " + DB_STR(save_variable(data));
-     * else
-     */
-    sql = "UPDATE items SET dbase = " + DB_STR(save_variable(data)) +
-        " WHERE id = " + DB_STR(index);
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+    if(ret < 0)
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!" + sql);
         log_error(sprintf("db_save_item(%s).db_exec", index), ret);
-        return -1;
+        return ret;
     }
 
-    n = db_affected(db);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return n;
+    return ret;
 }
 
 int db_save_skill(mixed ob, mixed data) {
-    int db, n;
+    int db;
     string sql;
     string index;
     mixed ret;
@@ -1414,24 +1233,21 @@ int db_save_skill(mixed ob, mixed data) {
         return -1;
 #endif
 
-    sql = "UPDATE items SET skill = " + DB_STR(save_variable(data)) +
-        " WHERE id = " + DB_STR(index);
+    sql = "INSERT INTO skills (id, skill) " +
+          "VALUES (" + DB_STR(index) + ", " + DB_STR(save_variable(data)) + ") "+
+          "ON CONFLICT (id) " +
+          "DO UPDATE SET skill = EXCLUDED.skill";
+
     ret = db_exec(db, sql);
-    if(!intp(ret) )
+
+    if(ret < 0 )
     {
-#ifndef STATIC_LINK
-        close_database(db);
-#endif
         chat("數據庫存儲失敗!!!" + sql);
         log_error(sprintf("db_save_item(%s).db_exec", index), ret);
-        return -1;
+        return ret;
     }
 
-    n = db_affected(db);
-#ifndef STATIC_LINK
-    close_database(db);
-#endif
-    return n;
+    return ret;
 }
 
 void broadcast(string sql) {
@@ -1458,8 +1274,6 @@ void do_broadcast() {
         {
 
             n = db_connect(one->host, DATABASE, one->user);
-
-
 
             if(intp(n) && (n > 0) )     // 連接成功
             {

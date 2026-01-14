@@ -49,12 +49,14 @@ protected void log_buyinfo(object ob, string which, int value) {
         value,
         which);
 
-    MEMBER_D->db_set_member(ob, "buyinfo", buyinfo);
-    MEMBER_D->db_add_member(ob, "buytimes", 1);
-    MEMBER_D->db_add_member(ob, "buyvalue", value);
-    MEMBER_D->db_set_member(ob, "last_buytime", time());
-    MEMBER_D->db_set_member(ob, "last_buyob", which);
-    MEMBER_D->db_set_member(ob, "last_buyvalue", value);
+    MEMBER_D->db_bulk_update_member(ob, ([
+        "buyinfo": ({ "set", buyinfo }),
+        "buytimes": ({ "add", 1 }),
+        "buyvalue": ({ "add", value }),
+        "last_buytime": ({ "set", time() }),
+        "last_buyob": ({ "set", which }),
+        "last_buyvalue": ({ "set", value }),
+    ]));
     return;
 }
 

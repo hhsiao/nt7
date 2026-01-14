@@ -18,12 +18,11 @@ public mixed db_query_member(mixed ob, string key);
 public mixed db_find_member(string key, mixed data);
 public varargs int db_create_member(mixed ob, int money, string from_id);
 public int db_remove_member(mixed ob);
+public int db_bulk_update_member(mixed ob, mapping data);
 public int db_set_member(mixed ob, string key, mixed data);
 public int db_add_member(mixed ob, string key, int num);
 public varargs int db_pay_member(mixed ob, int money, string from_id);
 public int db_transfer_member(mixed ob, mixed to, int value);
-public string db_str(string x);
-
 
 int clean_up(int inherited) { return 1; }
 
@@ -61,23 +60,8 @@ public int is_member(mixed ob) {
 
     ret = DATABASE_D->db_query(sql);
 
-    if (!intp(ret))
-        return 0;
-
     return ret;
 }
-
-public string db_str(string x) {
-    string xx;
-    if(strlen(x)<8192)
-        xx = "'" + replace_string(x, "'", "''") + "'";
-    else
-        xx = "'" + replace_string("已清空", "'", "''") + "'";
-
-    return xx;
-}
-
-
 
 // 查詢 ID 是否是有效會員
 public int is_valid_member(mixed ob) {
@@ -96,9 +80,6 @@ public int is_valid_member(mixed ob) {
         MEMBER_TABLE, DB_STR(id), time());
 
     ret = DATABASE_D->db_query(sql);
-
-    if (!intp(ret))
-        return 0;
 
     return ret;
 }
@@ -145,7 +126,7 @@ public mixed db_query_member(mixed ob, string key) {
     ret = DATABASE_D->db_fetch_row(sql);
 
     if (arrayp(ret) && sizeof(ret))
-        return ret[0];
+        return ret;
     else
         return 0;
 }
@@ -261,6 +242,90 @@ public int db_remove_member(mixed ob) {
     return ret;
 }
 
+// Bulk update member data in database
+// data format: ([ "field": ({ "operation", value }), ... ])
+// operation: "add" or "set"
+// Example: ([ "money": ({ "add", 100 }), "vip": ({ "set", 1 }) ])
+public int db_bulk_update_member(mixed ob, mapping data) {
+    string id, sql;
+    string *updates = ({});
+    int result;
+
+    // Get player ID
+    if (objectp(ob)) {
+        id = ob->query_id();
+    }
+    else if (stringp(ob)) {
+        id = ob;
+    }
+    else {
+        return 0;
+    }
+
+    if (!id || !mapp(data) || !sizeof(data)) {
+        return 0;
+    }
+
+    // Build UPDATE clauses
+    foreach(string field, mixed value in data) {
+        string operation;
+        mixed set_value;
+
+        // Validate format
+        if (!arrayp(value) || sizeof(value) != 2) {
+            continue;
+        }
+
+        operation = value[0];
+        set_value = value[1];
+
+        // Build SQL based on operation
+        switch(operation) {
+            case "add":
+                // Arithmetic operation
+                if (intp(set_value)) {
+                    updates += ({ sprintf("%s = %s + %d", field, field, set_value) });
+                }
+                else if (floatp(set_value)) {
+                    updates += ({ sprintf("%s = %s + %f", field, field, set_value) });
+                }
+                break;
+
+            case "set":
+                // Direct assignment
+                if (intp(set_value)) {
+                    updates += ({ sprintf("%s = %d", field, set_value) });
+                }
+                else if (floatp(set_value)) {
+                    updates += ({ sprintf("%s = %f", field, set_value) });
+                }
+                else if (stringp(set_value)) {
+                    updates += ({ sprintf("%s = %s", field, DB_STR(set_value)) });
+                }
+                break;
+
+            default:
+                // Invalid operation
+                continue;
+        }
+    }
+
+    // No valid updates
+    if (!sizeof(updates)) {
+        return 0;
+    }
+
+    // Build and execute query
+    sql = sprintf("UPDATE members SET %s WHERE id = %s",
+                  implode(updates, ", "),
+                  DB_STR(id));
+
+    result = DATABASE_D->db_query(sql);
+
+    // Return number of rows affected
+    return (result > 0) ? result : 0;
+}
+
 // 設定會員屬性
 public int db_set_member(mixed ob, string key, mixed data) {
     mixed ret;
@@ -281,34 +346,13 @@ public int db_set_member(mixed ob, string key, mixed data) {
         !stringp(key) || key == "")
         return 0;
 
-    /*
-     * if (intp(data))
-     * sql = sprintf("UPDATE %s SET %s = %d WHERE id = %s",
-     * MEMBER_TABLE, key, data, DB_STR(id));
-     * else if (mapp(data) || arrayp(data))
-     * sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = %s",
-     * MEMBER_TABLE, key, save_variable(data), DB_STR(id));
-     * else if (stringp(data))
-     * sql = sprintf("UPDATE %s SET %s = \"%s\" WHERE id = %s",
-     * MEMBER_TABLE, key, data, DB_STR(id));
-     * else
-     * sql = sprintf("UPDATE %s SET %s = %O WHERE id = %s",
-     * MEMBER_TABLE, key, data, DB_STR(id));
-
-     */
-
-
-
-
     if (intp(data))
         sql = "UPDATE members SET " + key + "=" + data + " WHERE id = " + DB_STR(id);
     else if (mapp(data) || arrayp(data))
-        sql = "UPDATE members SET " + key + "=" + db_str(save_variable(data)) + " WHERE id = " + DB_STR(id);
+        sql = "UPDATE members SET " + key + "=" + DB_STR(save_variable(data)) + " WHERE id = " + DB_STR(id);
     else if (stringp(data))
 
-    // if(strlen(data)>8192);
-    //data="";
-    sql = "UPDATE members SET " + key + "=" + db_str(data) + " WHERE id = " + DB_STR(id);
+    sql = "UPDATE members SET " + key + "=" + DB_STR(data) + " WHERE id = " + DB_STR(id);
 
     else
         return 0;
@@ -379,7 +423,9 @@ public varargs mixed db_fee_member(mixed ob, int day, int flag)
     if (!user) return 0;
     BAN_D->add_welcome_user(id);
 
-    jointime = db_query_member(id, "jointime");
+    ret = db_query_member(id, "jointime, endtime");
+
+    jointime = to_int(ret[0]);
     if (jointime < 1)
     {
         jointime = time();
@@ -397,7 +443,7 @@ public varargs mixed db_fee_member(mixed ob, int day, int flag)
     }
     else
     {
-        endtime = (int)db_query_member(id, "endtime");
+        endtime = to_int(ret[1]);
         if (endtime < 1 || endtime < time())
             day = time() + day * 86400;
         else
@@ -445,9 +491,9 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
      * return 1;
      * }
      */
-
-    paytimes = db_query_member(id, "paytimes") + 1;
-    payinfo = db_query_member(id, "payinfo");
+    ret = db_query_member(id, "paytimes, payinfo, payvalue, money");
+    paytimes = to_int(ret[0]) + 1;
+    payinfo = ret[1];
     if (!payinfo) payinfo = "";
 
     if (!stringp(from_id) || from_id == "")
@@ -457,9 +503,9 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
             TIME_D->replace_ctime(time()), from_id, money);
 
     payinfo += info;
-    payvalue = db_query_member(id, "payvalue") + money;
+    payvalue = to_int(ret[2]) + money;
     last_payvalue = money;
-    money += db_query_member(id, "money");
+    money += to_int(ret[3]);
     /*
      * sql = sprintf("UPDATE %s SET money = %d, paytimes = %d, payinfo = \"%s\",
      * payvalue = %d, last_payvalue = %d, last_paytime = %d WHERE id = %s",
@@ -528,6 +574,7 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
     string zhuaninfo;
     int money;
     object target;
+    mixed ret;
 
     if (!valid_caller())
         return 0;
@@ -568,8 +615,8 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
         return 0;
     }
 
-
-    money = db_query_member(id, "money");
+    ret = db_query_member(id, "money, transferinfo");
+    money = to_int(ret[0]);
     if (money < value)
     {
         write("對不起，您的王者金幣數量不夠！\n");
@@ -587,16 +634,20 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
     else
         db_pay_member(to_id, value, id);
 
-    zhuaninfo = db_query_member(id, "transferinfo");
+    zhuaninfo = ret[1];
+
     if(!zhuaninfo)zhuaninfo = "";
+
     zhuaninfo += sprintf("你於 %s 轉帳 %d $NT給玩家 %s。\n",
         TIME_D->replace_ctime(time()),
         value,
         to_id);
 
-    db_set_member(ob, "transferinfo", zhuaninfo);
-    db_add_member(ob, "transfervalue", value);
-    db_add_member(ob, "transfertimes", 1);
+    db_bulk_set_member(ob, ([
+        "transferinfo": ({ "set", zhuaninfo }),
+        "transfervalue": ({ "add", value }),
+        "transfertimes": ({ "add", 1 }),
+    ]));
     write(HIG "轉帳成功， 您的轉帳記錄已寫入文件，請使用 " HIR "member show zhuaninfo " HIG " 查詢！ \n" NOR);
     write(HIC "您總共轉帳了 " + HIY + value + HIC + " $NT , 祝您好運！\n" NOR);
 
@@ -604,9 +655,12 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
 }
 
 public void show_member_info(mixed ob, string arg) {
-    mixed ret, res;
-    int i;
+    mixed ret;
     string id;
+    int money, jointime, endtime, payvalue;
+    int paytimes, buyvalue, buytimes, transfervalue;
+    int transfertimes, last_paytime, last_buytime, last_buyvalue;
+    string last_buyob;
 
     if (objectp(ob))
         id = query("id", ob);
@@ -626,11 +680,14 @@ public void show_member_info(mixed ob, string arg) {
             return;
         }
         ret = db_query_member(ob, arg);
-        write(BBLU + HIW "您的充值記錄如下：\n\n" NOR);
-        res = explode(ret, "\n");
-        for (i = 0; i < sizeof(res); i++)
-            write(BBLU + HIY + res[i] + "\n" NOR);
+        if (!stringp(ret[0]) || ret[0] == "")
+        {
+            write("您目前沒有充值記錄！\n");
+            return;
+        }
+        ob->start_more(BBLU + HIW "您的充值記錄如下：\n\n" NOR + BBLU + HIY + ret[0] + "\n" NOR);
         break;
+
         // 購買記錄
     case "buyinfo":
         if (!is_member(ob))
@@ -639,20 +696,12 @@ public void show_member_info(mixed ob, string arg) {
             return;
         }
         ret = db_query_member(ob, arg);
-        if (!stringp(ret) || ret == "")
+        if (!stringp(ret[0]) || ret[0] == "")
         {
             write("您目前沒有購買記錄！\n");
             return;
         }
-        write(BBLU + HIW "您的購買記錄如下：\n\n" NOR);
-        /*
-         * res = explode(ret, "\n");
-         * for (i = 0; i < sizeof(res); i++)
-         * write(BBLU + HIY + res[i] + "\n" NOR);
-         */
-        ob->start_more(BBLU + HIY + ret + "\n" NOR);
-
-
+        ob->start_more(BBLU + HIW "您的購買記錄如下：\n\n" NOR + BBLU + HIY + ret[0] + "\n" NOR);
         break;
 
         // 轉帳記錄
@@ -663,52 +712,64 @@ public void show_member_info(mixed ob, string arg) {
             write("您目前沒有轉帳記錄！\n");
             return;
         }
-        //ret = db_query_member(ob, arg);
-        ret = db_query_member(ob, "transferinfo");
-        if (!stringp(ret) || ret == "")
+        ret = db_query_member(ob, arg);
+        if (!stringp(ret[0]) || ret[0] == "")
         {
             write("您目前沒有轉帳記錄！\n");
             return;
         }
-        write(BBLU + HIW "您的轉帳記錄如下：\n\n" NOR);
-        res = explode(ret, "\n");
-        for (i = 0; i < sizeof(res); i++)
-            write(BBLU + HIY + res[i] + "\n" NOR);
-        break;
+        ob->start_more(BBLU + HIW "您的轉帳記錄如下：\n\n" NOR + BBLU + HIY + ret[0] + "\n" NOR);
 
         // 面板
     case "info":
+        ret = db_query_member(ob, "money, jointime, endtime, payvalue, paytimes, buyvalue, buytimes, " +
+                                  "transfervalue, transfertimes, last_paytime, last_buytime, last_buyob, " +
+                                  "last_buyvalue");
+        money = to_int(ret[0]);
+        jointime = to_int(ret[1]);
+        endtime = to_int(ret[2]);
+        payvalue = to_int(ret[3]);
+        paytimes = to_int(ret[4]);
+        buyvalue = to_int(ret[5]);
+        buytimes = to_int(ret[6]);
+        transfervalue = to_int(ret[7]);
+        transfertimes = to_int(ret[8]);
+        last_paytime = to_int(ret[9]);
+        last_buytime = to_int(ret[10]);
+        last_buyob = ret[11];
+        last_buyvalue = to_int(ret[12]);
+
         write(BBLU + HIW "\t\t       "+LOCAL_MUD_NAME() + "會員系統面板\t\t     " + VERSION + "\n" NOR);
         write(HIW "≡---------------------------------------------------------------≡\n" NOR);
         write(HIY "WELCOME TO JOIN IN THE MEMBERS OF NT AND HOPE YOU ALL GOES WELL.\n\n" NOR);
 
         write(sprintf(HIC "  會員代號：%-25s金幣餘額：%s\n" NOR,
-        id, db_query_member(ob, "money") + " $NT"));
+        id, to_string(money) + " $NT"));
         write(sprintf(HIC "  入會時間：%-25s有效時間：%s\n" NOR,
-        db_query_member(ob, "jointime") ?
-        TIME_D->replace_ctime(db_query_member(ob, "jointime")) : "沒有入會",
-        db_query_member(ob, "endtime") > 1888888888 ?
-        "終身會員" : (db_query_member(ob, "endtime") ?
-        TIME_D->replace_ctime(db_query_member(ob, "endtime")) : "0")));
+        jointime > 0 ?
+        TIME_D->replace_ctime(jointime) : "沒有入會",
+            endtime > 1888888888 ?
+            "終身會員" : (endtime ?
+            TIME_D->replace_ctime(endtime) : "0")));
         write(sprintf(HIC "  衝值累計：%-25s充值次數：%d\n" NOR,
-        db_query_member(ob, "payvalue") + " $NT",
-        db_query_member(ob, "paytimes")));
+            to_string(payvalue) + " $NT",
+            paytimes));
         write(sprintf(HIC "  購買累計：%-25s購買次數：%d\n" NOR,
-        db_query_member(ob, "buyvalue") + " $NT",
-        db_query_member(ob, "buytimes")));
+            to_string(buyvalue) + " $NT",
+            buytimes));
         write(sprintf(HIC "  轉帳累計：%-25s轉帳次數：%d\n" NOR,
-        db_query_member(ob, "transfervalue") + " $NT",
-        db_query_member(ob, "transfertimes")));
+            to_string(transfervalue) + " $NT",
+            transfertimes));
         write(sprintf(HIM "\n  您最後一次充值時間是               %s\n" NOR,
-        TIME_D->replace_ctime(db_query_member(ob, "last_paytime"))));
+            TIME_D->replace_ctime(last_paytime)));
         write(sprintf(HIM "  您最後一次購買時間是               %s\n" NOR,
-        db_query_member(ob, "last_buytime") ?
-        TIME_D->replace_ctime(db_query_member(ob, "last_buytime")) : "————"));
+            last_buytime ?
+            TIME_D->replace_ctime(last_buytime) : "————"));
         write(sprintf(HIM "  您最後一次購買物品是               %s(%s)\n" NOR,
-        sizeof(db_query_member(ob, "last_buyob")) ?
-        db_query_member(ob, "last_buyob") : "————",
-        db_query_member(ob, "last_buyvalue") ?
-        db_query_member(ob, "last_buyvalue") + " $NT" : "0"));
+            sizeof(last_buyob) ?
+            last_buyob : "————",
+            last_buyvalue ?
+            to_string(last_buyvalue) + " $NT" : "0"));
 
         write(HIG "\n  *請使用" HIR " member show info " HIG "          打開泥潭會員系統面板。\n" NOR);
         write(HIG "  *請使用" HIR " member show payinfo " HIG "       查看歷史充值記錄。\n" NOR);
@@ -748,7 +809,7 @@ public mixed show_all_members(int flag) {
     string name, jointime;
     mixed members;
 
-    members = DATABASE_D->db_all_query(sprintf("SELECT id FROM %s WHERE endtime >= %d", MEMBER_TABLE, time()));
+    members = DATABASE_D->db_all_query(sprintf("SELECT id, jointime FROM %s WHERE endtime >= %d", MEMBER_TABLE, time()));
 
 
     if (!sizeof(members))
@@ -775,7 +836,7 @@ public mixed show_all_members(int flag) {
             else if (is_valid_member(members[nCount][0]))status = HIW "在線" NOR;
             else status = HIR "過期" NOR;
             name = ob->name(1);
-            jointime = TIME_D->replace_ctime(db_query_member(members[nCount][0], "jointime"));
+            jointime = TIME_D->replace_ctime(to_int(members[nCount][1]));
         }
         else
         {
