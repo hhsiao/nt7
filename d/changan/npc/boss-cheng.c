@@ -6,7 +6,6 @@ inherit NPC;
 
 #define PLACE "ca"      // 長安
 #define TYPE  "good"    // 白道
-#define WAIT_TIME 60    // 完成不了任務的反省時間
 
 mapping bunch_good = ([
     "bunch_name": "俠義盟",

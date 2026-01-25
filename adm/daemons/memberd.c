@@ -14,7 +14,7 @@
 
 public int is_member(mixed ob);
 public int is_valid_member(mixed ob);
-public mixed db_query_member(mixed ob, string key);
+public mixed db_query_member(mixed ob, mixed key);
 public mixed db_find_member(string key, mixed data);
 public varargs int db_create_member(mixed ob, int money, string from_id);
 public int db_remove_member(mixed ob);
@@ -103,32 +103,110 @@ public int is_double_reward(object ob) {
     return 0;
 }
 
+// Helper function to validate column names
+private int valid_column_name(string col) {
+    int i, len;
+
+    if (!stringp(col) || col == "")
+        return 0;
+
+    len = strlen(col);
+
+    // Column names should only contain alphanumeric characters and underscores
+    // First character should be a letter or underscore
+    for (i = 0; i < len; i++) {
+        if (i == 0) {
+            // First character: letter or underscore
+            if (!((col[i] >= 'a' && col[i] <= 'z') ||
+                  (col[i] >= 'A' && col[i] <= 'Z') ||
+                  col[i] == '_'))
+                return 0;
+        }
+        else {
+            // Subsequent characters: letter, digit, or underscore
+            if (!((col[i] >= 'a' && col[i] <= 'z') ||
+                  (col[i] >= 'A' && col[i] <= 'Z') ||
+                  (col[i] >= '0' && col[i] <= '9') ||
+                  col[i] == '_'))
+                return 0;
+        }
+    }
+
+    // Check for SQL keywords that could be dangerous
+    col = lower_case(col);
+    if (col == "select" || col == "from" || col == "where" ||
+        col == "insert" || col == "update" || col == "delete" ||
+        col == "drop" || col == "union" || col == "exec" ||
+        col == "execute" || col == "alter" || col == "create")
+        return 0;
+
+    return 1;
+}
+
 // 查詢 ID 相關信息
-public mixed db_query_member(mixed ob, string key) {
+public mixed db_query_member(mixed ob, mixed key) {
     mixed ret;
-    string id, sql;
+    string id, sql, *columns;
+    int i, single_column;
 
     if (objectp(ob))
         id = query("id", ob);
-    else
-        if (stringp(ob))
+    else if (stringp(ob))
         id = ob;
     else
         return 0;
 
-    if (!stringp(id)  || id  == "" ||
-        !stringp(key) || key == "")
+    if (!stringp(id) || id == "")
         return 0;
 
+    // Handle string, comma-separated string, or array for key parameter
+    if (stringp(key)) {
+        if (key == "")
+            return 0;
+
+        // Check if it contains a comma (multiple columns)
+        if (strsrch(key, ",") != -1) {
+            // Split by comma and trim whitespace
+            columns = explode(key, ",");
+            columns = map(columns, (: trim($1) :));
+            single_column = 0;
+        }
+        else {
+            // Single column
+            columns = ({ trim(key) });
+            single_column = 1;
+        }
+    }
+    else if (arrayp(key)) {
+        if (!sizeof(key))
+            return 0;
+        columns = key;
+        single_column = 0;
+    }
+    else
+        return 0;
+
+    // Validate column names to prevent SQL injection
+    for (i = 0; i < sizeof(columns); i++) {
+        if (!valid_column_name(columns[i]))
+            return 0;
+    }
+
+    // Build column list for SQL query
     sql = sprintf("SELECT %s FROM %s WHERE id = %s",
-        key, MEMBER_TABLE, DB_STR(id));
+        implode(columns, ", "), MEMBER_TABLE, DB_STR(id));
 
     ret = DATABASE_D->db_fetch_row(sql);
 
-    if (arrayp(ret) && sizeof(ret))
-        return ret;
-    else
+    if (!arrayp(ret) || !sizeof(ret))
         return 0;
+
+    // Return single value for single column query
+    if (single_column)
+        return ret[0];
+
+    // Return mapping for multiple columns
+    return allocate_mapping(columns, ret);
 }
 
 // 根據條件尋找會員
@@ -423,9 +501,9 @@ public varargs mixed db_fee_member(mixed ob, int day, int flag)
     if (!user) return 0;
     BAN_D->add_welcome_user(id);
 
-    ret = db_query_member(id, "jointime, endtime");
+    ret = db_query_member(id, ({"jointime", "endtime"}));
 
-    jointime = to_int(ret[0]);
+    jointime = to_int(ret["jointime"]);
     if (jointime < 1)
     {
         jointime = time();
@@ -443,7 +521,7 @@ public varargs mixed db_fee_member(mixed ob, int day, int flag)
     }
     else
     {
-        endtime = to_int(ret[1]);
+        endtime = to_int(ret["endtime"]);
         if (endtime < 1 || endtime < time())
             day = time() + day * 86400;
         else
@@ -491,9 +569,9 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
      * return 1;
      * }
      */
-    ret = db_query_member(id, "paytimes, payinfo, payvalue, money");
-    paytimes = to_int(ret[0]) + 1;
-    payinfo = ret[1];
+    ret = db_query_member(id, ({"paytimes", "payinfo", "payvalue", "money"}));
+    paytimes = to_int(ret["paytimes"]) + 1;
+    payinfo = ret["payinfo"];
     if (!payinfo) payinfo = "";
 
     if (!stringp(from_id) || from_id == "")
@@ -503,9 +581,9 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
             TIME_D->replace_ctime(time()), from_id, money);
 
     payinfo += info;
-    payvalue = to_int(ret[2]) + money;
+    payvalue = to_int(ret["payvalue"]) + money;
     last_payvalue = money;
-    money += to_int(ret[3]);
+    money += to_int(ret["money"]);
     /*
      * sql = sprintf("UPDATE %s SET money = %d, paytimes = %d, payinfo = \"%s\",
      * payvalue = %d, last_payvalue = %d, last_paytime = %d WHERE id = %s",
@@ -615,8 +693,8 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
         return 0;
     }
 
-    ret = db_query_member(id, "money, transferinfo");
-    money = to_int(ret[0]);
+    ret = db_query_member(id, ({"money", "transferinfo"}));
+    money = to_int(ret["money"]);
     if (money < value)
     {
         write("對不起，您的王者金幣數量不夠！\n");
@@ -634,7 +712,7 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
     else
         db_pay_member(to_id, value, id);
 
-    zhuaninfo = ret[1];
+    zhuaninfo = ret["transferinfo"];
 
     if(!zhuaninfo)zhuaninfo = "";
 
@@ -722,22 +800,22 @@ public void show_member_info(mixed ob, string arg) {
 
         // 面板
     case "info":
-        ret = db_query_member(ob, "money, jointime, endtime, payvalue, paytimes, buyvalue, buytimes, " +
-                                  "transfervalue, transfertimes, last_paytime, last_buytime, last_buyob, " +
-                                  "last_buyvalue");
-        money = to_int(ret[0]);
-        jointime = to_int(ret[1]);
-        endtime = to_int(ret[2]);
-        payvalue = to_int(ret[3]);
-        paytimes = to_int(ret[4]);
-        buyvalue = to_int(ret[5]);
-        buytimes = to_int(ret[6]);
-        transfervalue = to_int(ret[7]);
-        transfertimes = to_int(ret[8]);
-        last_paytime = to_int(ret[9]);
-        last_buytime = to_int(ret[10]);
-        last_buyob = ret[11];
-        last_buyvalue = to_int(ret[12]);
+        ret = db_query_member(ob, ({"money", "jointime", "endtime", "payvalue", "paytimes", "buyvalue", "buytimes",
+                                  "transfervalue", "transfertimes", "last_paytime", "last_buytime", "last_buyob",
+                                  "last_buyvalue"}));
+        money = to_int(ret["money"]);
+        jointime = to_int(ret["jointime"]);
+        endtime = to_int(ret["endtime"]);
+        payvalue = to_int(ret["payvalue"]);
+        paytimes = to_int(ret["paytimes"]);
+        buyvalue = to_int(ret["buyvalue"]);
+        buytimes = to_int(ret["buytimes"]);
+        transfervalue = to_int(ret["transfervalue"]);
+        transfertimes = to_int(ret["transfertimes"]);
+        last_paytime = to_int(ret["last_paytime"]);
+        last_buytime = to_int(ret["last_buytime"]);
+        last_buyob = ret["last_buyob"];
+        last_buyvalue = to_int(ret["last_buyvalue"]);
 
         write(BBLU + HIW "\t\t       "+LOCAL_MUD_NAME() + "會員系統面板\t\t     " + VERSION + "\n" NOR);
         write(HIW "≡---------------------------------------------------------------≡\n" NOR);

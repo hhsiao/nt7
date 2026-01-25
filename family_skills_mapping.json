@@ -1,0 +1,328 @@
+{
+  "少林寺": {
+    "id": "shaolin",
+    "name": "少林寺",
+    "force": ["hunyuan-yiqi", "shaolin-xinfa", "yijinjing"],
+    "unarmed": ["jingang-quan", "luohan-quan", "changquan", "sanhua-zhang", "banruo-zhang", "pudu-zhang"],
+    "weapon": {
+      "sword": ["damo-jian", "fumo-jian"],
+      "blade": ["cibei-dao", "xiuluo-dao"],
+      "staff": ["weituo-gun", "shaolin-zhang"],
+      "whip": ["riyue-bian"]
+    },
+    "finger": ["nianhua-zhi", "yizhi-chan"],
+    "claw": ["longzhua-gong", "yingzhua-gong"],
+    "hand": ["qianye-shou", "fengyun-shou"],
+    "strike": ["sanhua-zhang", "banruo-zhang", "pudu-zhang", "wuchang-zhang"],
+    "dodge": ["shaolin-shenfa"],
+    "parry": "varies by weapon/unarmed skill",
+    "special": ["buddhism", "literate"]
+  },
+  "武當派": {
+    "id": "wudang",
+    "name": "武當派",
+    "force": ["taiji-shengong", "yinyun-ziqi", "wudang-jiuyang"],
+    "unarmed": ["taiji-quan"],
+    "weapon": {
+      "sword": ["taiji-jian", "wudang-jian"],
+      "blade": ["taiji-dao"]
+    },
+    "cuff": ["taiji-quan"],
+    "hand": ["paiyun-shou", "huzhua-shou"],
+    "claw": ["huzhua-shou"],
+    "strike": ["wudang-zhang", "zhenshan-zhang"],
+    "dodge": ["tiyunzong"],
+    "parry": ["taiji-jian", "taiji-quan"],
+    "special": ["taoism", "literate", "array:zhenwu-jianzhen"]
+  },
+  "丐幫": {
+    "id": "gaibang",
+    "name": "丐幫",
+    "force": ["huntian-qigong", "jiaohua-neigong"],
+    "unarmed": ["changquan"],
+    "weapon": {
+      "staff": ["dagou-bang", "fengmo-zhang", "jiaohua-bangfa"],
+      "blade": ["liuhe-dao"]
+    },
+    "strike": ["dragon-strike", "xianglong-zhang", "xiaoyaoyou"],
+    "hand": ["shexing-diaoshou", "chansi-shou"],
+    "claw": ["suohou-gong"],
+    "leg": ["jueming-tui"],
+    "throwing": ["mantianhuayu"],
+    "dodge": ["feiyan-zoubi", "xiaoyaoyou"],
+    "parry": ["dagou-bang"],
+    "special": ["begging", "checking", "training"]
+  },
+  "全真教": {
+    "id": "quanzhen",
+    "name": "全真教",
+    "force": ["xiantian-gong", "quanzhen-xinfa"],
+    "unarmed": ["xiantian-gong", "kongming-quan"],
+    "weapon": {
+      "sword": ["quanzhen-jian"],
+      "whip": ["duanyun-bian"]
+    },
+    "finger": ["sun-finger", "zhongnan-zhi"],
+    "cuff": ["chunyang-quan"],
+    "strike": ["haotian-zhang", "chongyang-shenzhang"],
+    "dodge": ["jinyan-gong"],
+    "parry": ["haotian-zhang", "jinguan-yusuo", "quanzhen-jian"],
+    "special": ["taoism", "literate", "array:quanzhen-jianzhen", "array:beidou-zhenfa"]
+  },
+  "華山派": {
+    "id": "huashan",
+    "name": "華山派",
+    "force": ["zixia-gong", "huashan-xinfa"],
+    "unarmed": ["poyu-quan"],
+    "weapon": {
+      "sword": ["huashan-sword", "dugu-jiujian"],
+      "blade": ["fanliangyi-dao"]
+    },
+    "dodge": ["feiyan-huixiang"],
+    "parry": ["huashan-sword"],
+    "special": ["literate"]
+  },
+  "華山劍宗": {
+    "id": "jianzong",
+    "name": "華山劍宗",
+    "force": ["zixia-gong", "huashan-xinfa"],
+    "unarmed": ["poyu-quan"],
+    "weapon": {
+      "sword": ["huashan-sword", "dugu-jiujian", "kuaijian"]
+    },
+    "dodge": ["feiyan-huixiang"],
+    "parry": ["huashan-sword"],
+    "special": ["literate", "emphasis on sword techniques"]
+  },
+  "段氏皇族": {
+    "id": "duan",
+    "name": "段氏皇族",
+    "force": ["kurong-changong", "duanshi-xinfa", "xiantian-gong"],
+    "unarmed": ["kongming-quan"],
+    "weapon": {
+      "sword": ["duanjia-jian"],
+      "axe": ["duanyun-fu"]
+    },
+    "finger": ["sun-finger", "qiantian-zhi"],
+    "cuff": ["jinyu-quan"],
+    "strike": ["wuluo-zhang"],
+    "dodge": ["tiannan-bu"],
+    "parry": ["sun-finger", "duanjia-jian"],
+    "special": ["buddhism", "literate"]
+  },
+  "慕容世家": {
+    "id": "murong",
+    "name": "慕容世家",
+    "force": ["zihui-xinfa", "shenyuan-gong"],
+    "unarmed": ["all styles via douzhuan-xingyi"],
+    "weapon": {
+      "sword": ["murong-jianfa"],
+      "blade": ["murong-daofa"]
+    },
+    "finger": ["canhe-zhi"],
+    "cuff": ["qixing-quan"],
+    "strike": ["xingyi-zhang"],
+    "dodge": ["beidou-xianzong"],
+    "parry": ["douzhuan-xingyi"],
+    "special": ["huitong-tianxia", "can learn all Shaolin skills", "martial-cognize"]
+  },
+  "雪山寺": {
+    "id": "xueshan",
+    "name": "雪山寺",
+    "force": ["longxiang-gong", "mizong-neigong"],
+    "unarmed": ["longxiang-gong"],
+    "weapon": {
+      "sword": ["mingwang-jian"],
+      "hammer": ["riyue-lun"],
+      "staff": ["xiangmo-chu"]
+    },
+    "hand": ["dashou-yin"],
+    "cuff": ["yujiamu-quan"],
+    "dodge": ["shenkong-xing"],
+    "parry": ["riyue-lun"],
+    "special": ["lamaism", "literate"]
+  },
+  "靈鷲宮": {
+    "id": "lingjiu",
+    "name": "靈鷲宮",
+    "force": ["bahuang-gong"],
+    "unarmed": [],
+    "weapon": {
+      "sword": ["tianyu-qijian"]
+    },
+    "hand": ["zhemei-shou"],
+    "strike": ["liuyang-zhang"],
+    "dodge": ["yueying-wubu"],
+    "parry": ["liuyang-zhang", "tianyu-qijian"],
+    "special": ["fanlao-huantong", "literate"]
+  },
+  "峨嵋派": {
+    "id": "emei",
+    "name": "峨嵋派",
+    "force": ["linji-zhuang", "emei-xinfa", "emei-jiuyang"],
+    "unarmed": [],
+    "weapon": {
+      "sword": ["huifeng-jian", "emei-jian", "yitian-jian"],
+      "blade": ["yanxing-dao"]
+    },
+    "finger": ["tiangang-zhi"],
+    "hand": ["jieshou-jiushi"],
+    "strike": ["jinding-zhang", "piaoxue-zhang"],
+    "dodge": ["zhutian-bu"],
+    "parry": ["huifeng-jian"],
+    "special": ["buddhism", "mahayana", "literate"]
+  },
+  "桃花島": {
+    "id": "taohua",
+    "name": "桃花島",
+    "force": ["bibo-shengong", "luoying-xinfa"],
+    "unarmed": ["xuanfeng-tui"],
+    "weapon": {
+      "sword": ["luoying-shenjian", "yuxiao-jianfa"],
+      "whip": ["canglang-bian"]
+    },
+    "finger": ["tanzhi-shentong", "canglang-zhi"],
+    "hand": ["lanhua-shou"],
+    "strike": ["luoying-shenzhang", "pikong-zhang"],
+    "throwing": ["tanzhi-shentong"],
+    "dodge": ["luoying-shenfa", "anying-fuxiang"],
+    "parry": ["tanzhi-shentong", "luoying-shenjian"],
+    "special": ["qimen-wuxing", "qimen-xuanshu", "medical:taohua-yaoli", "count", "mathematics", "chuixiao-jifa:bihai-chaosheng"]
+  },
+  "神龍教": {
+    "id": "shenlong",
+    "name": "神龍教",
+    "force": ["shenlong-xinfa"],
+    "unarmed": ["shedao-qigong"],
+    "weapon": {
+      "staff": ["shedao-qigong"],
+      "sword": ["shenlong-jian"]
+    },
+    "hand": ["shenlong-bashi"],
+    "strike": ["huagu-mianzhang"],
+    "finger": ["yingxiong-sanzhao"],
+    "dodge": ["yixing-bufa"],
+    "parry": ["shedao-qigong"],
+    "special": ["shenlong-dafa", "shenlong-mixin", "busi-shenlong", "medical"]
+  },
+  "古墓派": {
+    "id": "gumu",
+    "name": "古墓派",
+    "force": ["yunv-xinfa", "yunv-xinjing", "suxin-jue"],
+    "unarmed": ["meinv-quan"],
+    "weapon": {
+      "sword": ["yunv-jian"],
+      "whip": ["yinsuo-jinling"]
+    },
+    "strike": ["tianluo-diwang"],
+    "throwing": ["yufeng-zhen"],
+    "dodge": ["yunv-shenfa"],
+    "parry": ["meinv-quan", "yunv-jian"],
+    "special": ["taoism", "literate", "medical", "taishang-wangqing", "qufeng"]
+  },
+  "星宿派": {
+    "id": "xingxiu",
+    "name": "星宿派",
+    "force": ["huagong-dafa", "guixi-gong"],
+    "unarmed": [],
+    "weapon": {
+      "staff": ["tianshan-zhang"],
+      "whip": ["chanhun-suo"]
+    },
+    "strike": ["chousui-zhang"],
+    "claw": ["sanyin-zhua"],
+    "throwing": ["feixing-shu"],
+    "dodge": ["zhaixing-gong"],
+    "parry": ["tianshan-zhang"],
+    "special": ["poison:xingxiu-qishu", "medical", "bingchan-gong"]
+  },
+  "逍遙派": {
+    "id": "xiaoyao",
+    "name": "逍遙派",
+    "force": ["beiming-shengong", "xiaoyao-xinfa", "xiaowuxiang"],
+    "unarmed": [],
+    "weapon": {
+      "sword": ["liuyue-jian"],
+      "blade": ["ruyi-dao"]
+    },
+    "hand": ["zhemei-shou", "qingyun-shou"],
+    "strike": ["liuyang-zhang", "panyang-zhang"],
+    "dodge": ["lingbo-weibu", "feiyan-zoubi"],
+    "parry": ["zhemei-shou"],
+    "special": ["medical:xiaoyao-qixue", "literate", "mathematics", "drawing", "chuixiao-jifa", "tanqin-jifa", "chess", "calligraphy"]
+  },
+  "血刀門": {
+    "id": "xuedao",
+    "name": "血刀門",
+    "force": ["xuehai-mogong", "mizong-neigong"],
+    "unarmed": [],
+    "weapon": {
+      "blade": ["xuedao-daofa"],
+      "sword": ["mingwang-jian"]
+    },
+    "hand": ["dashou-yin"],
+    "cuff": ["yujiamu-quan"],
+    "dodge": ["shenkong-xing"],
+    "parry": ["xuedao-daofa"],
+    "special": ["lamaism", "literate"]
+  },
+  "歐陽世家": {
+    "id": "ouyang",
+    "name": "歐陽世家",
+    "force": ["hamagong"],
+    "unarmed": [],
+    "weapon": {
+      "staff": ["lingshe-zhangfa"]
+    },
+    "cuff": ["lingshe-quan"],
+    "finger": ["shedu-qiqiao"],
+    "strike": ["hamagong"],
+    "dodge": ["chanchu-bufa"],
+    "parry": ["lingshe-zhangfa"],
+    "special": ["poison:shedu-qiqiao", "medical:baituo-michuan", "training", "guzheng-jifa:xiyu-tiezheng"]
+  },
+  "關外胡家": {
+    "id": "hu",
+    "name": "關外胡家",
+    "force": ["lengyue-shengong"],
+    "unarmed": [],
+    "weapon": {
+      "blade": ["hujia-daofa", "baisheng-daofa"]
+    },
+    "cuff": ["hujia-quan"],
+    "strike": ["tianchang-zhang"],
+    "throwing": ["mantian-xing"],
+    "dodge": ["sixiang-bufa"],
+    "parry": ["hujia-daofa"],
+    "special": ["literate", "daojian-xiaotianwai"]
+  },
+  "唐門世家": {
+    "id": "tangmen",
+    "name": "唐門世家",
+    "force": ["biyun-xinfa"],
+    "unarmed": [],
+    "weapon": {
+      "sword": ["wuzhan-mei"]
+    },
+    "hand": ["boyun-suowu"],
+    "throwing": ["tangmen-throwing"],
+    "dodge": ["qiulin-shiye"],
+    "parry": ["wuzhan-mei"],
+    "special": ["poison:tangmen-poison", "medical:tangmen-medical", "luoxian-jue"]
+  },
+  "魔教": {
+    "id": "mojiao",
+    "name": "魔教",
+    "force": ["moshen-xinfa", "chiyou-kuangzhanjue"],
+    "unarmed": [],
+    "weapon": {
+      "blade": ["moshen-daofa", "moon-blade"],
+      "sword": ["moshen-jianfa"]
+    },
+    "cuff": ["moshen-quanfa"],
+    "strike": ["moshen-zhangfa"],
+    "dodge": ["moshen-bufa", "jiutian-xiaoyaobu"],
+    "parry": ["moon-blade"],
+    "special": ["medical:mojiao-medical", "motun-tianxia"]
+  }
+}

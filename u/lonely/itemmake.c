@@ -33,18 +33,18 @@ nosave int *levels = ({ LEVEL1, LEVEL2, LEVEL3, LEVEL4,
 nosave int performing  = 0;
 nosave int attack_lvl  = 0;
 nosave int defense_lvl = 0;
-37      static mapping qianghua_level = ([ 
-38              "1":       "★", 
-39              "2":       "★★", 
-40              "3":       "★★★", 
-41              "4":       "★★★★", 
-42              "5":       "★★★★★", 
-43              "6":       "★★★★★★", 
-44              "7":       "★★★★★★★", 
-45              "8":       "★★★★★★★★", 
-46              "9":       "★★★★★★★★★", 
-47              "10":      "★★★★★★★★★★", 
-48      ]); 
+37      static mapping qianghua_level = ([
+38              "1":       "★",
+39              "2":       "★★",
+40              "3":       "★★★",
+41              "4":       "★★★★",
+42              "5":       "★★★★★",
+43              "6":       "★★★★★★",
+44              "7":       "★★★★★★★",
+45              "8":       "★★★★★★★★",
+46              "9":       "★★★★★★★★★",
+47              "10":      "★★★★★★★★★★",
+48      ]);
 
 int is_stay_in_room() { return attack_lvl >= ULTRA_LEVEL; }
 
@@ -344,24 +344,24 @@ string weapon_long()
               result += HIW "魔力改善值：" + query("magic/power") + "\n" NOR;
               result += HIW "魔力屬性：" + chinese_s(query("magic/type"))  + "\t" NOR;
               result += HIW "人器融合度：" + query("magic/blood") + "\n" NOR;
-355                   // 顯示強化等級 
-356                   if (query("qh_level")) 
-357                   { 
-358                             result +=  HIY "強化等級：" + qianghua_level[sprintf("%d", query("qh_level"))] + "\n" NOR; 
-359                             if (query("weapon_prop/" + item_owner()+ "_potlimit")) 
-360                             { 
-361                                     if (this_object()->query("armor_type") == "hands") 
-362                                             weapon_type = "armor_prop"; 
-363                                     else 
-364                                             weapon_type = "weapon_prop"; 
-365                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,  
-366                                                       "潛能上限：",  
-367                                                       sprintf("+%d", query(weapon_type + "/" + item_owner()+ "_potlimit")) + 
-368                                                        "%", 
-369                                                       "擴展加成：",  
-370                                                       sprintf("+%d", 0) + "%"); 
-371                             } 
-372                   } 
+355                   // 顯示強化等級
+356                   if (query("qh_level"))
+357                   {
+358                             result +=  HIY "強化等級：" + qianghua_level[sprintf("%d", query("qh_level"))] + "\n" NOR;
+359                             if (query("weapon_prop/" + item_owner()+ "_potlimit"))
+360                             {
+361                                     if (this_object()->query("armor_type") == "hands")
+362                                             weapon_type = "armor_prop";
+363                                     else
+364                                             weapon_type = "weapon_prop";
+365                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,
+366                                                       "潛能上限：",
+367                                                       sprintf("+%d", query(weapon_type + "/" + item_owner()+ "_potlimit")) +
+368                                                        "%",
+369                                                       "擴展加成：",
+370                                                       sprintf("+%d", 0) + "%");
+371                             }
+372                   }
 37
         result += HIG "\n---------------鑲嵌擴展--------------\n" NOR;
         result += HIW "鑲嵌槽使用：  " + sprintf("%d", 1 + enchase_number) + "/" +
@@ -377,14 +377,14 @@ string weapon_long()
                                           key_objects[i],
                                           enchase_objects[key_objects[i]]["cur_firm"]);
               result += "-------------------------------------\n";
-388                   // 如果存在裝備強化效果成功率加成則顯示 
-389                   if (this_object()->query("suc_points_add")) 
-390                             result += HIG "目前該裝備強化時可增" + HIY +  
-391                                       sprintf("%d", this_object()->query("suc_points_add")) +  
-392                                       HIG "%的成功率（僅一次有效）。\n" NOR; 
-393                   // 如果存在裝備強化效果失敗後不掉級則顯示 
-394                    if (this_object()->query("no_reduce_level")) 
-395                             result += HIR "目前該裝備強化時失敗後不會損失強化等級（僅一次有效）！\n" NOR; 
+388                   // 如果存在裝備強化效果成功率加成則顯示
+389                   if (this_object()->query("suc_points_add"))
+390                             result += HIG "目前該裝備強化時可增" + HIY +
+391                                       sprintf("%d", this_object()->query("suc_points_add")) +
+392                                       HIG "%的成功率（僅一次有效）。\n" NOR;
+393                   // 如果存在裝備強化效果失敗後不掉級則顯示
+394                    if (this_object()->query("no_reduce_level"))
+395                             result += HIR "目前該裝備強化時失敗後不會損失強化等級（僅一次有效）！\n" NOR;
 
         return result;
 }
@@ -419,29 +419,29 @@ string armor_long()
               result += HIW "堅固修正： " + query("bless") + "\t" NOR;
               result += HIW "攻·防修正：" + sprintf("%d", query("bless") * 10 + enchase_points) + "\n" NOR;
               result += HIW "聖化次數： " + query("bless") + "\n" NOR;
-430                   // 顯示強化等級 
-431                   if (query("qh_level")) 
-432                   { 
-433                             result += HIY "強化等級：" + qianghua_level[sprintf("%d", query("qh_level"))] + "\n" NOR; 
-434                             if (query("armor_prop/qh_exp")) 
-435                             { 
-436                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,  
-437                                                       "經驗加成：", sprintf("%d", query("armor_prop/qh_exp")) + "%", 
-438                                                       "潛能加成：", sprintf("%d", query("armor_prop/qh_pot")) + "%"); 
-439                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,  
-440                                                       "體會加成：", sprintf("%d", query("armor_prop/qh_mar")) + "%", 
-441                                                       "擴展加成：", sprintf("%d", query("armor_prop/qh_nono")) + "%");                              
-442                             } 
-443                             if (query("armor_prop/" + item_owner()+ "_potlimit")) 
-444                             { 
-445                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,  
-446                                                       "潛能上限：",  
-447                                                       sprintf("+%d", query("armor_prop/" + item_owner()+ "_potlimit")) + 
-448                                                        "%", 
-449                                                       "擴展加成：",  
-450                                                       sprintf("+%d", 0) + "%"); 
-451                             } 
-452                   } 
+430                   // 顯示強化等級
+431                   if (query("qh_level"))
+432                   {
+433                             result += HIY "強化等級：" + qianghua_level[sprintf("%d", query("qh_level"))] + "\n" NOR;
+434                             if (query("armor_prop/qh_exp"))
+435                             {
+436                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,
+437                                                       "經驗加成：", sprintf("%d", query("armor_prop/qh_exp")) + "%",
+438                                                       "潛能加成：", sprintf("%d", query("armor_prop/qh_pot")) + "%");
+439                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,
+440                                                       "體會加成：", sprintf("%d", query("armor_prop/qh_mar")) + "%",
+441                                                       "擴展加成：", sprintf("%d", query("armor_prop/qh_nono")) + "%");
+442                             }
+443                             if (query("armor_prop/" + item_owner()+ "_potlimit"))
+444                             {
+445                                     result += sprintf(HIY "%-10s%-12s%-10s%-10s\n" NOR,
+446                                                       "潛能上限：",
+447                                                       sprintf("+%d", query("armor_prop/" + item_owner()+ "_potlimit")) +
+448                                                        "%",
+449                                                       "擴展加成：",
+450                                                       sprintf("+%d", 0) + "%");
+451                             }
+452                   }
 
         result += HIG "\n---------------鑲嵌擴展--------------\n" NOR;
         result += HIW "鑲嵌槽使用：  " + sprintf("%d", enchase_number) + "/" +
@@ -460,20 +460,20 @@ string armor_long()
     {
       log_file("srb_bug", base_name(this_object()) + "\n");
     }
-466                   // 如果存在裝備強化效果成功率加成則顯示 
-467                   if (this_object()->query("suc_points_add")) 
-468                             result += HIG "目前該裝備強化時可增" + HIY +  
-469                                       sprintf("%d", this_object()->query("suc_points_add")) +  
-470                                       HIG "%的成功率（僅一次有效）。\n" NOR; 
-471                   // 如果存在裝備強化效果失敗後不掉級則顯示 
-472                    if (this_object()->query("no_reduce_level")) 
-473                             result += HIR "目前該裝備強化時失敗後不會損失強化等級（僅一次有效）！\n" NOR; 
-474      
-475                     if (this_object()->query("enchase_all") >= 11) 
-476                     { 
-477                             log_file("srb_bug", base_name(this_object()) + "\n"); 
-478                     } 
-479      
+466                   // 如果存在裝備強化效果成功率加成則顯示
+467                   if (this_object()->query("suc_points_add"))
+468                             result += HIG "目前該裝備強化時可增" + HIY +
+469                                       sprintf("%d", this_object()->query("suc_points_add")) +
+470                                       HIG "%的成功率（僅一次有效）。\n" NOR;
+471                   // 如果存在裝備強化效果失敗後不掉級則顯示
+472                    if (this_object()->query("no_reduce_level"))
+473                             result += HIR "目前該裝備強化時失敗後不會損失強化等級（僅一次有效）！\n" NOR;
+474
+475                     if (this_object()->query("enchase_all") >= 11)
+476                     {
+477                             log_file("srb_bug", base_name(this_object()) + "\n");
+478                     }
+479
 
         return result;
 }
@@ -540,20 +540,20 @@ int apply_damage()
   {
     log_file("srb_bug", base_name(this_object()) + "\n");
   }
-546      
-547             // 在這裡添加強化後對鑲嵌物品提升的傷害加成 
-548             // 強化等級1-10級，每級遞增x% 
-549             enchase_points = ITEM_D->qianghua_enchase_points("weapon", enchase_points, query("qh_level")); 
-550              
-551             // 增加潛能加成 
-552             if (query("qh_level")) 
-553             { 
-554                     this_object()->set("weapon_prop/" + item_owner()+ "_potlimit",  
-555                                                enchase_number * query("qh_level") / 2); 
-556                     this_object()->set("armor_prop/" + item_owner()+ "_potlimit",  
-557                                                enchase_number * query("qh_level") / 2);                                        
-558             } 
-559              
+546
+547             // 在這裡添加強化後對鑲嵌物品提升的傷害加成
+548             // 強化等級1-10級，每級遞增x%
+549             enchase_points = ITEM_D->qianghua_enchase_points("weapon", enchase_points, query("qh_level"));
+550
+551             // 增加潛能加成
+552             if (query("qh_level"))
+553             {
+554                     this_object()->set("weapon_prop/" + item_owner()+ "_potlimit",
+555                                                enchase_number * query("qh_level") / 2);
+556                     this_object()->set("armor_prop/" + item_owner()+ "_potlimit",
+557                                                enchase_number * query("qh_level") / 2);
+558             }
+559
 
 
         return d + p + enchase_points * 2;
@@ -592,84 +592,84 @@ int apply_armor()
     log_file("srb_bug", base_name(this_object()) + "\n");
   }
   // 10孔鑲嵌luhua zhijing 提高傷害40
-597             // 披風護腕強化後提升傷害 
-598             if (this_object()->query("armor_type") == "wrists"|| this_object()->query("armor_type") == "surcoat") 
-599             { 
-600                     this_object()->set("armor_prop/damage", 0); 
-601                     if (enchase_number > 0) 
-602                     { 
-603                              
-604                             for (i = 0; i < enchase_number; i ++ ) 
-605                             { 
-606                                     // 是否鑲嵌10孔寶石 
-607                                     if (enchase_objects[key_objects[i]]["spe_data"]["luhua-zhijing"]) 
-608                                     { 
-609                                             // LHZJ基本+4000，再計算出強化後的效果 
-610                                             this_object()->set("armor_prop/damage", 4000); 
-611                                     } 
-612                             } 
-613                             // 計算披風的強化傷害 
-614                             if (this_object()->query("armor_type") == "surcoat") 
-615                             { 
-616                                     this_object()->add("armor_prop/damage", 
-617                                     ITEM_D->qianghua_enchase_points("surcoat", enchase_number, query("qh_level"))); 
-618                                      
-619                                     // 披風對潛能上限加成 公式：鑲嵌數*強化等級/2% 
-620                                     if (query("qh_level")) 
-621                                     { 
-622                                             // 設置了數值，也保持了擁有者有效 
-623                                             this_object()->set("armor_prop/" + item_owner()+ "_potlimit",  
-624                                                                 enchase_number * query("qh_level") / 2); 
-625                                     } 
-626                                      
-627                             } 
-628                             // 計算護腕的傷害 
-629                             if (this_object()->query("armor_type") == "wrists") 
-630                             { 
-631                                     this_object()->add("armor_prop/damage", 
-632                                     ITEM_D->qianghua_enchase_points("wrists", enchase_number, query("qh_level"))); 
-633      
-634                                     /*護腕對經驗，潛能和體會的加成 
-635                                       -- 經驗加成：每級強化等比增加10%的經驗加成， 10級強化可 
-636                                      增加100%經驗加成。 
-637                                     -- 潛能加成：前5級強化每級增加4%的潛能加成，6到10級強化 
-638                                      每級增加16%的潛能加成。 
-639                                      10級強化可增加100%的潛能加成。 
-640                                     -- 體會加成：前5級強化每級增加2%的潛能加成，6到10級強化 
-641                                     每級增加8%的潛能加成。10級強化可增加50%的潛能加成。 
-642                                     */ 
-643                                     if (query("qh_level")) 
-644                                     { 
-645                                             this_object()->set("armor_prop/qh_exp", query("qh_level")*3); 
-646                                             if (query("qh_level") <= 5) 
-647                                             { 
-648                                                     this_object()->set("armor_prop/qh_pot", query("qh_level")*2); 
-649                                                     this_object()->set("armor_prop/qh_mar", query("qh_level")*2); 
-650                                                     // 設置擁有者 
-651                                                     this_object()->set("armor_prop/" + item_owner()+ "_wrists", 1); 
-652                                             } 
-653                                             else 
-654                                             { 
-655                                                     this_object()->set("armor_prop/qh_pot",  
-656                                                       5 * 2 + (query("qh_level") - 5)*4); 
-657                                                     this_object()->set("armor_prop/qh_mar",  
-658                                                       5 * 2 + (query("qh_level") - 5)*3); 
-659                                                     // 設置擁有者 
-660                                                     this_object()->set("armor_prop/" + item_owner()+ "_wrists", 1); 
-661                                             } 
-662                                             /* 每個鑲嵌額外提升 
-663                                             每個鑲嵌物可額外再提升經驗加成3% 
-664                                             每個鑲嵌物可額外再提升2%的潛能加成 
-665                                             每個鑲嵌物可額外提升1%的體會加成 
-666                                             */ 
-667                                             this_object()->add("armor_prop/qh_exp", enchase_number*3); 
-668                                             this_object()->add("armor_prop/qh_pot", enchase_number*2); 
-669                                             this_object()->add("armor_prop/qh_mar", enchase_number*1); 
-670                                              
-671                                     } 
-672                             } 
-673                     } 
-674             } 
+597             // 披風護腕強化後提升傷害
+598             if (this_object()->query("armor_type") == "wrists"|| this_object()->query("armor_type") == "surcoat")
+599             {
+600                     this_object()->set("armor_prop/damage", 0);
+601                     if (enchase_number > 0)
+602                     {
+603
+604                             for (i = 0; i < enchase_number; i ++ )
+605                             {
+606                                     // 是否鑲嵌10孔寶石
+607                                     if (enchase_objects[key_objects[i]]["spe_data"]["luhua-zhijing"])
+608                                     {
+609                                             // LHZJ基本+4000，再計算出強化後的效果
+610                                             this_object()->set("armor_prop/damage", 4000);
+611                                     }
+612                             }
+613                             // 計算披風的強化傷害
+614                             if (this_object()->query("armor_type") == "surcoat")
+615                             {
+616                                     this_object()->add("armor_prop/damage",
+617                                     ITEM_D->qianghua_enchase_points("surcoat", enchase_number, query("qh_level")));
+618
+619                                     // 披風對潛能上限加成 公式：鑲嵌數*強化等級/2%
+620                                     if (query("qh_level"))
+621                                     {
+622                                             // 設置了數值，也保持了擁有者有效
+623                                             this_object()->set("armor_prop/" + item_owner()+ "_potlimit",
+624                                                                 enchase_number * query("qh_level") / 2);
+625                                     }
+626
+627                             }
+628                             // 計算護腕的傷害
+629                             if (this_object()->query("armor_type") == "wrists")
+630                             {
+631                                     this_object()->add("armor_prop/damage",
+632                                     ITEM_D->qianghua_enchase_points("wrists", enchase_number, query("qh_level")));
+633
+634                                     /*護腕對經驗，潛能和體會的加成
+635                                       -- 經驗加成：每級強化等比增加10%的經驗加成， 10級強化可
+636                                      增加100%經驗加成。
+637                                     -- 潛能加成：前5級強化每級增加4%的潛能加成，6到10級強化
+638                                      每級增加16%的潛能加成。
+639                                      10級強化可增加100%的潛能加成。
+640                                     -- 體會加成：前5級強化每級增加2%的潛能加成，6到10級強化
+641                                     每級增加8%的潛能加成。10級強化可增加50%的潛能加成。
+642                                     */
+643                                     if (query("qh_level"))
+644                                     {
+645                                             this_object()->set("armor_prop/qh_exp", query("qh_level")*3);
+646                                             if (query("qh_level") <= 5)
+647                                             {
+648                                                     this_object()->set("armor_prop/qh_pot", query("qh_level")*2);
+649                                                     this_object()->set("armor_prop/qh_mar", query("qh_level")*2);
+650                                                     // 設置擁有者
+651                                                     this_object()->set("armor_prop/" + item_owner()+ "_wrists", 1);
+652                                             }
+653                                             else
+654                                             {
+655                                                     this_object()->set("armor_prop/qh_pot",
+656                                                       5 * 2 + (query("qh_level") - 5)*4);
+657                                                     this_object()->set("armor_prop/qh_mar",
+658                                                       5 * 2 + (query("qh_level") - 5)*3);
+659                                                     // 設置擁有者
+660                                                     this_object()->set("armor_prop/" + item_owner()+ "_wrists", 1);
+661                                             }
+662                                             /* 每個鑲嵌額外提升
+663                                             每個鑲嵌物可額外再提升經驗加成3%
+664                                             每個鑲嵌物可額外再提升2%的潛能加成
+665                                             每個鑲嵌物可額外提升1%的體會加成
+666                                             */
+667                                             this_object()->add("armor_prop/qh_exp", enchase_number*3);
+668                                             this_object()->add("armor_prop/qh_pot", enchase_number*2);
+669                                             this_object()->add("armor_prop/qh_mar", enchase_number*1);
+670
+671                                     }
+672                             }
+673                     }
+674             }
 
 
   /*
@@ -751,9 +751,9 @@ mixed save_dbase_data()
                   //"new_wear_msg"     : query("new_wear_msg"),         // 可以更改裝備時的描述
                   //"new_remove_msg"   : query("new_remove_msg"),       // 可以更改取消裝備時的描述
                   "taozhuang"   : query("taozhuang"), // 套裝等級
-754                       "qh_level"    : query("qh_level"), // 強化等級 
-755                       "suc_points_add" : query("suc_points_add"), // 強化成功率增加 
-756                       "no_reduce_level": query("no_reduce_level"), // 強化失敗不掉等級                 
+754                       "qh_level"    : query("qh_level"), // 強化等級
+755                       "suc_points_add" : query("suc_points_add"), // 強化成功率增加
+756                       "no_reduce_level": query("no_reduce_level"), // 強化失敗不掉等級
 
                   ]);
 
@@ -802,16 +802,16 @@ int receive_dbase_data(mixed data)
         // 套裝
         if (intp(data["taozhuang"]))
                 set("taozhuang", data["taozhuang"]);
-805             // 強化等級 
-806             if (intp(data["qh_level"])) 
-807                     set("qh_level", data["qh_level"]);       
-808             // 強化增加成功率 
-809             if (intp(data["suc_points_add"])) 
-810                     set("suc_points_add", data["suc_points_add"]); 
-811             // 強化失敗不掉等級 
-812             if (intp(data["no_reduce_level"])) 
-813                     set("no_reduce_level", data["no_reduce_level"]); 
-814      
+805             // 強化等級
+806             if (intp(data["qh_level"]))
+807                     set("qh_level", data["qh_level"]);
+808             // 強化增加成功率
+809             if (intp(data["suc_points_add"]))
+810                     set("suc_points_add", data["suc_points_add"]);
+811             // 強化失敗不掉等級
+812             if (intp(data["no_reduce_level"]))
+813                     set("no_reduce_level", data["no_reduce_level"]);
+814
 
         if (intp(data["stable"]))
                 set("stable", data["stable"]);
@@ -841,9 +841,9 @@ int restore()
   set("enchaes", query("enchase"));
   set("enchase_all", query("enchase_all"));
   set("taozhuang", query("taozhuang")); // 套裝
-843             set("qh_level", query("qh_level")); // 強化等級 
-844             set("suc_points_add", query("suc_points_add")); // 強化成功率增加 
-845             set("no_reduce_level", query("no_reduce_level")); // 強化不掉等級        
+843             set("qh_level", query("qh_level")); // 強化等級
+844             set("suc_points_add", query("suc_points_add")); // 強化成功率增加
+845             set("no_reduce_level", query("no_reduce_level")); // 強化不掉等級
 
 /*
   // 設置新long描述
@@ -1038,7 +1038,7 @@ int do_enchase(object me, object tessera)
 
 int query_autoload() { return (query("equipped") ? query("equipped") : "kept"); }
 
-void autoload(string parameter)
+varargs void autoload(string parameter, object owner)
 {
     if (this_object()->query("enchase_all") >= 10)
     {

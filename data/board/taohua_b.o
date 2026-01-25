@@ -1,2 +1,2 @@
 #/clone/board/taohua_b.c
-dbase (["capacity":100,"name":"桃花島弟子留言板","no_get":1,"board_id":"taohua_b","notes":({(["title":"天青到此一遊","msg":"已經是正午了，風沒有一點停的意思，天空慘白慘白的。天青來桃花島一遊，此貼為證。。。人生若只如初見,何事秋風悲畫扇珍重[1;36m 我是天青，想你！請留言！[2;37;0m[2;37;0m","time":1363248234,"author":"天青","owner":"samesame",]),}),"location":"/d/taohua/jingshe","id":"board","long":"這是一個專供桃花島弟子使用的留言板。",])
+dbase (["capacity":100,"name":"桃花島弟子留言板","board_id":"taohua_b","no_get":1,"id":"board","location":"/d/taohua/jingshe","notes":({}),"long":"這是一個專供桃花島弟子使用的留言板。",])

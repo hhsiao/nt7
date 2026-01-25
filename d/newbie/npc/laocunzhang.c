@@ -97,7 +97,7 @@ LONG);
 
     set("chat_chance_combat", 200);
     set("chat_msg_combat", ({
-            (: perform_action, "sword.po" :),
+        (: perform_action, "sword.po" :),
         (: perform_action, "blade.zhenyan" :),
         (: perform_action, "blade.huo" :),
         (: perform_action, "staff.wugou" :),
@@ -118,7 +118,7 @@ LONG);
         (: exert_function, "heal": ),
         (: exert_function, "dispel": ),
         (: exert_function, "regenerate": )
-        }));
+    }));
 
     set("no_pk", 1);
     setup();
@@ -1072,7 +1072,7 @@ mixed accept_ask(object me, string topic) {
             "roar           內勁傷敵          shot        彈射毒藥\n"
         "powerup        提升戰力          shield      護體真氣\n\n" NOR +
             "    如你要使用療傷功能則可使用指令 yun heal。當然，前提是你已經學會一種內功，並\n"
-        "且內功修為和內力修為達到一定等級。\n\n" HIY;
+        "且內功修為和內力修為達到一定等級。\n\n" HIY
         "    更多相關幫助請參閱幫助文件 help force\n\n" NOR;
     } else
     if (topic == "102")     // 外功介紹
@@ -1477,8 +1477,8 @@ int do_choose(string arg) {
     {
         write("您只能選擇(choose)系統所提供的這 2 種江湖道路：\n"
             HIR "1.快意恩仇(PK)  " NOR
-                HIC "2" NOR ".江湖隱士(NOPK) ("
-                HIC "choose 1" NOR "-" HIC "2" NOR ")\n");
+            HIC "2" NOR ".江湖隱士(NOPK) ("
+            HIC "choose 1" NOR "-" HIC "2" NOR ")\n");
         return 1;
     }
 

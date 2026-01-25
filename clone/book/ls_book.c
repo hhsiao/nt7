@@ -79,7 +79,7 @@ string query_autoload() {
     me = this_object();
     return query("master_id", me);
 }
-void autoload(string arg) {
+varargs void autoload(string arg, object owner) {
     set("master_id", arg);
 }
 void owner_is_killed() {

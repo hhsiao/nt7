@@ -10,9 +10,9 @@
 // #pragma optimize
 // #pragma save_binary
 
-
-#define BIG5_PORT                       9000
-#define UTF8_PORT                       6000
+#define UTF8_PORT                       4444
+#define GBK_PORT                        5555
+#define BIG5_PORT                       6666
 #define TOMUD_PORT                      8000
 
 //-----------------------------------------------------------------------------
@@ -63,22 +63,22 @@ object connect(int port) {
         destruct(this_object());
     }
 
-    /*
-     * if (port == 5555)
-     * {
-     * set_encoding("GBK");
-     * }*/
 
-    // if( port == BIG5_PORT )
-    //         set_temp("big5", 1, login_ob);
+    if (port == GBK_PORT)
+    {
+        set_temp("preferred_encoding", "GBK", login_ob);
+        set_temp("preferred_transcoding", "Hant-Hans", login_ob);
+    } else if (port == BIG5_PORT)
+    {
+        set_temp("preferred_encoding", "BIG5", login_ob);
+    }
+    else if (port == UTF8_PORT)
+    {
+        set_temp("preferred_encoding", "UTF-8", login_ob);
+    }
 
-    // else
     // if( port == TOMUD_PORT )
     //         set_temp("tomud", 1, login_ob);
-
-    //else
-    //if( port == UTF8_PORT )
-    //      set_encoding("utf-8", login_ob);
 
     return login_ob;
 }

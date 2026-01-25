@@ -74,7 +74,7 @@ string query_autoload() {
     if(query("equipped") ) return query("name");
 }
 
-void autoload(string arg) {
+varargs void autoload(string arg, object owner) {
     set("name", arg);
     set("blood_soaked", 3);
     ::wear();

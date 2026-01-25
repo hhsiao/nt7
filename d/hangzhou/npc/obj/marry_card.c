@@ -162,7 +162,7 @@ string query_autoload() {
     return target;
 }
 
-void autoload(string arg) {
+varargs void autoload(string arg, object owner) {
     object couple_ob;
     string tmpstr, tmpstr1;
 

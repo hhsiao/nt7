@@ -1051,7 +1051,7 @@ protected void get_money_tochip(string arg, object me, string name)
 
         id=query("id", me);
 
-        if (count_lt(money, item_data[name]["min_money"]))
+        if (money < item_data[name]["min_money"])
         {
                 write("你至少要下注" + chinese_number(item_data[name]["min_money"]) + "兩黃金吧。\n");
                 input_to("get_money_tochip", me, name);

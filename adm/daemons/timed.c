@@ -474,7 +474,7 @@ void create() {
 #define BOAT_FILE      "/clone/misc/dream_boat"
 
 // 分配船隻
-void alloate_boat(int which) {
+void alloate_boat(string which) {
     object ob_boat/*, ob_old_boat*/;
     string *key_boats, *key_para;
     int i, n;

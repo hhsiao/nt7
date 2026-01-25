@@ -159,7 +159,7 @@ string query_autoload()
         return target;
 }
 
-void autoload(string arg)
+varargs void autoload(string arg, object owner)
 {
         int i;
         object couple_ob;

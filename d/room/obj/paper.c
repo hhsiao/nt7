@@ -209,7 +209,7 @@ string query_autoload() {
     return draw["type"] + "|" + draw["content"] + "|" + draw["info"];
 }
 
-void autoload(string param) {
+varargs void autoload(string param, object owner) {
     string type;
     string content;
     string info;

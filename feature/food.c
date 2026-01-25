@@ -31,7 +31,7 @@ void do_effect() {
         evaluate(func);
     if(arrayp(func) )
         for(i = 0; i < sizeof(func); i++ )
-        evaluate(func[i]);
+            evaluate(func[i]);
 }
 
 string extra_long() {

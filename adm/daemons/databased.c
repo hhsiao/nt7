@@ -374,7 +374,7 @@ int db_new_player(object ob, object user) {
 }
 
 int db_restore_all(object user) {
-    int db, n;
+    int db;
     string sql, *res;
     mixed ret;
     mapping my;
@@ -403,7 +403,7 @@ int db_restore_all(object user) {
 #endif
 
     sql = "SELECT login_dbase, f_autoload, f_dbase, f_damage, f_condition, f_business, f_mail, " +
-        "f_attack, f_skill, f_alias, f_user, char_idname FROM users WHERE id = " + DB_STR(my["id"]);
+        "f_attack, f_skill, f_alias, f_user, char_idname, f_save_ipackage FROM users WHERE id = " + DB_STR(my["id"]);
 
     ret = db_exec(db, sql);
 
@@ -422,27 +422,24 @@ int db_restore_all(object user) {
     }
 
     res = db_fetch(db, 0);
-    if(sizeof(res) < 1 )
-        n = 0;
-    else
-    {
+    if(sizeof(res) > 0 ) {
         string login_dbase, char_idname, f_autoload, f_dbase, f_damage, f_mail;
         string f_condition, f_attack, f_skill, f_alias, f_user, f_business;
-
-        n = 0;
-        login_dbase = res[n];
-        f_autoload = res[n + 1];
-        f_dbase = res[n + 2];
+        string f_save_ipackage;
+        login_dbase = res[0];
+        f_autoload = res[1];
+        f_dbase = res[2];
         //f_dbase = replace_string(f_dbase, "\\n", "\\"+"\\n");          // Added by Lonely 2011/6/10
-        f_damage = res[n + 3];
-        f_condition = res[n + 4];
-        f_business = res[n + 5];
-        f_mail = res[n + 6];
-        f_attack = res[n + 7];
-        f_skill = res[n + 8];
-        f_alias = res[n + 9];
-        f_user = res[n + 10];
-        char_idname = res[n + 11];
+        f_damage = res[3];
+        f_condition = res[4];
+        f_business = res[5];
+        f_mail = res[6];
+        f_attack = res[7];
+        f_skill = res[8];
+        f_alias = res[9];
+        f_user = res[10];
+        char_idname = res[11];
+        f_save_ipackage = res[12];
         user->set_dbase(restore_variable(f_dbase));
         user->set_autoload_info(restore_variable(f_autoload));
         user->set_CONDITION(restore_variable(f_condition));
@@ -454,8 +451,9 @@ int db_restore_all(object user) {
         user->set_SKILL(restore_variable(f_skill));
         user->set_USER(restore_variable(f_user));
         user->set_IDNAME(restore_variable(char_idname));
+        user->set_inventory_line(restore_variable(f_save_ipackage));
+        user->set_db_line(f_save_ipackage);
         if(objectp(myob)) myob->set_dbase(restore_variable(login_dbase));
-        n = 1;
     }
     return ret;
 }
@@ -522,6 +520,7 @@ int db_save_all(object user) {
     sql += ", f_skill = " + DB_STR(save_variable(user->query_SKILL()));
     sql += ", f_alias = " + DB_STR(save_variable(user->query_all_alias()));
     sql += ", f_user = " + DB_STR(save_variable(user->query_USER()));
+    sql += ", f_save_ipackage = " + DB_STR(user->get_inventory_line());
     sql += " WHERE id = " + DB_STR(my["id"]);
     ret = db_exec(db, sql);
     if(ret < 0)

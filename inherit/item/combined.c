@@ -96,7 +96,7 @@ mixed query_autoload() {
 #endif
 }
 
-void autoload(string param) {
+varargs void autoload(string param, object owner) {
     int amt;
     if(stringp(param) && sscanf(param, "%d", amt) == 1 )
         set_amount(amt);

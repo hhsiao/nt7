@@ -690,7 +690,7 @@ int do_forge(object me) {
 
 mixed query_autoload() { return (query("equipped") ? query("equipped") : "kept"); }
 
-void autoload(string parameter) {
+varargs void autoload(string parameter, object owner) {
     switch (parameter)
     {
     case "worn":

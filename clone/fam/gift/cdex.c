@@ -48,7 +48,7 @@ int do_effect(object me) {
     return 1;
 }
 
-void autoload(string param) {
+varargs void autoload(string param, object owner) {
     int amt;
 
     if (sscanf(param, "%d", amt) == 1)

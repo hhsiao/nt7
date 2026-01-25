@@ -146,7 +146,8 @@ int main(object me, string arg) {
 
         set("base_value", 0, ob);
         addn("food_remaining", -1, ob);
-        ob->do_effect(me);
+        //ob->do_effect(me);
+        ob->do_effect();
         if(query("food_remaining", ob)<1 )
         {
             message_vision("$N將剩下的" + ob->name() + "吃得乾乾淨淨。\n", me);

@@ -564,6 +564,43 @@ void update_age() {
 
 }
 
+varargs void apply_encoding(string encoding, mixed transcoding) {
+    string charset_name;
+    string enc;
+    if (!encoding) return;
+    enc = lower_case(encoding);
+    switch (enc) {
+        case "utf-8":
+            charset_name = "UTF8";
+            break;
+        case "windows-950-2000":  // BIG5 canonical name
+        case "big5":
+            charset_name = "BIG5";
+            break;
+        case "gbk":
+        case "gb2312":
+        case "gb18030":
+        case "windows-936-2000":
+            charset_name = "GBK";
+            break;
+    }
+    set_temp("preferred_encoding", enc);
+    set_temp("preferred_transcoding", transcoding);
+
+    efun::set_encoding(enc);
+    catch(efun::renegotiate_charset(charset_name));
+
+    if (stringp(transcoding)) {
+        efun::set_transcoding(transcoding);
+    } else if (charset_name == "BIG5") {
+        efun::set_transcoding();
+    }
+}
+
+string u_query_encoding() {
+    return efun::query_encoding();
+}
+
 void setup() {
     // We want set age first before new player got initialized with
     // random age.

@@ -4,7 +4,7 @@ inherit COMBINED_ITEM;
 
 string query_autoload() { return query_amount() + ""; }
 
-void autoload(string param)
+varargs void autoload(string param, object owner)
 {
         int amt;
 

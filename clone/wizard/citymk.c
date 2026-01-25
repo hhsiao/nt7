@@ -417,5 +417,5 @@ HELP_LONG);
 
 string query_autoload() { return "";}
 
-void autoload(string param)
+varargs void autoload(string param, object owner)
 {return ;}

@@ -88,7 +88,7 @@ string ask_job(string arg)
         ob_list = users();
         ob_list = filter_array(ob_list, (: filldata :));
 
-        if( count_lt(query("combat_exp", me),200000))return "「東瀛人很強悍，你還是不要去冒險了。」";
+        if( query("combat_exp", me) < 200000) return "「東瀛人很強悍，你還是不要去冒險了。」";
 
         if( query("job_done", me) == "japan")return "「東瀛人剛被擊退，一時還不會來。」";
 

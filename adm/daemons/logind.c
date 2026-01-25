@@ -32,8 +32,8 @@ nosave mapping blocks = ([]);
 
 nosave string *banned_name = ({
     "你", "你的", "我", "我的", "自己", "屁", "他", "他的", "她", "她的", "它", "它的",
-    "鬼王", "風雲", "流氓", "爸", "媽", "祖先", "祖宗", "爺", "奶", "張春龍", "毛澤東", "鄧小平", "江澤民",
-    "胡錦濤", "春龍", "【", "】", "馬克思", "恩格斯", "列寧", "抄", "手淫", "老百姓", "臨時人物", "女馬", "大便"
+    "鬼王", "風雲", "流氓", "爸", "媽", "祖先", "祖宗", "爺", "奶",
+    "【", "】", "抄", "手淫", "老百姓", "臨時人物", "系統", "管理員", "系統管理員"
 });
 
 nosave string *banned_id = ({
@@ -41,7 +41,7 @@ nosave string *banned_id = ({
     "arch", "wizard", "apprentice",
     "immortal", "player", "fuck",
     "all", "none", "cancel", "leave", "out",
-    "entry", "enter", "shit", "tmd", "tnnd"
+    "entry", "enter"
 });
 
 protected void get_id(string arg, object ob);
@@ -59,6 +59,8 @@ int check_legal_id(string arg);
 int check_legal_name(string name, int maxlen);
 int block_ip(string ip, int time, string reason);
 int unblock_ip(string ip);
+void logon(object ob);
+
 
 string resolve_ip_number(string ip_number) {
     string part, *parts;
@@ -90,6 +92,34 @@ void waiting_login(object ob, string arg) {
     input_to((: waiting_login, ob :) );
 }
 
+void wait_encoding_change(object ob, string target_encoding, mixed target_transcoding) {
+    string current_encoding = lower_case(ob->u_query_encoding());
+    string real_encoding;
+    switch(current_encoding) {
+        case "windows-950-2000":  // BIG5 canonical name
+        case "big5":
+            real_encoding = "big5";
+            break;
+        case "gbk":
+        case "gb2312":
+        case "gb18030":
+        case "windows-936-2000":
+            real_encoding = "gbk";
+            break;
+        default:
+            real_encoding = "utf-8";
+            break;
+    }
+    //write("等待轉換編碼.... 目標:" + target_encoding + " 現在:" + real_encoding + "\n");
+    if (target_encoding != real_encoding) {
+        ob->apply_encoding(target_encoding, target_transcoding);
+        call_out((: wait_encoding_change, ob, target_encoding, target_transcoding :), 1);
+        return;
+    }
+
+    logon(ob);
+}
+
 void logon(object ob) {
     mapping tmp_time;
     object *usr, *login_usr;
@@ -98,6 +128,32 @@ void logon(object ob) {
     int now_time;
     int i, wiz_cnt, ppl_cnt, ip_cnt, ban_cnt, login_cnt;
     int reg_usr, max_usr, max_ips, time1, time2;
+    string encoding;
+    string enc = lower_case(query_temp("preferred_encoding", ob));
+    string trans = query_temp("preferred_transcoding", ob);
+    string current_encoding = lower_case(ob->u_query_encoding());
+    string real_encoding;
+    switch(current_encoding) {
+        case "windows-950-2000":  // BIG5 canonical name
+        case "big5":
+            real_encoding = "big5";
+            break;
+        case "gbk":
+        case "gb2312":
+        case "gb18030":
+        case "windows-936-2000":
+            real_encoding = "gbk";
+            break;
+        default:
+            real_encoding = "utf-8";
+            break;
+    }
+    if (enc != real_encoding) {
+        ob->apply_encoding(enc, trans);
+        //write("轉換編碼.... " + enc + " vs " + real_encoding + "\n");
+        call_out((:wait_encoding_change, ob, enc, trans:), 1);
+        return;
+    }
 
     if(!SYSTEM_D->valid_login() ) {
         write(HIY + MUD_FULL_NAME + "載入中，請稍後 ...\n" NOR);
@@ -225,17 +281,24 @@ void logon(object ob) {
         input_to("get_version", ob);
     }
 
-    // if( !query_temp("big5", ob)){
-    //         write(HIC "ヘ玡才棟琌虜砰叫塊GB/BIG5э跑才棟┪鋇祅魁ノめ\n" NOR
-    //               "目前的字符集是簡體，請輸入GB/BIG5改變字符集，或直接登錄用戶。\n"
-    //               "請輸入您的英文名字(" CYN "忘記密碼請輸入「pass」" NOR ")：\n");
-    // } else {
-    //         delete_temp("big5", ob);
-    //         write(HIC "目前的字符集是繁體，請輸入GB/BIG5改變字符集，或直接登錄用戶。\n" NOR);
-    //         set_temp("big5", 1, ob);
-    //         write("目前的字符集是繁體，請輸入GB/BIG5改變字符集，或直接登錄用戶。\n");
-    //         write("請輸入您的英文名字(" CYN "忘記密碼請輸入「pass」" NOR ")：\n");
-    // }
+    encoding = query_encoding();
+    switch(encoding) {
+        case "UTF-8":
+        case "utf-8":
+            write(HIC "目前使用萬國碼(UTF8)，請輸入UTF8/BIG5/GBK來更換編碼，或直接登綠用戶。\n" NOR);
+            break;
+        case "windows-950-2000":  // BIG5 canonical name
+        case "Big5":
+        case "BIG5":
+            write(HIC "目前使用繁體編碼(BIG5)，請輸入UTF8/BIG5/GBK來更換編碼，或直接登綠用戶。\n" NOR);
+            break;
+        case "GBK":
+        case "GB2312":
+        case "GB18030":
+        case "windows-936-2000":
+            write(HIC "目前使用簡體編碼(GBK)，請輸入UTF8/BIG5/GBK來更換編碼，或直接登綠用戶。\n" NOR);
+            break;
+    }
     write(HIC "請輸入您的英文名字(" CYN "忘記密碼請輸入「pass」" NOR ")：\n");
     input_to((: get_id :), ob );
 }
@@ -359,32 +422,47 @@ LONG ;
 protected void get_id(string arg, object ob) {
     object *usr;
     int i, flag;
+    string encoding;
 #ifdef DB_SAVE
     string where;
     mixed  res;
 #endif
 
     arg = lower_case(arg);
-
-    if(arg == "big5" ) {
-        if(query_temp("big5", ob) ) {
-            write("請輸入您的英文ID：\n");
-            input_to("pass_id", ob);
+    encoding = query_encoding();
+    switch(arg) {
+        case "big5":
+            if (encoding == "big5") {
+                write("您現在已經是繁體編碼(BIG5)了，請直接輸入您的英文名字：\n");
+                input_to("get_id", ob);
+                return;
+            }
+            set_temp("preferred_encoding", "BIG5", ob);
+            delete_temp("preferred_transcoding", ob);
+            logon(ob);
             return;
-        }
-        set_temp("big5", 1, ob);
-        logon(ob);
-        return;
-    } else if(arg == "gb" ) {
-        if(!query_temp("big5", ob) ) {
-            write("請輸入您的英文ID：\n");
-            input_to("pass_id", ob);
+        case "gbk":
+            if (encoding == "gbk") {
+                write("您現在已經是簡體編碼(GBK)了，請直接輸入您的英文名字：\n");
+                input_to("get_id", ob);
+                return;
+            }
+            set_temp("preferred_encoding", "GBK", ob);
+            set_temp("preferred_transcoding", "Hant-Hans", ob);
+            logon(ob);
             return;
-        }
-        delete_temp("big5", ob);
-        logon(ob);
-        return;
-    } else if(arg == "pass" ) {
+        case "utf8":
+            if (encoding == "utf-8") {
+                write("您現在已經是萬國編碼(UTF8)了，請直接輸入您的英文名字：\n");
+                input_to("get_id", ob);
+                return;
+            }
+            set_temp("preferred_encoding", "UTF-8", ob);
+            //set_temp("preferred_transcoding", "UTF-8", ob);
+            logon(ob);
+            return;
+    }
+    if(arg == "pass" ) {
         write("請輸入您的英文ID：\n");
         input_to("pass_id", ob);
         return;
@@ -1280,6 +1358,7 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
     object login_ob, *users;
     mapping marry;
     mixed err;
+    string enc, trans;
 
     if(!is_root(previous_object()) ) {
         if(objectp(ob) ) call_out("destruct_ob", 0, ob);
@@ -1331,7 +1410,18 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
         return;
     }
 
-    if(interactive(ob) ) exec(user, ob);
+    if(interactive(ob) ) {
+        // Get encoding from login object's temp storage
+        enc = query_temp("preferred_encoding", ob);
+        trans = query_temp("preferred_transcoding", ob);
+
+        exec(user, ob);
+
+        // Apply encoding to user object (now interactive)
+        if (enc) {
+            user->apply_encoding(enc, trans);
+        }
+    }
     user->setup();
 
     if(query("age", ob) == 14 ) {
@@ -1609,7 +1699,7 @@ varargs void reconnect(object ob, object user, int silent)
 {
     //      string sql,ip_number;
     //      string place,address;
-    string msg;
+    string msg, enc, trans;
     //      string *ret;
     int net_dead_time = query_temp("net_dead_time", user);
     string *msg_data = user->query_last_msg();
@@ -1625,7 +1715,15 @@ varargs void reconnect(object ob, object user, int silent)
     else
         delete_temp("tomud", user);
 
+    enc = query_temp("preferred_encoding", ob);
+    trans = query_temp("preferred_transcoding", ob);
+
     exec(user, ob);
+
+    if (enc) {
+        user->apply_encoding(enc, trans);
+    }
+
     user->reconnect();
 
     //if( !silent && (!wizardp(user) || !query("env/invisible", user))){

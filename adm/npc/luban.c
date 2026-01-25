@@ -1804,7 +1804,7 @@ private int quest_user(object me)
 {
     message_vision("魯班對$N說道：好，來，咱們仔細談談！\n", me);
     // 詢問房屋名稱
-    luban_say("先告訴我你想建的房子叫什麼名字(answer name)。\n"
+    luban_say("先告訴我你想建的房子叫什麼名字(2到12個中文字 answer name)。\n"
                 "你若是不想談了(stop)，告訴我也無妨。\n");
     set_temp("contract/luban/questing", "quest_name", me);
     return 1;
@@ -1860,7 +1860,7 @@ private int check_name(object me, string arg)
     set_temp("contract/luban/name", arg, me);
 
     luban_say("請確定你的房屋的代號(3到10個英文字母)，考慮好了就回"
-                "答我(answer id)。\n");
+              "答我(answer id)。\n");
     set_temp("contract/luban/questing", "quest_id", me);
     return 1;
 }
@@ -1925,8 +1925,8 @@ private int check_legal_name(string name, string position)
 {
     object ob;
 
-    if ((strlen(name) < 4) || (strlen(name) > 12 )) {
-        write("對不起，你房屋的名字必須是 2 到 6 箇中文字。\n");
+    if ((strlen(name) < 2) || (strlen(name) > 12 )) {
+        write("對不起，你房屋的名字必須是 2 到 12 中文字。\n");
         return 0;
     }
 
@@ -2695,7 +2695,7 @@ private void create_room(object me)
         enter_receive = 0;
         filename = to_player(player_id, filesp[names[i]]);
         dstfile = "// File(" + to_player(player_id, filesp[names[i]]) + ")" +
-                    " of " + player_id + "'s room\n// Create by LUBAN written by Doing Lu\n";
+                    " of " + player_id + "'s room\n// Create by LUBAN\n";
         for (k = 0; k < sizeof(content); k++)
         {
             if (strsrch(content[k], "LONG") != -1)  // 查到了一個LONG標誌
@@ -2825,7 +2825,7 @@ private void create_room(object me)
     // 創建玩家房屋的鑰匙文件
     filename = file_dir(player_id) + "key.c";
     dstfile = "// File(" + filename + ")" +
-                " of " + player_id + "'s key\n// Create by LUBAN written by Doing Lu\n";
+                " of " + player_id + "'s key\n// Create by LUBAN\n";
     dstfile += @KEY
 
 #include <ansi.h>

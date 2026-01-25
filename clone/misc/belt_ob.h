@@ -222,7 +222,7 @@ mixed save_dbase_data() {
 }
 
 mixed query_autoload() { return (query("equipped") ? query("equipped") : "kept"); }
-void autoload(string parameter) {
+varargs void autoload(string parameter, object owner) {
     if(parameter == "worn" )
         this_object()->wear();
 }

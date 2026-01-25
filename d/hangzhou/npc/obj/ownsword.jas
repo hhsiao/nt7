@@ -67,7 +67,7 @@ string query_autoload()
         sscanf(swordname,"%s",target);
         return target;
 }
-void autoload(string arg)
+varargs void autoload(string arg, object owner)
 {
         object me = this_player();
         query_temp("done_s", me);

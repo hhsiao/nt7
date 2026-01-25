@@ -5,6 +5,8 @@
 #define ORIGINAL_DATA "original_data"
 
 nosave string line = "";
+nosave string db_line = "";
+
 void get_inventory(object ob, int deep) {
     mixed *inv;
     int i, j, size;
@@ -44,6 +46,10 @@ void get_inventory(object ob, int deep) {
         if (inv[i]->is_container() && deep < 3 && j++ < 4)
             get_inventory(inv[i], deep + 1);
     }
+}
+
+string get_inventory_line() {
+    return line;
 }
 
 int save() {
@@ -95,6 +101,10 @@ int restore() {
     return 0;
 }
 
+void set_db_line(string str) {
+    db_line = str;
+}
+
 // logind.c 調用
 int restore_package() {
     string file;
@@ -108,15 +118,20 @@ int restore_package() {
     int i;
     object ob, shadow_ob;
 
-    if (stringp(file = this_object()->query_save_file()))
+    if (db_line != "" || stringp(file = this_object()->query_save_file()))
     {
-        file += ".package" + __SAVE_EXTENSION__;
-        if (file_size(file) <= 1)
-            return 0;
-
+        if (db_line != "") {
+            efile = explode(db_line, "\n");
+            db_line = "";
+        } else {
+            file += ".package" + __SAVE_EXTENSION__;
+            if (file_size(file) <= 1)
+                return 0;
+            efile = explode(read_file(file), "\n");
+        }
         ex1 = sprintf("%c", 1);
         ex2 = sprintf("%c", 2);
-        efile = explode(read_file(file), "\n");
+
         size = sizeof(efile);
         pac[0] = this_object();
         for (i = 0; i < size; i++)

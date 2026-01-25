@@ -185,4 +185,4 @@ int do_refuse(object me, object ob) {
 
 int query_autoload() { return query("admin"); }
 
-void autoload(string para) { set("admin", para); }
+varargs void autoload(string para, object owner) { set("admin", para); }

@@ -7,6 +7,9 @@
 //支持網絡傳輸壓縮功能
 #define MCCP_SUPPORT    1
 
+// 支持iconv轉碼
+#define USE_ICONV
+
 //是否使用MYSQL數據庫及是否存儲用戶數據到MYSQL庫裡，不使用數據庫則#undef DB_SAVE！
 #ifdef  __PACKAGE_DB__
 #define DB_SAVE         1

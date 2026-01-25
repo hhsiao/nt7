@@ -1,2 +1,2 @@
 #/clone/board/player_b.c
-dbase (["capacity":100,"name":"江湖恩怨留言板","board_id":"player_b","no_get":1,"id":"board","location":"/d/city/chaguan","notes":({(["title":"第一","owner":"gigi","author":"小野百合","time":1369482227,"msg":"佛曰人有八苦:生老病死愛離別怨長久求不得放不下只願前半生無懼後半生無悔[2;37;0m",]),(["title":"第二","msg":"離八苦難，離愛恨難，無懼難，無悔難，放下難，為人乃受苦之道，非享樂之地，六道之中，哪來真正的快樂，苦中作樂而已[2;37;0m","time":1397137042,"author":"妄月眠","owner":"reaki",]),}),"long":"這是一個供玩家發洩江湖恩怨的留言板。謝絕人身攻擊。",])
+dbase (["capacity":100,"name":"江湖恩怨留言板","no_get":1,"board_id":"player_b","notes":({}),"location":"/d/city/chaguan","id":"board","long":"這是一個供玩家發洩江湖恩怨的留言板。謝絕人身攻擊。",])

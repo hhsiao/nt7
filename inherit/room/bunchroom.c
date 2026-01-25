@@ -189,7 +189,7 @@ string query_room_name(string room_name) {
     return 0;
 }
 
-int query_room_count(string room_name) {
+varargs int query_room_count(string room_name) {
     if (mapp(query("private_room")))
         return sizeof(query("private_room"));
 

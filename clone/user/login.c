@@ -5,6 +5,7 @@
 
 inherit F_DBASE;
 inherit F_SAVE;
+varargs void apply_encoding(string encoding, string transcoding);
 
 void create() {
     dbase = allocate_mapping(0);
@@ -13,14 +14,53 @@ void create() {
 }
 
 void logon() {
+
     remove_call_out("time_out");
     call_out("time_out", LOGIN_TIMEOUT);
 
-    if(interactive(this_object()) )
+    if(interactive(this_object()) ) {
         set_temp("ip_number", query_ip_number(this_object()));
+    }
 
     LOGIN_D->logon(this_object());
 }
+
+varargs void apply_encoding(string encoding, mixed transcoding) {
+    string charset_name;
+    string enc;
+    if (!encoding) return;
+    enc = lower_case(encoding);
+    switch (enc) {
+        case "utf-8":
+            charset_name = "UTF8";
+            break;
+        case "windows-950-2000":  // BIG5 canonical name
+        case "big5":
+            charset_name = "BIG5";
+            break;
+        case "gbk":
+        case "gb2312":
+        case "gb18030":
+        case "windows-936-2000":
+            charset_name = "GBK";
+            break;
+    }
+    set_temp("preferred_encoding", enc);
+    set_temp("preferred_transcoding", transcoding);
+    efun::set_encoding(enc);
+    catch(efun::renegotiate_charset(charset_name));
+
+    if (stringp(transcoding)) {
+        efun::set_transcoding(transcoding);
+    } else if (charset_name == "BIG5") {
+        efun::set_transcoding();
+    }
+}
+
+string u_query_encoding() {
+    return efun::query_encoding();
+}
+
 
 // Don't destruct(this_object()) in the net_dead() interactive apply or
 // there'll be error message: Double call to remove_interactive()
