@@ -22,9 +22,9 @@ int main(object me, string arg) {
         return notify_fail("無法讀取當前檔案");
 
     write(sprintf("請為%s設定新的描述：
-·為了房間的美觀，每一行請不要超過%s箇中文字
-·第一行的內容長度比其它行的長度少兩個中文字寬才能對齊
-·描述內容不能超過%s行\n請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n",
+．為了房間的美觀，每一行請不要超過%s箇中文字
+．第一行的內容長度比其它行的長度少兩個中文字寬才能對齊
+．描述內容不能超過%s行\n請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n",
         query("short", env), chinese_number(room_desc_l / 2), chinese_number(room_desc_h)));
 
     input_to((: get_room_long :), me, env, "" );
@@ -58,7 +58,7 @@ protected void get_room_long(string str, object who, object env, string ldesc) {
 
         if(sizeof(explode(ldesc, "\n")) > room_desc_h)
         {
-            tell_object(who, sprintf(HBCYN HIG"·描述內容不能超過%s行\n房屋修改失敗。\n"NOR, chinese_number(room_desc_h)));
+            tell_object(who, sprintf(HBCYN HIG"．描述內容不能超過%s行\n房屋修改失敗。\n"NOR, chinese_number(room_desc_h)));
             return;
         }
 
@@ -82,7 +82,7 @@ protected void get_room_long(string str, object who, object env, string ldesc) {
 
         if((n + sizeof(explode(ldesc, "\n"))) > room_desc_h)
         {
-            tell_object(who, sprintf(HBCYN HIG"·描述內容不能超過%s行\n房屋創建失敗。\n"NOR, chinese_number(room_desc_h)));
+            tell_object(who, sprintf(HBCYN HIG"．描述內容不能超過%s行\n房屋創建失敗。\n"NOR, chinese_number(room_desc_h)));
             return;
         }
     }
@@ -98,7 +98,7 @@ protected void get_room_long(string str, object who, object env, string ldesc) {
 
         if(sizeof(explode(ldesc, "\n")) > (room_desc_h -1) )
         {
-            tell_object(who, sprintf(HBCYN HIG"·描述內容不能超過%s行\n房屋創建失敗。\n"NOR, chinese_number(room_desc_h)));
+            tell_object(who, sprintf(HBCYN HIG"．描述內容不能超過%s行\n房屋創建失敗。\n"NOR, chinese_number(room_desc_h)));
             return;
         }
     }

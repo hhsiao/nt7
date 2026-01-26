@@ -31,7 +31,7 @@ inherit F_DBASE;
 #undef USE_SKILLS_COMBAT
 
 //BBLU HIY"卍"NOR CYN" $n"CYN"魅影懸梭，"CYN"周身被"HIR"血魔化影"NOR CYN"籠罩住，$N"CYN"丈外皆不可進。 "NOR BBLU HIY"卍\n"NOR;
-//BBLU HIY"卍"NOR CYN" $n"CYN"梵音聲聲，"CYN"周身被"MAG"羅摩·毗溼奴神"NOR CYN"籠罩住，$N丈外皆不可進。 "NOR BBLU HIY"卍\n"NOR;//
+//BBLU HIY"卍"NOR CYN" $n"CYN"梵音聲聲，"CYN"周身被"MAG"羅摩．毗溼奴神"NOR CYN"籠罩住，$N丈外皆不可進。 "NOR BBLU HIY"卍\n"NOR;//
 
 // 確定身體部位，根據受傷的部位確定防具的防護
 mapping armor_vs_limb = ([

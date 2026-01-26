@@ -17,7 +17,7 @@ inherit NPC;
 
 void create()
 {
-        set_name(HIM "小犬·蠢一浪" NOR, ({ "xiaoquan yilang boss",}));
+        set_name(HIM "小犬．蠢一浪" NOR, ({ "xiaoquan yilang boss",}));
         set("title", HIC "來自扶桑的刺客" NOR);
         set("gender", "男性");
         set("age", 42);

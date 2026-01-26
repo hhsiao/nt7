@@ -59,7 +59,7 @@ void jieguozi()//準許讓他把這寶物借予普通玩家賞玩，讓他覺得
 
 void create()
 {
-        set_name(HIG "菩提葉·三仙" NOR, ({ "puti ye", "puti", "ye" }));
+        set_name(HIG "菩提葉．三仙" NOR, ({ "puti ye", "puti", "ye" }));
         set_weight(100);
                 set("unit", "枚");
                 set("long", HIG "這是一枚曾經生長在佛祖證道的菩提樹上的樹葉，象徵著如海的智慧和胸懷廣闊。\n" NOR);

@@ -25,7 +25,7 @@ int perform(object me, object target)
         if ((int)me->query_skill("lonely-sword", 1) < 1000)
                 return notify_fail("你的獨孤九劍等級不夠，難以施展" + name() + "。\n");
 
-        if( BUFF_D->check_buff(me, "dgjj_jian") ) 
+        if( BUFF_D->check_buff(me, "dgjj_jian") )
                 return notify_fail("你已經運起" + name() + "了。\n");
 
         if( !objectp(weapon=query_temp("weapon", me)) )
@@ -47,18 +47,18 @@ int perform(object me, object target)
         data = ([
                 "damage": skill*3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "dgjj_jian",
                 "attr"  : "bless",
-                "name"  : "獨孤九劍·劍心通明",
+                "name"  : "獨孤九劍．劍心通明",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的劍心通明運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

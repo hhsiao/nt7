@@ -1807,7 +1807,7 @@ void enchase_attack(object item, object me, object victim, int damage)
                         set_temp("last_summon_shenlong", time(), me);
 
                         shenlong->move(environment(me));
-                        set("long", HIC + me->name() + HIC "的寶物龍女·碧海神龍的力量所召喚的神龍，威風無比。\n" NOR, shenlong);
+                        set("long", HIC + me->name() + HIC "的寶物龍女．碧海神龍的力量所召喚的神龍，威風無比。\n" NOR, shenlong);
                         shenlong->kill_ob(victim);
                         shenlong->force_me("guard " + query("id", me) );
                         break;

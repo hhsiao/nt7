@@ -63,7 +63,7 @@ int perform(object me, object target)
                         "一條"HIB"鬼影"HIR"從地底冒出，飛於半空，身行飄渺不定，時而象一火球，時而象一黑影！\n\n" NOR;
 
         addn("neili", -skill, me);
-        
+
         data = ([
                 "defense": skill/2,
         ]);
@@ -72,15 +72,15 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "ymgg_youming",
                 "attr"  : "bless",
-                "name"  : "幽冥鬼爪·幽冥鬼影",
+                "name"  : "幽冥鬼爪．幽冥鬼影",
                 "time"  : skill/5,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : HIR"地面的波動漸漸減弱，那條"HIB"鬼影"HIR"於半空徘徊了一陣，就消失在地底了！\n"NOR,
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         call_out("checking", 1, me, target);
 
         return 1;

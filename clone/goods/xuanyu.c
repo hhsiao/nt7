@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIG "九地·玄玉" NOR, ({"xuan yu", "jiudi xuanyu", "jiudi", "xuanyu"}));
+    set_name(HIG "九地．玄玉" NOR, ({"xuan yu", "jiudi xuanyu", "jiudi", "xuanyu"}));
     set_weight(50);
     set("long", HIG "一塊綠色的九地玄玉，擁有能醫重病，又能毒\n"
         "殺人於一身的至寶——九地玄玉，相傳神農氏\n"

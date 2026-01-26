@@ -75,7 +75,7 @@ int perform(object me, object target) {
             "target": me,
             "type": "yxsz_sanzhao",
             "attr": "bless",
-            "name": "英雄三招·奪命三連招",
+            "name": "英雄三招．奪命三連招",
             "time": amount / 10,
             "buff_data": data,
             "buff_msg": "",

@@ -5,7 +5,7 @@ inherit ITEM;
 inherit MI_QIN;
 
 void create() {
-    set_name(WHT "七玄流銀·空谷" NOR, ({ "konggu qin", "konggu", "qin" }));
+    set_name(WHT "七玄流銀．空谷" NOR, ({ "konggu qin", "konggu", "qin" }));
     set_weight(1000);
 
     set("unit", "把");

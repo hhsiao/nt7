@@ -211,7 +211,7 @@ mapping *qupu = ({
 
     ([ "name": "song_chun",
         "context": ({
-            HIG"            《蘭陵王·丙子送春》            \n" NOR,
+            HIG"            《蘭陵王．丙子送春》            \n" NOR,
             HIG"              送春去，\n" NOR,
             HIG"              春去人間無路。\n" NOR,
             HIG"              鞦韆外、芳草連天，\n" NOR,
@@ -259,7 +259,7 @@ mapping *qupu = ({
 
     ([ "name": "shuidiao_getou",
         "context": ({
-            HIB"             《水調歌頭·中秋 》            \n" NOR,
+            HIB"             《水調歌頭．中秋 》            \n" NOR,
             HIB"              明月幾時有，\n" NOR,
             HIB"              把酒問青天。\n" NOR,
             HIB"              不知天上宮闕，\n" NOR,

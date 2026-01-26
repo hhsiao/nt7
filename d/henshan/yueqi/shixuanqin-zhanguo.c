@@ -5,7 +5,7 @@ inherit ITEM;
 inherit MI_QIN;
 
 void create() {
-    set_name(YEL "十玄古琴·戰國" NOR, ({ "shixuan qin", "shixuan", "qin" }));
+    set_name(YEL "十玄古琴．戰國" NOR, ({ "shixuan qin", "shixuan", "qin" }));
     set_weight(700);
 
     set("unit", "把");

@@ -23,26 +23,26 @@ int exert(object me, object target)
         addn("neili", -100, me);
         msg = HIY "$N微一凝神，運起先天氣功，足底塵土泛起，全身真"
                         "氣衝關欲出。\n" NOR;
-                        
+
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "全真心法·戰神",
+                "name"  : "全真心法．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的全真心法運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

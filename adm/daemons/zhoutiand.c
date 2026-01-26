@@ -1882,7 +1882,7 @@ int do_chongxue(object me, object tongren_ob)
 
 /*
         CHANNEL_D->do_channel(this_object(), "rumor", "聽說" + HIY + me->name() + HIM "衝開了" + HIY +
-                                                       jing + "·" + xue + HIM "。\n");
+                                                       jing + "．" + xue + HIM "。\n");
 */
 
         // 獲取衝穴效果參數
@@ -2017,7 +2017,7 @@ void create_tongren_file()
                 reset_eval_cost();
                 temp = tongren_list[list[i]];
                 tongren_id = list[i];
-                tongren_name = "衝穴銅人·" + temp[0] + "·" + temp[1];
+                tongren_name = "衝穴銅人．" + temp[0] + "．" + temp[1];
                 filename = replace_string(list[i], "tongren ", "tongren_");
 
                 file = read_file("/clone/tongren/tongren.h");

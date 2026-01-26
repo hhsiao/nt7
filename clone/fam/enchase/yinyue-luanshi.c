@@ -2,11 +2,11 @@ inherit ITEM;
 #include <ansi.h>
 
 void create() {
-    set_name(HIM "陰月·亂世" NOR, ({"yinyue luanshi", "yinyue luanshi" }));
+    set_name(HIM "陰月．亂世" NOR, ({"yinyue luanshi", "yinyue luanshi" }));
     set_weight(900);
     set("unit", "塊");
     set("value", 50000);
-    set("enchase/name", "陰月·亂世");
+    set("enchase/name", "陰月．亂世");
     set("enchase/point", 70);
     set("enchase/type", "all");
     set("enchase/cur_firm", 85);

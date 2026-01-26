@@ -51,26 +51,26 @@ int perform(object me, object target)
         msg = HIB"$N運起內功心法，將真氣凝聚運往手掌，頓時$N手掌反白，掌中泛起一陣"NOR HIW"白煙"NOR HIB"。\n" NOR;
 
         addn("neili", -200, me);
-        
+
         data = ([
                 "attack": att,
                 "unarmed_damage": dam,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "wlz_piaomiao",
                 "attr"  : "bless",
-                "name"  : "五羅輕煙掌·雲煙飄渺",
+                "name"  : "五羅輕煙掌．雲煙飄渺",
                 "time"  : lvl/10,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你收起了聚起的內勁，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         COMBAT_D->do_attack(me, target, query_temp("weapon", me));
 
         call_out("checking", 1, me);
@@ -92,7 +92,7 @@ void checking(object me)
 
                 return;
         }
-        
+
         remove_call_out("checking");
         call_out("checking", 1, me);
         return;
@@ -101,6 +101,6 @@ void checking(object me)
 void remove_effect(object me)
 {
         if( !me ) return;
-        
+
         BUFF_D->debuff(me, "wlz_piaomiao", 1);
 }

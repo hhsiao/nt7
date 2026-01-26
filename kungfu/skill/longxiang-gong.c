@@ -174,7 +174,7 @@ void skill_improved(object me) {
 
     if(lvl>400 && !query("can_perform/longxiang-gong/zhen", me) )
     {
-        tell_object(me, HIR "你突然靈犀一動，領悟出數百年無人練成的真·般若極秘訣！\n" NOR);
+        tell_object(me, HIR "你突然靈犀一動，領悟出數百年無人練成的真．般若極秘訣！\n" NOR);
         set("can_perform/longxiang-gong/zhen", 1, me);
     }
 

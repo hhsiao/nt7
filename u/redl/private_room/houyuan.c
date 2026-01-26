@@ -6,9 +6,9 @@ inherit PRIVATE_ROOM;
 void create()
 {
         set("short", "化樂天柱峰");
-        set ("long", 
+        set ("long",
 " "HIY"☆" NOR "\n"
-"    　"HIY"★"NOR"　　"HIY"☆"NOR"　"MAG"夢迴巫山雨悠悠·再蹈滄海盡綢繆" NOR "\n"
+"    　"HIY"★"NOR"　　"HIY"☆"NOR"　"MAG"夢迴巫山雨悠悠．再蹈滄海盡綢繆" NOR "\n"
 "    　　　　　　　　　　　　　"CYN"≈≈"NOR"　　"HIY"★"NOR"　　" NOR "\n"
 "    　　"CYN"≈"NOR"　　/○\\ ●　　　 "CYN"≈ ≈≈"NOR"　　　" NOR "\n"
 "    　"CYN"≈≈≈"NOR"　/■\\/■\\　　"CYN"≈≈≈≈≈≈"NOR"　　" NOR "\n"
@@ -28,7 +28,7 @@ void create()
 
         set("outdoors", "chengdu");
         //set("sleep_room", 1);
-                //set("no_fight", 1); 
+                //set("no_fight", 1);
                 set("no_rideto", 1);
                 set("no_flyto", 1);
 
@@ -46,4 +46,3 @@ int valid_leave(object me, string dir)
 
         return ::valid_leave(me, dir);
 }
-

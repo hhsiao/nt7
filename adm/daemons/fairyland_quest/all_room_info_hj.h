@@ -15,7 +15,7 @@ string the_exit2;
 void create()
 {
     set("room_mark",mark);
-    set("short",MAG"幻境"NOR+GRN"·迷失之寶物隱匿之林"NOR);
+    set("short",MAG"幻境"NOR+GRN"．迷失之寶物隱匿之林"NOR);
 
     set("long","這裡是一片望不到邊的密林，氣息卻很是古怪。周圍的樹木都高大粗壯、枝
 藤糾結，你見不到日月光亮，周圍也悄無聲息。腳下的土地上樹木的根鬚蔓延糾

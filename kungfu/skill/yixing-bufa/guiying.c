@@ -52,13 +52,13 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "yxbf_guiying",
                 "attr"  : "bless",
-                "name"  : "碧波神功·戰神",
+                "name"  : "碧波神功．戰神",
                 "time"  : skill,
-                "buff_data": "guiying",      
+                "buff_data": "guiying",
                 "buff_msg" : msg,
                 "disa_msg" : HIB"$N長吁一聲，放慢步法，分身立即消失不見！\n"NOR,
                 "disa_type": 1,
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

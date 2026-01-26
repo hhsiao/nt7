@@ -22,23 +22,23 @@ int exert(object me, object target)
         skill = me->query_skill("force");
 
         msg = HIW "$N" HIW "深深吸了一口氣，雙臂一振，一股渾厚的氣勁登"
-              "時盤旋在身邊四周。\n" NOR;     
+              "時盤旋在身邊四周。\n" NOR;
 
         data = ([
                 "armor" : skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "先天功·護體神功",
+                "name"  : "先天功．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的先天功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

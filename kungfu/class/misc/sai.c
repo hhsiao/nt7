@@ -36,7 +36,7 @@ void create() {
         "人間道"   : (: ask_renjiandao :),
         "蛇精洞"   : (: ask_shedong :),
         "蛇精鱗片" : "當你打中蛇精時，會有一定幾率掉出蛇精鱗片。\n",
-        "真·六道輪迴" : (: ask_zhen :),
+        "真．六道輪迴" : (: ask_zhen :),
     //"輪迴點"   : (: give_lhd :)
         ]));
 
@@ -268,7 +268,7 @@ int accept_object(object me, object ob) {
     return 1;
 }
 
-// 真·六道輪迴
+// 真．六道輪迴
 string ask_zhen() {
     object *obs;
     object ob;
@@ -340,13 +340,13 @@ string ask_zhen() {
 
     command("hehe");
     command("nod "+query("id", me));
-    command("say 不錯，既然是勇者，這「真·六道輪迴」就傳你了，你可聽好了 ……");
+    command("say 不錯，既然是勇者，這「真．六道輪迴」就傳你了，你可聽好了 ……");
 
     message_sort(HIC "\n$N" HIC "走上前去，在$n" HIC "耳邊悄悄說了幾句，然後又拿出一本書，指指點點，"
         "$n" HIC "不住地點頭，忽而眉頭深鎖，忽而低頭沉思 ……\n良久，$n" HIC "大笑一聲，似乎"
         "對剛才的疑慮有所頓悟。\n", this_object(), me);
 
-    tell_object(me, HIG "恭喜你學會了「真·六道輪迴」。\n");
+    tell_object(me, HIG "恭喜你學會了「真．六道輪迴」。\n");
     set("can_perform/lunhui-sword/zhen", 1, me);
     set("lunhui-sword_quest/zhen/finish", 1, me);
 

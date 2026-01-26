@@ -69,7 +69,7 @@ void generate_e_name(object ob)
         pname2 = keys(e_sname)[random(sizeof(e_sname))];
         id1 = e_gname[pname1];
         id2 = e_sname[pname2];
-        name = pname1 + "·" + pname2;
+        name = pname1 + "．" + pname2;
         id = id1 + " " + id2;
         if (ob) ob->set_name(name, ({ id, id1, id2 }));
 }

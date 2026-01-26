@@ -22,7 +22,7 @@ int perform(object me, object target)
 		"who":	target,
 		"type": "cursedflesh",
 		"att": "curse",
-		"name": "破邪心經·空魂異血",
+		"name": "破邪心經．空魂異血",
 		"time": 30,
 		"buff_msg":HIC"\n$n"HIC"面上浮現出青藍之色，噴出一團腥臭的煙氣。\n"HIB"$N"HIB"猝不及防，吸進一口毒霧，登時搖搖欲墜．．．\n\n"NOR,
 	]);

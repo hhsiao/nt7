@@ -232,7 +232,7 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "lmsj_tian",
                 "attr"   : "curse",
-                "name"   : "六脈神劍·天脈神劍",
+                "name"   : "六脈神劍．天脈神劍",
                 "time"   : time,
                 "buff_msg" : "天脈神劍消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",

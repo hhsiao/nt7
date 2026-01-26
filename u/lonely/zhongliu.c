@@ -68,7 +68,7 @@ int perform(object me, object target)
 			"type": "afm-absshield",
 			"type2": "tx-turtle-stance",
 			"att": "bless",
-			"name": "秋風步·中流",
+			"name": "秋風步．中流",
 			/*
 			"buff1": "resistance/kee",
 			"buff1_c": 50,

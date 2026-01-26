@@ -4,7 +4,7 @@
 inherit HEAD;
 
 void create() {
-    set_name(HIY "天降·冷月冠" NOR, ({ "lengyue guan", "lengyue", "guan" }) );
+    set_name(HIY "天降．冷月冠" NOR, ({ "lengyue guan", "lengyue", "guan" }) );
     set_weight(100);
     set("unit", "頂");
     set("long", HIY "傳說乃月宮寶物，蘊涵著非凡之神力。\n" NOR);

@@ -60,10 +60,10 @@ int perform(object me, object target)
 
         md = me->query_skill("moon-blade", 1);
         ly = target->query_skill("lonely-sword", 1);
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-yywd-ting"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         if (ap * 2 / 3 + random(ap) > dp )
         {
                 damage = 0;
@@ -86,17 +86,17 @@ int perform(object me, object target)
                         damage+= damage / 300 * me->query_str();
                         damage+= damage * (fmsk/100)* 5 / 100;
                         damage+= damage/5;
-                        
+
                         delta2 = ABILITY_D->check_ability(me, "da_power-yywd-ting"); // 門派ab
                         if( delta2 ) damage += damage*delta2/100;
-        
+
                         msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 300,
                                                    HIR "結果$p" HIR "閃避不及，只覺得"
                                                    "一股冰寒的刀氣掠過全身，$n全身頓時鮮血淋漓！\n" NOR);
                 }
         } else
         {
-                
+
                 addn("neili", -300, me);
                 msg += CYN "可是$p" CYN "識破了$P"
                        CYN "這一招，斜斜一躍避開。\n" NOR;
@@ -105,10 +105,10 @@ int perform(object me, object target)
         me->start_busy(4);
         if (damage < 0)
                 target->die(me);
-                        
+
         if( userp(me) )
         {
-                    if( BUFF_D->get_buff_overtime(me, "yywd_ting") > 0 ) 
+                    if( BUFF_D->get_buff_overtime(me, "yywd_ting") > 0 )
                     {
                             return 1;
                     }
@@ -118,14 +118,14 @@ int perform(object me, object target)
                 msg = HIC "\n====================" HIY" 魔" HIR "  吞" HIG "  天" HIW "  下" HIC " ====================" NOR;
                 msg += HIC "\n猛然間，$N" HIC "手中" + weapon->name() + HIC +
                            "發出震天般的長嘯，伴隨著九幽魔氣湧至天際，但見天雲突變，\n轉眼間，幻化出魔頭張開大嘴，吞噬一切。\n" NOR;
-                
-                
+
+
                 message_combatd(msg, me, 0, obs);
                 for (flag = 0, i = 0; i < sizeof(obs); i++)
                 {
                         if( !obs[i] ) continue;
                         dp = defense_power(obs[i], "parry") + obs[i]->query_skill("taoism", 1);
-        
+
                         if (ap / 2 + random(ap)  + fmsk > dp)
                         {
                                 damage = damage_power(me, "blade");
@@ -140,7 +140,7 @@ int perform(object me, object target)
                                 obs[i]->receive_damage("qi", damage, me);
                                 obs[i]->receive_wound("qi", damage, me);
                                 obs[i]->receive_damage("jing", damage*6, me);
-                                obs[i]->receive_wound("jing", damage*3, me);                                                        
+                                obs[i]->receive_wound("jing", damage*3, me);
                                 tell_object(obs[i], HIR "你剎那間目瞪口呆，全然無法相信"
                                            "眼前之景象，頓時被一招命中，射出無數柱鮮"
                                            "血。\n" NOR);
@@ -154,7 +154,7 @@ int perform(object me, object target)
                                       HIR "手舞足蹈，忘乎所以，忽"
                                       "然大叫一聲，吐血不止！\n" NOR;
                                 msg += "( " + obs[i]->name() + eff_status_msg(p) + " )\n\n";
-                                
+
                                 break;
                                 case 1:
                                 msg = HIR "卻見" + obs[i]->name() +
@@ -181,29 +181,28 @@ int perform(object me, object target)
                         if( query("neili", obs[i])<0 )
                                 set("neili", 0, obs[i]);
                 }
-                
+
                 if( !flag )
                         message_combatd(HIM "然而沒有任何人受了$N"
                                HIM "的影響。\n\n" NOR, me, 0, obs);
         }
         time  = 40;
-        time -= ABILITY_D->check_ability(me, "cd-yywd-ting"); // ab門派減cd 
+        time -= ABILITY_D->check_ability(me, "cd-yywd-ting"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
         if( wiz_level(me) > 2) time = 2;
            buff =
-           ([ 
+           ([
                    "caster" : me,
                    "target" : me,
                    "type"   : "cooldown",
-                   "type2"  : "yywd_ting", 
+                   "type2"  : "yywd_ting",
                    "attr"   : "curse",
-                   "name"   : "圓月彎刀·聽春雨",
+                   "name"   : "圓月彎刀．聽春雨",
                    "time"   : time,
-                   "buff_msg" : "小樓一夜聽春雨消耗心神太甚，還需等待"+time+"秒方可再次施展。\n", 
-                   "disa_msg" : "", 
+                   "buff_msg" : "小樓一夜聽春雨消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
+                   "disa_msg" : "",
                    "disa_type": 0,
            ]);
            BUFF_D->buffup(buff);
         return 1;
 }
-

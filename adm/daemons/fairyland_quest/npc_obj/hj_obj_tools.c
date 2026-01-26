@@ -633,7 +633,7 @@ int do_xunren(string arg)
         return notify_fail("現在並沒有這個玩家在線，莫要說在這裡了。\n");
     rooms = (environment(target));
     if( !rooms || !query("room_mark", rooms) )
-        return notify_fail("幻境·密林裡並沒有這個玩家。\n");
+        return notify_fail("幻境．密林裡並沒有這個玩家。\n");
     temp_mark=query("room_mark", rooms);
     message_vision(CYN"$N"NOR+CYN"拿起"NOR"$n"NOR+CYN"凝神注視著，似要從中看出什麼來。\n"NOR,me, ob);
     addn("use_times",-1);

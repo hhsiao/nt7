@@ -901,11 +901,11 @@ void heart_beat() {
      * "target":player,
      * "type":"chousha_bonus",
      * "attr":"bless",
-     * "name":"戰場榮耀·能力加持",
+     * "name":"戰場榮耀．能力加持",
      * "time":battle_time_countdown,
      * "buff_data":data,
      * "buff_msg":HIY"$N目前的戰績落後，獲得額外能力加持。\n"NOR,
-     * "disa_msg":"你的戰場榮耀·能力加持逐漸消失。\n",
+     * "disa_msg":"你的戰場榮耀．能力加持逐漸消失。\n",
      * ]);
      * BUFF_D->buffup(buff);
      * }

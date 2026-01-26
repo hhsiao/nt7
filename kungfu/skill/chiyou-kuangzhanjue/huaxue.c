@@ -14,10 +14,10 @@ int exert(object me, object target)
         int skill,damage;
         mapping buff, data;
         int delta;
-        
+
         if (target != me)
                 return notify_fail("你只能用蚩尤狂戰決來提升自己的戰力。\n");
-                
+
         if( BUFF_D->check_buff(me, "atkup") )
                 return notify_fail("你已經在運功中了。\n");
 
@@ -41,17 +41,17 @@ int exert(object me, object target)
               HIR "刀刃一抹，鮮血頓時將" + weapon->name() + HIR "染紅。\n待到$N"
               HIR "雙目睜開，頓時殺氣沖天！\n" NOR;
 
-        skill = (int)me->query_skill("moshen-xinfa", 1) / 2 + (int)me->query_skill("chiyou-kuangzhanjue", 1); 
+        skill = (int)me->query_skill("moshen-xinfa", 1) / 2 + (int)me->query_skill("chiyou-kuangzhanjue", 1);
         damage = (int)me->query_skill("force") * 2;
         delta = ABILITY_D->check_ability(me, "da_power-cykzj-huaxue"); // 門派ab
-        if( delta ) 
+        if( delta )
         {
              skill += skill*delta/100;
              damage += damage*delta/100;
         }
         addn("neili", -150, me);
         me->receive_damage("qi", 0);
-        
+
         data = ([
                 "damage" : damage,
                 "blade"  : skill,
@@ -62,16 +62,15 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "蚩尤狂戰決·神刀化血",
+                "name"  : "蚩尤狂戰決．神刀化血",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的蚩尤狂戰決之神刀化血運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }
-

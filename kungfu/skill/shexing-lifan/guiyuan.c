@@ -31,7 +31,7 @@ int perform(object me, object target)
 
         msg = HIW "$N" HIW "運起九陰真氣，雙臂骨骼一陣爆響，身形一展，整"
                   "個人頓時凌空飄起，速度變得異常敏捷。\n" NOR;
-        
+
 
         skill = me->query_skill("shexing-lifan", 1);
 
@@ -39,7 +39,7 @@ int perform(object me, object target)
 
         if (me->is_fighting())
                 me->start_busy(2);
-        
+
         data = ([
                 "str": count,
                 "dex": count,
@@ -49,12 +49,12 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "蛇行狸翻·九陰歸元",
+                "name"  : "蛇行狸翻．九陰歸元",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的九陰歸元運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         addn("neili", -200, me);

@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIR "九幽·神魔" NOR, ({"shen mo", "shen", "mo"}));
+    set_name(HIR "九幽．神魔" NOR, ({"shen mo", "shen", "mo"}));
     set_weight(300);
     set("long", HIY "霎那間天地變色，萬物隱匿，乃魔界至高無上的寶物，支配著魔界萬物。\n" NOR);
     set("unit", "塊");

@@ -15,7 +15,7 @@ mapping skills = ([
     "chusheng-dao" :   "畜生道",
     "tianji-dao"   :   "天極道",
     "diyu-dao"     :   "地獄道",
-    "lun": "真·六道輪迴"
+    "lun": "真．六道輪迴"
     ]);
 
 void create() {
@@ -128,7 +128,7 @@ int do_lingwu(string arg) {
         switch(arg)
         {
         case "lun":
-            write(HIG "你領悟出了絕招　真·六道輪迴劍　。\n" NOR);
+            write(HIG "你領悟出了絕招　真．六道輪迴劍　。\n" NOR);
             me->set("can_perform/liudao-jian/lun", 1);
             destruct(this_object());
             return 1;

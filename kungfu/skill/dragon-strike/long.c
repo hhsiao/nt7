@@ -20,8 +20,8 @@ int perform(object me, object target)
         if( userp(me) && !query("yuanshen", me) )
                 return notify_fail("你尚未悟道，無法使用" HUI "。\n");
         /*
-        if( query("family/family_name", me) != "丐幫" 
-        &&  member_array("丐幫", query("reborn/fams", me)) == -1 ) 
+        if( query("family/family_name", me) != "丐幫"
+        &&  member_array("丐幫", query("reborn/fams", me)) == -1 )
                 return notify_fail("你尚未轉世重生，無法使用" HUI "。\n");
         */
         if (! target) target = offensive_target(me);
@@ -49,16 +49,16 @@ int perform(object me, object target)
 
         if ((int)query("neili", me) < 10000)
                 return notify_fail("你現在真氣不夠，難以施展" HUI "。\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "xlz_long")) > 0 )
                         return notify_fail(MAG"龍嘯九天消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         if (! living(target))
                 return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
-        
+
         message_combatd(sort_msg(HIG "\n$N" HIG "凝神聚氣，神態淡然，左手虛劃，右手迴轉，聚氣於胸前，猛地雙"
                          "手推出，剎那間，一招變為數招，同時使出，正是降龍十八掌「" HIR "龍嘯九天" HIG "」，"
                          "氣勢恢弘，勢不可擋 ……\n" NOR), me, target);
@@ -69,7 +69,7 @@ int perform(object me, object target)
         ap *= 2;
         delta = ABILITY_D->check_ability(me, "ap_power-xlz-long"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         message_combatd(sort_msg(HIW "忽然$N" HIW "身形激進，左手一劃，右手呼的一掌"
                      "拍向$n" HIW "，力自掌生之際"
                      "說到便到，以排山倒海之勢向$n" HIW "狂湧而去，當真石"
@@ -90,7 +90,7 @@ int perform(object me, object target)
                 }
         if( target->query_family() == "星宿派" || target->query_family() == "逍遙派" )
             damage *= 3;
-                
+
         delta = ABILITY_D->check_ability(me, "da_power-xlz-long"); // 門派ab
         if( delta ) damage += damage*delta/100;
         if (ap * 3 / 5 + random(ap) + fmsk > dp)
@@ -165,7 +165,7 @@ int perform(object me, object target)
 
                 if (random(2) && ! target->is_busy())
                         target->start_busy(1);
-                                                
+
                 COMBAT_D->do_attack(me, target, 0, TYPE_LINK);
         }
         addn_temp("apply/attack", -ds*2-fmsk*5, me);
@@ -208,29 +208,25 @@ int perform(object me, object target)
 
         me->start_busy(3 + random(3));
         addn("neili", -5000, me);
-        
+
         time  = 38;
         //time -= ABILITY_D->check_ability(me, "cd-xlz-long"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "cd-xlsbz-long"); // ab門派減cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd 
-        if(wizardp(me) && query("id",me)=="mud") time = 2;       
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
+        if(wizardp(me) && query("id",me)=="mud") time = 2;
         buff = ([
                 "caster" : me,
                 "target" : me,
                 "type"   : "cooldown",
                 "type2"  : "xlz_long",
                 "attr"   : "curse",
-                "name"   : "降龍十八掌·龍嘯九天",
+                "name"   : "降龍十八掌．龍嘯九天",
                 "time"   : time,
                 "buff_msg" : "龍嘯九天消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);
-        
+
         BUFF_D->buffup(buff);
         return 1;
 }
-
-
-
-

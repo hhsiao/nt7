@@ -51,12 +51,12 @@ int perform(object me, object target)
         if( query("neili", me)<2000 )
                 return notify_fail("你現在真氣不夠，難以施展" + name() + "。\n");
 
-             if( userp(me)&& !wizardp(me) ) 
+             if( userp(me)&& !wizardp(me) )
         {
                 if( (duration = BUFF_D->get_buff_overtime(me, "tjq_tu")) > 0 )
                         return notify_fail(MAG"太極圖消耗心神太甚，還需等待"+duration+"秒。\n"NOR);
         }
-        
+
         msg = HIM "$N" HIM "淡然一笑，雙手輕輕劃了數個圈子，頓時四周的氣"
               "流波動，源源不斷的被牽引進來。\n\n" NOR;
         message_combatd(msg, me, target);
@@ -64,10 +64,10 @@ int perform(object me, object target)
         per = me->query_skill("taiji-shengong",1)/2000 + me->query_skill("tianwei-zhengqi",1)/240;
         if(per < 1) per = 1;
         if(per > 20) per = 20;
-                
+
         addn("neili", -1000, me);
         addn("jing", -1000, me);
-        
+
         ap = attack_power(me, "cuff") + me->query_skill("taoism", 1);
         delta = ABILITY_D->check_ability(me, "ap_power-tjq-tu");
         if( delta ) ap += ap*delta/100;
@@ -75,7 +75,7 @@ int perform(object me, object target)
         for (flag = 0, i = 0; i < sizeof(obs); i++)
         {
                 dp = defense_power(obs[i], "force") + obs[i]->query_skill("count", 1);
-                if( ap > dp * 12 / 10 ) 
+                if( ap > dp * 12 / 10 )
                 {
                         switch (random(3))
                         {
@@ -103,22 +103,22 @@ int perform(object me, object target)
                         damage+= damage/2000*me->query_skill("taiji-shengong",1);
                         delta = ABILITY_D->check_ability(me, "da_power-tjq-tu"); // 門派ab
                         if( delta ) damage += damage*delta/100;
-        
+
                         if( damage < query("max_qi", obs[i])* (per + random(6)) / 100 )
                             damage = query("max_qi", obs[i])* (per + random(6)) / 100;
                         if( damage > query("max_qi", obs[i]) *2 )
-                            damage = query("max_qi", obs[i])*2;                                                   
-                        if( damage < 0 ) damage = query("max_qi", obs[i]) /2; 
-                                                        
+                            damage = query("max_qi", obs[i])*2;
+                        if( damage < 0 ) damage = query("max_qi", obs[i]) /2;
+
                             obs[i]->receive_damage("qi", damage, me);
                             obs[i]->receive_wound("qi", damage/2, me);
-                                                        
+
                         if( damage < query("max_jing", obs[i])* (per + random(6)) / 100 )
-                            damage = query("max_jing", obs[i])* (per + random(6)) / 100;                                             
+                            damage = query("max_jing", obs[i])* (per + random(6)) / 100;
                         if( damage > query("max_jing", obs[i]) *2 )
-                            damage = query("max_jing", obs[i]) *2;                                                 
-                        if( damage < 0 ) damage = query("max_jing", obs[i]) /2; 
- 
+                            damage = query("max_jing", obs[i]) *2;
+                        if( damage < 0 ) damage = query("max_jing", obs[i]) /2;
+
                             obs[i]->receive_damage("jing", damage / 2, me);
                             obs[i]->receive_wound("jing", damage / 4, me);
 
@@ -130,7 +130,7 @@ int perform(object me, object target)
                                 msg = HIR "只見" + obs[i]->name() +
                                       HIR "手舞足蹈，忘乎所以，忽"
                                       "然大叫一聲，吐血不止！\n" NOR;
-                                
+
                                 break;
                         case 1:
                                 msg = HIR "卻見" + obs[i]->name() +
@@ -163,11 +163,11 @@ int perform(object me, object target)
         if( !flag )
                 message_combatd(HIM "然而沒有任何人受了$N"
                                HIM "的影響。\n\n" NOR, me, 0, obs);
-        
+
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-tjq-tu"); // ab門派減cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd 
-               
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
+
         buff = // Perform Cool Dow
         ([
                 "caster" : me,
@@ -175,16 +175,14 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "tjq_tu",
                 "attr"   : "curse",
-                "name"   : "太極拳·太極圖",
+                "name"   : "太極拳．太極圖",
                 "time"   : time,
                 "buff_msg" : "太極圖消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
-       
+
         ]);
         BUFF_D->buffup(buff);
         me->start_busy(1+random(2));
         return 1;
 }
-
-

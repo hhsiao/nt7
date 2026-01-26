@@ -1,6 +1,6 @@
-// 神話世界·西遊記·版本４．５０
+// 神話世界．西遊記．版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // by mon@xyj 10/2/97
 // for inter mud emote.
 
@@ -27,7 +27,7 @@ void incoming_request(mapping info)
      if (info["NAME"] == Mud_name())   return ;
      if (!DNS_MASTER->dns_mudp(info["NAME"]))
         PING_Q->send_ping_q(info["HOSTADDRESS"], info["PORTUDP"]);
-                
+
      if(!info["MSG"]) { // remote emote failed.
                    return;
      }
@@ -43,7 +43,7 @@ void incoming_request(mapping info)
          "("+capitalize(info["MYID"])+"@"+
          Mud_name()+")",1);
                 msg=replace_string(msg, "$N", info["CNAME"]);
-                  
+
      names=keys(svcs);
 //     filter=info["FILTER"];
                 filter=1;
@@ -55,7 +55,7 @@ void incoming_request(mapping info)
          if(!mapp(minfo) || !mapp(svcs[names[i]])
          || !(svcs[names[i]]["gwizmsg"] & SVC_UDP))
            continue;
-                    
+
          DNS_MASTER->send_udp(minfo["HOSTADDRESS"],
            minfo["PORTUDP"],
            "@@@"+DNS_GCHANNEL+

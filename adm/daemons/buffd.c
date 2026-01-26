@@ -41,7 +41,7 @@
 
                 string type2,   --- powerup 包括了dodgeup,所以powerup的pfm應該使用type2定義dodgeup.
                 string attr,    --- BUFF 的大致分類（Bless 或是 Curse)
-                string name,    --- BUFF 的名字，一般武功名+特殊功能名，如 混沌功·鬥寒訣
+                string name,    --- BUFF 的名字，一般武功名+特殊功能名，如 混沌功．鬥寒訣
 
                 mapping temp,   --- 具體的buff內容
 

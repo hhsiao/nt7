@@ -1,16 +1,16 @@
-// This program is a part of NITAN MudLIB 
+// This program is a part of NITAN MudLIB
 // redl 2013/5
-#include <ansi.h> 
-#include <room.h> 
-inherit ROOM; 
+#include <ansi.h>
+#include <room.h>
+inherit ROOM;
 
 
 string look_bi(object me)
 {
         me->remove_call_out("do_open");
-        call_out("do_open", 6, me); 
+        call_out("do_open", 6, me);
         return "\n"
-HIK 
+HIK
 "我一直想要 和你一起 走上那條美麗的山路\n"
 "有柔風 有白雲 有你在我身旁\n"
 "傾聽我快樂和感激的心\n"
@@ -21,8 +21,8 @@ HIK
 "讓今夜的我 終於明白\n"
 "所有的悲歡都已成灰燼 任世間哪一條路我都不能\n"
 "與你同行\n"
-HIW 
-"           相恨不如潮有信·相思始覺海非深\n"
+HIW
+"           相恨不如潮有信．相思始覺海非深\n"
 "\n" NOR;
 }
 
@@ -30,7 +30,7 @@ HIW
 void create()
 {
         set("short", "夢湖");
-        set("long", 
+        set("long",
 "在你的面前是一個小湖，湖水泛著粼光，輕柔地拍打著岸邊的細沙。\n"
 "透過清澈的湖水，你可以看到在水中嘻戲的魚蝦，還有隨著水波婆娑起舞\n"
 "的水草。岸邊有一些蔥蔥的樹木，西邊是一道高聳入雲的絕"CYN"壁"NOR"。\n"
@@ -48,12 +48,12 @@ void create()
 
                 set("no_rideto", 1);
                 set("no_flyto", 1);
-                      set("no_magic", 1); 
-        
+                      set("no_magic", 1);
+
         setup();
-        
+
                 remove_call_out("do_wave");
-                call_out("do_wave", 5);        
+                call_out("do_wave", 5);
 }
 
 int do_wave()
@@ -81,7 +81,7 @@ int do_wave()
                         tell_room(this_object(), CYN "≈≈"NOR HIB "岸邊樹木搖曳沙沙作響，湖心島上的木屋卻安靜如初。\n" NOR);
                         break;
             }
-        call_out("do_wave", 30 + random(20));              
+        call_out("do_wave", 30 + random(20));
         return 1;
 }
 
@@ -90,9 +90,9 @@ void do_open(object me)
         if (environment(me)!=this_object()) return;
         tell_object(me, YEL "你正思忖著，是誰用莫大的指力在石壁上刻書？\n" NOR);
         me->remove_call_out("do_open2");
-        call_out("do_open2", 8, me); 
+        call_out("do_open2", 8, me);
         me->remove_call_out("do_close");
-        call_out("do_close", 16, me); 
+        call_out("do_close", 16, me);
 }
 
 void do_open2(object me)
@@ -108,7 +108,3 @@ void do_close(object me)
         tell_object(me, YEL "你稍一遲疑，西面的山洞入口恢復如初。\n" NOR);
         delete("exits/west");
 }
-
-
-
-

@@ -16,33 +16,33 @@ int exert(object me, object target)
 
         if( BUFF_D->check_buff(me, "powerup") )
                 return notify_fail("你已經在運用類似的武功了。\n");
-                
+
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
 
         msg = HIW "$N" HIW "微一凝神，運起長生決，將真氣"
                         "凝聚在丹田之中，沿奇經八脈遍佈全身！\n" NOR;
-        
+
         data = ([
                 "attack" : skill*2/5,
                 "defense": skill*2/5,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "長生決·戰神",
+                "name"  : "長生決．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的長生決運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

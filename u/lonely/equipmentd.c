@@ -637,8 +637,8 @@ mapping apply_ultimate_prop(object ob, string type, int ilvl)
         else
         if( type == "rings"
         ||  type == "charm"
-        ||  type == "myheart"   // 護身符·左
-        ||  type == "myheart2"  // 護身符·右
+        ||  type == "myheart"   // 護身符．左
+        ||  type == "myheart2"  // 護身符．右
         ||  type == "neck" )
                 props = suit_ring_props;
         else
@@ -689,8 +689,8 @@ varargs mapping apply_gem_prop(string type, int ilvl, int special, int n)
         else
         if( type == "rings"
         ||  type == "charm"
-        ||  type == "myheart"   // 護身符·左
-        ||  type == "myheart2"  // 護身符·右
+        ||  type == "myheart"   // 護身符．左
+        ||  type == "myheart2"  // 護身符．右
         ||  type == "neck" ) {
                 if( special )
                         props = ring_props[3];

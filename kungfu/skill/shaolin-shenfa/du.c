@@ -44,19 +44,19 @@ int perform(object me, object target)
                 me->start_busy(2);
 
         data = ([
-                "dex": count, 
+                "dex": count,
         ]);
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "少林身法·一葦渡江",
+                "name"  : "少林身法．一葦渡江",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的一葦渡江運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         addn("neili", -200, me);

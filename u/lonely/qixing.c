@@ -70,7 +70,7 @@ int perform(object me, object target)
 				"who":target,
 				"type":"healshield",
 				"att":	"curse",
-				"name":"寒星雨觴·七星伴月",
+				"name":"寒星雨觴．七星伴月",
 				"time":  10,
 				"buff_msg":msg,
 				"disa_msg":WHT"$N周圍的"+name+ NOR WHT"餘力已盡，散落而下。\n"NOR,

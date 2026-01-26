@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIG "青龍·木" NOR, ({"qing long", "wood"}));
+    set_name(HIG "青龍．木" NOR, ({"qing long", "wood"}));
     set_weight(20);
     set("long", HIG "可用於鑲嵌10LV，屬性木。\n" NOR);
     set("value", 100000);

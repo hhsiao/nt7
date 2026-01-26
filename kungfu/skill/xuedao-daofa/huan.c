@@ -58,19 +58,19 @@ int perform(object me, object target)
 
         if (! living(target))
                 return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "xddf_huan")) > 0 )
                         return notify_fail(MAG"我必還之消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         ap = attack_power(me, "blade");
         dp = defense_power(target, "parry");
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-xddf-huan"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         msg = HIR "$N" HIR "手中" + weapon->name() + "直指$n" HIR"，口中喝罵道：「灑傢什麼都吃就是不知虧！人若傷我！我必還之！」\n"
               HIR "只見" + weapon->name() + "泛出濃烈血光、腥味刺鼻，映的四周直若濃血地獄。\n";
 
@@ -112,19 +112,19 @@ int perform(object me, object target)
                        CYN "的必殺一刀。\n"NOR;
                 addn("neili", -100, me);
         }
-        
+
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-xddf-huan"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-                
-        buff =  
+
+        buff =
 	([
 	        "caster" : me,
 	        "target" : me,
 	        "type"   : "cooldown",
 	        "type2"  : "xddf_huan",
 	        "attr"   : "curse",
-	        "name"   : "血刀大法·我必還之",
+	        "name"   : "血刀大法．我必還之",
 	        "time"   : time,
 	        "buff_msg" : "我必還之消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
 	        "disa_msg" : "",
@@ -135,4 +135,3 @@ int perform(object me, object target)
         message_combatd(msg, me, target);
         return 1;
 }
-

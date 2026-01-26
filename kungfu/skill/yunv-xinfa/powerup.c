@@ -13,7 +13,7 @@ int exert(object me, object target)
                 return notify_fail("你只能提升自己的戰鬥力。\n");
         if( query("neili", me)<200 )
                 return notify_fail("你的內力不夠。\n");
-        if( BUFF_D->check_buff(me, "powerup") ) 
+        if( BUFF_D->check_buff(me, "powerup") )
                 return notify_fail("你已經在運功中了。\n");
         if( (int)me->query_skill("yunv-xinfa",1) < 80)
                 return notify_fail("你的玉女心法還不夠精熟。\n");
@@ -28,18 +28,18 @@ int exert(object me, object target)
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "玉女心法·戰神",
+                "name"  : "玉女心法．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的玉女心法運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 
@@ -47,4 +47,3 @@ int exert(object me, object target)
 
         return 1;
 }
-

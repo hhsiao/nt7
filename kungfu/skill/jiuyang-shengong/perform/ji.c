@@ -55,13 +55,13 @@ int perform(object me, object target)
 
         if ((int)query("neili", me) < 2000)
                 return notify_fail("你的真氣不夠，無法運用" + name() + "。\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                   if( (time = BUFF_D->get_buff_overtime(me, "jysg_ji")) > 0 )
                         return notify_fail(MAG"魔光日無極(極境)消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         msg = HIY "只見$N" HIY "雙目微閉，單手託天。掌心頓時騰起一個無比刺眼的"
               "氣團，正是奧\n義「" NOR + HIW "魔光日無極" NOR + HIY "」。霎時"
               "金光萬道，塵沙四起，空氣熾熱，幾欲沸騰。$N" HIY "\n隨即收攏掌心"
@@ -71,22 +71,22 @@ int perform(object me, object target)
 
         ap = attack_power(me, "unarmed");
         ap *= 2;
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-jysg-ri"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         damage = attack_power(me, "force");
         damage+= query("jiali", me);
         damage+= me->query_all_buff("unarmed_damage");
         damage+= damage / 300 * me->query_str();
         damage+= damage*(fmsk/100)*5/100;
-                        
+
         delta = ABILITY_D->check_ability(me, "da_power-jysg-ri"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        
+
                 if( target->query_family() == "星宿派" || target->query_family() == "逍遙派" )
                         damage *= 3;
-                        
+
                 dp = defense_power(target, "force");
                 if (ap + random(ap) + fmsk > dp)
                 {
@@ -94,7 +94,7 @@ int perform(object me, object target)
                         msg += COMBAT_D->do_damage(me, target, SPECIAL_ATTACK, damage, 300+fmsk/15,
                                         HIR "光芒閃過，$n" HIR "卻是呆立當場，動也不動，七"
                                         "竅流血，神情扭曲，煞是恐怖。\n" NOR);
-                } 
+                }
                 else
                 {
                         msg += HIY "$N只覺眼前金光萬道，周圍空氣幾欲沸騰，大驚之下連忙急運內功，抵禦開來。\n" NOR;
@@ -103,22 +103,22 @@ int perform(object me, object target)
                 time  = 40;
                 time -= ABILITY_D->check_ability(me, "cd-jysg-ri"); // ab門派減cd
                 time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-                
+
                 buff = ([
                         "caster" : me,
                         "target" : me,
                         "type"   : "cooldown",
                              "type2"  : "jysg_ji",
                         "attr"   : "curse",
-                          "name"   : "九陽神功·極境",
+                          "name"   : "九陽神功．極境",
                         "time"   : time,
                          "buff_msg" : "極境消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                         "disa_msg" : "",
                         "disa_type": 0,
                 ]);
-        
+
                 BUFF_D->buffup(buff);
                 me->start_busy(5);
                 return 1;
-        
+
 }

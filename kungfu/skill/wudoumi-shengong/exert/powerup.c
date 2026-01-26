@@ -16,7 +16,7 @@ int exert(object me, object target)
         if( query("neili", me)<100 )
                 return notify_fail("你的內力不夠了。");
 
-        if( BUFF_D->check_buff(me, "powerup") ) 
+        if( BUFF_D->check_buff(me, "powerup") )
                 return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
@@ -31,18 +31,18 @@ int exert(object me, object target)
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "五斗米神功·戰神",
+                "name"  : "五斗米神功．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的五斗米神功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

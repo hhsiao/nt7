@@ -68,10 +68,10 @@ int perform(object me)
         ap = attack_power(me, "blade");
         ap += ap * (fmsk/100)* 5 / 100;
         dp = defense_power(target, "force");
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-yywd-dao"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         if( objectp(weapon2=query_temp("weapon", target)) )
         {
                 msg = HBYEL "$N" HBYEL "雙手持刀，一躍而起，勁運刀身，劃出一道完美的弧線，一股刀勁"
@@ -99,10 +99,10 @@ int perform(object me)
 
         dp = defense_power(target, "dodge");
         damage = damage_power(me, "blade");
-        
+
         delta = ABILITY_D->check_ability(me, "da_power-yywd-dao"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        
+
         if (ap / 2 + random(ap * 2) > dp)
         {
                 damage+= query("jiali", me);
@@ -162,7 +162,7 @@ int perform(object me)
         addn("neili", -500, me);
         addn_temp("apply/attack", -count, me);
         addn_temp("apply/damage", -count*2, me);
-        
+
         me->start_busy(2 + random(4));
 
         time = 40;
@@ -176,7 +176,7 @@ int perform(object me)
                 "type"   : "cooldown",
                 "type2"  : "yywd_dao",
                 "attr"   : "curse",
-                "name"   : "圓月彎刀·刀至上-至上刀",
+                "name"   : "圓月彎刀．刀至上-至上刀",
                 "time"   : time,
                 "buff_msg" : "刀至上-至上刀消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
@@ -185,4 +185,3 @@ int perform(object me)
         BUFF_D->buffup(buff);
         return 1;
 }
-

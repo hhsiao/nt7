@@ -5,7 +5,7 @@ inherit F_SSERVER;
 int perform(object me, object target)
 {
         mapping buff, data;
-        object weapon;  
+        object weapon;
         string msg;
         int count, cnt, skill;
 
@@ -32,7 +32,7 @@ int perform(object me, object target)
 
         msg = HIB "$N" HIB "運起心意氣混元功，施展「一葦渡江」絕技,"
                   "身形一展，整個人頓時凌空飄起，身體變得越來越輕。\n" NOR;
-        
+
         message_combatd(msg, me, target);
         skill = me->query_skill("yiwei-dujiang", 1);
         cnt =(int)( (int)me->query_condition("drunk") / 3);
@@ -41,7 +41,7 @@ int perform(object me, object target)
 
         if (me->is_fighting())
                 me->start_busy(2);
-        
+
         data = ([
                 "dex": count,
         ]);
@@ -50,12 +50,12 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "一葦渡江·一葦渡江",
+                "name"  : "一葦渡江．一葦渡江",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的一葦渡江運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

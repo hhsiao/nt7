@@ -29,22 +29,22 @@ int exert(object me, object target)
 
         msg = HIW "$N" HIW "手指扣成北斗七星圖形，運起紫徽心法，"
                         "頓時全身紫蘊朦朧，衣袖飄揚！\n" NOR;
-                        
+
         data = ([
                 "armor" : skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "紫徽心法·護體神功",
+                "name"  : "紫徽心法．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的紫徽心法運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if (me->is_fighting()) me->start_busy(2);

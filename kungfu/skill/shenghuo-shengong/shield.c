@@ -27,23 +27,23 @@ int exert(object me, object target)
         msg = HIG "$N" HIG "默唸聖火神功口訣，一股真氣流至奇經八脈，護住全身。\n" NOR;
 
         data = ([
-                "armor": skill/2, 
+                "armor": skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "聖火神功·護體神功",
+                "name"  : "聖火神功．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的聖火神功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

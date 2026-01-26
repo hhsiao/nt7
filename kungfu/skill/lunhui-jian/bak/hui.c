@@ -1,7 +1,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-#define HUI "「" HIR "真·六道輪迴" NOR "」"
+#define HUI "「" HIR "真．六道輪迴" NOR "」"
 
 inherit F_SSERVER;
 

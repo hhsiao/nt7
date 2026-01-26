@@ -16,7 +16,7 @@ int perform(object me, object target){
     if(!target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-    return notify_fail("『天涯·明月』只能對戰鬥中的對手使用。\n");
+    return notify_fail("『天涯．明月』只能對戰鬥中的對手使用。\n");
     if(NATURE_D->is_day_time()) {
         extra = me->query_skill("blade");
     } else {                extra = me->query_skill("blade")*2;

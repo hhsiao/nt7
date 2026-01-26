@@ -11,12 +11,12 @@ int exert(object me, object target)
         string msg;
         int skill;
 
-        if( target != me ) 
+        if( target != me )
                 return notify_fail("你只能用小無相功來運護體神功。\n");
 
         if( query("neili", me)<100 )
                 return notify_fail("你的內力不夠。\n");
-                
+
         if( BUFF_D->check_buff(me, "shield") )
                 return notify_fail("你已經在運功\中了。\n");
 
@@ -29,18 +29,18 @@ int exert(object me, object target)
         data = ([
                 "armor" : skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "小無相功·護體神功",
+                "name"  : "小無相功．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的小無相功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

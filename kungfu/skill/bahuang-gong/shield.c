@@ -16,32 +16,32 @@ int exert(object me, object target)
 
         if( BUFF_D->check_buff(me,"shield") )
                 return notify_fail("你正在施展八荒六合唯我獨尊神功。\n");
-                
+
         if( query("neili", me) < 100 )
                 return notify_fail("你的內力不夠。\n");
 
         if( (int)me->query_skill("bahuang-gong", 1) < 50 )
                 return notify_fail("你的八荒六合唯我獨尊修為不夠。\n");
-        
+
         skill = me->query_skill("force");
         addn("neili", -100, me);
 
-        
+
         msg = HIW "$N" HIW "身子一晃，衣袖一波波的不住激盪，勁氣逼人！\n" NOR;
 
         data =  ([
 	                "armor" : skill/2,
 	        ]);
-	        
+
         buff =
                 ([
 			"caster": me,
 			"target": me,
 			"type"  : "shield",
 			"attr"  : "bless",
-			"name"  : "八荒六合功·護體神功",
+			"name"  : "八荒六合功．護體神功",
 			"time"  : skill,
-			"buff_data": data,	
+			"buff_data": data,
 			"buff_msg" : msg,
 			"disa_msg" : "你的八荒六合護體神功運行完畢，將內力收回丹田。\n",
                 ]);

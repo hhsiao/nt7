@@ -46,13 +46,13 @@ int perform(object me, object target)
 
         if (me->query_skill_mapped("sword") != "taiji-jian")
                 return notify_fail("你沒有激發太極劍法，無法使用" + name() + "。\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "tjj_jian")) > 0 )
                         return notify_fail(MAG"太極劍意消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         if (! living(target))
                return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
@@ -67,26 +67,26 @@ int perform(object me, object target)
         ngxy = me->query_skill("force-cognize", 1);
         taoism = me->query_skill("taoism", 1);
                 tjss = me->query_skill("taiji-shengong", 1);
-                
+
         ap = ap + ap*(xy/100<10?10:xy/100)/10;
         if(target->is_bad())
                 ap += ap/10;
-                
+
           damage = damage_power(me, "sword");
           damage = damage_power(me, "force");
           damage+= me->query_all_buff("damage");
           damage = damage + damage*(xy/50<10?10:xy/50)/10;
           damage = damage /2 *(query("str",me)+query("dex",me)) ;
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-tjj-jian"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         delta = ABILITY_D->check_ability(me, "da_power-tjj-jian"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        
+
         //target->start_busy(10);
 
-                if(taoism > 1200 && ngxy > 5000 && !userp(target)) 
+                if(taoism > 1200 && ngxy > 5000 && !userp(target))
                 damage *= taoism/1200 + ngxy/1000;
         if(tjss > 10000 & taoism > 10000)
           {
@@ -96,7 +96,7 @@ int perform(object me, object target)
                  if(tjss > 8000) damage += damage/8;
          if(tjss > 12000) damage += damage/7;
          if(tjss > 16000) damage += damage/6;
-                 
+
         message_combatd(sort_msg(HIY "\n$N" HIY "身形一轉，手中" + weapon->name() + HIY "輕靈而出，猶如碧"
                      "波盪漾，蜿蜒起伏，形態飄逸瀟灑之極，頗具" HIC "太極" HIY "之意" HIY "……\n" NOR), me);
 
@@ -105,7 +105,7 @@ int perform(object me, object target)
                 msg += CYN "$n" CYN "眼明手快，斜身閃開。\n" NOR;
         else
         {
-                        
+
                 msg += COMBAT_D->do_damage(me, target, (flagremote ? SPECIAL_ATTACK : WEAPON_ATTACK), damage, 100 + (xy / 2 + random(xy / 2)>500?500:xy / 2 + random(xy / 2)),
                                            (: attack1, me, target, damage :));
         }
@@ -122,19 +122,19 @@ int perform(object me, object target)
 
         me->start_busy(2 + random(3));
         message_combatd(msg, me, target);
-        
+
         time = 40;
         time -= ABILITY_D->check_ability(me, "cd-tjj-jian"); // ab門派減cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd  
-                
-        buff =  
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
+
+        buff =
         ([
                 "caster" : me,
                 "target" : me,
                 "type"   : "cooldown",
                 "type2"  : "tjj_jian",
                 "attr"   : "curse",
-                "name"   : "太極劍法·太極劍意",
+                "name"   : "太極劍法．太極劍意",
                 "time"   : time,
                 "buff_msg" : "太極劍意消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
@@ -171,7 +171,7 @@ string attack2(object me, object target, int damage)
               "劍光一閃，令$n" HIR "再也無從躲避。\n" NOR;
 
         if( random(2) != 1 ) return msg;
-        
+
         data = ([
                 "avoid_busy": -90,
                 "reduce_busy": -36,
@@ -183,12 +183,12 @@ string attack2(object me, object target, int damage)
                 "target": target,
                 "type"  : "tjj_fengyin",
                 "attr"  : "curse",
-                "name"  : "太極劍法·封印",
+                "name"  : "太極劍法．封印",
                 "time"  : 30,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : HIR "你的忽視虛弱，忽視忙亂、忽視絕招冷凍能力終於解除封印。\n" NOR,
-                        
+
         ]);
         BUFF_D->buffup(buff);
 
@@ -196,4 +196,3 @@ string attack2(object me, object target, int damage)
 
         return msg;
 }
-

@@ -2,11 +2,11 @@ inherit ITEM;
 #include <ansi.h>
 
 void create() {
-    set_name(HIR "妖靈·魄" NOR, ({"yaoling po1", "po1" }));
+    set_name(HIR "妖靈．魄" NOR, ({"yaoling po1", "po1" }));
     set_weight(2000);
     set("unit", "粒");
     set("value", 500000);
-    set("enchase/name", "妖靈·魄");
+    set("enchase/name", "妖靈．魄");
     set("enchase/point", 1);
     set("enchase/type", "neck");
     set("enchase/cur_firm", 90);

@@ -35,11 +35,11 @@ int exert(object me, object target)
         count = me->query_str();
         d_count = (int)me->query_dex() / 2;
 
-	        
+
         if( qi > (maxqi * 0.4) )
         {
                 addn("neili", -150, me);
-                
+
                 data =  ([
                         "damage" : skill*20,
 	                "unarmed_damage" : skill*20,
@@ -53,17 +53,17 @@ int exert(object me, object target)
 			"target": me,
 			"type"  : "shield",
 			"attr"  : "bless",
-			"name"  : "混天氣功·混天神罡",
+			"name"  : "混天氣功．混天神罡",
 			"time"  : skill,
-			"buff_data": data,	
+			"buff_data": data,
 			"buff_msg" : msg,
 			"disa_msg" : "白色的薄霧漸漸散去，$N的身形步法又變的清晰可見。\n",
 			"disa_type": 1,
                 ]);
 
                 BUFF_D->buffup(buff);
-        
-        } 
+
+        }
         else
         {
                 msg = HIR "$N拼盡畢生功力想提起混元天罡，但自己受傷太重，沒能成功!\n" NOR;

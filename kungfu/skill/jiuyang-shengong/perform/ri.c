@@ -47,13 +47,13 @@ int perform(object me, object target)
 
         if ((int)query("neili", me) < 2000)
                 return notify_fail("你的真氣不夠，無法運用" + name() + "。\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "jysg_ri")) > 0 )
                         return notify_fail(MAG"魔光日無極消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         msg = HIY "只見$N" HIY "雙目微閉，單手託天。掌心頓時騰起一個無比刺眼的"
               "氣團，正是奧\n義「" NOR + HIW "魔光日無極" NOR + HIY "」。霎時"
               "金光萬道，塵沙四起，空氣熾熱，幾欲沸騰。$N" HIY "\n隨即收攏掌心"
@@ -64,19 +64,19 @@ int perform(object me, object target)
         addn("neili", -1000, me);
 
         ap = attack_power(me, "unarmed") + me->query_con()*10;
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-jysg-ri"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         damage = attack_power(me, "force");
         damage+= query("jiali", me);
         damage+= damage*(fmsk/100)*5/100;
         damage *= 3;
         damage+= random(damage);
-                        
+
         delta = ABILITY_D->check_ability(me, "da_power-jysg-ri"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        
+
         obs = me->query_enemy();
         for (flag = 0, i = 0; i < sizeof(obs); i++)
         {
@@ -98,7 +98,7 @@ int perform(object me, object target)
                                 break;
                         }
                         if( obs[i]->query_family() == "星宿派" || obs[i]->query_family() == "逍遙派" )
-                        {         
+                        {
                                 obs[i]->receive_damage("qi", damage*3, me);
                                 obs[i]->receive_wound("qi", damage*3, me);
 
@@ -106,7 +106,7 @@ int perform(object me, object target)
                                 obs[i]->receive_wound("jing", damage * 9, me);
                         }
                         else
-                        {            
+                        {
                                 obs[i]->receive_damage("qi", damage, me);
                                 obs[i]->receive_wound("qi", damage, me);
 
@@ -174,24 +174,24 @@ int perform(object me, object target)
         if (! flag)
                 message_combatd(HIY "只見光芒頓斂，卻沒有任何人被$N"
                                HIY "這招擊中。\n\n" NOR, me, 0, obs);
-        
+
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-jysg-ri"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-                
+
         buff = ([
                 "caster" : me,
                 "target" : me,
                 "type"   : "cooldown",
                 "type2"  : "jysg_ri",
                 "attr"   : "curse",
-                "name"   : "九陽神功·魔光日無極",
+                "name"   : "九陽神功．魔光日無極",
                 "time"   : time,
                 "buff_msg" : "魔光日無極消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);
-        
+
         BUFF_D->buffup(buff);
         me->start_busy(5);
         return 1;

@@ -12,8 +12,8 @@ int exert(object me, object target)
         mapping buff, data;
         int time;
 
-        if( userp(me) && !query("can_exert/yijinjing/buddha", me) ) 
-                return notify_fail("你未得高人指點，不知該如何施展佛光普照。\n");  
+        if( userp(me) && !query("can_exert/yijinjing/buddha", me) )
+                return notify_fail("你未得高人指點，不知該如何施展佛光普照。\n");
         /*
         if( query("family/family_name", me) != "少林派" )
                 return notify_fail("你不是少林弟子，無法使用佛光普照。\n");
@@ -43,10 +43,10 @@ int exert(object me, object target)
         if( query("neili", me)<5000 )
                 return notify_fail("你的內力不夠。\n");
 
-        if( BUFF_D->check_buff(me, "buddha") ) 
+        if( BUFF_D->check_buff(me, "buddha") )
                 return notify_fail("你正在施展佛光普照。\n");
 
-        if( userp(me) ) 
+        if( userp(me) )
                 if( (time = BUFF_D->get_buff_overtime(me, "yjj_buddha")) > 0 )
                         return notify_fail(MAG"佛光普照消耗心神太甚，還需等待"+time+"秒。\n"NOR);
 
@@ -55,49 +55,49 @@ int exert(object me, object target)
 
         msg = HIY "只聽$N" HIY "高呼佛號，運起佛光普照，霎那間全身竟猶如鍍金一般，發出燦燦金光。\n" NOR;
 
-        data =  
+        data =
         ([
                         "avoid_busy" : 30,
                         "avoid_weak" : 30,
                         "avoid_poison" : 100,
                         "reduce_damage":30,
         ]);
-        buff =  
+        buff =
         ([
                         "caster": me,
                         "target": me,
                         "type"  : "buddha",
                         "attr"  : "bless",
-                        "name"  : "易筋經·佛光普照",
+                        "name"  : "易筋經．佛光普照",
                         "time"  : skill/5,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
                         "disa_msg" : "你的易筋經之佛光普照運行完畢，將內力收回丹田，佛光消失。\n",
-                        
+
         ]);
-                                
+
         BUFF_D->buffup(buff);
- 
+
         time = skill/5+40;
         time -= ABILITY_D->check_ability(me, "cd-yjj-buddha"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-        
-	buff = 
+
+	buff =
         ([
 	                "caster":me,
 	                "target":me,
 	                "type":"cooldown",
 	                "type2":"yjj_buddha",
 	                "attr": "curse",
-	                "name":"易筋經·佛光普照",
+	                "name":"易筋經．佛光普照",
 	                "time":time,
 	                "buff_msg":"佛光普照消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
 	                "disa_msg":"",
 	                "disa_type": 0,
         ]);
-	        
+
 	BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(2);
-        
+
         return 1;
 }

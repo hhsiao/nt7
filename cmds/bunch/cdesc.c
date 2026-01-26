@@ -206,7 +206,7 @@ protected void add_desc_short(string str, object who, object env, mapping desc) 
         return;
     }
 
-    tell_object(who, "請輸入提示信息：\n·信息內容不能超過六行\n·每行不超過25個漢字
+    tell_object(who, "請輸入提示信息：\n．信息內容不能超過六行\n．每行不超過25個漢字
 請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n");
         input_to((: add_desc_long :), who, env, desc, str, "");
 }
@@ -239,7 +239,7 @@ protected void add_desc_long(string str, object who, object env, mapping desc, s
 
         if(sizeof(explode(ilong, "\n")) > 6)
         {
-            tell_object(who, HBCYN HIG"·提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
+            tell_object(who, HBCYN HIG"．提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
             return;
         }
 
@@ -266,7 +266,7 @@ protected void add_desc_long(string str, object who, object env, mapping desc, s
 
         if((n + sizeof(explode(ilong, "\n"))) > 6)
         {
-            tell_object(who, HBCYN HIG"·提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
+            tell_object(who, HBCYN HIG"．提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
             return;
         }
     }
@@ -282,7 +282,7 @@ protected void add_desc_long(string str, object who, object env, mapping desc, s
 
         if(sizeof(explode(ilong, "\n")) > 5 )
         {
-            tell_object(who, HBCYN HIG"·提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
+            tell_object(who, HBCYN HIG"．提示信息內容不能超過六行\n增加特殊提示失敗。\n"NOR);
             return;
         }
     }

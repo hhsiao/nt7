@@ -28,21 +28,21 @@ int exert(object me, object target)
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "葵花心法·戰神",
+                "name"  : "葵花心法．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的葵花心法運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

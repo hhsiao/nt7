@@ -20,7 +20,7 @@ int do_hjtop()
     if( !out_room )
         return errs("現在無法查看記錄。\n");
     write(HIW"
-       『幻境·遙遠傳說之起緣·幽靈顯現』
+       『幻境．遙遠傳說之起緣．幽靈顯現』
 "+out_room->get_TOP_pic()+"\n"NOR);
     return 1;
 }

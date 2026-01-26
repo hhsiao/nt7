@@ -207,13 +207,13 @@ void hjset_long()
 
     if( !GAME_OPEN ) temp_str = HIR"     (遊戲關閉)"NOR;
     else if( FREE_GAME )
-        temp_str = sprintf( HIC"(免費開放·場內%2d人)"NOR,
+        temp_str = sprintf( HIC"(免費開放．場內%2d人)"NOR,
                 who_in_hj()["amount"] );
-    else temp_str = sprintf( HIG"(正常開放·場內%2d人)"NOR,
+    else temp_str = sprintf( HIG"(正常開放．場內%2d人)"NOR,
                 who_in_hj()["amount"] );
 
     longs= "\n        　 "HIW"╭--------------------------------------------╮
-           "NOR+WHT"╰╮   "NOR+WHT"幻境 · "+query("color_short_hj")+NOR+WHT" · 幽靈顯現"NOR+WHT"   ╭╯
+           "NOR+WHT"╰╮   "NOR+WHT"幻境 ． "+query("color_short_hj")+NOR+WHT" ． 幽靈顯現"NOR+WHT"   ╭╯
            "NOR+HIW"╭╯            "NOR+WHT"BY naihe 2003.10"NOR+HIW"            ╰╮
            "NOR+WHT"╰--------------------------------------------╯     "NOR"
                          "+temp_str+"
@@ -473,7 +473,7 @@ string look_ban()
 
     write("
        ┏--------------------------------┓
-       ┃ "WHT"幻境·"+query("color_short_hj")+NOR+WHT"·幽靈顯現"NOR" ┃
+       ┃ "WHT"幻境．"+query("color_short_hj")+NOR+WHT"．幽靈顯現"NOR" ┃
        ┗--------------------------------┛
 ");
 

@@ -22,29 +22,29 @@ int exert(object me, object target)
         skill = me->query_skill("force");
         addn("neili", -50, me);
         me->receive_damage("qi", 0);
-        
+
         msg = HIY "$N" HIY "暗自凝神，運起枯榮禪"
                         "功，真氣遊遍全身。\n" NOR;
-                        
+
        data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "枯榮禪功·戰神",
+                "name"  : "枯榮禪功．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的枯榮禪功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

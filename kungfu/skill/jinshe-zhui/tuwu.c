@@ -17,7 +17,7 @@ int perform(object me, object target)
         if( !target || ! me->is_fighting(target))
                 return notify_fail("金蛇吐霧只能在戰鬥中使用。\n");
 
-        if( !objectp(weapon=query_temp("handing", me)) || 
+        if( !objectp(weapon=query_temp("handing", me)) ||
             // (string)weapon->query("id") != "jinshe zhui" ||
             weapon->query_amount() < 1)
                 // return notify_fail("你手裡沒拿金蛇錐，不能使用絕招！\n");
@@ -39,14 +39,14 @@ int perform(object me, object target)
 
         ap = attack_power(me, "strike");
         dp = defense_power(target, "dodge");
-             
+
         if( ap / 2 + random(ap) > dp )
         {
                 addn("neili", -200, me);
                 damage = damage_power(me, "strike");
                 target->receive_damage("qi", damage, me);
                 target->receive_wound("qi", damage / 3, me);
-        
+
                 msg += HIM "只聽一陣狂風掃葉般的聲響中，$N" HIM "手中的"
                        "金蛇錐閃出奪目的光芒，閃耀得$n" HIM "眼冒金花，"
                        "\n除了眼前一重重的霧氣外，$n" HIM
@@ -59,7 +59,7 @@ int perform(object me, object target)
 	                "target":target,
 	                "type":"jinshezhui_tuwu",
 	                "attr": "curse",
-	                "name":"金蛇錐法·金蛇吐霧",
+	                "name":"金蛇錐法．金蛇吐霧",
 	                "time":skill/100,
 	                "buff_msg":"",
 	                "disa_msg" :"$N抹了抹滿臉的" HIR "鮮血" NOR "，終於睜開了眼。\n",
@@ -73,7 +73,7 @@ int perform(object me, object target)
                        "退，閃開了這枚金蛇錐。\n" NOR;
                 message_combatd(msg, me, target);
         }
-        
+
         me->reset_action();
         me->start_busy(1);
         return 1;

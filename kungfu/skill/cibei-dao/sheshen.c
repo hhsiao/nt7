@@ -40,15 +40,15 @@ int perform(object me)
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "慈悲刀法·捨身喂鷹",
+                "name"  : "慈悲刀法．捨身喂鷹",
                 "time"  : skill/4,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的捨身喂鷹運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

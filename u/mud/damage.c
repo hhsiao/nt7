@@ -652,7 +652,7 @@ varargs void die(object killer)
             "type": "cooldown",
             "type2": "avoid_die",
             "attr": "curse",
-            "name": "浴血重生·重生",
+            "name": "浴血重生．重生",
             "time": time,
             "buff_msg": "浴血重生消耗心神太甚，還需等待"+time + "秒方可再次觸發。\n",
             "buff_type": 1,

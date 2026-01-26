@@ -52,13 +52,13 @@ int perform(object me, object target)
                         "target": me,
                         "type"  : "yxsz_yingxiong",
                         "attr"  : "bless",
-                        "name"  : "英雄三招·蓋世英雄",
+                        "name"  : "英雄三招．蓋世英雄",
                         "time"  : level/10,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
                         "disa_msg" : HIY"$N突然感到心底一陣失落：“歷代英雄，都歸孤冢。”一念及此，頓時意興蕭然。\n" NOR,
                         "disa_type": 1,
-                        
+
                 ]);
                 BUFF_D->buffup(buff);
                 if( !target->is_busy() )

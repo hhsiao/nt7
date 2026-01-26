@@ -4,7 +4,7 @@
 inherit MYHEART2;
 
 void create() {
-    set_name(HIR "火麒麟·淨化" NOR, ({ "jinghua fu", "jinghua", "fu" }) );
+    set_name(HIR "火麒麟．淨化" NOR, ({ "jinghua fu", "jinghua", "fu" }) );
     set_weight(1);
     set("material", "paper");
     set("unit", "張");

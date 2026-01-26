@@ -24,24 +24,24 @@ int perform(object me)
 
         skill = me->query_skill("banruo-zhang", 1);
         msg = HIG "$N" HIG "使出般若掌「封魔」式，雙掌翻飛將周身護住。\n" NOR;
-        
+
         data = ([
                 "attack" : -skill/4,
                 "defense":  skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
 	        "target": me,
                 "type"  : "brz_feng",
 	        "attr"  : "bless",
-	        "name"  : "般若掌·封魔",
+	        "name"  : "般若掌．封魔",
 	        "time"  : skill/4,
-	        "buff_data": data,	
+	        "buff_data": data,
 	        "buff_msg" : msg,
 	        "disa_msg" : "你的般若掌「封魔」運行完畢，將內力收回丹田。\n",
         ]);
-         BUFF_D->buffup(buff); 
+         BUFF_D->buffup(buff);
 
         addn("neili", -100, me);
         if (me->is_fighting()) me->start_busy(2);

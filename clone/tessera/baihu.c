@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIY "白虎·金" NOR, ({"bai hu", "metal"}));
+    set_name(HIY "白虎．金" NOR, ({"bai hu", "metal"}));
     set_weight(20);
     set("long", HIY "可用於鑲嵌10LV，屬性金。\n" NOR);
     set("value", 100000);

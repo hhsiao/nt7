@@ -61,16 +61,16 @@ int perform(object me, object target)
 
                 data = ([
                         "defense": -lvl/3,
-                    "armor"  : -lvl/3, 
+                    "armor"  : -lvl/3,
                 ]);
 
                 ap = attack_power(me, "hand");
                 dp = defense_power(target, "dodge");
-        
+
                 itmp = (6000 - (int)me->query_skill("shexing-diaoshou", 1)) / 300;
                 if (itmp<5) itmp=5;
                 if (itmp>15) itmp=15;
-        
+
                 if( ap / 2 + random(ap) > dp )
                 {
                         message_combatd(HIB "但見$N的身形有如蛇蠍纏身一般，環在$n的身邊，令$n不知所措，\n"
@@ -84,7 +84,7 @@ int perform(object me, object target)
                         "target": target,
                         "type":"sxds_diaoshou",
                         "attr":"curse",
-                    "name":"蛇形刁手·纏身決",
+                    "name":"蛇形刁手．纏身決",
                         "time":  itmp * 2,
                     "buff_data":data,
                         "buff_msg": "",
@@ -98,14 +98,14 @@ int perform(object me, object target)
         if (target->is_busy())
         {
                 ap = attack_power(me, "hand") + me->query_skill("shexing-diaoshou", 1);
-                        dp = (defense_power(target, "dodge") + target->query_skill("parry", 1)) / 2;           
+                        dp = (defense_power(target, "dodge") + target->query_skill("parry", 1)) / 2;
                 if( ap / 2 + random(ap) > dp )
                 {
                         me->start_busy(2);
                         target->stop_busy();
                         damage = damage_power(me, "hand") * 1 / 2;
                         damage+=query("jiali", me)*2/3;
-                        
+
                         msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK,
                                            damage, 40,
                                            HIY "$n" HIY "一不留神，" HIY "小腹中了一記手刀，狂噴數口"HIR"鮮血"HIY"！\n"
@@ -122,4 +122,3 @@ int perform(object me, object target)
 
         return 1;
 }
-

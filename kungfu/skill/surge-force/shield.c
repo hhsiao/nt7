@@ -29,20 +29,20 @@ int exert(object me, object target)
         msg = HIC "$N" HIC "雙臂輕輕一展，一股勁氣登時籠罩全身！\n" NOR;
 
         data = ([
-               "armor": skill/2, 
+               "armor": skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "怒海狂濤·護體神功",
+                "name"  : "怒海狂濤．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的怒海狂濤運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if (me->is_fighting()) me->start_busy(2);

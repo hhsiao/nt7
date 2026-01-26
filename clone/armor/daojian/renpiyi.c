@@ -6,7 +6,7 @@ inherit CLOTH;
 
 
 void create() {
-    set_name(NOR + WHT "天降·人皮寶衣" NOR, ({ "renpi baoyi", "renpi", "baoyi" }) );
+    set_name(NOR + WHT "天降．人皮寶衣" NOR, ({ "renpi baoyi", "renpi", "baoyi" }) );
     set_weight(3000);
     set("unit", "件");
     set("long", NOR + WHT "傳說這是一件由人皮製成的寶衣，上面似乎記錄了某種奇特的武學。\n" NOR);

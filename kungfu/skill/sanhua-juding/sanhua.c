@@ -41,7 +41,7 @@ int perform(object me, object target)
         if( query("neili", me) <= 300 )
                 return notify_fail("你的內力不夠使用三花聚頂！\n");
         if( query("jingli", me) <= 200 )
-                return notify_fail("你的精力不夠使用三花聚頂！\n");        
+                return notify_fail("你的精力不夠使用三花聚頂！\n");
         if( query("jing", me) <= 200 )
                 return notify_fail("你的精不夠使用三花聚頂！\n");
 
@@ -50,24 +50,24 @@ int perform(object me, object target)
 
         skill =  ( me->query_skill("sanhua-juding")
                 + me->query_skill("force") ) / 2;
-        
+
         data = ([
                 "attack" : skill/2,
                 "defense": skill/2,
                 "damage" : skill*2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "三花聚頂掌·三花聚頂",
+                "name"  : "三花聚頂掌．三花聚頂",
                 "time"  : skill/15,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的三花聚頂運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

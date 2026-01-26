@@ -4,7 +4,7 @@
 inherit RINGS;
 
 void create() {
-    set_name(HIY "天降·醒世環" NOR, ({ "xingshi huan3" }));
+    set_name(HIY "天降．醒世環" NOR, ({ "xingshi huan3" }));
     set_weight(30);
     set("unit", "枚");
     set("long", HIY "傳說中狐仙所佩帶的指環。\n" NOR);

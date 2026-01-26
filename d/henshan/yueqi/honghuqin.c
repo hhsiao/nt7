@@ -5,7 +5,7 @@ inherit ITEM;
 inherit MI_QIN;
 
 void create() {
-    set_name(RED "紅木胡琴·五玄" NOR, ({ "hongmu huqin", "qin", "huqin", "hongmu" }));
+    set_name(RED "紅木胡琴．五玄" NOR, ({ "hongmu huqin", "qin", "huqin", "hongmu" }));
     set_weight(800);
 
     set("unit", "把");

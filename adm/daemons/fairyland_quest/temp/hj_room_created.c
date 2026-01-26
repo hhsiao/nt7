@@ -51,7 +51,7 @@ void create_room_now( object me, int now_num, int last_num, int create_amount )
         if( now_num == 1 )
             content = "
 
-// “幻境一·遙遠傳說之起緣·幽靈顯現” 地圖房間文件
+// “幻境一．遙遠傳說之起緣．幽靈顯現” 地圖房間文件
 // 最為特殊的一號房間，需要嵌入一個特別的文件。
 // by "+base_name(this_object())+" , " +ctime_format() +"
 
@@ -65,7 +65,7 @@ int mark=1;
 ";
         else content = "
 
-// “幻境一·遙遠傳說之起緣·幽靈顯現” 地圖房間文件
+// “幻境一．遙遠傳說之起緣．幽靈顯現” 地圖房間文件
 // by "+base_name(this_object())+" , " +ctime_format() +"
 
 #include <ansi.h>
@@ -99,4 +99,3 @@ int mark="+now_num+";
     remove_call_out( "create_room_now" );
     call_out( "create_room_now", 1, me, now_num, last_num, create_amount );
 }
-

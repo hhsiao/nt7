@@ -8,7 +8,7 @@ int query_autoload() { return 1; }
 
 void create()
 {
-    set_name("『幻境·遙遠傳說之起緣·幽靈顯現』 的門票", ({"men piao","piao"}));
+    set_name("『幻境．遙遠傳說之起緣．幽靈顯現』 的門票", ({"men piao","piao"}));
     set_weight(10);
     set("long", "這是一張“幻境”遊戲的入場門票，憑它你可以入場遊戲一次。\n");
     set("unit", "張");

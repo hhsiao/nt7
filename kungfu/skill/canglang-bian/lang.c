@@ -37,7 +37,7 @@ int perform(object me, object target)
 
         if( BUFF_D->check_buff(me, "atkup") )
                 return notify_fail("你已經在運用類似的武功了。\n");
-                
+
         message_combatd(
                 HIR"$N忽然將"+(query("name", query_temp("weapon", me)))+
                 HIR"頻頻甩出，"+(query("name", query_temp("weapon", me)))+
@@ -49,24 +49,24 @@ int perform(object me, object target)
 
         skill =  ( me->query_skill("canglang-bian") + me->query_skill("dodge") ) / 2;
         addn("neili", -200, me);
-        
+
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "滄浪鞭法·巨浪滔天",
+                "name"  : "滄浪鞭法．巨浪滔天",
                 "time"  : skill/3,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
-                "disa_msg" : "你慢慢內運內功，把真氣壓下！\n",                      
+                "disa_msg" : "你慢慢內運內功，把真氣壓下！\n",
         ]);
-        
+
         COMBAT_D->do_attack(me,target,query_temp("weapon", me));
         COMBAT_D->do_attack(me,target,query_temp("weapon", me));
         COMBAT_D->do_attack(me,target,query_temp("weapon", me));

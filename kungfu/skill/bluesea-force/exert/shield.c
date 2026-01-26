@@ -33,15 +33,15 @@ int exert(object me, object target)
         data = ([
             "armor": skill/2,
         ]);
-        
+
         buff = ([
 	        "caster": me,
 	        "target": me,
 	        "type"  : "shield",
 	        "attr"  : "bless",
-	        "name"  : "南海玄功·護體神功",
+	        "name"  : "南海玄功．護體神功",
 	        "time"  : skill,
-	        "buff_data": data,	
+	        "buff_data": data,
 	        "buff_msg" : msg,
 	        "disa_msg" : "你的南海玄功護體神功運行完畢，將內力收回丹田。\n",
         ]);

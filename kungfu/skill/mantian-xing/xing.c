@@ -21,7 +21,7 @@ int perform(object me, object target)
         if (! target || ! me->is_fighting(target))
                 return notify_fail(XING "只能在戰鬥中對對手使用。\n");
 
-        if( !objectp(weapon=query_temp("handing", me)) || 
+        if( !objectp(weapon=query_temp("handing", me)) ||
             query("skill_type", weapon) != "throwing" )
                 return notify_fail("你現在手中沒有拿著暗器，難以施展" XING "。\n");
 
@@ -40,7 +40,7 @@ int perform(object me, object target)
         if( query("neili", me)<150 )
                 return notify_fail("你現在真氣不足，難以施展" XING "。\n");
 
-        if( BUFF_D->check_buff(target, "mtx_xing") ) 
+        if( BUFF_D->check_buff(target, "mtx_xing") )
                 return notify_fail("對方已經中了你的絕招，現在是廢人一個，趕快進攻吧！\n");
 
         if (! living(target))
@@ -81,23 +81,23 @@ int perform(object me, object target)
 
                         set_temp("feixing", 1, target);
                         data = ([
-                                "attack": -skill/4, 
-                                "defense": -skill/4, 
+                                "attack": -skill/4,
+                                "defense": -skill/4,
                         ]);
                         buff = ([
                                 "caster": me,
                                 "target": target,
                                 "type"  : "mtx_xing",
                                 "attr"  : "curse",
-                                "name"  : "滿天星·穹外飛星",
+                                "name"  : "滿天星．穹外飛星",
                                 "time"  : skill/15,
-                                "buff_data": data,      
+                                "buff_data": data,
                                 "buff_msg" : "",
                                 "disa_msg" : HIY "漸漸的你覺得力氣一絲絲的恢復了。\n" NOR,
-                        
+
                         ]);
                         BUFF_D->buffup(buff);
-                        
+
                         target->receive_damage("qi", skill, me);
                         target->receive_wound("qi", skill/2, me);
 

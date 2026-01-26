@@ -58,7 +58,7 @@ int perform(object me, object target)
                 "attack": skill/2,
                 "damage": skill,
                 "dodge": skill/2,
-                "parry": skill/2, 
+                "parry": skill/2,
         ]);
 
         buff = ([
@@ -66,26 +66,26 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "quanzhen_hebi",
                 "attr"  : "bless",
-                "name"  : "全真劍法·雙劍合璧",
+                "name"  : "全真劍法．雙劍合璧",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的雙劍合璧運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         buff = ([
                 "caster": target,
                 "target": target,
                 "type"  : "yunv_hebi",
                 "attr"  : "bless",
-                "name"  : "玉女劍法·雙劍合璧",
+                "name"  : "玉女劍法．雙劍合璧",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的雙劍合璧運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 
@@ -114,7 +114,7 @@ void check_fight(object me, object target, object victim)
         object weapon;
         if( !query_temp("hebi", me) || !query_temp("hebi", target))return ;
 
-        if( !living(victim) || !present(query("id",victim), environment(me)) || 
+        if( !living(victim) || !present(query("id",victim), environment(me)) ||
                 query("qi", victim) <= 50 && me->is_fighting(victim) && target->is_fighting(victim) )
         {
                 BUFF_D->debuff(me, "quanzhen_hebi", 1);
@@ -175,4 +175,3 @@ void check_fight(object me, object target, object victim)
         }
         call_out("check_fight", 1, me, target, victim);
 }
-

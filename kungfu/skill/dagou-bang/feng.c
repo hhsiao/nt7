@@ -47,7 +47,7 @@ int perform(object me, object target)
 
         addn("neili", -150, me);
         me->receive_damage("qi", 0);
-        
+
         data = ([
                 "defense": skill / 3 + fmsk / 5,
         ]);
@@ -56,12 +56,12 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "parryup",
                 "attr"  : "bless",
-                "name"  : "打狗棒法·封字訣",
+                "name"  : "打狗棒法．封字訣",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的封字訣施展完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);

@@ -31,7 +31,7 @@ int perform(object me, object target) {
         return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
 
     msg = WHT "$N" WHT "施展法術「" HIW "連鎖閃電" NOR +
-        WHT "」，高聲念誦道：比迪姆·亞特蒙·泰裡阿普·埃控。\n" NOR;
+        WHT "」，高聲念誦道：比迪姆．亞特蒙．泰裡阿普．埃控。\n" NOR;
 
     me->start_busy(1);
 

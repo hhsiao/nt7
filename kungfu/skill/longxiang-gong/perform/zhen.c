@@ -3,7 +3,7 @@
 #include <ansi.h>
 #include <combat.h>
 
-string name() { return HIW "真·般若極" NOR; }
+string name() { return HIW "真．般若極" NOR; }
 
 inherit F_SSERVER;
 
@@ -67,13 +67,13 @@ int perform(object me, object target)
 
         ap = attack_power(me, "unarmed") + me->query_con()*10;
         dp = defense_power(target, "parry") + target->query_dex()*10;
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-lxg-zhen"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         if (ap / 2 + random(ap) > dp)
         {
-                if ( query("max_neili",me) / 2 > query("max_neili",target) ) 
+                if ( query("max_neili",me) / 2 > query("max_neili",target) )
                 {
                         msg += HIR "$n" HIR "全然無力阻擋，竟被$N"
                                 HIR "一拳擊得飛起，重重的跌落在地上。\n" NOR;
@@ -90,10 +90,10 @@ int perform(object me, object target)
                         damage = damage_power(me, "unarmed");
                         damage+= query("jiali", me);
                         damage *= 2;
-                        
+
                         delta = ABILITY_D->check_ability(me, "da_power-lxg-zhen"); // 門派ab
                         if( delta ) damage += damage*delta/100;
-        
+
                         msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 200+fmsk / 20,
                                                    HIR "$n" HIR "不及閃避，頓被$N" HIR
                                 HIR "一拳擊得飛起，重重的跌落在地上。\n" NOR);

@@ -32,21 +32,21 @@ int exert(object me, object target)
         data = ([
                 "armor" : skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "明玉功·護體神功",
+                "name"  : "明玉功．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的明玉功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(2);
 
-        return 1;       
+        return 1;
 }

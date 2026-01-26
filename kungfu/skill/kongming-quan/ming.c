@@ -56,24 +56,24 @@ int perform(object me, object target)
 
         data = ([
                 "attack" : skill/2,
-                "unarmed_damage": skill, 
+                "unarmed_damage": skill,
                 "defense": skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "空明拳·靈臺空明",
+                "name"  : "空明拳．靈臺空明",
                 "time"  : skill/10,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你吸了一口氣，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         COMBAT_D->do_attack(me,target,query_temp("weapon", me));
 
         addn("neili", -skill/2, me);

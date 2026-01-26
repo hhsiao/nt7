@@ -7,7 +7,7 @@ inherit F_SSERVER;
 int perform(object me, object target)
 {
         mapping buff, data;
-        object weapon;  
+        object weapon;
         string msg;
         int count, cnt, skill;
 
@@ -34,8 +34,8 @@ int perform(object me, object target)
 
         msg = MAG "$N" MAG "一聲清嘯，身形一展，舞步宛如行雲流水、彩碟飛"
               "揚，速度變得異常敏捷。\n\n" NOR;
-        
-        
+
+
         skill = me->query_skill("zhuangzi-wu", 1);
         cnt = (int)((int)me->query_condition("drunk") / 50);
 
@@ -47,18 +47,18 @@ int perform(object me, object target)
         data = ([
                 "dex": count,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "莊子舞·化蝶",
+                "name"  : "莊子舞．化蝶",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的化蝶運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

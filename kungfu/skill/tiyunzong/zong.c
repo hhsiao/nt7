@@ -49,19 +49,19 @@ int perform(object me, object target)
         if( delta ) improve += improve*delta/100;
 
         data = ([
-                "defense": improve, 
+                "defense": improve,
         ]);
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "梯雲縱·縱字訣",
+                "name"  : "梯雲縱．縱字訣",
                 "time"  : improve/10,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : HIY"你散去丹田凝聚的內力，混身經脈真氣流動，氣定神閒，精神弈弈。\n"NOR,
-                        
+
         ]);
         BUFF_D->buffup(buff);
 
@@ -79,7 +79,7 @@ void remove_effect(object me, int count)
         ||  count < 1)
         {
                 BUFF_D->debuff(me, "dodgeup", 1);
-  
+
                 delete_temp("zong", me);
                 tell_object(me, HIY"你散去丹田凝聚的內力，混身經脈真氣流動，氣定神閒，精神弈弈。\n"NOR);
                 tell_room(environment(me), HIY + me->name()+"全身骨頭一陣輕響，散去了混身的功力。\n"NOR,  ({ me }));

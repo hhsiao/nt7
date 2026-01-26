@@ -31,13 +31,13 @@ int exert(object me, object target)
 
         if( query("neili", me)<5000 )
                 return notify_fail("你的內力不夠。\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "ynxf_wuzhi2")) > 0 )
                         return notify_fail(MAG"所向無滯消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         addn("neili", -1000, me);
         me->receive_damage("qi", 0);
 
@@ -58,34 +58,34 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "ynxf_wuzhi",
                 "attr"  : "bless",
-                "name"  : "玉女心法·所向無滯",
+                "name"  : "玉女心法．所向無滯",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的所向無滯運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-ynxf-wuzhi"); // ab門派減cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd 
-                
-        buff =  
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
+
+        buff =
 	([
 	        "caster" : me,
 	        "target" : me,
 	        "type"   : "cooldown",
 	        "type2"  : "ynxf_wuzhi2",
 	        "attr"   : "curse",
-	        "name"   : "玉女心法·所向無滯",
+	        "name"   : "玉女心法．所向無滯",
 	        "time"   : time,
 	        "buff_msg" : "所向無滯消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
 	        "disa_msg" : "",
 	        "disa_type": 0,
 	]);
 	BUFF_D->buffup(buff);
-	
+
         if( me->is_fighting() ) me->start_busy(2);
 
         return 1;

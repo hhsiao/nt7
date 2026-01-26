@@ -56,17 +56,17 @@ int perform(object me, object target)
         damage+= me->query_all_buff("unarmed_damage");
         damage+= damage / 300 * me->query_str();
 
-        delta = ABILITY_D->check_ability(me, "da_power-csz-tao"); 
+        delta = ABILITY_D->check_ability(me, "da_power-csz-tao");
         if( delta ) damage += damage*delta/100;
 
         ap = attack_power(me, "strike") +
              me->query_skill("poison", 1);
         dp = defense_power(target, "dodge") +
              target->query_skill("force", 1)/2;
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-csz-tao"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         if (ap + random(ap) < dp)
         {
                 msg += CYN "$n" CYN "見勢不妙，急忙騰挪身形，避開了$N" CYN "的攻擊。\n" NOR;
@@ -98,7 +98,7 @@ string attack(object me, object target, int damage)
                        "已被捲入火浪，毒焰席捲全身，連骨頭都要烤焦一般。\n" NOR;
 
         if( random(2) != 1 ) return msg;
-        
+
         data = ([
                 "avoid_poison": -90,
 
@@ -108,12 +108,12 @@ string attack(object me, object target, int damage)
                 "target": target,
                 "type"  : "chousui-zhang_tao",
                 "attr"  : "curse",
-                "name"  : "碧焰滔天·毒火攻心",
+                "name"  : "碧焰滔天．毒火攻心",
                 "time"  : 200,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : HIG "你只覺得心胸清朗，靈臺空明。\n" NOR,
-                        
+
         ]);
         BUFF_D->buffup(buff);
 
@@ -121,4 +121,3 @@ string attack(object me, object target, int damage)
 
         return msg;
 }
-

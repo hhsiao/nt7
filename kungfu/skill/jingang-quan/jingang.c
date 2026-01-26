@@ -34,10 +34,10 @@ int perform(object me, object target)
 
         if (! living(target))
               return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
-        
+
         if( BUFF_D->check_buff(me, "atkup") )
                 return notify_fail("你已經在運用類似的武功了。\n");
-                
+
         msg = HIY "$N" HIY "使出大金剛拳的絕技「大金剛神通」，臂力陡然增加！\n" NOR;
 
         qi=query("qi", me);
@@ -59,12 +59,12 @@ int perform(object me, object target)
                         "target": me,
                         "type"  : "atkup",
                         "attr"  : "bless",
-                        "name"  : "金剛拳·大金剛神功",
+                        "name"  : "金剛拳．大金剛神功",
                         "time"  : skill,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
                         "disa_msg" : "你的大金剛神通運行完畢，將內力收回丹田。\n",
-                        
+
                 ]);
                 BUFF_D->buffup(buff);
         } else
@@ -87,4 +87,3 @@ int perform(object me, object target)
         }
         return 1;
 }
-

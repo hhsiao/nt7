@@ -9,13 +9,13 @@ int exert(object me, object target)
         int skill, damage;
         string msg;
         mapping buff, data;
-        
-        if( target != me ) 
+
+        if( target != me )
                 return notify_fail("你只能用紫霞神功提升自己的戰鬥力。\n");
-                
+
         if( query("neili", me)<100 )
                 return notify_fail("你的內力不夠。\n");
-                
+
         if( BUFF_D->check_buff(me, "powerup")/*
                 || BUFF_D->check_buff(me,"dodgeup")
                 || BUFF_D->check_buff(me,"atkup") */)
@@ -27,11 +27,11 @@ int exert(object me, object target)
         me->receive_damage("qi", 0);
 
         msg = MAG "$N微一凝神，運起紫霞神功，背轉身去，臉上突然紫氣大盛！只是那紫氣一現即隱，轉過身來，臉上又回覆如常。\n" NOR;
-        
+
         damage = skill/3;
         if( query("zixia_paper", me) )
                 damage *= 2;
-        
+
         data =  ([
                         "attack" : damage,
                         "defense": damage,
@@ -42,17 +42,15 @@ int exert(object me, object target)
                         "target": me,
                         "type"  : "powerup",
                         "attr"  : "bless",
-                        "name"  : "紫霞神功·戰神",
+                        "name"  : "紫霞神功．戰神",
                         "time"  : skill,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
                         "disa_msg" : "你的紫霞神功運行完畢，將內力收回丹田。\n",
-                        
+
                 ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }
-
-

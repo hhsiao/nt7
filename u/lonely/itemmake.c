@@ -339,7 +339,7 @@ string weapon_long()
               result += "-------------------------------------\n";
 
               result += HIW "堅固修正： " + query("bless") + "\t" NOR;
-              result += HIW "攻·防修正：" + sprintf("%d", query("bless") * 2 + enchase_points) + "\n" NOR;
+              result += HIW "攻．防修正：" + sprintf("%d", query("bless") * 2 + enchase_points) + "\n" NOR;
               result += HIW "聖化次數： " + query("bless") + "\t" NOR;
               result += HIW "魔力改善值：" + query("magic/power") + "\n" NOR;
               result += HIW "魔力屬性：" + chinese_s(query("magic/type"))  + "\t" NOR;
@@ -417,7 +417,7 @@ string armor_long()
               result += HIC "套裝等級：" + TAOZHUANG_D->taozhuang_name(query("taozhuang")) + "\n" NOR;
               result += "-------------------------------------\n";
               result += HIW "堅固修正： " + query("bless") + "\t" NOR;
-              result += HIW "攻·防修正：" + sprintf("%d", query("bless") * 10 + enchase_points) + "\n" NOR;
+              result += HIW "攻．防修正：" + sprintf("%d", query("bless") * 10 + enchase_points) + "\n" NOR;
               result += HIW "聖化次數： " + query("bless") + "\n" NOR;
 430                   // 顯示強化等級
 431                   if (query("qh_level"))

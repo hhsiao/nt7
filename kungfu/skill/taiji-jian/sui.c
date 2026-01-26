@@ -53,12 +53,12 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "parryup",
                 "attr"  : "bless",
-                "name"  : "太極劍法·隨字訣",
+                "name"  : "太極劍法．隨字訣",
                 "time"  : skill/3,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的隨字訣運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

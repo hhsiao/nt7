@@ -33,7 +33,7 @@ int perform(object me, object target)
         if( query_temp("yield", me) )
                 return notify_fail("你不出招，如何使出「白虹掌力」？\n");
 
-        if( BUFF_D->check_buff(me, "lyz_baihong") ) 
+        if( BUFF_D->check_buff(me, "lyz_baihong") )
                 return notify_fail("你已經在使用「白虹掌力」了！\n");
 
         if ( me->query_skill_mapped("force") != "xiaowu-xiang"
@@ -66,26 +66,26 @@ int perform(object me, object target)
 
         msg = WHT "\n$N左掌拍出，右掌一帶，左掌之力吞吐不定。這門功夫乃是逍遙派上乘掌法中\n"
                             "的"+ HIW +"‘白虹掌力’"+ NOR + WHT +"，此刻$N掌力曲直如意，當真了得！\n" NOR;
-        
+
         data = ([
                 "attack" : strike,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "lyz_baihong",
                 "attr"  : "bless",
-                "name"  : "六陽掌·白虹掌力",
+                "name"  : "六陽掌．白虹掌力",
                 "time"  : strike,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : WHT "\n$N左掌一揮，右掌在前胸畫了個弧，收起了吞吐不定的掌力。\n"NOR
-                        
+
         ]);
-        
+
         BUFF_D->buffup(buff);
-        
+
         call_out("checking", 1, me, strike);
         return 1;
 }
@@ -135,9 +135,9 @@ void checking(object me, int strike)
 void remove_effect(object me, int strike)
 {
         if (! objectp(me)) return;
-        
+
         BUFF_D->debuff(me, "lyz_baihong", 1);
-        
+
         //delete_temp("lingjiu/baihong", me);
         //addn_temp("apply/attack", -strike, me);
 }

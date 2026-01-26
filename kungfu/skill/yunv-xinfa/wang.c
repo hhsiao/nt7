@@ -10,7 +10,7 @@ int exert(object me, object target)
         mapping buff, data;
         string msg;
         int skill, i;
-        
+
         if (! target || target == me)
         {
                 me->clean_up_enemy();
@@ -51,23 +51,23 @@ int exert(object me, object target)
                         HIW "一招一式若神來之筆，拿捏的異常準確！\n" NOR;
                 tell_object(me, HIM "既已無緣，何需誓言，你不覺間進入忘情境界。\n");
                 data = ([
-                        "attack": skill * 2, 
-                        "damage": skill * 4, 
-                        "unarmed_damage": skill * 4, 
-                        "defense": skill * 4, 
+                        "attack": skill * 2,
+                        "damage": skill * 4,
+                        "unarmed_damage": skill * 4,
+                        "defense": skill * 4,
                 ]);
                 addn("neili", -100, me);
-                
+
                 buff = ([
                         "caster": me,
                         "target": me,
                         "type"  : "ynxf_wang",
                         "attr"  : "bless",
-                        "name"  : "玉女心法·忘情心訣",
+                        "name"  : "玉女心法．忘情心訣",
                         "time"  : skill,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
-                        "disa_msg" : "一陣心痛，又勾起了你傷心的往事，忘情之意頓消。\n", 
+                        "disa_msg" : "一陣心痛，又勾起了你傷心的往事，忘情之意頓消。\n",
                 ]);
                 BUFF_D->buffup(buff);
                 return 1;

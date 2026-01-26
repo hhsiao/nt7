@@ -5,7 +5,7 @@ inherit ITEM;
 
 int is_tongren() { return 1; }
 void create() {
-    set_name(YEL "衝穴銅人·手少陽脈·耳門髎穴" NOR, ({ "tongren o4", "tongren" }));
+    set_name(YEL "衝穴銅人．手少陽脈．耳門髎穴" NOR, ({ "tongren o4", "tongren" }));
     set_weight(50);
 
     set("unit", "個");

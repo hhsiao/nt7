@@ -26,7 +26,7 @@ int perform(object me, object target)
          if (BUFF_D->check_buff(me,"qkdny-nuozhuan") )
                 return notify_fail("你已經運起" + name() + "。\n" NOR);
 
-        if( userp(me) ) 
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "qkdny_nuozhuan")) > 0 )
                         return notify_fail(MAG"挪轉乾坤消耗心神太甚，還需等待"+time+"秒。\n"NOR);
@@ -42,12 +42,12 @@ int perform(object me, object target)
                 "target": me,
                 "type"  : "qkdny-nuozhuan",
                 "attr"  : "bless",
-                "name"  : "乾坤大挪移·挪轉乾坤",
+                "name"  : "乾坤大挪移．挪轉乾坤",
                 "time"  : level,
-                "buff_data": "nuozhuan",      
+                "buff_data": "nuozhuan",
                 "buff_msg" : msg,
                 "disa_msg" : "你的「挪轉乾坤」運功完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 
@@ -62,7 +62,7 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "qkdny_nuozhuan",
                 "attr"   : "curse",
-                "name"   : "乾坤大挪移·挪轉乾坤",
+                "name"   : "乾坤大挪移．挪轉乾坤",
                 "time"   : time,
                 "buff_msg" : "挪轉乾坤消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",

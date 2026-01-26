@@ -10,7 +10,7 @@ string attack4(object me, object target, int damage);
 string attack5(object me, object target, int damage);
 string attack6(object me, object target, int damage);
 
-string name() { return HIR "真·六道輪迴" NOR; } 
+string name() { return HIR "真．六道輪迴" NOR; }
 
 int perform(object me, object target)
 {
@@ -37,7 +37,7 @@ int perform(object me, object target)
                         return notify_fail("對不起，由於你的輪迴點有問題，你暫時無法施展該招，詳情參見新聞。\n");
         }
         */
-        
+
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
@@ -67,22 +67,22 @@ int perform(object me, object target)
 
         if (! living(target))
                 return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
-        
+
         wait_time = 30;
-        
+
         if (me->query_skill("yinyang-shiertian", 1) >= 1000)
                 wait_time = 25;
-                
+
         if (me->query_skill("yinyang-shiertian", 1) >= 1400)
                 wait_time = 20;
-                
+
         if (me->query_skill("yinyang-shiertian", 1) >= 1600)
                 wait_time = 15;
-                
+
         if( time()-query_temp("last_perform_zhen", me)<wait_time )
                 return notify_fail("你剛施展過" + name() + "，體內真氣還沒有完全順暢，此時不宜強行運功。\n");
-                
-                                
+
+
         wn = weapon->name();
 
         message_combatd(HIW "$N" HIW "面露拈花之意，祭起手中" + wn +
@@ -98,7 +98,7 @@ int perform(object me, object target)
             query("fight_room", sroom) )
                 in_shejingdong = 1;
 
-        ap = attack_power(me, "sword"); 
+        ap = attack_power(me, "sword");
         dp = defense_power(target, "force");
 
         damage = damage_power(me, "sword")*3;
@@ -161,9 +161,9 @@ int perform(object me, object target)
         {
                 if( query("death_skill/guimai", target) )
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage / 2, 100,
-                                                   (: attack3, me, target, damage :));                
+                                                   (: attack3, me, target, damage :));
                 else
-                
+
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 200,
                                                    (: attack3, me, target, damage :));
         } else
@@ -188,9 +188,9 @@ int perform(object me, object target)
         {
                 if( query("death_skill/lonely", target) )
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage / 2, 100,
-                                                   (: attack4, me, target, damage :));                
+                                                   (: attack4, me, target, damage :));
                 else
-                
+
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 200,
                                                    (: attack4, me, target, damage :));
         } else
@@ -237,9 +237,9 @@ int perform(object me, object target)
         {
                 if( query("death_skill/emperor", target) )
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage / 2, 100,
-                                                   (: attack6, me, target, damage :));                
+                                                   (: attack6, me, target, damage :));
                 else
-                
+
                         msg = COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 200,
                                                    (: attack6, me, target, damage :));
         } else
@@ -252,7 +252,7 @@ int perform(object me, object target)
         me->start_busy(4 + random(4));
         addn("neili", -4000, me);
         set_temp("last_perform_zhen", time(), me);
-        
+
         // 為什麼提行？為了畫面更為賞心悅目而已
         tell_object(me, "\n\n");
         tell_object(target, "\n\n");
@@ -279,14 +279,14 @@ string attack1(object me, object target, int damage)
                 addn_temp("apply/attack", -damage/10, target);
                 addn_temp("apply/parry", -damage/10, target);
                 addn_temp("apply/dodge", -damage/10, target);
-                
+
                 if( query_temp("apply/attack", target)<0 )
                         set_temp("apply/attack", 0, target);
                 if( query_temp("apply/parry", target)<0 )
                         set_temp("apply/parry", 0, target);
                 if( query_temp("apply/dodge", target)<0 )
                         set_temp("apply/dodge", 0, target);
-                                                                     
+
                 set_temp("liudaolunhui", 1, target);
         }
         return msg;
@@ -304,7 +304,7 @@ string attack2(object me, object target, int damage)
         {
                 // 此特效對天晶無效
                 if( query("material", weapon) == "tian jing")return msg;
-                
+
                 wn = weapon->name();
                 msg += WHT "忽聽「鏘鏘鏘」幾聲脆響，$n" WHT "的" + wn +
                        WHT "竟被$N" WHT "絞成了塊塊碎片。\n" NOR;
@@ -328,10 +328,10 @@ string attack3(object me, object target, int damage)
                 shd=query_temp("apply/armor", target);
 
                 addn_temp("apply/armor", -shd, target);
-                                        
+
                 if( query_temp("apply/armor", target)<0 )
                         set_temp("apply/armor", 0, target);
-                        
+
                 delete_temp("shield", target);
 
                 msg += WHT "$N" WHT "氣勁湧至，宛若刀割，頓時將$n"
@@ -352,7 +352,7 @@ string attack4(object me, object target, int damage)
         {
                 // 此特效對天晶無效
                 if( query("material", cloth) == "tian jing")return msg;
-                              
+
                 cn = cloth->name();
                 msg += WHT "忽聽轟然聲大作，$n" WHT "身著的" + cn +
                        WHT "在$N" WHT "內力激盪下，竟被震得粉碎。\n"
@@ -365,7 +365,7 @@ string attack4(object me, object target, int damage)
         {
                 // 此特效對天晶無效
                 if( query("material", armor) == "tian jing")return msg;
-                                
+
                 an = armor->name();
                 msg += WHT "忽聽「哧啦」一聲脆響，$n" WHT "身著的" +
                        an + WHT "竟被$N" WHT "震裂，化成塊塊碎片。\n"
@@ -388,7 +388,7 @@ string attack5(object me, object target, int damage)
         {
                 // 此招對朱蛤奇緣玩家無效
                 if( query("death_skill/zhuha", target))return msg;
-                
+
                 target->affect_by("poison",
                         (["level":query("jiali", me)*3+random(query("jiali", me)),
                            "name"     : "煉獄寒焰",
@@ -403,7 +403,7 @@ string attack5(object me, object target, int damage)
 void clear_no_exert(object target)
 {
         if (! objectp(target))return;
-        
+
         delete_temp("no_exert", target);
 }
 
@@ -419,7 +419,7 @@ string attack6(object me, object target, int damage)
         {
                 // 此招對六陰鬼脈玩家無效
                 if( query("death_skill/guimai", target))return msg;
-                
+
                 set_temp("no_exert", 1, target);
                 remove_call_out("clear_no_exert");
                 call_out("clear_no_exert", 20, target);

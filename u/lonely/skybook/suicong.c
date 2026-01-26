@@ -18,16 +18,16 @@ int main(object me, string arg)
 
         string arg1, arg2, arg3;
         if (! arg)return help(me);
-        
-        
+
+
         if (! find_object(SUICONG_D))load_object(SUICONG_D);
-        
+
         // 顯示所有可以獲得隨從列表
         if (arg == "list")
         {
-                return SUICONG_D->show_suicong(me);             
+                return SUICONG_D->show_suicong(me);
         }
-        
+
         // 查看指定隨從
         if (sscanf(arg, "cha %s", arg1) == 1)
         {
@@ -38,10 +38,10 @@ int main(object me, string arg)
         {
                 object ob = find_player(arg1);
                 if (! ob)return notify_fail("玩家不存在！\n");
-                                
+
                 return SUICONG_D->show_suicong_target(ob, arg2);
         }
-        // 召喚隨從     
+        // 召喚隨從
         if (sscanf(arg, "sum %s", arg1) == 1)
         {
                 return SUICONG_D->summon_suicong(me, arg1);
@@ -54,9 +54,9 @@ int main(object me, string arg)
         // 測試開發期間使用，玩家可領取2名隨從體驗
         if (arg == "tiyan")
         {
-                SUICONG_D->give_suicong(me, "少俠·平一指");
+                SUICONG_D->give_suicong(me, "少俠．平一指");
 
-                write(HIG "領取了【少俠·平一指】，請使用 suicong sum 少俠·平一指 召喚！\n" NOR);
+                write(HIG "領取了【少俠．平一指】，請使用 suicong sum 少俠．平一指 召喚！\n" NOR);
                 return 1;
         }
 }
@@ -64,9 +64,9 @@ int main(object me, string arg)
 int help(object me)
 {
         string sMsg;
-        
-        write(@TEXT              
-        
+
+        write(@TEXT
+
 =--------------------------------------------------------------------------------------=
         隨從系統控制指令  >>
 
@@ -76,14 +76,14 @@ int help(object me)
         suicong sum 隨從名        召喚指定隨從出戰，召喚後會替換掉當前已出戰的隨從
         suicong hide 隨從名       將召喚出來的隨從收回
         suicong tiyan             領取1名隨從進行體驗，正式開放後會刪除
-TEXT);  
-        
+TEXT);
+
         if (wizardp(me))
         {
                 write("\n        suicong chaplayer ID 隨從名   ： 可查看指定玩家指定的隨從屬性\n");
         }
-        
-        
+
+
         sMsg = "\n=--------------------------------------------------------------------------------------=\n";
         sMsg+= "當前召喚出的隨從有：" + HIG + SUICONG_D->get_sum(me) + "\n" NOR;
         sMsg+=   "=--------------------------------------------------------------------------------------=\n";

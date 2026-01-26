@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIY "上古·太虛" NOR, ({"tai xu", "tai", "xu"}));
+    set_name(HIY "上古．太虛" NOR, ({"tai xu", "tai", "xu"}));
     set_weight(50);
     set("long", HIY "一塊金黃色的太虛，擁有無窮變化的魔力，這\n"
         "便是傳說中的至寶——上古太虛，相傳為上古\n"

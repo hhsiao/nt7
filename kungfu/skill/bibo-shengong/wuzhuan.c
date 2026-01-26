@@ -19,7 +19,7 @@ int exert(object me, object target)
 
         if( query("neili", me)<500 )
                 return notify_fail("你的內力不夠，勁力不足以施展「奇門五轉」！\n");
-        
+
         if( me->query_skill("qimen-wuxing", 1) < 1200 )
                 return notify_fail("你的奇門五行修為不夠，還未領悟「奇門五轉」！\n");
 
@@ -43,18 +43,17 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "碧波神功·奇門五轉",
+                "name"  : "碧波神功．奇門五轉",
                 "time"  : time,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "$N只覺真氣運轉不暢，不得不放慢步法，調息吐納。\n",
                 "disa_type":1,
-                        
+
         ]);
         //set_temp("wuzhuan_hit", extra/60+random(2), me);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }
-

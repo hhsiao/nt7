@@ -52,14 +52,14 @@ int perform( object me, object target)
 
         msg = HIM "$N" HIM "口中默唸“動靜如參商”，心隨意轉，勁跟力發。只聽得內力破空之聲呲呲作響！\n"
                         HIM "內力化作一股劍氣直奔"+target->name()+ HIM "射去！\n" NOR;
-                        
+
         str = me->query_skill("canhe-zhi",1)*2;
         dex = me->query_skill("beidou-xianzong" ,1)*2;
         skill = (str+dex) / 2;
-        
+
         addn("neili", -lvl, me);
         addn("jingli", -lvl, me);
-        
+
         data = ([
                 "str" : str,
                 "dex" : dex,
@@ -69,15 +69,14 @@ int perform( object me, object target)
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "參合指·參商劍氣",
+                "name"  : "參合指．參商劍氣",
                 "time"  : skill/8,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你緩緩收住身形，輕籲一口氣，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        me->start_busy(1+random(2)); 
+        me->start_busy(1+random(2));
         return 1;
 }
-

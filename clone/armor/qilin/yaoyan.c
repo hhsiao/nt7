@@ -4,7 +4,7 @@
 inherit EARRING;
 
 void create() {
-    set_name(HIR "火麒麟·妖焰" NOR, ({ "yaoyan erhuan", "yaoyan", "erhuan" }));
+    set_name(HIR "火麒麟．妖焰" NOR, ({ "yaoyan erhuan", "yaoyan", "erhuan" }));
     set_weight(100);
     set("unit", "副");
     set("long", HIR "你定睛一看，卻無法辯識清楚，妖焰的火光閃耀刺眼，令人敬畏。\n" NOR);

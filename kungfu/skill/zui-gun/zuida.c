@@ -45,10 +45,10 @@ int perform(object me, object target)
         skill = me->query_skill("zui-gun",1);
         cnt =(int)( (int)me->query_condition("drunk") / 30);
         if( cnt > 50 ) cnt = 50;
-        
+
         count=query("str", me)*random(cnt+2);
         count1=query("dex", me)*random(cnt+2);
-        
+
         data = ([
                 "str": count,
                 "dex": count1,
@@ -56,14 +56,14 @@ int perform(object me, object target)
         buff = ([
                 "caster": me,
                 "target": me,
-         "type"  : "zg_zuida", 
+         "type"  : "zg_zuida",
                 "attr"  : "bless",
-                "name"  : "醉棍·八仙醉打",
+                "name"  : "醉棍．八仙醉打",
                 "time"  : skill/3,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的八仙醉打運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

@@ -36,9 +36,9 @@ int exert(object me, object target)
 	        "target": me,
 	        "type"  : "powerup",
 	        "attr"  : "bless",
-	        "name"  : "南海玄功·戰神",
+	        "name"  : "南海玄功．戰神",
 	        "time"  : skill,
-	        "buff_data": data,	
+	        "buff_data": data,
 	        "buff_msg" : msg,
 	        "disa_msg" : "你的南海玄功運行完畢，將內力收回丹田。\n",
         ]);

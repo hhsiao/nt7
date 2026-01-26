@@ -46,7 +46,7 @@ int perform(object me, object target)
 
         ap = attack_power(me, "sword");
         dp = defense_power(target, "dodge");
-        
+
         if (query("can_learn/lonely-sword/nothing", me))
                 ap += ap / 3;
 
@@ -70,23 +70,23 @@ int perform(object me, object target)
 string final(object me, object target, int ap)
 {
         mapping buff;
-        
+
         buff =
                 ([
                         "caster":me,
                         "target":target,
                         "type":"no_exert",
                         "attr":"curse",
-                        "name":"獨孤九劍·破氣",
+                        "name":"獨孤九劍．破氣",
                         "time": 300,
                         "buff_data":"no_exert",
                         "buff_msg": "",
                         "warn_msg": HIC "$N" HIC "深深吸入一口氣，臉色由白轉紅，看起來好多了。\n" NOR,
                         "disa_msg": HIY "你感到被擾亂的真氣慢慢平靜了下來。\n" NOR,
                 ]);
-        
+
         BUFF_D->buffup(buff);
-        
+
         return  HIR "$n" HIR "被$N" HIR "一劍劃過氣門，登感一陣"
                 "錐心的刺痛，全身真氣源源而瀉！\n" NOR;
 }

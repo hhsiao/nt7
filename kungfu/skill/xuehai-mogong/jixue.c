@@ -7,7 +7,7 @@ inherit F_SSERVER;
 int exert(object me, object target)
 {
         mapping buff, data;
-        object weapon;  
+        object weapon;
         string msg;
         int skill;
         int delta;
@@ -23,7 +23,7 @@ int exert(object me, object target)
 
         if ((int)me->query_skill("force") < 150)
                 return notify_fail("你的血海魔功的修為不夠，不能使用祭血大法！\n");
-                
+
         msg = HIR "$N" HIR "使出血海魔功「祭血大法」，剎時間臉色變得"
               "血紅，"HIR "$N" HIR "忽地咬破舌尖，噴出一口鮮血！\n" NOR;
 
@@ -32,23 +32,23 @@ int exert(object me, object target)
         delta = ABILITY_D->check_ability(me, "ap_power-xhmg-jixue"); // 門派ab
         if( delta ) skill += skill*delta/100;
         if( query("qi", me)>query("max_qi", me)*6/10 )
-        {       
+        {
                 data = ([
                         "damage": skill*20,
                         "unarmed_damage": skill*20,
                 ]);
-                
+
                 buff = ([
                         "caster": me,
                         "target": me,
                         "type"  : "xhmg_jixue",
                         "attr"  : "bless",
-                        "name"  : "血海魔功·祭血大法",
+                        "name"  : "血海魔功．祭血大法",
                         "time"  : skill/10,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
                         "disa_msg" : "你的祭血大法運行完畢，將內力收回丹田。\n",
-                        
+
                 ]);
                 BUFF_D->buffup(buff);
                 addn("neili", -150, me);
@@ -60,4 +60,3 @@ int exert(object me, object target)
         message_combatd(msg, me);
         return 1;
 }
-

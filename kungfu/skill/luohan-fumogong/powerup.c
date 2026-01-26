@@ -8,7 +8,7 @@ int exert(object me, object target)
         string msg;
         int skill;
         string fam;
-        
+
         fam = query("family/family_name", me);
 
         // 要求只有喝過玄冰碧火酒或是少林派玩家才能施展
@@ -48,23 +48,23 @@ int exert(object me, object target)
                                 "全身肌膚竟交替呈現出" NOR + HIB "靛青" HIY
                                 "與" HIR "血紅" HIY "兩色。\n" NOR;
 
- 
+
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "羅漢伏魔神功·戰神",
+                "name"  : "羅漢伏魔神功．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的羅漢伏魔神功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if (me->is_fighting())

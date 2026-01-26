@@ -10,7 +10,7 @@ inherit TESSERA;
 void create()
 {
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
-        set_name(HIR "朱雀·火" NOR, ({"zhu que", "fire"}));/* NAME_EXIT  */
+        set_name(HIR "朱雀．火" NOR, ({"zhu que", "fire"}));/* NAME_EXIT  */
         set_weight(20);
         //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
                 set("long", HIR "可用於鑲嵌10LV，屬性火。\n" NOR); /* DBASE_EXIT  */

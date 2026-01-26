@@ -10,7 +10,7 @@ int perform(object me, object target)
         int ap, dp, jp, lvl, xw, j, damage;
         int delta, delta2;
         int time;
-        
+
         if (! target) target = offensive_target(me);
 
         if( query_temp("weapon", me) )
@@ -37,7 +37,7 @@ int perform(object me, object target)
         if( query("neili", me)<5000 )
                 return notify_fail("你的真氣不夠！\n");
 
-        if( userp(me) ) 
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "tzst_dian")) > 0 )
                         return notify_fail(MAG"隔空點穴消耗心神太甚，還需等待"+time+"秒。\n"NOR);
@@ -59,19 +59,19 @@ int perform(object me, object target)
         damage = damage_power(me, "finger");
         damage+= query("jiali", me);
         damage*= query("str",me);
-        
+
         delta2 = ABILITY_D->check_ability(me, "da_power-tzst-dian"); // 門派ab
         if( delta2 ) ap += ap*delta2/100;
-                                
+
         // 伏兔穴
         //if (xw == 1)
         {
                 ap = attack_power(me, "finger") + jp + me->query_skill("dodge");
                 dp = defense_power(target, "parry") + target->query_skill("dodge");
-                
+
                 delta = ABILITY_D->check_ability(me, "ap_power-tzst-dian"); // 門派ab
                 if( delta ) ap += ap*delta/100;
-        
+
                 msg = HIG "\n$n聚氣於右手食指，倏地向$N腿上伏兔穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -89,14 +89,14 @@ int perform(object me, object target)
                                 "target" : target,
                                 "type"   : "tanzhi_dian1",
                                 "attr"   : "curse",
-                                "name"   : "彈指神通·伏兔穴",
+                                "name"   : "彈指神通．伏兔穴",
                                 "time"   : 30,
                                 "buff_msg" : msg,
                                 "disa_msg" : HIY"$N腿上的伏兔穴血脈已經行開，身法已復。\n" NOR,
                                 "disa_type": 1,
                         ]);
-                        BUFF_D->buffup(buff);        
-                        
+                        BUFF_D->buffup(buff);
+
                 }
 //                message_combatd(msg, me, target);
         }
@@ -106,9 +106,9 @@ int perform(object me, object target)
         {
                 ap = attack_power(me, "finger") + jp + me->query_skill("parry");
                 dp = defense_power(target, "dodge") + me->query_skill("parry");
-                
+
                 if( delta ) ap += ap*delta/100;
-                
+
                 msg = HIG "\n$n聚氣於右手食指，倏地向$N手腕神門穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -126,13 +126,13 @@ int perform(object me, object target)
                                 "target" : target,
                                 "type"   : "tanzhi_dian2",
                                 "attr"   : "curse",
-                                "name"   : "彈指神通·神門穴",
+                                "name"   : "彈指神通．神門穴",
                                 "time"   : 30,
                                 "buff_msg" : msg,
                                 "disa_msg" : HIY"$N腿上的神門穴血脈已經行開，力道已復。\n" NOR,
                                 "disa_type": 1,
                         ]);
-                        BUFF_D->buffup(buff); 
+                        BUFF_D->buffup(buff);
                 }
 //                message_combatd(msg, me, target);
         }
@@ -142,9 +142,9 @@ int perform(object me, object target)
         {
                 ap = attack_power(me, "finger") + jp + me->query_skill("force");
                 dp = defense_power(target, "parry") + target->query_skill("force");
-                
+
                 if( delta ) ap += ap*delta/100;
-                
+
                 msg = HIG "\n$N聚氣於右手食指，倏地向$n腹部關元穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -163,9 +163,9 @@ int perform(object me, object target)
         {
                 ap = attack_power(me, "finger") + jp + me->query_skill("bibo-shengong", 1);
                 dp = defense_power(target, "dodge") + target->query_skill("force", 1);
-                
+
                 if( delta ) ap += ap*delta/100;
-                
+
                 msg = HIG "\n$n聚氣於右手食指，倏地向$N胸口玉堂穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -185,13 +185,13 @@ int perform(object me, object target)
                                 "target" : target,
                                 "type"   : "tanzhi_dian4",
                                 "attr"   : "curse",
-                                "name"   : "彈指神通·神門穴",
+                                "name"   : "彈指神通．神門穴",
                                 "time"   : 30,
                                 "buff_msg" : msg,
                                 "disa_msg" : HIY "$N胸口的玉堂穴血脈已經行開，內息恢復了正常。\n" NOR,
                                 "disa_type": 1,
                         ]);
-                        BUFF_D->buffup(buff); 
+                        BUFF_D->buffup(buff);
 
                         //target->apply_condition("no_exert", j);
                 }
@@ -203,9 +203,9 @@ int perform(object me, object target)
         {
                 ap = attack_power(me, "finger") + jp + me->query_skill("dodge");
                 dp = defense_power(target, "parry") + target->query_skill("dodge");
-                
+
                 if( delta ) ap += ap*delta/100;
-                
+
                 msg = HIG "\n$N聚氣於右手食指，倏地向$n胸前檀中穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -226,9 +226,9 @@ int perform(object me, object target)
         {
                 ap = attack_power(me, "finger") + jp+query("max_neili", me);
                 dp = defense_power(target, "dodge")+query("max_neili", target);
-                
+
                 if( delta ) ap += ap*delta/100;
-                
+
                 msg = HIG "\n$N聚氣於右手食指，倏地向$n背後靈臺穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -249,9 +249,9 @@ int perform(object me, object target)
         {
                 ap = attack_power(me, "finger") + jp + me->query_skill("parry");
                 dp = defense_power(target, "dodge") + me->query_skill("parry");
-                
+
                 if( delta ) ap += ap*delta/100;
-                
+
                 msg = HIG "\n$N聚氣於右手食指，倏地向$n頭部百會穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -272,9 +272,9 @@ int perform(object me, object target)
         {
                 ap = attack_power(me, "finger") + jp + me->query_skill("parry");
                 dp = defense_power(target, "dodge") + me->query_skill("parry");
-                
+
                 if( delta ) ap += ap*delta/100;
-                
+
                 msg = HIG "\n$n聚氣於右手食指，倏地向$N後腦風府穴點去！\n" NOR;
 
                 if (ap / 2 + random(ap) < dp)
@@ -283,7 +283,7 @@ int perform(object me, object target)
                 {
                         msg += HIR "$N一被點中，眼前陡然一黑，幾乎昏倒。\n" NOR;
                         //set_temp("thd/tz", 1, me);
-                        
+
                         addn("neili", -150, me);
                         data = ([
                                 "defense": -lvl,
@@ -293,13 +293,13 @@ int perform(object me, object target)
                                 "target" : target,
                                 "type"   : "tanzhi_dian8",
                                 "attr"   : "curse",
-                                "name"   : "彈指神通·風府穴",
+                                "name"   : "彈指神通．風府穴",
                                 "time"   : 30,
                                 "buff_msg" : msg,
                                 "disa_msg" : HIY "$N胸口的風府穴血脈已經行開，視線復原了。\n" NOR,
                                 "disa_type": 1,
                         ]);
-                        BUFF_D->buffup(buff); 
+                        BUFF_D->buffup(buff);
                 }
 //                message_combatd(msg, me, target);
         }
@@ -309,4 +309,3 @@ int perform(object me, object target)
         me->start_busy(3);
         return 1;
 }
-

@@ -169,7 +169,7 @@ int do_sell(string arg)
 {
 	object ob,me = this_player();
 	int temp,value,mangle, save_value;
-    
+
 	if(!environment() || base_name(environment()) != query("startroom"))
 		return 0;
 	if(!master)
@@ -1013,7 +1013,7 @@ protected void get_self_weapon_id(string str, object me, object ob)
 
 	ob->set_name(ob->query("name"), ({ str }) );
 
-	tell_object(me, "請設定兵器的描述：\n·描述內容不能超過三行\n·每行不超過20個漢字
+	tell_object(me, "請設定兵器的描述：\n．描述內容不能超過三行\n．每行不超過20個漢字
 請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n");
 	input_to((: get_self_weapon_desc :), me, ob, "");
 }
@@ -1061,8 +1061,8 @@ protected void get_self_weapon_desc(string str, object me, object ob, string des
 
 		if( sizeof(explode(desc, "\n")) > 3)
 		{
-			tell_object(me, HBCYN HIG"·兵器的描述內容不能超過三行，請重新設定兵器描述。
-·描述內容不能超過三行\n·每行不超過20個漢字
+			tell_object(me, HBCYN HIG"．兵器的描述內容不能超過三行，請重新設定兵器描述。
+．描述內容不能超過三行\n．每行不超過20個漢字
 請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n"NOR);
 			input_to((: get_self_weapon_desc :), me, ob, "");
 			return;
@@ -1101,8 +1101,8 @@ protected void get_self_weapon_desc(string str, object me, object ob, string des
 
 			if( sizeof(explode(desc, "\n")) > 3)
 			{
-				tell_object(me, HBCYN HIG"·兵器的描述內容不能超過三行，請重新設定兵器描述。
-·描述內容不能超過三行\n·每行不超過20個漢字
+				tell_object(me, HBCYN HIG"．兵器的描述內容不能超過三行，請重新設定兵器描述。
+．描述內容不能超過三行\n．每行不超過20個漢字
 請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n"NOR);
 				input_to((: get_self_weapon_desc :), me, ob, "");
 				return;
@@ -1120,8 +1120,8 @@ protected void get_self_weapon_desc(string str, object me, object ob, string des
 
 		if( sizeof(explode(desc, "\n")) > 2)
 		{
-			tell_object(me, HBCYN HIG"·兵器的描述內容不能超過三行，請重新設定兵器描述。
-·描述內容不能超過三行\n·每行不超過20個漢字
+			tell_object(me, HBCYN HIG"．兵器的描述內容不能超過三行，請重新設定兵器描述。
+．描述內容不能超過三行\n．每行不超過20個漢字
 請輸入('.'結束輸入，'q'退出)：\n------------------------------------------------------\n"NOR);
 			input_to((: get_self_weapon_desc :), me, ob, "");
 			return;

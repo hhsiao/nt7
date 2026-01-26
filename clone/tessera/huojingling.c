@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIR "火之精靈·火" NOR, ({"huo jingling", "huo", "jingling"}));
+    set_name(HIR "火之精靈．火" NOR, ({"huo jingling", "huo", "jingling"}));
     set_weight(300);
     set("long", HIR "火神祝融之寶物，擁有著火屬性的最高力量。\n" NOR);
     set("unit", "塊");

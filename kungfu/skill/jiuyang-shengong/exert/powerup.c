@@ -26,31 +26,31 @@ int exert(object me, object target)
 
         msg = HIR "$N" HIR "微一凝神，運起九陽神功，將真氣"
                         "凝聚在丹田之中，沿奇經八脈遍佈全身！\n" NOR;
-        
+
         data = ([
                 "attack" : skill/2,
                 "defense" : skill/2,
                 "unarmed_damage": skill,
                 "damage" : skill,
-                "parry"  : skill/2, 
-                "dodge"  : skill/2, 
+                "parry"  : skill/2,
+                "dodge"  : skill/2,
                 "dispel_poison" : skill,
         ]);
-        
+
          buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "九陽神功·戰神",
+                "name"  : "九陽神功．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的九陽神功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

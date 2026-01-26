@@ -418,7 +418,7 @@ total = me->query("str")+ me->query("int")+ me->query("dex")+ me->query("con");
 		);
 		me->delete_temp("jyquest");
 		me->set("quest/jiuyin1/pass",1);
-		me->set("title",HIR"武林神話"NOR"·"HIC"九陰真經傳人"NOR);      //板磚侍候
+		me->set("title",HIR"武林神話"NOR"．"HIC"九陰真經傳人"NOR);      //板磚侍候
 		if(!clonep(book)){
 			command("hungry");
 			command("say 好了，都看完了，肚子都餓了，我要吃飯去了。");

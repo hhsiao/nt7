@@ -1,6 +1,6 @@
-// 神話世界·西遊記·版本４．５０
+// 神話世界．西遊記．版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 //      /adm/daemons/network/dns_aux/locate_a.c
 //      from the TMI-2 Mudlib
 //      the locate_a for the UDP locate function
@@ -19,7 +19,7 @@ void incoming_request(mapping info) {
     switch(info["LOCATE"]) {
         case "NO": return;
         case "YES":
-          message("info", sprintf("LOCATE:  %s was just located on %s.\n", 
+          message("info", sprintf("LOCATE:  %s was just located on %s.\n",
             capitalize(info["TARGET"]), nntoh(info["NAME"])), who);
           break;
         default: /* log bad answers here if you like */

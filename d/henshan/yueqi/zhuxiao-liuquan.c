@@ -5,7 +5,7 @@ inherit ITEM;
 inherit MI_XIAO;
 
 void create() {
-    set_name(HIG "碧玉洞蕭·流泉" NOR, ({ "liuquan xiao", "liuquan", "xiao" }));
+    set_name(HIG "碧玉洞蕭．流泉" NOR, ({ "liuquan xiao", "liuquan", "xiao" }));
     set_weight(600);
 
     set("unit", "把");

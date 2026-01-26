@@ -23,20 +23,20 @@ int perform(object me, object target)
         int time;
         int delta, delta2;
         int fmsk = me->query_skill("mizong-zhenyan", 1);
-        
-        if( userp(me) && !query("yuanshen", me) ) 
-                return notify_fail("你尚未悟道，所使用的外功中沒有這個功能。\n"); 
+
+        if( userp(me) && !query("yuanshen", me) )
+                return notify_fail("你尚未悟道，所使用的外功中沒有這個功能。\n");
 
         if (! target) target = offensive_target(me);
 
         if (! target || ! me->is_fighting(target))
                 return notify_fail(name()+ "只能對戰鬥中的對手使用。\n");
-        
+
         if( me->is_busy() )
                 return notify_fail("你正忙著呢！\n");
-                
-        if( query_temp("weapon", me) || query_temp("secondary_weapon", me) ) 
-                return notify_fail(name() + "只能空手使用。\n"); 
+
+        if( query_temp("weapon", me) || query_temp("secondary_weapon", me) )
+                return notify_fail(name() + "只能空手使用。\n");
 
         if ((int)me->query_skill("force", 1) < 1000)
                 return notify_fail("你內功修為不夠，難以施展" +name()+ "。\n");
@@ -56,34 +56,34 @@ int perform(object me, object target)
 
         if (! living(target))
                 return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "lxg_longxiang")) > 0 )
                         return notify_fail(MAG"十龍十象消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         message_combatd(HIM "\n$N" HIM "運起十龍十象之力，霎時金波流轉，罡氣籠罩全身，\n"
                         HIM "$N" HIM "縱聲長嘯，漫天掌力狂湧而去，當真石破天驚，威力無比，襲向$n" HIM "。\n" NOR, me, target);
 
         message_combatd(HIM "十龍十象之一龍一象\n" NOR, me, target);
-        
+
         me->addn("neili", -10000);
-        
+
         // 第一招，判斷對方臂力
         ap = attack_power(me, "unarmed") + me->query_str()*10;
         dp = defense_power(target, "parry") + target->query_str()*10;
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-lxg-longxiang"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         damage = damage_power(me, "unarmed");
         damage += query("jiali", me);
         damage *= 3;
-        
+
         delta2 = ABILITY_D->check_ability(me, "da_power-lxg-longxiang"); // 門派ab
         if( delta2 ) damage += damage*delta2/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -95,13 +95,13 @@ int perform(object me, object target)
         }
         message_combatd(sort_msg(msg), me, target);
         message_combatd(HIM "十龍十象之二龍二象\n" NOR, me, target);
-        
+
         ap = attack_power(me, "unarmed") + me->query_int()*10;
         // 第二招，判斷對方悟性
         dp=defense_power(target,"parry")+target->query_int()*10;
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -115,11 +115,11 @@ int perform(object me, object target)
         }
         message_combatd(sort_msg(msg), me, target);
         message_combatd(HIM "十龍十象之三龍三象\n" NOR, me, target);
-        
+
         ap = attack_power(me, "unarmed") + me->query_con()*10;
         // 第三招，判斷對方根骨
         dp = defense_power(target, "force") + target->query_con()*10;
-        
+
         if( delta ) ap += ap*delta/100;
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
@@ -137,9 +137,9 @@ int perform(object me, object target)
 
         ap = attack_power(me, "unarmed") + me->query_dex()*10;
         dp = defense_power(target, "dodge") + target->query_dex()*10;
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -180,14 +180,14 @@ int perform(object me, object target)
         }
         message_combatd(sort_msg(msg), me, target);
         message_combatd(HIM "十龍十象之七龍七象\n" NOR, me, target);
-        
+
         // 第七招，判斷對方基本內功
-        
+
         ap = attack_power(me, "unarmed") + me->query_skill("force", 1);
         dp = defense_power(target, "parry") + target->query_skill("force", 1);
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -201,14 +201,14 @@ int perform(object me, object target)
         }
         message_combatd(sort_msg(msg), me, target);
         message_combatd(HIM "十龍十象之八龍八象\n" NOR, me, target);
-        
+
         // 第八招，判斷對方基本招架
-        
+
         ap = attack_power(me, "unarmed") + me->query_skill("parry", 1);
         dp = defense_power(target, "parry") + target->query_skill("parry", 1);
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -221,14 +221,14 @@ int perform(object me, object target)
         }
         message_combatd(sort_msg(msg), me, target);
         message_combatd(HIM "十龍十象之九龍九象\n" NOR, me, target);
-        
+
         // 第九招，判斷對方基本輕功
-        
+
         ap = attack_power(me, "unarmed") + me->query_skill("dodge", 1);
         dp = defense_power(target, "parry") + target->query_skill("dodge", 1);
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -242,14 +242,14 @@ int perform(object me, object target)
         }
         message_combatd(sort_msg(msg), me, target);
         message_combatd(HIM "十龍十象之十龍十象\n" NOR, me, target);
-        
+
         // 第十招，判斷對方武學修養
-        
+
         ap = attack_power(me, "unarmed") + me->query_skill("martial-cognize", 1);
         dp = defense_power(target, "parry") + target->query_skill("martial-cognize", 1);
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         damage *= 3;
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
@@ -262,19 +262,19 @@ int perform(object me, object target)
                 msg = CYN "$n在身邊佈下層層內勁，將$N" CYN "凌厲的攻勢盡數抵擋。\n" NOR;
         }
         message_combatd(sort_msg(msg), me, target);
-        
+
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-lxbrg-longxiang"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-                
-        buff =  
+
+        buff =
 	([
 	        "caster" : me,
 	        "target" : me,
 	        "type"   : "cooldown",
 	        "type2"  : "lxg_longxiang",
 	        "attr"   : "curse",
-	        "name"   : "龍象般若功·十龍十象",
+	        "name"   : "龍象般若功．十龍十象",
 	        "time"   : time,
 	        "buff_msg" : "十龍十象消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
 	        "disa_msg" : "",
@@ -283,24 +283,24 @@ int perform(object me, object target)
 	BUFF_D->buffup(buff);
         me->start_busy(6 + random(5));
         if( BUFF_D->get_buff_overtime(me, "longxiang10") > 0 ) return 1;
-        buff =  
+        buff =
 	([
 	        "caster" : me,
 	        "target" : me,
            "type"   : "protectshield",
-           "type2":"longxiang10", 
-           "attr":"bless", 
-           "name"   : "龍象般若功·十龍十象之力",
+           "type2":"longxiang10",
+           "attr":"bless",
+           "name"   : "龍象般若功．十龍十象之力",
            "time"   : lvl/10,
-           "buff_msg" : HIB"$n身邊霎時金波流轉，十龍十象之力籠罩全身。\n"NOR, 
+           "buff_msg" : HIB"$n身邊霎時金波流轉，十龍十象之力籠罩全身。\n"NOR,
 	        "disa_msg" : "",
 	        "disa_type": 0,
-         "shield_type":"neili", 
+         "shield_type":"neili",
          "shield_amount":lvl*10000,
-         "shield_desc":HIB"$n身邊霎時金波流轉，十龍十象之力籠罩全身，將$N攻擊阻在其外。\n"NOR, 
+         "shield_desc":HIB"$n身邊霎時金波流轉，十龍十象之力籠罩全身，將$N攻擊阻在其外。\n"NOR,
 	]);
 	BUFF_D->buffup(buff);
-	     
+
         return 1;
 }
 
@@ -324,9 +324,9 @@ string final2(object me, object target, int damage)
 
 string final3(object me, object target, int damage, int lvl)
 {
-   
+
         target->start_busy(4 + random(3));
-  
+
         return  HIY "$N" HIY "掌法奇妙無比，雙手時而宛若游龍，時而"
                 "宛若驚鴻，霎那間$n" HIY "已遍體鱗傷，$N" HIY "猛然將雙拳一"
                 "轉，拳勢陡然加快，將$n" HIY "團團圍住，竟無一絲空隙！\n" NOR;
@@ -360,33 +360,33 @@ string final4(object me, object target, int ap)
 {
         mapping buff, data;
         string msg;
-        
+
         msg = HIY "$n" HIY "絲毫不懂此招奧妙，一個疏神，丹田已遭重創！\n" NOR +
               WHT "$n" WHT "感到自身的忽視虛弱，忽視忙亂、忽視絕招冷凍能力被封印。\n" NOR;
-               
-        if( BUFF_D->check_buff(target, "longxiang_fengyin") ) 
+
+        if( BUFF_D->check_buff(target, "longxiang_fengyin") )
                 return msg;
-                
+
         data = ([
                 "avoid_busy": -90,
                 "reduce_busy": -36,
-                "avoid_weak": -90, 
-                "avoid_forget": -90, 
+                "avoid_weak": -90,
+                "avoid_forget": -90,
         ]);
         buff = ([
                 "caster": me,
                 "target": target,
                 "type"  : "longxiang_fengyin",
                 "attr"  : "curse",
-                "name"  : "龍象般若功·十龍十象",
+                "name"  : "龍象般若功．十龍十象",
                 "time"  : 10+random(ap/50),
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : "",
                 "disa_msg" : HIR "你的忽視虛弱，忽視忙亂、忽視絕招冷凍能力終於解除封印。\n" NOR,
-                        
+
         ]);
         BUFF_D->buffup(buff);
         //set_temp("no_perform", 1, target);
-        
+
         return msg;
 }

@@ -32,7 +32,7 @@ int perform(object me, object target)
                 return notify_fail("你此時的內力不足，難以施展" + name() + "。\n");
 
         msg = HIY "$N" HIY "足尖輕點地面，凌空躍起，身形頓時變得飄忽不定，難以捉摸。\n\n" NOR;
-        
+
         skill = me->query_skill("sixiang-bufa", 1);
 
         count = skill / 40;
@@ -43,18 +43,18 @@ int perform(object me, object target)
         data = ([
                 "dex": count,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "dodgeup",
                 "attr"  : "bless",
-                "name"  : "四象步法·飛天神行",
+                "name"  : "四象步法．飛天神行",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的飛天神行運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

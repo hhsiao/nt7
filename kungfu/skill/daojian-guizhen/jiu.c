@@ -20,12 +20,12 @@ int perform(object me, object target)
         }
         if (! me->is_fighting(target))
                 return notify_fail(name() + "只能對戰鬥中的對手使用。\n");
-        
+
         if( me->is_busy() )
                 return notify_fail("你正忙著呢。\n");
-        if( userp(me) && !query("yuanshen", me) ) 
-                return notify_fail("你尚未悟道，無法使用" + name() + "。\n"); 
-                
+        if( userp(me) && !query("yuanshen", me) )
+                return notify_fail("你尚未悟道，無法使用" + name() + "。\n");
+
         weapon1 = query_temp("weapon", me);
         weapon2 = query_temp("secondary_weapon", me) || query_temp("handing", me);
         if (! objectp(weapon1) || ! objectp(weapon2))
@@ -50,33 +50,33 @@ int perform(object me, object target)
                 return notify_fail("你現在的真氣不夠，難以施展" + name() + "。\n");
         if (! living(target))
                 return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "djgz_jiu")) > 0 )
                         return notify_fail(MAG"刀劍九重天消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         fmsk = me->query_skill("daojian-xiaotianwai", 1);
         ap = attack_power(me, "blade") + me->query_skill("sword-cognize", 1);
         dp = defense_power(target, "force");
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-djgz-jiu"); // 門派ab
         if( delta ) ap += ap*delta/100;
         delta = ABILITY_D->check_ability(me, "ap_power-djgz-tian"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         damage = damage_power(me, "blade");
         damage+= damage_power(me, "sword");
         damage+= query("jiali", me);
         damage+= me->query_all_buff("damage");
         damage+= damage / 300 * me->query_str();
-        damage = damage / 4;            
+        damage = damage / 4;
         delta = ABILITY_D->check_ability(me, "da_power-djgz-jiu"); // 門派ab
         if( delta ) damage += damage*delta/100;
         delta = ABILITY_D->check_ability(me, "da_power-djgz-tian"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        
+
         msg = HIY "$N" HIY "將" + weapon1->name() + HIY "與" +
               weapon2->name() + HIY "橫置於胸前，運轉出" + name() + HIY "功力，內勁如海嘯般爆發。" NOR;
         msg += HIY "空氣、雲都變成了暗紅色，整個天地靈氣，一草一木上散發出來的生機，包括" HIY "$N" HIY "強大的殺氣、刀魂、劍意，"
@@ -159,12 +159,12 @@ int perform(object me, object target)
                                            "眼前之景象，$N" HIR "一招命中，射出兩柱鮮"
                                            "血。\n" NOR);
                         addn("neili", -500, me);
-                        
+
                         count = me->query_skill("martial-cognize", 1) + me->query_skill("sword-cognize", 1);
                         count /= 100;
                         if (! target->is_busy())
                                 target->start_busy(8 + random(count));
-                        
+
                         target->set_weak(3 + random(count));
                 } else
                 {
@@ -172,7 +172,7 @@ int perform(object me, object target)
                 }
                 message_combatd(msg, me, target);
         }
-        
+
         count = 0;
         ap = attack_power(me, "blade");
         dp = defense_power(target, "parry");
@@ -189,7 +189,7 @@ int perform(object me, object target)
                 count = ap / 30;
         }
         message_combatd(msg, me, target);
-        
+
         addn("neili", -500, me);
         addn_temp("apply/attack", count+fmsk, me);
         addn_temp("apply/damage", count*2/3+fmsk, me);
@@ -203,28 +203,27 @@ int perform(object me, object target)
         addn_temp("apply/attack", -count-fmsk, me);
         addn_temp("apply/damage", -count*2/3-fmsk, me);
         addn_temp("apply/avoid_locked", -50, me);
-        delete_temp("daojian-guizhen/max_pfm", me); 
+        delete_temp("daojian-guizhen/max_pfm", me);
         me->start_busy(3 + random(2));
-        
+
         message_combatd(msg, me, target);
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-djgz-jiu"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-        if( wiz_level(me) > 2) time = 2;                
+        if( wiz_level(me) > 2) time = 2;
         buff = ([
                 "caster" : me,
                 "target" : me,
                 "type"   : "cooldown",
                 "type2"  : "djgz_jiu",
                 "attr"   : "curse",
-                "name"   : "刀劍歸真·刀劍九重天",
+                "name"   : "刀劍歸真．刀劍九重天",
                 "time"   : time,
                 "buff_msg" : "刀劍九重天消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);
-        
+
         BUFF_D->buffup(buff);
         return 1;
 }
-

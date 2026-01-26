@@ -4,7 +4,7 @@
 inherit RINGS;
 
 void create() {
-    set_name(HIM "十週年·端午·鳳戒" NOR, ({ "duanwu fengjie", "fengjie" }));
+    set_name(HIM "十週年．端午．鳳戒" NOR, ({ "duanwu fengjie", "fengjie" }));
     set_weight(1);
     set("unit", "枚");
     set("long", HIM "這是由炎黃十週年暨端午節發放的戒指，紅光微微，其絢奪目，猶如一條鳳凰起舞。\n" NOR);

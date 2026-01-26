@@ -47,23 +47,23 @@ int perform(object me, object target)
         {
                 msg += HIR "結果$p" HIR "覺得渾身一麻，手足軟"
                        "軟的竟然使不出一點力道！\n" NOR;
-                
+
                 data = ([
                         "attack" : -skill/3,
                         "defense": -skill/3,
                 ]);
-                
+
                 buff = ([
                         "caster":me,
 			"target": target,
 			"type":"dmj_qingxin",
 			"attr":"curse",
-			"name":"達摩劍·清心劍",
+			"name":"達摩劍．清心劍",
 			"time": skill/5,
                         "buff_data": data,
 			"buff_msg": msg,
 			"disa_msg": HIR "你覺得力氣恢復了一些。\n" NOR,
-                ]);                
+                ]);
         } else
         {
                 msg += CYN "可是$p" CYN "內力深厚，使得$P" CYN
@@ -71,6 +71,6 @@ int perform(object me, object target)
                 message_combatd(msg, me, target);
                 me->start_busy(3);
         }
-        
+
         return 1;
 }

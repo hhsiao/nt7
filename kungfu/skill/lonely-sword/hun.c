@@ -77,12 +77,12 @@ int perform(object me, object target)
         if( query("jingli", me) <= 500 )
                 return notify_fail("你的精力不夠施展" + name() + "！\n");
 
-        if( userp(me) ) 
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "dgjj_hun")) > 0 )
                         return notify_fail(MAG"劍魂消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         count = me->query_skill("sword-cognize", 1) + me->query_skill("martial-cognize", 1);
         count /= 500;
 
@@ -100,18 +100,18 @@ int perform(object me, object target)
         damage *= 9;
         delta = ABILITY_D->check_ability(me, "da_power-dgjj-hun"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        
+
         ap = attack_power(me, "sword") +
              me->query_skill("dodge");
 
-        ap = ap + ap * fmsk / 1000; 
-        
+        ap = ap + ap * fmsk / 1000;
+
         delta = ABILITY_D->check_ability(me, "ap_power-dgjj-hun"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         ob = me->query_enemy();
         skill = me->query_skill("lonely-sword", 1);
-        
+
         for (i = 0; i < sizeof(ob); i++)
         {
                 dp = defense_power(ob[i], "parry") +
@@ -149,7 +149,7 @@ int perform(object me, object target)
                         message_vision(msg, me, ob[i]);
                 }
         }
-        
+
         set_temp("dugu_jianhun", 1, me);
         addn("neili", -200, me);
         addn("jingli", -100, me);
@@ -178,15 +178,15 @@ int perform(object me, object target)
                                 COMBAT_D->do_attack(me, ob[0], weapon, TYPE_LINK);
                                 addn_temp("str", -2000, me);
                                 addn_temp("apply/damage", -fmsk*20, me);
-                                
-                } 
+
+                }
 
                 ap = me->query_skill("sword", 1) + me->query_skill("sword-cognize", 1) +
                          me->query_skill("martial-cognize", 1);
                 damage=ap+weapon->apply_damage();
                 damage += damage_power(me, "sword");
                 damage *= 30;
-                
+
                 for (i = 0; i < sizeof(ob); i++)
                 {
                                 if (! objectp(ob[i])) continue;
@@ -213,29 +213,29 @@ int perform(object me, object target)
                                                 message_combatd(msg, me, ob[i]);
                                 }
                 }
-//        } 
+//        }
         call_out("remove_attack", 0, me, weapon);
 
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-dgjj-hun"); // ab門派減cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd  
-        if(wizardp(me) && query("id",me) == "mud") time = 2;     
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
+        if(wizardp(me) && query("id",me) == "mud") time = 2;
         buff = ([
                 "caster" : me,
                 "target" : me,
                 "type"   : "cooldown",
                 "type2"  : "dgjj_hun",
                 "attr"   : "curse",
-                "name"   : "獨孤九劍·劍魂",
+                "name"   : "獨孤九劍．劍魂",
                 "time"   : time,
                 "buff_msg" : "劍魂消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);
-        
+
         BUFF_D->buffup(buff);
         me->start_busy(2);
-        
+
         return 1;
 }
 

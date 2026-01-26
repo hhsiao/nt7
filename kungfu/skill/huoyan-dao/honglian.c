@@ -12,7 +12,7 @@ int perform(object me)
         int count, skill;
         mapping buff, data;
         string msg;
-        
+
         skill = me->query_skill("longxiang-gong");
 
         /*
@@ -54,26 +54,26 @@ int perform(object me)
 
         addn("neili", -300, me);
         addn("jing", -50, me);
-        
+
         data = ([
                 "attack" : count,
                 "strike" : count/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "atkup",
                 "attr"  : "bless",
-                "name"  : "火焰刀·紅蓮火",
+                "name"  : "火焰刀．紅蓮火",
                 "time"  : skill/3,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你身前飄蕩無定的火炎隱隱退去。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

@@ -44,21 +44,21 @@ int perform(object me, object target)
                 "defense": skill*2/5,
                 "damage" : skill*2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "rmdf_zhenyan",
                 "attr"  : "bless",
-                "name"  : "然木刀法·燃木真焰",
+                "name"  : "然木刀法．燃木真焰",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的燃木真焰運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         addn("neili", -400, me);
         if (me->is_fighting())
                 me->start_busy(2);

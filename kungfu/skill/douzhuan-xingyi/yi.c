@@ -200,7 +200,7 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "dzxy_yi",
                 "attr"   : "curse",
-                "name"   : "斗轉星移·斗轉星移",
+                "name"   : "斗轉星移．斗轉星移",
                 "time"   : time,
                 "buff_msg" : "斗轉星移消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",

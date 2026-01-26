@@ -4,7 +4,7 @@
 inherit BOOTS;
 
 void create() {
-    set_name(HIR "火麒麟·疾行" NOR, ({ "jixing xue", "jixing", "xue" }) );
+    set_name(HIR "火麒麟．疾行" NOR, ({ "jixing xue", "jixing", "xue" }) );
     set_weight(10);
     set("unit", "雙");
     set("long", HIR "這是一雙通體火紅的靴子，散發著令人窒息的光芒。\n");

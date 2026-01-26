@@ -52,18 +52,18 @@ int perform(object me)
         data = ([
                 "defense": skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "ryl_yuan",
                 "attr"  : "bless",
-                "name"  : "日月輪法·圓滿勢",
+                "name"  : "日月輪法．圓滿勢",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的圓滿勢運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if (me->is_fighting())

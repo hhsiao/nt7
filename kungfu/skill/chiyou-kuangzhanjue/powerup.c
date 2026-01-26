@@ -1,4 +1,4 @@
-// powerup.c 
+// powerup.c
 
 #include <ansi.h>
 
@@ -22,9 +22,9 @@ int exert(object me, object target)
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
-        
+
         msg = HIY "$N" HIY "深吸一口氣，待到呼出之時，雙目已經射出赤紅的光芒，周圍的空氣中瀰漫著陣陣的戰意！\n" NOR;
-        
+
         data = ([
                 "attack" : skill/2,
                 "defense": skill/2,
@@ -35,15 +35,15 @@ int exert(object me, object target)
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "蚩尤狂戰決·戰神",
+                "name"  : "蚩尤狂戰決．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的蚩尤狂戰決運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }

@@ -89,10 +89,10 @@ int perform(object me, object target)
 
         if( query("jingli", me) <= 200 )
                 return notify_fail("你的精力有限，不足以施展劍芒！\n");
-        
+
         if( BUFF_D->check_buff(me, "yxjf_jianmang") )
                 return notify_fail("你正在使用劍芒中！\n");
-                
+
         sword = me->query_skill("yuxiao-jianfa",1)/10;
         damage = me->query_skill("force") + me->query_skill("qimen-wuxing",1);
         damage += fmsk;
@@ -122,18 +122,18 @@ int perform(object me, object target)
                         "attack" : damage,
                         "damage" : damage*20,
                 ]);
-        
+
                 buff = ([
                         "caster": me,
                         "target": me,
                         "type"  : "yxjf_jianmang",
                         "attr"  : "bless",
-                        "name"  : "玉簫劍法·劍芒",
+                        "name"  : "玉簫劍法．劍芒",
                         "time"  : skill/2,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : "",
                         "disa_msg" : "你的劍芒運行完畢，將內力收回丹田。\n",
-                        
+
                 ]);
                 BUFF_D->buffup(buff);
                 me->start_busy(1);

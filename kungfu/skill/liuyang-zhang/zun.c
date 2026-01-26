@@ -19,10 +19,10 @@ int perform(object me, object target)
 
         if( userp(me) && !query("yuanshen", me) )
                 return notify_fail("你還沒有悟道，還不能領悟到"+name()+"的精髓。\n");
-        
+
         if( query("family/family_name", me) != "靈鷲宮" )
                 return notify_fail("靈鷲宮的大招且是你能領會的？\n");
-                
+
         if( me->is_busy() )
                 return notify_fail("你正忙著呢。\n");
 
@@ -55,8 +55,8 @@ int perform(object me, object target)
 
         if( query("neili", me) < 2500 )
                 return notify_fail("你的真氣不夠，現在無法施展"+name()+"。\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "lyz_zun")) > 0 )
                         return notify_fail(MAG"八荒獨尊掌消耗心神太甚，還需等待"+time+"秒。\n"NOR);
@@ -65,7 +65,7 @@ int perform(object me, object target)
                 fmsk = me->query_skill("fanlao-huantong", 1);
                 if( bhg>6000 && fmsk >1000 ) flagremote = SPECIAL_ATTACK;
                 if( bhg>12000 && fmsk >2000 ) flagremote = REMOTE_ATTACK;
-                
+
         msg = HIY "但見$N" HIY "衣袂飄飄翩躚起舞，閉目凝神默運玄功，手中生死符由內勁霧化蒸騰，\n"
               HIY "如雲霞般隨著雙掌的翻飛繚繞周身，忽然$N" HIY "傾步前移，雙掌破空擊出，挾著絲絲寒意，直向$n" HIY "雙肩貫去。\n" NOR;
 
@@ -80,19 +80,19 @@ int perform(object me, object target)
         // 第一掌
         ap = attack_power(me, "strike") + me->query_str()*20;
         dp = defense_power(target, "dodge") + target->query_str()*20;
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-lyz-zun"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         damage = damage_power(me, "strike");
         damage+= query("jiali", me);
         damage+= me->query_all_buff("unarmed_damage");
         damage+= damage / 300 * me->query_str();
-        damage = damage / 10 * 59;   
-        
+        damage = damage / 10 * 59;
+
         delta2 = ABILITY_D->check_ability(me, "da_power-lyz-zun"); // 門派ab
         if( delta2 ) damage += damage*delta2/100;
-                
+
         addn_temp("apply/add_damage", 100, me);
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
@@ -113,9 +113,9 @@ int perform(object me, object target)
         // 第二掌
         ap = attack_power(me, "strike") + me->query_con()*20;
         dp = defense_power(target, "parry") + target->query_con()*20;
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -135,9 +135,9 @@ int perform(object me, object target)
 
         ap = attack_power(me, "strike") + me->query_dex()*20;
         dp = defense_power(target, "force") + target->query_dex()*20;
-        
+
         if( delta ) ap += ap*delta/100;
-        
+
         ap *= 2;
         if (ap / 2 + random(ap) > dp)
         {
@@ -152,29 +152,28 @@ int perform(object me, object target)
         {
                 msg += CYN "$p" CYN "見此招來勢洶湧，豈敢貿然招架。俯腰移步，一個靈動，居然在千鈞一髮之際抽身而出。\n" NOR;
         }
-        
+
         time  = 38;
         time -= ABILITY_D->check_ability(me, "cd-lyz-zun"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-                
-        buff =  
+
+        buff =
         ([
                 "caster" : me,
                 "target" : me,
                 "type"   : "cooldown",
                 "type2"  : "lyz_zun",
                 "attr"   : "curse",
-                "name"   : "六陽掌·八荒獨尊掌",
+                "name"   : "六陽掌．八荒獨尊掌",
                 "time"   : time,
                 "buff_msg" : "八荒獨尊掌消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
         ]);
         BUFF_D->buffup(buff);
-        
+
         addn("neili", -1500, me);
         me->start_busy(2+random(2));
         message_combatd(msg, me, target);
         return 1;
 }
-

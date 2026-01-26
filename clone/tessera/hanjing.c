@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIW "神之寒晶·冰" NOR, ({"shenzhi hanjing", "shenzhi", "hanjing"}));
+    set_name(HIW "神之寒晶．冰" NOR, ({"shenzhi hanjing", "shenzhi", "hanjing"}));
     set_weight(300);
     set("long", HIW "寒氣籠罩在四周，令人不敢接近，乃天界極寒之聖物，擁有著神奇的力量。\n" NOR);
     set("unit", "塊");

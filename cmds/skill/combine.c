@@ -1137,28 +1137,28 @@ mapping combine_list = ([
  * *****************************************
  * 鑲嵌之物品--珍品
  * ******************************************/
-// 神之寒晶·冰
+// 神之寒晶．冰
     ({ "/clone/fam/etc/bipo-1",
         "/clone/fam/item/bless_water-1",
         "/clone/fam/etc/lv5d-1",
         "/clone/fam/etc/prize4-1"
     }) : "/clone/fam/etc/hanjing",
 
-// 魔之心·魔
+// 魔之心．魔
     ({ "/clone/fam/etc/huanshi-1",
         "/clone/fam/item/bless_water-1",
         "/clone/fam/etc/lv5d-1",
         "/clone/fam/item/stone5-1"
     }) : "/clone/fam/etc/mozhixin",
 
-// 火之精靈·火
+// 火之精靈．火
     ({ "/clone/fam/etc/binghuozhu-1",
         "/clone/fam/item/bless_water-1",
         "/clone/fam/etc/lv7d-1",
         "/clone/fam/etc/lv7b-1"
     }) : "/clone/fam/etc/huojingling",
 
-// 雷神之瞳·電
+// 雷神之瞳．電
     ({ "/clone/fam/etc/leishenzhu-1",
         "/clone/fam/item/bless_water-1",
         "/clone/fam/etc/lv5d-1",
@@ -1166,11 +1166,11 @@ mapping combine_list = ([
         "/clone/fam/item/zhenlong-1"
     }) : "/clone/fam/etc/leishentong",
 
-// 白虎·金 = 精金 + 如意通天钁 + 雷神珠   + 輝華月石
-// 青龍·木 = 木靈 + 鎮龍石     + 青龍牙   + 乾坤聖水
-// 玄武·水 = 玄冰 + 碧魄冰晶   + 神聖血清 + 乾坤聖水
-// 朱雀·火 = 炎晶 + 冰火珠     + 熾石     + 五彩玲瓏珠
-// 麒麟·土 = 玉髓 + 幻石       + 息壤     + 輝華月石
+// 白虎．金 = 精金 + 如意通天钁 + 雷神珠   + 輝華月石
+// 青龍．木 = 木靈 + 鎮龍石     + 青龍牙   + 乾坤聖水
+// 玄武．水 = 玄冰 + 碧魄冰晶   + 神聖血清 + 乾坤聖水
+// 朱雀．火 = 炎晶 + 冰火珠     + 熾石     + 五彩玲瓏珠
+// 麒麟．土 = 玉髓 + 幻石       + 息壤     + 輝華月石
     ({ "/clone/tessera/metal-1",
         "/clone/fam/etc/lv7d-1",
         "/clone/fam/etc/leishenzhu-1",
@@ -1387,31 +1387,31 @@ mapping combine_list = ([
         "/clone/quarry/item/hong-baoshikuang-5",}) : "/clone/fam/enchase/hong-baoshi",
 
 /*
- * // 風洞之眼·風
+ * // 風洞之眼．風
  * ({ "/inherit/template/gem/skull7-1",
  * "/inherit/template/gem/yelgem7-1",
  * "/clone/tessera/rune20-1",
  * }) : "/clone/item/fengdong.c",
 
- * // 神之寒晶·冰
+ * // 神之寒晶．冰
  * ({ "/inherit/template/gem/skull7-1",
  * "/inherit/template/gem/grngem7-1",
  * "/clone/tessera/rune21-1",
  * }) : "/clone/item/hanjing",
 
- * // 聖魔之心·魔
+ * // 聖魔之心．魔
  * ({ "/inherit/template/gem/skull7-1",
  * "/inherit/template/gem/blugem7-1",
  * "/clone/tessera/rune22-1",
  * }) : "/clone/item/mozhixin",
 
- * // 火之精靈·火
+ * // 火之精靈．火
  * ({ "/inherit/template/gem/skull7-1",
  * "/inherit/template/gem/redgem7-1",
  * "/clone/tessera/rune23-1",
  * }) : "/clone/item/huojingling",
 
- * // 雷神之瞳·電
+ * // 雷神之瞳．電
  * ({ "/inherit/template/gem/skull7-1",
  * "/inherit/template/gem/maggem7-1",
  * "/clone/tessera/rune24-1",

@@ -1,4 +1,4 @@
-// 絕地末日·NPC: /d/suzhou/npc/meipo.c 只處理結婚與拜堂
+// 絕地末日．NPC: /d/suzhou/npc/meipo.c 只處理結婚與拜堂
 // smallfish 修改2001.06
 
 #include <ansi.h>

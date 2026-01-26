@@ -5,7 +5,7 @@ inherit ITEM;
 inherit MI_QIN;
 
 void create() {
-    set_name(MAG "九霄環佩·唐朝" NOR, ({ "jiuxiao qin", "jiuxiao", "qin" }));
+    set_name(MAG "九霄環佩．唐朝" NOR, ({ "jiuxiao qin", "jiuxiao", "qin" }));
     set_weight(600);
 
     set("unit", "把");

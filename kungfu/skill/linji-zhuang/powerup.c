@@ -18,7 +18,7 @@ int exert(object me, object target)
         if( (int)query("neili", me) < 100 )
                 return notify_fail("你的內力不夠。\n");
 
-        if( BUFF_D->check_buff(me, "powerup") ) 
+        if( BUFF_D->check_buff(me, "powerup") )
                 return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
@@ -46,25 +46,25 @@ int exert(object me, object target)
                         message_combatd(HIR "$N" HIR "默運內力，就見那" +
                                         weapon->name() + HIR "隱隱透出一股光芒，閃爍不定。\n" NOR, me);
         }
-        
+
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
                 "damage" : di,
                 "unarmed_damage": di,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "臨濟十二莊·戰神",
+                "name"  : "臨濟十二莊．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的臨濟十二莊運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);

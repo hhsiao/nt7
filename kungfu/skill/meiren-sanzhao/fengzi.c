@@ -34,38 +34,38 @@ int perform(object me, object target)
         if( query("neili", me)<300 )
                 return notify_fail("你的內力不足，恐怕沒法擺什麼風姿了。\n");
 
-        if( BUFF_D->check_buff(target, "mrsz_fengzi") ) 
+        if( BUFF_D->check_buff(target, "mrsz_fengzi") )
                 return notify_fail("他已經對你很傾倒了，你還浪費什麼表情？\n");
 
         addn("neili", -200, me);
         me->start_busy(1);
         ap = attack_power(me, "strike");
         dp = defense_power(target, "force");
-        
+
         ap = ap + ap * me->query_per()/25;
         if (ap / 2 + random(ap) > dp)
         {
                 msg = HIC"激鬥中，卻見$N"HIC"忙中不亂，衝著$n"HIC"輕輕展顏露齒一笑，端的是豔若桃李、燦若明霞，容色柔媚無限，\n"
                         "$n心中不覺一蕩，油然升起一股親近的感覺，眼神也漸漸迷茫起來。\n" NOR;
-                
+
                 data = ([
                         "defense": -level,
                 ]);
-                
+
                 buff = ([
                         "caster": me,
                         "target": target,
                         "type"  : "mrsz_fengzi",
                         "attr"  : "curse",
-                        "name"  : "美人三招·絕世風姿",
+                        "name"  : "美人三招．絕世風姿",
                         "time"  : level/10,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
                         "disa_msg" : HIG"$N迷茫的眼神忽然一亮，心頭猛地一震，忙收攏起心神來。\n" NOR,
                         "disa_type":1,
                 ]);
                 BUFF_D->buffup(buff);
-        
+
                 if( !target->is_busy() )
                         target->start_busy(random(3)+1);
         }

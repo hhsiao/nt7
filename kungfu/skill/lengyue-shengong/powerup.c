@@ -25,30 +25,28 @@ int exert(object me, object target)
         me->receive_damage("qi", 0);
 
         msg = HIW "$N" HIW "全身關節“格啦格啦”一陣爆響，一股至陰的內勁從渾身經脈迸發出來。\n" NOR;
-        
+
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
                 "damage" : skill*5,
                 "unarmed_damage":skill*5,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "冷月神功·戰神",
+                "name"  : "冷月神功．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的冷月神功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }
-
-

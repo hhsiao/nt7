@@ -16,13 +16,13 @@ int perform(object me, object target) {
 
     dodskill = (string) me->query_skill_mapped("dodge");
     if (dodskill != "demon-steps")
-        return notify_fail("『圓月·魔刀』需要如意人魔連環八步的配和！\n");
+        return notify_fail("『圓月．魔刀』需要如意人魔連環八步的配和！\n");
 
     if(!target ) target = offensive_target(me);
     if(!target
         ||      !target->is_character()
         ||      !me->is_fighting(target) )
-    return notify_fail("『圓月·魔刀』只能對戰鬥中的對手使用。\n");
+    return notify_fail("『圓月．魔刀』只能對戰鬥中的對手使用。\n");
     if(NATURE_D->is_day_time()) {
         extra = me->query_skill("blade");
     } else {
@@ -38,7 +38,7 @@ int perform(object me, object target) {
     if (lvl <100) {
         me->add_temp("apply/attack", extra);
         me->add_temp("apply/damage", extra + bonus);
-        msg = HIC"『圓月·魔刀』"HIW"--$N手中的"NOR + weapon->query("name") + NOR HIW"猶如圓月當空，凌厲的刀影化作一道道月光刺向$n！" NOR;
+        msg = HIC"『圓月．魔刀』"HIW"--$N手中的"NOR + weapon->query("name") + NOR HIW"猶如圓月當空，凌厲的刀影化作一道道月光刺向$n！" NOR;
         COMBAT_D->do_attack(me, target, me->query_temp("weapon"), TYPE_REGULAR, msg);
 
         me->add_temp("apply/attack",-extra);

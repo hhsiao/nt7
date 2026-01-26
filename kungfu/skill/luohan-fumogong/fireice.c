@@ -10,7 +10,7 @@ int exert(object me, object target)
         int skill;
         string fam;
         string msg;
-        
+
         fam = query("family/family_name", me);
 
         if( userp(me) && !query("skybook/item/xuanbingjiu", me) )
@@ -40,25 +40,25 @@ int exert(object me, object target)
                         "於掌間，光華流動，煞為壯觀。\n" NOR;
 
         data = ([
-                "unarmed_damage": skill*4, 
+                "unarmed_damage": skill*4,
                 "damage": skill*4,
                 "armor": skill*4,
-      ]); 
+      ]);
 
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "fireice",
                 "attr"  : "bless",
-                "name"  : "羅漢伏魔功·冰火九重天",
+                "name"  : "羅漢伏魔功．冰火九重天",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的冰火九重天運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         if (me->is_fighting())
                 me->start_busy(3);
 

@@ -1,5 +1,5 @@
 //                標準描述長度示例                                   |
-// 幻境·遙遠傳說之起緣·幽靈顯現 新增人物，用於檢測玩家是否 robot.  grin~
+// 幻境．遙遠傳說之起緣．幽靈顯現 新增人物，用於檢測玩家是否 robot.  grin~
 // 以奈何現在寫ROBOT的臭水平，只能想到這樣的寫法，不知道這樣的問題能
 // 不能用 robot 來回答？ grin~
 // ROBOT CHECK 程序在 2002 年底左右寫成，這裡是直接複製過來用的。
@@ -63,7 +63,7 @@ int do_test( string arg )
 
     if( !IS_TEST ) return 0;
 
-    if( query("wait_ans") ) 
+    if( query("wait_ans") )
         return notify_fail("現在正在進行測試。\n");
 
     if( !arg ) return notify_fail("要對誰進行問題測試？\n");

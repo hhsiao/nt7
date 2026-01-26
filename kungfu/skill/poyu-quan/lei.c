@@ -10,7 +10,7 @@ string name() { return "雷動九天"; }
 int perform(object me, object target)
 {
         string msg;
-        int improve, skill; 
+        int improve, skill;
         object weapon=query("weapon", me);
         mapping buff, data;
 
@@ -43,26 +43,26 @@ int perform(object me, object target)
         improve=me->query_dex();
         improve+=me->query_str();
         improve /= 15;
-        
+
         data = ([
                 "dex": improve,
-                "str": improve, 
+                "str": improve,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "pyq_lei",
                 "attr"  : "bless",
-                "name"  : "破玉拳·雷動九天",
+                "name"  : "破玉拳．雷動九天",
                 "time"  : skill/5,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的雷動九天運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         addn("neili", -150, me);
         if (! target->is_busy())
                 target->start_busy(random((int)me->query_skill("poyu-quan", 1) / 100 + 2));

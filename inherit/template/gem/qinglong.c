@@ -10,7 +10,7 @@ inherit TESSERA;
 void create()
 {
 //**    set_name("$name", ({ "$id", }));                        /* NAME_ENTRY */
-        set_name(HIG "青龍·木" NOR, ({"qing long", "wood"})); /* NAME_EXIT  */
+        set_name(HIG "青龍．木" NOR, ({"qing long", "wood"})); /* NAME_EXIT  */
         set_weight(20);
         //**            set("$dbase_key", "$dbase_value\n");            /* DBASE_ENTRY */
                 set("long", HIG "可用於鑲嵌10LV，屬性木。\n" NOR); /* DBASE_EXIT  */

@@ -1,5 +1,5 @@
 // This program is a part of NT MudLIB
-// shield.c 
+// shield.c
 
 #include <ansi.h>
 
@@ -32,20 +32,20 @@ int exert(object me, object target)
 
         msg = HIY "$N" HIY "雙目突然精芒暴漲,身上驀地湧起" HIY "一股凜冽金光。\n" NOR;
 
-        data =  
+        data =
         ([
 	        "armor" : skill,
         ]);
-	       
+
         buff =
         ([
                 "caster": me,
                 "target": me,
 	        "type"  : "shield",
 	        "attr"  : "bless",
-	        "name"  : "易筋經·護體神功",
+	        "name"  : "易筋經．護體神功",
 	        "time"  : skill,
-	        "buff_data": data,	
+	        "buff_data": data,
 	        "buff_msg" : msg,
 	        "disa_msg" : "你的易筋經運行完畢，金光隱隱退去，你恢復原來的樣子。\n",
         ]);

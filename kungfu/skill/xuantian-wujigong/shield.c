@@ -19,7 +19,7 @@ int exert(object me, object target)
         if ((int)me->query_skill("xuantian-wujigong", 1) < 50)
                 return notify_fail("你的玄天無極功修為不夠。\n");
 
-        if( BUFF_D->check_buff(me, "shield") ) 
+        if( BUFF_D->check_buff(me, "shield") )
                 return notify_fail("你已經在運功中了。\n");
 
         skill = me->query_skill("force");
@@ -30,20 +30,20 @@ int exert(object me, object target)
                         "時一股極寒罡勁籠罩全身。\n" NOR;
 
         data = ([
-                "armor": skill/2, 
+                "armor": skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "玄天無極功·護體神功",
+                "name"  : "玄天無極功．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的玄天無極功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if (me->is_fighting()) me->start_busy(2);

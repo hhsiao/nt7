@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIC "地心·噬魂" NOR, ({"shi hun", "dixin shihun", "dixin", "shihun"}));
+    set_name(HIC "地心．噬魂" NOR, ({"shi hun", "dixin shihun", "dixin", "shihun"}));
     set_weight(50);
     set("long", HIC "一塊青色的地心噬魂，擁有集天下萬毒及邪能\n"
         "於一身的至寶——地心噬魂，相傳為邪靈之主\n"

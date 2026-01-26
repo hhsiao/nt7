@@ -28,20 +28,20 @@ int exert(object me, object target)
                         "白霧至身後騰起，籠罩全身。\n" NOR;
 
         data = ([
-                "armor": skill/2, 
+                "armor": skill/2,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "shield",
                 "attr"  : "bless",
-                "name"  : "戰神心經·護體神功",
+                "name"  : "戰神心經．護體神功",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的戰神心經運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

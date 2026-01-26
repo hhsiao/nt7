@@ -5,7 +5,7 @@ inherit ITEM;
 inherit MI_QIN;
 
 void create() {
-    set_name(HIC "仲尼式琴·宋朝" NOR, ({ "zhongni qin", "zhongni", "qin" }));
+    set_name(HIC "仲尼式琴．宋朝" NOR, ({ "zhongni qin", "zhongni", "qin" }));
     set_weight(500);
 
     set("unit", "把");

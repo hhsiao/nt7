@@ -24,7 +24,7 @@ int perform(object me, object target)
 
         if (! target) target = offensive_target(me);
 
-        if (! target || ! me->is_fighting(target))   
+        if (! target || ! me->is_fighting(target))
                 return notify_fail(XIN "只能在戰鬥中使用。\n");
 
         if( !objectp(weapon=query_temp("weapon", me) )
@@ -51,13 +51,13 @@ int perform(object me, object target)
 
         if (! living(target))
                 return notify_fail("對方都已經這樣了，用不著這麼費力吧？\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "lhj_lun")) > 0 )
                         return notify_fail(MAG"六道輪迴消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         wn = weapon->name();
 
         message_combatd(HIW "$N" HIW "面露拈花之意，祭起手中" + wn +
@@ -71,29 +71,29 @@ int perform(object me, object target)
 
         if (base_name(sroom) == "/d/shenlong/shejingdong" ||
             base_name(sroom) == "/d/shenlong/huodong1" ||
-sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") || 
+sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
             query("biwu_room", sroom) )
                 return notify_fail("這個技能無法在此處施展！\n");
 */
-                
+
         ap = attack_power(me, "sword") + me->query_skill("buddhism", 1);
 
         dp = defense_power(target, "parry") +
              target->query_skill("buddhism", 1);
-        
-        if (target->is_bad()) ap += ap / 10; 
+
+        if (target->is_bad()) ap += ap / 10;
         delta = ABILITY_D->check_ability(me, "ap_power-lhj-lun"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         damage = damage_power(me, "sword");
         damage += query("jiali", me);
                 damage+= me->query_all_buff("damage");
                 damage+= damage / 300 * me->query_str();
                 damage*= 5;
-        
+
         delta2 = ABILITY_D->check_ability(me, "da_power-lhj-lun"); // 門派ab
         if( delta2 ) damage += damage*delta2/100;
-        
+
         wound = 60;
 
                 if (me->query_skill("lunhui", 1) > 1)
@@ -162,7 +162,7 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
         // 六道輪迴之餓鬼道
         room = find_object("/d/death/liudaolunhui/eguidao");
         if (! room) room = load_object("/d/death/liudaolunhui/eguidao");
-        
+
         if (base_name(sroom) != "/d/shenlong/shejingdong")
         {
                 me->move(room);
@@ -290,15 +290,15 @@ sscanf(base_name(sroom), "/d/kaifeng/linggt/%*s") ||
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-lhj-lunhui"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-                
-        buff =  
+
+        buff =
 	([
 	        "caster" : me,
 	        "target" : me,
 	        "type"   : "cooldown",
 	        "type2"  : "lhj_lun",
 	        "attr"   : "curse",
-	        "name"   : "釋迦輪迴劍·六道輪迴",
+	        "name"   : "釋迦輪迴劍．六道輪迴",
 	        "time"   : time,
 	        "buff_msg" : "六道輪迴消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
 	        "disa_msg" : "",
@@ -318,18 +318,18 @@ string attack1(object me, object target, int damage)
 {
         string msg;
 
-                int p;                
+                int p;
 
         // 轉世後如滿足條件則有很大幾率出現特效
                 // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
-                        if( query("int", me) >= 39 && 
-                                query("dex", me) >= 39 && 
-                                query("con", me) >= 39 && 
+                        if( query("int", me) >= 39 &&
+                                query("dex", me) >= 39 &&
+                                query("con", me) >= 39 &&
                                 query("str", me) >= 39 )
-                        {                        
+                        {
                                 p = 40;
                         }
 
@@ -365,7 +365,7 @@ string attack1(object me, object target, int damage)
                         set_temp("apply/parry", 0, target);
                 if( query_temp("apply/dodge", target)<0 )
                         set_temp("apply/dodge", 0, target);
-                                                                        
+
                 set_temp("liudaolunhui", 1, target);
         }
 
@@ -377,18 +377,18 @@ string attack2(object me, object target, int damage)
         object weapon;
         string wn, msg;
 
-                int p;                
+                int p;
 
         // 轉世後如滿足條件則有很大幾率出現特效
                 // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
-                        if( query("int", me) >= 39 && 
-                                query("dex", me) >= 39 && 
-                                query("con", me) >= 39 && 
+                        if( query("int", me) >= 39 &&
+                                query("dex", me) >= 39 &&
+                                query("con", me) >= 39 &&
                                 query("str", me) >= 39 )
-                        {                        
+                        {
                                 p = 40;
                         }
 
@@ -428,18 +428,18 @@ string attack3(object me, object target, int damage)
         int shd;
         string msg;
 
-                int p;                
+                int p;
 
         // 轉世後如滿足條件則有很大幾率出現特效
                 // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
-                        if( query("int", me) >= 39 && 
-                                query("dex", me) >= 39 && 
-                                query("con", me) >= 39 && 
+                        if( query("int", me) >= 39 &&
+                                query("dex", me) >= 39 &&
+                                query("con", me) >= 39 &&
                                 query("str", me) >= 39 )
-                        {                        
+                        {
                                 p = 40;
                         }
 
@@ -461,7 +461,7 @@ string attack3(object me, object target, int damage)
         msg = HIR "劍鋒過處，捲起漫天血浪，$n" HIR "只感頭暈目"
               "眩，四肢乏力，難以再戰。\n" NOR;
 
-        if( BUFF_D->check_buff(me, "shield") ) 
+        if( BUFF_D->check_buff(me, "shield") )
         {
                 BUFF_D->debuff(me, "shield", 1);
 
@@ -476,18 +476,18 @@ string attack4(object me, object target, int damage)
         object cloth, armor;
         string cn, an, msg;
 
-                int p;                
+                int p;
 
         // 轉世後如滿足條件則有很大幾率出現特效
                 // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
-                        if( query("int", me) >= 39 && 
-                                query("dex", me) >= 39 && 
-                                query("con", me) >= 39 && 
+                        if( query("int", me) >= 39 &&
+                                query("dex", me) >= 39 &&
+                                query("con", me) >= 39 &&
                                 query("str", me) >= 39 )
-                        {                        
+                        {
                                 p = 40;
                         }
 
@@ -537,18 +537,18 @@ string attack5(object me, object target, int damage)
 {
         string msg;
 
-                int p;                
+                int p;
 
         // 轉世後如滿足條件則有很大幾率出現特效
                 // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
-                        if( query("int", me) >= 39 && 
-                                query("dex", me) >= 39 && 
-                                query("con", me) >= 39 && 
+                        if( query("int", me) >= 39 &&
+                                query("dex", me) >= 39 &&
+                                query("con", me) >= 39 &&
                                 query("str", me) >= 39 )
-                        {                        
+                        {
                                 p = 40;
                         }
 
@@ -589,18 +589,18 @@ string attack6(object me, object target, int damage)
 
         string msg;
 
-                int p;                
+                int p;
 
         // 轉世後如滿足條件則有很大幾率出現特效
                 // 門派技能六到輪迴可提高出特效的幾率
                 p = 0;
                 if( query("yuanshen_level", me) )
                 {
-                        if( query("int", me) >= 39 && 
-                                query("dex", me) >= 39 && 
-                                query("con", me) >= 39 && 
+                        if( query("int", me) >= 39 &&
+                                query("dex", me) >= 39 &&
+                                query("con", me) >= 39 &&
                                 query("str", me) >= 39 )
-                        {                        
+                        {
                                 p = 40;
                         }
 

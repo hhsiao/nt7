@@ -24,7 +24,7 @@ int errs(string arg ) {
 
 
 void create() {
-    set_name(HIR"幻境2003·巫師工具"NOR, ({"hj wiz_tools", "hj tools", "ht", }));
+    set_name(HIR"幻境2003．巫師工具"NOR, ({"hj wiz_tools", "hj tools", "ht", }));
     set_weight(100);
     set("long", "這是一個用於“幻境”系列主題內的巫師工具。\n它具體支持的指令請用 <clcl> 命令查詢。\n");
     set("unit", "個");

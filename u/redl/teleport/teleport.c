@@ -73,7 +73,7 @@ string look_kong(object me) {
     "  但需要花費財物來維持它的能量，指令：<put 數量 貨幣>\n" NOR;
     while(i++<sizeof(sign) - 1){
         if (sign[i]["short"]) {
-            msg += sprintf(" %-28s", sign[i]["exit"] + ":" + sign[i]["short"] + "("+ chinese_number(sign[i]["val"] / 10000) + "金·" + (sign[i]["loop"]? "維持":"進入") + ")");
+            msg += sprintf(" %-28s", sign[i]["exit"] + ":" + sign[i]["short"] + "("+ chinese_number(sign[i]["val"] / 10000) + "金．" + (sign[i]["loop"]? "維持":"進入") + ")");
             j ++;
             if (j>1) {
                 msg += "\n";

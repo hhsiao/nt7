@@ -35,7 +35,7 @@ int exert(object me, object target)
 
         if( qi > (maxqi * 0.4) )
         {
-                data =  
+                data =
                 ([
                         "damage": skill*5,
                         "sword" : skill/10,
@@ -47,15 +47,15 @@ int exert(object me, object target)
                         "type"  : "damageup",
                         "type2" : "ziqi_donglai",
                         "attr"  : "bless",
-                        "name"  : "紫霞神功·紫氣東來",
+                        "name"  : "紫霞神功．紫氣東來",
                         "time"  : skill,
-                        "buff_data": data,      
+                        "buff_data": data,
                         "buff_msg" : msg,
                         "disa_msg" : "你的紫氣東來運行完畢，紫氣漸漸隱去.。\n",
-                        
+
                 ]);
                 BUFF_D->buffup(buff);
-        
+
                 addn("neili", -150, me);
         }
         else
@@ -63,7 +63,7 @@ int exert(object me, object target)
                 msg = HIR "$N" HIR "拼盡畢生功力想提起紫氣東來，但自己受傷太重，沒能成功!\n" NOR;
                 message_combatd(msg, me);
         }
-        
+
         if( me->is_fighting() ) me->start_busy(3);
         return 1;
 }

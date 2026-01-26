@@ -22,31 +22,28 @@ int exert(object me, object target)
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
-        
+
         msg = HIW "$N" HIW "臉色一寒，一股煞氣騰然而起，四下登時陰風瑟瑟，冷意慘慘。\n" NOR;
 
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "冰蠶寒功·戰神",
+                "name"  : "冰蠶寒功．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的冰蠶寒功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }
-
-
-

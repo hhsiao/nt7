@@ -22,20 +22,20 @@ int exert(object me, object target)
         me->receive_damage("qi", 0);
 
         msg = HIR "$N凝神息氣，運起碧雲心法的最高境界，只見一股輕煙繚繞周身。\n" NOR;
-        
+
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
 	        "caster": me,
 	        "target": me,
 	        "type"  : "powerup",
 	        "attr"  : "bless",
-	        "name"  : "碧雲心法·戰神",
+	        "name"  : "碧雲心法．戰神",
 	        "time"  : skill,
-	        "buff_data": data,	
+	        "buff_data": data,
 	        "buff_msg" : msg,
 	        "disa_msg" : "你的碧雲心法運行完畢，將內力收回丹田。\n",
         ]);

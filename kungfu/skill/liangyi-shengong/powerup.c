@@ -22,32 +22,30 @@ int exert(object me, object target)
         skill = me->query_skill("force");
         addn("neili", -100, me);
         me->receive_damage("qi", 0);
-        
+
         msg = HIY "$N" HIY "陡然一聲清嘯，運起兩儀神功，全身"
                         "骨骼一陣爆響，真氣盪漾，衣衫頓時膨脹，氣勢迫"
                         "人。\n" NOR;
-                        
+
         data = ([
                 "attack" : skill/3,
                 "defense": skill/3,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "powerup",
                 "attr"  : "bless",
-                "name"  : "兩儀神功·戰神",
+                "name"  : "兩儀神功．戰神",
                 "time"  : skill,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的兩儀神功運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
         if( me->is_fighting() ) me->start_busy(3);
 
-        return 1;       
+        return 1;
 }
-
-

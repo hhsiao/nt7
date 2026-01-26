@@ -53,7 +53,7 @@ void create()
     set("j2_time", JOB2_NEED_IDLE );
 
     set("room_mark",mark);
-    set("short",MAG"幻境"NOR+GRN"·迷失之寶物隱匿之林"NOR);
+    set("short",MAG"幻境"NOR+?RN"·迷失之寶物隱匿之林"NOR);
 
     set("long", "你剛走過來，卻發現這裡是一小方水潭，水潭之水清幽平靜，潭邊立著一個
 小亭(ting)。你只見月色清風，粼光閃爍，端的是舒心暢懷，清雅無比。你似乎

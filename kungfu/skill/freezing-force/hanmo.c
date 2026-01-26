@@ -37,12 +37,12 @@ int exert(object me, object target)
         if( query("neili", me)<5000 )
                 return notify_fail("你的內力不夠。\n");
 
-        if( userp(me) ) 
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "freezing_hanmo")) > 0 )
                         return notify_fail(MAG"寒魔玄力消耗心神太甚，還需等待"+time+"秒。\n"NOR);
         }
-        
+
         skill = me->query_skill("freezing-force", 1);
         addn("neili", -1000, me);
         me->receive_damage("qi", 0);
@@ -50,7 +50,7 @@ int exert(object me, object target)
         message_combatd(HIB "$N" HIB "神色凝重，深吸一口氣，體表瞬間變為靛藍色，$N" HIB "隨之擺出各種奇特的造型舞動著。\n"
                        "隨著那些詭異的舞姿，藍色煙氣四起，在空中竟似顯現無數異樣蠶蟲，在$N身周繞行不止，\n"
                        "四周溫度驟降，只剎那間功夫，空氣似乎都凝結了。\n" NOR, me);
-        
+
         msg = HIB "這瞬間，$N" HIB "如同毒神附體，使人周身顫慄。\n" NOR;
         data = ([
                 "unarmed_damage": skill*10,
@@ -64,7 +64,7 @@ int exert(object me, object target)
                 "type":"protectshield",
                 "type2":"freezing",
                 "attr":"bless",
-                "name":"冰蠶寒功·寒魔玄力",
+                "name":"冰蠶寒功．寒魔玄力",
                 "time":  skill/5,
                 "buff_data":data,
                 "buff_msg":msg,
@@ -81,14 +81,14 @@ int exert(object me, object target)
 */
         ]);
         BUFF_D->buffup(buff);
-        
+
         buff =
         ([
                 "caster":me,
                 "target":me,
                 "type":"damageshield",
                 "att":"bless",
-                "name":"冰蠶寒功·寒魔玄力",
+                "name":"冰蠶寒功．寒魔玄力",
                 "buffup_name":"backfire",
                 "buffup_type":"all",
                 "buffup_ratio": 35,
@@ -100,7 +100,7 @@ int exert(object me, object target)
 
         time = skill/5+40;
         time -= ABILITY_D->check_ability(me, "cd-freezing-hanmo"); // ab門派減cd
-        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd 
+        time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
         buff =
         ([
                 "caster" : me,
@@ -108,7 +108,7 @@ int exert(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "freezing_hanmo",
                 "attr"   : "curse",
-                "name"   : "冰蠶寒功·寒魔玄力",
+                "name"   : "冰蠶寒功．寒魔玄力",
                 "time"   : time,
                 "buff_msg" : "寒魔玄力消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",

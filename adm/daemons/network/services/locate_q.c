@@ -1,6 +1,6 @@
-// 神話世界·西遊記·版本４．５０
+// 神話世界．西遊記．版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 //      /adm/daemons/network/dns_aux/locate_q.c
 //      from the TMI-2 Mudlib
 //      the locate_q for the UDP locate function

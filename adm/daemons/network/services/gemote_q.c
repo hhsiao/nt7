@@ -1,6 +1,6 @@
-// 神話世界·西遊記·版本４．５０
+// 神話世界．西遊記．版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // by mon@xyj 10/2/97
 // for inter mud emote messages.
 
@@ -27,7 +27,7 @@ string query_save_file() {return DATA_DIR + "emoted";}
 
 // send request to another mud.
 
-void send_msg(string channel, object me, string verb, string id, 
+void send_msg(string channel, object me, string verb, string id,
        string mud, mixed filter)
 {
    mapping minfo;
@@ -87,7 +87,7 @@ void incoming_request(mapping info)
         PING_Q->send_ping_q(info["HOSTADDRESS"], info["PORTUDP"]);
 
      if (minfo && minfo["HOSTADDRESS"] != info["HOSTADDRESS"]) {
-        // Its been faked! 
+        // Its been faked!
         dns_log("dns_fake", "Gemote: "+info["NAME"]+
           "("+info["HOSTADDRESS"]+") message:"
           +" "+ info["MSG"]+"\n");
@@ -127,6 +127,6 @@ void incoming_request(mapping info)
      (msg==""? "":"||MSG:"+msg) +
      "@@@\n");
 
-                
+
    } //if (info["NAME"] && info["PORTUDP"])
 }

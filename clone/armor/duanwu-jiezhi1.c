@@ -4,7 +4,7 @@
 inherit RINGS;
 
 void create() {
-    set_name(HIC "十週年·端午·龍戒" NOR, ({ "duanwu longjie", "longjie" }));
+    set_name(HIC "十週年．端午．龍戒" NOR, ({ "duanwu longjie", "longjie" }));
     set_weight(1);
     set("unit", "枚");
     set("long", HIC "這是由炎黃十週年暨端午節發放的戒指，其散發著迷人的綠光，折射出一條青龍之像。\n" NOR);

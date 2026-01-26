@@ -745,17 +745,17 @@ int do_open(string arg) {
                     }
                 }
                 if (random(25)==0 && rndpfm) { //極小幾率，並且隨機至少有一個pfm的情況下
-                    set("opened/name", NOR + YEL + "『"+YEL + tname[i] + NOR + YEL + "·"+YEL + "補遺"+NOR + YEL + "』"+NOR);
+                    set("opened/name", NOR + YEL + "『"+YEL + tname[i] + NOR + YEL + "．"+YEL + "補遺"+NOR + YEL + "』"+NOR);
                     set("longx", "這是一本武學補遺，你(read)後可以學會「"+rndpfm + "」的使用訣竅。\n");
                     set("opened/type", 1);
                     set("opened/can_perform", rndpfm);
                 } else {
-                    set("opened/name", NOR + YEL + "『"+WHT + tname[i] + NOR + YEL + "·"+WHT + "秘笈"+NOR + YEL + "』"+NOR);
+                    set("opened/name", NOR + YEL + "『"+WHT + tname[i] + NOR + YEL + "．"+WHT + "秘笈"+NOR + YEL + "』"+NOR);
                     set("longx", "這是一本武學秘笈，你(read)後可以提高『"+tname[i] + "』的修為。\n");
                     set("opened/type", 2);
                 }
             } else {
-                set("opened/name", NOR + YEL + "『"+CYN + tname[i] + NOR + YEL + "·"+CYN + "秘籍"+NOR + YEL + "』"+NOR);
+                set("opened/name", NOR + YEL + "『"+CYN + tname[i] + NOR + YEL + "．"+CYN + "秘籍"+NOR + YEL + "』"+NOR);
                 set("longx", "這是一本技能秘籍，你(read)後可以提高『"+tname[i] + "』的知識。\n");
                 set("opened/type", 3);
             }

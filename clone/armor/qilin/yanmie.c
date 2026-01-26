@@ -4,7 +4,7 @@
 inherit RINGS;
 
 void create() {
-    set_name(HIR "火麒麟·湮滅" NOR, ({ "yanmie ring", "yanmie", "ring" }));
+    set_name(HIR "火麒麟．湮滅" NOR, ({ "yanmie ring", "yanmie", "ring" }));
     set_weight(500);
     set("unit", "枚");
     set("long", HIR "火麒麟乃上古神獸，擁有無窮神力，直到有一天，被更強大的力量消滅後，\n"

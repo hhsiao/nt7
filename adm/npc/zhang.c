@@ -151,7 +151,7 @@ int life_warcraft() {
 
     addn("balance", -50000000, me);
 
-    message_vision(HIM "$N" HIM "拿出一張符，點燃了拋向空中，然後念著：#￥%……·￥·…·#￥...\n" NOR, this_object());
+    message_vision(HIM "$N" HIM "拿出一張符，點燃了拋向空中，然後念著：#￥%……．￥．…．#￥...\n" NOR, this_object());
 
     set("warcraft/status", "living", me);
 

@@ -15,7 +15,7 @@ int perform(object me, object target)
         string msg;
         int skill;
         int time;
-        
+
         if (! target)
         {
                 me->clean_up_enemy();
@@ -56,10 +56,10 @@ int perform(object me, object target)
                 return notify_fail("你的輕功沒有使用明玉功，無法使用「瓊樓玉宇」絕技。\n");
         if( query("gender", me) != "女性" )
                 return notify_fail("你並非純陰之體，無法使用「瓊樓玉宇」絕技。\n");
-        if( BUFF_D->check_buff(me, "mingyu_qiong") ) 
+        if( BUFF_D->check_buff(me, "mingyu_qiong") )
                 return notify_fail("你正在使用「瓊樓玉宇」。\n");
-        
-        if( userp(me) ) 
+
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "mingyue-qiong-over")) > 0 )
                         return notify_fail(MAG"你剛剛使用過「瓊樓玉宇」，此時氣血不調，還需等待"+time+"秒。\n"NOR);
@@ -68,7 +68,7 @@ int perform(object me, object target)
         bonus = me->query_skill("mingyu-gong", 1) / 3;
         bonus += me->query_skill("unarmed", 1) /3;
         bonus += me->query_skill("force", 1) /3;
-        
+
         data = ([
                 "attack": bonus,
                 "unarmed_damage": bonus,
@@ -77,21 +77,21 @@ int perform(object me, object target)
 
         msg = WHT"〖"HIY"瓊樓玉宇"WHT"〗\n\n"HIG"只見$N分光勁勢再抖，像蛟龍出海，大鵬展翅，\n"
                 "先是一團光芒，光芒驀然爆開，化作一片光雨，漫天遍地向$n刺來！\n" NOR;
-        
+
         buff = ([
                 "caster": me,
                 "target": target,
                 "type"  : "mingyu_qiong",
                 "attr"  : "bless",
-                "name"  : "明玉功·瓊樓玉宇",
+                "name"  : "明玉功．瓊樓玉宇",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : msg,
                 "disa_msg" : "你的瓊樓玉宇運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
-        
+
         set_temp("mingyu_pfm/qiong", bonus, me);
         addn("neili", -200, me);
 
@@ -104,24 +104,24 @@ void remove_effect(object me, int bonus)
 {
         mapping buff, data;
         int time;
-        
+
         BUFF_D->debuff(me, "mingyu_qiong", 1);
         delete_temp("mingyu_pfm/qiong", me);
-        
+
         if ( me->is_fighting() && !me->is_busy() )
                 me->start_busy(3);
-        
+
         time  = 30;
         time -= ABILITY_D->check_ability(me, "cd-myg-qiong"); // ab門派減cd
-                
-        buff =  
+
+        buff =
         ([
                 "caster" : me,
                 "target" : me,
                 "type"   : "cooldown",
                 "type2"  : "mingyue-qiong-over",
                 "attr"   : "curse",
-                "name"   : "明玉功·瓊樓玉宇",
+                "name"   : "明玉功．瓊樓玉宇",
                 "time"   : time,
                 "buff_msg" : "瓊樓玉宇消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : HIY"經過一段時間的休息，你又可以使用「瓊樓玉宇」了！\n"NOR,
@@ -168,5 +168,3 @@ void check_fight(object me, object target, int bonus)
         remove_call_out("check_fight");
         call_out("check_fight", 1, me, target, bonus);
 }
-
-

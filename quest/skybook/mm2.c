@@ -33,7 +33,7 @@ void create()
      //set("nickname",HIR"專 用"NOR);
      set("gender", "女性" );
      set("age", 18);
-     set("long","奧黛麗·凱瑟琳·赫本-魯斯頓（Audrey Kathleen Hepburn-Ruston）;\n"+
+     set("long","奧黛麗．凱瑟琳．赫本-魯斯頓（Audrey Kathleen Hepburn-Ruston）;\n"+
                 "假日裡的小公主。\n");
      set("combat_exp", 10000);
      set("attitude", "friendly");

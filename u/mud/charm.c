@@ -148,11 +148,11 @@ int do_suit(string arg)
                         "target": me,
                         "type"  : "powerofsun",
                         "attr"  : "bless",
-                        "name"  : "套裝特技·太陽之力",
+                        "name"  : "套裝特技．太陽之力",
                         "time"  : skill,
                         "buff_data": data,
                         "buff_msg" : msg,
-                        "disa_msg" : "你的套裝特技·太陽之力運行完畢，將內力收回丹田。\n",
+                        "disa_msg" : "你的套裝特技．太陽之力運行完畢，將內力收回丹田。\n",
                 ]);
 
                 BUFF_D->buffup(buff);
@@ -201,11 +201,11 @@ int do_suit(string arg)
                         "target": me,
                         "type"  : "powerofmoon",
                         "attr"  : "bless",
-                        "name"  : "套裝特技·月亮之力",
+                        "name"  : "套裝特技．月亮之力",
                         "time"  : skill,
                         "buff_data": data,
                         "buff_msg" : msg,
-                        "disa_msg" : "你的套裝特技·月亮之力運行完畢，將內力收回丹田。\n",
+                        "disa_msg" : "你的套裝特技．月亮之力運行完畢，將內力收回丹田。\n",
                 ]);
 
                 BUFF_D->buffup(buff);
@@ -250,11 +250,11 @@ int do_suit(string arg)
                         "target": me,
                         "type"  : "powerofstar",
                         "attr"  : "bless",
-                        "name"  : "套裝特技·星辰之力",
+                        "name"  : "套裝特技．星辰之力",
                         "time"  : skill,
                         "buff_data": data,
                         "buff_msg" : msg,
-                        "disa_msg" : "你的套裝特技·星辰之力運行完畢，將內力收回丹田。\n",
+                        "disa_msg" : "你的套裝特技．星辰之力運行完畢，將內力收回丹田。\n",
                 ]);
 
                 BUFF_D->buffup(buff);

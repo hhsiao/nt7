@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIB "上古·虎魄" NOR, ({"tiger soul", "tiger", "soul"}));
+    set_name(HIB "上古．虎魄" NOR, ({"tiger soul", "tiger", "soul"}));
     set_weight(50);
     set("long", HIB "\n一塊藍色的虎魄，無暇的表面射魄出奇幻的光\n"
         "澤。其中彷彿蘊藏著無窮的魔力，這便是傳說\n"

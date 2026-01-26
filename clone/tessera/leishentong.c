@@ -3,7 +3,7 @@
 inherit TESSERA;
 
 void create() {
-    set_name(HIM "雷神之瞳·電" NOR, ({"leishen tong", "leishen", "tong"}));
+    set_name(HIM "雷神之瞳．電" NOR, ({"leishen tong", "leishen", "tong"}));
     set_weight(300);
     set("long", HIM "頃刻間，七彩之光透射天地，此乃天界之聖物，擁有著神一般的力量。\n" NOR);
     set("unit", "顆");

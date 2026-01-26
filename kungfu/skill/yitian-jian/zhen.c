@@ -7,10 +7,10 @@
 
 inherit F_SSERVER;
 
-int filter_for_enable(string skill, string skill1) 
-{ 
-        return (SKILL_D(skill)->valid_enable(skill1) && !SKILL_D(skill)->main_skill()); 
-} 
+int filter_for_enable(string skill, string skill1)
+{
+        return (SKILL_D(skill)->valid_enable(skill1) && !SKILL_D(skill)->main_skill());
+}
 
 int perform(object me, object target)
 {
@@ -20,7 +20,7 @@ int perform(object me, object target)
         int att, countlv, c0, c1, damage, i, j, count, sklv, time;
         string *allsk, *sname, skn;
         mapping buff;
-        
+
         if( userp(me) && !query("can_perform/yitian-jian/zhen", me) )
                 return notify_fail("你所使用的外功中沒有這種功能。\n");
 
@@ -29,7 +29,7 @@ int perform(object me, object target)
         if (! target || ! me->is_fighting(target))
                 return notify_fail(PNAME "只能對戰鬥中的對手使用。\n");
 
-        if( !objectp(weapon=query_temp("weapon", me)) || 
+        if( !objectp(weapon=query_temp("weapon", me)) ||
             query("skill_type", weapon) != "sword" )
                 return notify_fail("你使用的武器不對，難以施展" PNAME "。\n");
 
@@ -62,33 +62,33 @@ int perform(object me, object target)
 
 
                 allsk = keys(me->query_skills());
-                sname = filter_array(allsk, (: filter_for_enable :), "sword"); 
+                sname = filter_array(allsk, (: filter_for_enable :), "sword");
                 sname -= ({"yitian-jian"});
                 j = sizeof(sname);
                 if (userp(me) && (j > (me->query_skill("array") / 150)))
                         j = me->query_skill("array") / 150;
                 if (j) {
-                        if (j > 9) j = 9; 
+                        if (j > 9) j = 9;
                 msg = HIY "\n$N" HIY "運轉倚天劍法，將手中的" + weapon->name() + HIY "往地上一擲，“鏘”得一聲劍鳴，\n只見" +
                                         weapon->name() + HIY "依照大九天伏魔陣勢，分化為" + chinese_number(j) + "道劍光，從四方朝$n" HIY "籠罩而去！\n" NOR;
                         addn("can_perform/yitian-jian/zhen", 1, me);
-                //message_combatd(msg, me, target); 
+                //message_combatd(msg, me, target);
                 message_vision(msg, me, target);
                         count = me->query_skill("sword", 1) / 2 * query("level", me);
 //                        count = count * (1 + query("can_perform/yitian-jian/zhen", me) /5)
                         if( BUFF_D->check_buff(me, "ljz_fengyun") )
                                 count *= 2;
-                        addn_temp("apply/attack", count, me); 
+                        addn_temp("apply/attack", count, me);
                         c0 = me->query_skill("count", 1);
                         c1 = me->query_skill("count", 1) - me->query_skillo("count", 1);
                                                 countlv = 0;
-                                                if (query("can_perform/yitian-jian/zhen", me) >= 5) 
+                                                if (query("can_perform/yitian-jian/zhen", me) >= 5)
                                                 countlv = query("can_perform/yitian-jian/zhen", me) * 100;
                                                 if (countlv) me->set_skill("count", c0 + countlv);
-                        
+
                         for (i=0; i<j; i++){
-                                if (! me->is_fighting(target)) 
-                                        break; 
+                                if (! me->is_fighting(target))
+                                        break;
                                         if( !weapon || !objectp(weapon) || !environment(weapon) || environment(weapon) != me || weapon!=query_temp("weapon", me))
                                                         break;
                                 skn = sname[random(sizeof(sname))];
@@ -102,7 +102,7 @@ int perform(object me, object target)
                                         dp = dp + (dp * target->query_skill("array") / 350);
 
                                 msg = "\n" + PNAME + NOR HIC + to_chinese(skn) + NOR HIC + "，\n" NOR;
-                                //message_combatd(msg, me, target); 
+                                //message_combatd(msg, me, target);
                                 message_vision(msg, me, target);
                                 if (ap / 2 + random(ap) > dp) {
                                         me->map_skill("sword", skn);
@@ -111,40 +111,40 @@ int perform(object me, object target)
                                         damage = damage + damage * i / 18;
                                         att = pow(sklv, 1.5);
                                         att += att * query("can_perform/yitian-jian/zhen", me) / 100;
-                                        addn_temp("apply/attack", att, me); 
-                                        addn_temp("apply/damage", damage, me); 
-                                        COMBAT_D->do_attack(me, target, weapon, TYPE_LINK); 
-                                        addn_temp("apply/damage", -damage, me); 
-                                        addn_temp("apply/attack", -att, me); 
+                                        addn_temp("apply/attack", att, me);
+                                        addn_temp("apply/damage", damage, me);
+                                        COMBAT_D->do_attack(me, target, weapon, TYPE_LINK);
+                                        addn_temp("apply/damage", -damage, me);
+                                        addn_temp("apply/attack", -att, me);
                                 } else {
-                                                msg = CYN "可是$n" CYN + (random(2) ? "輕輕一躍" : "鼓勁硬抗") + "，" 
+                                                msg = CYN "可是$n" CYN + (random(2) ? "輕輕一躍" : "鼓勁硬抗") + "，"
                                         + (random(2) ? "避開了" : "躲過了") + PNAME + HIC + to_chinese(skn) + NOR CYN "的攻擊範圍。\n"NOR;
-                                        message_combatd(msg, me, target); 
+                                        message_combatd(msg, me, target);
                                 }
                                 addn("neili", -500, me);
                         }
-                                                
+
                                                 if (countlv) {
                                                         if (c1 > me->query_skill("count", 1) - me->query_skillo("count", 1))
                                                                 {
                                                                         c0 = c0 - (c1 - (me->query_skill("count", 1) - me->query_skillo("count", 1)));
                                                                 }
                                                         me->set_skill("count", c0);
-                                                        if (c0<1) me->delete_skill("count"); 
+                                                        if (c0<1) me->delete_skill("count");
                                                 }
-                        
+
                         me->map_skill("sword", "yitian-jian");
                         me->reset_action();
-                        addn_temp("apply/attack", -count, me); 
+                        addn_temp("apply/attack", -count, me);
                                                 if (query("can_perform/yitian-jian/zhen", me) == 5 || (query("can_perform/yitian-jian/zhen", me) & 50) == 0 ) {
-                                                    tell_object(me, HIC "你領悟了"HIY"「九天伏魔劍陣」"HIC"擊破特防的訣竅，繼續加深熟練度吧。\n" NOR); 
+                                                    tell_object(me, HIC "你領悟了"HIY"「九天伏魔劍陣」"HIC"擊破特防的訣竅，繼續加深熟練度吧。\n" NOR);
                                                     set("can_perform/yitian-jian/zhen", 30, me);
-                                                if (me->can_improve_skill("sword")) 
-                                                        me->improve_skill("sword", 1500000); 
-                                                if (me->can_improve_skill("yitian-jian")) 
-                                                        me->improve_skill("yitian-jian", 1500000); 
-                                        me->improve_skill("martial-cognize", 1000000); 
-                                        me->improve_skill("sword-cognize", 1500000); 
+                                                if (me->can_improve_skill("sword"))
+                                                        me->improve_skill("sword", 1500000);
+                                                if (me->can_improve_skill("yitian-jian"))
+                                                        me->improve_skill("yitian-jian", 1500000);
+                                        me->improve_skill("martial-cognize", 1000000);
+                                        me->improve_skill("sword-cognize", 1500000);
                                                 }
                 } else {
                         tell_object(me, NOR "你修為不足，運轉" + PNAME + NOR "失敗。\n" NOR);
@@ -165,14 +165,14 @@ int perform(object me, object target)
                 "type"   : "cooldown",
                 "type2"  : "emaq_fumojianzhen",
                 "attr"   : "curse",
-                "name"   : "倚天劍法·九天伏魔劍陣",
+                "name"   : "倚天劍法．九天伏魔劍陣",
                 "time"   : time,
                 "buff_msg" : "九天伏魔劍陣消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
                 "disa_msg" : "",
                 "disa_type": 0,
                 ]);
                 BUFF_D->buffup(buff);
-                
+
                 if( weapon && objectp(weapon) && environment(weapon) ) {
                         weapon->move(environment(me));
                         set("who_get/id", query("id", me), weapon);
@@ -180,7 +180,6 @@ int perform(object me, object target)
                         msg = HIY "\n" HIY + weapon->name() + HIY "釘在地上哀鳴一聲，像在等待$N" + HIY + "的召喚。\n\n" NOR;
                 message_vision(msg, me);
                 }
-                
+
         return 1;
 }
-

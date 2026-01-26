@@ -61,7 +61,7 @@ int perform(object me, object target)
 			"target":target,
 			"type":"tldw_wang",
 			"attr":"curse",
-			"name":"天羅地網·天羅地網",                       
+			"name":"天羅地網．天羅地網",
 			"buff_data":data,
 			"time":  skill/20,
 			"buff_msg": "",

@@ -39,7 +39,7 @@ int perform(object me, object target)
         if( query("neili", me)<200 )
                 return notify_fail("你內力不夠, 不能使用千蛛萬毒! \n");
 
-        if( userp(me) ) 
+        if( userp(me) )
         {
                 if( (time = BUFF_D->get_buff_overtime(me, "qzwds_qzwd")) > 0 )
                         return notify_fail("你剛使用過千蛛萬毒，無法在短時間裡積聚毒力! \n");
@@ -50,17 +50,17 @@ int perform(object me, object target)
 
         ap = attack_power(me, "hand");
         dp = defense_power(target, "dodge");
-        
+
         delta = ABILITY_D->check_ability(me, "ap_power-qzwds-qzwd"); // 門派ab
         if( delta ) ap += ap*delta/100;
-        
+
         damage = damage_power(me, "hand") + me->query_skill("poison");
         damage+= query("jiali", me);
         damage*=12;
-        
+
         delta = ABILITY_D->check_ability(me, "da_power-qzwds-qzwd"); // 門派ab
         if( delta ) damage += damage*delta/100;
-        
+
         ap *= 2;
         if( ap / 2 + random(ap) +fmsk > dp )
         {
@@ -71,7 +71,7 @@ int perform(object me, object target)
                         msg += RED"$N忽然覺得指力被一團無形的勁力包裹著，緊接著只聽\n"
                               "$n一聲大喝，$N頓時如一根稻草般被拋向遠處。\n" NOR;
 
-                        msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 300+fmsk/10, 
+                        msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 300+fmsk/10,
                                 RED"$n只覺得一股如山的勁力順指尖猛攻過來，只覺得全身毒氣狂竄。\n忽然胸口一痛，不由“哇”的一聲吐出一口黑血！\n" NOR);
 
                         message_combatd(msg, me, target);
@@ -81,9 +81,9 @@ int perform(object me, object target)
               }
               else
               {
-                        damage += damage / 2; 
+                        damage += damage / 2;
                         msg = HIR"$n不由一聲慘嚎摔倒在地，身體已痛苦得蜷縮成一團！\n" NOR;
-                        msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 400+fmsk/10, 
+                        msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 400+fmsk/10,
                                 HIR"$n不由一聲慘嚎摔倒在地，身體已痛苦得蜷縮成一團！\n" NOR);
                         message_combatd(msg, me, target);
 
@@ -114,15 +114,15 @@ int perform(object me, object target)
         time  = 40;
         time -= ABILITY_D->check_ability(me, "cd-qzwds-qzwd"); // ab門派減cd
         time -= ABILITY_D->check_ability(me, "reduce_cd", 2); // talent減cd
-                
-        buff =  
+
+        buff =
 	([
 	        "caster" : me,
 	        "target" : me,
 	        "type"   : "cooldown",
 	        "type2"  : "qzwds_qzwd",
 	        "attr"   : "curse",
-	        "name"   : "千蛛萬毒手·千蛛萬毒",
+	        "name"   : "千蛛萬毒手．千蛛萬毒",
 	        "time"   : time,
 	        "buff_msg" : "千蛛萬毒消耗心神太甚，還需等待"+time+"秒方可再次施展。\n",
 	        "disa_msg" : "",

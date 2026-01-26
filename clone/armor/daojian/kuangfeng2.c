@@ -4,7 +4,7 @@
 inherit BOOTS;
 
 void create() {
-    set_name(HIW "天降·狂風靴" NOR, ({ "kuangfeng xue2" }) );
+    set_name(HIW "天降．狂風靴" NOR, ({ "kuangfeng xue2" }) );
     set_weight(10);
     set("unit", "雙");
     set("long", HIW "這是一雙西域銀狐之皮製成的靴子，據說穿上後行走如狂風。\n");

@@ -57,7 +57,7 @@ string query_save_file() {
 }
 void create() {
     seteuid(getuid());
-    set("name", "泥潭·江湖論壇");
+    set("name", "泥潭．江湖論壇");
     mkdir(DIR);
     mkdir(REGISTER);
     restore();

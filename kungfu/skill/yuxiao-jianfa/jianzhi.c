@@ -71,7 +71,7 @@ int perform(object me, object target)
 
         if( BUFF_D->check_buff(me, "yxjf_jianzhi") )
                 return notify_fail("你正在使用劍指相配中！\n");
-                
+
         damage = me->query_skill("yuxiao-jianfa",1) + me->query_skill("tanzhi-shentong",1);
         damage /= 3;
         sword = (me->query_skill("sword") + me->query_skill("finger") );
@@ -83,18 +83,18 @@ int perform(object me, object target)
                 "defense": damage,
                 "attack" : damage,
         ]);
-        
+
         buff = ([
                 "caster": me,
                 "target": me,
                 "type"  : "yxjf_jianzhi",
                 "attr"  : "bless",
-                "name"  : "玉簫劍法·劍指相配",
+                "name"  : "玉簫劍法．劍指相配",
                 "time"  : skill/2,
-                "buff_data": data,      
+                "buff_data": data,
                 "buff_msg" : "",
                 "disa_msg" : "你的玉簫劍法運行完畢，將內力收回丹田。\n",
-                        
+
         ]);
         BUFF_D->buffup(buff);
 

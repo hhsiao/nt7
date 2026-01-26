@@ -1,4 +1,4 @@
-// 絕地末日·NPC: /d/suzhou/npc/xi-laifu.c  辦喜宴出現的喜來福老闆
+// 絕地末日．NPC: /d/suzhou/npc/xi-laifu.c  辦喜宴出現的喜來福老闆
 // llm 99/07/09 修改2000.09
 
 #include <ansi.h>

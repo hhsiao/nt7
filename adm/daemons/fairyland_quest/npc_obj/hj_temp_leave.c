@@ -7,7 +7,7 @@ inherit ITEM;
 
 void create()
 {
-    set_name( "幻境物件·臨時離開時用", ({ "hj temp leave obj" }) );
+    set_name( "幻境物件．臨時離開時用", ({ "hj temp leave obj" }) );
     set_weight(1);
     set("long", "玩家攜帶時即禁止其一切指令。\n");
     set("unit", "個");

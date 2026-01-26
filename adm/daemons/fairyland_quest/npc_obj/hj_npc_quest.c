@@ -27,7 +27,7 @@
 
  其他型：煉力老人  可為玩家增強力量
 
- 藏劍生·珠寶客    任務型。
+ 藏劍生．珠寶客    任務型。
 16:14 03-10-19
 *****************************************************/
 
@@ -145,7 +145,7 @@ int *ages=({
 });
 
 int *del_me_time = ({
-    600, 
+    600,
     180,
     180,
     300,
@@ -167,8 +167,8 @@ int me_ok(object me)
     int iii = query("iii");
 
     if( !me ) return 0;
-    if( !query_temp("huanjing", me) || query_temp("huanjing", me) != "start" || 
-        !query_temp("hj_hp", me) || query_temp("hj_hp", me)<1 || 
+    if( !query_temp("huanjing", me) || query_temp("huanjing", me) != "start" ||
+        !query_temp("hj_hp", me) || query_temp("hj_hp", me)<1 ||
         !query_temp("hj_hp_max", me) )
          return 0;
     inv_me = environment(me);
@@ -203,7 +203,7 @@ void setme( int iii )
         quests[ iii ] : (: ask_help :),
         ]));
 
-    set("chat_chance",1); 
+    set("chat_chance",1);
     set("chat_msg",({ query("name")+ChatMsg[ iii ] }) );
 
     remove_call_out("delete_me");
