@@ -1306,7 +1306,7 @@ public int suit_special(object me, string arg)
                                         addn_temp("apply/" + jifa_list[i], 1000, me);
                                 }
                         }
-                        me->start_call_out((: call_other,  __FILE__, "remove_effect", me, HIR "斬·無雙" NOR, 1000 :), 1800);
+                        me->start_call_out((: call_other,  __FILE__, "remove_effect", me, HIR "斬．無雙" NOR, 1000 :), 1800);
                         return 1;
                 }
                 if( arg == "zhanws1" )
@@ -1323,7 +1323,7 @@ public int suit_special(object me, string arg)
                         addn_temp("apply/damage", 20000, me);
                         addn_temp("apply/armor", 10000, me);
 
-                        me->start_call_out((: call_other,  __FILE__, "remove_effect2", me, HIR "戰·無雙" NOR, 20000, 10000 :), 1200);
+                        me->start_call_out((: call_other,  __FILE__, "remove_effect2", me, HIR "戰．無雙" NOR, 20000, 10000 :), 1200);
                         return 1;
                 }
         }

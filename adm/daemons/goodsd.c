@@ -201,6 +201,9 @@ string format_table_row(string *columns, int *widths, string *aligns, string *co
         // Calculate display length (excluding color codes)
         len = strwidth(col);
 
+        // Add leading space for separation
+        result += " ";
+
         if(align == "right") {
             padding = width - len;
             result += color + sprintf("%*s%s", padding, "", col) + NOR;
@@ -212,6 +215,9 @@ string format_table_row(string *columns, int *widths, string *aligns, string *co
             padding = width - len;
             result += color + col + sprintf("%*s", padding, "") + NOR;
         }
+
+        // Add trailing space for separation
+        result += " ";
     }
 
     return result + "\n";

@@ -36,11 +36,11 @@
 金磚:gold:1:gold:/clone/money/gold:銀行存款增加10000兩黃金
 更名卷軸:changeid:20:object:/adm/npc/obj/idname-scroll:可以使自造裝備改變代號(id)和中文名(name)的更名卷軸
 綁定聖符:bind:1:symbol:/clone/goods/bind-symbol:可將裝備及勳章等綁定主人，死亡及下線都不掉，但是也不能給任何人了，轉世會丟失
-上古·太虛:taixu:10:enchase:/clone/goods/taixu:金屬性終極10LV鑲嵌材料
-上古·虎魄:hupo:10:enchase:/clone/goods/hupo:木屬性終極10LV鑲嵌材料
-玄冰·寒鐵:hantie:10:enchase:/clone/goods/hantie:水屬性終極10LV鑲嵌材料
-地心·噬魂:shihun:10:enchase:/clone/goods/shihun:火屬性終極10LV鑲嵌材料
-九地·玄玉:xuanyu:10:enchase:/clone/goods/xuanyu:土屬性終極10LV鑲嵌材料
+上古．太虛:taixu:10:enchase:/clone/goods/taixu:金屬性終極10LV鑲嵌材料
+上古．虎魄:hupo:10:enchase:/clone/goods/hupo:木屬性終極10LV鑲嵌材料
+玄冰．寒鐵:hantie:10:enchase:/clone/goods/hantie:水屬性終極10LV鑲嵌材料
+地心．噬魂:shihun:10:enchase:/clone/goods/shihun:火屬性終極10LV鑲嵌材料
+九地．玄玉:xuanyu:10:enchase:/clone/goods/xuanyu:土屬性終極10LV鑲嵌材料
 菩提子:putizi:1:object:/clone/gift/puti-zi:可增加最大內力100-129點，數量20個
 九轉金丹:jiuzhuan:1:object:/clone/gift/jiuzhuan:可增加所有先天前4點丹，數量10個,
 玉清散:yuqingsan:1:object:/clone/medicine/yuqing:可增加最大精力10-11點，數量120包

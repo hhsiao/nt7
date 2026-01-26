@@ -46,11 +46,11 @@
 土10LV兵器包:10LVearth:150:package:/clone/goods/xuanyu:土屬性終極10LV包，包含無名打造材料以及200級鑲嵌技藝
 更名卷軸:changeid:20:object:/adm/npc/obj/idname-scroll:可以使自造裝備改變代號(id)和中文名(name)的更名卷軸
 綁定聖符:bind:1:symbol:/clone/goods/bind-symbol:可將裝備及勳章等綁定主人，死亡及下線都不掉，但是也不能給任何人了，轉世會丟失
-上古·太虛:taixu:10:enchase:/clone/goods/taixu:金屬性終極10LV鑲嵌材料
-上古·虎魄:hupo:10:enchase:/clone/goods/hupo:木屬性終極10LV鑲嵌材料
-玄冰·寒鐵:hantie:10:enchase:/clone/goods/hantie:水屬性終極10LV鑲嵌材料
-地心·噬魂:shihun:10:enchase:/clone/goods/shihun:火屬性終極10LV鑲嵌材料
-九地·玄玉:xuanyu:10:enchase:/clone/goods/xuanyu:土屬性終極10LV鑲嵌材料
+上古．太虛:taixu:10:enchase:/clone/goods/taixu:金屬性終極10LV鑲嵌材料
+上古．虎魄:hupo:10:enchase:/clone/goods/hupo:木屬性終極10LV鑲嵌材料
+玄冰．寒鐵:hantie:10:enchase:/clone/goods/hantie:水屬性終極10LV鑲嵌材料
+地心．噬魂:shihun:10:enchase:/clone/goods/shihun:火屬性終極10LV鑲嵌材料
+九地．玄玉:xuanyu:10:enchase:/clone/goods/xuanyu:土屬性終極10LV鑲嵌材料
 菩提子:putizi:1:object:/clone/gift/puti-zi:可增加最大內力100-129點，數量20個
 九轉金丹:jiuzhuan:1:object:/clone/gift/jiuzhuan:可增加所有先天前4點丹，數量10個,
 玉清散:yuqingsan:1:object:/clone/medicine/yuqing:可增加最大精力10-11點，數量120包
@@ -126,7 +126,7 @@
 消戾丹:xiaolidan:5:pill:/clone/goods/xiaolidan:用於消除戾氣的丹藥
 消慧丹:xiaohuidan:25:pill:/clone/fam/gift/cint:用於降低int
 化骨丹:huagudan:25:pill:/clone/fam/gift/ccon:用於降低con
-落鳳丹:luofengdan:25:pill:/clone/fam/gift/cdex:用於降低dex   
+落鳳丹:luofengdan:25:pill:/clone/fam/gift/cdex:用於降低dex
 陰虛丹:yinxudan:25:pill:/clone/fam/gift/cstr:用於降低str
 雙倍獎勵3小時:srv01:1:srv:/clone/goods/service:增加3小時的雙倍獎勵時間
 雙倍獎勵1周時:srv02:50:srv:/clone/goods/service:增加1周時的雙倍獎勵時間
@@ -146,41 +146,41 @@
 血之禁忌:blood:50:object:/clone/goods/blood-taboo:用來解除你與魔幻獸之間簽訂的血之盟約
 分解卷軸:resolve:1:object:/clone/goods/resolve-scroll:用來分解動態裝備屬性成元素粉末
 鍛造石:forging:1:object:/clone/goods/forging-stone:一塊擁有神秘魔力的鍛造石，和裝備一起鍛造可升級裝備。
-輪迴·重生:lunhuics:118:enchase:/clone/fam/enchase/lunhui-chongsheng:可鑲嵌在裝備上,詳細參考help enchase
+輪迴．重生:lunhuics:118:enchase:/clone/fam/enchase/lunhui-chongsheng:可鑲嵌在裝備上,詳細參考help enchase
 泥潭之星:ntzhixing:128:enchase:/clone/fam/enchase/yanhuang-zhixing:可鑲嵌在裝備上,詳細參考help enchase
-龍女之淚:longnv:128:enchase:/clone/fam/enchase/longnv-zhilei:可鑲嵌在裝備上,詳細參考help enchase                                               
-泥潭·君臨天下:tianxia2:128:enchase:/clone/fam/enchase/yanhuang-tianxia2:可鑲嵌在裝備上,詳細參考help enchase                                           
-泥潭·國色天香:guose2:128:enchase:/clone/fam/enchase/yanhuang-guose2:可鑲嵌在裝備上,詳細參考help enchase                                                
-泥潭·戰神:zhanshen2:128:enchase:/clone/fam/enchase/yanhuang-zhanshen2:可鑲嵌在裝備上,詳細參考help enchase                                                   
-龍女·碧海神龍:bihai2:128:enchase:/clone/fam/enchase/longnv-bihai2:可鑲嵌在裝備上,詳細參考help enchase	 
-龍女·曙光:shuguang2:128:enchase:/clone/fam/enchase/longnv-shuguang2:可鑲嵌在裝備上,詳細參考help enchase		                                               
-龍女·蝕:shi2:128:enchase:/clone/fam/enchase/longnv-shi2:可鑲嵌在裝備上,詳細參考help enchase        
-藍寶石:lanbaoshi2:128:enchase:/clone/fam/enchase/lan-baoshi2:可鑲嵌在裝備上,詳細參考help enchase	           
-紅寶石:hongbaoshi2:128:enchase:/clone/fam/enchase/hong-baoshi2:可鑲嵌在裝備上,詳細參考help enchase                                                        
-聖龍之眼:zhiyan2:128:enchase:/clone/fam/enchase/shenglong-zhiyan2:可鑲嵌在裝備上,詳細參考help enchase                                                
-聖龍之魂:zhihun2:128:enchase:/clone/fam/enchase/shenglong-zhihun2:可鑲嵌在裝備上,詳細參考help enchase         
-神龍夢幻:menghuan2:128:enchase:/clone/fam/enchase/shenlong-menghuan2:可鑲嵌在裝備上,詳細參考help enchase	          
-神龍無邊:wubian2:128:enchase:/clone/fam/enchase/shenlong-wubian2:可鑲嵌在裝備上,詳細參考help enchase	          
-妖靈·魂:hun2:128:enchase:/clone/fam/enchase/yaoling-hun2:可鑲嵌在裝備上,詳細參考help enchase                                                       
-妖靈·魄:po2:128:enchase:/clone/fam/enchase/yaoling-po2:可鑲嵌在裝備上,詳細參考help enchase          
-虎牙:huya2:128:enchase:/clone/fam/enchase/huya2:可鑲嵌在裝備上,詳細參考help enchase          
-鷹眼:yingyan2:128:enchase:/clone/fam/enchase/yingyan2:可鑲嵌在裝備上,詳細參考help enchase          
-雪精靈:jingling2:128:enchase:/clone/fam/enchase/xue-jingling2:可鑲嵌在裝備上,詳細參考help enchase          
-碧水融華:ronghua2:128:enchase:/clone/fam/enchase/bishui-ronghua2:可鑲嵌在裝備上,詳細參考help enchase                                                       
+龍女之淚:longnv:128:enchase:/clone/fam/enchase/longnv-zhilei:可鑲嵌在裝備上,詳細參考help enchase
+泥潭．君臨天下:tianxia2:128:enchase:/clone/fam/enchase/yanhuang-tianxia2:可鑲嵌在裝備上,詳細參考help enchase
+泥潭．國色天香:guose2:128:enchase:/clone/fam/enchase/yanhuang-guose2:可鑲嵌在裝備上,詳細參考help enchase
+泥潭．戰神:zhanshen2:128:enchase:/clone/fam/enchase/yanhuang-zhanshen2:可鑲嵌在裝備上,詳細參考help enchase
+龍女．碧海神龍:bihai2:128:enchase:/clone/fam/enchase/longnv-bihai2:可鑲嵌在裝備上,詳細參考help enchase
+龍女．曙光:shuguang2:128:enchase:/clone/fam/enchase/longnv-shuguang2:可鑲嵌在裝備上,詳細參考help enchase
+龍女．蝕:shi2:128:enchase:/clone/fam/enchase/longnv-shi2:可鑲嵌在裝備上,詳細參考help enchase
+藍寶石:lanbaoshi2:128:enchase:/clone/fam/enchase/lan-baoshi2:可鑲嵌在裝備上,詳細參考help enchase
+紅寶石:hongbaoshi2:128:enchase:/clone/fam/enchase/hong-baoshi2:可鑲嵌在裝備上,詳細參考help enchase
+聖龍之眼:zhiyan2:128:enchase:/clone/fam/enchase/shenglong-zhiyan2:可鑲嵌在裝備上,詳細參考help enchase
+聖龍之魂:zhihun2:128:enchase:/clone/fam/enchase/shenglong-zhihun2:可鑲嵌在裝備上,詳細參考help enchase
+神龍夢幻:menghuan2:128:enchase:/clone/fam/enchase/shenlong-menghuan2:可鑲嵌在裝備上,詳細參考help enchase
+神龍無邊:wubian2:128:enchase:/clone/fam/enchase/shenlong-wubian2:可鑲嵌在裝備上,詳細參考help enchase
+妖靈．魂:hun2:128:enchase:/clone/fam/enchase/yaoling-hun2:可鑲嵌在裝備上,詳細參考help enchase
+妖靈．魄:po2:128:enchase:/clone/fam/enchase/yaoling-po2:可鑲嵌在裝備上,詳細參考help enchase
+虎牙:huya2:128:enchase:/clone/fam/enchase/huya2:可鑲嵌在裝備上,詳細參考help enchase
+鷹眼:yingyan2:128:enchase:/clone/fam/enchase/yingyan2:可鑲嵌在裝備上,詳細參考help enchase
+雪精靈:jingling2:128:enchase:/clone/fam/enchase/xue-jingling2:可鑲嵌在裝備上,詳細參考help enchase
+碧水融華:ronghua2:128:enchase:/clone/fam/enchase/bishui-ronghua2:可鑲嵌在裝備上,詳細參考help enchase
 黑水晶:shuijing2:288:enchase:/clone/fam/enchase/hei-shuijing2:可鑲嵌在裝備上,詳細參考help enchase
 紫霹靂:pili2:288:enchase:/clone/fam/enchase/zi-pili2:可鑲嵌在裝備上,詳細參考help enchase
 貓妖石:maoyao2:168:enchase:/clone/fam/enchase/maoyao-shi2:可鑲嵌在裝備上,詳細參考help enchase
 孔雀石:kongque2:168:enchase:/clone/fam/enchase/kongque-shi2:可鑲嵌在裝備上,詳細參考help enchase
 赤煉龍膽:longdan2:168:enchase:/clone/fam/enchase/chilian-longdan2:可鑲嵌在裝備上,詳細參考help enchase
-真武寶石:zhenwu2:168:enchase:/clone/fam/enchase/zhenwu-baoshi2:可鑲嵌在裝備上,詳細參考help enchase          
+真武寶石:zhenwu2:168:enchase:/clone/fam/enchase/zhenwu-baoshi2:可鑲嵌在裝備上,詳細參考help enchase
 碧海殘钁:canjue2:128:enchase:/clone/fam/enchase/bihai-canjue2:可鑲嵌在裝備上,詳細參考help enchase
-麒麟火:huo2:128:enchase:/clone/fam/enchase/qilin-huo2:可鑲嵌在裝備上,詳細參考help enchase         
-帝王之心:diwang2:128:enchase:/clone/fam/enchase/diwang-zhixin2:可鑲嵌在裝備上,詳細參考help enchase          
+麒麟火:huo2:128:enchase:/clone/fam/enchase/qilin-huo2:可鑲嵌在裝備上,詳細參考help enchase
+帝王之心:diwang2:128:enchase:/clone/fam/enchase/diwang-zhixin2:可鑲嵌在裝備上,詳細參考help enchase
 幕天石:mutian2:188:enchase:/clone/fam/enchase/mutian-shi2:可鑲嵌在裝備上,詳細參考help enchase
 龍凰紫珠:zhizhu2:188:enchase:/clone/fam/enchase/longhuang-zhizhu2:可鑲嵌在裝備上,詳細參考help enchase
-古松殘钁:gusong2:188:enchase:/clone/fam/enchase/gusong-canjue2:可鑲嵌在裝備上,詳細參考help enchase	  	  	  	  
-流星趕月:ganyue2:288:enchase:/clone/fam/enchase/liuxing-ganyue2:可鑲嵌在裝備上,詳細參考help enchase	
-九天玲瓏珠:jiutian2:288:enchase:/clone/fam/enchase/jiutian-linglongzhu2:可鑲嵌在裝備上,詳細參考help enchase		    
+古松殘钁:gusong2:188:enchase:/clone/fam/enchase/gusong-canjue2:可鑲嵌在裝備上,詳細參考help enchase
+流星趕月:ganyue2:288:enchase:/clone/fam/enchase/liuxing-ganyue2:可鑲嵌在裝備上,詳細參考help enchase
+九天玲瓏珠:jiutian2:288:enchase:/clone/fam/enchase/jiutian-linglongzhu2:可鑲嵌在裝備上,詳細參考help enchase
 海藍石:hailanshi2:228:enchase:/clone/fam/enchase/hailan-shi:可鑲嵌在裝備上,詳細參考help enchase
 紅眼惡魔:hongyan2:228:enchase:/clone/fam/enchase/hongyan-emo:可鑲嵌在裝備上,詳細參考help enchase
 邪帝舍利:xiedi2:228:enchase:/clone/fam/enchase/xiedi-sheli:可鑲嵌在裝備上,詳細參考help enchase
@@ -190,11 +190,11 @@
 百鍊寒精:hanjing2:228:enchase:/clone/fam/enchase/bailian-hanjing2:可鑲嵌在裝備上,詳細參考help enchase
 妖靈之翼:yaoling2:228:enchase:/clone/fam/enchase/yaoling-zhiyi2:可鑲嵌在裝備上,詳細參考help enchase
 七彩神珠:shenzhu2:228:enchase:/clone/fam/enchase/qicai-shenzhu:可鑲嵌在裝備上,詳細參考help enchase
-無名古玉:guyu2:88:enchase:/clone/fam/enchase/wuming-guyu:可鑲嵌在裝備上,詳細參考help enchase 
-露華之晶:luhua2:688:enchase:/clone/fam/enchase/luhua-zhijing:可鑲嵌在裝備上,詳細參考help enchase 
+無名古玉:guyu2:88:enchase:/clone/fam/enchase/wuming-guyu:可鑲嵌在裝備上,詳細參考help enchase
+露華之晶:luhua2:688:enchase:/clone/fam/enchase/luhua-zhijing:可鑲嵌在裝備上,詳細參考help enchase
 麒麟之魂:qilin2:128:enchase:/clone/fam/enchase/qilin-zhihun:可鑲嵌在裝備上,詳細參考help enchase
 人書寶靈:baoling:128:enchase:/clone/fam/enchase/renshu-baoling:可鑲嵌在裝備上,詳細參考help enchase
 鎮魂之精:zhenhun:228:enchase:/clone/fam/enchase/zhenhun-zhijing:可鑲嵌在裝備上,詳細參考help enchase
-地書寶靈:dishu:228:enchase:/clone/fam/enchase/dishu-baoling:可鑲嵌在裝備上,詳細參考help enchase      
+地書寶靈:dishu:228:enchase:/clone/fam/enchase/dishu-baoling:可鑲嵌在裝備上,詳細參考help enchase
 地靈石:dilingshi:328:enchase:/clone/fam/enchase/diling-shi:可鑲嵌在裝備上,詳細參考help enchase
-天書寶靈:tianshu:388:enchase:/clone/fam/enchase/tianshu-baoling:可鑲嵌在裝備上,詳細參考help enchase   
+天書寶靈:tianshu:388:enchase:/clone/fam/enchase/tianshu-baoling:可鑲嵌在裝備上,詳細參考help enchase
