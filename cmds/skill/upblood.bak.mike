@@ -12,7 +12,7 @@
     仙體：每次消耗一顆血脈丹（八品），修煉一次增加進度3%
     神脈：每次消耗一顆血脈丹（九品），修煉一次增加進度3%
     聖尊：每次消耗一顆血脈丹（十品），修煉一次增加進度3%
-攻擊技能·天怒神罰，代天行罰
+攻擊技能．天怒神罰，代天行罰
     血脈修煉完成第一重“覺醒”，自動領悟主動攻擊技能——“天怒神罰”。
 血脈等級的提高可大幅度提高玩家的最大內力、最大精力上限，同時大幅度提高玩家的最大氣血和精氣，以及攻擊力和防禦力。
 */
@@ -41,15 +41,15 @@ int main(object me, string arg)
         string *spe_skill = ({
                 "monster", "nopoison", "demon", "ghost", "wisdom", "stealth",
         });
-                
+
         seteuid(getuid());
- 
+
         if( me->is_busy() || me->is_fighting() )
                 return notify_fail(BUSY_MESSAGE);
 
         if( !arg || arg == "" )
                 return notify_fail("指令格式 : upblood <血脈丹ID>\n");
-        
+
         if( arg == "reset" )
         {
                 delete("xuemai_level", me);
@@ -63,29 +63,29 @@ int main(object me, string arg)
                 write(HIR "你取消了你的血脈傳承屬性。\n" NOR);
                 return 1;
         }
-        
+
         if( !objectp(dan = present(arg, me)) )
                 return notify_fail("你身上沒有血脈丹，無法提升血脈。\n");
-                
+
         if( !dan->is_xuemai_dan() )
                 return notify_fail("你無法使用它來提升血脈。\n");
-        
+
         level = query("xuemai_level", me) + 1;
         if( level > 10 )
                 return notify_fail("你的血脈已經達到最高境界了，無需繼續提升了。\n");
-        
+
         if( query("level", dan) < level )
                 return notify_fail("你身上的血脈丹品級過低，無法提升血脈。\n");
-        
+
         if( !query("jingmai/finish", me) )
                 return notify_fail("你需要先打通你全身大小周天經脈。\n");
-                                      
+
         if( (int)me->query_skill("force", 1) < 2000 )
                 return notify_fail("你的內功修為不足，沒法提升自身血脈。\n");
 
         if( query("potential", me)-query("learned_points", me) < 10000000 )
                 return notify_fail("你的潛能不夠，沒法提升自身血脈。\n");
-        
+
         if( query("qi", me)*100/query("max_qi", me)<90 )
                 return notify_fail("你現在的氣太少了，無法靜心提升血脈。\n");
 
@@ -100,13 +100,13 @@ int main(object me, string arg)
 
         addn("learned_points", 10000000, me);
         dan->add_amount(-1);
-        if( dan->query_amount() < 1 )  
-                destruct(dan);  
-                
+        if( dan->query_amount() < 1 )
+                destruct(dan);
+
         message_vision(HIW "只見$N" HIW "頭上白霧騰騰、渾身如同籠罩在雲中。\n" NOR, me);
-        
+
         //全身血液煥然一新，所謂是練髓如霜，練血汞漿。脫胎換骨，伐毛洗髓。
-        
+
         switch (level)
         {
         case 1:
@@ -139,22 +139,22 @@ int main(object me, string arg)
         }
 
         tell_object(me, msg);
-                
+
         points = query("xuemai/points", me);
-        
+
         if( level < 5 ) added = 5;
         else if( level < 8) added = 4;
         else added = 3;
-        
+
         points += added;
         set("xuemai/points", points, me);
-        
+
         if( points >= 100 )
         {
                 addn("xuemai_level", 1, me);
                 delete("xuemai/points", me);
-                
-                
+
+
                 if( query("xuemai_level", me) == 1 )
                 {
                         skill = spe_skill[random(sizeof(spe_skill))];
@@ -173,8 +173,8 @@ int main(object me, string arg)
                         my = me->query_entire_dbase();
                         skill = query("xuemai_skill", me);
                         sname = SPECIAL_D(skill)->name();
-                        
-                        spe_data = ([ skill : 1 ]);                                              
+
+                        spe_data = ([ skill : 1 ]);
                         my["special_skill"] += spe_data;
 
                         tell_object(me, HIM "你成功的激活了血脈力量，掌握了血脈技能-->"+sname+"。\n" NOR);
@@ -182,7 +182,7 @@ int main(object me, string arg)
                 else
                         tell_object(me, HIM "你的血脈等級（品級）提升了。\n" NOR);
 
-                CHAR_D->setup_char(me); 
+                CHAR_D->setup_char(me);
         }
 
         me->start_busy(1);
@@ -201,4 +201,3 @@ int help(object me)
 HELP );
         return 1;
 }
-

@@ -15,6 +15,7 @@ private inherit __DIR__ "check_config";
 #include "/adm/kernel/simul_efun/path.c"
 #include "/adm/kernel/simul_efun/wizard.c"
 #include "/adm/kernel/simul_efun/user.c"
+#include "/adm/kernel/simul_efun/string.c"
 
 // This must be after gender.c
 #include "/adm/kernel/simul_efun/message.c"
