@@ -185,15 +185,180 @@ void log_buyinfo(object ob, class goods item) {
     return;
 }
 
+// Helper function for formatting table rows with auto-sizing and word wrapping
+string format_table_row(string *columns, int *widths, string *aligns, string *colors) {
+    string result, col, align, color;
+    int i, len, padding, width, padding_left, padding_right;
+
+    result = "";
+
+    for(i = 0; i < sizeof(columns); i++) {
+        col = columns[i];
+        width = widths[i];
+        align = aligns[i];
+        color = colors[i];
+
+        // Calculate display length (excluding color codes)
+        len = strwidth(col);
+
+        if(align == "right") {
+            padding = width - len;
+            result += color + sprintf("%*s%s", padding, "", col) + NOR;
+        } else if(align == "center") {
+            padding_left = (width - len) / 2;
+            padding_right = width - len - padding_left;
+            result += color + sprintf("%*s%s%*s", padding_left, "", col, padding_right, "") + NOR;
+        } else { // left align (default)
+            padding = width - len;
+            result += color + col + sprintf("%*s", padding, "") + NOR;
+        }
+    }
+
+    return result + "\n";
+}
+
+// Word wrap text to fit within specified width
+string *word_wrap(string text, int width) {
+    string *lines, *words, current_line, word;
+    int line_len, word_len;
+
+    lines = ({});
+    current_line = "";
+
+    if(strwidth(text) <= width) {
+        return ({ text });
+    }
+
+    words = explode(text, " ");
+
+    foreach(word in words) {
+        word_len = strwidth(word);
+        line_len = strwidth(current_line);
+
+        if(line_len + word_len + 1 <= width) {
+            if(current_line != "") current_line += " ";
+            current_line += word;
+        } else {
+            if(current_line != "") {
+                lines += ({ current_line });
+                current_line = word;
+            } else {
+                // Word is longer than width, force break
+                lines += ({ word[0..width-1] });
+                current_line = word[width..];
+            }
+        }
+    }
+
+    if(current_line != "") {
+        lines += ({ current_line });
+    }
+
+    return lines;
+}
+
+// Main table formatting function
+string format_table(mapping *data, mapping *column_specs) {
+    string msg, separator, *headers, *h_colors, *h_aligns, *values, *colors, *aligns, *line_values, value;
+    int i, j, *widths, max_width, val_len, max_lines;
+    mixed *wrapped_values;
+    mapping row;
+
+    msg = "";
+    widths = allocate(sizeof(column_specs));
+
+    // Calculate column widths
+    for(i = 0; i < sizeof(column_specs); i++) {
+        if(column_specs[i]["fixed_width"]) {
+            // Use fixed width if specified
+            widths[i] = column_specs[i]["fixed_width"];
+        } else {
+            // Auto-calculate width based on header and data
+            max_width = strwidth(column_specs[i]["header"]);
+
+            foreach(row in data) {
+                value = row[column_specs[i]["key"]];
+                val_len = strwidth(value);
+                if(val_len > max_width) max_width = val_len;
+            }
+
+            widths[i] = max_width;
+        }
+    }
+
+    // Build header
+    headers = allocate(sizeof(column_specs));
+    h_colors = allocate(sizeof(column_specs));
+    h_aligns = allocate(sizeof(column_specs));
+
+    for(i = 0; i < sizeof(column_specs); i++) {
+        headers[i] = column_specs[i]["header"];
+        h_colors[i] = column_specs[i]["header_color"] || HIW;
+        h_aligns[i] = column_specs[i]["align"] || "left";
+    }
+
+    msg += format_table_row(headers, widths, h_aligns, h_colors);
+
+    // Add separator
+    separator = "";
+    for(i = 0; i < sizeof(widths); i++) {
+        separator += sprintf("%-*s", widths[i], repeat_string("-", widths[i]));
+    }
+    msg += HIG + separator + "\n\n" + NOR;
+
+    // Build data rows
+    foreach(row in data) {
+        values = allocate(sizeof(column_specs));
+        colors = allocate(sizeof(column_specs));
+        aligns = allocate(sizeof(column_specs));
+        wrapped_values = allocate(sizeof(column_specs));
+        max_lines = 1;
+
+        // Prepare values and handle word wrapping
+        for(i = 0; i < sizeof(column_specs); i++) {
+            values[i] = row[column_specs[i]["key"]];
+            colors[i] = column_specs[i]["color"] || NOR;
+            aligns[i] = column_specs[i]["align"] || "left";
+
+            if(column_specs[i]["fixed_width"]) {
+                wrapped_values[i] = word_wrap(values[i], widths[i]);
+                if(sizeof(wrapped_values[i]) > max_lines) {
+                    max_lines = sizeof(wrapped_values[i]);
+                }
+            } else {
+                wrapped_values[i] = ({ values[i] });
+            }
+        }
+
+        // Output multi-line row
+        for(j = 0; j < max_lines; j++) {
+            line_values = allocate(sizeof(column_specs));
+
+            for(i = 0; i < sizeof(column_specs); i++) {
+                if(j < sizeof(wrapped_values[i])) {
+                    line_values[i] = wrapped_values[i][j];
+                } else {
+                    line_values[i] = "";
+                }
+            }
+
+            msg += format_table_row(line_values, widths, aligns, colors);
+        }
+    }
+
+    return msg;
+}
+
 public varargs int show_goods(object me, string arg)
 {
     class goods item;
     string msg, str, level;
     mapping buy_list;   // 熱門商品顯示使用
+    mapping *data = ({});
+    mapping *column_specs;
     string *str_buy_list;   // 熱門商品顯示
     string *key;
     int vip;
-    int len = 0;
     int i;
     //int store_rate = "/adm/daemons/actiond"->query_action("store_rate");
     int store_rate = query_rate();
@@ -203,7 +368,7 @@ public varargs int show_goods(object me, string arg)
         return 1;
     }
 
-    vip = MEMBER_D->db_query_member(me, "vip");
+    vip = to_int(MEMBER_D->db_query_member(me, "vip"));
     if(vip == 3 )
     {
         level = "鑽石會員";
@@ -223,27 +388,36 @@ public varargs int show_goods(object me, string arg)
     if(!arg ) arg = "all";
 
     msg = sprintf("%s目前出售以下貨物：\n\n" NOR, query("name"));
-    msg += sprintf(HIW "%-6s%-16s%-16s%-11s%-10s%s\n" NOR,
-        "編號", "名稱", "代號", "價格($NT)", "種類", "功能簡要");
-    msg += HIG "------------------------------------------------------------------------------------------\n\n" NOR;
-    foreach(item in all_goods ) {
-        if(item->type == arg || arg == "all" )
-        {
-#ifndef LONELY_IMPROVED
-            len = color_len(chinese_type(item->type));
-#endif
-            msg += sprintf(HIW"(%3d) "HIC"%-16s"HIW"%-16s" HIY "%-11d"NOR"%-"+(10 + len) + "s"CYN"%-50s\n" NOR,
-                item->number,
-                item->name,
-                item->id,
-                item->value,
-                chinese_type(item->type),
-                item->desc);
+
+    // Define column specifications
+    column_specs = allocate(6);
+    column_specs[0] = ([ "key": "number",  "header": "編號",     "header_color": HIW, "color": HIW, "align": "left" ]);
+    column_specs[1] = ([ "key": "name",    "header": "名稱",     "header_color": HIW, "color": HIC, "align": "left" ]);
+    column_specs[2] = ([ "key": "id",      "header": "代號",     "header_color": HIW, "color": HIW, "align": "left" ]);
+    column_specs[3] = ([ "key": "value",   "header": "價格($NT)","header_color": HIW, "color": HIY, "align": "right" ]);
+    column_specs[4] = ([ "key": "type",    "header": "種類",     "header_color": HIW, "color": NOR, "align": "left" ]);
+    column_specs[5] = ([ "key": "desc",    "header": "功能簡要", "header_color": HIW, "color": CYN, "align": "left", "fixed_width": 50 ]);
+
+    // Build data array
+    foreach(item in all_goods) {
+        if(item->type == arg || arg == "all") {
+            data += ({
+                ([
+                    "number": sprintf("(%3d)", item->number),
+                    "name": item->name,
+                    "id": item->id,
+                    "value": sprintf("%d", item->value),
+                    "type": chinese_type(item->type),
+                    "desc": item->desc,
+                ])
+            });
         }
     }
 
+    msg += format_table(data, column_specs);
+
     msg += "\n";
-    msg += HIG "請認真閱讀有關說明，購買前請考慮清楚， 如無差錯，恕不退貨！\n" NOR;
+    msg += HIG "請認真閱讀有關說明,購買前請考慮清楚， 如無差錯，恕不退貨！\n" NOR;
     msg += HIG "有關王者商城的說明及購買王者幣($NT)的方式，請輸入指令 help ntstore 查看。\n" NOR;
     msg += HIG "------------------------------------------------------------------------------------------\n" NOR;
 
@@ -278,6 +452,7 @@ public varargs int show_goods(object me, string arg)
     me->start_more(msg);
     return 1;
 }
+
 // 購買指定元素
 void get_element_id(string arg, object ob, int value, int num, class goods item) {
     mapping props;
