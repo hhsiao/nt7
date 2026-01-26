@@ -13,13 +13,13 @@ int perform(object me, object target)
         if( me->query("class") != "lama" ) {
                 return notify_fail("只有大昭子弟才能使用『降龍式』\n");
         }
-        skill = me->query_skill("fengmo-staff", 1);
+        skill = me->query_skill("fengmo-staff", 1);             
         if( skill < 120 ) {
                 return notify_fail("『降龍式』需要120級的瘋魔杖法！\n");
         }
         if( me->query_temp("pfm/fengmo_2") || me->query_temp("pfm/fengmo_1") || me->query_temp("pfm/fengmo_3") ) {
                 return notify_fail("你已經在使用類似的武功了。\n");
-        }
+        }    
         duration = me->query("timer/pfm/fengmo_2") - time() + 480 - F_ABILITY->check_ability(me, "xianglong_add") * 24;
         if( duration > 0 ) {
                 return notify_fail("你還需要等待"+duration+"秒鐘左右才能再次使用『降龍式』\n");
@@ -29,9 +29,9 @@ int perform(object me, object target)
         }
         if( target != me ) {
                 return  notify_fail("『降龍式』只能用在自己身上。\n");
-        }
+        }     
         if( me->query("force") < 100 ) {
-                return  notify_fail("『降龍式』需要100點內力。\n");
+                return  notify_fail("『降龍式』需要100點內力。\n");     
         }
         if( userp(me) ) {
                 me->add("force", -100);
@@ -44,7 +44,7 @@ int perform(object me, object target)
                 "who":me,
                 "type":"pfm/fengmo",
                 "att":"bless",
-                "name":"瘋魔杖法．降龍式",
+                "name":"瘋魔杖法·降龍式",
                 "buff1":"pfm/fengmo_2",
                 "buff1_c":1,
                 "buff2":"buff/berserk_attack",
@@ -58,9 +58,9 @@ $N"HIY"一聲暴喝，手中"+weapon->name()+HIY"一陣亂舞，竟似毫無章�
                 "special_func":0,
         ]);
         ANNIE_D->buffup(buff);
-
+    
         me->set_temp("buff/berserk_skill", "fengmo-staff");
-        me->set_temp("buff/berserk_attack_msg", CYN"$N形似瘋虎，杖聲呼呼，劈頭蓋臉又向$n擊到！\n"NOR);
+        me->set_temp("buff/berserk_attack_msg", CYN"$N形似瘋虎，杖聲呼呼，劈頭蓋臉又向$n擊到！\n"NOR);          
         me->set("timer/pfm/fengmo_2", time());
         me->start_call_out((: call_other, __FILE__, "remove_effect", me :), 40);
         return 1;
@@ -75,3 +75,5 @@ int remove_effect(object me)
         me->delete_temp("buff/berserk_attack_msg");
         return 1;
 }
+
+

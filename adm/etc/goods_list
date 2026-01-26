@@ -41,12 +41,12 @@
 年度會員:yearcard:100:card:/clone/goods/card:會員年卡，不可轉讓給其他的角色
 #終身會員:forevercard:280:card:/clone/goods/card:會員終身卡，不可轉讓讓給其他的角色
 更名卷軸:changeid:20:object:/adm/npc/obj/idname-scroll:可以使自造裝備改變代號(id)和中文名(name)的更名卷軸
-上古．太虛:taixu:10:enchase:/clone/goods/taixu:金屬性終極鑲嵌10LV物品
-上古．虎魄:hupo:10:enchase:/clone/goods/hupo:木屬性終極鑲嵌10LV物品
-玄冰．寒鐵:hantie:10:enchase:/clone/goods/hantie:水屬性終極鑲嵌10LV物品
-地心．噬魂:shihun:10:enchase:/clone/goods/shihun:火屬性終極鑲嵌10LV物品
-九地．玄玉:xuanyu:10:enchase:/clone/goods/xuanyu:土屬性終極鑲嵌10LV物品
-九幽．神魔:shenmo:10:enchase:/clone/goods/shenmo:魔屬性終極鑲嵌10LV物品
+上古·太虛:taixu:10:enchase:/clone/goods/taixu:金屬性終極鑲嵌10LV物品
+上古·虎魄:hupo:10:enchase:/clone/goods/hupo:木屬性終極鑲嵌10LV物品
+玄冰·寒鐵:hantie:10:enchase:/clone/goods/hantie:水屬性終極鑲嵌10LV物品
+地心·噬魂:shihun:10:enchase:/clone/goods/shihun:火屬性終極鑲嵌10LV物品
+九地·玄玉:xuanyu:10:enchase:/clone/goods/xuanyu:土屬性終極鑲嵌10LV物品
+九幽·神魔:shenmo:10:enchase:/clone/goods/shenmo:魔屬性終極鑲嵌10LV物品
 菩提子:putizi:1:object:/clone/gift/puti-zi:可增加最大內力100-129點，數量20個
 九轉金丹:jiuzhuan:1:object:/clone/gift/jiuzhuan:可增加所有先天前4點丹，數量10個,
 玉清散:yuqingsan:1:object:/clone/medicine/yuqing:可增加最大精力5-6點，數量120包
@@ -66,7 +66,7 @@
 虛無越衡符:rune07:10:symbol:/clone/tessera/rune07:可鑲嵌在裝備上,詳細參考help rune
 太極蒙翳符:rune08:10:symbol:/clone/tessera/rune08:可鑲嵌在裝備上,詳細參考help rune
 赤明和陽符:rune09:10:symbol:/clone/tessera/rune09:可鑲嵌在裝備上,詳細參考help rune
-玄明恭華符:rune10:10:symbol:/clone/tessera/rune10:可鑲嵌在裝備上,詳細參考help rune
+玄明恭華符:rune10:10:symbol:/clone/tessera/rune10:可鑲嵌在裝備上,詳細參考help rune 
 耀明宗飄符:rune11:10:symbol:/clone/tessera/rune11:可鑲嵌在裝備上,詳細參考help rune
 竺落皇笳符:rune12:10:symbol:/clone/tessera/rune12:可鑲嵌在裝備上,詳細參考help rune
 虛明堂曜符:rune13:10:symbol:/clone/tessera/rune13:可鑲嵌在裝備上,詳細參考help rune
@@ -209,13 +209,13 @@
 清師令:qingshiling:498:object:/clone/goods/qingshiling:可以清除脫離師門記錄一個
 高級清師令:qingshiling2:8888:object:/clone/goods/qingshiling2:增加無損脫離門派一次機會，基本技能和公共技能不降級，內力和精力降到75%。
 盜墓勳章:daomu:398:object:/clone/medal/daomu_xunzhang:可以在秦皇陵墓裡免疫被怪物busy效果。
-肉身菩提:roushen:15:object:/clone/goods/moon_hp:武器和防具的鑲嵌物（無SN），增幅氣血精力，提高技能等等。
+肉身菩提:roushen:15:object:/clone/goods/moon_hp:武器和防具的鑲嵌物（無SN），增幅氣血精力，提高技能等等。 
 接龍手術:mgenital:500:srv:/clone/goods/service:變成男性從此意氣風發。（伴侶小孩全丟失，可能丟失特殊武功比如辟邪劍、明玉功）
 除根手術:fgenital:300:srv:/clone/goods/service:變成女性從此輕鬆愉快。（伴侶小孩全丟失，可能丟失特殊武功比如辟邪劍、明玉功）
-天乙神酒:tianyishenjiu:24:object:/kungfu/class/sky/obj/shenjiu:詩仙李白身上的好酒。
+天乙神酒:tianyishenjiu:24:object:/kungfu/class/sky/obj/shenjiu:詩仙李白身上的好酒。 
 蟠桃:pantao:6:object:/d/emei/obj/pantao:據說是猴子從王母娘娘那裡偷來的，增加5000的額外最大內力。
 萬象天書:wanxiang:5:object:/d/dongtian/obj/wanxiangbook:包羅萬象，天下武學盡在其中。
-秘魔邪眼:mimo:20:object:/clone/goods/moon_mf:武器和防具的鑲嵌物（無SN），增加尋寶率、抵抗BUSY等負面狀態。
+秘魔邪眼:mimo:20:object:/clone/goods/moon_mf:武器和防具的鑲嵌物（無SN），增加尋寶率、抵抗BUSY等負面狀態。 
 重置最大內力:resetneili:30:srv:/clone/goods/service:最大內力重置為100。
 重置最大精力:resetjingli:30:srv:/clone/goods/service:最大精力重置為100。
 洞天元晶:dtyj:200:object:/d/dongtian/obj/yuanjing:80枚洞天元氣凝結成的晶體，可以熔鍊成洞天仙府令（至少能賣當鋪）。
