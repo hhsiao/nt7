@@ -97,6 +97,9 @@ int set_admin() { if(is_root(previous_object()) ) admin_flag = 21; }
 void create() {
     ::create();
     set_name("使用者物件", ({ "user object", "user", "object" }) );
+    //DEBUG_CHANNEL("User object created: " + file_name(this_object()));
+    //DEBUG_CHANNEL("Called by: " + (previous_object() ? file_name(previous_object()) : "NONE"));
+    //DEBUG_CHANNEL(sprintf("Stack trace:%O\n", dump_trace()));
 }
 
 void terminal_type(string term_type) {
@@ -137,6 +140,11 @@ void reset() {
 // This is used by F_SAVE to determine the filename to save our data.
 string query_save_file() {
     string id;
+
+    // Master object should not be saved
+    if (! clonep(this_object())) {
+        return 0;
+    }
 
     id = geteuid();
     if(!id ) id = getuid();
