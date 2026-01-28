@@ -16,7 +16,7 @@ wiz lock : 0
 # MUDLIB版本相關資訊
 mudlib name : NT
 mudlib version : ULTIMATE
-mudlib version number : 7.1g
+mudlib version number : 7.2g
 
 # INTERNET互連網絡中MUD的名字
 internet mud name : NT.ULTIMATE
@@ -25,22 +25,22 @@ internet mud name : NT.ULTIMATE
 hostname : muds.cn
 
 # MUD LOCATION
-location : china
+location : Taiwan
 
 # MUD GROUP
 group : NT.WIZARD.GROUP
 
 # MUDOS
-mudos : NTOS 3.0
+mudos : FluffOS 2025.12
 
 # 編碼方式
-encoding : GB
+encoding : UTF-8
 
 # 類型
 type : NT.ULTIMATE
 
 # 天神
-admin : lonely
+admin : admin
 
 # 主頁
 # web : http://www.muds.cn
