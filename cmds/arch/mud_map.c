@@ -9,7 +9,8 @@ int main(object me, string arg) {
     object ob;
     string filename = "/clone/obj/genmap.c";
     int max_node;
-
+    write("指令暫時停用。\n");
+    return 1;
     if (! SECURITY_D->valid_grant(me, "(admin)"))
         return 0;
 

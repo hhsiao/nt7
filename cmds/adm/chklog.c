@@ -185,9 +185,10 @@ int check(int s)    //對這一行詳細分析, 是否有未使用變量並修�
         if (argv_name[0..1] == "* " || argv_name[0..1] == "*\t")
             argv_name = argv_name[1..];     //防止有人把*寫在類型後面的習慣
         if (argv_name[0..0] == " " || argv_name[0..0] == "\t")
-        argv_name = argv_name[1..]; //防止已有的註釋把/*寫在類型後面,導致無法識別類型
-         * unusedvar += "┣the wrong is " + "@line" + (line_n + 1) + "【" + wf_line[line_n] + "】\n";
-         * wf_line[line_n] = wf_line[line_n][0..start - 1] + replace_string(wf_line[line_n][start..], argv_name, "/*" + argv_name + "*/", 1); //註釋掉變量
+            argv_name = argv_name[1..];     //防止已有的註釋把/*寫在類型後面,導致無法識別類型
+
+        unusedvar += "┣the wrong is " + "@line" + (line_n + 1) + "【" + wf_line[line_n] + "】\n";
+        wf_line[line_n] = wf_line[line_n][0..start - 1] + replace_string(wf_line[line_n][start..], argv_name, "/*" + argv_name + "*/", 1); //註釋掉變量
 
         clean(wf_line[line_n]);
         return 1;
@@ -225,13 +226,13 @@ int clean(string line)  //clean so much *//* together,and type name alone
 {
     string f, s1, s2, *fs;
     wf_line[line_n] = replace_string(wf_line[line_n], "*//*", "");  //clean so much *//* together,00
-        wf_line[line_n] = replace_string(wf_line[line_n], "*/ /*", "");
+    wf_line[line_n] = replace_string(wf_line[line_n], "*/ /*", "");
     f = wf_line[line_n] + "";
     f = replace_string(f, "\t", " ");
     while (sscanf(f, "%s/*%*s*/%s", s1, s2) == 3)
         f = s1 + " " + s2;
     sscanf(f, "%s//%*s", f);
-        if (strsrch(f, ";") != -1)  //是完整的變量定義一行
+    if (strsrch(f, ";") != -1)  //是完整的變量定義一行
     {
         fs = explode(f, " ");
         fs -= ({ "", ";", "{" });
@@ -239,7 +240,7 @@ int clean(string line)  //clean so much *//* together,and type name alone
         if (sizeof(fs) < 2)
         {
             wf_line[line_n] = replace_string(wf_line[line_n], "/*", "");
-             * wf_line[line_n] = replace_string(wf_line[line_n], "*/", "");
+            wf_line[line_n] = replace_string(wf_line[line_n], "*/", "");
             wf_line[line_n] = replace_string(wf_line[line_n], " ;", ";");
 
             if (strsrch(wf_line[line_n], "{") != -1)
@@ -247,7 +248,7 @@ int clean(string line)  //clean so much *//* together,and type name alone
             else
                 wf_line[line_n] = "//" + wf_line[line_n];
             wf_line[line_n] = replace_string(wf_line[line_n], "//  ", "//");
-            }
+        }
     }
     unusedvar += "┗the corrected line" + (line_n + 1) + "〖" + wf_line[line_n] + "〗\n";
 }
@@ -294,21 +295,21 @@ int peidui(string arg)  //from nt7,對這一行簡單分析,判斷([{}])是否�
             m_symbol--;
             break;
         case '{':
-                b_symbol++;
-                break;
+            b_symbol++;
+            break;
         case '}':
-                b_symbol--;
-                break;
-            }
+            b_symbol--;
+            break;
         }
-
-        if (d_quote % 2 || s_quote % 2 || s_symbol || m_symbol || b_symbol)
-            return 0;
-        return 1;
     }
 
-    int help(object me) {
-        write(@HELP
+    if (d_quote % 2 || s_quote % 2 || s_symbol || m_symbol || b_symbol)
+        return 0;
+    return 1;
+}
+
+int help(object me) {
+    write(@HELP
     自動註釋掉源文件中所有mudos或fluffos發現的未使用的變量，
 修改 #include <本目錄下文件>  為  #include "本目錄下文件";
 以節約內存，註釋後的文件記錄會從log文件中刪除，以減小log文
@@ -320,6 +321,6 @@ int peidui(string arg)  //from nt7,對這一行簡單分析,判斷([{}])是否�
 指令格式：chklog [logfile]
 沒有 logfile，則logfile默認為 log/log
 HELP
-        );
-        return 1;
-    }
+    );
+    return 1;
+}

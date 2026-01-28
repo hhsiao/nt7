@@ -11,7 +11,8 @@ void create() { seteuid(getuid()); }
 
 int main(object me, string arg) {
     int ver;
-
+    write("暫時停用此指令。\n");
+    return 1;
     if (arg == "stop" || arg == "cancel")
     {
         if (! SECURITY_D->valid_grant(me, "(admin)"))

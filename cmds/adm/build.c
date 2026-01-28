@@ -6,6 +6,8 @@
 inherit F_CLEAN_UP;
 
 int main(object me, string arg) {
+    write("指令暫時停用。\n");
+    return 1;
     if (! SECURITY_D->valid_grant(me, "(admin)"))
     {
         write("你沒有權限編譯" + LOCAL_MUD_NAME() + "的版本。\n");

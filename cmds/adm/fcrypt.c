@@ -8,7 +8,8 @@ int build_path(string arg);
 
 int main(object me, string arg) {
     string affix;
-
+    write("暫時停用此指令。\n");
+    return 1;
     if (! SECURITY_D->valid_grant(me, "(admin)"))
         return 0;
 
