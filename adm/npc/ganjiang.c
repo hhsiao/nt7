@@ -1633,8 +1633,6 @@ void get_modname(string arg, object me, object ob)
                 write("你取消了綠化套裝，將裝備取回。\n");
                 return;
         }
-        if( query_temp("big5", me) )
-                arg = LANGUAGE_D->Big52GB(arg);
 
         arg_old = arg;
         arg = trans_color(arg, 3);

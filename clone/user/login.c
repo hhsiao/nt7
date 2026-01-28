@@ -95,9 +95,6 @@ string query_save_file() {
 }
 
 nomask void catch_tell(string msg, string classes) {
-    if(query_temp("big5", this_object()) )
-        msg = (string)LANGUAGE_D->toBig5(msg);
-
     while(strlen(msg) > 0) {
         receive(msg[0..__LARGEST_PRINTABLE_STRING__ - 1]);
         msg = msg[__LARGEST_PRINTABLE_STRING__..];

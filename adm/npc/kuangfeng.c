@@ -199,9 +199,6 @@ void get_name(string arg, object ob) {
     string arg_old;
     string result;
 
-    if(arg && query_temp("big5", ob) )
-        arg = LANGUAGE_D->toGB(arg);
-
     arg_old = arg;
 
     arg = trans_color(arg, 3);
@@ -234,9 +231,6 @@ void get_name(string arg, object ob) {
 }
 
 void get_desc(string arg, object ob) {
-    if(arg && query_temp("big5", ob) )
-        arg = LANGUAGE_D->toGB(arg);
-
     arg = replace_string(arg, "\"", "");
     arg = replace_string(arg, "\\", "");
     if (! check_legal_name(arg, 60))

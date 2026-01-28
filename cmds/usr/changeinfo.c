@@ -69,9 +69,6 @@ protected void change_input(object me, int flag, string arg) {
     text = arg;
     arg = filter_color(arg);
 
-    if(arg && query_temp("big5", me) )
-        text = LANGUAGE_D->Big52GB(text);
-
     if(!arg ) arg = "";
 
     if(arg == "~q" )

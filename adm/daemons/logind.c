@@ -987,13 +987,6 @@ TEXT NOR
 
 protected void get_surname(string arg, object ob) {
     if(arg && strlen(arg) > 0 ) {
-        if(query_temp("big5", ob) )
-#ifdef LONELY_IMPROVED
-        // arg = B2G(arg);
-        arg = LANGUAGE_D->toGB(arg);
-#else
-        arg = LANGUAGE_D->toGB(arg);
-#endif
         if(!check_legal_name(arg, 2) ) {
             write("您的中文" HIG "姓氏" NOR "(不要超過兩個漢字)：\n");
             input_to("get_surname", ob);
@@ -1013,13 +1006,6 @@ protected void get_name(string arg, object ob) {
     string fname;
     string result;
 
-    if(query_temp("big5", ob) )
-#ifdef LONELY_IMPROVED
-    // arg = B2G(arg);
-    arg = LANGUAGE_D->toGB(arg);
-#else
-    arg = LANGUAGE_D->toGB(arg);
-#endif
     if(!check_legal_name(arg, 2) ) {
         write("您的中文" HIY "名字" NOR "(不要超過兩個漢字)：\n");
         input_to("get_name", ob);

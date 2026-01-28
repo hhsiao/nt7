@@ -550,9 +550,6 @@ void input_skill_name(string arg, object me) {
         return;
     }
 
-    if(c_name && query_temp("big5", me) )
-        c_name = LANGUAGE_D->toGB(c_name);
-
     if(!is_chinese(c_name) ) {
         tell_object(me, "對不起，請用【中文】做中文名。\n請重新輸入：");
         input_to((: input_skill_name :), me);
@@ -649,9 +646,6 @@ void get_z_c_name(string yn, object ob) {
     temp = ob->query_entire_temp_dbase();
     s_skill = temp["invent"]["spe_skill"];
 
-    if(yn && query_temp("big5", ob) )
-        yn = LANGUAGE_D->toGB(yn);
-
     if(yn == "" ) {
         tell_object(ob, HIC "\n\n請給" + s_skill["skill_c_name"] + "招式起個名字(例如: " NOR HIY "悠哉" NOR HIC "):" NOR);
         input_to((: get_z_c_name :), ob );
@@ -691,9 +685,6 @@ void get_z_c_action(string yn, object ob) {
 
     temp = ob->query_entire_temp_dbase();
     s_skill = temp["invent"]["spe_skill"];
-
-    if(yn && query_temp("big5", ob) )
-        yn = LANGUAGE_D->toGB(yn);
 
     if (yn == "")
     {

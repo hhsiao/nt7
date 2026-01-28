@@ -358,14 +358,6 @@ void message_system(string message) {
 int notify_fail(string msg) {
     if(this_player() ) {
         set_temp("notify_fail", msg, this_player());
-
-        if(query_temp("big5", this_player()) )
-#ifdef LONELY_IMPROVED
-        // msg = G2B(msg);
-        msg = LANGUAGE_D->toBig5(msg);
-#else
-        msg = LANGUAGE_D->toBig5(msg);
-#endif
         return efun::notify_fail(ESC "[256D" ESC "[K" + msg);
     } else
     return 0;

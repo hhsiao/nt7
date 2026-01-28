@@ -146,8 +146,7 @@ void receive_message(string msgclass, string msg) {
         if(playerp(this_object()) ) this_object()->do_trigger(msg);
         return;
     }
-    if(query_temp("big5") )
-        msg = LANGUAGE_D->GB2Big5(msg);
+
     if(msgclass == "telnet" ) {
         receive(msg);
         return;
@@ -313,16 +312,9 @@ void write_prompt() {
 }
 
 void receive_snoop(string msg) {
-    object ob;
-
     if((msg[0..5] == ESC "[256D") && (msg[6..8] != ESC "[K") )
         return;
-    if(objectp(ob = query_snooping(this_object())) ) {
-        if(query_temp("big5", ob) && !query_temp("big5") )
-            msg = LANGUAGE_D->Big52GB(msg);
-        else if(!query_temp("big5", ob) && query_temp("big5") )
-            msg = LANGUAGE_D->GB2Big5(msg);
-    }
+
     msg = replace_string(msg, ESC "[1A", "");
     msg = replace_string(msg, NOR, NOR BBLU WHT);
     // msg = replace_string(msg, ESC "[K", NOR ESC "[K" BBLU WHT);

@@ -33,9 +33,6 @@ void telnet_input(string str) {
 
     input_to("telnet_input");
 
-    // str = G2B(str);
-    str = (string)LANGUAGE_D->toBig5(str);
-
     if (strlen(str) + strlen(from_user) < MAX_PENDING_INPUT)
     {
         from_user += str + "\n";
@@ -175,7 +172,7 @@ void telnet_read_callback(int fd, string mess) {
 
     if (stringp(mess))
     // message("telnet", B2G(mess), sob);
-    message("telnet", (string)LANGUAGE_D->toGB(mess), sob);
+    message("telnet", mess, sob);
 }
 
 void telnet_write_callback(int fd) {

@@ -525,9 +525,6 @@ void get_perform_name(string arg, object me, string base_skill, string skill, st
         return;
     }
 
-    if(c_name && query_temp("big5", me) )
-        c_name = LANGUAGE_D->toGB(c_name);
-
     if(!is_chinese(c_name) ) {
         tell_object(me, "對不起，請用【中文】做中文名。\n請重新輸入：");
         input_to((: get_perform_name :), me, base_skill, skill, model);
