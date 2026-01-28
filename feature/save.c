@@ -84,6 +84,7 @@ int save() {
             }
 #endif
         }
+        //DEBUG_CHANNEL("SAVE: " +  this_object()->query_save_file());
         ret += save_object(file);
         return ret;
     }
