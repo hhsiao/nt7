@@ -475,7 +475,7 @@ void get_tuteng_id(string arg, object ob, int value, class goods item) {
 public int buy_goods(object ob, string arg) {
     string which, good;
     object item;
-    mixed specials;
+    mixed specials, ret;
     int value, level;
     int i, k, n, vip, money;
     //int store_rate = "/adm/daemons/actiond"->query_action("store_rate");
@@ -514,9 +514,9 @@ public int buy_goods(object ob, string arg) {
         write("對不起，該服務必須由 admin 手動實現，請及時與 admin 聯繫！\n");
         return 1;
     }
-
-    vip = MEMBER_D->db_query_member(ob, "vip");
-    money = MEMBER_D->db_query_member(ob, "money");
+    ret = MEMBER_D->db_query_member(ob, ({"vip", "money"}));
+    vip = to_int(ret["vip"]);
+    money = to_int(ret["money"]);
     value = all_goods[i]->value;
     good = all_goods[i]->name;
     if(!undefinedp(sp_items[good]) ) value = sp_items[good];
@@ -532,6 +532,7 @@ public int buy_goods(object ob, string arg) {
     }
 
     if(value < 1 ) value = 1;
+
     if(money < value) {
         write("對不起，您的王者幣($NT)數量不夠！\n");
         return 1;

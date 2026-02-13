@@ -144,10 +144,18 @@ private int valid_column_name(string col) {
 }
 
 // 查詢 ID 相關信息
+// 查詢 ID 相關信息
 public mixed db_query_member(mixed ob, mixed key) {
     mixed ret;
     string id, sql, *columns;
     int i, single_column;
+    // Define which columns are integers in the database (mapping for O(1) lookup)
+    mapping int_columns = ([
+        "money": 1, "vip": 1, "jointime": 1, "endtime": 1,
+        "paytimes": 1, "payvalue": 1, "buytimes": 1, "buyvalue": 1,
+        "transfertimes": 1, "transfervalue": 1, "last_paytime": 1,
+        "last_buytime": 1, "last_payvalue": 1, "last_buyvalue": 1
+    ]);
 
     if (objectp(ob))
         id = query("id", ob);
@@ -200,6 +208,13 @@ public mixed db_query_member(mixed ob, mixed key) {
 
     if (!arrayp(ret) || !sizeof(ret))
         return 0;
+
+    // Cast integer columns to int (O(1) lookup per column)
+    for (i = 0; i < sizeof(ret); i++) {
+        if (int_columns[columns[i]]) {  // O(1) lookup instead of O(n)
+            ret[i] = to_int(ret[i]);
+        }
+    }
 
     // Return single value for single column query
     if (single_column)
@@ -280,7 +295,7 @@ public varargs int db_create_member(mixed ob, int money, string from_id)
 #endif
 
     ret = DATABASE_D->db_query(sql);
-    if (!intp(ret))
+    if (!intp(ret) || ret != 1)  // Should insert exactly 1 row
         return 0;
 
     if (objectp(target = find_player(id)))
@@ -288,7 +303,7 @@ public varargs int db_create_member(mixed ob, int money, string from_id)
         tell_object(target, "\a", 0);
         tell_object(target, HIR + payinfo + NOR);
     }
-    return ret;
+    return 1;  // Return success, not row count
 }
 
 // 刪除會員
@@ -314,10 +329,10 @@ public int db_remove_member(mixed ob) {
         MEMBER_TABLE, DB_STR(id));
     ret = DATABASE_D->db_query(sql);
 
-    if (!intp(ret))
+    if (!intp(ret) || ret != 1)  // Should delete exactly 1 row
         return 0;
 
-    return ret;
+    return 1;  // Return success, not row count
 }
 
 // Bulk update member data in database
@@ -436,10 +451,10 @@ public int db_set_member(mixed ob, string key, mixed data) {
         return 0;
 
     ret = DATABASE_D->db_query(sql);
-    if (!intp(ret))
+    if (!intp(ret) || ret < 1)  // Should affect at least 1 row
         return 0;
 
-    return ret;
+    return 1;  // Return success, not row count
 }
 
 // 增加會員屬性點
@@ -467,10 +482,10 @@ public int db_add_member(mixed ob, string key, int num) {
         MEMBER_TABLE, key, key, num, DB_STR(id));
 
     ret = DATABASE_D->db_query(sql);
-    if (!intp(ret))
+    if (!intp(ret) || ret < 1)  // Should affect at least 1 row
         return 0;
 
-    return ret;
+    return 1;  // Return success, not row count
 }
 
 // 會員卡
@@ -532,10 +547,10 @@ public varargs mixed db_fee_member(mixed ob, int day, int flag)
         MEMBER_TABLE, jointime, day, DB_STR(id));
 
     ret = DATABASE_D->db_query(sql);
-    if (!intp(ret))
+    if (!intp(ret) || ret < 1)  // Should affect at least 1 row
         return 0;
 
-    return ret;
+    return 1;  // Return success, not row count
 }
 
 // 會員衝值
@@ -592,11 +607,9 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
     sql = "UPDATE members SET money=" + money + ", paytimes=" + paytimes + ", payinfo=" + DB_STR(payinfo) +
         ", payvalue=" + payvalue + ", last_payvalue=" + last_payvalue + ", last_paytime=" +time() + " WHERE id= " + DB_STR(id);
 
-
     ret = DATABASE_D->db_query(sql);
 
-
-    if (!intp(ret))
+    if (!intp(ret) || ret < 1)  // Should affect at least 1 row
         return 0;
 
     if (objectp(target = find_player(id)))
@@ -605,7 +618,7 @@ public varargs int db_pay_member(mixed ob, int money, string from_id)
         tell_object(target, HIR + info + NOR);
     }
 
-    return ret;
+    return 1;
 }
 
 public varargs int player_pay(mixed from, int money, mixed to)
@@ -618,20 +631,22 @@ public varargs int player_pay(mixed from, int money, mixed to)
 
     if (objectp(from))
         fid = query("id", from);
-    else
-        if (stringp(from))
+    else if (stringp(from))
         fid = from;
     else
         return 0;
 
-    if (!stringp(fid)  || fid  == "" || !money)
+    if (!stringp(fid) || fid == "" || !money)
         return 0;
 
-    sql = sprintf("UPDATE %s SET money = money - %d WHERE id = %s",
-        MEMBER_TABLE, money, DB_STR(fid));
+    // Only update if user has enough money
+    sql = sprintf("UPDATE %s SET money = money - %d WHERE id = %s AND money >= %d",
+        MEMBER_TABLE, money, DB_STR(fid), money);
 
     ret = DATABASE_D->db_query(sql);
-    if (!intp(ret))
+
+    // Check if query succeeded and affected exactly 1 row
+    if (!intp(ret) || ret != 1)
         return 0;
 
     if (to)
@@ -643,14 +658,14 @@ public varargs int player_pay(mixed from, int money, mixed to)
         else
             MEMBER_D->db_create_member(to, money, fid);
     }
-    return ret;
+    return 1;
 }
 
 // 會員轉帳
 public int db_transfer_member(mixed ob, mixed to, int value) {
     string id, to_id;
     string zhuaninfo;
-    int money;
+    string sql;
     object target;
     mixed ret;
 
@@ -693,17 +708,13 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
         return 0;
     }
 
-    ret = db_query_member(id, ({"money", "transferinfo"}));
-    money = to_int(ret["money"]);
-    if (money < value)
-    {
-        write("對不起，您的王者金幣數量不夠！\n");
-        return 0;
-    }
+    // Use atomic UPDATE with WHERE clause to prevent race condition
+    sql = sprintf("UPDATE %s SET money = money - %d WHERE id = %s AND money >= %d", MEMBER_TABLE, value, DB_STR(id), value);
 
-    if (!db_set_member(ob, "money", (money - value)))
+    ret = DATABASE_D->db_query(sql);
+    if (!intp(ret) || ret != 1)
     {
-        write("轉帳失敗，請與本站ADMIN聯繫！\n");
+        write("轉帳失敗，餘額不足或數據庫錯誤！\n");
         return 0;
     }
 
@@ -712,6 +723,7 @@ public int db_transfer_member(mixed ob, mixed to, int value) {
     else
         db_pay_member(to_id, value, id);
 
+    ret = db_query_member(id, ({"transferinfo"}));
     zhuaninfo = ret["transferinfo"];
 
     if(!zhuaninfo)zhuaninfo = "";
