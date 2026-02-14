@@ -261,7 +261,7 @@ void set_from_me(object tob, object fob, int scale) {
     else
         max_qi += (27 - 14) * s * 2 / 3;
 
-    max_qi += (int)hp_status["max_neili"] / 4;
+    max_qi += to_int(hp_status["max_neili"]) / 4;
 
     if (hp_status["breakup"])
         max_qi += max_qi;

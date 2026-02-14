@@ -89,19 +89,19 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
     else
         my["max_jing"] += (24 - 11) * s * 2 / 3;
 
-    if ((int)my["max_jingli"] > 0)
-        my["max_jing"] += (int)my["max_jingli"] / 3;
+    if (to_int(my["max_jingli"]) > 0)
+        my["max_jing"] += to_int(my["max_jingli"]) / 3;
 
     // 佛家養精：３０歲前補精，３０歲後長精
     if (userp(ob) && mapp(my["family"])) {
         if (my["family"]["family_name"] == "峨嵋派" )
-            xism_age = (int)ob->query_skill("mahayana", 1);
+            xism_age = to_int(ob->query_skill("mahayana", 1));
         else if (my["family"]["family_name"] == "少林派" )
-            xism_age = (int)ob->query_skill("buddhism", 1);
+            xism_age = to_int(ob->query_skill("buddhism", 1));
         else if (my["family"]["family_name"] == "段氏皇族" )
-            xism_age = (int)ob->query_skill("buddhism", 1);
+            xism_age = to_int(ob->query_skill("buddhism", 1));
         else if (my["family"]["family_name"] == "雪山寺" || my["family"]["family_name"] == "血刀門" || my["family"]["family_name"] == "密宗" )
-            xism_age = (int)ob->query_skill("lamaism", 1);
+            xism_age = to_int(ob->query_skill("lamaism", 1));
     }
     else
         xism_age = 0;
@@ -157,7 +157,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
 
     // 華山紫霞神功；３０歲前補精，３０歲後長精
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "華山派"
-        && (jing_age = (int)ob->query_skill("zixia-shengong", 1) / 3) > 39)
+        && (jing_age = to_int(ob->query_skill("zixia-shengong", 1)) / 3) > 39)
     {
         if (jing_age > 250) jing_age = 250;
         jing_age = jing_age / 2;
@@ -165,7 +165,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
         if (my["age"] <= 30) jing_age -= my["age"];
         else jing_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (jing_age > 0 )
             my["max_jing"] += jing_age * (skill / 30);
@@ -173,7 +173,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
 
     // 古墓素女心法；３０歲前補精，３０歲後長精
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "古墓派"
-        && (jing_age = (int)ob->query_skill("yunv-xinjing", 1)) > 39)
+        && (jing_age = to_int(ob->query_skill("yunv-xinjing", 1))) > 39)
     {
         if (jing_age > 250) jing_age = 250;
         jing_age = jing_age / 2;
@@ -181,7 +181,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
         if (my["age"] <= 30) jing_age -= my["age"];
         else jing_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (jing_age > 0 )
             my["max_jing"] += jing_age * (skill / 30);
@@ -189,7 +189,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
 
     // 桃花島奇門五行：３０歲前補精，３０歲後長精，但效用小
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "桃花島"
-        && (xism_age = (int)ob->query_skill("qimen-wuxing", 1) / 3) > 39)
+        && (xism_age = to_int(ob->query_skill("qimen-wuxing", 1)) / 3) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -197,14 +197,14 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (xism_age > 0 ) my["max_jing"] += xism_age * (skill / 35);
     }
 
     // 明教聖火玄冥：３０歲前補精，３０歲後長精，但效用小
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "明教"
-        && (xism_age = (int)ob->query_skill("shenghuo-shengong", 1) / 3) > 39)
+        && (xism_age = to_int(ob->query_skill("shenghuo-shengong", 1)) / 3) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -212,14 +212,14 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (xism_age > 0 ) my["max_jing"] += xism_age * (skill / 35);
     }
 
     // 日月神教日月光華：３０歲前補精，３０歲後長精，但效用小
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "日月神教"
-        && (xism_age = (int)ob->query_skill("riyue-guanghua", 1) / 3) > 39)
+        && (xism_age = to_int(ob->query_skill("riyue-guanghua", 1)) / 3) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -227,14 +227,14 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (xism_age > 0 ) my["max_jing"] += xism_age * (skill / 35);
     }
 
     // 關外胡家妙手驅毒：３０歲前補精，３０歲後長精，但效用小
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "關外胡家"
-        && (xism_age = (int)ob->query_skill("dispel-poison", 1)) > 39)
+        && (xism_age = to_int(ob->query_skill("dispel-poison", 1))) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -242,7 +242,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_jing"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (xism_age > 0 ) my["max_jing"] += xism_age * (skill / 35);
     }
@@ -293,13 +293,13 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
     else
         my["max_qi"] += (27 - 11) * s * 2 / 3;
 
-    if ((int)my["max_neili"] > 0)
-        my["max_qi"] += (int)my["max_neili"] / 4;
+    if (to_int(my["max_neili"]) > 0)
+        my["max_qi"] += to_int(my["max_neili"]) / 4;
 
     // 武當太極加氣
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "武當派" &&
-        (x = (int)ob->query_skill("taoism", 1)) > 39 &&
-        (y = (int)ob->query_skill("taiji-shengong", 1)) > 39)
+        (x = to_int(ob->query_skill("taoism", 1))) > 39 &&
+        (y = to_int(ob->query_skill("taiji-shengong", 1))) > 39)
     {
         if (x > 350) x = (x - 350) / 2 + 350;
         if (y > 350) y = (y - 350) / 2 + 350;
@@ -311,8 +311,8 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
 
     //全真先天功加氣
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "全真教" &&
-        (x = (int)ob->query_skill("taoism", 1)) > 39 &&
-        (y = (int)ob->query_skill("xiantian-gong", 1)) > 39)
+        (x = to_int(ob->query_skill("taoism", 1))) > 39 &&
+        (y = to_int(ob->query_skill("xiantian-gong", 1))) > 39)
     {
         if (x > 350) x = (x - 350) / 2 + 350;
         if (y > 350) y = (y - 350) / 2 + 350;
@@ -324,7 +324,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
 
     // 星宿聚毒練氣：３０歲前補氣，３０歲後長氣
     if (userp(ob) &&  mapp(my["family"]) && my["family"]["family_name"] == "星宿派"
-        && (xism_age = (int)ob->query_skill("poison", 1) / 3) > 39)
+        && (xism_age = to_int(ob->query_skill("poison", 1)) / 3) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -332,7 +332,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("huagong-dafa", 1);
+        skill = to_int(ob->query_skill("huagong-dafa", 1));
 
         if (xism_age > 0 )
             my["max_qi"] += xism_age * (skill / 30);
@@ -340,14 +340,14 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
 
     // 白駝山莊聚毒練氣：３０歲前補氣，３０歲後長氣
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "歐陽世家"
-        && (xism_age = (int)ob->query_skill("poison", 1) / 3) > 39)
+        && (xism_age = to_int(ob->query_skill("poison", 1)) / 3) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("hamagong", 1);
+        skill = to_int(ob->query_skill("hamagong", 1));
 
         if (xism_age > 0 )
             my["max_qi"] += xism_age * (skill / 30);
@@ -355,7 +355,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
 
     // 逍遙派逍遙奇學練氣：３０歲前補氣，３０歲後長氣
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "逍遙派"
-        && (xism_age = (int)ob->query_skill("xiaoyao-qixue", 1)) > 39)
+        && (xism_age = to_int(ob->query_skill("xiaoyao-qixue", 1))) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -363,7 +363,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (xism_age > 0 )
             my["max_qi"] += xism_age * (skill / 40);
@@ -371,7 +371,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
 
     // 靈鷲宮八荒神功：３０歲前補氣，３０歲後長氣
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "靈鷲宮"
-        && (xism_age = (int)ob->query_skill("bahuang-gong", 1) / 3) > 39)
+        && (xism_age = to_int(ob->query_skill("bahuang-gong", 1)) / 3) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -379,7 +379,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force", 1);
+        skill = to_int(ob->query_skill("force", 1));
 
         if (xism_age > 0 )
             my["max_qi"] += xism_age * (skill / 40);
@@ -387,7 +387,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
 
     // 慕容世家紫徽心法練氣：３０歲前補氣，３０歲後長氣
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "慕容世家"
-        && (xism_age = (int)ob->query_skill("zihui-xinfa", 1) / 3) > 39)
+        && (xism_age = to_int(ob->query_skill("zihui-xinfa", 1)) / 3) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -395,7 +395,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (xism_age > 0 )
             my["max_qi"] += xism_age * (skill / 40);
@@ -403,7 +403,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
 
     // 神龍島神龍迷辛練氣：３０歲前補氣，３０歲後長氣
     if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "神龍教"
-        && (xism_age = (int)ob->query_skill("shenlong-mixin", 1)) > 39)
+        && (xism_age = to_int(ob->query_skill("shenlong-mixin", 1))) > 39)
     {
         if (xism_age > 250) xism_age = 250;
         xism_age = xism_age / 2;
@@ -411,7 +411,7 @@ if (userp(ob) || ob->is_baby() || /*undefinedp*/!(my["max_qi"]))
         if (my["age"] <= 30) xism_age -= my["age"];
         else xism_age -= 30;
 
-        skill = (int)ob->query_skill("force");
+        skill = to_int(ob->query_skill("force"));
 
         if (xism_age > 0 )
             my["max_qi"] += xism_age * (skill / 50);

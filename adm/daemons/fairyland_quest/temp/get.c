@@ -1,6 +1,6 @@
 // get.c
 // last updated by April 2001.09.27     禁止在睡房裡拿睡覺人的東西
-// last updated by naihe 2002.09.25 
+// last updated by naihe 2002.09.25
 // 各文件可使用set("no_get","信息") 格式自定義no_get信息，
 // 使用 set("no_get","1") 格式將使用默認信息：這個東西拿不起來。
 // 之前的物件設定為 set("no_get",1) 的，也將使用默認信息。
@@ -31,9 +31,9 @@ int main(object me, string arg)
                 if(wizardp(me) && living(env) && (wiz_level(me) <= wiz_level(env))
                  && !query("ridable", env) && env->query_lord() != me )
                         return notify_fail("你的巫師等級必須比對方高，才能搜身。\n");
-        } 
+        }
         else env = environment(me);
-        
+
         // 不能在睡房裡拿睡覺人的東西
         if (!wizardp(me) && living(env) && env->query_lord() != me)
                 return notify_fail("光天化日的想搶劫啊？\n");
@@ -50,10 +50,10 @@ int main(object me, string arg)
                         return notify_fail("東西的個數至少是一個。\n");
                 if( amount > obj->query_amount() )
                         return notify_fail("這裡沒有那麼多的" + obj->name() + "。\n");
-                else if( amount == (int)obj->query_amount() ) {
+                else if( amount == to_int(obj->query_amount()) ) {
                         return do_get(me, obj);
                }else {
-                        newa = (int)obj->query_amount();
+                        newa = to_int(obj->query_amount());
                         obj->set_amount( amount );
                         obj2 = new(base_name(obj));
                         do_get(me, obj);
@@ -95,7 +95,7 @@ int main(object me, string arg)
 
         return do_get(me, obj);
 }
-       
+
 int do_get(object me, object obj)
 {
         object old_env, *enemy;
@@ -125,12 +125,12 @@ int do_get(object me, object obj)
                 if( obj->is_character() )
                         message_vision( "$N將$n扶了起來背在背上。\n", me, obj );
                 else
-                        message_vision( sprintf("$N%s%s%s$n。\n", 
+                        message_vision( sprintf("$N%s%s%s$n。\n",
                                 old_env==environment(me)? "撿起":
                                         (old_env->is_character() ?
                                                 "從" + old_env->name() + "身上" + (equipped? "除下" : "搜出"):
                                                 "從" + old_env->name() + "中拿出"),
-                                obj->query_amount()? amt : "一", 
+                                obj->query_amount()? amt : "一",
                                 obj->query_amount()?query("base_unit", obj):query("unit", obj)),me,obj);
                 return 1;
         }
@@ -141,11 +141,10 @@ int help(object me)
 {
         write(@HELP
 指令格式 : get <物品名稱> [from <容器名>]
- 
+
 這個指令可以讓你撿起地上或容器內的某樣物品.
- 
+
 HELP
     );
     return 1;
 }
- 

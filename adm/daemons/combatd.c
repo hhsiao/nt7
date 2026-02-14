@@ -489,9 +489,9 @@ varargs mixed report_status(object ob, int effective)
 
     if(!ob || !query("max_qi", ob) || !query("max_jing", ob) ) return;
 
-    k_stat = (int) query("qi", ob) * 100 / (int)query("max_qi", ob);
-    //s_stat = (int) query("sen", ob) * 100 / (int)query("max_sen", ob);
-    g_stat = (int) query("jing", ob) * 100 / (int)query("max_jing", ob);
+    k_stat = to_int(query("qi", ob)) * 100 / to_int(query("max_qi", ob));
+    //s_stat = to_int(query("sen", ob)) * 100 / to_int(query("max_sen", ob));
+    g_stat = to_int(query("jing", ob)) * 100 / to_int(query("max_jing", ob));
 
     if (ratio > k_stat ) {
         ratio = k_stat;
@@ -507,9 +507,9 @@ varargs mixed report_status(object ob, int effective)
         d_type = 3;
     }
 
-    k_stat = (int) query("eff_qi", ob) * 100 / (int)query("max_qi", ob);
-    //s_stat = (int) query("eff_sen", ob) * 100 / (int)query("max_sen", ob);
-    g_stat = (int) query("eff_jing", ob) * 100 / (int)query("max_jing", ob);
+    k_stat = to_int(query("eff_qi", ob)) * 100 / to_int(query("max_qi", ob));
+    //s_stat = to_int(query("eff_sen", ob)) * 100 / to_int(query("max_sen", ob));
+    g_stat = to_int(query("eff_jing", ob)) * 100 / to_int(query("max_jing", ob));
 
     if (eff_ratio > k_stat ) {
         eff_ratio = k_stat;
@@ -898,7 +898,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
 
 #ifdef USE_SKILLS_COMBAT
     if(arrayp(att) && sizeof(att) )
-        damage += (int)att[DAMAGE] * damage / 100;
+        damage += to_int(att[DAMAGE]) * damage / 100;
 #else
     if(action["damage"] )
         damage += action["damage"] * damage / 100;
@@ -976,7 +976,7 @@ mixed attack_damage(object me, object victim, string attack_skill, object weapon
     }
 #ifdef USE_SKILLS_COMBAT
     if(arrayp(att) && sizeof(att) )
-        damage_bonus += (int)att[FORCE2] * damage_bonus / 100;
+        damage_bonus += to_int(att[FORCE2]) * damage_bonus / 100;
 #else
     if(action["force"] )
         damage_bonus += action["force"] * damage_bonus / 100;
@@ -2062,7 +2062,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                     damage = me->query_all_buff("unarmed_damage");
                 }
 
-                damage += (int)me->query_skill(attack_skill, 1);
+                damage += to_int(me->query_skill(attack_skill, 1));
                 damage += query("jiali", me);
                 damage += range_random(damage / 2, damage);
 
@@ -2295,7 +2295,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         }
         // if(me->query("special_skill/tianmo") && random(5) == 1) {
         //         message_vision(HIR"$N腦中浮現出天魔解體時所領會的武學精華，以敵血補己氣，攻勢更顯凌厲！\n" NOR, me, victim);
-        //         me->receive_curing("qi", (me->query("max_qi")*(int)me->query("special_skill/tianmo",1)*2/100));
+        //         me->receive_curing("qi", (me->query("max_qi")*to_int(me->query("special_skill/tianmo",1))*2/100));
         //         do_attack(me, victim, weapon, 3);
         // }
         //
@@ -3088,7 +3088,7 @@ int auto_perform(object me, object target, string skill) {
     file = all_file[random(sizeof(all_file))];
     l = strlen(file);
     file = dir + file[0..l - 3];
-    return (int)call_other(file, "perform", me, target);
+    return to_int(call_other(file, "perform", me, target));
 }
 
 //  fight()
@@ -3436,7 +3436,7 @@ int player_escape(object killer, object ob) {
         msg = "聽說官府加緊捉拿累次傷人的暴徒" +
             killer->name(1) + "。";
         killer->apply_condition("killer", 800 +
-            (int)killer->query_condition("killer"));
+            to_int(killer->query_condition("killer")));
     }
     CHANNEL_D->do_channel(this_object(), "rumor", msg);
 
@@ -3720,7 +3720,7 @@ void killer_reward(object killer, object victim) {
             else
                 kcombat["PKS"]++;
 
-            //killer->set("pktime", (int)killer->query("mud_age"));
+            //killer->set("pktime", to_int(killer->query("mud_age")));
             set("combat/pktime", time(), killer);
 
             // do family action
@@ -3785,7 +3785,7 @@ void killer_reward(object killer, object victim) {
                 follow_msg = "聽說官府加緊捉拿累犯重案的暴徒" +
                     killer->name(1) + "。";
                 killer->apply_condition("killer", 800 +
-                    (int)killer->query_condition("killer"));
+                    to_int(killer->query_condition("killer")));
             }
 
             addn("pk_score", 1, killer);
@@ -4607,7 +4607,7 @@ protected void quest_kill(object killer, object victim) {
             }
 #endif
 
-            all_quest = (int)query("all_quest_hs", killer);
+            all_quest = to_int(query("all_quest_hs", killer));
             if(!all_quest ) all_quest = 0;
             all_quest += 1;
             if(all_quest == 1000 ) {
@@ -4701,7 +4701,7 @@ protected void quest_kill(object killer, object victim) {
             }
 #endif
 
-            all_quest = (int)query("all_quest_sn", killer);
+            all_quest = to_int(query("all_quest_sn", killer));
             if(!all_quest ) all_quest = 0;
             all_quest += 1;
             if(all_quest == 1000 ) {

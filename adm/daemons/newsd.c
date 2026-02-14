@@ -402,7 +402,7 @@ void do_read(object me, string arg) {
     // 添加點擊 / 閱讀次數
     add_view_time(notes[num], 1);
     // 記錄玩家上次閱讀新聞的時間
-    if (notes[num][TIME] > (int)last_read_time)
+    if (notes[num][TIME] > to_int(last_read_time))
         set("last_read_news", notes[num][TIME], me);
 #else
     me->start_more(sprintf(HIC "≡" HIY "------------------------------------"
@@ -415,7 +415,7 @@ void do_read(object me, string arg) {
         TIME_D->replace_ctime(notes[num]["time"])) + notes[num]["msg"]);
 
     // Keep track which post we were reading last time.
-    if (notes[num]["time"] > (int)last_read_time)
+    if (notes[num]["time"] > to_int(last_read_time))
         set("last_read_news", notes[num]["time"], me);
 #endif
 }
@@ -567,7 +567,7 @@ void auto_notice(object me) {
     add_view_time(notes[num], 1);
 
     // 記錄玩家上次閱讀新聞的時間
-    if (notes[num][TIME] > (int)last_read_time)
+    if (notes[num][TIME] > to_int(last_read_time))
         set("last_read_news", notes[num][TIME], me);
 #else
     me->start_more(sprintf(HIC "≡" HIY "------------------------------------"
@@ -580,7 +580,7 @@ void auto_notice(object me) {
         TIME_D->replace_ctime(notes[num]["time"])) + notes[num]["msg"]);
 
     // Keep track which post we were reading last time.
-    if (notes[num]["time"] > (int)last_read_time)
+    if (notes[num]["time"] > to_int(last_read_time))
         set("last_read_news", notes[num]["time"], me);
 #endif
     tell_object(me, HIM "新聞精靈說完後，消失在一陣煙霧之中。\n" NOR);

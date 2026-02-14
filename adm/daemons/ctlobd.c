@@ -20,7 +20,7 @@ int query_save_num(string file)
         if( undefinedp(mud_save_obj[file]) )
                 return 0;
 
-        return (int)mud_save_obj[file];
+        return to_int(mud_save_obj[file]);
 }
 
 void save_to_mud(string file)
@@ -50,7 +50,7 @@ void delete_from_mud(string file)
 
         else
         {
-                n = (int)mud_save_obj[file];
+                n = to_int(mud_save_obj[file]);
                 if( !n )  /* 應該不會出現這種情況 */
                         return;
                 n--;

@@ -313,24 +313,24 @@ varargs string finger_user(string name, mixed me)
     flag = arrayp(res);
     if (flag && MESSAGE_D->visible(me, name))
     {
-        if ((int)res[0] == 3)
+        if (to_int(res[0]) == 3)
             msg += sprintf("%s的數據目前正在漫遊中。。\n", cname);
         else
         {
             where = res[1];
             if (stringp(where) && where != LOCAL_STATION)
             {
-                if ((int)res[0] == 2)
+                if (to_int(res[0]) == 2)
                     msg += sprintf("\n%s目前正在%s站點閉關中。\n",
                         cname, ! undefinedp(stations[where]) ? stations[where] : "其他",
                         ! undefinedp(stations[where]) ? stations[where] : "其他");
                 else
-                    if ((int)res[0] == 1)
+                    if (to_int(res[0]) == 1)
                     msg += sprintf("\n%s目前正在%s站點連線中。\n",
                         cname, ! undefinedp(stations[where]) ? stations[where] : "其他",
                         ! undefinedp(stations[where]) ? stations[where] : "其他");
                 else
-                    if ((int)res[0] == 0)
+                    if (to_int(res[0]) == 0)
                     msg += sprintf("\n%s目前正在%s站點，但沒有連線進入遊戲。\n",
                         cname, ! undefinedp(stations[where]) ? stations[where] : "其他",
                         ! undefinedp(stations[where]) ? stations[where] : "其他");
@@ -349,7 +349,7 @@ string get_killer() {
 
     msg = "";
     for (i = 0; i < sizeof(ob); i++)
-        if ((int)ob[i]->query_condition("killer"))
+        if (to_int(ob[i]->query_condition("killer")))
         msg += (ob[i]->short() + "\n");
     if (msg == "")
         return "本城治安良好。\n";

@@ -61,13 +61,13 @@ void auto_relaim() {
 
     // cpu過高則降低mudos心跳
 
-    if(cpu_cost >= 95 && (int)get_config(__RC_HEARTBEAT_INTERVAL_MSEC__) == 1000 )
+    if(cpu_cost >= 95 && get_config(__RC_HEARTBEAT_INTERVAL_MSEC__) == 1000 )
     {
         set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 2000);
         log_file("heartbeat", sprintf("System changed mudOS heartbeat to 2 at %s\n", TIME_D->replace_ctime(time())));
     }
     else
-        if(cpu_cost <= 65 && (int)get_config(__RC_HEARTBEAT_INTERVAL_MSEC__) > 1000 )
+        if(cpu_cost <= 65 && get_config(__RC_HEARTBEAT_INTERVAL_MSEC__) > 1000 )
     {
         set_config(__RC_HEARTBEAT_INTERVAL_MSEC__, 1000);
         log_file("heartbeat", sprintf("System changed mudOS heartbeat to 1 at %s\n", TIME_D->replace_ctime(time())));

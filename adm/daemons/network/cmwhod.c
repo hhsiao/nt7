@@ -130,7 +130,7 @@ add_user(object user, int which)
         if ((userid % PARTITIONS) != which) {
                 return;
         }
-        login_time = (int)user->QUERY_LOGIN_TIME;
+        login_time = to_int(user->QUERY_LOGIN_TIME);
         name = (string)user->QUERY_NAME;
         datagram =
                 header("A")+TAB+mudname+TAB+userid+"@"+LOCAL_MUD_NAME()+

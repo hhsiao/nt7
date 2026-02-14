@@ -847,7 +847,7 @@ ________________________________________________________________________________
             desc_temp += sprintf("%-6d%-9s%-6d ",
                 i + 1,
                 (string)all[i]->name,
-                (int)all[i]->score);
+                to_int(all[i]->score));
 
             member = all[i]->member;
             for(j = 0; j<sizeof(member); j++ ) {

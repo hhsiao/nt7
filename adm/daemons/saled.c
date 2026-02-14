@@ -278,7 +278,7 @@ public string do_buy(object me, string arg) {
         if(money < value )
             return "對不起，您的泥潭金幣數量不夠，請衝值後再來！\n";
 
-        fees = (int)value * TAX / 100;
+        fees = to_int(value) * TAX / 100;
         if(fees > 0 ) {
             if(!MEMBER_D->player_pay(me, fees) ||
                 !MEMBER_D->player_pay(me, (value - fees), id) )

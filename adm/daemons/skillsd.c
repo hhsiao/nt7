@@ -864,15 +864,15 @@ void change_skill_power(string skill, int n, mixed p)
         sk = all_skills[skill];
         sk[n] = p;
 
-        attack = (int)sk[ATTACK];
-        dodge  = (int)sk[DODGE];
-        parry  = (int)sk[PARRY];
-        damage = (int)sk[DAMAGE];
-        force  = (int)sk[FORCE2];
-        diffi  = (int)sk[DIFFICULT];
+        attack = to_int(sk[ATTACK]);
+        dodge  = to_int(sk[DODGE]);
+        parry  = to_int(sk[PARRY]);
+        damage = to_int(sk[DAMAGE]);
+        force  = to_int(sk[FORCE2]);
+        diffi  = to_int(sk[DIFFICULT]);
         rank   = (string)sk[RANK];
         attr   = (string)sk[ATTRIBUTE];
-        effect = (int)sk[EFFECT];
+        effect = to_int(sk[EFFECT]);
 
         all_skills[skill] = ({ attack, dodge, parry, damage, force, diffi, rank, attr, effect });
 
@@ -892,15 +892,15 @@ void upgrade_skill_power(string skill)
                 return;
 
         sk = all_skills[skill];
-        attack = (int)sk[ATTACK];
-        dodge  = (int)sk[DODGE];
-        parry  = (int)sk[PARRY];
-        damage = (int)sk[DAMAGE];
-        force  = (int)sk[FORCE2];
-        diffi  = (int)sk[DIFFICULT];
+        attack = to_int(sk[ATTACK]);
+        dodge  = to_int(sk[DODGE]);
+        parry  = to_int(sk[PARRY]);
+        damage = to_int(sk[DAMAGE]);
+        force  = to_int(sk[FORCE2]);
+        diffi  = to_int(sk[DIFFICULT]);
         rank   = (string)sk[RANK];
         attr   = (string)sk[ATTRIBUTE];
-        effect = (int)sk[EFFECT];
+        effect = to_int(sk[EFFECT]);
 
         if( attack >= MAX_POINT && dodge >= MAX_POINT && force >= MAX_POINT &&
             damage >= MAX_POINT && parry >= MAX_POINT )
@@ -3063,13 +3063,13 @@ void add_skill_into_skills(string sname, mapping p)
         }
 
         sk = all_skills[sname];
-        attack = (int)sk[ATTACK];
-        dodge  = (int)sk[DODGE];
-        parry  = (int)sk[PARRY];
-        damage = (int)sk[DAMAGE];
-        force  = (int)sk[FORCE2];
-        diffi  = (int)sk[DIFFICULT];
-        effect = (int)sk[EFFECT];
+        attack = to_int(sk[ATTACK]);
+        dodge  = to_int(sk[DODGE]);
+        parry  = to_int(sk[PARRY]);
+        damage = to_int(sk[DAMAGE]);
+        force  = to_int(sk[FORCE2]);
+        diffi  = to_int(sk[DIFFICULT]);
+        effect = to_int(sk[EFFECT]);
 
         if( !undefinedp(p["attack"]) && p["attack"] > attack )
                 attack = p["attack"];

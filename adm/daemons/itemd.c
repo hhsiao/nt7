@@ -985,7 +985,7 @@ int do_forge(object me, object item) {
     if(item->armor_level() >= 9 )
         return notify_fail(item->name() + "已經達到9lv了，無需繼續鍛造。\n");
 
-    if((int)me->query_skill("force", 1) < 200 )
+    if(to_int(me->query_skill("force", 1)) < 200 )
         return notify_fail("你的內功修為不足。\n");
 
     if(query("qi", me)*100 / query("max_qi", me)<90 )

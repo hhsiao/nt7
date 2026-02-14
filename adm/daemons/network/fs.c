@@ -45,7 +45,7 @@ remote_finger(object source, string user, string mud)
         tell_object(source, "fingerd: no mud with that name presently active\n");
         return;
     }
-    msvc = (int)DNS_MASTER->query_service_method(mud, "finger");
+    msvc = to_int(DNS_MASTER->query_service_method(mud, "finger"));
 
 #if PREF_FINGER & SVC_TCP
     if(msvc & SVC_TCP)

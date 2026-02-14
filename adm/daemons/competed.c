@@ -294,8 +294,8 @@ protected void restore_status(object me)
         me->delete_override("quit");
         me->remove_all_enemy(1);
         me->remove_all_killer();
-        j = (int)me->query_condition("putizi_drug");
-        k = (int)me->query_condition("pill_drug");
+        j = to_int(me->query_condition("putizi_drug"));
+        k = to_int(me->query_condition("pill_drug"));
         me->clear_condition();
         me->receive_damage("qi", 0);
         me->apply_killer(query_temp("backup/killer", me));

@@ -877,7 +877,6 @@ public void show_member_info(mixed ob, string arg) {
         write(HIR "  為避免帶來不必要的損失請認真閱讀"+LOCAL_MUD_NAME() + "會員制度文件" HIY "(help member)\n\n" NOR);
         write(HIY "                                                 NT WIZARD GROUP\n" NOR);
         write(HIW "≡---------------------------------------------------------------≡\n" NOR);
-        write(HIC"淘寶衝值鏈接地址: "NOR + HIR" \n"NOR);
 
         break;
         // 物品清單

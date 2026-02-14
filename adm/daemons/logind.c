@@ -340,7 +340,7 @@ protected void pass_id(string arg, object ob) {
     flag = arrayp(res);
     if(flag)
     {
-        if((int)res[0] == 3)
+        if(to_int(res[0]) == 3)
         {
             write(sprintf("[%s] 這個 ID 目前正在漫遊中，請稍後再試。。\n", arg));
             call_out("destruct_ob", 0, ob);
@@ -567,7 +567,7 @@ protected void get_id(string arg, object ob) {
     res = DATABASE_D->do_sql("SELECT online, on_time, fee_time, last_station FROM users WHERE id = " + DB_STR(arg));
     flag = arrayp(res);
     if(flag ) {
-        if((int)res[0] == 3 ) {
+        if(to_int(res[0]) == 3 ) {
             write(sprintf("[%s] 這個 ID 目前正在漫遊中，請稍後再嘗試登陸。。\n", arg));
             call_out("destruct_ob", 0, ob);
             return;
@@ -575,12 +575,12 @@ protected void get_id(string arg, object ob) {
 
         where = res[3];
         if(wiz_level(arg) < 1 && stringp(where) && where != LOCAL_STATION ) {
-            if((int)res[0] > 0 ) {
-                if((int)res[0] == 2 )
+            if(to_int(res[0]) > 0 ) {
+                if(to_int(res[0]) == 2 )
                     write(sprintf("[%s] 這個 ID 目前正在%s閉關，如想漫遊，請先將該 ID 從%s站退出。\n",
                         arg, ! undefinedp(stations[where]) ? stations[where] : "其他站",
                         ! undefinedp(stations[where]) ? stations[where] : "其他站"));
-                else if((int)res[0] == 1 )
+                else if(to_int(res[0]) == 1 )
                     write(sprintf("[%s] 這個 ID 目前正在%s連線，如想漫遊，請先將該 ID 從%s站退出。\n",
                         arg, ! undefinedp(stations[where]) ? stations[where] : "其他站",
                         ! undefinedp(stations[where]) ? stations[where] : "其他站"));
