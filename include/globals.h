@@ -115,7 +115,7 @@
 #define MONEY_D                 "/adm/daemons/moneyd"
 #define MONITOR_D               "/adm/daemons/monitord"
 #define MONEY_D                 "/adm/daemons/moneyd"
-#define MINE_D			"/adm/daemons/mined"
+#define MINE_D                  "/adm/daemons/mined"
 #define MRTG_D                  "/adm/daemons/mrtgd"
 #define MUDLIST_D               "/adm/daemons/mudlistd"
 #define MYGIFT_D                "/adm/daemons/mygiftd"
@@ -162,6 +162,8 @@
 #define WORK_D                  "/adm/daemons/workd"
 #define XINRUI_D                "/adm/daemons/xinruid"
 #define ZHOUTIAN_D              "/adm/daemons/zhoutiand"
+#define GMCP_D                  "/adm/daemons/gmcp_d"
+
 
 #define CLASS_D(x)              ("/kungfu/class/" + x)
 #define CONDITION_D(x)          ("/kungfu/condition/" + x)
@@ -309,7 +311,7 @@
 #define F_VI                    "/feature/vi.c"
 #define F_UNIQUE                "/feature/unique.c"
 #define F_XIAO                  "/inherit/misc/_xiao.c"
-
+#define F_GMCP                  "/inherit/user/gmcp.c"
 // Profiling switches
 //
 // If you changed any of these defines, you'll need reboot to make it

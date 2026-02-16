@@ -27,6 +27,10 @@
 
 #define SPECIAL_NPC     ({ "/adm/npc/youxun" })
 
+#ifndef GMCP_D
+#define GMCP_D "/adm/daemons/gmcp_d"
+#endif
+
 #include <ansi.h>
 #include <mudlib.h>
 #include <net/dns.h>
@@ -296,6 +300,52 @@ int valid_channel(int level, string channel) {
     return 0;
 }
 
+// ─── GMCP helper: split users and deliver ───
+void _deliver_channel_msg(
+    object *recipients,
+    string text_msg,
+    string channel_cmd,
+    string clean_speaker,
+    string clean_message)
+{
+    object *gmcp_users, *text_users;
+    object gd;
+
+    recipients -= ({ 0 });
+    gmcp_users = ({});
+    text_users = ({});
+
+    gd = find_object(GMCP_D);
+
+    foreach (object user in recipients) {
+        if (!user || !interactive(user)) {
+            text_users += ({ user });
+            continue;
+        }
+        if (gd && has_gmcp(user))
+            gmcp_users += ({ user });
+        else
+            text_users += ({ user });
+    }
+
+    // Non-GMCP users: traditional tell (unchanged behavior)
+    text_users -= ({ 0 });
+    if (sizeof(text_users))
+        tell(text_users, text_msg, "channel:" + channel_cmd);
+
+    // GMCP users: structured Chat.Line with raw ANSI text
+    if (gd && sizeof(gmcp_users)) {
+        foreach (object user in gmcp_users) {
+            if (user)
+                gd->send_chat(user, channel_cmd,
+                    clean_speaker, clean_message, text_msg);
+        }
+    }
+
+    // Server-side log for ALL users
+    recipients->add_msg_log(channel_cmd, text_msg);
+}
+
 varargs int do_channel(object me, string channel, string msg, mixed raw)
 {
     int t, emote, internal_flag, name_raw;
@@ -303,6 +353,7 @@ varargs int do_channel(object me, string channel, string msg, mixed raw)
     class channel_class ch;
     string channel_title, idname, send_msg, time, my_id, my_idname, color, subchannel;
     string lfn;
+    string clean_speaker, clean_message;
     mixed lt;
 
     if(!channel || channel == "" || !me ) return 0;
@@ -358,7 +409,6 @@ varargs int do_channel(object me, string channel, string msg, mixed raw)
     // 檢查本頻道之特殊替換頻道名
     if(ch->extra["newtitle"] )
     {
-        //channel_title = replace_string(ch->msg, "%T", evaluate(ch->extra["newtitle"], stringp(raw) ? raw : (wizardp(me)||previous_object(1)==find_object(INTERMUD2_D)) ? subchannel || me : me));
         channel_title = replace_string(ch->msg, "%T", evaluate(ch->extra["newtitle"], stringp(raw) ? raw : subchannel || me));
     }
     else
@@ -372,6 +422,11 @@ varargs int do_channel(object me, string channel, string msg, mixed raw)
         users[me] |= ch->number;
         set("channels", query("channels", me) | ch->number, me);
         tell(me, "開啟 "+channel_title + " 頻道。\n");
+
+        // Push updated channel list to GMCP client
+        if(has_gmcp(me)) {
+            call_out("_gmcp_push_channels", 0, me);
+        }
 
         if(!msg ) return 1;
     }
@@ -427,19 +482,11 @@ varargs int do_channel(object me, string channel, string msg, mixed raw)
     if(ch->extra["msgcolor"] )
     {
         color = ch->extra["msgcolor"];
-        /*
-         * if( ch->extra["samecolor"] )
-         * {
-         * msg = remove_ansi(msg);
-         * idname = remove_ansi(idname);
-         * }
-         */
     }
     else
         color = "";
 
     // 限制洗熒幕的行為
-    //if( undefinedp(raw) && previous_object() != this_object() && me->is_character() )
     if(undefinedp(raw) && previous_object() != this_object() && userp(me) )
     {
         int nowtime = time();
@@ -512,10 +559,12 @@ varargs int do_channel(object me, string channel, string msg, mixed raw)
     foreach(string a , string b in replace_word)
         send_msg = replace_string(send_msg, a, b);
 
-    // replace ansi for %^RED%^
-    //send_msg = replace_usa_ansi(send_msg);
-
     fit_users -= ({ 0 });
+
+    // Prepare clean strings for GMCP delivery
+    clean_speaker = remove_ansi(my_idname || "");
+    clean_message = remove_ansi(msg || "");
+
     // 使用者權限處理, 等級高等於說話者直接顯示名稱
     if(ch->extra["wizlevel"] && me->is_character() )
     {
@@ -567,16 +616,16 @@ varargs int do_channel(object me, string channel, string msg, mixed raw)
 
         fit_users -= level_fit_users;
 
-        // 權限足夠之使用者
-        //tell(level_fit_users, level_send_msg, CHNMSG);
-        tell(level_fit_users, level_send_msg, "channel:"+channel);  // 支持tomud
-
-        level_fit_users->add_msg_log(channel, level_send_msg);
+        // Wizard-level rumor users: GMCP/tell split delivery
+        _deliver_channel_msg(level_fit_users, level_send_msg,
+            channel, clean_speaker, clean_message);
         SPECIAL_NPC->receive_report(me, channel);
     }
 
-    //tell(fit_users, send_msg, CHNMSG);
-    tell(fit_users, send_msg, "channel:"+channel);  // 支持tomud
+    // Main delivery: GMCP/tell split
+    // GMCP users get Chat.Line only, non-GMCP get tell() only
+    _deliver_channel_msg(fit_users, send_msg,
+        channel, clean_speaker, clean_message);
 
     if(userp(me) && channel == "chat" && random(100) < 20 )
     {
@@ -627,13 +676,7 @@ varargs int do_channel(object me, string channel, string msg, mixed raw)
             krok_top1 = krok_top2 = 0;
             krok_id1 = krok_id2 = "";
         }
-
-
-
-
     }
-
-    fit_users->add_msg_log(channel, send_msg);
 
     if(arrayp(ch->extra["listener"]) )
     {
@@ -697,16 +740,41 @@ void register_relay_channel(string channel) {
 
 /* 註冊頻道 */
 nomask void register_channel(object me, int channel) {
+    object gd;
     if(!channel ) return;
     if(undefinedp(users[me]) ) users[me] = channel;
     else users[me] |= channel;
+
+    // Push updated channel list to GMCP client
+    if(interactive(me) && has_gmcp(me)) {
+        gd = find_object(GMCP_D);
+        if(!gd) catch(gd = load_object(GMCP_D));
+        if(gd) call_out("_gmcp_push_channels", 0, me);
+    }
 }
 
 /* 移除註冊 */
 nomask void remove_register(object me, int channel) {
+    object gd;
     if(!channel ) return;
     users[me] ^= channel;
     if(users[me] == 0 ) map_delete(users, me);
+
+    // Push updated channel list to GMCP client
+    if(interactive(me) && has_gmcp(me)) {
+        gd = find_object(GMCP_D);
+        if(!gd) catch(gd = load_object(GMCP_D));
+        if(gd) call_out("_gmcp_push_channels", 0, me);
+    }
+}
+
+/* Deferred GMCP channel push (coalesced if both register+remove in same frame) */
+void _gmcp_push_channels(object who) {
+    object gd;
+    if(!who || !interactive(who) || !has_gmcp(who)) return;
+    gd = find_object(GMCP_D);
+    if(!gd) catch(gd = load_object(GMCP_D));
+    if(gd) gd->send_channels(who);
 }
 
 /* 直接移除一位使用者 */

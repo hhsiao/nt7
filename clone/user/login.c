@@ -179,3 +179,19 @@ int restore() {
 
     return res;
 }
+
+void gmcp_enable() {
+    // Nothing to do here. The driver remembers GMCP is enabled
+    // for this connection. After exec() moves the connection
+    // to the user object, has_gmcp(user) will return 1.
+    //
+    // The user object's post-login code should call:
+    //   if (has_gmcp()) call_out("gmcp_init_burst", 1);
+}
+
+// Called by the FluffOS driver when client sends GMCP data.
+// During login, we just ignore it.
+void gmcp(string message) {
+    // Silently ignore GMCP messages during login.
+    // The user object will handle these after login completes.
+}

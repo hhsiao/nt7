@@ -227,6 +227,15 @@ varargs int move(mixed dest, int raw)
     // Move & run INIT function
     move_object(ob);
 
+#ifdef GMCP_D
+    if (!is_char) {
+        if (objectp(env) && userp(env) && interactive(env) && has_gmcp(env))
+            env->gmcp_release_object(me);
+        if (objectp(ob) && userp(ob) && interactive(ob) && has_gmcp(ob))
+            ob->gmcp_receive_object(me);
+    }
+#endif
+
     // bindable == 2 拾取綁定
     if(me && !is_char && query("bindable", me) &&
         query("bindable", me) == 2 && userp(ob) ) {
@@ -282,6 +291,12 @@ void remove(string euid) {
     // Leave environment
     if(objectp(ob = environment()) ) {
         ob->add_encumbrance(-weight());
+
+#ifdef GMCP_D
+        // Item being destructed from a player's inventory
+        if (userp(ob) && interactive(ob) && has_gmcp(ob))
+            ob->gmcp_release_object(me);
+#endif
 
         if(ob->is_character() && query_temp("handing", ob) == me )
         // remove handing when destruct the object

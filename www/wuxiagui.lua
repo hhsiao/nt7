@@ -1,854 +1,4439 @@
--- ╔═══════════════════════════════════════════════════════════════════╗
--- ║              武俠 MUD GUI v2.0 - Wuxia Interface               ║
--- ║              Chinese Kung Fu Style Mudlet Package               ║
--- ║                                                                 ║
--- ║  Layout:                                                        ║
--- ║  ┌──────────────────────────────────┬──────────────┐           ║
--- ║  │                                  │  Character   │           ║
--- ║  │       Primary Message Window     │   Sheet      │           ║
--- ║  │       (Main MUD Console)         │              │           ║
--- ║  │                                  ├──────────────┤           ║
--- ║  │                                  │   Quest      │           ║
--- ║  │                                  │   Sheet      │           ║
--- ║  ├──────────────────────────────────┴──────────────┤           ║
--- ║  │ Chat [全部] [閒聊] [幫派] [私訊] [系統]         │           ║
--- ║  │                                                  │           ║
--- ║  ├──────────────────────────────────────────────────┤           ║
--- ║  │ [Input - Mudlet native, untouched]               │           ║
--- ║  └──────────────────────────────────────────────────┘           ║
--- ║                                                                 ║
--- ║  GMCP-ready: WuxiaGUI.data is the single source of truth.      ║
--- ║  Call WuxiaGUI.refresh() after updating data to redraw.         ║
--- ╚═══════════════════════════════════════════════════════════════════╝
+-- ═══════════════════════════════════════════════════════════════════
+-- WuxiaGUI v3 — Modern Tabbed Character Panel
+-- GMCP-driven, no mudlib changes needed.
+--
+-- Tabs: 總覽 | 屬性 | 技能 | 天賦 | 裝備
+-- INSTALL: Paste into Mudlet Script Editor as a single script.
+-- REMOVE:  lua WuxiaGUI3.destroy()
+-- ═══════════════════════════════════════════════════════════════════
 
-----------------------------------------------------------------------
--- § 0. NAMESPACE
-----------------------------------------------------------------------
-WuxiaGUI = WuxiaGUI or {}
-WuxiaGUI.version = "2.0"
+-- ─── Cleanup previous instance ───
+if WuxiaGUI3 and WuxiaGUI3.destroy then
+  WuxiaGUI3.destroy()
+end
 
-----------------------------------------------------------------------
--- § 1. THEME
-----------------------------------------------------------------------
-WuxiaGUI.theme = {
-  -- Backgrounds
-  bg          = "#0F0C0A",        -- deep ink
-  bgPanel     = "#1E1914",        -- panel bg
-  bgSection   = "#28221C",        -- section bg
-  bgInput     = "#1A1510",        -- input area bg
-  bgHover     = "#372F26",        -- hover
+WuxiaGUI3 = {}
+WuxiaGUI3._handlers    = {}
+WuxiaGUI3._sysHandlers = {}
 
-  -- Borders
-  gold        = "#B49650",        -- antique gold
-  goldDim     = "#64553C",        -- muted gold
-  red         = "#A0281E",        -- seal red
+-- ═══════════════════════════════════════════════
+-- § 1  Configuration
+-- ═══════════════════════════════════════════════
+local PW       = 320          -- right panel width px
+local LPW      = 280          -- left panel width px
+local BG       = "#111122"    -- main background
+local BG2      = "#161630"    -- card / section bg
+local BORDER   = "#2a2a50"    -- borders, separators
+local TEXT      = "#cccccc"    -- default text
+local TEXT_DIM  = "#777790"    -- dimmed labels
+local GOLD      = "#e8c170"   -- titles, highlights
+local GOLD_DIM  = "#8a7040"   -- inactive tab
+local WHITE     = "#eeeeee"   -- bright values
 
-  -- Text
-  tGold       = "#C8A850",        -- gold labels
-  tBright     = "#E8D8B0",        -- bright values
-  tNormal     = "#B0A080",        -- body text
-  tDim        = "#807060",        -- muted
-  tRed        = "#D04040",
-  tGreen      = "#50B050",
-  tBlue       = "#5080D0",
-  tCyan       = "#50B0B0",
-  tYellow     = "#D0C050",
-  tMagenta    = "#A064C8",
+-- Pin icon: pushpin U+1F4CC + Variation Selector 15 (U+FE0E) = text mode, colorable
+local PIN_CHAR  = "📌︎"
 
-  -- Gauge pairs {front, back}
-  gJing   = {"rgba(70,150,70,220)",  "rgba(35,60,35,150)"},
-  gQi     = {"rgba(170,55,55,220)",  "rgba(55,28,28,150)"},
-  gJingli = {"rgba(55,115,170,220)", "rgba(28,45,65,150)"},
-  gNeili  = {"rgba(150,90,190,220)", "rgba(55,35,75,150)"},
-  gFood   = {"rgba(170,140,55,220)", "rgba(65,55,28,150)"},
-  gWater  = {"rgba(55,140,170,220)", "rgba(28,55,65,150)"},
+local CHAT_H    = 180         -- chat panel height px
 
-  -- Tabs
-  tabActive   = "#A0281E",        -- active tab bg
-  tabInactive = "#28221C",        -- inactive tab bg
+-- Gauge colours  { foreground, background }
+local C_JING   = { "#cc3333", "#3d1111" }
+local C_QI     = { "#33aa44", "#113318" }
+local C_JINGLI = { "#3388cc", "#112240" }
+local C_NEILI  = { "#aa44cc", "#271140" }
+local C_FOOD   = { "#cc9933", "#332811" }
+local C_WATER  = { "#4488cc", "#112244" }
+local C_EXP    = { "#55bb55", "#113311" }
+
+-- Tab names (order matters)
+local TABS = { "總覽", "屬性", "技能", "天賦", "裝備" }
+
+-- ═══════════════════════════════════════════════
+-- § 2  State
+-- ═══════════════════════════════════════════════
+WuxiaGUI3.activeTab = "總覽"
+WuxiaGUI3.activeChatTab = "全部"
+
+WuxiaGUI3.vitals = {
+  jing=0, eff_jing=0, max_jing=1,
+  qi=0, eff_qi=0, max_qi=1,
+  jingli=0, max_jingli=1, jiajing=0,
+  neili=0, max_neili=1, jiali=0,
+  food=0, max_food=300, water=0, max_water=300,
+  potential=0, experience=0, combat_exp=0,
+  craze=0, max_craze=0, jianu=0,
 }
 
-----------------------------------------------------------------------
--- § 2. LAYOUT DIMENSIONS (pixels, overridable)
-----------------------------------------------------------------------
-WuxiaGUI.layout = {
-  rightW  = 300,    -- right panel width
-  bottomH = 180,    -- chat panel height
-  topH    = 0,      -- reserved for future toolbar
-  leftW   = 0,      -- reserved for future map panel
-  charSplitPct = 55, -- % of right panel for char sheet (rest = quest)
+WuxiaGUI3.status = {
+  name="", id="", title="", age=0, gender="",
+  str=0, int_=0, con=0, dex=0, per=0, kar=0,
+  level=1, wugong_level=1, combat_exp=0, next_level=0,
+  jingli_limit=0, neili_limit=0, potential_limit=0, experience_limit=0,
+  ability=0, achievement=0, active=0,
+  xuemai_level=0, yuanshen_level=0,
+  force=0, dodge=0, parry=0, unarmed=0,
+  sword=0, blade=0, staff=0, whip=0,
+  throwing=0, shooting=0, literate=0,
 }
 
-----------------------------------------------------------------------
--- § 3. DATA MODEL — single source of truth, GMCP fills this
-----------------------------------------------------------------------
-WuxiaGUI.data = WuxiaGUI.data or {
-  -- Vitals (from hp / GMCP)
-  jingqi  = {cur=0, max=0, pct=0},
-  qixue   = {cur=0, max=0, pct=0},
-  jingli  = {cur=0, max=0, regen=0},
-  neili   = {cur=0, max=0, regen=0},
-  food    = {cur=0, max=0},
-  water   = {cur=0, max=0},
-  pinghe  = "",
-  qianneng = 0,
-  tihui    = 0,
-  jingyan  = 0,
+-- Char.Buffs: raw source data from server
+WuxiaGUI3.buffs = {}
+WuxiaGUI3._buffsActiveFilter = "all"
 
-  -- Identity (from score / GMCP)
-  identity = {
-    title = "", age = "", gender = "", personality = "",
-    birthday = "", sect = "", master = "", gang = "",
-    position = "", military = "", profession = "",
-    yuanshen = "", residence = "", marriage = "",
-    partner = "", children = "", sexuality = "",
-    mount = "", bank = "", jianghu = "",
-  },
+-- Char.Inventory: items, equipment, sets
+WuxiaGUI3.inventory = {}
 
-  -- Combat
-  combat = {attack=0, defense=0, damage=0, protection=0},
+-- ═══════════════════════════════════════════════
+-- § 3  Helpers
+-- ═══════════════════════════════════════════════
+local MX = 10                       -- horizontal margin
+local GW = PW - MX * 2             -- gauge / content width
 
-  -- Attributes
-  attrs = {
-    strength={cur=0,max=0}, perception={cur=0,max=0},
-    constitution={cur=0,max=0}, agility={cur=0,max=0},
-  },
+-- Format large numbers: 12345 → "12,345"
+local function fmtNum(n)
+  n = tonumber(n) or 0
+  if n < 1000 then return tostring(n) end
+  local s = tostring(n)
+  local pre, rest = s:match("^(-?%d+)(%d%d%d)$")
+  if not pre then return s end
+  -- simple thousands
+  return pre .. "," .. rest
+end
 
-  -- Skills
-  skills = {unarmed="", weapon="", neigong="", qinggong=""},
+-- Create a styled gauge with label above it
+-- Returns next y position
+local function makeGauge(parent, id, y, h, fgColor, bgColor)
+  -- Label
+  local lbl = Geyser.Label:new({
+    name = "W3."..id..".lbl",
+    x = MX, y = y, width = GW, height = 15,
+  }, parent)
+  lbl:setStyleSheet("background-color: transparent;")
+  lbl:setFontSize(9)
+  WuxiaGUI3[id.."Lbl"] = lbl
 
-  -- Extended stats
-  stats = {
-    exp=0, potential=0, zhengqi=0, tihui=0,
-    gongji=0, linghui=0, weiwan=0, yueli=0,
-    rongyu=0, liqi=0,
-  },
+  -- Gauge
+  local g = Geyser.Gauge:new({
+    name = "W3."..id..".gauge",
+    x = MX, y = y + 15, width = GW, height = h,
+  }, parent)
+  g.front:setStyleSheet(string.format(
+    "background-color: %s; border-radius: 2px;", fgColor))
+  g.back:setStyleSheet(string.format(
+    "background-color: %s; border-radius: 2px;", bgColor))
+  g:setValue(0, 1)
+  WuxiaGUI3[id.."Gauge"] = g
 
-  -- Mastery flags
-  mastery = {
-    wuxue=false, zhoutian=false, yuanying=false, shengsi=false,
-  },
+  return y + 15 + h + 4
+end
 
-  -- Kill records
-  kills = {
-    total=0, player=0, murder=0, stun=0, good=0, evil=0,
-    slaughter=0,
-  },
+-- Create a horizontal separator line
+local function makeSep(parent, y)
+  local s = Geyser.Label:new({
+    name = "W3.sep."..tostring(y),
+    x = MX, y = y, width = GW, height = 1,
+  }, parent)
+  s:setStyleSheet("background-color: "..BORDER..";")
+  return y + 6
+end
 
-  playtime = "",
+-- Create a label for text content
+local function makeLabel(parent, id, y, h)
+  local lbl = Geyser.Label:new({
+    name = "W3."..id,
+    x = MX, y = y, width = GW, height = h,
+  }, parent)
+  lbl:setStyleSheet("background-color: transparent; qproperty-alignment: 'AlignLeft | AlignTop';")
+  lbl:setFontSize(9)
+  WuxiaGUI3[id] = lbl
+  return y + h
+end
 
-  -- Quest data (stub for future)
-  quests = {},
-  activeQuest = nil,
+-- Styled HTML span
+local function span(color, text)
+  return string.format('<span style="color:%s;">%s</span>', color, text)
+end
+
+-- Convert ANSI color codes to HTML spans
+-- Handles ESC[Nm and ESC[N;N;Nm sequences
+local _ansiColors = {
+  ["30"] = "#000",    ["31"] = "#a00",    ["32"] = "#0a0",    ["33"] = "#a50",
+  ["34"] = "#00a",    ["35"] = "#a0a",    ["36"] = "#0aa",    ["37"] = "#aaa",
+  ["1;30"] = "#555",  ["1;31"] = "#f55",  ["1;32"] = "#5f5",  ["1;33"] = "#ff5",
+  ["1;34"] = "#55f",  ["1;35"] = "#f5f",  ["1;36"] = "#5ff",  ["1;37"] = "#fff",
 }
+local function ansiToHtml(s)
+  if not s or s == "" then return "" end
+  -- Match ESC[ ... m sequences and replace with <span> or </span>
+  local result = ""
+  local openSpans = 0
+  local i = 1
+  local len = #s
+  while i <= len do
+    local esc = string.find(s, "\027%[", i)
+    if not esc then
+      result = result .. string.sub(s, i)
+      break
+    end
+    -- Append text before ESC
+    if esc > i then
+      result = result .. string.sub(s, i, esc - 1)
+    end
+    -- Find the 'm' terminator
+    local mpos = string.find(s, "m", esc + 2)
+    if not mpos then
+      result = result .. string.sub(s, i)
+      break
+    end
+    local codes = string.sub(s, esc + 2, mpos - 1)
+    i = mpos + 1
 
-----------------------------------------------------------------------
--- § 4. CSS HELPERS
-----------------------------------------------------------------------
-local T = WuxiaGUI.theme
-
-local function css(props)
-  local parts = {}
-  for k,v in pairs(props) do
-    parts[#parts+1] = k .. ": " .. v .. ";"
-  end
-  return table.concat(parts, " ")
-end
-
-local function panelCSS(extra)
-  return css({
-    ["background-color"] = T.bg,
-    ["border"] = "0px",
-  }) .. (extra or "")
-end
-
-local function sectionCSS()
-  return css({
-    ["background-color"] = T.bgSection,
-    ["border"] = "1px solid " .. T.goldDim,
-    ["border-radius"] = "3px",
-    ["padding"] = "3px",
-  })
-end
-
-local function gaugeCSS(fg, bg)
-  local front = css({["background-color"]=fg, ["border-radius"]="2px"})
-  local back = css({
-    ["background-color"]=bg,
-    ["border"]="1px solid " .. T.goldDim,
-    ["border-radius"]="2px",
-  })
-  return front, back
-end
-
-----------------------------------------------------------------------
--- § 5. BUILD THE FULL LAYOUT
-----------------------------------------------------------------------
-function WuxiaGUI.setup()
-  WuxiaGUI.teardown()
-
-  local L = WuxiaGUI.layout
-
-  -- Push main console borders to make room
-  setBorderRight(L.rightW)
-  setBorderBottom(L.bottomH)
-  setBorderTop(L.topH)
-  setBorderLeft(L.leftW)
-
-  -- ── Right Panel (Character + Quest) ──
-  WuxiaGUI.rightPanel = Geyser.Container:new({
-    name = "WGUI.right",
-    x = "-"..L.rightW.."px", y = 0,
-    width = L.rightW, height = "-"..L.bottomH.."px",
-  })
-
-  local splitY = L.charSplitPct .. "%"
-  local questY = (100 - L.charSplitPct) .. "%"
-
-  -- Character Sheet area (top portion of right panel)
-  WuxiaGUI.charContainer = Geyser.Container:new({
-    name = "WGUI.char", x = 0, y = 0,
-    width = "100%", height = splitY,
-  }, WuxiaGUI.rightPanel)
-
-  -- Quest Sheet area (bottom portion of right panel)
-  WuxiaGUI.questContainer = Geyser.Container:new({
-    name = "WGUI.quest", x = 0, y = splitY,
-    width = "100%", height = questY,
-  }, WuxiaGUI.rightPanel)
-
-  -- ── Bottom Panel (Chat) ──
-  WuxiaGUI.bottomPanel = Geyser.Container:new({
-    name = "WGUI.bottom",
-    x = 0, y = "-"..L.bottomH.."px",
-    width = "100%", height = L.bottomH,
-  })
-
-  -- Build each section
-  WuxiaGUI._buildCharSheet()
-  WuxiaGUI._buildQuestSheet()
-  WuxiaGUI._buildChat()
-
-  WuxiaGUI.initialized = true
-  WuxiaGUI.refresh()
-
-  -- Handle window resize
-  if WuxiaGUI._resizeHandler then
-    killAnonymousEventHandler(WuxiaGUI._resizeHandler)
-  end
-  WuxiaGUI._resizeHandler = registerAnonymousEventHandler(
-    "sysWindowResizeEvent", "WuxiaGUI._onResize")
-end
-
-function WuxiaGUI._onResize()
-  -- borders stay fixed, Geyser handles the rest
-  local L = WuxiaGUI.layout
-  setBorderRight(L.rightW)
-  setBorderBottom(L.bottomH)
-end
-
-function WuxiaGUI.teardown()
-  if WuxiaGUI.rightPanel then WuxiaGUI.rightPanel:hide() end
-  if WuxiaGUI.bottomPanel then WuxiaGUI.bottomPanel:hide() end
-  WuxiaGUI.rightPanel = nil
-  WuxiaGUI.bottomPanel = nil
-  WuxiaGUI.initialized = false
-  setBorderRight(0) setBorderBottom(0)
-end
-
-----------------------------------------------------------------------
--- § 6. CHARACTER SHEET
-----------------------------------------------------------------------
-function WuxiaGUI._buildCharSheet()
-  local c = WuxiaGUI.charContainer
-
-  -- Background
-  WuxiaGUI.charBg = Geyser.Label:new({
-    name="WGUI.charBg", x=0, y=0, width="100%", height="100%",
-  }, c)
-  WuxiaGUI.charBg:setStyleSheet(css({
-    ["background-color"] = T.bg,
-    ["border-left"] = "2px solid "..T.gold,
-    ["border-bottom"] = "1px solid "..T.goldDim,
-  }))
-
-  -- Header
-  WuxiaGUI.charHeader = Geyser.Label:new({
-    name="WGUI.charHeader", x=0, y=0, width="100%", height="28px",
-  }, c)
-  WuxiaGUI.charHeader:setStyleSheet(css({
-    ["background-color"] = T.red,
-    ["border-bottom"] = "1px solid "..T.gold,
-    ["qproperty-alignment"] = "'AlignCenter'",
-  }))
-  WuxiaGUI.charHeader:setFontSize(11)
-  WuxiaGUI.charHeader:echo(
-    "<center><font color='"..T.tGold.."'>╋ 人 物 ╋</font></center>")
-  WuxiaGUI.charHeader:setClickCallback("WuxiaGUI._toggleCharMode")
-
-  -- Scrollable content area
-  WuxiaGUI.charScroll = Geyser.Label:new({
-    name="WGUI.charScroll", x=0, y="28px",
-    width="100%", height="-28px",
-  }, c)
-  WuxiaGUI.charScroll:setStyleSheet("background-color: "..T.bg..";")
-
-  -- We use an inner container for the gauge/label layout
-  WuxiaGUI.charInner = Geyser.Container:new({
-    name="WGUI.charInner", x="4px", y="4px",
-    width="-8px", height="-8px",
-  }, WuxiaGUI.charScroll)
-
-  -- Build gauge rows inside charInner
-  WuxiaGUI._buildVitals()
-
-  -- State: 'compact' or 'detail'
-  WuxiaGUI.charMode = WuxiaGUI.charMode or "compact"
-end
-
-function WuxiaGUI._buildVitals()
-  local ci = WuxiaGUI.charInner
-  local y = 0
-  local rowH = 32  -- label(14) + gauge(14) + gap(4)
-  local lblH = 13
-  local barH = 13
-  local gap = 4
-
-  local function mkGauge(id, label, gCol, yPos)
-    local lbl = Geyser.Label:new({
-      name="WGUI.v."..id..".lbl", x=0, y=yPos.."px",
-      width="100%", height=lblH.."px",
-    }, ci)
-    lbl:setStyleSheet("background-color: transparent;")
-    lbl:setFontSize(9)
-
-    local g = Geyser.Gauge:new({
-      name="WGUI.v."..id..".g", x=0, y=(yPos+lblH).."px",
-      width="100%", height=barH.."px",
-    }, ci)
-    local f, b = gaugeCSS(gCol[1], gCol[2])
-    g:setStyleSheet(f, b)
-
-    return {label=lbl, gauge=g}
-  end
-
-  WuxiaGUI.vJingqi  = mkGauge("jingqi",  "精氣", T.gJing,   y); y=y+rowH
-  WuxiaGUI.vQixue   = mkGauge("qixue",   "氣血", T.gQi,     y); y=y+rowH
-  y = y + 2  -- extra spacer between vital pairs
-  WuxiaGUI.vJingli  = mkGauge("jingli",  "精力", T.gJingli, y); y=y+rowH
-  WuxiaGUI.vNeili   = mkGauge("neili",   "內力", T.gNeili,  y); y=y+rowH
-  y = y + 4
-
-  -- Separator
-  WuxiaGUI.charSep1 = Geyser.Label:new({
-    name="WGUI.charSep1", x=0, y=y.."px", width="100%", height="1px",
-  }, ci)
-  WuxiaGUI.charSep1:setStyleSheet("background-color:"..T.goldDim..";")
-  y = y + 6
-
-  -- Food + Water (side by side, smaller)
-  WuxiaGUI.vFood = Geyser.Gauge:new({
-    name="WGUI.v.food.g", x=0, y=y.."px",
-    width="48%", height="10px",
-  }, ci)
-  do local f,b = gaugeCSS(T.gFood[1], T.gFood[2])
-    WuxiaGUI.vFood:setStyleSheet(f, b) end
-
-  WuxiaGUI.vWater = Geyser.Gauge:new({
-    name="WGUI.v.water.g", x="52%", y=y.."px",
-    width="48%", height="10px",
-  }, ci)
-  do local f,b = gaugeCSS(T.gWater[1], T.gWater[2])
-    WuxiaGUI.vWater:setStyleSheet(f, b) end
-  y = y + 14
-
-  -- Food/Water labels
-  WuxiaGUI.foodWaterLbl = Geyser.Label:new({
-    name="WGUI.v.fw.lbl", x=0, y=y.."px",
-    width="100%", height="13px",
-  }, ci)
-  WuxiaGUI.foodWaterLbl:setStyleSheet("background-color:transparent;")
-  WuxiaGUI.foodWaterLbl:setFontSize(8)
-  y = y + 16
-
-  -- Pinghe bar
-  WuxiaGUI.pingheLbl = Geyser.Label:new({
-    name="WGUI.v.pinghe", x=0, y=y.."px",
-    width="100%", height="13px",
-  }, ci)
-  WuxiaGUI.pingheLbl:setStyleSheet("background-color:transparent;")
-  WuxiaGUI.pingheLbl:setFontSize(8)
-  y = y + 16
-
-  -- Separator
-  WuxiaGUI.charSep2 = Geyser.Label:new({
-    name="WGUI.charSep2", x=0, y=y.."px", width="100%", height="1px",
-  }, ci)
-  WuxiaGUI.charSep2:setStyleSheet("background-color:"..T.goldDim..";")
-  y = y + 6
-
-  -- Stats summary box
-  WuxiaGUI.statsBox = Geyser.Label:new({
-    name="WGUI.v.stats", x=0, y=y.."px",
-    width="100%", height="48px",
-  }, ci)
-  WuxiaGUI.statsBox:setStyleSheet(sectionCSS())
-  WuxiaGUI.statsBox:setFontSize(9)
-  y = y + 54
-
-  -- Detail mini-console (shown in detail mode)
-  WuxiaGUI.detailCon = Geyser.MiniConsole:new({
-    name="WGUI.detailCon", x=0, y=y.."px",
-    width="100%", height="300px",
-    fontSize=8, autoWrap=true, scrollBar=false,
-  }, ci)
-  WuxiaGUI.detailCon:setColor(15, 12, 10)
-  WuxiaGUI.detailCon:setFontSize(8)
-  WuxiaGUI.detailCon:hide()
-end
-
-----------------------------------------------------------------------
--- § 7. QUEST SHEET (stub - expandable later)
-----------------------------------------------------------------------
-function WuxiaGUI._buildQuestSheet()
-  local q = WuxiaGUI.questContainer
-
-  WuxiaGUI.questBg = Geyser.Label:new({
-    name="WGUI.questBg", x=0, y=0, width="100%", height="100%",
-  }, q)
-  WuxiaGUI.questBg:setStyleSheet(css({
-    ["background-color"] = T.bg,
-    ["border-left"] = "2px solid "..T.gold,
-  }))
-
-  WuxiaGUI.questHeader = Geyser.Label:new({
-    name="WGUI.questHeader", x=0, y=0, width="100%", height="24px",
-  }, q)
-  WuxiaGUI.questHeader:setStyleSheet(css({
-    ["background-color"] = T.bgSection,
-    ["border-bottom"] = "1px solid "..T.goldDim,
-    ["border-left"] = "2px solid "..T.gold,
-    ["qproperty-alignment"] = "'AlignCenter'",
-  }))
-  WuxiaGUI.questHeader:setFontSize(10)
-  WuxiaGUI.questHeader:echo(
-    "<center><font color='"..T.tGold.."'>╋ 任 務 ╋</font></center>")
-
-  WuxiaGUI.questBody = Geyser.MiniConsole:new({
-    name="WGUI.questBody", x="4px", y="28px",
-    width="-8px", height="-32px",
-    fontSize=9, autoWrap=true, scrollBar=true,
-  }, q)
-  WuxiaGUI.questBody:setColor(15, 12, 10)
-  WuxiaGUI.questBody:setFontSize(9)
-  WuxiaGUI.questBody:cecho("<DimGrey>尚無任務資訊。\n輸入 quest 或等待 GMCP 推送。<reset>\n")
-end
-
-----------------------------------------------------------------------
--- § 8. CHAT PANEL (tabbed, hand-rolled for theme control)
-----------------------------------------------------------------------
-WuxiaGUI.chatTabs = {"全部", "閒聊", "幫派", "私訊", "系統"}
-WuxiaGUI.chatActive = WuxiaGUI.chatActive or "全部"
-
-function WuxiaGUI._buildChat()
-  local bp = WuxiaGUI.bottomPanel
-
-  -- Background
-  WuxiaGUI.chatBg = Geyser.Label:new({
-    name="WGUI.chatBg", x=0, y=0, width="100%", height="100%",
-  }, bp)
-  WuxiaGUI.chatBg:setStyleSheet(css({
-    ["background-color"] = T.bg,
-    ["border-top"] = "2px solid "..T.gold,
-  }))
-
-  -- Tab bar
-  WuxiaGUI.tabBar = Geyser.HBox:new({
-    name="WGUI.tabBar", x=0, y=0,
-    width="100%", height="22px",
-  }, bp)
-
-  WuxiaGUI.tabButtons = {}
-  for _, tabName in ipairs(WuxiaGUI.chatTabs) do
-    local btn = Geyser.Label:new({
-      name="WGUI.tab."..tabName,
-    }, WuxiaGUI.tabBar)
-    btn:setFontSize(9)
-    btn:setClickCallback("WuxiaGUI._switchChatTab", tabName)
-    WuxiaGUI.tabButtons[tabName] = btn
-  end
-
-  -- Console area (one miniconsole per tab, stacked)
-  WuxiaGUI.chatConsoles = {}
-  for _, tabName in ipairs(WuxiaGUI.chatTabs) do
-    local con = Geyser.MiniConsole:new({
-      name="WGUI.chat."..tabName,
-      x="4px", y="24px", width="-8px", height="-28px",
-      fontSize=9, autoWrap=true, scrollBar=true,
-    }, bp)
-    con:setColor(15, 12, 10)
-    con:setFontSize(9)
-    con:hide()
-    WuxiaGUI.chatConsoles[tabName] = con
-  end
-
-  WuxiaGUI._switchChatTab(WuxiaGUI.chatActive)
-end
-
-function WuxiaGUI._switchChatTab(tab)
-  WuxiaGUI.chatActive = tab
-  for _, name in ipairs(WuxiaGUI.chatTabs) do
-    local btn = WuxiaGUI.tabButtons[name]
-    local con = WuxiaGUI.chatConsoles[name]
-    if name == tab then
-      btn:setStyleSheet(css({
-        ["background-color"] = T.tabActive,
-        ["border-bottom"] = "2px solid "..T.gold,
-        ["qproperty-alignment"] = "'AlignCenter'",
-      }))
-      btn:echo("<center><font color='"..T.tGold.."'>"..name.."</font></center>")
-      con:show()
+    -- Reset code (0 or 2;37;0m style resets)
+    if codes == "0" or codes == "" or codes:match("^2;37;0$") then
+      if openSpans > 0 then
+        result = result .. "</span>"
+        openSpans = openSpans - 1
+      end
     else
-      btn:setStyleSheet(css({
-        ["background-color"] = T.tabInactive,
-        ["border-bottom"] = "1px solid "..T.goldDim,
-        ["qproperty-alignment"] = "'AlignCenter'",
-      }))
-      btn:echo("<center><font color='"..T.tDim.."'>"..name.."</font></center>")
-      con:hide()
+      -- Look up color
+      local color = _ansiColors[codes]
+      if not color then
+        -- Try extracting just the bold+fg part (e.g. "1;35" from "1;35")
+        local bold, fg = codes:match("^(1);(%d+)$")
+        if bold and fg then
+          color = _ansiColors[bold .. ";" .. fg]
+        else
+          fg = codes:match("^(%d+)$")
+          if fg then color = _ansiColors[fg] end
+        end
+      end
+      if color then
+        -- Close previous span if open
+        if openSpans > 0 then
+          result = result .. "</span>"
+          openSpans = openSpans - 1
+        end
+        result = result .. '<span style="color:' .. color .. ';">'
+        openSpans = openSpans + 1
+      end
+    end
+  end
+  -- Close any remaining open spans
+  for _ = 1, openSpans do
+    result = result .. "</span>"
+  end
+  return result
+end
+
+-- Key-value pair for display
+local function kv(label, value, valueColor)
+  valueColor = valueColor or WHITE
+  return span(TEXT_DIM, label) .. " " .. span(valueColor, tostring(value))
+end
+
+-- ═══════════════════════════════════════════════
+-- § 3b  Persistence (save/load across sessions)
+-- ═══════════════════════════════════════════════
+WuxiaGUI3._saveFile = getMudletHomeDir() .. "/WuxiaGUI3_settings.lua"
+
+function WuxiaGUI3._saveSettings()
+  local data = {
+    pinnedTabs = WuxiaGUI3.pinnedTabs or {},
+    tabOrder = WuxiaGUI3._tabOrder or {},
+    allTabSendChannel = WuxiaGUI3._allTabSendChannel or "閒聊",
+    chatHeight = WuxiaGUI3._currentChatH or CHAT_H,
+  }
+  table.save(WuxiaGUI3._saveFile, data)
+end
+
+function WuxiaGUI3._loadSettings()
+  local data = {}
+  if io.open(WuxiaGUI3._saveFile, "r") then
+    table.load(WuxiaGUI3._saveFile, data)
+  end
+  if data.pinnedTabs then WuxiaGUI3.pinnedTabs = data.pinnedTabs end
+  if data.tabOrder then WuxiaGUI3._tabOrder = data.tabOrder end
+  if data.allTabSendChannel then WuxiaGUI3._allTabSendChannel = data.allTabSendChannel end
+  if data.chatHeight then
+    local h = tonumber(data.chatHeight)
+    if h and h >= CHAT_H then
+      WuxiaGUI3._currentChatH = h
     end
   end
 end
 
--- Public API: echo to a chat tab (and optionally mirror to 全部)
-function WuxiaGUI.chat(tabName, text, mirror)
-  if not WuxiaGUI.chatConsoles then return end
-  local con = WuxiaGUI.chatConsoles[tabName]
-  if con then con:cecho(text.."\n") end
-  if mirror ~= false and tabName ~= "全部" then
-    local all = WuxiaGUI.chatConsoles["全部"]
-    if all then all:cecho(text.."\n") end
+-- ═══════════════════════════════════════════════
+-- § 4  Build GUI Structure
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3.build()
+  -- Load saved settings before building
+  WuxiaGUI3._loadSettings()
+
+  local chatH = WuxiaGUI3._currentChatH or CHAT_H
+  WuxiaGUI3._currentChatH = chatH
+
+  setBorderRight(PW)
+  setBorderLeft(LPW)
+  setBorderTop(chatH)
+
+  -- ═════════════════════════════════════════
+  -- LEFT PANEL: 地圖 / 場景 / 戰鬥 (stacked)
+  -- ═════════════════════════════════════════
+  WuxiaGUI3.leftMain = Geyser.Container:new({
+    name = "W3.left", x = 0, y = 0,
+    width = LPW, height = "100%",
+  })
+
+  -- Background fill
+  WuxiaGUI3.leftBg = Geyser.Label:new({
+    name = "W3.left.bg", x = 0, y = 0,
+    width = "100%", height = "100%",
+  }, WuxiaGUI3.leftMain)
+  WuxiaGUI3.leftBg:setStyleSheet(string.format(
+    "background-color: %s; border-right: 1px solid %s;", BG, BORDER))
+
+  WuxiaGUI3._buildLeftPanel()
+
+  -- ═════════════════════════════════════════
+  -- RIGHT PANEL: 人物
+  -- ═════════════════════════════════════════
+
+  -- ─── Root container ───
+  WuxiaGUI3.main = Geyser.Container:new({
+    name = "W3.main", x = -PW, y = 0,
+    width = PW, height = "100%",
+  })
+
+  -- Background fill
+  WuxiaGUI3.bgLabel = Geyser.Label:new({
+    name = "W3.bg", x = 0, y = 0,
+    width = "100%", height = "100%",
+  }, WuxiaGUI3.main)
+  WuxiaGUI3.bgLabel:setStyleSheet(string.format(
+    "background-color: %s; border-left: 1px solid %s;", BG, BORDER))
+
+  -- ─── Title bar ───
+  WuxiaGUI3.titleLbl = Geyser.Label:new({
+    name = "W3.titleLbl", x = 0, y = 2,
+    width = "100%", height = 24,
+  }, WuxiaGUI3.main)
+  WuxiaGUI3.titleLbl:setStyleSheet(
+    "background-color: transparent; qproperty-alignment: AlignCenter;")
+  WuxiaGUI3.titleLbl:setFontSize(12)
+  WuxiaGUI3.titleLbl:echo(span(GOLD, "<b>╋ 人 物 ╋</b>"))
+
+  -- ─── Tab bar ───
+  local tabBarY = 28
+  local tabW = math.floor(PW / #TABS)
+  WuxiaGUI3.tabButtons = {}
+
+  for i, name in ipairs(TABS) do
+    local btn = Geyser.Label:new({
+      name = "W3.tab."..name,
+      x = (i-1) * tabW, y = tabBarY,
+      width = tabW, height = 22,
+    }, WuxiaGUI3.main)
+    btn:setFontSize(9)
+    btn:setClickCallback("WuxiaGUI3.switchTab", name)
+    WuxiaGUI3.tabButtons[name] = btn
+  end
+
+  -- ─── Tab content area (below tab bar) ───
+  local contentY = tabBarY + 24
+  WuxiaGUI3.tabContainers = {}
+
+  for _, name in ipairs(TABS) do
+    local c = Geyser.Container:new({
+      name = "W3.content."..name,
+      x = 0, y = contentY,
+      width = PW, height = "-0px",  -- fill remaining
+    }, WuxiaGUI3.main)
+    WuxiaGUI3.tabContainers[name] = c
+    c:hide()
+  end
+
+  -- Build each tab's contents
+  WuxiaGUI3._buildOverview()
+  WuxiaGUI3._buildAttributes()
+  WuxiaGUI3._buildSkills()
+  WuxiaGUI3._buildTalents()
+  WuxiaGUI3._buildEquipment()
+
+  -- Build chat panel (bottom)
+  WuxiaGUI3._buildChat()
+  WuxiaGUI3._registerChatGMCP()
+  WuxiaGUI3._registerChatAlias()
+
+  -- ─── Vitals bar (above main command line) ───
+  local vitalsH = 18
+  setBorderBottom(vitalsH)
+  local vScreenW, _ = getMainWindowSize()
+  local vitalsW = (vScreenW or 800) - PW - LPW
+  if vitalsW < 200 then vitalsW = 400 end
+  WuxiaGUI3._chatVitalsBar = Geyser.Label:new({
+    name = "W3.vitalsBar",
+    x = LPW, y = -vitalsH,
+    width = vitalsW, height = vitalsH,
+  })
+  WuxiaGUI3._chatVitalsBar:setStyleSheet(string.format([[
+    background-color: %s;
+    border-top: 1px solid %s;
+    qproperty-alignment: AlignVCenter;
+    padding-left: 6px;
+  ]], BG, BORDER))
+  WuxiaGUI3._chatVitalsBar:setFontSize(8)
+  WuxiaGUI3._chatVitalsBar:echo(span(TEXT_DIM, "連線中..."))
+
+  -- Show default tab
+  WuxiaGUI3.switchTab("總覽")
+
+  WuxiaGUI3.initialized = true
+end
+
+-- ═══════════════════════════════════════════════
+-- § 4a  Tab: 總覽 (Overview / HUD)
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3._buildOverview()
+  local p = WuxiaGUI3.tabContainers["總覽"]
+  local y = 4
+
+  -- Vitals gauges
+  y = makeGauge(p, "jing",   y, 18, C_JING[1],   C_JING[2])
+  y = makeGauge(p, "qi",     y, 18, C_QI[1],     C_QI[2])
+  y = makeGauge(p, "jingli", y, 18, C_JINGLI[1], C_JINGLI[2])
+  y = makeGauge(p, "neili",  y, 18, C_NEILI[1],  C_NEILI[2])
+
+  -- Food / Water small gauges
+  y = y + 2
+  -- Food gauge (half width)
+  local halfW = math.floor((GW - 6) / 2)
+  local foodG = Geyser.Gauge:new({
+    name = "W3.food.gauge",
+    x = MX, y = y + 14, width = halfW, height = 10,
+  }, p)
+  foodG.front:setStyleSheet("background-color:"..C_FOOD[1]..";border-radius:2px;")
+  foodG.back:setStyleSheet("background-color:"..C_FOOD[2]..";border-radius:2px;")
+  WuxiaGUI3.foodGauge = foodG
+
+  local foodLbl = Geyser.Label:new({
+    name = "W3.food.lbl",
+    x = MX, y = y, width = halfW, height = 14,
+  }, p)
+  foodLbl:setStyleSheet("background-color:transparent;")
+  foodLbl:setFontSize(8)
+  WuxiaGUI3.foodLbl = foodLbl
+
+  -- Water gauge (half width, right side)
+  local waterG = Geyser.Gauge:new({
+    name = "W3.water.gauge",
+    x = MX + halfW + 6, y = y + 14, width = halfW, height = 10,
+  }, p)
+  waterG.front:setStyleSheet("background-color:"..C_WATER[1]..";border-radius:2px;")
+  waterG.back:setStyleSheet("background-color:"..C_WATER[2]..";border-radius:2px;")
+  WuxiaGUI3.waterGauge = waterG
+
+  local waterLbl = Geyser.Label:new({
+    name = "W3.water.lbl",
+    x = MX + halfW + 6, y = y, width = halfW, height = 14,
+  }, p)
+  waterLbl:setStyleSheet("background-color:transparent;")
+  waterLbl:setFontSize(8)
+  WuxiaGUI3.waterLbl = waterLbl
+
+  y = y + 28
+
+  -- Craze / Pinghe indicator
+  y = makeLabel(p, "crazeLbl", y, 16)
+  y = y + 2
+
+  -- Separator
+  y = makeSep(p, y)
+
+  -- Experience / Potential / Tihui block
+  y = makeLabel(p, "expBlock", y, 52)
+  y = y + 2
+
+  -- Separator
+  y = makeSep(p, y)
+
+  -- Identity quick view
+  y = makeLabel(p, "identityBlock", y, 80)
+end
+
+-- ═══════════════════════════════════════════════
+-- § 4b  Tab: 屬性 (Attributes / Stats)
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3._buildAttributes()
+  local p = WuxiaGUI3.tabContainers["屬性"]
+  local y = 4
+
+  -- Section: 六大屬性
+  local hdr = Geyser.Label:new({
+    name = "W3.attr.hdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr:setStyleSheet("background-color:transparent;")
+  hdr:setFontSize(10)
+  hdr:echo(span(GOLD, "── 六大屬性 ──"))
+  y = y + 22
+
+  -- 6 attributes displayed as a 2-column grid
+  y = makeLabel(p, "attrGrid", y, 80)
+  y = y + 4
+
+  -- Section: 等級 & 戰鬥
+  y = makeSep(p, y)
+  local hdr2 = Geyser.Label:new({
+    name = "W3.level.hdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr2:setStyleSheet("background-color:transparent;")
+  hdr2:setFontSize(10)
+  hdr2:echo(span(GOLD, "── 等級 ──"))
+  y = y + 22
+
+  y = makeLabel(p, "levelBlock", y, 80)
+  y = y + 4
+
+  -- Section: 上限
+  y = makeSep(p, y)
+  local hdr3 = Geyser.Label:new({
+    name = "W3.limits.hdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr3:setStyleSheet("background-color:transparent;")
+  hdr3:setFontSize(10)
+  hdr3:echo(span(GOLD, "── 上限 ──"))
+  y = y + 22
+
+  y = makeLabel(p, "limitsBlock", y, 80)
+
+  -- Section: 血脈 / 元神
+  y = y + 4
+  y = makeSep(p, y)
+  local hdr4 = Geyser.Label:new({
+    name = "W3.special.hdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr4:setStyleSheet("background-color:transparent;")
+  hdr4:setFontSize(10)
+  hdr4:echo(span(GOLD, "── 修煉 ──"))
+  y = y + 22
+
+  y = makeLabel(p, "specialBlock", y, 60)
+
+  -- Section: 附加屬性 (full istat, client-side filtering)
+  y = y + 4
+  y = makeSep(p, y)
+  local hdr5 = Geyser.Label:new({
+    name = "W3.bonusStats.hdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr5:setStyleSheet("background-color:transparent;")
+  hdr5:setFontSize(10)
+  hdr5:echo(span(GOLD, "── 附加屬性 ──"))
+  y = y + 22
+
+  local filterSources = {
+    { key = "all",       label = "總計" },
+    { key = "equipment", label = "裝備" },
+    { key = "skillmix",  label = "技能" },
+    { key = "jingmai",   label = "經脈" },
+    { key = "yuanshen",  label = "元神" },
+    { key = "ability",   label = "能力" },
+    { key = "talent",    label = "天賦" },
+    { key = "temp",      label = "暫時" },
+  }
+  WuxiaGUI3._buffsFilterSources = filterSources
+  WuxiaGUI3._buffsFilterBtns = {}
+
+  local btnW = math.floor(GW / 4)
+  local btnH = 18
+  for i, src in ipairs(filterSources) do
+    local row = math.floor((i - 1) / 4)
+    local col = (i - 1) % 4
+    local btn = Geyser.Label:new({
+      name = "W3.buffsFilter." .. src.key,
+      x = MX + col * btnW, y = y + row * btnH,
+      width = btnW, height = btnH,
+    }, p)
+    btn:setFontSize(8)
+    btn:setClickCallback("WuxiaGUI3._onBuffsFilterClick", src.key)
+    WuxiaGUI3._buffsFilterBtns[src.key] = btn
+  end
+  y = y + math.ceil(#filterSources / 4) * btnH + 4
+  WuxiaGUI3._updateBuffsFilterBtns()
+
+  y = makeLabel(p, "bonusStatsInfo", y, 20)
+  y = makeLabel(p, "bonusStatsList", y, 700)
+end
+
+function WuxiaGUI3._onBuffsFilterClick(source)
+  WuxiaGUI3._buffsActiveFilter = source
+  WuxiaGUI3._updateBuffsFilterBtns()
+  WuxiaGUI3._refreshBonusStats()
+end
+
+function WuxiaGUI3._updateBuffsFilterBtns()
+  if not WuxiaGUI3._buffsFilterBtns then return end
+  local active = WuxiaGUI3._buffsActiveFilter or "all"
+  for _, src in ipairs(WuxiaGUI3._buffsFilterSources or {}) do
+    local btn = WuxiaGUI3._buffsFilterBtns[src.key]
+    if btn then
+      if src.key == active then
+        btn:setStyleSheet(string.format(
+          "background-color: %s; border: 1px solid %s; qproperty-alignment: AlignCenter;",
+          BG2, GOLD))
+        btn:echo(span(GOLD, "<b>" .. src.label .. "</b>"))
+      else
+        btn:setStyleSheet(string.format(
+          "background-color: %s; border: 1px solid %s; qproperty-alignment: AlignCenter;",
+          BG, BORDER))
+        btn:echo(span(TEXT_DIM, src.label))
+      end
+    end
   end
 end
 
--- Public API: append current MUD line to a chat tab
-function WuxiaGUI.chatAppend(tabName, mirror)
-  if not WuxiaGUI.chatConsoles then return end
-  local con = WuxiaGUI.chatConsoles[tabName]
+-- ═══════════════════════════════════════════════
+-- § 4c  Tab: 技能 (Skills)
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3._buildSkills()
+  local p = WuxiaGUI3.tabContainers["技能"]
+  local y = 4
+
+  local hdr = Geyser.Label:new({
+    name = "W3.skills.hdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr:setStyleSheet("background-color:transparent;")
+  hdr:setFontSize(10)
+  hdr:echo(span(GOLD, "── 武功技能 ──"))
+  y = y + 22
+
+  -- We'll render skill bars as label + gauge pairs
+  local skillList = {
+    { id = "sk_force",   label = "內功" },
+    { id = "sk_dodge",   label = "躲閃" },
+    { id = "sk_parry",   label = "招架" },
+    { id = "sk_unarmed", label = "拳腳" },
+    { id = "sk_sword",   label = "劍法" },
+    { id = "sk_blade",   label = "刀法" },
+    { id = "sk_staff",   label = "棍法" },
+    { id = "sk_whip",    label = "鞭法" },
+    { id = "sk_throw",   label = "暗器" },
+    { id = "sk_shoot",   label = "弓術" },
+    { id = "sk_lit",     label = "讀書" },
+    { id = "sk_martial", label = "武術" },
+  }
+
+  WuxiaGUI3._skillList = skillList
+
+  for _, sk in ipairs(skillList) do
+    -- Label
+    local lbl = Geyser.Label:new({
+      name = "W3."..sk.id..".lbl",
+      x = MX, y = y, width = GW, height = 14,
+    }, p)
+    lbl:setStyleSheet("background-color:transparent;")
+    lbl:setFontSize(8)
+    WuxiaGUI3[sk.id.."Lbl"] = lbl
+
+    -- Gauge
+    local g = Geyser.Gauge:new({
+      name = "W3."..sk.id..".gauge",
+      x = MX, y = y + 14, width = GW, height = 10,
+    }, p)
+    g.front:setStyleSheet("background-color:#5588aa;border-radius:2px;")
+    g.back:setStyleSheet("background-color:#1a2a3a;border-radius:2px;")
+    g:setValue(0, 1)
+    WuxiaGUI3[sk.id.."Gauge"] = g
+
+    y = y + 28
+  end
+end
+
+-- ═══════════════════════════════════════════════
+-- § 4d  Tab: 天賦 (Talents) - placeholder
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3._buildTalents()
+  local p = WuxiaGUI3.tabContainers["天賦"]
+  local y = 4
+
+  local hdr = Geyser.Label:new({
+    name = "W3.talent.hdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr:setStyleSheet("background-color:transparent;")
+  hdr:setFontSize(10)
+  hdr:echo(span(GOLD, "── 天賦技能 ──"))
+  y = y + 22
+
+  -- Talent info label (will need a new GMCP package to populate)
+  y = makeLabel(p, "talentInfo", y, 20)
+
+  -- Scrollable talent list area
+  y = makeLabel(p, "talentList", y, 400)
+end
+
+-- ═══════════════════════════════════════════════
+-- § 4e  Tab: 裝備 (Equipment) - placeholder
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3._buildEquipment()
+  local p = WuxiaGUI3.tabContainers["裝備"]
+  local y = 4
+
+  -- ═══ Weapon Slots ═══
+  local hdrW = Geyser.Label:new({
+    name = "W3.equip.hdrWeapon", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdrW:setStyleSheet("background-color:transparent;")
+  hdrW:setFontSize(10)
+  hdrW:echo(span(GOLD, "── 武器 ──"))
+  y = y + 20
+
+  local halfW = math.floor(GW / 2) - 2
+  local slotH = 40
+  -- Primary weapon slot
+  y = WuxiaGUI3._makeEquipSlot(p, "primary", "主手", MX, y, halfW, slotH)
+  -- Secondary weapon slot (same row, reset y)
+  WuxiaGUI3._makeEquipSlot(p, "secondary", "副手", MX + halfW + 4, y - slotH, halfW, slotH)
+  y = y + 4
+
+  y = makeSep(p, y)
+
+  -- ═══ Armor Slots ═══
+  local hdrA = Geyser.Label:new({
+    name = "W3.equip.hdrArmor", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdrA:setStyleSheet("background-color:transparent;")
+  hdrA:setFontSize(10)
+  hdrA:echo(span(GOLD, "── 防具 ──"))
+  y = y + 20
+
+  -- 2-column grid, 6 rows
+  local slotDefs = {
+    { "head",    "頭盔",  "cloth",   "戰衣" },
+    { "armor",   "鐵甲",  "boots",   "皮靴" },
+    { "hands",   "手套",  "wrists",  "護腕" },
+    { "waist",   "腰帶",  "surcoat", "披風" },
+    { "finger",  "戒指",  "neck",    "項鏈" },
+    { "rings",   "指環",  "charm",   "護符" },
+  }
+  local armorSlotH = 40
+  for _, row in ipairs(slotDefs) do
+    WuxiaGUI3._makeEquipSlot(p, row[1], row[2], MX, y, halfW, armorSlotH)
+    WuxiaGUI3._makeEquipSlot(p, row[3], row[4], MX + halfW + 4, y, halfW, armorSlotH)
+    y = y + armorSlotH + 2
+  end
+  y = y + 2
+
+  y = makeSep(p, y)
+
+  -- ═══ Equipment Buffs Summary ═══
+  local hdrB = Geyser.Label:new({
+    name = "W3.equip.hdrBuffs", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdrB:setStyleSheet("background-color:transparent;")
+  hdrB:setFontSize(10)
+  hdrB:echo(span(GOLD, "── 裝備效果 ──"))
+  y = y + 20
+
+  y = makeLabel(p, "equipBuffSummary", y, 80)
+  y = y + 4
+
+  y = makeSep(p, y)
+
+  -- ═══ Equipment Sets ═══
+  local hdrS = Geyser.Label:new({
+    name = "W3.equip.hdrSets", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdrS:setStyleSheet("background-color:transparent;")
+  hdrS:setFontSize(10)
+  hdrS:echo(span(GOLD, "── 套裝組合 ──"))
+  y = y + 20
+
+  WuxiaGUI3._equipSetBtns = {}
+  WuxiaGUI3._equipSetCooldowns = {}  -- track cooldown state per button
+  local setBtnW = math.floor(GW / 5) - 2
+  for i = 1, 5 do
+    local idx = i
+    local btn = Geyser.Label:new({
+      name = "W3.equipSet." .. tostring(i),
+      x = MX + (i - 1) * (setBtnW + 2), y = y,
+      width = setBtnW, height = 22,
+    }, p)
+    btn:setFontSize(9)
+
+    -- Left click: load set | Right click: save (empty) or delete (saved)
+    btn:setClickCallback(function(event)
+      -- Block clicks during cooldown
+      if WuxiaGUI3._equipSetCooldowns[idx] then return end
+
+      local inv = WuxiaGUI3.inventory or {}
+      local sets = inv.sets or {}
+      local hasSet = sets[tostring(idx)] ~= nil
+
+      if type(event) == "table" and event.button == "RightButton" then
+        if hasSet then
+          sendGMCP('Char.Inventory.DeleteSet {"set":"' .. tostring(idx) .. '"}')
+        else
+          sendGMCP('Char.Inventory.SaveSet {"set":"' .. tostring(idx) .. '"}')
+        end
+      else
+        if not hasSet then return end
+        sendGMCP('Char.Inventory.LoadSet {"set":"' .. tostring(idx) .. '"}')
+        -- Start cooldown on load only
+        WuxiaGUI3._startSetCooldown(idx)
+      end
+    end)
+
+    WuxiaGUI3._equipSetBtns[i] = btn
+  end
+  y = y + 26
+
+  -- Hint
+  local hint = Geyser.Label:new({
+    name = "W3.equip.setsHint", x = MX, y = y, width = GW, height = 14,
+  }, p)
+  hint:setStyleSheet("background-color:transparent;")
+  hint:setFontSize(7)
+  hint:echo(span(TEXT_DIM, "點擊切換 · 右鍵儲存/刪除"))
+  y = y + 18
+
+  y = makeSep(p, y)
+
+  -- ═══ Inventory List ═══
+  local hdrI = Geyser.Label:new({
+    name = "W3.equip.hdrInv", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdrI:setStyleSheet("background-color:transparent;")
+  hdrI:setFontSize(10)
+  hdrI:echo(span(GOLD, "── 物品欄 ──"))
+  y = y + 20
+
+  y = makeLabel(p, "invHeader", y, 16)
+  y = makeLabel(p, "invList", y, 500)
+end
+
+-- ─── Equipment set cooldown with sweep effect ───
+function WuxiaGUI3._startSetCooldown(clickedIdx)
+  local COOLDOWN = 10  -- seconds
+  local STEPS = 20
+  local interval = COOLDOWN / STEPS
+  local gray = "#222233"
+  local active = "#161630"
+
+  -- Mark all buttons as in cooldown
+  for i = 1, 5 do
+    WuxiaGUI3._equipSetCooldowns[i] = true
+  end
+
+  -- Chain tempTimers for each animation step
+  for step = 1, STEPS do
+    tempTimer(interval * step, function()
+      if not WuxiaGUI3._equipSetCooldowns[1] then return end
+
+      local pct = step / STEPS
+
+      for i = 1, 5 do
+        local btn = WuxiaGUI3._equipSetBtns[i]
+        if btn then
+          -- qconicalgradient: angle=90 means stop:0 starts at 12 o'clock
+          -- stop:0 to pct = active (revealed), pct to 1 = gray (remaining)
+          local css = string.format(
+            "background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, " ..
+            "stop:0 %s, stop:%.4f %s, stop:%.4f %s, stop:1 %s); " ..
+            "border: 1px solid #333; qproperty-alignment: AlignCenter;",
+            active, pct - 0.001, active, pct, gray, gray)
+          btn:setStyleSheet(css)
+          btn:echo(span("#888", tostring(i)))
+        end
+      end
+
+      if step == STEPS then
+        for i = 1, 5 do
+          WuxiaGUI3._equipSetCooldowns[i] = nil
+        end
+        WuxiaGUI3._refreshEquipment()
+      end
+    end)
+  end
+end
+
+-- ─── Create a single equipment slot label ───
+function WuxiaGUI3._makeEquipSlot(parent, slotKey, slotLabel, x, y, w, h)
+  local lbl = Geyser.Label:new({
+    name = "W3.eqSlot." .. slotKey,
+    x = x, y = y, width = w, height = h,
+  }, parent)
+  lbl:setStyleSheet(string.format(
+    "background-color: %s; border: 1px solid %s; padding: 3px 5px;",
+    BG, BORDER))
+  lbl:setFontSize(10)
+  lbl:echo(
+    '<span style="color:#888;font-size:9px;">' .. slotLabel .. ' ' .. slotKey .. '</span><br>' ..
+    span(TEXT_DIM, "未裝備")
+  )
+  if not WuxiaGUI3._equipSlotLabels then WuxiaGUI3._equipSlotLabels = {} end
+  WuxiaGUI3._equipSlotLabels[slotKey] = lbl
+  return y + h
+end
+
+-- ─── Equipment set button handler (via GMCP, no console output) ───
+-- ═══════════════════════════════════════════════
+-- § 4f  Chat Panel (bottom of screen)
+--
+-- Channel mapping from CHANNEL_D:
+--   chat=閒聊, rumor=謠言, mess=江湖, family=門派,
+--   party=幫派, combat=戰鬥, gt=隊伍, dt=洞天,
+--   sys=系統, wiz=巫師, news=新聞, auc=拍賣
+--
+-- Text triggers match the 【頻道名】 prefix patterns
+-- from do_channel() output to route lines to tabs.
+-- ═══════════════════════════════════════════════
+
+-- Channel definitions: all known channels for console pre-creation
+local CHAT_CHANNELS = {
+  { name = "全部",   cmd = nil },
+  { name = "閒聊",   cmd = "chat" },
+  { name = "謠言",   cmd = "rumor" },
+  { name = "江湖",   cmd = "mess" },
+  { name = "巫師",   cmd = "wiz" },
+  { name = "系統",   cmd = "sys" },
+  { name = "監測",   cmd = "nch" },
+  { name = "新聞",   cmd = "news" },
+  { name = "國際",   cmd = "gwiz" },
+  { name = "未知",   cmd = "other" },
+  { name = "廣告",   cmd = "ad" },
+  { name = "門派",   cmd = "family" },
+  { name = "幫派",   cmd = "party" },
+  { name = "股票",   cmd = "stock" },
+  { name = "拍賣",   cmd = "auc" },
+  { name = "戰鬥",   cmd = "combat" },
+  { name = "隊伍",   cmd = "gt" },
+  { name = "洞天",   cmd = "dt" },
+  { name = "戰場",   cmd = "war" },
+  { name = "調試",   cmd = "debug" },
+}
+
+-- Default pinned tabs (before server data arrives)
+local CHAT_TABS = { "全部", "閒聊", "門派", "幫派", "系統", "新聞" }
+
+-- All channel names for console creation
+local ALL_CHANNEL_NAMES = {}
+for _, ch in ipairs(CHAT_CHANNELS) do
+  ALL_CHANNEL_NAMES[#ALL_CHANNEL_NAMES+1] = ch.name
+end
+
+-- ═══════════════════════════════════════════════
+-- § 4f  Left Panel: 地圖 / 場景 / 戰鬥 (stacked)
+-- ═══════════════════════════════════════════════
+
+function WuxiaGUI3._buildLeftPanel()
+  local p = WuxiaGUI3.leftMain
+  local w = LPW - 8
+  local mapH = 160
+  local battleH = 160
+
+  -- ─── Section 1: 地圖 (top, fixed) ───
+  local y = 4
+  local mapHdr = Geyser.Label:new({
+    name = "W3.left.mapHdr", x = 4, y = y, width = w, height = 18,
+  }, p)
+  mapHdr:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
+  mapHdr:setFontSize(9)
+  mapHdr:echo(span(GOLD, "── 地圖 ──"))
+  y = y + 20
+
+  WuxiaGUI3.mapArea = Geyser.Label:new({
+    name = "W3.left.map",
+    x = 4, y = y, width = w, height = mapH,
+  }, p)
+  WuxiaGUI3.mapArea:setStyleSheet(string.format([[
+    background-color: %s;
+    border: 1px solid %s;
+    qproperty-alignment: AlignCenter;
+  ]], BG2, BORDER))
+  WuxiaGUI3.mapArea:setFontSize(8)
+  WuxiaGUI3.mapArea:echo(
+    span(TEXT_DIM, "需要 GMCP 封包") .. "<br>" ..
+    span(TEXT_DIM, "地圖功能開發中"))
+
+  local sceneTopY = y + mapH + 4  -- where scene starts
+
+  -- ─── Section 3: 戰鬥 (bottom, fixed, anchored to bottom) ───
+  -- Build from bottom up: enemy list, target info, header
+  local battleListH = battleH - 38  -- subtract header + target line
+
+  local battleHdr = Geyser.Label:new({
+    name = "W3.left.battleHdr", x = 4, y = -(battleH), width = w, height = 18,
+  }, p)
+  battleHdr:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
+  battleHdr:setFontSize(9)
+  battleHdr:echo(span(GOLD, "── 戰鬥 ──"))
+
+  WuxiaGUI3.battleTargetInfo = Geyser.Label:new({
+    name = "W3.left.target",
+    x = 4, y = -(battleH - 18), width = w, height = 18,
+  }, p)
+  WuxiaGUI3.battleTargetInfo:setStyleSheet(string.format(
+    "background-color: transparent; padding-left: 2px;"))
+  WuxiaGUI3.battleTargetInfo:setFontSize(8)
+  WuxiaGUI3.battleTargetInfo:echo(span(TEXT_DIM, "目前無目標"))
+
+  WuxiaGUI3.battleEnemyList = Geyser.Label:new({
+    name = "W3.left.enemies",
+    x = 4, y = -(battleListH + 2), width = w, height = battleListH,
+  }, p)
+  WuxiaGUI3.battleEnemyList:setStyleSheet(string.format([[
+    background-color: %s;
+    border: 1px solid %s;
+    padding: 4px;
+    qproperty-alignment: AlignTop;
+  ]], BG2, BORDER))
+  WuxiaGUI3.battleEnemyList:setFontSize(8)
+  WuxiaGUI3.battleEnemyList:echo(
+    span(TEXT_DIM, "需要 GMCP 封包") .. "<br>" ..
+    span(TEXT_DIM, "戰鬥系統開發中"))
+
+  -- ─── Section 2: 場景 (middle, fills remaining space) ───
+  -- Use a container anchored between map bottom and battle top
+  local sceneContainer = Geyser.Container:new({
+    name = "W3.left.sceneCont",
+    x = 0, y = sceneTopY,
+    width = LPW, height = "-" .. (battleH + 4 + sceneTopY) .. "px",
+  }, p)
+
+  local sceneHdr = Geyser.Label:new({
+    name = "W3.left.sceneHdr", x = 4, y = 0, width = w, height = 18,
+  }, sceneContainer)
+  sceneHdr:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
+  sceneHdr:setFontSize(9)
+  sceneHdr:echo(span(GOLD, "── 場景 ──"))
+
+  WuxiaGUI3.sceneRoomName = Geyser.Label:new({
+    name = "W3.left.roomName",
+    x = 4, y = 20, width = w, height = 18,
+  }, sceneContainer)
+  WuxiaGUI3.sceneRoomName:setStyleSheet(string.format(
+    "background-color: transparent; padding-left: 2px;"))
+  WuxiaGUI3.sceneRoomName:setFontSize(8)
+  WuxiaGUI3.sceneRoomName:echo(span(TEXT_DIM, "未知位置"))
+
+  -- Content list: fills rest of scene container
+  WuxiaGUI3.sceneContentList = Geyser.Label:new({
+    name = "W3.left.content",
+    x = 4, y = 40,
+    width = w, height = "-4px",
+  }, sceneContainer)
+  WuxiaGUI3.sceneContentList:setStyleSheet(string.format([[
+    background-color: %s;
+    border: 1px solid %s;
+    padding: 4px;
+    qproperty-alignment: AlignTop;
+  ]], BG2, BORDER))
+  WuxiaGUI3.sceneContentList:setFontSize(8)
+  WuxiaGUI3.sceneContentList:echo(
+    span(TEXT_DIM, "需要 GMCP 封包") .. "<br>" ..
+    span(TEXT_DIM, "輸入 ") .. span(GOLD, "look") ..
+    span(TEXT_DIM, " 來查看"))
+end
+
+-- ═══════════════════════════════════════════════
+-- § 5  Chat Panel
+-- ═══════════════════════════════════════════════
+
+-- Lookup: channel display name → server command
+function WuxiaGUI3._buildChat()
+  local chatH = WuxiaGUI3._currentChatH or CHAT_H
+  setBorderTop(chatH)
+
+  -- Calculate chat panel width (between left and right panels)
+  local screenW, _ = getMainWindowSize()
+  local chatPanelW = (screenW or 800) - PW - LPW
+  if chatPanelW < 200 then chatPanelW = 400 end
+
+  WuxiaGUI3.chatMain = Geyser.Container:new({
+    name = "W3.chat.main",
+    x = LPW, y = 0,
+    width = chatPanelW, height = chatH,
+  })
+
+  -- Background
+  WuxiaGUI3.chatBg = Geyser.Label:new({
+    name = "W3.chat.bg", x = 0, y = 0,
+    width = "100%", height = "100%",
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3.chatBg:setStyleSheet(string.format(
+    "background-color: %s; border-bottom: 1px solid %s;", BG, BORDER))
+
+  -- ─── Tab bar — built by _rebuildTabBar (called here and on Chat.Channels) ───
+  WuxiaGUI3.chatTabButtons = {}
+  WuxiaGUI3._rebuildTabBar()
+
+  -- ─── Chat input line (bottom of chat area) ───
+  local inputH = 22
+  local labelW = 60
+
+  -- Separator line above input
+  WuxiaGUI3._chatInputLine = Geyser.Label:new({
+    name = "W3.chat.inputLine",
+    x = 0, y = -inputH,
+    width = "100%", height = 1,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._chatInputLine:setStyleSheet(string.format(
+    "background-color: %s;", BORDER))
+
+  -- Input field — full width, borderless
+  WuxiaGUI3._chatInput = Geyser.CommandLine:new({
+    name = "W3.chat.input",
+    x = 0, y = -(inputH - 1),
+    width = "100%", height = inputH - 1,
+    fontSize = 9,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._chatInput:setFontSize(9)
+  WuxiaGUI3._chatInput:setStyleSheet(string.format([[
+    background-color: %s;
+    color: %s;
+    border-top: none; border-left: none; border-right: none; border-bottom: 1px solid %s;
+    padding-left: %dpx;
+  ]], BG, TEXT, BORDER, labelW))
+  WuxiaGUI3._chatInput:setAction(function(text)
+    WuxiaGUI3._onChatInputEnter(text)
+    WuxiaGUI3._chatInput:clear()
+  end)
+
+  -- Channel label prefix — overlays left side of input
+  WuxiaGUI3._chatInputLabel = Geyser.Label:new({
+    name = "W3.chat.inputLabel",
+    x = 0, y = -(inputH - 1),
+    width = labelW, height = inputH - 1,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._chatInputLabel:setFontSize(9)
+  WuxiaGUI3._chatInputLabel:echo(span(GOLD, "閒聊"))
+
+  -- Read-only overlay (hidden by default, shown for read-only channels)
+  WuxiaGUI3._chatInputOverlay = Geyser.Label:new({
+    name = "W3.chat.inputOverlay",
+    x = 0, y = -(inputH - 1),
+    width = "100%", height = inputH - 1,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._chatInputOverlay:setStyleSheet(string.format([[
+    background-color: %s;
+    color: %s;
+    border-top: none; border-left: none; border-right: none; border-bottom: 1px solid %s;
+    padding-left: 4px;
+    qproperty-alignment: AlignVCenter;
+  ]], BG, TEXT_DIM, BORDER))
+  WuxiaGUI3._chatInputOverlay:setFontSize(9)
+  WuxiaGUI3._chatInputOverlay:echo(span(TEXT_DIM, "此頻道為唯讀"))
+  WuxiaGUI3._chatInputOverlay:hide()
+
+  -- Default selected channel for 全部 tab (preserve loaded setting)
+  WuxiaGUI3._allTabSendChannel = WuxiaGUI3._allTabSendChannel or "閒聊"
+
+  WuxiaGUI3._updateChatInputState()
+
+  -- ─── MiniConsoles: one per channel ───
+  WuxiaGUI3.chatConsoles = {}
+
+  for _, name in ipairs(ALL_CHANNEL_NAMES) do
+    local con = Geyser.MiniConsole:new({
+      name = "W3.chat.con."..name,
+      x = 0, y = 22,
+      width = "100%", height = "-22px",
+      fontSize = 9,
+      autoWrap = true,
+      scrollBar = true,
+    }, WuxiaGUI3.chatMain)
+    con:setColor(17, 17, 34)
+    con:setFontSize(9)
+    con:hide()
+    WuxiaGUI3.chatConsoles[name] = con
+  end
+
+  WuxiaGUI3.switchChatTab("全部")
+
+  -- ─── Resize drag handle at bottom of chat ───
+  WuxiaGUI3._chatResizeHandle = Geyser.Label:new({
+    name = "W3.chat.resize",
+    x = 0, y = -3,
+    width = "100%", height = 6,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._chatResizeHandle:setStyleSheet([[
+    background-color: transparent;
+    border: none;
+  ]])
+  -- Change cursor to resize indicator on hover
+  WuxiaGUI3._chatResizeHandle:setOnEnter("WuxiaGUI3._onResizeEnter")
+  WuxiaGUI3._chatResizeHandle:setOnLeave("WuxiaGUI3._onResizeLeave")
+  WuxiaGUI3._chatResizeHandle:setClickCallback("WuxiaGUI3._onResizeClick")
+end
+
+-- ─── Chat resize logic ───
+WuxiaGUI3._chatMinH = CHAT_H
+WuxiaGUI3._currentChatH = CHAT_H
+WuxiaGUI3._chatDragging = false
+
+function WuxiaGUI3._getChatMaxH()
+  local _, screenH = getMainWindowSize()
+  return math.floor((screenH or 600) * 0.5)
+end
+
+function WuxiaGUI3._resizeChatTo(newH)
+  local minH = WuxiaGUI3._chatMinH
+  local maxH = WuxiaGUI3._getChatMaxH()
+  newH = math.max(minH, math.min(newH, maxH))
+
+  WuxiaGUI3._currentChatH = newH
+  setBorderTop(newH)
+  if WuxiaGUI3.chatMain then
+    WuxiaGUI3.chatMain:resize(nil, newH)
+  end
+
+  -- Rebuild picker if open (position depends on chat height)
+  if WuxiaGUI3._chatPicker then
+    WuxiaGUI3._buildChatChannelPicker()
+  end
+
+  -- Reposition drawer if open
+  if WuxiaGUI3._drawerOpen and WuxiaGUI3._drawer then
+    -- Recalculate drawer height and rebuild
+    WuxiaGUI3._destroyDrawer()
+    WuxiaGUI3._buildChannelDrawer()
+    if WuxiaGUI3._drawer then
+      WuxiaGUI3._repositionDrawer()
+      WuxiaGUI3._refreshDrawerState()
+      WuxiaGUI3._renderDrawerPage()
+      WuxiaGUI3._drawer:show()
+      WuxiaGUI3._drawer:raise()
+      if WuxiaGUI3._drawerBgLbl then WuxiaGUI3._drawerBgLbl:raise() end
+      for _, cmd in ipairs(WuxiaGUI3._drawerChannelOrder or {}) do
+        local btns = WuxiaGUI3._drawerBtns[cmd]
+        if btns then
+          btns.nameBtn:raise()
+          btns.toggleBtn:raise()
+        end
+      end
+      if WuxiaGUI3._drawerUpBtn then WuxiaGUI3._drawerUpBtn:raise() end
+      if WuxiaGUI3._drawerDownBtn then WuxiaGUI3._drawerDownBtn:raise() end
+      WuxiaGUI3._drawerOpen = true
+    end
+  end
+end
+
+function WuxiaGUI3._onResizeEnter()
+  -- Visual hint: highlight the border
+  if WuxiaGUI3._chatResizeHandle then
+    WuxiaGUI3._chatResizeHandle:setStyleSheet(string.format([[
+      background-color: %s;
+      border: none;
+    ]], GOLD_DIM))
+  end
+end
+
+function WuxiaGUI3._onResizeLeave()
+  if WuxiaGUI3._chatDragging then return end
+  if WuxiaGUI3._chatResizeHandle then
+    WuxiaGUI3._chatResizeHandle:setStyleSheet([[
+      background-color: transparent;
+      border: none;
+    ]])
+  end
+end
+
+function WuxiaGUI3._onResizeClick()
+  -- Start drag: record initial mouse Y and chat height
+  local _, mouseY = getMousePosition()
+  WuxiaGUI3._chatDragging = true
+  WuxiaGUI3._chatDragStartMouseY = mouseY
+  WuxiaGUI3._chatDragStartH = WuxiaGUI3._currentChatH or CHAT_H
+
+  -- Start a timer to track mouse movement
+  if WuxiaGUI3._resizeTimerId then
+    killTimer(WuxiaGUI3._resizeTimerId)
+  end
+  WuxiaGUI3._resizeTimerId = tempTimer(0.02, function()
+    WuxiaGUI3._onResizeDragTick()
+  end, true)  -- repeating
+
+  -- Register a global release handler
+  if WuxiaGUI3._resizeReleaseHandler then
+    killAnonymousEventHandler(WuxiaGUI3._resizeReleaseHandler)
+  end
+  WuxiaGUI3._resizeReleaseHandler = registerAnonymousEventHandler(
+    "sysWindowMouseReleaseEvent", "WuxiaGUI3._onResizeDragEnd")
+end
+
+function WuxiaGUI3._onResizeDragTick()
+  if not WuxiaGUI3._chatDragging then
+    if WuxiaGUI3._resizeTimerId then
+      killTimer(WuxiaGUI3._resizeTimerId)
+      WuxiaGUI3._resizeTimerId = nil
+    end
+    return
+  end
+
+  local _, mouseY = getMousePosition()
+  if not mouseY then return end
+
+  local deltaY = mouseY - WuxiaGUI3._chatDragStartMouseY
+  local newH = WuxiaGUI3._chatDragStartH + deltaY
+  WuxiaGUI3._resizeChatTo(newH)
+end
+
+function WuxiaGUI3._onResizeDragEnd()
+  WuxiaGUI3._chatDragging = false
+
+  if WuxiaGUI3._resizeTimerId then
+    killTimer(WuxiaGUI3._resizeTimerId)
+    WuxiaGUI3._resizeTimerId = nil
+  end
+  if WuxiaGUI3._resizeReleaseHandler then
+    killAnonymousEventHandler(WuxiaGUI3._resizeReleaseHandler)
+    WuxiaGUI3._resizeReleaseHandler = nil
+  end
+
+  -- Reset handle appearance
+  if WuxiaGUI3._chatResizeHandle then
+    WuxiaGUI3._chatResizeHandle:setStyleSheet([[
+      background-color: transparent;
+      border: none;
+    ]])
+  end
+
+  -- Save new chat height
+  WuxiaGUI3._saveSettings()
+end
+
+-- Handle Mudlet window resize: clamp chat height to 50% max
+function WuxiaGUI3._onWindowResize()
+  if not WuxiaGUI3._currentChatH then return end
+  local maxH = WuxiaGUI3._getChatMaxH()
+  if WuxiaGUI3._currentChatH > maxH then
+    WuxiaGUI3._resizeChatTo(maxH)
+  end
+
+  -- Update chat panel and vitals bar width (pixel-based)
+  local screenW, _ = getMainWindowSize()
+  local newW = (screenW or 800) - PW - LPW
+  if newW < 200 then newW = 400 end
+  if WuxiaGUI3.chatMain then
+    WuxiaGUI3.chatMain:resize(newW, nil)
+  end
+  if WuxiaGUI3._chatVitalsBar then
+    WuxiaGUI3._chatVitalsBar:resize(newW, nil)
+  end
+end
+
+-- ─── Channel Drawer (right side, scrollable) ───
+-- A persistent vertical drawer on the right edge of the chat area.
+-- Created once, shown/hidden by ⚙ button. Survives tab switches.
+-- Scrollable with ▲/▼ buttons when channels exceed visible area.
+
+WuxiaGUI3._drawerOpen = false
+WuxiaGUI3._drawerScroll = 0  -- scroll offset (number of rows scrolled)
+
+function WuxiaGUI3._buildChannelDrawer()
+  WuxiaGUI3._destroyDrawer()
+
+  if not WuxiaGUI3.channelList or #WuxiaGUI3.channelList == 0 then
+    return
+  end
+
+  local drawerW = 120
+  local itemH = 22
+  local arrowH = 16
+
+  -- Position: dropdown below the gear button
+  local gearBtn = WuxiaGUI3.chatMoreBtn
+  if not gearBtn then return end
+  local gearX = gearBtn:get_x()
+
+  -- Anchor right edge of drawer to right edge of gear button
+  local chatMainW = WuxiaGUI3.chatMain:get_width()
+  local chatMainH = WuxiaGUI3._currentChatH or WuxiaGUI3.chatMain:get_height()
+  local drawerRight = gearX + gearBtn:get_width()
+  local drawerX = drawerRight - drawerW
+  if drawerX < 4 then drawerX = 4 end
+
+  local maxH = chatMainH - 24 - 22 - 4
+  local nChannels = #WuxiaGUI3.channelList
+  local needsScroll = (nChannels * itemH) > maxH
+
+  local contentH = maxH
+  if needsScroll then
+    contentH = contentH - arrowH * 2
+  end
+  local visibleRows = math.floor(contentH / itemH)
+  visibleRows = math.min(visibleRows, nChannels)
+  local drawerH = visibleRows * itemH + (needsScroll and arrowH * 2 or 0) + 4
+
+  WuxiaGUI3._drawer = Geyser.Container:new({
+    name = "W3.drawer",
+    x = drawerX, y = 22,
+    width = drawerW, height = drawerH,
+  }, WuxiaGUI3.chatMain)
+
+  -- Background
+  WuxiaGUI3._drawerBgLbl = Geyser.Label:new({
+    name = "W3.drawer.bg",
+    x = 0, y = 0, width = "100%", height = "100%",
+  }, WuxiaGUI3._drawer)
+  WuxiaGUI3._drawerBgLbl:setStyleSheet(string.format([[
+    background-color: %s;
+    border: 1px solid %s;
+  ]], BG2, GOLD_DIM))
+
+  local yPos = 2
+
+  -- Up arrow
+  if needsScroll then
+    WuxiaGUI3._drawerUpBtn = Geyser.Label:new({
+      name = "W3.drawer.up",
+      x = 2, y = yPos,
+      width = drawerW - 4, height = arrowH,
+    }, WuxiaGUI3._drawer)
+    local upColor = (WuxiaGUI3._drawerScroll or 0) > 0 and GOLD or TEXT_DIM
+    WuxiaGUI3._drawerUpBtn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-bottom: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG2, BORDER))
+    WuxiaGUI3._drawerUpBtn:setFontSize(9)
+    WuxiaGUI3._drawerUpBtn:echo(span(upColor, "▲"))
+    WuxiaGUI3._drawerUpBtn:setClickCallback("WuxiaGUI3._drawerScrollUp")
+    WuxiaGUI3._drawerUpBtn:setWheelCallback("WuxiaGUI3._onDrawerWheel")
+    yPos = yPos + arrowH
+  end
+
+  -- Channel rows
+  WuxiaGUI3._drawerBtns = {}
+  WuxiaGUI3._drawerChannelOrder = {}
+  WuxiaGUI3._drawerVisRows = visibleRows
+  WuxiaGUI3._drawerNeedsScroll = needsScroll
+
+  for i, ch in ipairs(WuxiaGUI3.channelList) do
+    local dispName = WuxiaGUI3._cmdToTab(ch.cmd) or ch.cmd
+
+    local nameBtn = Geyser.Label:new({
+      name = "W3.drawer.n." .. ch.cmd,
+      x = 4, y = 0, width = drawerW - 32, height = itemH,
+    }, WuxiaGUI3._drawer)
+    nameBtn:setFontSize(8)
+    nameBtn:setClickCallback("WuxiaGUI3._viewChannel", ch.cmd)
+    nameBtn:setWheelCallback("WuxiaGUI3._onDrawerWheel")
+
+    local toggleBtn = Geyser.Label:new({
+      name = "W3.drawer.g." .. ch.cmd,
+      x = drawerW - 28, y = 0, width = 24, height = itemH,
+    }, WuxiaGUI3._drawer)
+    toggleBtn:setFontSize(9)
+    toggleBtn:setClickCallback("WuxiaGUI3._toggleChannel", ch.cmd)
+    toggleBtn:setWheelCallback("WuxiaGUI3._onDrawerWheel")
+
+    WuxiaGUI3._drawerBtns[ch.cmd] = {
+      nameBtn = nameBtn,
+      toggleBtn = toggleBtn,
+      dispName = dispName,
+    }
+    WuxiaGUI3._drawerChannelOrder[i] = ch.cmd
+  end
+
+  -- Down arrow
+  if needsScroll then
+    -- Will be positioned by _renderDrawerPage
+    WuxiaGUI3._drawerDownBtn = Geyser.Label:new({
+      name = "W3.drawer.down",
+      x = 2, y = 0,
+      width = drawerW - 4, height = arrowH,
+    }, WuxiaGUI3._drawer)
+    WuxiaGUI3._drawerDownBtn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-top: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG2, BORDER))
+    WuxiaGUI3._drawerDownBtn:setFontSize(9)
+    WuxiaGUI3._drawerDownBtn:echo(span(TEXT_DIM, "▼"))
+    WuxiaGUI3._drawerDownBtn:setClickCallback("WuxiaGUI3._drawerScrollDown")
+    WuxiaGUI3._drawerDownBtn:setWheelCallback("WuxiaGUI3._onDrawerWheel")
+  end
+
+  WuxiaGUI3._drawerScroll = 0
+  WuxiaGUI3._refreshDrawerState()
+  WuxiaGUI3._renderDrawerPage()
+
+  WuxiaGUI3._drawer:hide()
+  WuxiaGUI3._drawerOpen = false
+end
+
+-- Calculate how many rows fit in the visible area
+function WuxiaGUI3._drawerVisibleRows()
+  return WuxiaGUI3._drawerVisRows or 6
+end
+
+-- Position visible channel buttons based on scroll offset
+function WuxiaGUI3._renderDrawerPage()
+  if not WuxiaGUI3._drawerBtns or not WuxiaGUI3._drawerChannelOrder then return end
+
+  local visRows = WuxiaGUI3._drawerVisibleRows()
+  local total = #WuxiaGUI3._drawerChannelOrder
+  local maxScroll = math.max(0, total - visRows)
+  WuxiaGUI3._drawerScroll = math.max(0, math.min(WuxiaGUI3._drawerScroll, maxScroll))
+
+  local arrowH = 16
+  local itemH = 22
+  local drawerW = 120
+  local needsScroll = WuxiaGUI3._drawerNeedsScroll
+
+  local startY = 2 + (needsScroll and arrowH or 0)
+
+  for i, cmd in ipairs(WuxiaGUI3._drawerChannelOrder) do
+    local btns = WuxiaGUI3._drawerBtns[cmd]
+    local visIndex = i - WuxiaGUI3._drawerScroll
+    if visIndex >= 1 and visIndex <= visRows then
+      local by = startY + (visIndex - 1) * itemH
+      btns.nameBtn:move(4, by)
+      btns.toggleBtn:move(drawerW - 28, by)
+      btns.nameBtn:show()
+      btns.toggleBtn:show()
+    else
+      btns.nameBtn:hide()
+      btns.toggleBtn:hide()
+    end
+  end
+
+  -- Position down arrow after last visible row
+  if needsScroll and WuxiaGUI3._drawerDownBtn then
+    local dnY = startY + visRows * itemH
+    WuxiaGUI3._drawerDownBtn:move(2, dnY)
+  end
+
+  -- Update scroll button states
+  if WuxiaGUI3._drawerUpBtn then
+    if WuxiaGUI3._drawerScroll > 0 then
+      WuxiaGUI3._drawerUpBtn:echo(span(GOLD_DIM, "▲"))
+    else
+      WuxiaGUI3._drawerUpBtn:echo(span(TEXT_DIM, "▲"))
+    end
+  end
+  if WuxiaGUI3._drawerDownBtn then
+    if WuxiaGUI3._drawerScroll < maxScroll then
+      WuxiaGUI3._drawerDownBtn:echo(span(GOLD_DIM, "▼"))
+    else
+      WuxiaGUI3._drawerDownBtn:echo(span(TEXT_DIM, "▼"))
+    end
+  end
+end
+
+function WuxiaGUI3._drawerScrollUp()
+  WuxiaGUI3._drawerScroll = math.max(0, WuxiaGUI3._drawerScroll - 1)
+  WuxiaGUI3._renderDrawerPage()
+end
+
+function WuxiaGUI3._drawerScrollDown()
+  WuxiaGUI3._drawerScroll = WuxiaGUI3._drawerScroll + 1
+  WuxiaGUI3._renderDrawerPage()
+end
+
+-- Refresh drawer button colors based on channelEnabled state
+function WuxiaGUI3._refreshDrawerState()
+  if not WuxiaGUI3._drawerBtns then return end
+
+  for cmd, btns in pairs(WuxiaGUI3._drawerBtns) do
+    local enabled = WuxiaGUI3.channelEnabled[cmd]
+    local dispName = btns.dispName
+
+    if enabled then
+      btns.nameBtn:setStyleSheet([[
+        background-color: #1a2a1a;
+        border: 1px solid #336633;
+        qproperty-alignment: AlignCenter;
+      ]])
+      btns.nameBtn:echo(span("#ccddcc", dispName))
+      btns.toggleBtn:setStyleSheet([[
+        background-color: #1a3a1a;
+        border: 1px solid #33aa44;
+        qproperty-alignment: AlignCenter;
+      ]])
+      btns.toggleBtn:echo(span("#33aa44", "●"))
+    else
+      btns.nameBtn:setStyleSheet([[
+        background-color: #2a1a1a;
+        border: 1px solid #663333;
+        qproperty-alignment: AlignCenter;
+      ]])
+      btns.nameBtn:echo(span("#887777", dispName))
+      btns.toggleBtn:setStyleSheet([[
+        background-color: #3a1a1a;
+        border: 1px solid #aa3333;
+        qproperty-alignment: AlignCenter;
+      ]])
+      btns.toggleBtn:echo(span("#aa3333", "○"))
+    end
+  end
+end
+
+-- Toggle drawer open/close
+function WuxiaGUI3._toggleDrawer()
+  if WuxiaGUI3._drawerOpen then
+    if WuxiaGUI3._drawer then WuxiaGUI3._drawer:hide() end
+    WuxiaGUI3._drawerOpen = false
+    return
+  end
+
+  -- Always rebuild to use current chat height
+  WuxiaGUI3._destroyDrawer()
+  WuxiaGUI3._buildChannelDrawer()
+  if not WuxiaGUI3._drawer then return end
+
+  -- Reposition to current gear button location
+  WuxiaGUI3._repositionDrawer()
+  WuxiaGUI3._refreshDrawerState()
+  WuxiaGUI3._renderDrawerPage()
+  WuxiaGUI3._drawer:show()
+  WuxiaGUI3._drawer:raise()
+  -- Raise all children
+  if WuxiaGUI3._drawerBgLbl then WuxiaGUI3._drawerBgLbl:raise() end
+  for _, cmd in ipairs(WuxiaGUI3._drawerChannelOrder or {}) do
+    local btns = WuxiaGUI3._drawerBtns[cmd]
+    if btns then
+      btns.nameBtn:raise()
+      btns.toggleBtn:raise()
+    end
+  end
+  if WuxiaGUI3._drawerUpBtn then WuxiaGUI3._drawerUpBtn:raise() end
+  if WuxiaGUI3._drawerDownBtn then WuxiaGUI3._drawerDownBtn:raise() end
+  WuxiaGUI3._drawerOpen = true
+end
+
+-- Reposition drawer to anchor below the gear button
+function WuxiaGUI3._repositionDrawer()
+  if not WuxiaGUI3._drawer or not WuxiaGUI3.chatMoreBtn then return end
+
+  local gearBtn = WuxiaGUI3.chatMoreBtn
+  local gearX = gearBtn:get_x()
+  local gearW = gearBtn:get_width()
+  local drawerW = WuxiaGUI3._drawer:get_width()
+  local chatMainW = WuxiaGUI3.chatMain:get_width()
+
+  -- Default: anchor top-left of drawer to bottom-left of gear
+  local drawerX = gearX
+
+  -- If drawer would go off right edge, anchor top-right to bottom-right of gear
+  if drawerX + drawerW > chatMainW - 4 then
+    drawerX = gearX + gearW - drawerW
+  end
+
+  -- Clamp to not go off left edge
+  if drawerX < 4 then drawerX = 4 end
+
+  WuxiaGUI3._drawer:move(drawerX, 22)
+end
+
+-- Resize all chat consoles to accommodate drawer
+function WuxiaGUI3._resizeConsoles()
+  for name, con in pairs(WuxiaGUI3.chatConsoles or {}) do
+    con:resize("100%", "-22px")
+  end
+end
+
+function WuxiaGUI3._destroyDrawer()
+  WuxiaGUI3._drawerBtns = nil
+  WuxiaGUI3._drawerChannelOrder = nil
+  if WuxiaGUI3._drawer then
+    WuxiaGUI3._drawer:hide()
+    WuxiaGUI3._drawer = nil
+  end
+  WuxiaGUI3._drawerOpen = false
+end
+
+-- Aliases for old function names
+function WuxiaGUI3._showChannelPanel() WuxiaGUI3._toggleDrawer() end
+function WuxiaGUI3._hideChannelPanel() end  -- no-op, drawer is persistent
+function WuxiaGUI3._toggleMoreChannels() WuxiaGUI3._toggleDrawer() end
+
+-- Click channel name → switch to view that channel (add temp tab if needed)
+function WuxiaGUI3._viewChannel(cmd)
+  local dispName = WuxiaGUI3._cmdToTab(cmd)
+  if not dispName then return end
+
+  -- Create console if it doesn't exist
+  if not WuxiaGUI3.chatConsoles[dispName] then
+    local con = Geyser.MiniConsole:new({
+      name = "W3.chat.con." .. dispName,
+      x = 0, y = 22,
+      width = "100%", height = "-22px",
+      fontSize = 9,
+      autoWrap = true,
+      scrollBar = true,
+    }, WuxiaGUI3.chatMain)
+    con:setColor(17, 17, 34)
+    con:setFontSize(9)
+    con:hide()
+    WuxiaGUI3.chatConsoles[dispName] = con
+  end
+
+  -- Add as temp tab if not already visible
+  if not WuxiaGUI3.chatTabButtons[dispName] then
+    WuxiaGUI3.tempTabs = WuxiaGUI3.tempTabs or {}
+    local alreadyTemp = false
+    for _, t in ipairs(WuxiaGUI3.tempTabs) do
+      if t == dispName then alreadyTemp = true break end
+    end
+    if not alreadyTemp then
+      WuxiaGUI3.tempTabs[#WuxiaGUI3.tempTabs + 1] = dispName
+      WuxiaGUI3._ensureTabOrder(dispName)
+    end
+    WuxiaGUI3._rebuildTabBar()
+  end
+
+  -- Switch to that tab (drawer stays open)
+  WuxiaGUI3.switchChatTab(dispName)
+end
+
+-- Click toggle icon → enable/disable channel
+function WuxiaGUI3._toggleChannel(cmd)
+  WuxiaGUI3.tuneChannel(cmd)
+  -- Drawer state refreshes when Chat.Channels arrives from server
+end
+
+-- Right-click tab → remove temp tab
+function WuxiaGUI3._onTabRightClick(tabName)
+  if WuxiaGUI3.tempTabs then
+    for i, t in ipairs(WuxiaGUI3.tempTabs) do
+      if t == tabName then
+        table.remove(WuxiaGUI3.tempTabs, i)
+        WuxiaGUI3._rebuildTabBar()
+        return
+      end
+    end
+  end
+end
+
+-- ─── Switch chat tab ───
+function WuxiaGUI3.switchChatTab(tabName)
+  local prevTab = WuxiaGUI3.activeChatTab
+  local needsRebuild = false
+
+  -- Auto-close previous tab if it was a temp (unpinned) tab
+  if prevTab and prevTab ~= tabName and prevTab ~= "全部"
+     and not WuxiaGUI3._inRebuild then
+    if not WuxiaGUI3._isTabPinned(prevTab) then
+      for i, t in ipairs(WuxiaGUI3.tempTabs) do
+        if t == prevTab then
+          table.remove(WuxiaGUI3.tempTabs, i)
+          needsRebuild = true
+          break
+        end
+      end
+    end
+  end
+
+  WuxiaGUI3.activeChatTab = tabName
+
+  -- Clear unread for this tab
+  WuxiaGUI3.unreadTabs[tabName] = nil
+  -- Switching to 全部 clears all unread
+  if tabName == "全部" then
+    WuxiaGUI3.unreadTabs = {}
+  end
+
+  -- Show/hide consoles — only one visible at a time
+  for name, con in pairs(WuxiaGUI3.chatConsoles) do
+    if name == tabName then
+      con:show()
+    else
+      con:hide()
+    end
+  end
+
+  -- Update tab bar: rebuild if a temp tab was closed, otherwise just restyle
+  if needsRebuild and not WuxiaGUI3._inRebuild then
+    WuxiaGUI3._rebuildTabBar()
+  else
+    -- Auto-scroll to make active tab visible
+    WuxiaGUI3._scrollToTab(tabName)
+    WuxiaGUI3._updateTabStates()
+  end
+  WuxiaGUI3._hideBellDropdown()
+  WuxiaGUI3._updateBellState()
+  WuxiaGUI3._updateChatInputState()
+end
+
+-- ─── Public API: echo text to a chat tab (cecho format) ───
+function WuxiaGUI3.chat(tabName, text, mirror)
+  if not WuxiaGUI3.chatConsoles then return end
+  local con = WuxiaGUI3.chatConsoles[tabName]
+  if con then con:cecho(text.."\n") end
+  if mirror ~= false and tabName ~= "全部" then
+    local all = WuxiaGUI3.chatConsoles["全部"]
+    if all then all:cecho(text.."\n") end
+  end
+  -- Mark tab as unread if not currently active
+  WuxiaGUI3._markUnread(tabName)
+end
+
+-- ─── Public API: echo raw ANSI text to a chat tab ───
+function WuxiaGUI3.chatAnsi(tabName, ansiText, mirror)
+  if not WuxiaGUI3.chatConsoles then return end
+
+  -- Strip trailing newlines (server send_msg already appends \n)
+  ansiText = ansiText:gsub("[\r\n]+$", "")
+
+  -- Convert ANSI escape sequences to decho format
+  local dtext = WuxiaGUI3._ansiToDecho(ansiText)
+
+  local con = WuxiaGUI3.chatConsoles[tabName]
+  if con then con:decho(dtext .. "\n") end
+  if mirror ~= false and tabName ~= "全部" then
+    local all = WuxiaGUI3.chatConsoles["全部"]
+    if all then all:decho(dtext .. "\n") end
+  end
+  -- Mark tab as unread if not currently active
+  WuxiaGUI3._markUnread(tabName)
+end
+
+-- Mark a tab as having unread messages (if not currently viewing it)
+-- unreadTabs stores counts: tabName → number
+function WuxiaGUI3._markUnread(tabName)
+  if tabName == "全部" then return end
+  if tabName == WuxiaGUI3.activeChatTab then return end
+  -- If viewing 全部, all messages are visible — don't mark unread
+  if WuxiaGUI3.activeChatTab == "全部" then return end
+
+  WuxiaGUI3.unreadTabs[tabName] = (WuxiaGUI3.unreadTabs[tabName] or 0) + 1
+  WuxiaGUI3._updateTabStates()
+  WuxiaGUI3._updateBellState()
+end
+
+-- ─── Bell notification button 🔔 ───
+-- Appears between last tab and ⚙ when there are hidden unread messages.
+-- Click to show dropdown of unread channels with counts.
+
+function WuxiaGUI3._updateBellState()
+  -- Collect hidden unread channels
+  local hiddenUnreads = {}
+  for tab, count in pairs(WuxiaGUI3.unreadTabs) do
+    if tab ~= "全部" and count and count > 0 then
+      -- Check if this tab is NOT visible in the tab bar
+      if not WuxiaGUI3.chatTabButtons[tab] then
+        hiddenUnreads[#hiddenUnreads + 1] = { name = tab, count = count }
+      end
+    end
+  end
+
+  if #hiddenUnreads > 0 then
+    -- Show bell with count
+    if WuxiaGUI3._bellBtn then
+      local total = 0
+      for _, u in ipairs(hiddenUnreads) do total = total + u.count end
+      WuxiaGUI3._bellBtn:setStyleSheet(string.format([[
+        background-color: %s;
+        border-bottom: 2px solid #ff4444;
+        qproperty-alignment: AlignCenter;
+      ]], BG))
+      local label = total > 99 and "🔔99+" or ("🔔" .. total)
+      WuxiaGUI3._bellBtn:echo(span("#ff4444", label))
+      WuxiaGUI3._bellBtn:show()
+    end
+  else
+    -- Hide bell
+    if WuxiaGUI3._bellBtn then
+      WuxiaGUI3._bellBtn:hide()
+    end
+    -- Also hide dropdown
+    WuxiaGUI3._hideBellDropdown()
+  end
+
+  -- Also update gear back to normal (bell handles the notification now)
+  if WuxiaGUI3.chatMoreBtn then
+    WuxiaGUI3.chatMoreBtn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-bottom: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG, BORDER))
+    WuxiaGUI3.chatMoreBtn:echo(span(GOLD, "⚙"))
+  end
+end
+
+-- Show bell dropdown: list of hidden unread channels with counts
+function WuxiaGUI3._showBellDropdown()
+  WuxiaGUI3._hideBellDropdown()
+
+  -- Collect hidden unreads
+  local items = {}
+  for tab, count in pairs(WuxiaGUI3.unreadTabs) do
+    if tab ~= "全部" and count and count > 0 and not WuxiaGUI3.chatTabButtons[tab] then
+      items[#items + 1] = { name = tab, count = count }
+    end
+  end
+
+  if #items == 0 then return end
+
+  -- Sort by count descending
+  table.sort(items, function(a, b) return a.count > b.count end)
+
+  WuxiaGUI3._bellDropSeq = (WuxiaGUI3._bellDropSeq or 0) + 1
+  local seq = WuxiaGUI3._bellDropSeq
+
+  local rowH = 22
+  local dropW = 140
+  local dropH = #items * rowH + 4
+  -- Position above bell button (dropdown goes upward from tab bar)
+  local bellX = WuxiaGUI3._bellBtn and WuxiaGUI3._bellBtn:get_x() or 0
+
+  WuxiaGUI3._bellDrop = Geyser.Label:new({
+    name = "W3.bell.drop." .. seq,
+    x = bellX, y = 24,
+    width = dropW, height = dropH,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._bellDrop:setStyleSheet(string.format([[
+    background-color: %s;
+    border: 1px solid %s;
+  ]], BG2, GOLD))
+  WuxiaGUI3._bellDrop:raise()
+
+  WuxiaGUI3._bellDropBtns = {}
+  for i, item in ipairs(items) do
+    local by = 2 + (i - 1) * rowH
+    local btn = Geyser.Label:new({
+      name = "W3.bell.drop." .. seq .. "." .. item.name,
+      x = 2, y = by,
+      width = dropW - 4, height = rowH - 2,
+    }, WuxiaGUI3._bellDrop)
+    btn:setFontSize(8)
+    btn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-bottom: 1px solid %s;
+      qproperty-alignment: AlignLeft;
+    ]], BG, BORDER))
+
+    local countStr = item.count > 99 and "99+" or tostring(item.count)
+    btn:echo(span("#ffffff", " " .. item.name) .. span("#ff4444", " - " .. countStr .. " 條未讀"))
+    -- Find the cmd for this tab name
+    local cmd = WuxiaGUI3._tabToCmd(item.name)
+    if cmd then
+      btn:setClickCallback("WuxiaGUI3._bellClickChannel", cmd)
+    end
+    WuxiaGUI3._bellDropBtns[#WuxiaGUI3._bellDropBtns + 1] = btn
+  end
+
+  WuxiaGUI3._bellDropVisible = true
+end
+
+function WuxiaGUI3._hideBellDropdown()
+  if WuxiaGUI3._bellDropBtns then
+    for _, btn in ipairs(WuxiaGUI3._bellDropBtns) do btn:hide() end
+    WuxiaGUI3._bellDropBtns = nil
+  end
+  if WuxiaGUI3._bellDrop then
+    WuxiaGUI3._bellDrop:hide()
+    WuxiaGUI3._bellDrop = nil
+  end
+  WuxiaGUI3._bellDropVisible = false
+end
+
+-- Click a channel in the bell dropdown → view it
+function WuxiaGUI3._bellClickChannel(cmd)
+  WuxiaGUI3._hideBellDropdown()
+  WuxiaGUI3._viewChannel(cmd)
+end
+
+-- Toggle bell dropdown
+function WuxiaGUI3._onBellClick()
+  if WuxiaGUI3._bellDropVisible then
+    WuxiaGUI3._hideBellDropdown()
+  else
+    WuxiaGUI3._showBellDropdown()
+  end
+end
+
+-- ─── ANSI escape code to Mudlet decho converter ───
+-- Maps SGR codes (e.g. \27[1;36m) to decho color tags (<r,g,b>)
+function WuxiaGUI3._ansiToDecho(s)
+  if not s then return "" end
+
+  -- ANSI SGR color table: code → {r, g, b}
+  local colors = {
+    ["30"]  = {0,0,0},       ["31"]  = {170,0,0},
+    ["32"]  = {0,170,0},     ["33"]  = {170,170,0},
+    ["34"]  = {0,0,170},     ["35"]  = {170,0,170},
+    ["36"]  = {0,170,170},   ["37"]  = {192,192,192},
+    -- bright (bold+color)
+    ["1;30"] = {85,85,85},   ["1;31"] = {255,85,85},
+    ["1;32"] = {85,255,85},  ["1;33"] = {255,255,85},
+    ["1;34"] = {85,85,255},  ["1;35"] = {255,85,255},
+    ["1;36"] = {85,255,255}, ["1;37"] = {255,255,255},
+  }
+
+  local bold = false
+  local result = ""
+  local i = 1
+  local len = #s
+
+  while i <= len do
+    -- Match ESC[ ... m  (ANSI escape sequence)
+    local esc_start, esc_end, codes = s:find("\27%[([%d;]*)m", i)
+    if esc_start then
+      -- Append text before this escape
+      if esc_start > i then
+        result = result .. s:sub(i, esc_start - 1)
+      end
+
+      -- Parse the SGR codes
+      if codes == "0" or codes == "" then
+        -- Reset
+        bold = false
+        result = result .. "<r>"
+      elseif codes == "1" then
+        -- Bold only (apply on next color)
+        bold = true
+      else
+        -- Try combined "bold;color" first
+        local rgb = colors[codes]
+        if not rgb and bold then
+          -- Try bold variant
+          rgb = colors["1;" .. codes]
+        end
+        if not rgb then
+          rgb = colors[codes]
+        end
+        if rgb then
+          result = result .. string.format("<%d,%d,%d>", rgb[1], rgb[2], rgb[3])
+          -- Reset bold after applying
+          if codes:find("^1;") then bold = false end
+        end
+      end
+
+      i = esc_end + 1
+    else
+      -- No more escapes, append the rest
+      result = result .. s:sub(i)
+      break
+    end
+  end
+
+  return result
+end
+
+-- ─── Public API: append current MUD line (with colors) to a chat tab ───
+function WuxiaGUI3.chatAppend(tabName, mirror)
+  if not WuxiaGUI3.chatConsoles then return end
+  local con = WuxiaGUI3.chatConsoles[tabName]
   if con then
     selectCurrentLine()
     copy()
-    appendBuffer("WGUI.chat."..tabName)
+    appendBuffer("W3.chat.con."..tabName)
     if mirror ~= false and tabName ~= "全部" then
-      appendBuffer("WGUI.chat.全部")
+      appendBuffer("W3.chat.con.全部")
     end
     deselect()
     resetFormat()
   end
 end
 
-----------------------------------------------------------------------
--- § 9. REFRESH / RENDER (call after data changes)
-----------------------------------------------------------------------
-function WuxiaGUI.refresh()
-  if not WuxiaGUI.initialized then return end
-  WuxiaGUI._renderVitals()
-  if WuxiaGUI.charMode == "detail" then
-    WuxiaGUI._renderDetail()
+-- ═══════════════════════════════════════════════
+-- § 4g  Chat via GMCP (no text triggers needed)
+--
+-- gmcp.Chat.Line       → route message to tab
+-- gmcp.Chat.Channels   → receive channel list + enabled state
+--
+-- Client sends:
+--   Chat.Channels.Tune  {"channel":"chat"}     → toggle on/off
+--   Chat.Channels.Send  {"channel":"chat","message":"hi"} → send msg
+-- ═══════════════════════════════════════════════
+
+-- Channel state received from server
+WuxiaGUI3.channelList = {}   -- { {cmd="chat", enabled=1}, ... }
+WuxiaGUI3.channelEnabled = {} -- cmd → true/false
+
+function WuxiaGUI3._registerChatGMCP()
+  local h = WuxiaGUI3._handlers
+
+  -- gmcp.Chat.Line — a chat message arrived
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Chat.Line", function()
+    local gc = gmcp and gmcp.Chat and gmcp.Chat.Line
+    if not gc then return end
+
+    local channel = gc.channel or "sys"
+    local raw = gc.raw  -- full ANSI-colored text from server
+
+    -- Map server cmd → display tab name
+    local tabName = WuxiaGUI3._cmdToTab(channel)
+
+    if raw and raw ~= "" then
+      -- Display the raw ANSI text with full color (same as tell() output)
+      WuxiaGUI3.chatAnsi(tabName, raw)
+    else
+      -- Fallback: structured fields (no raw available)
+      local speaker = gc.speaker or ""
+      local message = gc.message or ""
+      local line = "<gold>" .. speaker .. "<reset>：" .. message
+      WuxiaGUI3.chat(tabName, line)
+    end
+  end)
+
+  -- gmcp.Chat.Channels — full channel list with enabled state
+  -- Dynamically creates tabs and consoles for channels from server.
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Chat.Channels", function()
+    local gc = gmcp and gmcp.Chat and gmcp.Chat.Channels
+    if not gc or not gc.channels then return end
+
+    WuxiaGUI3.channelList = gc.channels
+    WuxiaGUI3.channelEnabled = {}
+
+    for _, ch in ipairs(gc.channels) do
+      WuxiaGUI3.channelEnabled[ch.cmd] = (tonumber(ch.enabled) == 1)
+
+      -- Ensure a MiniConsole exists for this channel
+      local dispName = WuxiaGUI3._cmdToTab(ch.cmd)
+      if dispName and not WuxiaGUI3.chatConsoles[dispName] then
+        local con = Geyser.MiniConsole:new({
+          name = "W3.chat.con." .. dispName,
+          x = 0, y = 22,
+          width = "100%", height = "-22px",
+          fontSize = 9,
+          autoWrap = true,
+          scrollBar = true,
+        }, WuxiaGUI3.chatMain)
+        con:setColor(17, 17, 34)
+        con:setFontSize(9)
+        con:hide()
+        WuxiaGUI3.chatConsoles[dispName] = con
+      end
+    end
+
+    -- Rebuild the tab bar dynamically
+    WuxiaGUI3._rebuildTabBar()
+
+    -- Rebuild or refresh the channel drawer
+    if not WuxiaGUI3._drawer then
+      WuxiaGUI3._buildChannelDrawer()
+    else
+      WuxiaGUI3._refreshDrawerState()
+    end
+  end)
+
+  -- Request channel list on startup
+  sendGMCP("Chat.Channels.Request")
+
+  -- Rebuild tab bar on window resize (scroll arrows may need to appear/disappear)
+  h[#h+1] = registerAnonymousEventHandler("sysWindowResizeEvent", function()
+    if WuxiaGUI3.chatMain then
+      WuxiaGUI3._onWindowResize()
+      WuxiaGUI3._rebuildTabBar()
+    end
+  end)
+end
+
+-- ─── Rebuild tab bar from server channel data ───
+-- Shows pinned tabs + ⚙ gear button. Unread indicators on tabs.
+-- Default pinned: only 全部 (always visible, cannot be removed)
+-- Users pin/unpin other tabs via the pin icon.
+
+WuxiaGUI3.pinnedTabs = WuxiaGUI3.pinnedTabs or {}
+WuxiaGUI3.tempTabs = WuxiaGUI3.tempTabs or {}
+WuxiaGUI3.unreadTabs = WuxiaGUI3.unreadTabs or {}
+WuxiaGUI3._tabScroll = 0
+WuxiaGUI3._allVisibleTabs = {}
+-- Ordered list of all non-全部 tabs in the order they were added
+WuxiaGUI3._tabOrder = WuxiaGUI3._tabOrder or {}
+
+function WuxiaGUI3._rebuildTabBar()
+  if not WuxiaGUI3.chatMain then return end
+
+  WuxiaGUI3._inRebuild = true
+
+  -- Increment sequence to get unique Geyser names
+  WuxiaGUI3._tabSeq = (WuxiaGUI3._tabSeq or 0) + 1
+  local seq = WuxiaGUI3._tabSeq
+
+  -- Remove old tab buttons and scroll arrows
+  if WuxiaGUI3.chatTabButtons then
+    for name, btn in pairs(WuxiaGUI3.chatTabButtons) do
+      btn:hide()
+    end
+  end
+  WuxiaGUI3.chatTabButtons = {}
+  if WuxiaGUI3._tabLeftBtn then WuxiaGUI3._tabLeftBtn:hide() end
+  if WuxiaGUI3._tabRightBtn then WuxiaGUI3._tabRightBtn:hide() end
+  if WuxiaGUI3.chatMoreBtn then WuxiaGUI3.chatMoreBtn:hide() end
+  -- Clean up any drag ghost that might be lingering
+  if WuxiaGUI3._dragGhost then
+    WuxiaGUI3._dragGhost:hide()
+    WuxiaGUI3._dragGhost = nil
+  end
+  WuxiaGUI3._dragActive = false
+  WuxiaGUI3._dragLastGap = nil
+  if WuxiaGUI3._stopDragScroll then WuxiaGUI3._stopDragScroll() end
+
+  -- Tab bar bottom line — full width, created first so tabs render on top
+  if WuxiaGUI3._tabBarLine then WuxiaGUI3._tabBarLine:hide() end
+  WuxiaGUI3._tabBarLine = Geyser.Label:new({
+    name = "W3.tb." .. seq .. ".line",
+    x = 0, y = 0,
+    width = "100%", height = 22,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._tabBarLine:setStyleSheet(string.format([[
+    background-color: %s;
+    border-bottom: 1px solid %s;
+  ]], BG, BORDER))
+
+  -- Build tab list: 全部 first, then all pinned + temp in _tabOrder
+  local allTabs = { "全部" }
+  local addedSet = { ["全部"] = true }
+
+  -- Collect which tabs should be visible (pinned or temp)
+  local visibleSet = {}
+  for _, name in ipairs(WuxiaGUI3.pinnedTabs) do visibleSet[name] = true end
+  for _, name in ipairs(WuxiaGUI3.tempTabs) do visibleSet[name] = true end
+
+  -- Add tabs in their original order
+  for _, name in ipairs(WuxiaGUI3._tabOrder) do
+    if visibleSet[name] and not addedSet[name] then
+      allTabs[#allTabs + 1] = name
+      addedSet[name] = true
+    end
+  end
+  WuxiaGUI3._allVisibleTabs = allTabs
+
+  -- Layout: use fixed tab width, add scroll arrows if needed
+  local gearW = 28
+  local arrowW = 22
+  local nTabs = #allTabs
+  local tabW = 64
+
+  -- Get actual pixel width of chat area
+  -- Use screen width minus right panel width for reliable measurement
+  local screenW, _ = getMainWindowSize()
+  local chatW = (screenW or 800) - PW - LPW
+  if chatW < 200 then chatW = 600 end
+
+  -- Check if we need scroll arrows
+  local bellW = 40
+  local spaceForTabs = chatW - gearW - bellW
+  local needsScroll = (nTabs * tabW > spaceForTabs)
+  if needsScroll then
+    spaceForTabs = spaceForTabs - arrowW * 2
+  end
+  local maxVisible = math.max(1, math.floor(spaceForTabs / tabW))
+  local maxScroll = math.max(0, nTabs - maxVisible)
+  WuxiaGUI3._tabScroll = math.max(0, math.min(WuxiaGUI3._tabScroll, maxScroll))
+  WuxiaGUI3._tabMaxVisible = maxVisible
+  WuxiaGUI3._tabMaxScroll = maxScroll
+
+  local xOffset = 0
+
+  -- Left arrow ◀
+  if needsScroll then
+    WuxiaGUI3._tabLeftBtn = Geyser.Label:new({
+      name = "W3.tb." .. seq .. ".L",
+      x = 0, y = 0,
+      width = arrowW, height = 22,
+    }, WuxiaGUI3.chatMain)
+    WuxiaGUI3._tabLeftBtn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-bottom: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG, BORDER))
+    WuxiaGUI3._tabLeftBtn:setFontSize(9)
+    local lColor = WuxiaGUI3._tabScroll > 0 and GOLD or TEXT_DIM
+    WuxiaGUI3._tabLeftBtn:echo(span(lColor, "◀"))
+    WuxiaGUI3._tabLeftBtn:setClickCallback("WuxiaGUI3._tabScrollLeft")
+    WuxiaGUI3._tabLeftBtn:setWheelCallback("WuxiaGUI3._onTabWheel")
+    xOffset = arrowW
+  end
+
+  -- Create visible tab buttons
+  WuxiaGUI3._tabPinBtns = WuxiaGUI3._tabPinBtns or {}
+  for _, pb in pairs(WuxiaGUI3._tabPinBtns) do pb:hide() end
+  WuxiaGUI3._tabPinBtns = {}
+
+  for vi = 1, maxVisible do
+    local idx = WuxiaGUI3._tabScroll + vi
+    local name = allTabs[idx]
+    if not name then break end
+
+    local tabX = xOffset + (vi - 1) * tabW
+    local pinW = (name ~= "全部") and 16 or 0
+    local btnW = tabW - pinW
+
+    local btn = Geyser.Label:new({
+      name = "W3.tb." .. seq .. "." .. name,
+      x = tabX, y = 0,
+      width = btnW, height = 22,
+    }, WuxiaGUI3.chatMain)
+    btn:setFontSize(9)
+    btn:setClickCallback("WuxiaGUI3._onTabMouseDown", name)
+    btn:setMoveCallback("WuxiaGUI3._onTabMouseMove", name)
+    btn:setReleaseCallback("WuxiaGUI3._onTabMouseUp", name)
+    btn:setOnEnter("WuxiaGUI3._onTabHoverEnter", name)
+    btn:setWheelCallback("WuxiaGUI3._onTabWheel")
+    WuxiaGUI3.chatTabButtons[name] = btn
+
+    -- Store tab pixel position for drop-target calculation
+    WuxiaGUI3._tabPositions = WuxiaGUI3._tabPositions or {}
+    WuxiaGUI3._tabPositions[name] = {
+      x = tabX, vi = vi, idx = idx,
+    }
+
+    -- Pin toggle icon for non-全部 tabs
+    if name ~= "全部" then
+      local isPinned = WuxiaGUI3._isTabPinned(name)
+
+      local iconBtn = Geyser.Label:new({
+        name = "W3.tb." .. seq .. ".pin." .. name,
+        x = tabX + btnW, y = 0,
+        width = pinW, height = 22,
+      }, WuxiaGUI3.chatMain)
+      iconBtn:setFontSize(7)
+      iconBtn:setClickCallback("WuxiaGUI3._togglePin", name)
+      iconBtn:setWheelCallback("WuxiaGUI3._onTabWheel")
+
+      if isPinned then
+        iconBtn:setStyleSheet(string.format([[
+          background-color: %s;
+          border-bottom: 2px solid %s;
+          qproperty-alignment: AlignCenter;
+        ]], BG, GOLD))
+        iconBtn:echo(PIN_CHAR)
+      else
+        iconBtn:setStyleSheet(string.format([[
+          background-color: %s;
+          border-bottom: 1px solid %s;
+          qproperty-alignment: AlignCenter;
+        ]], BG, BORDER))
+        iconBtn:echo(span(TEXT_DIM, "○"))
+      end
+      WuxiaGUI3._tabPinBtns[name] = iconBtn
+    end
+  end
+
+  local tabEndX = xOffset + math.min(maxVisible, nTabs) * tabW
+
+  -- Store layout info for drag-and-drop
+  -- Left bound: if 全部 is visible (scroll=0), can't go before it.
+  -- Otherwise, start of tab area (xOffset).
+  local firstIsAll = (allTabs[WuxiaGUI3._tabScroll + 1] == "全部")
+  local dragMinX = firstIsAll and (xOffset + tabW) or xOffset
+  local dragMaxX = tabEndX - tabW  -- rightmost position for a dragged tab
+  WuxiaGUI3._dragLayout = {
+    xOffset = xOffset,
+    tabW = tabW,
+    maxVisible = maxVisible,
+    dragMinX = dragMinX,
+    dragMaxX = math.max(dragMinX, dragMaxX),
+    tabEndX = tabEndX,
+  }
+
+  -- Right arrow ▶
+  if needsScroll then
+    WuxiaGUI3._tabRightBtn = Geyser.Label:new({
+      name = "W3.tb." .. seq .. ".R",
+      x = tabEndX, y = 0,
+      width = arrowW, height = 22,
+    }, WuxiaGUI3.chatMain)
+    WuxiaGUI3._tabRightBtn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-bottom: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG, BORDER))
+    WuxiaGUI3._tabRightBtn:setFontSize(9)
+    local rColor = WuxiaGUI3._tabScroll < maxScroll and GOLD or TEXT_DIM
+    WuxiaGUI3._tabRightBtn:echo(span(rColor, "▶"))
+    WuxiaGUI3._tabRightBtn:setClickCallback("WuxiaGUI3._tabScrollRight")
+    WuxiaGUI3._tabRightBtn:setWheelCallback("WuxiaGUI3._onTabWheel")
+    tabEndX = tabEndX + arrowW
+  end
+
+  -- Gear button
+  if WuxiaGUI3.chatMoreBtn then WuxiaGUI3.chatMoreBtn:hide() end
+  WuxiaGUI3.chatMoreBtn = Geyser.Label:new({
+    name = "W3.tb." .. seq .. ".gear",
+    x = tabEndX, y = 0,
+    width = gearW, height = 22,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3.chatMoreBtn:setStyleSheet(string.format([[
+    background-color: %s;
+    border-bottom: 1px solid %s;
+    qproperty-alignment: AlignCenter;
+  ]], BG, BORDER))
+  WuxiaGUI3.chatMoreBtn:setFontSize(10)
+  WuxiaGUI3.chatMoreBtn:echo(span(GOLD, "⚙"))
+  WuxiaGUI3.chatMoreBtn:setClickCallback("WuxiaGUI3._showChannelPanel")
+
+  -- Bell button 🔔 (for hidden unread notifications)
+  if WuxiaGUI3._bellBtn then WuxiaGUI3._bellBtn:hide() end
+  WuxiaGUI3._bellBtn = Geyser.Label:new({
+    name = "W3.tb." .. seq .. ".bell",
+    x = tabEndX + gearW, y = 0,
+    width = bellW, height = 22,
+  }, WuxiaGUI3.chatMain)
+  WuxiaGUI3._bellBtn:setStyleSheet(string.format([[
+    background-color: %s;
+    border-bottom: 1px solid %s;
+    qproperty-alignment: AlignCenter;
+  ]], BG, BORDER))
+  WuxiaGUI3._bellBtn:setFontSize(9)
+  WuxiaGUI3._bellBtn:setClickCallback("WuxiaGUI3._onBellClick")
+  WuxiaGUI3._bellBtn:hide()  -- hidden by default, shown by _updateBellState
+
+  -- Style active tab + unread indicators
+  WuxiaGUI3._updateTabStates()
+  WuxiaGUI3._updateBellState()
+
+  -- Show correct console for active tab (even if tab is scrolled out of view)
+  if WuxiaGUI3.chatConsoles then
+    -- Check if active tab still exists as a console (pinned or temp)
+    local activeExists = WuxiaGUI3.chatConsoles[WuxiaGUI3.activeChatTab]
+    if not activeExists then
+      -- Tab was removed entirely (e.g. temp tab closed) → switch to 全部
+      WuxiaGUI3.switchChatTab("全部")
+    else
+      -- Just ensure correct console is visible (no tab switch needed)
+      for name, con in pairs(WuxiaGUI3.chatConsoles) do
+        if name == WuxiaGUI3.activeChatTab then
+          con:show()
+        else
+          con:hide()
+        end
+      end
+    end
+  end
+
+  WuxiaGUI3._inRebuild = false
+
+  -- Reposition drawer if it's open (gear button may have moved)
+  if WuxiaGUI3._drawerOpen and WuxiaGUI3._drawer then
+    WuxiaGUI3._repositionDrawer()
+    WuxiaGUI3._drawer:raise()
+    if WuxiaGUI3._drawerBgLbl then WuxiaGUI3._drawerBgLbl:raise() end
+    for _, cmd in ipairs(WuxiaGUI3._drawerChannelOrder or {}) do
+      local btns = WuxiaGUI3._drawerBtns[cmd]
+      if btns then
+        btns.nameBtn:raise()
+        btns.toggleBtn:raise()
+      end
+    end
+    if WuxiaGUI3._drawerUpBtn then WuxiaGUI3._drawerUpBtn:raise() end
+    if WuxiaGUI3._drawerDownBtn then WuxiaGUI3._drawerDownBtn:raise() end
   end
 end
 
-function WuxiaGUI._renderVitals()
-  local d = WuxiaGUI.data
-  local g = T.tGold
-  local b = T.tBright
-
-  -- Helper: update one gauge row
-  local function upd(widget, label, cur, max, extra)
-    local extraStr = extra or ""
-    widget.label:echo(string.format(
-      "<font color='%s' size='2'>%s</font> <font color='%s' size='2'>%d/%d %s</font>",
-      g, label, b, cur, max, extraStr))
-    if max > 0 then widget.gauge:setValue(cur, max) end
-  end
-
-  upd(WuxiaGUI.vJingqi,  "【精氣】", d.jingqi.cur, d.jingqi.max,
-      string.format("(%d%%)", d.jingqi.pct))
-  upd(WuxiaGUI.vQixue,   "【氣血】", d.qixue.cur, d.qixue.max,
-      string.format("(%d%%)", d.qixue.pct))
-  upd(WuxiaGUI.vJingli,  "【精力】", d.jingli.cur, d.jingli.max,
-      string.format("(%+d)", d.jingli.regen))
-  upd(WuxiaGUI.vNeili,   "【內力】", d.neili.cur, d.neili.max,
-      string.format("(%+d)", d.neili.regen))
-
-  -- Food + Water gauges
-  if d.food.max > 0 then WuxiaGUI.vFood:setValue(d.food.cur, d.food.max) end
-  if d.water.max > 0 then WuxiaGUI.vWater:setValue(d.water.cur, d.water.max) end
-  WuxiaGUI.foodWaterLbl:echo(string.format(
-    "<font color='%s' size='2'>食 %d/%d</font>  <font color='%s' size='2'>水 %d/%d</font>",
-    g, d.food.cur, d.food.max, T.tCyan, d.water.cur, d.water.max))
-
-  -- Pinghe
-  local ph = d.pinghe ~= "" and d.pinghe or "————————————"
-  WuxiaGUI.pingheLbl:echo(string.format(
-    "<font color='%s' size='2'>【平和】%s</font>", g, ph))
-
-  -- Stats
-  WuxiaGUI.statsBox:echo(string.format(
-    "<font color='%s' size='2'>潛能</font> <font color='%s' size='2'>%s</font>"..
-    "  <font color='%s' size='2'>體會</font> <font color='%s' size='2'>%s</font><br>"..
-    "<font color='%s' size='2'>經驗</font> <font color='%s' size='2'>%s</font>",
-    g, b, WuxiaGUI.formatNumber(d.qianneng),
-    g, b, WuxiaGUI.formatNumber(d.tihui),
-    g, T.tYellow, WuxiaGUI.formatNumber(d.jingyan)))
+-- Tab bar scroll functions
+function WuxiaGUI3._tabScrollLeft()
+  WuxiaGUI3._tabScroll = math.max(0, WuxiaGUI3._tabScroll - 1)
+  WuxiaGUI3._rebuildTabBar()
 end
 
-----------------------------------------------------------------------
--- § 10. DETAIL VIEW (expanded score info in miniconsole)
-----------------------------------------------------------------------
-function WuxiaGUI._toggleCharMode()
-  if WuxiaGUI.charMode == "compact" then
-    WuxiaGUI.charMode = "detail"
-    WuxiaGUI.detailCon:show()
-    WuxiaGUI.charHeader:echo(
-      "<center><font color='"..T.tGold.."'>╋ 人 物 ╋ ▲</font></center>")
-    WuxiaGUI._renderDetail()
+function WuxiaGUI3._tabScrollRight()
+  WuxiaGUI3._tabScroll = (WuxiaGUI3._tabScroll or 0) + 1
+  WuxiaGUI3._rebuildTabBar()
+end
+
+-- Auto-scroll tab bar so that the given tab is visible
+function WuxiaGUI3._scrollToTab(tabName)
+  local allTabs = WuxiaGUI3._allVisibleTabs
+  local layout = WuxiaGUI3._dragLayout
+  if not allTabs or not layout then return end
+
+  -- Find tab's index in allTabs
+  local tabIdx
+  for i, name in ipairs(allTabs) do
+    if name == tabName then tabIdx = i break end
+  end
+  if not tabIdx then return end
+
+  local scroll = WuxiaGUI3._tabScroll or 0
+  local maxVis = layout.maxVisible or 4
+  local firstVis = scroll + 1
+  local lastVis = scroll + maxVis
+
+  if tabIdx < firstVis then
+    -- Tab is to the left of visible range: scroll left
+    WuxiaGUI3._tabScroll = tabIdx - 1
+    WuxiaGUI3._rebuildTabBar()
+  elseif tabIdx > lastVis then
+    -- Tab is to the right of visible range: scroll right
+    WuxiaGUI3._tabScroll = tabIdx - maxVis
+    WuxiaGUI3._rebuildTabBar()
+  end
+  -- else: already visible, do nothing
+end
+
+-- Track tab insertion order (for stable positioning)
+function WuxiaGUI3._ensureTabOrder(tabName)
+  if tabName == "全部" then return end
+  for _, t in ipairs(WuxiaGUI3._tabOrder) do
+    if t == tabName then return end  -- already tracked
+  end
+  WuxiaGUI3._tabOrder[#WuxiaGUI3._tabOrder + 1] = tabName
+end
+
+-- Check if a tab is pinned
+function WuxiaGUI3._isTabPinned(tabName)
+  for _, p in ipairs(WuxiaGUI3.pinnedTabs) do
+    if p == tabName then return true end
+  end
+  return false
+end
+
+-- Toggle pin state of a tab
+function WuxiaGUI3._togglePin(tabName)
+  if tabName == "全部" then return end
+
+  if WuxiaGUI3._isTabPinned(tabName) then
+    -- Unpin: remove from pinnedTabs
+    for i, p in ipairs(WuxiaGUI3.pinnedTabs) do
+      if p == tabName then
+        table.remove(WuxiaGUI3.pinnedTabs, i)
+        break
+      end
+    end
+    -- Only keep as temp if currently viewing it; otherwise remove immediately
+    if tabName == WuxiaGUI3.activeChatTab then
+      local alreadyTemp = false
+      for _, t in ipairs(WuxiaGUI3.tempTabs) do
+        if t == tabName then alreadyTemp = true break end
+      end
+      if not alreadyTemp then
+        WuxiaGUI3.tempTabs[#WuxiaGUI3.tempTabs + 1] = tabName
+      end
+    end
   else
-    WuxiaGUI.charMode = "compact"
-    WuxiaGUI.detailCon:hide()
-    WuxiaGUI.charHeader:echo(
-      "<center><font color='"..T.tGold.."'>╋ 人 物 ╋</font></center>")
+    -- Pin: remove from tempTabs, add to pinnedTabs
+    for i, t in ipairs(WuxiaGUI3.tempTabs) do
+      if t == tabName then
+        table.remove(WuxiaGUI3.tempTabs, i)
+        break
+      end
+    end
+    local alreadyPinned = false
+    for _, p in ipairs(WuxiaGUI3.pinnedTabs) do
+      if p == tabName then alreadyPinned = true break end
+    end
+    if not alreadyPinned then
+      WuxiaGUI3.pinnedTabs[#WuxiaGUI3.pinnedTabs + 1] = tabName
+      WuxiaGUI3._ensureTabOrder(tabName)
+    end
+  end
+  WuxiaGUI3._rebuildTabBar()
+  WuxiaGUI3._saveSettings()
+end
+
+-- Mouse wheel on tab bar: scroll up = left, scroll down = right
+-- setWheelCallback passes event table as last arg with angleDeltaY
+function WuxiaGUI3._onTabWheel(event)
+  if event and event.angleDeltaY and event.angleDeltaY > 0 then
+    WuxiaGUI3._tabScrollLeft()
+  else
+    WuxiaGUI3._tabScrollRight()
   end
 end
 
-function WuxiaGUI._renderDetail()
-  local con = WuxiaGUI.detailCon
-  if not con then return end
-  con:clear()
+-- ─── Tab drag-and-drop reorder (visual) ───
+-- Mouse down: record drag source and start position
+function WuxiaGUI3._onTabMouseDown(srcTab, event)
+  local mx, my = getMousePosition()
+  WuxiaGUI3._dragSrc = srcTab
+  WuxiaGUI3._dragStartX = mx
+  WuxiaGUI3._dragStartY = my
+  WuxiaGUI3._dragActive = false
+end
 
-  local d = WuxiaGUI.data
-  local id = d.identity
-  local cb = d.combat
-  local at = d.attrs
-  local sk = d.skills
-  local st = d.stats
-  local ms = d.mastery
-  local kl = d.kills
-  local fmt = WuxiaGUI.formatNumber
+-- Mouse move on source tab: activate drag after threshold
+function WuxiaGUI3._onTabMouseMove(srcTab, event)
+  if not WuxiaGUI3._dragSrc then return end
+  if WuxiaGUI3._dragSrc ~= srcTab then return end
+  local mx, my = getMousePosition()
+  local dx = math.abs(mx - (WuxiaGUI3._dragStartX or mx))
 
-  local function w(t) con:cecho(t.."\n") end
+  if not WuxiaGUI3._dragActive and dx >= 8 then
+    if WuxiaGUI3._dragSrc == "全部" then return end
+    WuxiaGUI3._dragActive = true
+    WuxiaGUI3._dragLastGap = nil
 
-  w("")
-  if id.title ~= "" then w(" <gold>【天神】<reset>"..id.title) end
-  w("")
+    -- Style source tab as "picked up" (dim with dashed border)
+    local srcBtn = WuxiaGUI3.chatTabButtons[WuxiaGUI3._dragSrc]
+    if srcBtn then
+      srcBtn:setStyleSheet(string.format([[
+        background-color: %s;
+        border-bottom: 2px dashed %s;
+        qproperty-alignment: AlignCenter;
+      ]], BG, BORDER))
+      srcBtn:echo(span(TEXT_DIM, WuxiaGUI3._dragSrc))
+    end
+    -- Hide pin icon of source
+    local srcPin = WuxiaGUI3._tabPinBtns and WuxiaGUI3._tabPinBtns[WuxiaGUI3._dragSrc]
+    if srcPin then srcPin:hide() end
 
-  -- Two-column info
-  local info = {
-    {"年齡", id.age,       "攻擊", cb.attack},
-    {"性別", id.gender,     "防禦", cb.defense},
-    {"性格", id.personality, "傷害", cb.damage},
-    {"生辰", id.birthday,   "保護", cb.protection},
+    WuxiaGUI3._updateDragGap(mx)
+  end
+
+  if WuxiaGUI3._dragActive then
+    -- Move source tab to follow cursor, clamped between 全部 and ⚙
+    local srcBtn = WuxiaGUI3.chatTabButtons[WuxiaGUI3._dragSrc]
+    local layout2 = WuxiaGUI3._dragLayout or {}
+    local tabW2 = layout2.tabW or 64
+    local chatX2 = WuxiaGUI3.chatMain:get_x()
+
+    if srcBtn then
+      local relMx = mx - chatX2 - tabW2 / 2
+      relMx = math.max(layout2.dragMinX or tabW2, math.min(relMx, layout2.dragMaxX or 400))
+      srcBtn:move(relMx, 0)
+      srcBtn:raise()
+    end
+
+    -- Auto-scroll when cursor is over the scroll arrow areas (not the tab area)
+    local relCursor = mx - chatX2
+    local xOff = layout2.xOffset or 0
+    local tEndX = layout2.tabEndX or 400
+    local scrollDir = nil
+
+    if relCursor < xOff and WuxiaGUI3._tabScroll > 0 then
+      scrollDir = -1  -- over left arrow area
+    elseif relCursor > tEndX and WuxiaGUI3._tabScroll < (WuxiaGUI3._tabMaxScroll or 0) then
+      scrollDir = 1   -- over right arrow / gear area
+    end
+
+    if scrollDir then
+      -- Start or continue auto-scroll timer
+      if not WuxiaGUI3._dragScrollTimer then
+        -- Do first scroll immediately
+        WuxiaGUI3._tabScroll = WuxiaGUI3._tabScroll + scrollDir
+        WuxiaGUI3._dragLastGap = nil
+        WuxiaGUI3._dragRelayout()
+        -- Then repeat every 350ms
+        WuxiaGUI3._dragScrollDir = scrollDir
+        WuxiaGUI3._dragScrollTimer = tempTimer(0.35, function()
+          WuxiaGUI3._dragScrollTick()
+        end)
+      end
+    else
+      -- Cursor left scroll zone — stop auto-scroll
+      WuxiaGUI3._stopDragScroll()
+    end
+
+    -- Use raw mouse position for gap calculation (not clamped)
+    -- The button visual is clamped, but the gap should respond to actual cursor
+    WuxiaGUI3._updateDragGap(mx)
+  end
+end
+
+-- Hover enter on any tab: update gap position during drag
+function WuxiaGUI3._onTabHoverEnter(tabName, event)
+  if not WuxiaGUI3._dragActive then return end
+  local mx, my = getMousePosition()
+  WuxiaGUI3._updateDragGap(mx)
+end
+
+-- Drag scroll timer: scroll one step and re-arm
+function WuxiaGUI3._dragScrollTick()
+  WuxiaGUI3._dragScrollTimer = nil
+  if not WuxiaGUI3._dragActive then return end
+
+  local dir = WuxiaGUI3._dragScrollDir or 0
+  local newScroll = WuxiaGUI3._tabScroll + dir
+
+  if dir < 0 and newScroll < 0 then return end
+  if dir > 0 and newScroll > (WuxiaGUI3._tabMaxScroll or 0) then return end
+
+  WuxiaGUI3._tabScroll = newScroll
+  WuxiaGUI3._dragLastGap = nil
+  WuxiaGUI3._dragRelayout()
+
+  -- Re-arm for continuous scrolling (accelerate slightly)
+  WuxiaGUI3._dragScrollTimer = tempTimer(0.3, function()
+    WuxiaGUI3._dragScrollTick()
+  end)
+end
+
+-- Stop drag auto-scroll timer
+function WuxiaGUI3._stopDragScroll()
+  if WuxiaGUI3._dragScrollTimer then
+    killTimer(WuxiaGUI3._dragScrollTimer)
+    WuxiaGUI3._dragScrollTimer = nil
+  end
+  WuxiaGUI3._dragScrollDir = nil
+end
+
+-- Repurpose existing tab buttons for new scroll position during drag
+-- No widget creation/destruction — just re-echo and remap
+function WuxiaGUI3._dragRelayout()
+  local layout = WuxiaGUI3._dragLayout
+  if not layout then return end
+
+  local allTabs = WuxiaGUI3._allVisibleTabs
+  if not allTabs then return end
+  local tabW = layout.tabW
+  local dragSrc = WuxiaGUI3._dragSrc
+
+  -- Collect all non-source button widgets into a reuse pool
+  local pool = {}
+  for name, btn in pairs(WuxiaGUI3.chatTabButtons) do
+    if name ~= dragSrc then
+      pool[#pool + 1] = { btn = btn, pin = WuxiaGUI3._tabPinBtns and WuxiaGUI3._tabPinBtns[name], oldName = name }
+    end
+  end
+
+  -- Determine which tabs should be visible (excluding drag source)
+  local needed = {}
+  for vi = 1, layout.maxVisible do
+    local idx = WuxiaGUI3._tabScroll + vi
+    local name = allTabs[idx]
+    if name and name ~= dragSrc then
+      needed[#needed + 1] = name
+    end
+  end
+
+  -- Update dragMinX based on whether 全部 is now visible
+  local firstTab = allTabs[WuxiaGUI3._tabScroll + 1]
+  local xOffset = layout.xOffset or 0
+  if firstTab == "全部" then
+    layout.dragMinX = xOffset + tabW
+  else
+    layout.dragMinX = xOffset
+  end
+  layout.dragMaxX = math.max(layout.dragMinX, (layout.tabEndX or 400) - tabW)
+
+  -- Reassign pool buttons to needed tabs
+  local newBtns = {}
+  local newPins = {}
+  newBtns[dragSrc] = WuxiaGUI3.chatTabButtons[dragSrc]
+  if WuxiaGUI3._tabPinBtns then
+    newPins[dragSrc] = WuxiaGUI3._tabPinBtns[dragSrc]
+  end
+
+  for i, name in ipairs(needed) do
+    local p = pool[i]
+    if p then
+      local btn = p.btn
+      local pinBtn = p.pin
+
+      -- Restyle as normal tab
+      local isActive = (name == WuxiaGUI3.activeChatTab)
+      local hasUnread = WuxiaGUI3.unreadTabs[name]
+      local bgColor = isActive and BG2 or BG
+      local borderCSS = isActive and string.format("border-bottom: 2px solid %s;", GOLD)
+                        or string.format("border-bottom: 1px solid %s;", BORDER)
+      btn:setStyleSheet(string.format([[
+        background-color: %s;
+        %s
+        qproperty-alignment: AlignCenter;
+      ]], bgColor, borderCSS))
+
+      -- Echo tab name with unread count
+      local displayName = name
+      if hasUnread and type(hasUnread) == "number" and hasUnread > 0 then
+        displayName = name .. "(" .. hasUnread .. ")"
+      end
+      local textColor = isActive and GOLD or (hasUnread and "#ff4444" or TEXT)
+      btn:echo(span(textColor, displayName))
+      btn:show()
+
+      -- Update pin
+      if pinBtn and name ~= "全部" then
+        local pinned = WuxiaGUI3._isTabPinned(name)
+        local pinChar = pinned and "📌︎" or "○"
+        pinBtn:echo(span(isActive and GOLD or TEXT_DIM, pinChar))
+        pinBtn:setClickCallback("WuxiaGUI3._togglePin", name)
+        pinBtn:show()
+      elseif pinBtn then
+        pinBtn:hide()  -- 全部 has no pin
+      end
+
+      newBtns[name] = btn
+      newPins[name] = pinBtn
+    end
+  end
+
+  -- Hide any excess pool buttons
+  for i = #needed + 1, #pool do
+    local p = pool[i]
+    if p then
+      p.btn:hide()
+      if p.pin then p.pin:hide() end
+    end
+  end
+
+  WuxiaGUI3.chatTabButtons = newBtns
+  WuxiaGUI3._tabPinBtns = newPins or WuxiaGUI3._tabPinBtns
+end
+
+-- Shift visible tabs to create a gap at the insertion point
+function WuxiaGUI3._updateDragGap(mx)
+  local layout = WuxiaGUI3._dragLayout
+  if not layout then return end
+
+  local allTabs = WuxiaGUI3._allVisibleTabs
+  if not allTabs then return end
+
+  local chatX = WuxiaGUI3.chatMain:get_x()
+  local relX = mx - chatX - layout.xOffset
+  local tabW = layout.tabW
+
+  -- Build the "others" list: visible tabs excluding drag source
+  -- Also find the source's original visual slot index
+  local others = {}
+  local srcSlot = nil  -- 1-based slot of drag source in visible tabs
+  for vi = 1, layout.maxVisible do
+    local idx = WuxiaGUI3._tabScroll + vi
+    local name = allTabs[idx]
+    if name then
+      if name == WuxiaGUI3._dragSrc then
+        srcSlot = vi
+      else
+        others[#others + 1] = name
+      end
+    end
+  end
+
+  if #others == 0 then return end
+
+  -- Adjust cursor position to account for the source's removed slot.
+  -- In the original layout, cursor is at relX. But the source tab at
+  -- srcSlot has been removed, so for positions past the source,
+  -- we need to subtract one tab width to get the "others" position.
+  local adjustedRelX = relX
+  if srcSlot then
+    local srcStartX = (srcSlot - 1) * tabW
+    local srcEndX = srcSlot * tabW
+    if relX > srcEndX then
+      -- Cursor is past the source's original slot: shift left by tabW
+      adjustedRelX = relX - tabW
+    elseif relX > srcStartX then
+      -- Cursor is over the source's original slot: collapse to boundary
+      adjustedRelX = srcStartX
+    end
+  end
+
+  local cursorInOthers = adjustedRelX / tabW  -- fractional position in others space
+
+  local gapSlot = math.floor(cursorInOthers + 0.5) + 1
+  gapSlot = math.max(1, math.min(gapSlot, #others + 1))
+
+  -- Don't allow gap before 全部 if it's the first in others
+  if others[1] == "全部" and gapSlot <= 1 then
+    gapSlot = 2
+  end
+
+  if gapSlot == WuxiaGUI3._dragLastGap then return end
+  WuxiaGUI3._dragLastGap = gapSlot
+
+  -- Place others with a gap at gapSlot
+  local slotIdx = 1
+  for _, name in ipairs(others) do
+    if slotIdx == gapSlot then
+      slotIdx = slotIdx + 1
+    end
+    local newX = layout.xOffset + (slotIdx - 1) * tabW
+    local btn = WuxiaGUI3.chatTabButtons[name]
+    if btn then
+      btn:move(newX, 0)
+      btn:show()
+    end
+    local pinBtn = WuxiaGUI3._tabPinBtns and WuxiaGUI3._tabPinBtns[name]
+    if pinBtn then
+      pinBtn:move(newX + tabW - 16, 0)
+      pinBtn:show()
+    end
+    slotIdx = slotIdx + 1
+  end
+
+  -- Source tab position is handled by _onTabMouseMove (follows cursor)
+  -- Ensure source stays visible and pin stays hidden
+  local srcBtn = WuxiaGUI3.chatTabButtons[WuxiaGUI3._dragSrc]
+  if srcBtn then srcBtn:show() end
+  local srcPin = WuxiaGUI3._tabPinBtns and WuxiaGUI3._tabPinBtns[WuxiaGUI3._dragSrc]
+  if srcPin then srcPin:hide() end
+end
+
+-- Mouse up on any tab: finalize drop or cancel
+function WuxiaGUI3._onTabMouseUp(srcTab, event)
+  local dragSrc = WuxiaGUI3._dragSrc
+  local wasActive = WuxiaGUI3._dragActive
+  local lastGap = WuxiaGUI3._dragLastGap
+  local startX = WuxiaGUI3._dragStartX
+
+  WuxiaGUI3._dragSrc = nil
+  WuxiaGUI3._dragActive = false
+  WuxiaGUI3._dragLastGap = nil
+  WuxiaGUI3._dragStartX = nil
+  WuxiaGUI3._stopDragScroll()
+
+  if not wasActive or not dragSrc then
+    WuxiaGUI3.switchChatTab(srcTab)
+    return
+  end
+
+  local layout = WuxiaGUI3._dragLayout
+  local allTabs = WuxiaGUI3._allVisibleTabs
+  if not layout or not allTabs or not lastGap then
+    WuxiaGUI3._rebuildTabBar()
+    return
+  end
+
+  -- Find srcOrderIdx in _tabOrder
+  local srcOrderIdx
+  for i, t in ipairs(WuxiaGUI3._tabOrder) do
+    if t == dragSrc then srcOrderIdx = i break end
+  end
+  if not srcOrderIdx then
+    WuxiaGUI3._rebuildTabBar()
+    return
+  end
+
+  -- Build the "others" list (visible tabs excluding drag source), same as _updateDragGap
+  local others = {}
+  for vi = 1, layout.maxVisible do
+    local idx = WuxiaGUI3._tabScroll + vi
+    local name = allTabs[idx]
+    if name and name ~= dragSrc then
+      others[#others + 1] = name
+    end
+  end
+
+  -- The gap was at slot `lastGap`. Tabs in `others` fill slots skipping the gap.
+  -- So the tab just BEFORE the gap (slot lastGap-1) is others[lastGap-1],
+  -- and the tab just AFTER the gap (slot lastGap+1) is others[lastGap].
+  -- Insert dragSrc between those two in _tabOrder.
+
+  local tabBefore = others[lastGap - 1]  -- nil if gap is at slot 1
+  local tabAfter  = others[lastGap]      -- nil if gap is past the last tab
+
+  -- 全部 is never in _tabOrder, so treat it as nil
+  if tabBefore == "全部" then tabBefore = nil end
+  if tabAfter == "全部" then tabAfter = nil end
+
+  -- Remove dragSrc from _tabOrder first
+  table.remove(WuxiaGUI3._tabOrder, srcOrderIdx)
+
+  if not tabBefore and not tabAfter then
+    -- Edge case: no other tabs in _tabOrder visible, put at start
+    table.insert(WuxiaGUI3._tabOrder, 1, dragSrc)
+  elseif not tabBefore then
+    -- Gap is at the very start (or right after 全部): insert before tabAfter
+    for i, t in ipairs(WuxiaGUI3._tabOrder) do
+      if t == tabAfter then
+        table.insert(WuxiaGUI3._tabOrder, i, dragSrc)
+        break
+      end
+    end
+  elseif not tabAfter then
+    -- Gap is past the last tab: insert after tabBefore
+    for i, t in ipairs(WuxiaGUI3._tabOrder) do
+      if t == tabBefore then
+        table.insert(WuxiaGUI3._tabOrder, i + 1, dragSrc)
+        break
+      end
+    end
+  else
+    -- Normal: insert after tabBefore (= before tabAfter)
+    for i, t in ipairs(WuxiaGUI3._tabOrder) do
+      if t == tabBefore then
+        table.insert(WuxiaGUI3._tabOrder, i + 1, dragSrc)
+        break
+      end
+    end
+  end
+
+  WuxiaGUI3._rebuildTabBar()
+  -- Use _inRebuild to prevent auto-close of previous tab during drop
+  WuxiaGUI3._inRebuild = true
+  WuxiaGUI3.switchChatTab(dragSrc)
+  WuxiaGUI3._inRebuild = false
+  WuxiaGUI3._saveSettings()
+end
+
+-- Mouse wheel on drawer: scroll up/down through channel list
+function WuxiaGUI3._onDrawerWheel(event)
+  if event and event.angleDeltaY and event.angleDeltaY > 0 then
+    WuxiaGUI3._drawerScrollUp()
+  else
+    WuxiaGUI3._drawerScrollDown()
+  end
+end
+function WuxiaGUI3._cmdToTab(cmd)
+  local map = {
+    chat    = "閒聊",
+    rumor   = "謠言",
+    mess    = "江湖",
+    wiz     = "巫師",
+    sys     = "系統",
+    nch     = "監測",
+    news    = "新聞",
+    gwiz    = "國際",
+    other   = "未知",
+    ad      = "廣告",
+    family  = "門派",
+    party   = "幫派",
+    stock   = "股票",
+    auc     = "拍賣",
+    combat  = "戰鬥",
+    gt      = "隊伍",
+    dt      = "洞天",
+    war     = "戰場",
+    debug   = "調試",
   }
-  for _, r in ipairs(info) do
-    w(string.format(" <gold>【%s】<reset>%s", r[1], r[2]))
-    w(string.format("           <gold>【%s】<reset>%s", r[3], tostring(r[4])))
-  end
+  return map[cmd] or cmd
+end
 
-  w("")
-  local fields = {
-    {"門派", id.sect},   {"師承", id.master},
-    {"幫派", id.gang},   {"職務", id.position},
-    {"住宅", id.residence}, {"婚姻", id.marriage},
-    {"江湖", id.jianghu},
+-- Map display tab name back to server command
+function WuxiaGUI3._tabToCmd(tabName)
+  local map = {
+    ["閒聊"] = "chat",
+    ["謠言"] = "rumor",
+    ["江湖"] = "mess",
+    ["巫師"] = "wiz",
+    ["系統"] = "sys",
+    ["監測"] = "nch",
+    ["新聞"] = "news",
+    ["國際"] = "gwiz",
+    ["未知"] = "other",
+    ["廣告"] = "ad",
+    ["門派"] = "family",
+    ["幫派"] = "party",
+    ["股票"] = "stock",
+    ["拍賣"] = "auc",
+    ["戰鬥"] = "combat",
+    ["隊伍"] = "gt",
+    ["洞天"] = "dt",
+    ["戰場"] = "war",
+    ["調試"] = "debug",
   }
-  for _, f in ipairs(fields) do
-    w(string.format(" <gold>【%s】<reset>%s", f[1], f[2]))
-  end
+  return map[tabName]
+end
 
-  w("")
-  w(" <gold>─── 屬性 ───<reset>")
-  w(string.format(" <gold>膂力<reset> %d/%d  <gold>悟性<reset> %d/%d",
-    at.strength.cur, at.strength.max, at.perception.cur, at.perception.max))
-  w(string.format(" <gold>根骨<reset> %d/%d  <gold>身法<reset> %d/%d",
-    at.constitution.cur, at.constitution.max, at.agility.cur, at.agility.max))
-  w(string.format(" <gold>拳腳<reset> %s    <gold>兵器<reset> %s", sk.unarmed, sk.weapon))
-  w(string.format(" <gold>內功<reset> %s    <gold>輕功<reset> %s", sk.neigong, sk.qinggong))
+-- Update tab buttons: active state, unread indicators, enabled/disabled
+function WuxiaGUI3._updateTabStates()
+  if not WuxiaGUI3.chatTabButtons then return end
 
-  w("")
-  w(" <gold>─── 數值 ───<reset>")
-  w(string.format(" 經驗 <yellow>%s<reset>  潛能 %s", fmt(st.exp), fmt(st.potential)))
-  w(string.format(" 正氣 %s  功績 %s", fmt(st.zhengqi), fmt(st.gongji)))
-  w(string.format(" 威望 %s  榮譽 %s", fmt(st.weiwan), fmt(st.rongyu)))
+  for tabName, btn in pairs(WuxiaGUI3.chatTabButtons) do
+    local isActive = (tabName == WuxiaGUI3.activeChatTab)
+    local hasUnread = WuxiaGUI3.unreadTabs[tabName]
 
-  w("")
-  local ck = function(v) return v and "<green>✓<reset>" or "<red>×<reset>" end
-  w(string.format(" 武學宗師%s 大小周天%s 元嬰出世%s 生死玄關%s",
-    ck(ms.wuxue), ck(ms.zhoutian), ck(ms.yuanying), ck(ms.shengsi)))
+    if tabName == "全部" then
+      if isActive then
+        btn:setStyleSheet(string.format([[
+          background-color: %s;
+          border-bottom: 2px solid %s;
+          qproperty-alignment: AlignCenter;
+        ]], BG2, GOLD))
+        btn:echo(span(GOLD, "<b>全部</b>"))
+      else
+        btn:setStyleSheet(string.format([[
+          background-color: %s;
+          border-bottom: 1px solid %s;
+          qproperty-alignment: AlignCenter;
+        ]], BG, BORDER))
+        btn:echo(span(GOLD_DIM, "全部"))
+      end
+    else
+      local cmd = WuxiaGUI3._tabToCmd(tabName)
+      local enabled = cmd and WuxiaGUI3.channelEnabled[cmd]
+      local isPinned = WuxiaGUI3._isTabPinned(tabName)
+      local pinBtn = WuxiaGUI3._tabPinBtns and WuxiaGUI3._tabPinBtns[tabName]
 
-  if kl.total > 0 or kl.slaughter > 0 then
-    w("")
-    w(string.format(" 殺生 %d  殺玩家 %d  殺戮值 <yellow>%d<reset>",
-      kl.total, kl.player, kl.slaughter))
-  end
-
-  if d.playtime ~= "" then
-    w("")
-    w(" <DimGrey>遊戲時間："..d.playtime.."<reset>")
+      if isActive then
+        btn:setStyleSheet(string.format([[
+          background-color: %s;
+          border-bottom: 2px solid %s;
+          qproperty-alignment: AlignCenter;
+        ]], BG2, GOLD))
+        if enabled == false then
+          btn:echo(span(TEXT_DIM, "<b><s>" .. tabName .. "</s></b>"))
+        else
+          btn:echo(span(GOLD, "<b>" .. tabName .. "</b>"))
+        end
+        -- Pin icon: match active style
+        if pinBtn then
+          pinBtn:setStyleSheet(string.format([[
+            background-color: %s;
+            border-bottom: 2px solid %s;
+            qproperty-alignment: AlignCenter;
+          ]], BG2, GOLD))
+          pinBtn:echo(isPinned and PIN_CHAR or span(TEXT_DIM, "○"))
+        end
+      elseif hasUnread then
+        btn:setStyleSheet(string.format([[
+          background-color: %s;
+          border-bottom: 2px solid %s;
+          qproperty-alignment: AlignCenter;
+        ]], BG, GOLD))
+        local countStr = ""
+        if type(hasUnread) == "number" and hasUnread > 0 then
+          countStr = hasUnread > 99 and "(99+)" or ("(" .. hasUnread .. ")")
+        end
+        btn:echo(span("#ffffff", tabName) .. span("#ff4444", countStr))
+        -- Pin icon: match unread style
+        if pinBtn then
+          pinBtn:setStyleSheet(string.format([[
+            background-color: %s;
+            border-bottom: 2px solid %s;
+            qproperty-alignment: AlignCenter;
+          ]], BG, GOLD))
+          pinBtn:echo(isPinned and PIN_CHAR or span(TEXT_DIM, "○"))
+        end
+      else
+        btn:setStyleSheet(string.format([[
+          background-color: %s;
+          border-bottom: 1px solid %s;
+          qproperty-alignment: AlignCenter;
+        ]], BG, BORDER))
+        if enabled == false then
+          btn:echo(span(TEXT_DIM, "<s>" .. tabName .. "</s>"))
+        else
+          btn:echo(span(GOLD_DIM, tabName))
+        end
+        -- Pin icon: match inactive style
+        if pinBtn then
+          pinBtn:setStyleSheet(string.format([[
+            background-color: %s;
+            border-bottom: 1px solid %s;
+            qproperty-alignment: AlignCenter;
+          ]], BG, BORDER))
+          pinBtn:echo(isPinned and PIN_CHAR or span(TEXT_DIM, "○"))
+        end
+      end
+    end
   end
 end
 
-----------------------------------------------------------------------
--- § 11. UTILITY
-----------------------------------------------------------------------
-function WuxiaGUI.formatNumber(n)
-  if type(n) ~= "number" then return tostring(n) end
-  if n == 0 then return "0" end
-  local s = tostring(math.floor(n))
-  local f = s:reverse():gsub("(%d%d%d)", "%1,"):reverse()
-  return f:sub(1,1) == "," and f:sub(2) or f
+-- ─── Toggle a channel on/off via GMCP ───
+function WuxiaGUI3.tuneChannel(channelCmd)
+  if not channelCmd then return end
+  sendGMCP('Chat.Channels.Tune {"channel":"' .. channelCmd .. '"}')
 end
 
-----------------------------------------------------------------------
--- § 12. TRIGGER REGISTRATION (text parsing fallback)
-----------------------------------------------------------------------
-function WuxiaGUI.registerTriggers()
-  local function reg(name, patterns, code)
-    if exists(name, "trigger") > 0 then killTrigger(name) end
-    permRegexTrigger(name, "", patterns, code)
+-- ─── Read-only channel check ───
+local READ_ONLY_CMDS = {
+  sys = true, nch = true, news = true,
+  other = true, combat = true, stock = true,
+}
+
+function WuxiaGUI3._canSendToTab(tabName)
+  if not tabName or tabName == "全部" then return true end
+  local cmd = WuxiaGUI3._tabToCmd(tabName)
+  if not cmd then return false end
+  return not READ_ONLY_CMDS[cmd]
+end
+
+-- ─── Chat input handler: send message to active channel ───
+function WuxiaGUI3._onChatInputEnter(text)
+  if not text or text == "" then return end
+
+  local tab = WuxiaGUI3.activeChatTab
+  if not tab then return end
+
+  local cmd
+  if tab == "全部" then
+    local sendTab = WuxiaGUI3._allTabSendChannel or "閒聊"
+    cmd = WuxiaGUI3._tabToCmd(sendTab)
+  else
+    cmd = WuxiaGUI3._tabToCmd(tab)
   end
 
-  -- HP triggers
-  reg("WGUI_HP1", {
-    [[【 精 氣 】\s*(\d+)\s*/\s*(\d+)\s*\(\s*(\d+)%\)\s*【 精 力 】\s*(\d+)\s*/\s*(\d+)\s*\(([+-]?\d+)\)]]
-  }, [[
-    local d = WuxiaGUI.data
-    d.jingqi.cur=tonumber(matches[2]) d.jingqi.max=tonumber(matches[3]) d.jingqi.pct=tonumber(matches[4])
-    d.jingli.cur=tonumber(matches[5]) d.jingli.max=tonumber(matches[6]) d.jingli.regen=tonumber(matches[7])
-    WuxiaGUI.refresh()
-  ]])
-
-  reg("WGUI_HP2", {
-    [[【 氣 血 】\s*(\d+)\s*/\s*(\d+)\s*\(\s*(\d+)%\)\s*【 內 力 】\s*(\d+)\s*/\s*(\d+)\s*\(([+-]?\d+)\)]]
-  }, [[
-    local d = WuxiaGUI.data
-    d.qixue.cur=tonumber(matches[2]) d.qixue.max=tonumber(matches[3]) d.qixue.pct=tonumber(matches[4])
-    d.neili.cur=tonumber(matches[5]) d.neili.max=tonumber(matches[6]) d.neili.regen=tonumber(matches[7])
-    WuxiaGUI.refresh()
-  ]])
-
-  reg("WGUI_HP3", {[[【 食 物 】\s*(\d+)\s*/\s*(\d+)\s*【 潛 能 】\s*(\d+)]]}, [[
-    local d = WuxiaGUI.data
-    d.food.cur=tonumber(matches[2]) d.food.max=tonumber(matches[3]) d.qianneng=tonumber(matches[4])
-    WuxiaGUI.refresh()
-  ]])
-
-  reg("WGUI_HP4", {[[【 飲 水 】\s*(\d+)\s*/\s*(\d+)\s*【 體 會 】\s*(\d+)]]}, [[
-    local d = WuxiaGUI.data
-    d.water.cur=tonumber(matches[2]) d.water.max=tonumber(matches[3]) d.tihui=tonumber(matches[4])
-    WuxiaGUI.refresh()
-  ]])
-
-  reg("WGUI_HP5", {[[【 平 和 】\s*(.-)\s*【 經 驗 】\s*(\d+)]]}, [[
-    WuxiaGUI.data.pinghe=matches[2] WuxiaGUI.data.jingyan=tonumber(matches[3])
-    WuxiaGUI.refresh()
-  ]])
-
-  echo("WGUI: HP 觸發器已註冊 ✓\n")
+  if not cmd then return end
+  WuxiaGUI3.sendToChannel(cmd, text)
 end
 
-----------------------------------------------------------------------
--- § 13. ALIASES
-----------------------------------------------------------------------
-function WuxiaGUI.registerAliases()
-  local function ali(name, pat, code)
-    if exists(name, "alias") > 0 then killAlias(name) end
-    permAlias(name, "", pat, code)
+-- ─── Update chat input state: label, enable/disable, dropdown ───
+function WuxiaGUI3._updateChatInputState()
+  if not WuxiaGUI3._chatInputLabel then return end
+
+  local tab = WuxiaGUI3.activeChatTab or "全部"
+
+  if tab == "全部" then
+    -- Show channel selector button with ▼ indicator
+    local sendCh = WuxiaGUI3._allTabSendChannel or "閒聊"
+    WuxiaGUI3._chatInputLabel:echo(span(GOLD, sendCh .. " ▾"))
+    WuxiaGUI3._chatInputLabel:setStyleSheet(string.format([[
+      background-color: %s;
+      border: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG2, GOLD_DIM))
+    WuxiaGUI3._chatInputLabel:setClickCallback("WuxiaGUI3._toggleChatChannelPicker")
+
+    -- Show input, hide overlay
+    WuxiaGUI3._chatInput:show()
+    if WuxiaGUI3._chatInputOverlay then WuxiaGUI3._chatInputOverlay:hide() end
+    WuxiaGUI3._chatInput:setStyleSheet(string.format([[
+      background-color: %s;
+      color: %s;
+      border-top: none; border-left: none; border-right: none; border-bottom: 1px solid %s;
+      padding-left: 60px;
+    ]], BG, TEXT, BORDER))
+
+  elseif WuxiaGUI3._canSendToTab(tab) then
+    -- Sendable channel: show label + input
+    WuxiaGUI3._chatInputLabel:echo(span(GOLD, tab))
+    WuxiaGUI3._chatInputLabel:setStyleSheet(string.format([[
+      background-color: %s;
+      border: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG2, BORDER))
+    WuxiaGUI3._chatInputLabel:setClickCallback(function() end)
+
+    WuxiaGUI3._chatInput:show()
+    if WuxiaGUI3._chatInputOverlay then WuxiaGUI3._chatInputOverlay:hide() end
+    WuxiaGUI3._chatInput:setStyleSheet(string.format([[
+      background-color: %s;
+      color: %s;
+      border-top: none; border-left: none; border-right: none; border-bottom: 1px solid %s;
+      padding-left: 60px;
+    ]], BG, TEXT, BORDER))
+
+  else
+    -- Read-only channel: show label + overlay
+    WuxiaGUI3._chatInputLabel:echo(span(TEXT_DIM, tab))
+    WuxiaGUI3._chatInputLabel:setStyleSheet(string.format([[
+      background-color: %s;
+      border: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG, BORDER))
+    WuxiaGUI3._chatInputLabel:setClickCallback(function() end)
+
+    WuxiaGUI3._chatInput:hide()
+    if WuxiaGUI3._chatInputOverlay then
+      WuxiaGUI3._chatInputOverlay:show()
+      WuxiaGUI3._chatInputOverlay:raise()
+    end
   end
-  ali("WGUI_Reset",   [[^wuxia reset$]],   [[WuxiaGUI.setup() echo("WGUI: 重建完成 ✓\n")]])
-  ali("WGUI_Refresh", [[^wuxia refresh$]], [[send("hp") send("score")]])
-  ali("WGUI_Demo",    [[^wuxia demo$]],    [[WuxiaGUI.loadDemo()]])
-  ali("WGUI_Detail",  [[^wuxia detail$]],  [[WuxiaGUI._toggleCharMode()]])
-  echo("WGUI: 別名已註冊 ✓  (wuxia reset|refresh|demo|detail)\n")
+
+  -- Always keep label on top
+  if WuxiaGUI3._chatInputLabel then
+    WuxiaGUI3._chatInputLabel:raise()
+  end
+
+  -- Close channel picker if open
+  WuxiaGUI3._hideChatChannelPicker()
 end
 
-----------------------------------------------------------------------
--- § 14. DEMO DATA
-----------------------------------------------------------------------
-function WuxiaGUI.loadDemo()
-  local d = WuxiaGUI.data
-  d.jingqi  = {cur=433, max=433, pct=49}
-  d.qixue   = {cur=600, max=600, pct=62}
-  d.jingli  = {cur=2000, max=2000, regen=0}
-  d.neili   = {cur=3000, max=3000, regen=0}
-  d.food    = {cur=0, max=300}
-  d.water   = {cur=0, max=300}
-  d.pinghe  = "————————————"
-  d.qianneng = 100
-  d.tihui    = 0
-  d.jingyan  = 0
+-- ─── Channel picker dropdown for 全部 tab ───
+WuxiaGUI3._pickerScroll = 0
 
-  d.identity = {
-    title="普通百姓 管理員(admin)", age="十二歲七個月",
-    gender="男性人類", personality="光明磊落",
-    birthday="庚戌年一月十五日醜時三刻",
-    sect="普通百姓", master="你還沒有拜師",
-    gang="自由人士", position="無", military="0策",
-    profession="無", yuanshen="無", residence="流浪街頭",
-    marriage="單身", partner="沒有", children="沒有",
-    sexuality="你還是童男。", mount="沒有",
-    bank="沒有積蓄", jianghu="快意恩仇",
+function WuxiaGUI3._getPickerChannels()
+  -- Show all channels from server (or fallback), mark read-only
+  local channels = {}
+  if WuxiaGUI3.channelList and #WuxiaGUI3.channelList > 0 then
+    for _, ch in ipairs(WuxiaGUI3.channelList) do
+      if ch.cmd then
+        local dispName = WuxiaGUI3._cmdToTab(ch.cmd)
+        if dispName then
+          channels[#channels + 1] = {
+            name = dispName,
+            cmd = ch.cmd,
+            readOnly = READ_ONLY_CMDS[ch.cmd] or false,
+          }
+        end
+      end
+    end
+  else
+    for _, ch in ipairs(CHAT_CHANNELS) do
+      if ch.cmd then
+        channels[#channels + 1] = {
+          name = ch.name,
+          cmd = ch.cmd,
+          readOnly = READ_ONLY_CMDS[ch.cmd] or false,
+        }
+      end
+    end
+  end
+  return channels
+end
+
+function WuxiaGUI3._toggleChatChannelPicker()
+  if WuxiaGUI3._chatPicker then
+    WuxiaGUI3._hideChatChannelPicker()
+    return
+  end
+  WuxiaGUI3._pickerScroll = 0
+  WuxiaGUI3._buildChatChannelPicker()
+end
+
+function WuxiaGUI3._buildChatChannelPicker()
+  -- Destroy previous picker widgets if any
+  if WuxiaGUI3._chatPickerBtns then
+    for _, item in ipairs(WuxiaGUI3._chatPickerBtns) do
+      item.btn:hide()
+    end
+  end
+  WuxiaGUI3._chatPickerBtns = nil
+  WuxiaGUI3._pickerUpBtn = nil
+  WuxiaGUI3._pickerDnBtn = nil
+  WuxiaGUI3._chatPickerBg = nil
+  if WuxiaGUI3._chatPicker then
+    WuxiaGUI3._chatPicker:hide()
+    WuxiaGUI3._chatPicker = nil
+  end
+
+  local sendable = WuxiaGUI3._getPickerChannels()
+  if #sendable == 0 then return end
+
+  local itemH = 20
+  local pickerW = 80
+  local inputH = 22
+  local arrowH = 16
+
+  -- Get actual chatMain height
+  local chatMainH = WuxiaGUI3._currentChatH or WuxiaGUI3.chatMain:get_height()
+  local maxPickerH = chatMainH - 24 - inputH - 4  -- between tab bar and input, with margin
+  local needsScroll = (#sendable * itemH) > maxPickerH
+
+  -- Reserve space for arrows if scrolling
+  local contentH = maxPickerH
+  if needsScroll then
+    contentH = maxPickerH - arrowH * 2
+  end
+  local visibleCount = math.floor(contentH / itemH)
+  visibleCount = math.min(visibleCount, #sendable)
+  local pickerH = visibleCount * itemH + (needsScroll and arrowH * 2 or 0) + 4  -- +4 for border padding
+
+  -- Clamp scroll
+  local maxScroll = math.max(0, #sendable - visibleCount)
+  WuxiaGUI3._pickerScroll = math.max(0, math.min(WuxiaGUI3._pickerScroll, maxScroll))
+
+  local pickerY = chatMainH - inputH - pickerH
+
+  WuxiaGUI3._chatPicker = Geyser.Container:new({
+    name = "W3.chat.picker",
+    x = 0, y = pickerY,
+    width = pickerW, height = pickerH,
+  }, WuxiaGUI3.chatMain)
+
+  -- Picker background
+  WuxiaGUI3._chatPickerBg = Geyser.Label:new({
+    name = "W3.chat.picker.bg",
+    x = 0, y = 0,
+    width = "100%", height = "100%",
+  }, WuxiaGUI3._chatPicker)
+  WuxiaGUI3._chatPickerBg:setStyleSheet(string.format([[
+    background-color: %s;
+    border: 1px solid %s;
+  ]], BG2, GOLD_DIM))
+  WuxiaGUI3._chatPickerBg:setWheelCallback("WuxiaGUI3._onPickerWheel")
+
+  WuxiaGUI3._chatPickerBtns = {}
+  local yPos = 0
+
+  -- Up arrow
+  if needsScroll then
+    local upBtn = Geyser.Label:new({
+      name = "W3.chat.picker.up",
+      x = 2, y = 2, width = pickerW - 4, height = arrowH,
+    }, WuxiaGUI3._chatPicker)
+    local upColor = WuxiaGUI3._pickerScroll > 0 and GOLD or TEXT_DIM
+    upBtn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-bottom: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG2, BORDER))
+    upBtn:setFontSize(9)
+    upBtn:echo(span(upColor, "▲"))
+    upBtn:setClickCallback("WuxiaGUI3._pickerScrollUp")
+    upBtn:setWheelCallback("WuxiaGUI3._onPickerWheel")
+    WuxiaGUI3._pickerUpBtn = upBtn
+    yPos = arrowH + 2
+  else
+    yPos = 2
+  end
+
+  -- Channel items
+  for i = 1, visibleCount do
+    local idx = WuxiaGUI3._pickerScroll + i
+    local entry = sendable[idx]
+    if not entry then break end
+
+    local name = entry.name
+    local isReadOnly = entry.readOnly
+    local isCurrent = (not isReadOnly and name == (WuxiaGUI3._allTabSendChannel or "閒聊"))
+    local btn = Geyser.Label:new({
+      name = "W3.chat.picker." .. i,
+      x = 2, y = yPos,
+      width = pickerW - 4, height = itemH,
+    }, WuxiaGUI3._chatPicker)
+
+    local normalBg, normalColor
+    if isReadOnly then
+      normalBg = BG
+      normalColor = TEXT_DIM
+    elseif isCurrent then
+      normalBg = BG
+      normalColor = GOLD
+    else
+      normalBg = BG2
+      normalColor = TEXT
+    end
+
+    btn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-bottom: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], normalBg, BORDER))
+    btn:setFontSize(9)
+    btn:echo(span(normalColor, name))
+    btn:setWheelCallback("WuxiaGUI3._onPickerWheel")
+
+    if not isReadOnly then
+      btn:setClickCallback("WuxiaGUI3._selectChatChannel", name)
+      btn:setOnEnter("WuxiaGUI3._onPickerHoverEnter", name)
+      btn:setOnLeave("WuxiaGUI3._onPickerHoverLeave", name)
+    end
+
+    WuxiaGUI3._chatPickerBtns[#WuxiaGUI3._chatPickerBtns + 1] = {
+      btn = btn, name = name, isCurrent = isCurrent, readOnly = isReadOnly,
+    }
+    yPos = yPos + itemH
+  end
+
+  -- Down arrow
+  if needsScroll then
+    local dnBtn = Geyser.Label:new({
+      name = "W3.chat.picker.dn",
+      x = 2, y = yPos, width = pickerW - 4, height = arrowH,
+    }, WuxiaGUI3._chatPicker)
+    local dnColor = WuxiaGUI3._pickerScroll < maxScroll and GOLD or TEXT_DIM
+    dnBtn:setStyleSheet(string.format([[
+      background-color: %s;
+      border-top: 1px solid %s;
+      qproperty-alignment: AlignCenter;
+    ]], BG2, BORDER))
+    dnBtn:setFontSize(9)
+    dnBtn:echo(span(dnColor, "▼"))
+    dnBtn:setClickCallback("WuxiaGUI3._pickerScrollDown")
+    dnBtn:setWheelCallback("WuxiaGUI3._onPickerWheel")
+    WuxiaGUI3._pickerDnBtn = dnBtn
+  end
+
+  WuxiaGUI3._chatPicker:show()
+  WuxiaGUI3._chatPicker:raise()
+  if WuxiaGUI3._chatPickerBg then WuxiaGUI3._chatPickerBg:raise() end
+  if WuxiaGUI3._pickerUpBtn then WuxiaGUI3._pickerUpBtn:raise() end
+  for _, item in ipairs(WuxiaGUI3._chatPickerBtns) do
+    item.btn:raise()
+  end
+  if WuxiaGUI3._pickerDnBtn then WuxiaGUI3._pickerDnBtn:raise() end
+
+  -- Store for scroll calculations
+  WuxiaGUI3._pickerMaxScroll = maxScroll
+  WuxiaGUI3._pickerSendable = sendable
+end
+
+function WuxiaGUI3._pickerScrollUp()
+  if WuxiaGUI3._pickerScroll > 0 then
+    WuxiaGUI3._pickerScroll = WuxiaGUI3._pickerScroll - 1
+    WuxiaGUI3._buildChatChannelPicker()
+  end
+end
+
+function WuxiaGUI3._pickerScrollDown()
+  local maxS = WuxiaGUI3._pickerMaxScroll or 0
+  if WuxiaGUI3._pickerScroll < maxS then
+    WuxiaGUI3._pickerScroll = WuxiaGUI3._pickerScroll + 1
+    WuxiaGUI3._buildChatChannelPicker()
+  end
+end
+
+function WuxiaGUI3._onPickerWheel(event)
+  if event and event.angleDeltaY then
+    if event.angleDeltaY > 0 then
+      WuxiaGUI3._pickerScrollUp()
+    else
+      WuxiaGUI3._pickerScrollDown()
+    end
+  end
+end
+
+function WuxiaGUI3._onPickerHoverEnter(name)
+  if not WuxiaGUI3._chatPickerBtns then return end
+  for _, item in ipairs(WuxiaGUI3._chatPickerBtns) do
+    if item.name == name then
+      item.btn:setStyleSheet(string.format([[
+        background-color: %s;
+        border-bottom: 1px solid %s;
+        qproperty-alignment: AlignCenter;
+      ]], GOLD_DIM, BORDER))
+      item.btn:echo(span(TEXT, name))
+      break
+    end
+  end
+end
+
+function WuxiaGUI3._onPickerHoverLeave(name)
+  if not WuxiaGUI3._chatPickerBtns then return end
+  for _, item in ipairs(WuxiaGUI3._chatPickerBtns) do
+    if item.name == name then
+      local normalBg = item.isCurrent and BG or BG2
+      local normalColor = item.isCurrent and GOLD or TEXT
+      item.btn:setStyleSheet(string.format([[
+        background-color: %s;
+        border-bottom: 1px solid %s;
+        qproperty-alignment: AlignCenter;
+      ]], normalBg, BORDER))
+      item.btn:echo(span(normalColor, name))
+      break
+    end
+  end
+end
+
+function WuxiaGUI3._selectChatChannel(name)
+  WuxiaGUI3._allTabSendChannel = name
+  WuxiaGUI3._hideChatChannelPicker()
+  WuxiaGUI3._updateChatInputState()
+  WuxiaGUI3._saveSettings()
+end
+
+function WuxiaGUI3._hideChatChannelPicker()
+  if WuxiaGUI3._chatPicker then
+    WuxiaGUI3._chatPicker:hide()
+    WuxiaGUI3._chatPicker = nil
+    WuxiaGUI3._chatPickerBtns = nil
+  end
+end
+
+-- ─── Send a message to a channel via GMCP ───
+function WuxiaGUI3.sendToChannel(channelCmd, message)
+  if not channelCmd or not message or message == "" then return end
+  -- Escape quotes in message
+  message = message:gsub('"', '\\"')
+  sendGMCP('Chat.Channels.Send {"channel":"'
+    .. channelCmd .. '","message":"' .. message .. '"}')
+end
+
+-- ─── Chat input routing aliases ───
+function WuxiaGUI3._registerChatAlias()
+  if WuxiaGUI3._chatAliasID then
+    killAlias(WuxiaGUI3._chatAliasID)
+    WuxiaGUI3._chatAliasID = nil
+  end
+  if WuxiaGUI3._chatDirectAliasID then
+    killAlias(WuxiaGUI3._chatDirectAliasID)
+    WuxiaGUI3._chatDirectAliasID = nil
+  end
+  if WuxiaGUI3._chatTuneAliasID then
+    killAlias(WuxiaGUI3._chatTuneAliasID)
+    WuxiaGUI3._chatTuneAliasID = nil
+  end
+
+  -- /say <message> → send to active tab's channel via GMCP
+  WuxiaGUI3._chatAliasID = tempAlias(
+    "^/say (.+)$",
+    function()
+      local msg = matches[2]
+      local tab = WuxiaGUI3.activeChatTab
+      local cmd = WuxiaGUI3._tabToCmd(tab)
+      if cmd then
+        WuxiaGUI3.sendToChannel(cmd, msg)
+      else
+        -- 全部 tab defaults to chat
+        WuxiaGUI3.sendToChannel("chat", msg)
+      end
+    end
+  )
+
+  -- /ch <channel> <message> → send to specific channel via GMCP
+  WuxiaGUI3._chatDirectAliasID = tempAlias(
+    "^/ch (%S+) (.+)$",
+    function()
+      WuxiaGUI3.sendToChannel(matches[2], matches[3])
+    end
+  )
+
+  -- /tune <channel> → toggle channel on/off via GMCP
+  WuxiaGUI3._chatTuneAliasID = tempAlias(
+    "^/tune (%S+)$",
+    function()
+      WuxiaGUI3.tuneChannel(matches[2])
+    end
+  )
+end
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3.switchTab(tabName)
+  WuxiaGUI3.activeTab = tabName
+
+  -- Style all tab buttons
+  for name, btn in pairs(WuxiaGUI3.tabButtons) do
+    if name == tabName then
+      btn:setStyleSheet(string.format([[
+        background-color: %s;
+        border-bottom: 2px solid %s;
+        qproperty-alignment: AlignCenter;
+      ]], BG2, GOLD))
+      btn:echo(span(GOLD, "<b>"..name.."</b>"))
+    else
+      btn:setStyleSheet(string.format([[
+        background-color: %s;
+        border-bottom: 1px solid %s;
+        qproperty-alignment: AlignCenter;
+      ]], BG, BORDER))
+      btn:echo(span(GOLD_DIM, name))
+    end
+  end
+
+  -- Show/hide containers
+  for name, container in pairs(WuxiaGUI3.tabContainers) do
+    if name == tabName then
+      container:show()
+    else
+      container:hide()
+    end
+  end
+
+  -- Refresh the active tab content
+  WuxiaGUI3.refresh()
+end
+
+-- ═══════════════════════════════════════════════
+-- § 6  Refresh — update all visible data
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3.refresh()
+  if not WuxiaGUI3.initialized then return end
+
+  local tab = WuxiaGUI3.activeTab
+  if tab == "總覽"  then WuxiaGUI3._refreshOverview() end
+  if tab == "屬性"  then WuxiaGUI3._refreshAttributes() end
+  if tab == "技能"  then WuxiaGUI3._refreshSkills() end
+  if tab == "天賦"  then WuxiaGUI3._refreshTalents() end
+  if tab == "裝備"  then WuxiaGUI3._refreshEquipment() end
+end
+
+-- ─── 總覽 refresh ───
+function WuxiaGUI3._refreshOverview()
+  local v = WuxiaGUI3.vitals
+  local s = WuxiaGUI3.status
+
+  -- Helper: update a gauge + its label
+  local function ug(id, label, cur, max, suffix)
+    local g = WuxiaGUI3[id.."Gauge"]
+    local l = WuxiaGUI3[id.."Lbl"]
+    if not g or not l then return end
+    cur = tonumber(cur) or 0
+    max = tonumber(max) or 1
+    if max < 1 then max = 1 end
+    g:setValue(cur, max)
+    local pct = math.floor(cur / max * 100)
+    local txt = string.format("%s %d/%d (%d%%)", label, cur, max, pct)
+    if suffix and suffix ~= "" then txt = txt .. " " .. suffix end
+    l:echo(span(TEXT, txt))
+  end
+
+  ug("jing",   "【精氣】", v.jing, v.max_jing)
+  ug("qi",     "【氣血】", v.qi,   v.max_qi)
+  ug("jingli", "【精力】", v.jingli, v.max_jingli,
+     string.format("(+%d)", v.jiajing or 0))
+  ug("neili",  "【內力】", v.neili, v.max_neili,
+     string.format("(+%d)", v.jiali or 0))
+
+  -- Food / Water
+  if WuxiaGUI3.foodGauge then
+    local fc, fm = v.food or 0, v.max_food or 300
+    WuxiaGUI3.foodGauge:setValue(fc, fm)
+    WuxiaGUI3.foodLbl:echo(span(C_FOOD[1], string.format("食 %d/%d", fc, fm)))
+  end
+  if WuxiaGUI3.waterGauge then
+    local wc, wm = v.water or 0, v.max_water or 300
+    WuxiaGUI3.waterGauge:setValue(wc, wm)
+    WuxiaGUI3.waterLbl:echo(span(C_WATER[1], string.format("水 %d/%d", wc, wm)))
+  end
+
+  -- Craze / Pinghe
+  if WuxiaGUI3.crazeLbl then
+    local craze = tonumber(v.craze) or 0
+    if craze > 0 then
+      local maxc = tonumber(v.max_craze) or 1
+      WuxiaGUI3.crazeLbl:echo(
+        span("#cc4444", string.format("【憤怒】%d/%d", craze, maxc)))
+    else
+      WuxiaGUI3.crazeLbl:echo(span(TEXT_DIM, "【平和】————————————"))
+    end
+  end
+
+  -- Experience block
+  if WuxiaGUI3.expBlock then
+    WuxiaGUI3.expBlock:echo(
+      kv("潛能", fmtNum(v.potential)) .. "<br>" ..
+      kv("體會", fmtNum(v.experience)) .. "<br>" ..
+      kv("經驗", fmtNum(v.combat_exp))
+    )
+  end
+
+  -- Identity block
+  if WuxiaGUI3.identityBlock then
+    local name = s.name or ""
+    local title = s.title or ""
+    local lvl = s.level or 1
+    local guild = s.guild or ""
+    WuxiaGUI3.identityBlock:echo(
+      span(GOLD, "<b>" .. name .. "</b>") .. "<br>" ..
+      span(TEXT_DIM, title) .. "<br>" ..
+      kv("等級", lvl) .. " " .. kv("武功", s.wugong_level or 1) .. "<br>" ..
+      kv("能力", s.ability or 0) .. " " .. kv("成就", s.achievement or 0) .. "<br>" ..
+      kv("活躍", s.active or 0)
+    )
+  end
+
+  -- ─── Chat vitals bar (compact inline) ───
+  WuxiaGUI3._refreshChatVitals()
+end
+
+function WuxiaGUI3._refreshChatVitals()
+  if not WuxiaGUI3._chatVitalsBar then return end
+  local v = WuxiaGUI3.vitals
+
+  local function miniBar(label, cur, max, fg)
+    cur = tonumber(cur) or 0
+    max = tonumber(max) or 1
+    if max < 1 then max = 1 end
+    local pct = math.floor(cur / max * 100)
+    -- Color: normal = fg, low (<30%) = warning
+    local color = fg
+    if pct < 30 then color = "#cc4444" end
+    return string.format(
+      '<span style="color:%s;">%s</span>' ..
+      '<span style="color:%s;">%d</span>' ..
+      '<span style="color:%s;">/%d</span>',
+      TEXT_DIM, label, color, cur, TEXT_DIM, max)
+  end
+
+  local parts = {
+    miniBar("精", v.jing, v.max_jing, C_JING[1]),
+    miniBar("血", v.qi, v.max_qi, C_QI[1]),
+    miniBar("力", v.jingli, v.max_jingli, C_JINGLI[1]),
+    miniBar("內", v.neili, v.max_neili, C_NEILI[1]),
   }
-  d.combat = {attack=1, defense=1, damage=0, protection=2}
-  d.attrs = {
-    strength={cur=20,max=20}, perception={cur=20,max=20},
-    constitution={cur=20,max=20}, agility={cur=20,max=20},
-  }
-  d.skills = {unarmed="無評價", weapon="無評價", neigong="無評價", qinggong="無評價"}
-  d.stats = {exp=0, potential=100, zhengqi=0, tihui=0, gongji=0, linghui=0, weiwan=0, yueli=0, rongyu=0, liqi=0}
-  d.mastery = {wuxue=false, zhoutian=false, yuanying=false, shengsi=false}
-  d.kills = {total=0, player=0, murder=0, stun=0, good=0, evil=0, slaughter=0}
-  d.playtime = "九天六小時三十五分十五秒"
 
-  WuxiaGUI.refresh()
-  WuxiaGUI.chat("系統", "<gold>範例數據已載入。<reset>")
-  echo("WGUI: 範例數據已載入 ✓\n")
+  WuxiaGUI3._chatVitalsBar:echo(table.concat(parts, "  "))
 end
 
-----------------------------------------------------------------------
--- § 15. GMCP HOOKS (stubs — wire up when server sends GMCP)
-----------------------------------------------------------------------
---[[
-  When your server sends GMCP data, register event handlers like:
+-- ─── 屬性 refresh ───
+function WuxiaGUI3._refreshAttributes()
+  local s = WuxiaGUI3.status
 
-  registerAnonymousEventHandler("gmcp.Char.Vitals", function()
-    local v = gmcp.Char.Vitals
-    WuxiaGUI.data.jingqi.cur = tonumber(v.jingqi) or 0
-    WuxiaGUI.data.jingqi.max = tonumber(v.jingqi_max) or 0
-    -- ... etc
-    WuxiaGUI.refresh()
+  -- Attribute grid (2 columns)
+  if WuxiaGUI3.attrGrid then
+    local str = tonumber(s.str) or 0
+    local int_ = tonumber(s.int_) or 0
+    local con = tonumber(s.con) or 0
+    local dex = tonumber(s.dex) or 0
+    local per = tonumber(s.per) or 0
+    local kar = tonumber(s.kar) or 0
+
+    WuxiaGUI3.attrGrid:echo(
+      kv("膂力", str) .. "&nbsp;&nbsp;&nbsp;&nbsp;" .. kv("悟性", int_) .. "<br>" ..
+      kv("根骨", con) .. "&nbsp;&nbsp;&nbsp;&nbsp;" .. kv("身法", dex) .. "<br>" ..
+      kv("容貌", per) .. "&nbsp;&nbsp;&nbsp;&nbsp;" .. kv("福緣", kar)
+    )
+  end
+
+  -- Level block
+  if WuxiaGUI3.levelBlock then
+    WuxiaGUI3.levelBlock:echo(
+      kv("當前等級", s.level or 1) .. "<br>" ..
+      kv("武功等級", s.wugong_level or 1) .. "<br>" ..
+      kv("升級所需", fmtNum(s.next_level or 0)) .. "<br>" ..
+      kv("戰鬥經驗", fmtNum(s.combat_exp or 0))
+    )
+  end
+
+  -- Limits block
+  if WuxiaGUI3.limitsBlock then
+    WuxiaGUI3.limitsBlock:echo(
+      kv("精力上限", fmtNum(s.jingli_limit or 0)) .. "<br>" ..
+      kv("內力上限", fmtNum(s.neili_limit or 0)) .. "<br>" ..
+      kv("潛能上限", fmtNum(s.potential_limit or 0)) .. "<br>" ..
+      kv("體會上限", fmtNum(s.experience_limit or 0))
+    )
+  end
+
+  -- Special block (bloodline, yuanshen)
+  if WuxiaGUI3.specialBlock then
+    WuxiaGUI3.specialBlock:echo(
+      kv("血脈等級", s.xuemai_level or 0) .. "<br>" ..
+      kv("元神等級", s.yuanshen_level or 0) .. "<br>" ..
+      kv("能力點數", s.ability or 0) .. " " ..
+      kv("成就點數", s.achievement or 0)
+    )
+  end
+
+  -- Bonus stats (from Char.Buffs GMCP — raw sources, client-side computed)
+  WuxiaGUI3._refreshBonusStats()
+end
+
+-- ─── Bonus stats renderer ───
+function WuxiaGUI3._refreshBonusStats()
+  local b = WuxiaGUI3.buffs
+  if not b then return end
+  local hasData = (b.skillmix ~= nil or b.jingmai ~= nil or b.talent ~= nil)
+  if not hasData then
+    if WuxiaGUI3.bonusStatsInfo then
+      WuxiaGUI3.bonusStatsInfo:echo(span(TEXT_DIM, "等待資料..."))
+    end
+    if WuxiaGUI3.bonusStatsList then
+      WuxiaGUI3.bonusStatsList:echo(span(TEXT_DIM, "連線後自動更新"))
+    end
+    return
+  end
+
+  local filter = WuxiaGUI3._buffsActiveFilter or "all"
+
+  -- Read value for a key from the active filter source
+  -- "equipment" source comes from inventory data
+  local function val(key)
+    if filter == "all" then
+      local sum = 0
+      for _, src in ipairs({"skillmix","yuanshen","ability1","ability2","talent","jingmai","temp"}) do
+        local m = b[src]
+        if m then sum = sum + (m[key] or 0) end
+      end
+      local eq = b.equipment
+      if eq then sum = sum + (eq[key] or 0) end
+      return sum
+    elseif filter == "ability" then
+      return (b.ability1 and b.ability1[key] or 0) + (b.ability2 and b.ability2[key] or 0)
+    elseif filter == "equipment" then
+      -- Equipment buffs computed from inventory data
+      return b.equipment and b.equipment[key] or 0
+    else
+      local m = b[filter]
+      return m and m[key] or 0
+    end
+  end
+
+  local function colorVal(v, maxV)
+    if v > 0 then return span("#55cc55", tostring(v) .. "/" .. tostring(maxV)) end
+    return span(TEXT_DIM, "0/" .. tostring(maxV))
+  end
+  local function colorPct(v, maxS)
+    if v > 0 then return span("#55cc55", v .. "%/" .. maxS) end
+    return span(TEXT_DIM, "0%/" .. maxS)
+  end
+  local function row2(l1, v1, l2, v2)
+    return span(TEXT_DIM, l1 .. " ") .. v1 .. "&nbsp;&nbsp;" ..
+           span(TEXT_DIM, l2 .. " ") .. v2
+  end
+  local function hdr(title, color)
+    return span(color or GOLD, "── " .. title .. " ──")
+  end
+
+  local lines = {}
+  local function add(s) lines[#lines+1] = s end
+
+  add(hdr("天賦加成"))
+  add(row2("臂力", colorVal(val("str"), 2000), "悟性", colorVal(val("int"), 2000)))
+  add(row2("根骨", colorVal(val("con"), 2000), "身法", colorVal(val("dex"), 2000)))
+
+  add(hdr("上限加成"))
+  add(row2("潛能", colorVal(val("max_potential"), 10000000), "體會", colorVal(val("max_experience"), 10000000)))
+  add(row2("內力", colorVal(val("max_neili"), 2000000), "精力", colorVal(val("max_jingli"), 1000000)))
+  add(row2("氣血", colorVal(val("max_qi"), 2000000), "精氣", colorVal(val("max_jing"), 1000000)))
+
+  add(hdr("練功加成"))
+  add(row2("研究次", colorVal(val("research_times"), 2000), "研究效", colorPct(val("research_effect"), "2000%")))
+  add(row2("練習次", colorVal(val("practice_times"), 2000), "練習效", colorPct(val("practice_effect"), "2000%")))
+  add(row2("學習次", colorVal(val("learn_times"), 2000), "學習效", colorPct(val("learn_effect"), "2000%")))
+  add(row2("汲取消", colorVal(val("derive_times"), 2000), "汲取效", colorPct(val("derive_effect"), "2000%")))
+
+  add(hdr("五行加成", "#cc4444"))
+  for _, e in ipairs({
+    {"毒","add_poison","reduce_poison"}, {"魔","add_magic","reduce_magic"},
+    {"金","add_metal","reduce_metal"},   {"木","add_wood","reduce_wood"},
+    {"水","add_water","reduce_water"},   {"火","add_fire","reduce_fire"},
+    {"土","add_earth","reduce_earth"},
+  }) do
+    add(row2(e[1].."傷", colorPct(val(e[2]), "100%"), "抗"..e[1], colorPct(val(e[3]), "100%")))
+  end
+
+  add(hdr("狀態恢復", "#5588cc"))
+  add(row2("偷內力", colorPct(val("leech_neili"), "90%"), "偷生命", colorPct(val("leech_qi"), "90%")))
+
+  add(hdr("戰鬥加成"))
+  add(row2("攻擊", colorVal(val("attack"), 9000), "防禦", colorVal(val("defense"), 9000)))
+  add(row2("躲閃", colorVal(val("dodge"), 9000), "招架", colorVal(val("parry"), 9000)))
+  add(row2("絕命中", colorPct(val("ap_power"), "120%"), "絕防禦", colorPct(val("dp_power"), "120%")))
+  add(row2("兵傷害", colorVal(val("damage"), 200000), "拳傷害", colorVal(val("unarmed_damage"), 200000)))
+  add(row2("絕傷害", colorPct(val("da_power"), "120%"), "戰保護", colorVal(val("armor"), 200000)))
+  add(row2("忽招架", colorPct(val("avoid_parry"), "90%"), "忽躲閃", colorPct(val("avoid_dodge"), "90%")))
+  add(row2("忽特攻", colorPct(val("avoid_attack"), "90%"), "忽內防", colorPct(val("avoid_force"), "90%")))
+
+  add(hdr("高級屬性", "#aa55cc"))
+  add(row2("化忙亂", colorVal(val("reduce_busy"), 90), "尋寶率", colorPct(val("magic_find"), "300%")))
+  add(row2("雙傷害", colorPct(val("double_damage"), "200%"), "傷轉內", colorPct(val("qi_abs_neili"), "90%")))
+  add(row2("致  盲", colorPct(val("add_blind"), "90%"), "忽致盲", colorPct(val("avoid_blind"), "90%")))
+  add(row2("穿破甲", colorPct(val("through_armor"), "90%"), "百毒侵", colorPct(val("avoid_poison"), "100%")))
+  add(span(TEXT_DIM, "戰神 ") .. colorPct(val("full_self"), "90%"))
+
+  add(hdr("終極屬性", "#ccaa33"))
+  add(row2("冰  凍", colorPct(val("add_freeze"), "90%"), "忽冰凍", colorPct(val("avoid_freeze"), "90%")))
+  add(row2("遺  忘", colorPct(val("add_forget"), "90%"), "忽遺忘", colorPct(val("avoid_forget"), "90%")))
+  add(row2("忙  亂", colorVal(val("add_busy"), 90), "忽忙亂", colorPct(val("avoid_busy"), "90%")))
+  add(row2("虛  弱", colorPct(val("add_weak"), "90%"), "忽虛弱", colorPct(val("avoid_weak"), "90%")))
+  add(row2("追傷害", colorPct(val("add_damage"), "200%"), "化傷害", colorPct(val("reduce_damage"), "90%")))
+  add(row2("反  噬", colorPct(val("counter_damage"), "90%"), "浴重生", colorPct(val("avoid_die"), "90%")))
+  add(row2("致命擊", colorPct(val("fatal_blow"), "90%"), "提技能", colorVal(val("add_skill"), 1200)))
+
+  if WuxiaGUI3.bonusStatsInfo then
+    local srcNames = {
+      all = "總計", equipment = "裝備", skillmix = "技能組合",
+      jingmai = "經脈", yuanshen = "元神",
+      ability = "能力進階", talent = "天賦", temp = "暫時",
+    }
+    WuxiaGUI3.bonusStatsInfo:echo(
+      span(TEXT_DIM, "附加屬性 ") .. span(GOLD, srcNames[filter] or filter))
+  end
+  if WuxiaGUI3.bonusStatsList then
+    WuxiaGUI3.bonusStatsList:echo(table.concat(lines, "<br>"))
+  end
+end
+
+-- ─── 技能 refresh ───
+function WuxiaGUI3._refreshSkills()
+  local s = WuxiaGUI3.status
+  local mapping = {
+    sk_force   = "force",
+    sk_dodge   = "dodge",
+    sk_parry   = "parry",
+    sk_unarmed = "unarmed",
+    sk_sword   = "sword",
+    sk_blade   = "blade",
+    sk_staff   = "staff",
+    sk_whip    = "whip",
+    sk_throw   = "throwing",
+    sk_shoot   = "shooting",
+    sk_lit     = "literate",
+    sk_martial = "martial-arts",
+  }
+
+  for _, sk in ipairs(WuxiaGUI3._skillList or {}) do
+    local g = WuxiaGUI3[sk.id.."Gauge"]
+    local l = WuxiaGUI3[sk.id.."Lbl"]
+    if g and l then
+      local key = mapping[sk.id]
+      local val = tonumber(s[key]) or 0
+      -- Max skill is roughly 1000 for display purposes
+      -- Adjust if your game uses different caps
+      local displayMax = math.max(val, 500)
+      g:setValue(val, displayMax)
+
+      local color = val > 0 and TEXT or TEXT_DIM
+      l:echo(span(color, string.format("%s %d", sk.label, val)))
+    end
+  end
+end
+
+-- ─── 天賦 refresh (placeholder) ───
+function WuxiaGUI3._refreshTalents()
+  if WuxiaGUI3.talentInfo then
+    WuxiaGUI3.talentInfo:echo(
+      span(TEXT_DIM, "天賦資料需要新增 GMCP 封包"))
+  end
+  if WuxiaGUI3.talentList then
+    WuxiaGUI3.talentList:echo(
+      span(TEXT_DIM, "輸入 ") .. span(GOLD, "talent") ..
+      span(TEXT_DIM, " 查看天賦列表"))
+  end
+end
+
+-- ─── 裝備 refresh (from Char.Inventory GMCP) ───
+function WuxiaGUI3._refreshEquipment()
+  local inv = WuxiaGUI3.inventory
+  if not inv or not inv.items then
+    -- No data yet
+    if WuxiaGUI3.invHeader then
+      WuxiaGUI3.invHeader:echo(span(TEXT_DIM, "等待資料..."))
+    end
+    return
+  end
+
+  local items = inv.items or {}
+
+  -- Slot display names
+  local slotNames = {
+    primary = "主手", secondary = "副手",
+    head = "頭盔", cloth = "戰衣", armor = "鐵甲", boots = "皮靴",
+    hands = "手套", wrists = "護腕", waist = "腰帶", surcoat = "披風",
+    finger = "戒指", neck = "項鏈", rings = "指環", charm = "護符",
+  }
+
+  -- Quality names
+  local qualityNames = { [1] = "普通", [2] = "優良", [3] = "精良", [4] = "卓越", [5] = "傳說" }
+  local qualityColors = { [1] = TEXT_DIM, [2] = "#8a8a5a", [3] = "#5a8a5a", [4] = "#5a5acc", [5] = "#cc8a33" }
+
+  -- ═══ Update equipment slots ═══
+  -- First clear all slots
+  local allSlots = {
+    "primary", "secondary", "head", "cloth", "armor", "boots",
+    "hands", "wrists", "waist", "surcoat", "finger", "neck", "rings", "charm",
+  }
+  local slotItems = {}  -- slot → item data
+
+  for _, item in ipairs(items) do
+    if item.slot then
+      slotItems[item.slot] = item
+    end
+    -- Weapon detection: check equipped status
+    if item.equipped == "worn" and item.slot then
+      slotItems[item.slot] = item
+    end
+    if item.equipped == "secondary" and item.slot then
+      slotItems[item.slot] = item
+    end
+  end
+
+  if WuxiaGUI3._equipSlotLabels then
+    for _, slotKey in ipairs(allSlots) do
+      local lbl = WuxiaGUI3._equipSlotLabels[slotKey]
+      if lbl then
+        local item = slotItems[slotKey]
+        local slotLabel = slotNames[slotKey] or slotKey
+        if item then
+          local qStr = ""
+          if item.quality_level and qualityNames[item.quality_level] then
+            qStr = '<span style="color:' .. (qualityColors[item.quality_level] or TEXT_DIM) ..
+                   ';font-size:8px;"> ' .. qualityNames[item.quality_level] .. '</span>'
+          end
+          lbl:setStyleSheet(
+            "background-color: #1a2a1a; border: 1px solid #3a5a3a; padding: 3px 5px;")
+          lbl:echo(
+            '<span style="color:#888;font-size:9px;">' .. slotLabel .. '</span>' .. qStr .. '<br>' ..
+            '<span style="font-size:11px;">' .. ansiToHtml(item.name or "???") .. '</span>'
+          )
+        else
+          lbl:setStyleSheet(string.format(
+            "background-color: %s; border: 1px solid %s; padding: 3px 5px;", BG, BORDER))
+          lbl:echo(
+            '<span style="color:#888;font-size:9px;">' .. slotLabel .. ' ' .. slotKey .. '</span><br>' ..
+            span(TEXT_DIM, "未裝備")
+          )
+        end
+      end
+    end
+  end
+
+  -- ═══ Equipment buff summary ═══
+  -- Compute equipment buffs from raw item dbase (mirrors attribute.c)
+  -- Direct props: armor_prop, weapon_prop
+  -- Nested props: rare.apply_prop, enchase.apply_prop,
+  --               qianghua.apply_prop, qiling.apply_prop
+  -- Conditional:  enchase.mod_prop (only if mod_active)
+  local equipBuffs = {}
+
+  local function addProps(props)
+    if type(props) ~= "table" then return end
+    for k, v in pairs(props) do
+      if type(v) == "number" and v ~= 0 then
+        equipBuffs[k] = (equipBuffs[k] or 0) + v
+      end
+    end
+  end
+
+  for _, item in ipairs(items) do
+    if item.equipped then
+      addProps(item.armor_prop)
+      addProps(item.weapon_prop)
+      -- Nested: rare/apply_prop → item.rare.apply_prop in Lua table
+      if type(item.rare) == "table" then addProps(item.rare.apply_prop) end
+      if type(item.enchase) == "table" then
+        addProps(item.enchase.apply_prop)
+        -- mod_prop only if mod_active
+        if item.mod_active then addProps(item.enchase.mod_prop) end
+      end
+      if type(item.qianghua) == "table" then addProps(item.qianghua.apply_prop) end
+      if type(item.qiling) == "table" then addProps(item.qiling.apply_prop) end
+    end
+  end
+  -- Add fullsuit bonuses
+  if inv.fullsuit then
+    addProps(inv.fullsuit)
+  end
+
+  -- Store equipment buffs in the buffs table for the 附加屬性 "裝備" filter
+  WuxiaGUI3.buffs.equipment = equipBuffs
+
+  if WuxiaGUI3.equipBuffSummary then
+    local lines = {}
+    -- Show non-zero buffs sorted by key
+    local sortedKeys = {}
+    for k, v in pairs(equipBuffs) do
+      if v ~= 0 then sortedKeys[#sortedKeys + 1] = k end
+    end
+    table.sort(sortedKeys)
+
+    local buffNames = {
+      str = "臂力", ["int"] = "悟性", con = "根骨", dex = "身法",
+      armor = "保護力", attack = "攻擊", defense = "防禦",
+      damage = "傷害", unarmed_damage = "拳傷害",
+      dodge = "躲閃", parry = "招架",
+      learn_effect = "學習效果", research_effect = "研究效果",
+      practice_effect = "練習效果", derive_effect = "汲取效果",
+      max_qi = "氣血上限", max_jing = "精氣上限",
+      max_neili = "內力上限", max_jingli = "精力上限",
+      magic_find = "尋寶率", ap_power = "絕命中", dp_power = "絕防禦",
+      da_power = "絕傷害",
+    }
+
+    if #sortedKeys == 0 then
+      lines[1] = span(TEXT_DIM, "無裝備效果")
+    else
+      for _, k in ipairs(sortedKeys) do
+        local v = equipBuffs[k]
+        local label = buffNames[k] or k
+        local vStr = v > 0 and ("+" .. tostring(v)) or tostring(v)
+        lines[#lines + 1] = span(TEXT_DIM, label .. " ") .. span("#55cc55", vStr)
+      end
+    end
+    WuxiaGUI3.equipBuffSummary:echo(table.concat(lines, "<br>"))
+  end
+
+  -- ═══ Equipment sets ═══
+  if WuxiaGUI3._equipSetBtns then
+    local sets = inv.sets or {}
+    for i = 1, 5 do
+      local btn = WuxiaGUI3._equipSetBtns[i]
+      if btn and not (WuxiaGUI3._equipSetCooldowns and WuxiaGUI3._equipSetCooldowns[i]) then
+        local setData = sets[tostring(i)]
+        local hasSet = setData ~= nil
+        if hasSet then
+          -- Active: solid border, bright text
+          btn:setStyleSheet(string.format(
+            "background-color: %s; border: 1px solid %s; qproperty-alignment: AlignCenter;",
+            BG2, BORDER))
+          btn:echo(span(GOLD, "<b>" .. tostring(i) .. "</b>"))
+          -- Tooltip: show saved item names
+          if type(setData) == "table" then
+            local tipLines = {}
+            for _, base in ipairs(setData) do
+              -- Extract short name from base path (e.g. "/clone/goods/zhufu_head" → "zhufu_head")
+              local short = base:match("([^/]+)$") or base
+              tipLines[#tipLines + 1] = short
+            end
+            btn:setToolTip("套裝 " .. tostring(i) .. ":\n" .. table.concat(tipLines, "\n"))
+          end
+        else
+          -- Empty: dashed border, dim text
+          btn:setStyleSheet(string.format(
+            "background-color: %s; border: 1px dashed %s; qproperty-alignment: AlignCenter;",
+            BG, "#333"))
+          btn:echo(span(TEXT_DIM, tostring(i)))
+          btn:setToolTip("套裝 " .. tostring(i) .. ": 空\n右鍵儲存當前裝備")
+        end
+      end
+    end
+  end
+
+  -- ═══ Inventory list ═══
+  -- Header
+  if WuxiaGUI3.invHeader then
+    local count = 0
+    for _ in ipairs(items) do count = count + 1 end
+    local enc = inv.encumbrance or 0
+    WuxiaGUI3.invHeader:echo(
+      span(TEXT_DIM, tostring(count) .. " 件物品") ..
+      "&nbsp;&nbsp;&nbsp;" ..
+      span(GOLD, "負重 " .. tostring(enc) .. "%")
+    )
+  end
+
+  -- Item list
+  if WuxiaGUI3.invList then
+    local lines = {}
+
+    -- Sort: equipped first, then regular items
+    local equipped = {}
+    local regular = {}
+    for _, item in ipairs(items) do
+      if item.equipped then
+        equipped[#equipped + 1] = item
+      else
+        regular[#regular + 1] = item
+      end
+    end
+
+    for _, item in ipairs(equipped) do
+      local marker = '<span style="color:#5ac;">□</span>'
+      if item.equipped == "secondary" then
+        marker = '<span style="color:#c5a;">□</span>'
+      elseif item.equipped == "holding" then
+        marker = '<span style="color:#5ac;">○</span>'
+      end
+      local qStr = ""
+      if item.quality_level and qualityNames[item.quality_level] then
+        qStr = ' <span style="color:' .. (qualityColors[item.quality_level] or TEXT_DIM) ..
+               ';font-size:8px;">' .. qualityNames[item.quality_level] .. '</span>'
+      end
+      lines[#lines + 1] = marker .. ' ' .. ansiToHtml(item.name or "???") .. qStr
+    end
+
+    for _, item in ipairs(regular) do
+      local amtStr = ""
+      if item.amount and item.amount > 1 then
+        amtStr = ' <span style="color:#888;font-size:8px;">×' .. tostring(item.amount) .. '</span>'
+      end
+      lines[#lines + 1] = '&nbsp;&nbsp;' .. ansiToHtml(item.name or "???") .. amtStr
+    end
+
+    if #lines == 0 then
+      lines[1] = span(TEXT_DIM, "背包為空")
+    end
+
+    WuxiaGUI3.invList:echo(table.concat(lines, "<br>"))
+  end
+end
+
+-- ═══════════════════════════════════════════════
+-- § 7  GMCP Event Registration
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3.registerEvents()
+  local h = WuxiaGUI3._handlers
+
+  -- Char.Vitals
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Vitals", function()
+    local gv = gmcp and gmcp.Char and gmcp.Char.Vitals
+    if not gv then return end
+    local v = WuxiaGUI3.vitals
+
+    v.jing       = tonumber(gv.jing) or v.jing
+    v.eff_jing   = tonumber(gv.eff_jing) or v.eff_jing
+    v.max_jing   = tonumber(gv.max_jing) or v.max_jing
+    v.qi         = tonumber(gv.qi) or v.qi
+    v.eff_qi     = tonumber(gv.eff_qi) or v.eff_qi
+    v.max_qi     = tonumber(gv.max_qi) or v.max_qi
+    v.jingli     = tonumber(gv.jingli) or v.jingli
+    v.max_jingli = tonumber(gv.max_jingli) or v.max_jingli
+    v.jiajing    = tonumber(gv.jiajing) or v.jiajing
+    v.neili      = tonumber(gv.neili) or v.neili
+    v.max_neili  = tonumber(gv.max_neili) or v.max_neili
+    v.jiali      = tonumber(gv.jiali) or v.jiali
+    v.food       = tonumber(gv.food) or v.food
+    v.max_food   = tonumber(gv.max_food) or v.max_food
+    v.water      = tonumber(gv.water) or v.water
+    v.max_water  = tonumber(gv.max_water) or v.max_water
+    v.potential  = tonumber(gv.potential) or v.potential
+    v.experience = tonumber(gv.experience) or v.experience
+    v.combat_exp = tonumber(gv.combat_exp) or v.combat_exp
+    v.craze      = tonumber(gv.craze) or v.craze
+    v.max_craze  = tonumber(gv.max_craze) or v.max_craze
+    v.jianu      = tonumber(gv.jianu) or v.jianu
+
+    WuxiaGUI3.refresh()
   end)
 
-  registerAnonymousEventHandler("gmcp.Char.Status", function()
-    local s = gmcp.Char.Status
-    WuxiaGUI.data.identity.title = s.title or ""
-    -- ... etc
-    WuxiaGUI.refresh()
-  end)
-]]
+  -- Char.Status
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Status", function()
+    local gs = gmcp and gmcp.Char and gmcp.Char.Status
+    if not gs then return end
+    local s = WuxiaGUI3.status
 
-----------------------------------------------------------------------
--- § 16. START
-----------------------------------------------------------------------
-function WuxiaGUI.start()
-  echo("\n")
-  cecho("<gold>╔═══════════════════════════════════════════╗<reset>\n")
-  cecho("<gold>║<reset>   武俠 MUD GUI v2.0 — 武林介面系統      <gold>║<reset>\n")
-  cecho("<gold>╚═══════════════════════════════════════════╝<reset>\n")
-  echo("\n")
-  WuxiaGUI.setup()
-  WuxiaGUI.registerTriggers()
-  WuxiaGUI.registerAliases()
-  echo("\n就緒。輸入 wuxia demo 預覽介面。\n\n")
+    -- Identity
+    s.name           = gs.name or s.name
+    s.id             = gs.id or s.id
+    s.title          = gs.title or s.title
+    s.age            = gs.age or s.age
+    s.gender         = gs.gender or s.gender
+
+    -- Attributes
+    s.str            = tonumber(gs.str) or s.str
+    s.int_           = tonumber(gs["int"]) or s.int_
+    s.con            = tonumber(gs.con) or s.con
+    s.dex            = tonumber(gs.dex) or s.dex
+    s.per            = tonumber(gs.per) or s.per
+    s.kar            = tonumber(gs.kar) or s.kar
+
+    -- Level & Combat
+    s.level          = tonumber(gs.level) or s.level
+    s.wugong_level   = tonumber(gs.wugong_level) or s.wugong_level
+    s.combat_exp     = tonumber(gs.combat_exp) or s.combat_exp
+    s.next_level     = tonumber(gs.next_level) or s.next_level
+
+    -- Limits
+    s.jingli_limit     = tonumber(gs.jingli_limit) or s.jingli_limit
+    s.neili_limit      = tonumber(gs.neili_limit) or s.neili_limit
+    s.potential_limit   = tonumber(gs.potential_limit) or s.potential_limit
+    s.experience_limit  = tonumber(gs.experience_limit) or s.experience_limit
+
+    -- Ability & Achievement
+    s.ability        = tonumber(gs.ability) or s.ability
+    s.achievement    = tonumber(gs.achievement) or s.achievement
+    s.active         = tonumber(gs.active) or s.active
+
+    -- Special
+    s.xuemai_level   = tonumber(gs.xuemai_level) or s.xuemai_level
+    s.yuanshen_level = tonumber(gs.yuanshen_level) or s.yuanshen_level
+
+    -- Skills
+    s.force          = tonumber(gs.force) or s.force
+    s.dodge          = tonumber(gs.dodge) or s.dodge
+    s.parry          = tonumber(gs.parry) or s.parry
+    s.unarmed        = tonumber(gs.unarmed) or s.unarmed
+    s.sword          = tonumber(gs.sword) or s.sword
+    s.blade          = tonumber(gs.blade) or s.blade
+    s.staff          = tonumber(gs.staff) or s.staff
+    s.whip           = tonumber(gs.whip) or s.whip
+    s.throwing       = tonumber(gs.throwing) or s.throwing
+    s.shooting       = tonumber(gs.shooting) or s.shooting
+    s.literate       = tonumber(gs.literate) or s.literate
+    s["martial-arts"] = tonumber(gs["martial-arts"]) or s["martial-arts"]
+
+    WuxiaGUI3.refresh()
+  end)
+
+  -- Char.Info
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Info", function()
+    local gi = gmcp and gmcp.Char and gmcp.Char.Info
+    if not gi then return end
+    WuxiaGUI3.status.name = gi.name or WuxiaGUI3.status.name
+    -- Welcome message in chat
+    WuxiaGUI3.chat("系統",
+      string.format("<gold>歡迎回來，%s。<reset>", gi.name or "俠客"))
+  end)
+
+  -- Room.Info (store for future map tab)
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Room.Info", function()
+    local gr = gmcp and gmcp.Room and gmcp.Room.Info
+    if not gr then return end
+    WuxiaGUI3.room = {
+      name  = gr.name or "",
+      path  = gr.path or "",
+      exits = gr.exits or {},
+    }
+  end)
+
+  -- Char.Buffs (raw source mappings — GUI computes totals)
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Buffs", function()
+    local gb = gmcp and gmcp.Char and gmcp.Char.Buffs
+    if not gb then return end
+
+    local b = WuxiaGUI3.buffs or {}
+    for srcName, srcData in pairs(gb) do
+      if type(srcData) == "table" then
+        local m = {}
+        for k, v in pairs(srcData) do
+          m[k] = tonumber(v) or 0
+        end
+        b[srcName] = m
+      end
+    end
+    WuxiaGUI3.buffs = b
+
+    WuxiaGUI3.refresh()
+  end)
+
+  -- Char.Inventory (items, equipment slots, sets, fullsuit)
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Inventory", function()
+    local gi = gmcp and gmcp.Char and gmcp.Char.Inventory
+    if not gi then return end
+
+    local inv = {}
+    inv.encumbrance = tonumber(gi.encumbrance) or 0
+    inv.handing = gi.handing
+    inv.secondary = gi.secondary
+    inv.fullsuit = gi.fullsuit  -- mapping or nil
+    inv.sets = gi.sets          -- mapping or nil
+
+    -- Parse items array
+    inv.items = {}
+    if type(gi.items) == "table" then
+      for _, raw in ipairs(gi.items) do
+        if type(raw) == "table" then
+          -- Full item dbase is synced; store directly
+          -- Override key fields with proper types
+          local item = {}
+          for k, v in pairs(raw) do
+            item[k] = v
+          end
+          -- Ensure numeric fields
+          if item.amount then item.amount = tonumber(item.amount) end
+          if item.quality_level then item.quality_level = tonumber(item.quality_level) end
+          inv.items[#inv.items + 1] = item
+        end
+      end
+    end
+
+    WuxiaGUI3.inventory = inv
+
+    -- Refresh equipment tab
+    WuxiaGUI3._refreshEquipment()
+    -- Also refresh bonus stats since equipment buffs changed
+    WuxiaGUI3._refreshBonusStats()
+  end)
+
+  -- Request initial burst
+  sendGMCP("Char.Vitals.Request")
+  sendGMCP("Char.Status.Request")
+  sendGMCP("Char.Buffs.Request")
+  sendGMCP("Char.Inventory.Request")
+  sendGMCP("Char.Info.Request")
+  sendGMCP("Room.Info.Request")
 end
 
-WuxiaGUI.start()
+-- ═══════════════════════════════════════════════
+-- § 8  Cleanup / Destroy
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3.destroy()
+  -- Kill GMCP handlers
+  if WuxiaGUI3._handlers then
+    for _, h in ipairs(WuxiaGUI3._handlers) do
+      killAnonymousEventHandler(h)
+    end
+    WuxiaGUI3._handlers = {}
+  end
+
+  -- Kill system handlers
+  if WuxiaGUI3._sysHandlers then
+    for _, h in ipairs(WuxiaGUI3._sysHandlers) do
+      killAnonymousEventHandler(h)
+    end
+    WuxiaGUI3._sysHandlers = {}
+  end
+
+  -- Kill chat aliases
+  if WuxiaGUI3._chatAliasID then
+    killAlias(WuxiaGUI3._chatAliasID)
+    WuxiaGUI3._chatAliasID = nil
+  end
+  if WuxiaGUI3._chatDirectAliasID then
+    killAlias(WuxiaGUI3._chatDirectAliasID)
+    WuxiaGUI3._chatDirectAliasID = nil
+  end
+  if WuxiaGUI3._chatTuneAliasID then
+    killAlias(WuxiaGUI3._chatTuneAliasID)
+    WuxiaGUI3._chatTuneAliasID = nil
+  end
+
+  -- Destroy GUI
+  WuxiaGUI3._destroyDrawer()
+  if WuxiaGUI3.chatMain then
+    WuxiaGUI3.chatMain:hide()
+    WuxiaGUI3.chatMain = nil
+  end
+  WuxiaGUI3.chatConsoles = nil
+  WuxiaGUI3.chatTabButtons = nil
+
+  if WuxiaGUI3.main then
+    WuxiaGUI3.main:hide()
+    WuxiaGUI3.main = nil
+  end
+  if WuxiaGUI3.leftMain then
+    WuxiaGUI3.leftMain:hide()
+    WuxiaGUI3.leftMain = nil
+  end
+
+  setBorderRight(0)
+  setBorderLeft(0)
+  setBorderTop(0)
+  setBorderBottom(0)
+  WuxiaGUI3.initialized = false
+end
+
+-- ═══════════════════════════════════════════════
+-- § 9  Start
+-- ═══════════════════════════════════════════════
+function WuxiaGUI3.start()
+  WuxiaGUI3.build()
+  WuxiaGUI3.registerEvents()
+  WuxiaGUI3.refresh()
+
+  -- Cleanup on profile exit
+  WuxiaGUI3._sysHandlers[#WuxiaGUI3._sysHandlers+1] =
+    registerAnonymousEventHandler("sysExitEvent", function()
+      if WuxiaGUI3 and WuxiaGUI3.destroy then
+        WuxiaGUI3.destroy()
+      end
+    end)
+end
+
+-- Auto-start
+WuxiaGUI3.start()

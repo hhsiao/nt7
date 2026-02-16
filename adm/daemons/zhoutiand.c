@@ -79,6 +79,11 @@ int query_jingmai_buff(string key)
 {
         return data[key];
 }
+
+mapping query_entire_jingmai_data() {
+    return copy(data);
+}
+
 string *x_zhoutian = ({
         "陰蹺脈", "陽蹺脈", "陰維脈", "陽維脈", "帶脈", "衝脈", "任外脈", "督外脈", "經外奇脈",
 });

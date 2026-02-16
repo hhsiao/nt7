@@ -16,6 +16,7 @@ inherit F_BUSINESS;
 #define PROTECT_AGE     14
 #endif
 
+inherit F_GMCP;
 // 死亡保護
 protected int die_protect(object ob);
 protected void cancle_die_protect(object ob);

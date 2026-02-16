@@ -61,6 +61,11 @@ int block_ip(string ip, int time, string reason);
 int unblock_ip(string ip);
 void logon(object ob);
 
+void gmcp_enter_burst(object user) {
+    if (!user || !interactive(user)) return;
+    if (!has_gmcp(user)) return;
+    user->gmcp_init_burst();
+}
 
 string resolve_ip_number(string ip_number) {
     string part, *parts;
@@ -129,8 +134,8 @@ void logon(object ob) {
     int i, wiz_cnt, ppl_cnt, ip_cnt, ban_cnt, login_cnt;
     int reg_usr, max_usr, max_ips, time1, time2;
     string encoding;
-    string enc = lower_case(query_temp("preferred_encoding", ob));
-    string trans = query_temp("preferred_transcoding", ob);
+    string enc = lower_case(to_string(query_temp("preferred_encoding", ob)));
+    string trans = to_string(query_temp("preferred_transcoding", ob));
     string current_encoding = lower_case(ob->u_query_encoding());
     string real_encoding;
     switch(current_encoding) {
@@ -146,6 +151,21 @@ void logon(object ob) {
             break;
         default:
             real_encoding = "utf-8";
+            break;
+    }
+    switch(enc) {
+        case "windows-950-2000":  // BIG5 canonical name
+        case "big5":
+            enc = "big5";
+            break;
+        case "gbk":
+        case "gb2312":
+        case "gb18030":
+        case "windows-936-2000":
+            enc = "gbk";
+            break;
+        default:
+            enc = "utf-8";
             break;
     }
     if (enc != real_encoding) {
@@ -1409,6 +1429,8 @@ varargs void enter_world(object ob, object user, int silent, int timer, string a
         }
     }
     user->setup();
+    if (has_gmcp(user))
+        call_out("gmcp_enter_burst", 1, user);
 
     if(query("age", ob) == 14 ) {
         set("food", user->max_food_capacity(), user);
@@ -1711,6 +1733,8 @@ varargs void reconnect(object ob, object user, int silent)
     }
 
     user->reconnect();
+    if (has_gmcp(user))
+        call_out("gmcp_enter_burst", 1, user);
 
     //if( !silent && (!wizardp(user) || !query("env/invisible", user))){
     if(!silent && !query("env/invisible", user)){
