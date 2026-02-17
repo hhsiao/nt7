@@ -672,94 +672,153 @@ end
 -- § 4e  Tab: 裝備 (Equipment) - placeholder
 -- ═══════════════════════════════════════════════
 function WuxiaGUI3._buildEquipment()
-  local p = WuxiaGUI3.tabContainers["裝備"]
-  local y = 4
-
-  -- ═══ Weapon Slots ═══
-  local hdrW = Geyser.Label:new({
-    name = "W3.equip.hdrWeapon", x = MX, y = y, width = GW, height = 18,
-  }, p)
-  hdrW:setStyleSheet("background-color:transparent;")
-  hdrW:setFontSize(10)
-  hdrW:echo(span(GOLD, "── 武器 ──"))
-  y = y + 20
-
-  local halfW = math.floor(GW / 2) - 2
-  local slotH = 40
-  -- Primary weapon slot
-  y = WuxiaGUI3._makeEquipSlot(p, "primary", "主手", MX, y, halfW, slotH)
-  -- Secondary weapon slot (same row, reset y)
-  WuxiaGUI3._makeEquipSlot(p, "secondary", "副手", MX + halfW + 4, y - slotH, halfW, slotH)
-  y = y + 4
-
-  y = makeSep(p, y)
-
-  -- ═══ Armor Slots ═══
-  local hdrA = Geyser.Label:new({
-    name = "W3.equip.hdrArmor", x = MX, y = y, width = GW, height = 18,
-  }, p)
-  hdrA:setStyleSheet("background-color:transparent;")
-  hdrA:setFontSize(10)
-  hdrA:echo(span(GOLD, "── 防具 ──"))
-  y = y + 20
-
-  -- 2-column grid, 6 rows
-  local slotDefs = {
-    { "head",    "頭盔",  "cloth",   "戰衣" },
-    { "armor",   "鐵甲",  "boots",   "皮靴" },
-    { "hands",   "手套",  "wrists",  "護腕" },
-    { "waist",   "腰帶",  "surcoat", "披風" },
-    { "finger",  "戒指",  "neck",    "項鏈" },
-    { "rings",   "指環",  "charm",   "護符" },
-  }
-  local armorSlotH = 40
-  for _, row in ipairs(slotDefs) do
-    WuxiaGUI3._makeEquipSlot(p, row[1], row[2], MX, y, halfW, armorSlotH)
-    WuxiaGUI3._makeEquipSlot(p, row[3], row[4], MX + halfW + 4, y, halfW, armorSlotH)
-    y = y + armorSlotH + 2
+  -- Clean up stale inventory MiniConsole from previous load
+  if WuxiaGUI3.invList and WuxiaGUI3._invListIsCon then
+    WuxiaGUI3.invList:delete()
+    WuxiaGUI3.invList = nil
   end
-  y = y + 2
 
-  y = makeSep(p, y)
+  local p = WuxiaGUI3.tabContainers["裝備"]
+  local y = 0
+
+  -- ═══ Character Sheet: Silhouette + Positioned Slots ═══
+  local SW = 120   -- slot width
+  local SH = 56    -- slot height (slightly shorter to fit within image)
+  local LX = MX
+  local RX = MX + GW - SW
+
+  -- ── Background: Character artwork (full panel width) ──
+  local weaponH = SH + 4
+  local bodyH = 6 * (SH + 3)
+  local totalH = weaponH + 4 + bodyH  -- include weapon y offset
+  local silLabel = Geyser.Label:new({
+    name = "W3.equip.silhouette",
+    x = 0, y = y,
+    width = PW, height = totalH,
+  }, p)
+  local imgPath = getMudletHomeDir() .. "/wuxia_equip_bg.png"
+  if io.open(imgPath, "r") then
+    silLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. imgPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    silLabel:setStyleSheet("background-color: transparent; border: none;")
+  end
+
+  -- ── Weapon row (top) ──
+  WuxiaGUI3._makeEquipSlot(p, "primary",   "主手 primary",  LX, y + 4, SW, SH)
+  WuxiaGUI3._makeEquipSlot(p, "secondary", "副手 secondary", RX, y + 4, SW, SH)
+  y = y + weaponH + 4
+
+  -- ── Body slot rows ──
+  local bodySlots = {
+    { "head",    "頭盔 head",     "cloth",   "戰衣 cloth" },
+    { "armor",   "鐵甲 armor",    "boots",   "皮靴 boots" },
+    { "hands",   "手套 hands",    "wrists",  "護腕 wrists" },
+    { "waist",   "腰帶 waist",    "surcoat", "披風 surcoat" },
+    { "finger",  "戒指 finger",   "neck",    "項鏈 neck" },
+    { "rings",   "指環 rings",    "charm",   "護符 charm" },
+  }
+
+  local rowY = y
+  for _, row in ipairs(bodySlots) do
+    WuxiaGUI3._makeEquipSlot(p, row[1], row[2], LX, rowY, SW, SH)
+    WuxiaGUI3._makeEquipSlot(p, row[3], row[4], RX, rowY, SW, SH)
+    rowY = rowY + SH + 3
+  end
+  y = totalH
 
   -- ═══ Equipment Buffs Summary ═══
-  local hdrB = Geyser.Label:new({
-    name = "W3.equip.hdrBuffs", x = MX, y = y, width = GW, height = 18,
+  -- ═══ Equipment Buffs with dragon frame background ═══
+  local effectH = 160
+  local effectFrame = Geyser.Label:new({
+    name = "W3.equip.effectFrame", x = 0, y = y, width = PW, height = effectH,
   }, p)
-  hdrB:setStyleSheet("background-color:transparent;")
-  hdrB:setFontSize(10)
-  hdrB:echo(span(GOLD, "── 裝備效果 ──"))
-  y = y + 20
+  local effectImgPath = getMudletHomeDir() .. "/wuxia_effect_bg.png"
+  if io.open(effectImgPath, "r") then
+    effectFrame:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. effectImgPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    effectFrame:setStyleSheet("background-color: rgba(30,20,15,200); border: 1px solid #5a4a2a;")
+  end
 
-  y = makeLabel(p, "equipBuffSummary", y, 80)
-  y = y + 4
-
-  y = makeSep(p, y)
-
-  -- ═══ Equipment Sets ═══
-  local hdrS = Geyser.Label:new({
-    name = "W3.equip.hdrSets", x = MX, y = y, width = GW, height = 18,
+  -- Title "裝備效果" positioned in the dark banner of the frame
+  local effectTitle = Geyser.Label:new({
+    name = "W3.equip.effectTitle",
+    x = PW / 2 - 59, y = y + 15, width = 120, height = 18,
   }, p)
-  hdrS:setStyleSheet("background-color:transparent;")
-  hdrS:setFontSize(10)
-  hdrS:echo(span(GOLD, "── 套裝組合 ──"))
-  y = y + 20
+  effectTitle:setStyleSheet("background-color: transparent; qproperty-alignment: AlignCenter;")
+  effectTitle:setFontSize(10)
+  effectTitle:echo(span(GOLD, "裝備效果"))
+  effectTitle:raiseAll()
 
+  -- Buff content: single label, rendered as rows with 4 columns
+  local buffLabel = Geyser.Label:new({
+    name = "W3.equipBuffSummary",
+    x = 26, y = y + 30, width = PW - 24, height = effectH - 38,
+  }, p)
+  buffLabel:setStyleSheet(
+    "background-color: transparent; " ..
+    "qproperty-alignment: 'AlignLeft | AlignTop'; padding: 2px;")
+  buffLabel:setFontSize(9)
+  buffLabel:echo(span(TEXT_DIM, "無裝備效果"))
+  buffLabel:raiseAll()
+  WuxiaGUI3._equipBuffLabel = buffLabel
+  WuxiaGUI3._equipBuffColW = math.floor((PW - 24) / 3)
+
+  y = y + effectH  -- flush, no gap
+
+  -- ═══ Equipment Sets with weapon rack background ═══
+  local setH = 160  -- matches image aspect ratio at PW width
+  local setFrame = Geyser.Label:new({
+    name = "W3.equip.setFrame", x = 0, y = y, width = PW, height = setH,
+  }, p)
+  local setImgPath = getMudletHomeDir() .. "/wuxia_equip_set_bg.png"
+  if io.open(setImgPath, "r") then
+    setFrame:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. setImgPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    setFrame:setStyleSheet("background-color: rgba(30,20,15,200); border: 1px solid #5a4a2a;")
+  end
+
+  -- Title "套裝組合" in the dark banner (~35% from top)
+  local setTitle = Geyser.Label:new({
+    name = "W3.equip.setTitle",
+    x = PW / 2 - 59, y = y + math.floor(setH * 0.28), width = 120, height = 18,
+  }, p)
+  setTitle:setStyleSheet("background-color: transparent; qproperty-alignment: AlignCenter;")
+  setTitle:setFontSize(10)
+  setTitle:echo(span(GOLD, "套裝組合"))
+  setTitle:raiseAll()
+
+  -- 5 set buttons positioned over the 5 dark slots
+  -- Slots: ~17% to ~74% horizontally, ~55% to ~85% vertically
   WuxiaGUI3._equipSetBtns = {}
-  WuxiaGUI3._equipSetCooldowns = {}  -- track cooldown state per button
-  local setBtnW = math.floor(GW / 5) - 2
+  WuxiaGUI3._equipSetCooldowns = {}
+  local slotStartX = math.floor(PW * 0.132)
+  local slotEndX = math.floor(PW * 0.865)
+  local totalSlotW = slotEndX - slotStartX
+  local slotW = math.floor(totalSlotW / 5 * 0.899)
+  local slotGap = math.floor((totalSlotW - slotW * 5) / 4)
+  local slotY = y + math.floor(setH * 0.43)
+  local slotBtnH = math.floor(setH * 0.212)
+
   for i = 1, 5 do
     local idx = i
+    local btnX = slotStartX + (i - 1) * (slotW + slotGap)
     local btn = Geyser.Label:new({
       name = "W3.equipSet." .. tostring(i),
-      x = MX + (i - 1) * (setBtnW + 2), y = y,
-      width = setBtnW, height = 22,
+      x = btnX, y = slotY,
+      width = slotW, height = slotBtnH,
     }, p)
-    btn:setFontSize(9)
+    btn:setFontSize(10)
+    btn:setStyleSheet(
+      "background-color: transparent; border: none; " ..
+      "qproperty-alignment: AlignCenter;")
 
-    -- Left click: load set | Right click: save (empty) or delete (saved)
     btn:setClickCallback(function(event)
-      -- Block clicks during cooldown
       if WuxiaGUI3._equipSetCooldowns[idx] then return end
 
       local inv = WuxiaGUI3.inventory or {}
@@ -775,37 +834,161 @@ function WuxiaGUI3._buildEquipment()
       else
         if not hasSet then return end
         sendGMCP('Char.Inventory.LoadSet {"set":"' .. tostring(idx) .. '"}')
-        -- Start cooldown on load only
         WuxiaGUI3._startSetCooldown(idx)
       end
     end)
 
+    btn:raiseAll()
     WuxiaGUI3._equipSetBtns[i] = btn
   end
-  y = y + 26
 
-  -- Hint
+  -- Hint inside the bottom bar of the image (~90% from top)
   local hint = Geyser.Label:new({
-    name = "W3.equip.setsHint", x = MX, y = y, width = GW, height = 14,
+    name = "W3.equip.setsHint",
+    x = MX, y = y + math.floor(setH * 0.795), width = GW, height = 14,
   }, p)
-  hint:setStyleSheet("background-color:transparent;")
+  hint:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
   hint:setFontSize(7)
   hint:echo(span(TEXT_DIM, "點擊切換 · 右鍵儲存/刪除"))
-  y = y + 18
+  hint:raiseAll()
 
-  y = makeSep(p, y)
+  y = y + setH
 
-  -- ═══ Inventory List ═══
-  local hdrI = Geyser.Label:new({
-    name = "W3.equip.hdrInv", x = MX, y = y, width = GW, height = 18,
+  -- ═══ Inventory List with 3-part frame ═══
+  local invBgPath = getMudletHomeDir() .. "/wuxia_inventory_bg.png"
+
+  -- Top frame (fixed, contains title banner)
+  local invTopH = 34
+
+  -- Bg texture behind top frame
+  local invTopBg = Geyser.Label:new({
+    name = "W3.equip.invTopBg", x = 8, y = y,
+    width = PW - 16, height = invTopH,
   }, p)
-  hdrI:setStyleSheet("background-color:transparent;")
-  hdrI:setFontSize(10)
-  hdrI:echo(span(GOLD, "── 物品欄 ──"))
-  y = y + 20
+  if io.open(invBgPath, "r") then
+    invTopBg:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. invBgPath .. ") 0 0 0 0 stretch stretch;")
+  end
 
-  y = makeLabel(p, "invHeader", y, 16)
-  y = makeLabel(p, "invList", y, 500)
+  local invTopLabel = Geyser.Label:new({
+    name = "W3.equip.invTop", x = 0, y = y,
+    width = PW, height = invTopH,
+  }, p)
+  local invTopPath = getMudletHomeDir() .. "/wuxia_inventory_frame_top.png"
+  if io.open(invTopPath, "r") then
+    invTopLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. invTopPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  invTopLabel:raiseAll()
+
+  -- Title + item count + weight in one banner line
+  local invTitle = Geyser.Label:new({
+    name = "W3.equip.invTitle",
+    x = 15, y = y + 8, width = PW - 30, height = 20,
+  }, p)
+  invTitle:setStyleSheet("background-color: transparent; qproperty-alignment: AlignCenter;")
+  invTitle:setFontSize(11)
+  invTitle:raiseAll()
+  WuxiaGUI3.invHeader = invTitle  -- reuse as header, updated in refresh
+
+  y = y + invTopH
+
+  -- Middle frame (fills available space, min 300px via resize handler)
+  local invMidLabel = Geyser.Label:new({
+    name = "W3.equip.invMid", x = 0, y = y,
+    width = PW, height = "-19px",
+  }, p)
+  local invMidPath = getMudletHomeDir() .. "/wuxia_inventory_frame_middle.png"
+  if io.open(invMidPath, "r") then
+    invMidLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. invMidPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  invMidLabel:raiseAll()
+  WuxiaGUI3._invMidLabel = invMidLabel
+  WuxiaGUI3._invMidY = y
+
+  -- Background texture inside middle frame (covers black center, under text)
+  local invMidBg = Geyser.Label:new({
+    name = "W3.equip.invMidBg", x = 8, y = y,
+    width = PW - 16, height = "-19px",
+  }, p)
+  if io.open(invBgPath, "r") then
+    invMidBg:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. invBgPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  invMidBg:raiseAll()
+  WuxiaGUI3._invMidBg = invMidBg
+
+  -- Inventory item list (scrollable MiniConsole inside middle frame)
+  local invListCon = Geyser.MiniConsole:new({
+    name = "W3.invList",
+    x = 15, y = y + 4, width = PW - 18, height = "-27px",
+    autoWrap = true,
+    scrollBar = true,
+    fontSize = 10,
+  }, p)
+  invListCon:setColor(0, 0, 0, 0)  -- black bg
+  invListCon:setFontSize(10)
+  invListCon:raiseAll()
+  WuxiaGUI3.invList = invListCon
+  WuxiaGUI3._invListIsCon = true
+
+  -- Bottom frame (anchored to container bottom)
+  local invBotH = 19
+
+  -- Bg texture behind bottom frame
+  local invBotBg = Geyser.Label:new({
+    name = "W3.equip.invBotBg", x = 8, y = -invBotH,
+    width = PW - 16, height = invBotH,
+  }, p)
+  if io.open(invBgPath, "r") then
+    invBotBg:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. invBgPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  WuxiaGUI3._invBotBg = invBotBg
+
+  local invBotLabel = Geyser.Label:new({
+    name = "W3.equip.invBot", x = 0, y = -invBotH,
+    width = PW, height = invBotH,
+  }, p)
+  local invBotPath = getMudletHomeDir() .. "/wuxia_inventory_frame_bottom.png"
+  if io.open(invBotPath, "r") then
+    invBotLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. invBotPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  invBotLabel:raiseAll()
+  WuxiaGUI3._invBotLabel = invBotLabel
+  WuxiaGUI3._invBotH = invBotH
+  WuxiaGUI3._invMinMidH = 300
+
+  -- Handle window resize: only intervene when container too small for min-height
+  WuxiaGUI3._repositionInvBot = function()
+    if not (WuxiaGUI3._invMidLabel and WuxiaGUI3._invBotLabel) then return end
+    local midY = WuxiaGUI3._invMidY
+    local containerH = p:get_height()
+    local availH = containerH - midY - 19  -- 19 = bottom frame height
+    if availH < 150 then
+      -- Too small: force min-height, bottom goes off-screen
+      WuxiaGUI3._invMidLabel:resize(PW, 150)
+      WuxiaGUI3._invBotLabel:move(0, midY + 150)
+      WuxiaGUI3.invList:resize(PW - 18, 142)
+      if WuxiaGUI3._invMidBg then WuxiaGUI3._invMidBg:resize(PW - 16, 150) end
+      if WuxiaGUI3._invBotBg then WuxiaGUI3._invBotBg:move(8, midY + 150) end
+    else
+      -- Normal: restore Geyser's auto-fill layout
+      WuxiaGUI3._invMidLabel:resize(PW, availH)
+      WuxiaGUI3._invBotLabel:move(0, containerH - 19)
+      WuxiaGUI3.invList:resize(PW - 18, availH - 8)
+      if WuxiaGUI3._invMidBg then WuxiaGUI3._invMidBg:resize(PW - 16, availH) end
+      if WuxiaGUI3._invBotBg then WuxiaGUI3._invBotBg:move(8, containerH - 19) end
+    end
+  end
 end
 
 -- ─── Equipment set cooldown with sweep effect ───
@@ -853,22 +1036,38 @@ function WuxiaGUI3._startSetCooldown(clickedIdx)
   end
 end
 
--- ─── Create a single equipment slot label ───
+-- ─── Create a single equipment slot label (compact character sheet style) ───
 function WuxiaGUI3._makeEquipSlot(parent, slotKey, slotLabel, x, y, w, h)
-  local lbl = Geyser.Label:new({
+  -- Slot label (top-left, small)
+  local hdrH = 14
+  local hdr = Geyser.Label:new({
+    name = "W3.eqSlot." .. slotKey .. ".hdr",
+    x = x + 1, y = y + 1, width = w - 2, height = hdrH,
+  }, parent)
+  hdr:setStyleSheet("background-color: transparent; padding: 0px 4px; " ..
+    "qproperty-alignment: 'AlignLeft | AlignTop';")
+  hdr:setFontSize(7)
+  hdr:echo('<span style="color:#777;font-size:10px;">' .. slotLabel .. '</span>')
+  hdr:raiseAll()
+
+  -- Item name label (vertically centered in remaining space)
+  local itemLbl = Geyser.Label:new({
     name = "W3.eqSlot." .. slotKey,
     x = x, y = y, width = w, height = h,
   }, parent)
-  lbl:setStyleSheet(string.format(
-    "background-color: %s; border: 1px solid %s; padding: 3px 5px;",
-    BG, BORDER))
-  lbl:setFontSize(10)
-  lbl:echo(
-    '<span style="color:#888;font-size:9px;">' .. slotLabel .. ' ' .. slotKey .. '</span><br>' ..
-    span(TEXT_DIM, "未裝備")
-  )
+  itemLbl:setStyleSheet(
+    "background-color: rgba(17,17,28,204); border: 1px solid " .. BORDER .. "; " ..
+    "padding: 14px 5px 2px 5px; qproperty-alignment: 'AlignLeft | AlignVCenter';")
+  itemLbl:setFontSize(12)
+  itemLbl:echo(span("#555", "空"))
+  itemLbl:setToolTip(slotLabel)
+  itemLbl:raiseAll()
+  hdr:raiseAll()  -- ensure header is on top
+
   if not WuxiaGUI3._equipSlotLabels then WuxiaGUI3._equipSlotLabels = {} end
-  WuxiaGUI3._equipSlotLabels[slotKey] = lbl
+  WuxiaGUI3._equipSlotLabels[slotKey] = itemLbl
+  if not WuxiaGUI3._equipSlotHeaders then WuxiaGUI3._equipSlotHeaders = {} end
+  WuxiaGUI3._equipSlotHeaders[slotKey] = hdr
   return y + h
 end
 
@@ -2116,6 +2315,9 @@ function WuxiaGUI3._registerChatGMCP()
     if WuxiaGUI3.chatMain then
       WuxiaGUI3._onWindowResize()
       WuxiaGUI3._rebuildTabBar()
+    end
+    if WuxiaGUI3._repositionInvBot then
+      tempTimer(0.1, WuxiaGUI3._repositionInvBot)
     end
   end)
 end
@@ -3573,6 +3775,15 @@ function WuxiaGUI3.switchTab(tabName)
     end
   end
 
+  -- MiniConsole needs manual hide/show (doesn't follow parent)
+  if WuxiaGUI3.invList and WuxiaGUI3._invListIsCon then
+    if tabName == "裝備" then
+      showWindow("W3.invList")
+    else
+      hideWindow("W3.invList")
+    end
+  end
+
   -- Refresh the active tab content
   WuxiaGUI3.refresh()
 end
@@ -3980,24 +4191,32 @@ function WuxiaGUI3._refreshEquipment()
         local item = slotItems[slotKey]
         local slotLabel = slotNames[slotKey] or slotKey
         if item then
-          local qStr = ""
-          if item.quality_level and qualityNames[item.quality_level] then
-            qStr = '<span style="color:' .. (qualityColors[item.quality_level] or TEXT_DIM) ..
-                   ';font-size:8px;"> ' .. qualityNames[item.quality_level] .. '</span>'
-          end
+          local qColor = qualityColors[item.quality_level] or TEXT_DIM
+          local qName = qualityNames[item.quality_level] or ""
           lbl:setStyleSheet(
-            "background-color: #1a2a1a; border: 1px solid #3a5a3a; padding: 3px 5px;")
-          lbl:echo(
-            '<span style="color:#888;font-size:9px;">' .. slotLabel .. '</span>' .. qStr .. '<br>' ..
-            '<span style="font-size:11px;">' .. ansiToHtml(item.name or "???") .. '</span>'
-          )
+            "background-color: rgba(20,34,20,204); border: 1px solid #3a5a3a; " ..
+            "padding: 14px 5px 2px 5px; qproperty-alignment: 'AlignLeft | AlignVCenter';")
+          lbl:setFontSize(12)
+          lbl:echo('<span style="font-size:13px;">' .. ansiToHtml(item.name or "???") .. '</span>')
+          lbl:setToolTip(slotLabel .. " — " .. (item.name or "???"):gsub("\27%[[%d;]*m", ""))
+          -- Update header with quality
+          local hdr = WuxiaGUI3._equipSlotHeaders and WuxiaGUI3._equipSlotHeaders[slotKey]
+          if hdr then
+            hdr:echo(
+              '<span style="color:#888;font-size:10px;">' .. slotLabel ..
+              '</span> <span style="color:' .. qColor .. ';font-size:10px;">' .. qName .. '</span>')
+          end
         else
-          lbl:setStyleSheet(string.format(
-            "background-color: %s; border: 1px solid %s; padding: 3px 5px;", BG, BORDER))
-          lbl:echo(
-            '<span style="color:#888;font-size:9px;">' .. slotLabel .. ' ' .. slotKey .. '</span><br>' ..
-            span(TEXT_DIM, "未裝備")
-          )
+          lbl:setStyleSheet(
+            "background-color: rgba(17,17,28,204); border: 1px solid " .. BORDER .. "; " ..
+            "padding: 14px 5px 2px 5px; qproperty-alignment: 'AlignLeft | AlignVCenter';")
+          lbl:setFontSize(12)
+          lbl:echo(span("#555", "空"))
+          lbl:setToolTip(slotLabel)
+          local hdr = WuxiaGUI3._equipSlotHeaders and WuxiaGUI3._equipSlotHeaders[slotKey]
+          if hdr then
+            hdr:echo('<span style="color:#777;font-size:10px;">' .. slotLabel .. '</span>')
+          end
         end
       end
     end
@@ -4043,9 +4262,7 @@ function WuxiaGUI3._refreshEquipment()
   -- Store equipment buffs in the buffs table for the 附加屬性 "裝備" filter
   WuxiaGUI3.buffs.equipment = equipBuffs
 
-  if WuxiaGUI3.equipBuffSummary then
-    local lines = {}
-    -- Show non-zero buffs sorted by key
+  if WuxiaGUI3._equipBuffLabel then
     local sortedKeys = {}
     for k, v in pairs(equipBuffs) do
       if v ~= 0 then sortedKeys[#sortedKeys + 1] = k end
@@ -4065,17 +4282,44 @@ function WuxiaGUI3._refreshEquipment()
       da_power = "絕傷害",
     }
 
+    -- Build entries
+    local entries = {}
     if #sortedKeys == 0 then
-      lines[1] = span(TEXT_DIM, "無裝備效果")
+      entries = {}
     else
       for _, k in ipairs(sortedKeys) do
         local v = equipBuffs[k]
         local label = buffNames[k] or k
         local vStr = v > 0 and ("+" .. tostring(v)) or tostring(v)
-        lines[#lines + 1] = span(TEXT_DIM, label .. " ") .. span("#55cc55", vStr)
+        entries[#entries + 1] = {label, vStr}
       end
     end
-    WuxiaGUI3.equipBuffSummary:echo(table.concat(lines, "<br>"))
+
+    if #entries == 0 then
+      WuxiaGUI3._equipBuffLabel:echo(span(TEXT_DIM, "無裝備效果"))
+    else
+      local cols = 3
+      local colW = WuxiaGUI3._equipBuffColW or 72
+      local rows = math.ceil(#entries / cols)
+      local html = '<table cellpadding="0" cellspacing="0" style="line-height:16px;">'
+      for r = 1, rows do
+        html = html .. '<tr>'
+        for c = 1, cols do
+          local idx = (r - 1) * cols + c
+          local e = entries[idx]
+          if e then
+            html = html .. '<td width="' .. colW .. '" style="font-size:10px;">' ..
+              '<span style="color:' .. TEXT_DIM .. ';">' .. e[1] .. '</span>' ..
+              '<span style="color:#55cc55;"> ' .. e[2] .. '</span></td>'
+          else
+            html = html .. '<td width="' .. colW .. '"></td>'
+          end
+        end
+        html = html .. '</tr>'
+      end
+      html = html .. '</table>'
+      WuxiaGUI3._equipBuffLabel:echo(html)
+    end
   end
 
   -- ═══ Equipment sets ═══
@@ -4087,26 +4331,20 @@ function WuxiaGUI3._refreshEquipment()
         local setData = sets[tostring(i)]
         local hasSet = setData ~= nil
         if hasSet then
-          -- Active: solid border, bright text
-          btn:setStyleSheet(string.format(
-            "background-color: %s; border: 1px solid %s; qproperty-alignment: AlignCenter;",
-            BG2, BORDER))
+          btn:setStyleSheet(
+            "background-color: transparent; border: none; qproperty-alignment: AlignCenter;")
           btn:echo(span(GOLD, "<b>" .. tostring(i) .. "</b>"))
-          -- Tooltip: show saved item names
           if type(setData) == "table" then
             local tipLines = {}
             for _, base in ipairs(setData) do
-              -- Extract short name from base path (e.g. "/clone/goods/zhufu_head" → "zhufu_head")
               local short = base:match("([^/]+)$") or base
               tipLines[#tipLines + 1] = short
             end
             btn:setToolTip("套裝 " .. tostring(i) .. ":\n" .. table.concat(tipLines, "\n"))
           end
         else
-          -- Empty: dashed border, dim text
-          btn:setStyleSheet(string.format(
-            "background-color: %s; border: 1px dashed %s; qproperty-alignment: AlignCenter;",
-            BG, "#333"))
+          btn:setStyleSheet(
+            "background-color: transparent; border: none; qproperty-alignment: AlignCenter;")
           btn:echo(span(TEXT_DIM, tostring(i)))
           btn:setToolTip("套裝 " .. tostring(i) .. ": 空\n右鍵儲存當前裝備")
         end
@@ -4115,23 +4353,27 @@ function WuxiaGUI3._refreshEquipment()
   end
 
   -- ═══ Inventory list ═══
-  -- Header
+  -- Header: "物品欄 · N件 · 負重 X%"
   if WuxiaGUI3.invHeader then
     local count = 0
     for _ in ipairs(items) do count = count + 1 end
     local enc = inv.encumbrance or 0
     WuxiaGUI3.invHeader:echo(
-      span(TEXT_DIM, tostring(count) .. " 件物品") ..
-      "&nbsp;&nbsp;&nbsp;" ..
+      span(GOLD, "物品欄") ..
+      span(TEXT_DIM, " · " .. tostring(count) .. "件 · ") ..
       span(GOLD, "負重 " .. tostring(enc) .. "%")
     )
   end
 
   -- Item list
   if WuxiaGUI3.invList then
-    local lines = {}
+    local invSlotNames = {
+      primary = "主手", secondary = "副手", holding = "持有",
+      head = "頭盔", cloth = "戰衣", armor = "鐵甲", boots = "皮靴",
+      hands = "手套", wrists = "護腕", waist = "腰帶", surcoat = "披風",
+      finger = "戒指", neck = "項鏈", rings = "指環", charm = "護符",
+    }
 
-    -- Sort: equipped first, then regular items
     local equipped = {}
     local regular = {}
     for _, item in ipairs(items) do
@@ -4142,34 +4384,201 @@ function WuxiaGUI3._refreshEquipment()
       end
     end
 
-    for _, item in ipairs(equipped) do
-      local marker = '<span style="color:#5ac;">□</span>'
-      if item.equipped == "secondary" then
-        marker = '<span style="color:#c5a;">□</span>'
-      elseif item.equipped == "holding" then
-        marker = '<span style="color:#5ac;">○</span>'
-      end
-      local qStr = ""
-      if item.quality_level and qualityNames[item.quality_level] then
-        qStr = ' <span style="color:' .. (qualityColors[item.quality_level] or TEXT_DIM) ..
-               ';font-size:8px;">' .. qualityNames[item.quality_level] .. '</span>'
-      end
-      lines[#lines + 1] = marker .. ' ' .. ansiToHtml(item.name or "???") .. qStr
+    local function stripAnsi(s)
+      return (s or ""):gsub("\27%[[%d;]*m", "")
     end
 
-    for _, item in ipairs(regular) do
-      local amtStr = ""
-      if item.amount and item.amount > 1 then
-        amtStr = ' <span style="color:#888;font-size:8px;">×' .. tostring(item.amount) .. '</span>'
+    WuxiaGUI3.invList:clear()
+
+    if #equipped == 0 and #regular == 0 then
+      WuxiaGUI3.invList:cecho("<gray>背包為空\n")
+    else
+      -- Helper to convert hex color to decho RGB format
+      local function hexToDechoRGB(hex)
+        if not hex or hex == "" then return "180,180,180" end
+        hex = hex:gsub("^#", "")
+        local r = tonumber(hex:sub(1,2), 16) or 180
+        local g = tonumber(hex:sub(3,4), 16) or 180
+        local b = tonumber(hex:sub(5,6), 16) or 180
+        return r .. "," .. g .. "," .. b
       end
-      lines[#lines + 1] = '&nbsp;&nbsp;' .. ansiToHtml(item.name or "???") .. amtStr
-    end
 
-    if #lines == 0 then
-      lines[1] = span(TEXT_DIM, "背包為空")
-    end
+      -- Convert ANSI escape sequences to decho format
+      local function ansiToDecho(s)
+        if not s then return "" end
+        local result = s
+        local ansiMap = {
+          ["0"] = "<r>",
+          ["1"] = "",
+          ["30"] = "<0,0,0>", ["31"] = "<180,0,0>", ["32"] = "<0,180,0>",
+          ["33"] = "<180,180,0>", ["34"] = "<0,0,180>", ["35"] = "<180,0,180>",
+          ["36"] = "<0,180,180>", ["37"] = "<192,192,192>",
+          ["90"] = "<128,128,128>", ["91"] = "<255,80,80>", ["92"] = "<80,255,80>",
+          ["93"] = "<255,255,80>", ["94"] = "<80,80,255>", ["95"] = "<255,80,255>",
+          ["96"] = "<80,255,255>", ["97"] = "<255,255,255>",
+        }
+        result = result:gsub("\27%[([%d;]*)m", function(codes)
+          local out = ""
+          for code in codes:gmatch("(%d+)") do
+            if ansiMap[code] then out = out .. ansiMap[code] end
+          end
+          return out ~= "" and out or ""
+        end)
+        return result
+      end
 
-    WuxiaGUI3.invList:echo(table.concat(lines, "<br>"))
+      -- Strip ANSI for plain text tooltip
+      local function stripAnsi(s)
+        return (s or ""):gsub("\27%[[%d;]*m", "")
+      end
+
+      -- Calculate display width (CJK = 2, ASCII = 1)
+      local function displayWidth(s)
+        local w = 0
+        for _, c in utf8.codes(s) do
+          if c > 0x2E7F then w = w + 2 else w = w + 1 end
+        end
+        return w
+      end
+
+      -- Pad string to target display width
+      local function padTo(s, target)
+        local dw = displayWidth(s)
+        if dw >= target then return s end
+        return s .. string.rep(" ", target - dw)
+      end
+
+      local conName = "W3.invList"
+      local colW = 18  -- display width per column
+
+      -- Echo ANSI-colored text as clickable link segments
+      local function echoAnsiLink(conName, ansiName, itemId, tooltip)
+        -- Parse ANSI into segments: { {r,g,b, text}, ... }
+        local segments = {}
+        local cr, cg, cb = 192, 192, 192  -- default color
+        local bold = false
+        local remaining = ansiName or ""
+
+        -- ANSI color base values
+        local baseColors = {
+          [30] = {0,0,0}, [31] = {170,0,0}, [32] = {0,170,0},
+          [33] = {170,170,0}, [34] = {0,0,170}, [35] = {170,0,170},
+          [36] = {0,170,170}, [37] = {170,170,170},
+        }
+        local brightColors = {
+          [30] = {85,85,85}, [31] = {255,85,85}, [32] = {85,255,85},
+          [33] = {255,255,85}, [34] = {85,85,255}, [35] = {255,85,255},
+          [36] = {85,255,255}, [37] = {255,255,255},
+        }
+
+        -- Split by ANSI escapes
+        local pos = 1
+        while pos <= #remaining do
+          local escStart, escEnd, codes = remaining:find("\27%[([%d;]*)m", pos)
+          if escStart then
+            -- Text before escape
+            if escStart > pos then
+              local txt = remaining:sub(pos, escStart - 1)
+              if #txt > 0 then
+                segments[#segments + 1] = {cr, cg, cb, txt}
+              end
+            end
+            -- Process codes
+            for code in codes:gmatch("(%d+)") do
+              local n = tonumber(code)
+              if n == 0 then cr, cg, cb = 192, 192, 192; bold = false
+              elseif n == 1 then bold = true
+              elseif n >= 30 and n <= 37 then
+                local c = bold and brightColors[n] or baseColors[n]
+                if c then cr, cg, cb = c[1], c[2], c[3] end
+              elseif n >= 90 and n <= 97 then
+                local c = brightColors[n - 60]
+                if c then cr, cg, cb = c[1], c[2], c[3] end
+              end
+            end
+            pos = escEnd + 1
+          else
+            -- Remaining text
+            local txt = remaining:sub(pos)
+            if #txt > 0 then
+              segments[#segments + 1] = {cr, cg, cb, txt}
+            end
+            break
+          end
+        end
+
+        -- Render each segment as a colored clickable link
+        local cmd = function() send("look " .. tostring(itemId)) end
+        for _, seg in ipairs(segments) do
+          setFgColor(conName, seg[1], seg[2], seg[3])
+          echoLink(conName, seg[4], cmd, tooltip, true)
+        end
+        resetFormat(conName)
+      end
+
+      -- Build flat entry list for two-column layout
+      local allEntries = {}
+
+      for _, item in ipairs(equipped) do
+        local slotName = invSlotNames[item.equipped] or "裝備"
+        local plainName = stripAnsi(item.name or "???")
+        local itemId = item.id or plainName
+        local qName = ""
+        local qRGB = ""
+        if item.quality_level and qualityNames[item.quality_level] then
+          qName = qualityNames[item.quality_level]
+          qRGB = hexToDechoRGB(qualityColors[item.quality_level])
+        end
+        allEntries[#allEntries + 1] = {
+          slot = slotName, name = plainName, rawName = item.name or "???",
+          id = itemId, qName = qName, qRGB = qRGB, equipped = true
+        }
+      end
+
+      -- Insert separator marker
+      local sepIdx = #allEntries > 0 and #regular > 0 and #allEntries or nil
+
+      for _, item in ipairs(regular) do
+        local plainName = stripAnsi(item.name or "???")
+        local itemId = item.id or plainName
+        local amtStr = ""
+        if item.amount and item.amount > 1 then
+          amtStr = "×" .. tostring(item.amount)
+        end
+        allEntries[#allEntries + 1] = {
+          name = plainName, rawName = item.name or "???",
+          id = itemId, amt = amtStr, equipped = false
+        }
+      end
+
+      -- Render single column
+      for i, e in ipairs(allEntries) do
+        if e.equipped then
+          decho(conName, "<128,128,128>[" .. e.slot .. "]<r>")
+          echoAnsiLink(conName, e.rawName, e.id, "查看: " .. e.name)
+          if e.qName ~= "" then
+            decho(conName, " <" .. e.qRGB .. ">" .. e.qName .. "<r>")
+          end
+        else
+          echo(conName, " ")
+          echoAnsiLink(conName, e.rawName, e.id, "查看: " .. e.name)
+          if e.amt ~= "" then
+            setFgColor(conName, 128, 128, 128)
+            echo(conName, " " .. e.amt)
+            resetFormat(conName)
+          end
+        end
+        echo(conName, "\n")
+
+        -- Separator after last equipped item
+        if sepIdx and i == sepIdx then
+          resetFormat(conName)
+          decho(conName, "<90,74,42>────────────<r>\n")
+        end
+      end
+      -- Scroll to top
+      WuxiaGUI3.invList:scrollToTop()
+    end
   end
 end
 
@@ -4401,6 +4810,14 @@ function WuxiaGUI3.destroy()
   end
   WuxiaGUI3.chatConsoles = nil
   WuxiaGUI3.chatTabButtons = nil
+
+  -- Delete inventory MiniConsole (must be explicitly deleted)
+  if WuxiaGUI3.invList then
+    if WuxiaGUI3._invListIsCon then
+      WuxiaGUI3.invList:delete()
+    end
+    WuxiaGUI3.invList = nil
+  end
 
   if WuxiaGUI3.main then
     WuxiaGUI3.main:hide()

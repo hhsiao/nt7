@@ -78,7 +78,6 @@ void gmcp_send(object who, string package, mapping data) {
 
 mapping extract_int_map(mapping src) {
     mapping result;
-    mixed v;
 
     result = ([]);
     if (!mapp(src)) return result;
