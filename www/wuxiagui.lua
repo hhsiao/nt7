@@ -672,12 +672,6 @@ end
 -- § 4e  Tab: 裝備 (Equipment) - placeholder
 -- ═══════════════════════════════════════════════
 function WuxiaGUI3._buildEquipment()
-  -- Clean up stale inventory MiniConsole from previous load
-  if WuxiaGUI3.invList and WuxiaGUI3._invListIsCon then
-    WuxiaGUI3.invList:delete()
-    WuxiaGUI3.invList = nil
-  end
-
   local p = WuxiaGUI3.tabContainers["裝備"]
   local y = 0
 
@@ -892,6 +886,7 @@ function WuxiaGUI3._buildEquipment()
   invTitle:setFontSize(11)
   invTitle:raiseAll()
   WuxiaGUI3.invHeader = invTitle  -- reuse as header, updated in refresh
+  invTitle:setWheelCallback(function(event) if WuxiaGUI3._invWheelHandler then WuxiaGUI3._invWheelHandler(event) end end)
 
   y = y + invTopH
 
@@ -909,6 +904,7 @@ function WuxiaGUI3._buildEquipment()
   invMidLabel:raiseAll()
   WuxiaGUI3._invMidLabel = invMidLabel
   WuxiaGUI3._invMidY = y
+  invMidLabel:setWheelCallback(function(event) if WuxiaGUI3._invWheelHandler then WuxiaGUI3._invWheelHandler(event) end end)
 
   -- Background texture inside middle frame (covers black center, under text)
   local invMidBg = Geyser.Label:new({
@@ -922,20 +918,185 @@ function WuxiaGUI3._buildEquipment()
   end
   invMidBg:raiseAll()
   WuxiaGUI3._invMidBg = invMidBg
+  invMidBg:setWheelCallback(function(event) if WuxiaGUI3._invWheelHandler then WuxiaGUI3._invWheelHandler(event) end end)
 
-  -- Inventory item list (scrollable MiniConsole inside middle frame)
-  local invListCon = Geyser.MiniConsole:new({
+  -- Inventory item list (single label, repopulate on scroll)
+  local invListLabel = Geyser.Label:new({
     name = "W3.invList",
-    x = 15, y = y + 4, width = PW - 18, height = "-27px",
-    autoWrap = true,
-    scrollBar = true,
-    fontSize = 10,
+    x = 15, y = y + 4, width = PW - 42, height = "-27px",
   }, p)
-  invListCon:setColor(0, 0, 0, 0)  -- black bg
-  invListCon:setFontSize(10)
-  invListCon:raiseAll()
-  WuxiaGUI3.invList = invListCon
-  WuxiaGUI3._invListIsCon = true
+  invListLabel:setStyleSheet(
+    "background-color: transparent; " ..
+    "qproperty-alignment: 'AlignLeft | AlignTop'; padding: 2px;")
+  invListLabel:setFontSize(10)
+  invListLabel:echo(span(TEXT_DIM, "等待資料..."))
+  invListLabel:raiseAll()
+  WuxiaGUI3.invList = invListLabel
+  WuxiaGUI3._invListIsCon = false
+  WuxiaGUI3._invScrollOffset = 0
+  WuxiaGUI3._invEntries = {}
+  WuxiaGUI3._invLineH = 18
+
+  -- Custom scrollbar track (right side, flush against frame)
+  local sbTrackX = PW - 18
+  local sbTrack = Geyser.Label:new({
+    name = "W3.invSbTrack",
+    x = sbTrackX, y = y + 6, width = 10, height = "-29px",
+  }, p)
+  sbTrack:setStyleSheet(
+    "background-color: rgba(30,15,8,0.6); " ..
+    "border: 1px solid #3a2a1a; border-radius: 3px;")
+  sbTrack:raiseAll()
+  WuxiaGUI3._invSbTrack = sbTrack
+
+  -- Custom scrollbar thumb
+  local sbThumb = Geyser.Label:new({
+    name = "W3.invSbThumb",
+    x = 0, y = 0, width = "100%", height = 30,
+  }, sbTrack)
+  sbThumb:setStyleSheet(
+    "background-color: rgba(160,120,60,0.7); " ..
+    "border: 1px solid #8a6a3a; border-radius: 3px;")
+  sbThumb:raiseAll()
+  WuxiaGUI3._invSbThumb = sbThumb
+  WuxiaGUI3._invSbDragging = false
+  WuxiaGUI3._invSbDragStartGlobalY = 0
+  WuxiaGUI3._invSbDragStartThumbY = 0
+
+  -- Helper: apply scroll from absolute thumb Y position within track
+  local function applyThumbY(newThumbY)
+    local trackH = sbTrack:get_height()
+    local thumbH = WuxiaGUI3._invSbThumbRelH or 30
+    local maxThumbY = trackH - thumbH
+    if maxThumbY <= 0 then return end
+
+    newThumbY = math.max(0, math.min(maxThumbY, newThumbY))
+
+    local entries = WuxiaGUI3._invEntries or {}
+    local labelH = WuxiaGUI3.invList and WuxiaGUI3.invList:get_height() or 200
+    local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._invLineH))
+    local maxOffset = math.max(0, #entries - visibleCount)
+
+    WuxiaGUI3._invScrollOffset = math.floor(maxOffset * newThumbY / maxThumbY + 0.5)
+    WuxiaGUI3._renderInvScroll()
+  end
+
+  -- Thumb: mouse down = start drag, record globalY and current thumb position
+  sbThumb:setClickCallback(function(event)
+    WuxiaGUI3._invSbDragging = true
+    WuxiaGUI3._invSbDragStartGlobalY = event.globalY
+    WuxiaGUI3._invSbDragStartThumbY = WuxiaGUI3._invSbThumbRelY or 0
+  end)
+
+  -- Thumb: mouse move = drag using globalY delta
+  sbThumb:setMoveCallback(function(event)
+    if not WuxiaGUI3._invSbDragging then return end
+    local deltaY = event.globalY - WuxiaGUI3._invSbDragStartGlobalY
+    local newThumbY = WuxiaGUI3._invSbDragStartThumbY + deltaY
+    applyThumbY(newThumbY)
+  end)
+
+  -- Thumb: mouse release = stop drag
+  sbThumb:setReleaseCallback(function(event)
+    WuxiaGUI3._invSbDragging = false
+  end)
+
+  -- Track click: page up/down based on click position relative to thumb
+  sbTrack:setClickCallback(function(event)
+    local thumbY = WuxiaGUI3._invSbThumbRelY or 0
+    local thumbH = WuxiaGUI3._invSbThumbRelH or 30
+
+    -- Ignore clicks on the thumb itself
+    if event.y >= thumbY and event.y <= thumbY + thumbH then return end
+
+    local labelH = WuxiaGUI3.invList and WuxiaGUI3.invList:get_height() or 200
+    local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._invLineH))
+    local entries = WuxiaGUI3._invEntries or {}
+    local maxOffset = math.max(0, #entries - visibleCount)
+
+    if event.y < thumbY then
+      -- Clicked above bar: page up
+      WuxiaGUI3._invScrollOffset = math.max(0, WuxiaGUI3._invScrollOffset - visibleCount)
+    else
+      -- Clicked below bar: page down
+      WuxiaGUI3._invScrollOffset = math.min(maxOffset, WuxiaGUI3._invScrollOffset + visibleCount)
+    end
+    WuxiaGUI3._renderInvScroll()
+  end)
+
+  sbTrack:setReleaseCallback(function(event) end)
+
+  -- Scroll render function
+  function WuxiaGUI3._renderInvScroll()
+    local entries = WuxiaGUI3._invEntries or {}
+    local label = WuxiaGUI3.invList
+    if not label then return end
+
+    if #entries == 0 then
+      label:echo(span(TEXT_DIM, "背包為空"))
+      if WuxiaGUI3._invSbTrack then WuxiaGUI3._invSbTrack:hide() end
+      return
+    end
+
+    local lineH = WuxiaGUI3._invLineH
+    local labelH = label:get_height()
+    local visibleCount = math.max(1, math.floor(labelH / lineH))
+    local maxOffset = math.max(0, #entries - visibleCount)
+    WuxiaGUI3._invScrollOffset = math.min(WuxiaGUI3._invScrollOffset, maxOffset)
+    local offset = WuxiaGUI3._invScrollOffset
+
+    -- Build visible HTML
+    local lines = {}
+    for i = offset + 1, math.min(offset + visibleCount, #entries) do
+      lines[#lines + 1] = entries[i].html
+    end
+
+    local html = '<div style="line-height:' .. lineH .. 'px; font-size:10pt;">' ..
+                 table.concat(lines, "<br>") .. '</div>'
+    label:echo(html)
+
+    -- Update scrollbar
+    if WuxiaGUI3._invSbTrack then
+      if #entries <= visibleCount then
+        WuxiaGUI3._invSbTrack:hide()
+      else
+        WuxiaGUI3._invSbTrack:show()
+        local trackH = WuxiaGUI3._invSbTrack:get_height()
+        local thumbRatio = visibleCount / #entries
+        local thumbH = math.max(16, math.floor(trackH * thumbRatio))
+        local thumbY = 0
+        if maxOffset > 0 then
+          thumbY = math.floor((trackH - thumbH) * (offset / maxOffset))
+        end
+        WuxiaGUI3._invSbThumb:resize(nil, thumbH)
+        WuxiaGUI3._invSbThumb:move(0, thumbY)
+        WuxiaGUI3._invSbThumbRelY = thumbY
+        WuxiaGUI3._invSbThumbRelH = thumbH
+      end
+    end
+  end
+
+  -- Mouse wheel handler (angleDeltaX = vertical scroll, increments of 120)
+  local function invWheelHandler(event)
+    if not event then return end
+    local delta = event.angleDeltaX or 0
+    if delta > 0 then
+      -- Scroll up
+      WuxiaGUI3._invScrollOffset = math.max(0, WuxiaGUI3._invScrollOffset - 2)
+    elseif delta < 0 then
+      -- Scroll down
+      local entries = WuxiaGUI3._invEntries or {}
+      local labelH = WuxiaGUI3.invList and WuxiaGUI3.invList:get_height() or 200
+      local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._invLineH))
+      local maxOffset = math.max(0, #entries - visibleCount)
+      WuxiaGUI3._invScrollOffset = math.min(maxOffset, WuxiaGUI3._invScrollOffset + 2)
+    end
+    WuxiaGUI3._renderInvScroll()
+  end
+  invListLabel:setWheelCallback(invWheelHandler)
+  sbTrack:setWheelCallback(invWheelHandler)
+  sbThumb:setWheelCallback(invWheelHandler)
+  WuxiaGUI3._invWheelHandler = invWheelHandler
 
   -- Bottom frame (anchored to container bottom)
   local invBotH = 19
@@ -964,6 +1125,7 @@ function WuxiaGUI3._buildEquipment()
   end
   invBotLabel:raiseAll()
   WuxiaGUI3._invBotLabel = invBotLabel
+  invBotLabel:setWheelCallback(function(event) if WuxiaGUI3._invWheelHandler then WuxiaGUI3._invWheelHandler(event) end end)
   WuxiaGUI3._invBotH = invBotH
   WuxiaGUI3._invMinMidH = 300
 
@@ -977,17 +1139,21 @@ function WuxiaGUI3._buildEquipment()
       -- Too small: force min-height, bottom goes off-screen
       WuxiaGUI3._invMidLabel:resize(PW, 150)
       WuxiaGUI3._invBotLabel:move(0, midY + 150)
-      WuxiaGUI3.invList:resize(PW - 18, 142)
+      WuxiaGUI3.invList:resize(PW - 42, 142)
       if WuxiaGUI3._invMidBg then WuxiaGUI3._invMidBg:resize(PW - 16, 150) end
       if WuxiaGUI3._invBotBg then WuxiaGUI3._invBotBg:move(8, midY + 150) end
+      if WuxiaGUI3._invSbTrack then WuxiaGUI3._invSbTrack:resize(nil, 142) end
     else
       -- Normal: restore Geyser's auto-fill layout
       WuxiaGUI3._invMidLabel:resize(PW, availH)
       WuxiaGUI3._invBotLabel:move(0, containerH - 19)
-      WuxiaGUI3.invList:resize(PW - 18, availH - 8)
+      WuxiaGUI3.invList:resize(PW - 42, availH - 8)
       if WuxiaGUI3._invMidBg then WuxiaGUI3._invMidBg:resize(PW - 16, availH) end
       if WuxiaGUI3._invBotBg then WuxiaGUI3._invBotBg:move(8, containerH - 19) end
+      if WuxiaGUI3._invSbTrack then WuxiaGUI3._invSbTrack:resize(nil, availH - 10) end
     end
+    -- Re-render to update visible count and scrollbar thumb
+    if WuxiaGUI3._renderInvScroll then WuxiaGUI3._renderInvScroll() end
   end
 end
 
@@ -3775,15 +3941,6 @@ function WuxiaGUI3.switchTab(tabName)
     end
   end
 
-  -- MiniConsole needs manual hide/show (doesn't follow parent)
-  if WuxiaGUI3.invList and WuxiaGUI3._invListIsCon then
-    if tabName == "裝備" then
-      showWindow("W3.invList")
-    else
-      hideWindow("W3.invList")
-    end
-  end
-
   -- Refresh the active tab content
   WuxiaGUI3.refresh()
 end
@@ -4384,201 +4541,41 @@ function WuxiaGUI3._refreshEquipment()
       end
     end
 
-    local function stripAnsi(s)
-      return (s or ""):gsub("\27%[[%d;]*m", "")
+    local entries = {}
+
+    for _, item in ipairs(equipped) do
+      local slotName = invSlotNames[item.equipped] or "裝備"
+      local nameHtml = ansiToHtml(item.name or "???")
+      local qStr = ""
+      if item.quality_level and qualityNames[item.quality_level] then
+        qStr = ' <span style="color:' .. (qualityColors[item.quality_level] or TEXT_DIM) ..
+               ';">' .. qualityNames[item.quality_level] .. '</span>'
+      end
+      entries[#entries + 1] = {
+        html = '<span style="color:#888;">[' .. slotName .. ']</span> ' .. nameHtml .. qStr
+      }
     end
 
-    WuxiaGUI3.invList:clear()
-
-    if #equipped == 0 and #regular == 0 then
-      WuxiaGUI3.invList:cecho("<gray>背包為空\n")
-    else
-      -- Helper to convert hex color to decho RGB format
-      local function hexToDechoRGB(hex)
-        if not hex or hex == "" then return "180,180,180" end
-        hex = hex:gsub("^#", "")
-        local r = tonumber(hex:sub(1,2), 16) or 180
-        local g = tonumber(hex:sub(3,4), 16) or 180
-        local b = tonumber(hex:sub(5,6), 16) or 180
-        return r .. "," .. g .. "," .. b
-      end
-
-      -- Convert ANSI escape sequences to decho format
-      local function ansiToDecho(s)
-        if not s then return "" end
-        local result = s
-        local ansiMap = {
-          ["0"] = "<r>",
-          ["1"] = "",
-          ["30"] = "<0,0,0>", ["31"] = "<180,0,0>", ["32"] = "<0,180,0>",
-          ["33"] = "<180,180,0>", ["34"] = "<0,0,180>", ["35"] = "<180,0,180>",
-          ["36"] = "<0,180,180>", ["37"] = "<192,192,192>",
-          ["90"] = "<128,128,128>", ["91"] = "<255,80,80>", ["92"] = "<80,255,80>",
-          ["93"] = "<255,255,80>", ["94"] = "<80,80,255>", ["95"] = "<255,80,255>",
-          ["96"] = "<80,255,255>", ["97"] = "<255,255,255>",
-        }
-        result = result:gsub("\27%[([%d;]*)m", function(codes)
-          local out = ""
-          for code in codes:gmatch("(%d+)") do
-            if ansiMap[code] then out = out .. ansiMap[code] end
-          end
-          return out ~= "" and out or ""
-        end)
-        return result
-      end
-
-      -- Strip ANSI for plain text tooltip
-      local function stripAnsi(s)
-        return (s or ""):gsub("\27%[[%d;]*m", "")
-      end
-
-      -- Calculate display width (CJK = 2, ASCII = 1)
-      local function displayWidth(s)
-        local w = 0
-        for _, c in utf8.codes(s) do
-          if c > 0x2E7F then w = w + 2 else w = w + 1 end
-        end
-        return w
-      end
-
-      -- Pad string to target display width
-      local function padTo(s, target)
-        local dw = displayWidth(s)
-        if dw >= target then return s end
-        return s .. string.rep(" ", target - dw)
-      end
-
-      local conName = "W3.invList"
-      local colW = 18  -- display width per column
-
-      -- Echo ANSI-colored text as clickable link segments
-      local function echoAnsiLink(conName, ansiName, itemId, tooltip)
-        -- Parse ANSI into segments: { {r,g,b, text}, ... }
-        local segments = {}
-        local cr, cg, cb = 192, 192, 192  -- default color
-        local bold = false
-        local remaining = ansiName or ""
-
-        -- ANSI color base values
-        local baseColors = {
-          [30] = {0,0,0}, [31] = {170,0,0}, [32] = {0,170,0},
-          [33] = {170,170,0}, [34] = {0,0,170}, [35] = {170,0,170},
-          [36] = {0,170,170}, [37] = {170,170,170},
-        }
-        local brightColors = {
-          [30] = {85,85,85}, [31] = {255,85,85}, [32] = {85,255,85},
-          [33] = {255,255,85}, [34] = {85,85,255}, [35] = {255,85,255},
-          [36] = {85,255,255}, [37] = {255,255,255},
-        }
-
-        -- Split by ANSI escapes
-        local pos = 1
-        while pos <= #remaining do
-          local escStart, escEnd, codes = remaining:find("\27%[([%d;]*)m", pos)
-          if escStart then
-            -- Text before escape
-            if escStart > pos then
-              local txt = remaining:sub(pos, escStart - 1)
-              if #txt > 0 then
-                segments[#segments + 1] = {cr, cg, cb, txt}
-              end
-            end
-            -- Process codes
-            for code in codes:gmatch("(%d+)") do
-              local n = tonumber(code)
-              if n == 0 then cr, cg, cb = 192, 192, 192; bold = false
-              elseif n == 1 then bold = true
-              elseif n >= 30 and n <= 37 then
-                local c = bold and brightColors[n] or baseColors[n]
-                if c then cr, cg, cb = c[1], c[2], c[3] end
-              elseif n >= 90 and n <= 97 then
-                local c = brightColors[n - 60]
-                if c then cr, cg, cb = c[1], c[2], c[3] end
-              end
-            end
-            pos = escEnd + 1
-          else
-            -- Remaining text
-            local txt = remaining:sub(pos)
-            if #txt > 0 then
-              segments[#segments + 1] = {cr, cg, cb, txt}
-            end
-            break
-          end
-        end
-
-        -- Render each segment as a colored clickable link
-        local cmd = function() send("look " .. tostring(itemId)) end
-        for _, seg in ipairs(segments) do
-          setFgColor(conName, seg[1], seg[2], seg[3])
-          echoLink(conName, seg[4], cmd, tooltip, true)
-        end
-        resetFormat(conName)
-      end
-
-      -- Build flat entry list for two-column layout
-      local allEntries = {}
-
-      for _, item in ipairs(equipped) do
-        local slotName = invSlotNames[item.equipped] or "裝備"
-        local plainName = stripAnsi(item.name or "???")
-        local itemId = item.id or plainName
-        local qName = ""
-        local qRGB = ""
-        if item.quality_level and qualityNames[item.quality_level] then
-          qName = qualityNames[item.quality_level]
-          qRGB = hexToDechoRGB(qualityColors[item.quality_level])
-        end
-        allEntries[#allEntries + 1] = {
-          slot = slotName, name = plainName, rawName = item.name or "???",
-          id = itemId, qName = qName, qRGB = qRGB, equipped = true
-        }
-      end
-
-      -- Insert separator marker
-      local sepIdx = #allEntries > 0 and #regular > 0 and #allEntries or nil
-
-      for _, item in ipairs(regular) do
-        local plainName = stripAnsi(item.name or "???")
-        local itemId = item.id or plainName
-        local amtStr = ""
-        if item.amount and item.amount > 1 then
-          amtStr = "×" .. tostring(item.amount)
-        end
-        allEntries[#allEntries + 1] = {
-          name = plainName, rawName = item.name or "???",
-          id = itemId, amt = amtStr, equipped = false
-        }
-      end
-
-      -- Render single column
-      for i, e in ipairs(allEntries) do
-        if e.equipped then
-          decho(conName, "<128,128,128>[" .. e.slot .. "]<r>")
-          echoAnsiLink(conName, e.rawName, e.id, "查看: " .. e.name)
-          if e.qName ~= "" then
-            decho(conName, " <" .. e.qRGB .. ">" .. e.qName .. "<r>")
-          end
-        else
-          echo(conName, " ")
-          echoAnsiLink(conName, e.rawName, e.id, "查看: " .. e.name)
-          if e.amt ~= "" then
-            setFgColor(conName, 128, 128, 128)
-            echo(conName, " " .. e.amt)
-            resetFormat(conName)
-          end
-        end
-        echo(conName, "\n")
-
-        -- Separator after last equipped item
-        if sepIdx and i == sepIdx then
-          resetFormat(conName)
-          decho(conName, "<90,74,42>────────────<r>\n")
-        end
-      end
-      -- Scroll to top
-      WuxiaGUI3.invList:scrollToTop()
+    if #equipped > 0 and #regular > 0 then
+      entries[#entries + 1] = {
+        html = '<span style="color:#5a4a2a;">────────────</span>'
+      }
     end
+
+    for _, item in ipairs(regular) do
+      local nameHtml = ansiToHtml(item.name or "???")
+      local amtStr = ""
+      if item.amount and item.amount > 1 then
+        amtStr = ' <span style="color:#888;">×' .. tostring(item.amount) .. '</span>'
+      end
+      entries[#entries + 1] = {
+        html = '&nbsp;' .. nameHtml .. amtStr
+      }
+    end
+
+    WuxiaGUI3._invEntries = entries
+    WuxiaGUI3._invScrollOffset = 0
+    WuxiaGUI3._renderInvScroll()
   end
 end
 
@@ -4810,14 +4807,6 @@ function WuxiaGUI3.destroy()
   end
   WuxiaGUI3.chatConsoles = nil
   WuxiaGUI3.chatTabButtons = nil
-
-  -- Delete inventory MiniConsole (must be explicitly deleted)
-  if WuxiaGUI3.invList then
-    if WuxiaGUI3._invListIsCon then
-      WuxiaGUI3.invList:delete()
-    end
-    WuxiaGUI3.invList = nil
-  end
 
   if WuxiaGUI3.main then
     WuxiaGUI3.main:hide()
