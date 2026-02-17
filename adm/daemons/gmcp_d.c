@@ -8,67 +8,30 @@
 #endif
 
 // ─── JSON helpers ───
+// Using native FluffOS yyjson: json_encode() and json_decode()
+// No custom implementations needed.
 
-string json_escape(string s) {
-    if (!stringp(s)) return "";
-    s = replace_string(s, "\\", "\\\\");
-    s = replace_string(s, "\"", "\\\"");
-    s = replace_string(s, "\n", "\\n");
-    s = replace_string(s, "\t", "\\t");
-    s = replace_string(s, "\x1b", "\\u001b");
-    s = replace_string(s, "\a", "");   // strip bell
-    s = replace_string(s, "\r", "");   // strip CR
-    return s;
-}
-
+// Legacy wrapper kept for any external callers
 string to_json(mixed val) {
-    string *parts;
-
-    if (intp(val))    return "" + val;
-    if (floatp(val))  return sprintf("%.2f", val);
-    if (stringp(val)) return "\"" + json_escape(val) + "\"";
-    if (!val)         return "null";
-    if (arrayp(val)) {
-        parts = ({});
-        foreach (mixed v in val)
-            parts += ({ to_json(v) });
-        return "[" + implode(parts, ",") + "]";
-    }
-    if (mapp(val)) {
-        parts = ({});
-        foreach (mixed k, mixed v in val)
-            parts += ({ "\"" + json_escape("" + k) + "\":" + to_json(v) });
-        return "{" + implode(parts, ",") + "}";
-    }
-    return "\"" + json_escape("" + val) + "\"";
+    return json_encode(val);
 }
 
 mapping parse_json_object(string s) {
-    mapping result;
-    string *pairs;
-    string key, val;
+    mixed result;
 
-    result = ([]);
-    if (!stringp(s) || s == "") return result;
-    s = trim(s);
-    if (s[0] == '{') s = s[1..<2];
-    pairs = explode(s, ",");
-    foreach (string pair in pairs) {
-        if (sscanf(pair, "\"%s\":\"%s\"", key, val) == 2)
-            result[key] = val;
-        else if (sscanf(pair, "\"%s\":%s", key, val) == 2)
-            result[key] = trim(val);
-    }
+    if (!stringp(s) || s == "") return ([]);
+    result = json_decode(s);
+    if (!mapp(result)) return ([]);
     return result;
 }
 
 // ─── Core Send ───
 
-void gmcp_send(object who, string package, mapping data) {
+void gmcp_send(object who, string package, mixed data) {
     string payload;
 
     if (!who || !interactive(who) || !has_gmcp(who)) return;
-    payload = package + " " + to_json(data);
+    payload = package + " " + json_encode(data);
     who->receive_gmcp(payload);
 }
 
@@ -294,10 +257,9 @@ void send_buffs(object who) {
 // }
 
 void send_inventory(object who) {
-    mapping data, item, item_dbase, my, fullsuit_data, equip_sets, fs_merged;
+    mapping data, computed, my, fullsuit_data, equip_sets, fs_merged, item_dbase;
     object *inv, ob, weapon, sec_weapon, handing;
-    mixed *items;
-    string slot;
+    mixed *items, *computed_list;
     int enc, max_enc;
 
     if (!who || !interactive(who) || !has_gmcp(who)) return;
@@ -307,6 +269,7 @@ void send_inventory(object who) {
 
     inv = all_inventory(who);
     items = ({});
+    computed_list = ({});
 
     weapon     = query_temp("weapon", who);
     sec_weapon = query_temp("secondary_weapon", who);
@@ -316,45 +279,39 @@ void send_inventory(object who) {
         if (!objectp(ob)) continue;
         if (!who->visible(ob)) continue;
 
-        // Start with full item dbase
+        // Send raw dbase untouched
         item_dbase = ob->query_entire_dbase();
-        item = mapp(item_dbase) ? copy(item_dbase) : ([]);
+        if (!mapp(item_dbase)) item_dbase = ([]);
 
-        // Override/add computed fields
-        item["id"]   = query("id", ob) || "unknown";
-        item["name"] = ob->name(1) || ob->short() || "???";
-        item["base"] = base_name(ob);
+        // Server-only computed data goes in a separate mapping
+        // keyed by index, NOT mixed into item dbase
+        computed = ([]);
+        computed["name"]      = ob->name(1) || ob->short() || "???";
+        computed["short"]     = ob->short() || "???";
+        computed["base_name"] = base_name(ob);
 
-        // Equipped status and slot
         if (query("equipped", ob)) {
-            slot = (string)who->query_equipping_part(ob);
-            item["slot"] = slot;
-
+            computed["slot"] = (string)who->query_equipping_part(ob);
             if (ob == sec_weapon)
-                item["equipped"] = "secondary";
+                computed["equip_status"] = "secondary";
             else
-                item["equipped"] = "worn";
-
-            // mod_prop only applies if mod_active (fullsuit set bonus)
+                computed["equip_status"] = "worn";
             if (query_temp("mod_active", ob))
-                item["mod_active"] = 1;
+                computed["mod_active"] = 1;
         } else if (ob == handing) {
-            item["equipped"] = "holding";
+            computed["equip_status"] = "holding";
         }
 
-        // Amount for stackable items
         if (function_exists("query_amount", ob) && (int)ob->query_amount() > 1)
-            item["amount"] = (int)ob->query_amount();
+            computed["amount"] = (int)ob->query_amount();
 
-        // Is it an equipment item?
-        if (function_exists("is_equipment", ob) && (int)ob->is_equipment())
-            item["is_equipment"] = 1;
-
-        items += ({ item });
+        items += ({ item_dbase });
+        computed_list += ({ computed });
     }
 
     data = ([]);
     data["items"] = items;
+    data["computed"] = computed_list;
 
     // Encumbrance
     enc     = (int)who->query_encumbrance();
@@ -364,13 +321,13 @@ void send_inventory(object who) {
     else
         data["encumbrance"] = 0;
 
-    // Handing / secondary weapon IDs for GUI marker display
+    // Handing / secondary weapon IDs
     if (objectp(handing))
         data["handing"] = query("id", handing);
     if (objectp(sec_weapon))
         data["secondary"] = query("id", sec_weapon);
 
-    // Fullsuit bonuses (aggregated from tmp_dbase["fullsuit"])
+    // Fullsuit bonuses (from player temp data)
     fullsuit_data = query_temp("fullsuit", who);
     if (mapp(fullsuit_data)) {
         fs_merged = ([]);
@@ -385,7 +342,7 @@ void send_inventory(object who) {
             data["fullsuit"] = fs_merged;
     }
 
-    // Equipment sets (dbase["equipment_set"])
+    // Equipment sets
     equip_sets = my["equipment_set"];
     if (mapp(equip_sets)) {
         mapping sets_out;
