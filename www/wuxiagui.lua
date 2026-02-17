@@ -1076,15 +1076,13 @@ function WuxiaGUI3._buildEquipment()
     end
   end
 
-  -- Mouse wheel handler (angleDeltaX = vertical scroll, increments of 120)
+  -- Mouse wheel handler (angleDeltaY = vertical scroll, ±120 per tick)
   local function invWheelHandler(event)
     if not event then return end
-    local delta = event.angleDeltaX or 0
+    local delta = event.angleDeltaY or 0
     if delta > 0 then
-      -- Scroll up
       WuxiaGUI3._invScrollOffset = math.max(0, WuxiaGUI3._invScrollOffset - 2)
     elseif delta < 0 then
-      -- Scroll down
       local entries = WuxiaGUI3._invEntries or {}
       local labelH = WuxiaGUI3.invList and WuxiaGUI3.invList:get_height() or 200
       local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._invLineH))
