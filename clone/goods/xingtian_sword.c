@@ -17,15 +17,15 @@ void create() {
     set("no_pawn", 1);
     set("no_store", 1);     // 不能用幹降符文upd
     set("no_save", 1);  // quit不保存
+
+    set("mod_mark", "A2033");
+    set("mod_level", "M2030");
+    set("mod_name", HBRED "刑天套裝" NOR);
+    init_sword(50000);
+    set("quality_level", 3);
+
+    setup();
 }
-
-set("mod_mark", "A2033");
-set("mod_level", "M2030");
-set("mod_name", HBRED "刑天套裝" NOR);
-init_sword(50000);
-set("quality_level", 3);
-
-setup();
 
 void start_borrowing(int time) {
     remove_call_out("return_to_back");
