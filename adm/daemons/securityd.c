@@ -433,6 +433,7 @@ int valid_write(string file, mixed user, string func)
         int i;
         int valid;
 
+
         if (! objectp(user))
         {
                 if (stringp(user))
@@ -511,6 +512,10 @@ int valid_write(string file, mixed user, string func)
                 }
         }
 
+        // Let commands create zip packages in /www/
+        if (func == "create_zip" && sscanf(file, "/www/%*s")) {
+                return 1;
+        }
         // Get the euid and status of the user.
         if (! euid) return 0;
         status = get_status(user);
@@ -611,6 +616,11 @@ int valid_read(string file, mixed user, string func)
         ||  sscanf(file, "/quest/%*s")
         ||  sscanf(file, "/data/user/%*s.package.o")))
                 return 1;
+
+        // Let commands create zip packages in /www/
+        if (func == "create_zip" && sscanf(file, "/WuxiaGUI3/%*s")) {
+                return 1;
+        }
 
         // Let user save their save file
         if (func == "restore_object")

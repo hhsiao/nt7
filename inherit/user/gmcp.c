@@ -219,11 +219,6 @@ void gmcp_setup_watch() {
     __gmcp_watch_active = 1;
 }
 
-// ─── Driver Apply: gmcp_enable ───
-void gmcp_enable() {
-    call_out("gmcp_init_burst", 2);
-}
-
 // ─── Delayed Initial Data Push ───
 void gmcp_init_burst() {
     object gd;

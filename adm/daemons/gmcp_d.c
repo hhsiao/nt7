@@ -7,6 +7,33 @@
 #define GMCP_D "/adm/daemons/gmcp_d"
 #endif
 
+// ─── Forward declarations ───
+void gmcp_send(object who, string package, mixed data);
+
+// ─── GUI Package Auto-Install Config ───
+// Mudlet will auto-install/update the package when version changes.
+// Set via: GMCP_D->set_gui_url("http://yourhost:port/static/WuxiaGUI3.mpackage")
+// Set via: GMCP_D->set_gui_version("1.0.0")
+
+nosave string gui_url     = "http://localhost:8888/static/WuxiaGUI3.mpackage";
+nosave string gui_version = "1.0.0";
+
+void set_gui_url(string url)     { if (stringp(url)) gui_url = url; }
+void set_gui_version(string ver) { if (stringp(ver)) gui_version = ver; }
+string query_gui_url()           { return gui_url; }
+string query_gui_version()       { return gui_version; }
+
+// Send Client.GUI to trigger Mudlet auto-install/update
+void send_gui(object who) {
+    if (!who || !interactive(who) || !has_gmcp(who)) return;
+    if (!gui_url || gui_url == "") return;
+
+    gmcp_send(who, "Client.GUI", ([
+        "version" : gui_version,
+        "url"     : gui_url,
+    ]));
+}
+
 // ─── JSON helpers ───
 // Using native FluffOS yyjson: json_encode() and json_decode()
 // No custom implementations needed.

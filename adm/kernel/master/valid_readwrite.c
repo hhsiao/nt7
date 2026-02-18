@@ -22,12 +22,12 @@
 // valid_read: read privileges; called exactly the same as valid_write()
 int valid_read(string file, mixed user, string func)
 {
-        object ob;
+    object ob;
 
-        if( ob = find_object(SECURITY_D) )
-                return (int)ob->valid_read(file, user, func);
+    if( ob = find_object(SECURITY_D) )
+        return (int)ob->valid_read(file, user, func);
 
-        return 1;
+    return 1;
 }
 
 /*
@@ -54,10 +54,10 @@ int valid_read(string file, mixed user, string func)
 // initiating the call, and the function by which they called it.
 int valid_write(string file, mixed user, string func)
 {
-        object ob;
+    object ob;
 
-        if( ob = find_object(SECURITY_D) )
-                return (int)ob->valid_write(file, user, func);
+    if( ob = find_object(SECURITY_D) )
+        return (int)ob->valid_write(file, user, func);
 
-        return 0;
+    return 0;
 }

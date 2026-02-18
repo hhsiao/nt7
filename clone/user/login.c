@@ -181,12 +181,23 @@ int restore() {
 }
 
 void gmcp_enable() {
-    // Nothing to do here. The driver remembers GMCP is enabled
-    // for this connection. After exec() moves the connection
-    // to the user object, has_gmcp(user) will return 1.
-    //
-    // The user object's post-login code should call:
-    //   if (has_gmcp()) call_out("gmcp_init_burst", 1);
+    // Send Client.GUI immediately so Mudlet starts downloading
+    // the package while the player is still at the login screen.
+    // We use efun::send_gmcp directly because has_gmcp() may not
+    // return true until after this apply returns.
+    object gd = find_object(GMCP_D);
+    if (!gd) gd = load_object(GMCP_D);
+    if (gd) {
+        string url = gd->query_gui_url();
+        string ver = gd->query_gui_version();
+        if (stringp(url) && url != "") {
+            string payload = "Client.GUI " + json_encode(([
+                "version" : ver,
+                "url"     : url,
+            ]));
+            efun::send_gmcp(payload);
+        }
+    }
 }
 
 // Called by the FluffOS driver when client sends GMCP data.
