@@ -10,9 +10,9 @@
 nomask nosave mapping part_set = ([
         "head"  : ({ "head",              1,          ({})     }),      // 頭盔
         "neck"  : ({ "necklace",          1,          ({})     }),      // 項鍊
-        "medal" : ({ "medal",             1,          ({})     }),      // 勳章
-        "medal2": ({ "medal",            21,          ({})     }),      // 勳章
-        "medal3": ({ "medal",            21,          ({})     }),      // 勳章
+        "medal" : ({ "medal",             5,          ({})     }),      // 勳章
+        "medal2": ({ "medal",             5,          ({})     }),      // 勳章
+        "medal3": ({ "medal",             5,          ({})     }),      // 勳章
         "mymask": ({ "mask",              1,          ({})     }),      // 面具
         "myheart":({ "heart",             1,          ({})     }),      // 胸口
         "myheart2":({"heart",             1,          ({})     }),      // 胸口
