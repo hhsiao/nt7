@@ -161,6 +161,11 @@ local _ansiColors = {
   ["1;30"] = "#555",  ["1;31"] = "#f55",  ["1;32"] = "#5f5",  ["1;33"] = "#ff5",
   ["1;34"] = "#55f",  ["1;35"] = "#f5f",  ["1;36"] = "#5ff",  ["1;37"] = "#fff",
 }
+local function stripAnsi(s)
+  if not s or s == "" then return "" end
+  return s:gsub("\27%[[%d;]*m", "")
+end
+
 local function ansiToHtml(s)
   if not s or s == "" then return "" end
   -- Match ESC[ ... m sequences and replace with <span> or </span>
@@ -675,16 +680,21 @@ function WuxiaGUI3._buildEquipment()
   local p = WuxiaGUI3.tabContainers["裝備"]
   local y = 0
 
-  -- ═══ Character Sheet: Silhouette + Positioned Slots ═══
+  -- ═══ Dimensions ═══
   local SW = 120   -- slot width
-  local SH = 56    -- slot height (slightly shorter to fit within image)
+  local SH = 56    -- slot height
+  local GAP = 3    -- vertical gap between rows
   local LX = MX
   local RX = MX + GW - SW
 
-  -- ── Background: Character artwork (full panel width) ──
-  local weaponH = SH + 4
-  local bodyH = 6 * (SH + 3)
-  local totalH = weaponH + 4 + bodyH  -- include weapon y offset
+  -- Toggle button width = same as a slot
+  local toggleW = SW
+  local toggleH = SH
+
+  -- Total height: 6 rows (row 0 has toggle+slot, rows 1-5 have 2 slots each)
+  local totalH = 6 * (SH + GAP)
+
+  -- ── Background: Character artwork ──
   local silLabel = Geyser.Label:new({
     name = "W3.equip.silhouette",
     x = 0, y = y,
@@ -698,29 +708,90 @@ function WuxiaGUI3._buildEquipment()
   else
     silLabel:setStyleSheet("background-color: transparent; border: none;")
   end
+  WuxiaGUI3._equipSilLabel = silLabel
 
-  -- ── Weapon row (top) ──
-  WuxiaGUI3._makeEquipSlot(p, "primary",   "主手 primary",  LX, y + 4, SW, SH)
-  WuxiaGUI3._makeEquipSlot(p, "secondary", "副手 secondary", RX, y + 4, SW, SH)
-  y = y + weaponH + 4
+  -- ── Toggle button (top-left) ──
+  local toggleBtn = Geyser.Label:new({
+    name = "W3.equip.toggle",
+    x = LX, y = y + GAP,
+    width = toggleW, height = toggleH,
+  }, p)
+  toggleBtn:setFontSize(11)
+  toggleBtn:raiseAll()
+  WuxiaGUI3._equipToggleBtn = toggleBtn
 
-  -- ── Body slot rows ──
-  local bodySlots = {
-    { "head",    "頭盔 head",     "cloth",   "戰衣 cloth" },
-    { "armor",   "鐵甲 armor",    "boots",   "皮靴 boots" },
-    { "hands",   "手套 hands",    "wrists",  "護腕 wrists" },
-    { "waist",   "腰帶 waist",    "surcoat", "披風 surcoat" },
-    { "finger",  "戒指 finger",   "neck",    "項鏈 neck" },
-    { "rings",   "指環 rings",    "charm",   "護符 charm" },
+  -- ── Create all slots for both pages ──
+  WuxiaGUI3._equipCatSlots = { ["裝備"] = {}, ["飾品"] = {} }
+
+  -- Helper: row/col to pixel position
+  -- Row 0: toggle at LX, slot at RX
+  -- Rows 1-5: LX and RX
+  local function slotPos(row, col)
+    local sx = (col == 0) and LX or RX
+    local sy = y + row * (SH + GAP) + GAP
+    return sx, sy
+  end
+
+  -- 裝備 page slots
+  local equipLayout = {
+    { row = 0, col = 1, key = "hand_primary",  label = "主手" },
+    { row = 1, col = 0, key = "hand_secondary", label = "副手" },
+    { row = 1, col = 1, key = "head",          label = "頭盔 head" },
+    { row = 2, col = 0, key = "mask",          label = "面具 mask" },
+    { row = 2, col = 1, key = "surcoat",       label = "披風 surcoat" },
+    { row = 3, col = 0, key = "armor",         label = "護甲 armor" },
+    { row = 3, col = 1, key = "cloth",         label = "衣服 cloth" },
+    { row = 4, col = 0, key = "wrists",        label = "護腕 wrists" },
+    { row = 4, col = 1, key = "waist",         label = "腰帶 waist" },
+    { row = 5, col = 0, key = "leggings",      label = "腿甲 leggings" },
+    { row = 5, col = 1, key = "boots",         label = "鞋子 boots" },
   }
 
-  local rowY = y
-  for _, row in ipairs(bodySlots) do
-    WuxiaGUI3._makeEquipSlot(p, row[1], row[2], LX, rowY, SW, SH)
-    WuxiaGUI3._makeEquipSlot(p, row[3], row[4], RX, rowY, SW, SH)
-    rowY = rowY + SH + 3
+  local equipKeys = {}
+  for _, s in ipairs(equipLayout) do
+    local sx, sy = slotPos(s.row, s.col)
+    WuxiaGUI3._makeEquipSlot(p, s.key, s.label, sx, sy, SW, SH)
+    equipKeys[#equipKeys + 1] = s.key
   end
-  y = totalH
+  WuxiaGUI3._equipCatSlots["裝備"] = equipKeys
+
+  -- 飾品 page slots
+  local accLayout = {
+    { row = 0, col = 1, key = "necklace",  label = "項鏈 necklace" },
+    { row = 1, col = 0, key = "earring",   label = "耳墜 earring" },
+    { row = 1, col = 1, key = "hairpin",   label = "髮飾 hairpin" },
+    { row = 2, col = 0, key = "ring",      label = "戒指 ring" },
+    { row = 2, col = 1, key = "medal_1",   label = "勳章①" },
+    { row = 3, col = 0, key = "medal_2",   label = "勳章②" },
+    { row = 3, col = 1, key = "medal_3",   label = "勳章③" },
+    { row = 4, col = 0, key = "medal_4",   label = "勳章④" },
+    { row = 4, col = 1, key = "medal_5",   label = "勳章⑤" },
+    { row = 5, col = 0, key = "heart",     label = "胸口 heart" },
+    { row = 5, col = 1, key = "charm",     label = "護符 charm" },
+  }
+
+  local accKeys = {}
+  for _, s in ipairs(accLayout) do
+    local sx, sy = slotPos(s.row, s.col)
+    WuxiaGUI3._makeEquipSlot(p, s.key, s.label, sx, sy, SW, SH)
+    accKeys[#accKeys + 1] = s.key
+  end
+  WuxiaGUI3._equipCatSlots["飾品"] = accKeys
+
+  y = y + totalH
+
+  -- ── Wire up toggle ──
+  WuxiaGUI3._equipActiveCat = "裝備"
+  toggleBtn:setClickCallback(function()
+    if WuxiaGUI3._equipActiveCat == "裝備" then
+      WuxiaGUI3._equipActiveCat = "飾品"
+    else
+      WuxiaGUI3._equipActiveCat = "裝備"
+    end
+    WuxiaGUI3._updateEquipCatDisplay()
+  end)
+
+  WuxiaGUI3._updateEquipCatDisplay()
 
   -- ═══ Equipment Buffs Summary ═══
   -- ═══ Equipment Buffs with dragon frame background ═══
@@ -1200,33 +1271,73 @@ function WuxiaGUI3._startSetCooldown(clickedIdx)
   end
 end
 
+-- ─── Toggle equipment category display ───
+function WuxiaGUI3._updateEquipCatDisplay()
+  local active = WuxiaGUI3._equipActiveCat or "裝備"
+  local catSlots = WuxiaGUI3._equipCatSlots or {}
+  local labels = WuxiaGUI3._equipSlotLabels or {}
+  local headers = WuxiaGUI3._equipSlotHeaders or {}
+
+  -- Show/hide slot labels per category
+  for cat, slots in pairs(catSlots) do
+    local visible = (cat == active)
+    for _, slotKey in ipairs(slots) do
+      if labels[slotKey] then
+        if visible then labels[slotKey]:show(); labels[slotKey]:raiseAll()
+        else labels[slotKey]:hide() end
+      end
+      if headers[slotKey] then
+        if visible then headers[slotKey]:show(); headers[slotKey]:raiseAll()
+        else headers[slotKey]:hide() end
+      end
+    end
+  end
+
+  -- Update toggle button
+  local btn = WuxiaGUI3._equipToggleBtn
+  if btn then
+    local other = (active == "裝備") and "飾品" or "裝備"
+    btn:setStyleSheet(string.format(
+      "background-color: rgba(40,30,20,220); border: 1px solid %s; " ..
+      "qproperty-alignment: AlignCenter;", GOLD))
+    btn:echo(
+      span(GOLD, "<b>" .. active .. "</b>") ..
+      '<br><span style="color:#888;font-size:9px;">▶ ' .. other .. '</span>')
+    btn:raiseAll()
+  end
+end
+
 -- ─── Create a single equipment slot label (compact character sheet style) ───
 function WuxiaGUI3._makeEquipSlot(parent, slotKey, slotLabel, x, y, w, h)
-  -- Slot label (top-left, small)
-  local hdrH = 14
-  local hdr = Geyser.Label:new({
-    name = "W3.eqSlot." .. slotKey .. ".hdr",
-    x = x + 1, y = y + 1, width = w - 2, height = hdrH,
-  }, parent)
-  hdr:setStyleSheet("background-color: transparent; padding: 0px 4px; " ..
-    "qproperty-alignment: 'AlignLeft | AlignTop';")
-  hdr:setFontSize(7)
-  hdr:echo('<span style="color:#777;font-size:10px;">' .. slotLabel .. '</span>')
-  hdr:raiseAll()
+  local hdrH = 16
 
-  -- Item name label (vertically centered in remaining space)
+  -- Item label (full slot, name centered in entire button)
   local itemLbl = Geyser.Label:new({
     name = "W3.eqSlot." .. slotKey,
     x = x, y = y, width = w, height = h,
   }, parent)
   itemLbl:setStyleSheet(
-    "background-color: rgba(17,17,28,204); border: 1px solid " .. BORDER .. "; " ..
-    "padding: 14px 5px 2px 5px; qproperty-alignment: 'AlignLeft | AlignVCenter';")
+    "background-color: rgba(17,17,28,160); border: 1px solid " .. BORDER .. "; " ..
+    "padding: " .. (hdrH + 2) .. "px 5px 2px 5px; " ..
+    "qproperty-alignment: 'AlignHCenter | AlignVCenter';")
   itemLbl:setFontSize(12)
   itemLbl:echo(span("#555", "空"))
   itemLbl:setToolTip(slotLabel)
   itemLbl:raiseAll()
-  hdr:raiseAll()  -- ensure header is on top
+
+  -- Header panel (semi-transparent dark strip, slightly less see-through than item area)
+  local hdr = Geyser.Label:new({
+    name = "W3.eqSlot." .. slotKey .. ".hdr",
+    x = x + 1, y = y + 1, width = w - 2, height = hdrH,
+  }, parent)
+  hdr:setStyleSheet(
+    "background-color: rgba(8,6,4,140); " ..
+    "border-bottom: 1px solid rgba(80,60,30,80); " ..
+    "padding: 0px 4px; " ..
+    "qproperty-alignment: 'AlignLeft | AlignVCenter';")
+  hdr:setFontSize(7)
+  hdr:echo('<span style="color:#888;font-size:10px;">' .. slotLabel .. '</span>')
+  hdr:raiseAll()
 
   if not WuxiaGUI3._equipSlotLabels then WuxiaGUI3._equipSlotLabels = {} end
   WuxiaGUI3._equipSlotLabels[slotKey] = itemLbl
@@ -1704,12 +1815,13 @@ function WuxiaGUI3._buildChannelDrawer()
   -- Position: dropdown below the gear button
   local gearBtn = WuxiaGUI3.chatMoreBtn
   if not gearBtn then return end
-  local gearX = gearBtn:get_x()
+  local gearX = WuxiaGUI3._gearRelX or 0
+  local gearW = WuxiaGUI3._gearRelW or 22
 
   -- Anchor right edge of drawer to right edge of gear button
   local chatMainW = WuxiaGUI3.chatMain:get_width()
   local chatMainH = WuxiaGUI3._currentChatH or WuxiaGUI3.chatMain:get_height()
-  local drawerRight = gearX + gearBtn:get_width()
+  local drawerRight = gearX + gearW
   local drawerX = drawerRight - drawerW
   if drawerX < 4 then drawerX = 4 end
 
@@ -1967,9 +2079,8 @@ end
 function WuxiaGUI3._repositionDrawer()
   if not WuxiaGUI3._drawer or not WuxiaGUI3.chatMoreBtn then return end
 
-  local gearBtn = WuxiaGUI3.chatMoreBtn
-  local gearX = gearBtn:get_x()
-  local gearW = gearBtn:get_width()
+  local gearX = WuxiaGUI3._gearRelX or 0
+  local gearW = WuxiaGUI3._gearRelW or 22
   local drawerW = WuxiaGUI3._drawer:get_width()
   local chatMainW = WuxiaGUI3.chatMain:get_width()
 
@@ -2721,6 +2832,8 @@ function WuxiaGUI3._rebuildTabBar()
   WuxiaGUI3.chatMoreBtn:setFontSize(10)
   WuxiaGUI3.chatMoreBtn:echo(span(GOLD, "⚙"))
   WuxiaGUI3.chatMoreBtn:setClickCallback("WuxiaGUI3._showChannelPanel")
+  WuxiaGUI3._gearRelX = tabEndX
+  WuxiaGUI3._gearRelW = gearW
 
   -- Bell button 🔔 (for hidden unread notifications)
   if WuxiaGUI3._bellBtn then WuxiaGUI3._bellBtn:hide() end
@@ -4308,10 +4421,15 @@ function WuxiaGUI3._refreshEquipment()
 
   -- Slot display names
   local slotNames = {
-    primary = "主手", secondary = "副手",
-    head = "頭盔", cloth = "戰衣", armor = "鐵甲", boots = "皮靴",
-    hands = "手套", wrists = "護腕", waist = "腰帶", surcoat = "披風",
-    finger = "戒指", neck = "項鏈", rings = "指環", charm = "護符",
+    hand_primary = "主手", hand_secondary = "副手",
+    head = "頭盔", mask = "面具", surcoat = "披風",
+    armor = "護甲", cloth = "衣服", wrists = "護腕",
+    waist = "腰帶", leggings = "腿甲", boots = "鞋子",
+    necklace = "項鏈", earring = "耳墜", hairpin = "髮飾",
+    ring = "戒指",
+    medal_1 = "勳章①", medal_2 = "勳章②", medal_3 = "勳章③",
+    medal_4 = "勳章④", medal_5 = "勳章⑤",
+    heart = "胸口", charm = "護符",
   }
 
   -- Quality names
@@ -4319,23 +4437,49 @@ function WuxiaGUI3._refreshEquipment()
   local qualityColors = { [1] = TEXT_DIM, [2] = "#8a8a5a", [3] = "#5a8a5a", [4] = "#5a5acc", [5] = "#cc8a33" }
 
   -- ═══ Update equipment slots ═══
-  -- First clear all slots
+  -- GUI slot keys (some are virtual, mapped from PART_ID)
   local allSlots = {
-    "primary", "secondary", "head", "cloth", "armor", "boots",
-    "hands", "wrists", "waist", "surcoat", "finger", "neck", "rings", "charm",
+    "hand_primary", "hand_secondary",
+    "head", "mask", "surcoat", "armor", "cloth", "wrists",
+    "waist", "leggings", "boots",
+    "necklace", "earring", "hairpin", "ring",
+    "medal_1", "medal_2", "medal_3", "medal_4", "medal_5",
+    "heart", "charm",
   }
-  local slotItems = {}  -- slot → item data
+  local slotItems = {}  -- guiSlotKey → item data
+
+  -- Collect items by PART_ID slot, handling multi-item slots
+  local handItems = {}    -- items in "hand" PART_ID (up to 2)
+  local medalItems = {}   -- items in "medal" PART_ID (up to 5)
+  local holdingItem = nil
 
   for _, item in ipairs(items) do
-    if item.slot then
-      slotItems[item.slot] = item
+    if item.equip_status then
+      local slot = item.slot
+      if item.equip_status == "holding" then
+        holdingItem = item
+      elseif slot == "hand" or slot == "twohand" then
+        handItems[#handItems + 1] = item
+      elseif slot == "medal" then
+        medalItems[#medalItems + 1] = item
+      elseif slot and slot ~= "" then
+        slotItems[slot] = item
+      end
     end
-    -- Weapon detection: check equipped status
-    if item.equipped == "worn" and item.slot then
-      slotItems[item.slot] = item
-    end
-    if item.equipped == "secondary" and item.slot then
-      slotItems[item.slot] = item
+  end
+
+  -- Map hand items to primary/secondary GUI slots
+  if #handItems >= 1 then slotItems["hand_primary"] = handItems[1] end
+  if #handItems >= 2 then slotItems["hand_secondary"] = handItems[2] end
+  -- Holding item goes in secondary if no second weapon
+  if holdingItem and not slotItems["hand_secondary"] then
+    slotItems["hand_secondary"] = holdingItem
+  end
+
+  -- Map medals to medal_1 through medal_5
+  for i, item in ipairs(medalItems) do
+    if i <= 5 then
+      slotItems["medal_" .. i] = item
     end
   end
 
@@ -4349,12 +4493,14 @@ function WuxiaGUI3._refreshEquipment()
           local qColor = qualityColors[item.quality_level] or TEXT_DIM
           local qName = qualityNames[item.quality_level] or ""
           lbl:setStyleSheet(
-            "background-color: rgba(20,34,20,204); border: 1px solid #3a5a3a; " ..
-            "padding: 14px 5px 2px 5px; qproperty-alignment: 'AlignLeft | AlignVCenter';")
+            "background-color: rgba(20,34,20,160); border: 1px solid #3a5a3a; " ..
+            "padding: 18px 5px 2px 5px; " ..
+            "qproperty-alignment: 'AlignHCenter | AlignVCenter';")
           lbl:setFontSize(12)
-          lbl:echo('<span style="font-size:13px;">' .. ansiToHtml(item.name or "???") .. '</span>')
-          lbl:setToolTip(slotLabel .. " — " .. (item.name or "???"):gsub("\27%[[%d;]*m", ""))
-          -- Update header with quality
+          lbl:echo('<span style="font-size:13px;">' ..
+            ansiToHtml(item.display_name or item.name or "???") .. '</span>')
+          lbl:setToolTip('<span style="font-size:12px;">' ..
+            ansiToHtml(item.name or "???") .. '</span>')
           local hdr = WuxiaGUI3._equipSlotHeaders and WuxiaGUI3._equipSlotHeaders[slotKey]
           if hdr then
             hdr:echo(
@@ -4363,8 +4509,9 @@ function WuxiaGUI3._refreshEquipment()
           end
         else
           lbl:setStyleSheet(
-            "background-color: rgba(17,17,28,204); border: 1px solid " .. BORDER .. "; " ..
-            "padding: 14px 5px 2px 5px; qproperty-alignment: 'AlignLeft | AlignVCenter';")
+            "background-color: rgba(17,17,28,160); border: 1px solid " .. BORDER .. "; " ..
+            "padding: 18px 5px 2px 5px; " ..
+            "qproperty-alignment: 'AlignHCenter | AlignVCenter';")
           lbl:setFontSize(12)
           lbl:echo(span("#555", "空"))
           lbl:setToolTip(slotLabel)
@@ -4395,7 +4542,7 @@ function WuxiaGUI3._refreshEquipment()
   end
 
   for _, item in ipairs(items) do
-    if item.equipped then
+    if item.equip_status then
       addProps(item.armor_prop)
       addProps(item.weapon_prop)
       -- Nested: rare/apply_prop → item.rare.apply_prop in Lua table
@@ -4425,16 +4572,57 @@ function WuxiaGUI3._refreshEquipment()
     table.sort(sortedKeys)
 
     local buffNames = {
+      -- Attributes
       str = "臂力", ["int"] = "悟性", con = "根骨", dex = "身法",
-      armor = "保護力", attack = "攻擊", defense = "防禦",
-      damage = "傷害", unarmed_damage = "拳傷害",
-      dodge = "躲閃", parry = "招架",
-      learn_effect = "學習效果", research_effect = "研究效果",
-      practice_effect = "練習效果", derive_effect = "汲取效果",
-      max_qi = "氣血上限", max_jing = "精氣上限",
-      max_neili = "內力上限", max_jingli = "精力上限",
-      magic_find = "尋寶率", ap_power = "絕命中", dp_power = "絕防禦",
-      da_power = "絕傷害",
+      kar = "福緣", per = "容貌", fy = "福緣",
+      -- Base stats
+      consistence = "耐久度", damage = "兵器傷害力", unarmed_damage = "空手傷害力",
+      armor = "保護力",
+      -- Max pools
+      max_neili = "內力上限", max_qi = "氣血上限",
+      max_jingli = "精力上限", max_jing = "精氣上限",
+      max_potential = "潛能上限", max_experience = "體會上限",
+      -- Combat skills
+      sword = "劍法", blade = "刀法", club = "棍法", hammer = "錘法",
+      staff = "杖法", whip = "鞭法", unarmed = "拳腳", strike = "掌法",
+      cuff = "拳法", hand = "手法", finger = "指法", claw = "爪法",
+      -- Combat
+      attack = "攻擊", parry = "招架", dodge = "躲閃", defense = "防禦",
+      -- Recovery
+      neili_recover = "內力恢復", qi_recover = "生命恢復", jing_recover = "精氣恢復",
+      -- Elemental damage
+      add_poison = "毒傷害", add_magic = "魔傷害",
+      add_metal = "金傷害", add_wood = "木傷害",
+      add_water = "水傷害", add_fire = "火傷害", add_earth = "土傷害",
+      -- Elemental resist
+      reduce_magic = "抗魔", reduce_metal = "抗金", reduce_wood = "抗木",
+      reduce_water = "抗水", reduce_fire = "抗火", reduce_earth = "抗土",
+      reduce_poison = "抗毒", avoid_poison = "百毒不侵",
+      -- Training effects
+      research_effect = "研究效果", practice_effect = "練習效果",
+      study_effect = "讀書效果", learn_effect = "學習效果", derive_effect = "汲取效果",
+      research_times = "研究次數", learn_times = "學習次數",
+      practice_times = "練習次數", study_times = "讀書次數", derive_times = "汲取消耗",
+      -- Special
+      magic_find = "尋寶率",
+      leech_neili = "偷取內力", leech_qi = "偷取生命",
+      ap_power = "絕招命中", dp_power = "絕招防禦", da_power = "絕招傷害",
+      avoid_parry = "忽視招架", avoid_dodge = "忽視躲閃",
+      avoid_force = "忽視內防", avoid_attack = "忽視特攻",
+      through_armor = "穿透破甲", double_damage = "雙倍傷害",
+      qi_abs_neili = "傷轉內力", add_reward = "額外獎勵",
+      -- Status effects
+      add_blind = "致盲", add_freeze = "冰凍", add_forget = "遺忘",
+      add_weak = "虛弱", add_busy = "忙亂",
+      avoid_blind = "忽視致盲", avoid_freeze = "忽視冰凍",
+      avoid_forget = "忽視遺忘", avoid_weak = "忽視虛弱",
+      avoid_busy = "忽視忙亂", reduce_busy = "化解忙亂", avoid_fear = "忽視恐懼",
+      fatal_blow = "致命一擊",
+      add_skill = "提升技能", add_damage = "追加傷害",
+      reduce_damage = "化解傷害", full_self = "戰神附體",
+      avoid_die = "浴血重生", counter_damage = "傷害反射",
+      -- Job
+      joblv = "職業等級",
     }
 
     -- Build entries
@@ -4523,16 +4711,19 @@ function WuxiaGUI3._refreshEquipment()
   -- Item list
   if WuxiaGUI3.invList then
     local invSlotNames = {
-      primary = "主手", secondary = "副手", holding = "持有",
-      head = "頭盔", cloth = "戰衣", armor = "鐵甲", boots = "皮靴",
-      hands = "手套", wrists = "護腕", waist = "腰帶", surcoat = "披風",
-      finger = "戒指", neck = "項鏈", rings = "指環", charm = "護符",
+      hand = "主手", twohand = "雙手", holding = "持有",
+      head = "頭盔", mask = "面具", surcoat = "披風",
+      armor = "護甲", cloth = "衣服", wrists = "護腕",
+      waist = "腰帶", leggings = "腿甲", boots = "鞋子",
+      necklace = "項鏈", earring = "耳墜", hairpin = "髮飾",
+      ring = "戒指", medal = "勳章",
+      heart = "胸口", charm = "護符",
     }
 
     local equipped = {}
     local regular = {}
     for _, item in ipairs(items) do
-      if item.equipped then
+      if item.equip_status then
         equipped[#equipped + 1] = item
       else
         regular[#regular + 1] = item
@@ -4542,15 +4733,21 @@ function WuxiaGUI3._refreshEquipment()
     local entries = {}
 
     for _, item in ipairs(equipped) do
-      local slotName = invSlotNames[item.equipped] or "裝備"
-      local nameHtml = ansiToHtml(item.name or "???")
+      local slotKey = item.slot or item.armor_type or item.equip_status or "裝備"
+      local slotName = invSlotNames[slotKey] or "裝備"
+      local nameHtml = ansiToHtml(item.display_name or item.name or "???")
+      local idStr = ""
+      if item.id and item.id ~= "" then
+        idStr = '<span style="color:#888;">(' .. item.id .. ')</span>'
+      end
       local qStr = ""
       if item.quality_level and qualityNames[item.quality_level] then
         qStr = ' <span style="color:' .. (qualityColors[item.quality_level] or TEXT_DIM) ..
                ';">' .. qualityNames[item.quality_level] .. '</span>'
       end
       entries[#entries + 1] = {
-        html = '<span style="color:#888;">[' .. slotName .. ']</span> ' .. nameHtml .. qStr
+        html = '<span style="color:#888;">[' .. slotName .. ']</span> ' ..
+               nameHtml .. idStr .. qStr
       }
     end
 
@@ -4560,15 +4757,68 @@ function WuxiaGUI3._refreshEquipment()
       }
     end
 
+    -- Stack regular items by base_name + name (like server inventory.c)
+    local stacks = {}
+    local stackOrder = {}
     for _, item in ipairs(regular) do
-      local nameHtml = ansiToHtml(item.name or "???")
-      local amtStr = ""
-      if item.amount and item.amount > 1 then
-        amtStr = ' <span style="color:#888;">×' .. tostring(item.amount) .. '</span>'
+      local key = (item.base_name or "") .. "|" .. (item.name or "???")
+      if stacks[key] then
+        stacks[key].count = stacks[key].count + (item.amount or 1)
+      else
+        stacks[key] = { item = item, count = item.amount or 1 }
+        stackOrder[#stackOrder + 1] = key
       end
-      entries[#entries + 1] = {
-        html = '&nbsp;' .. nameHtml .. amtStr
-      }
+    end
+
+    -- Chinese number conversion
+    local function chineseNumber(n)
+      if n <= 0 then return "" end
+      local digits = {"一","二","三","四","五","六","七","八","九"}
+      local units = {"","十","百","千","萬"}
+      if n <= 10 then
+        if n == 10 then return "十" end
+        return digits[n]
+      elseif n < 20 then
+        return "十" .. digits[n - 10]
+      elseif n < 100 then
+        local tens = math.floor(n / 10)
+        local ones = n % 10
+        if ones == 0 then return digits[tens] .. "十" end
+        return digits[tens] .. "十" .. digits[ones]
+      else
+        return tostring(n)
+      end
+    end
+
+    for _, key in ipairs(stackOrder) do
+      local s = stacks[key]
+      local item = s.item
+      local count = s.count
+      local nameHtml = ansiToHtml(item.display_name or item.name or "???")
+      local idStr = ""
+      if item.id and item.id ~= "" then
+        idStr = '<span style="color:#888;">(' .. item.id .. ')</span>'
+      end
+      local countStr = ""
+      if count > 1 then
+        local unit = item.unit or "個"
+        countStr = '<span style="color:#888;">' ..
+                   chineseNumber(count) .. unit .. '</span>'
+      end
+      local qStr = ""
+      if item.quality_level and qualityNames[item.quality_level] then
+        qStr = ' <span style="color:' .. (qualityColors[item.quality_level] or TEXT_DIM) ..
+               ';">' .. qualityNames[item.quality_level] .. '</span>'
+      end
+      if count > 1 then
+        entries[#entries + 1] = {
+          html = '&nbsp;' .. countStr .. nameHtml .. idStr .. qStr
+        }
+      else
+        entries[#entries + 1] = {
+          html = '&nbsp;' .. nameHtml .. idStr .. qStr
+        }
+      end
     end
 
     WuxiaGUI3._invEntries = entries
@@ -4727,20 +4977,43 @@ function WuxiaGUI3.registerEvents()
     inv.fullsuit = gi.fullsuit  -- mapping or nil
     inv.sets = gi.sets          -- mapping or nil
 
-    -- Parse items array
+    -- Parse items[] (raw dbase) + computed[] (server-only data), parallel arrays
     inv.items = {}
     if type(gi.items) == "table" then
-      for _, raw in ipairs(gi.items) do
+      local computed = gi.computed or {}
+      for i, raw in ipairs(gi.items) do
         if type(raw) == "table" then
-          -- Full item dbase is synced; store directly
-          -- Override key fields with proper types
           local item = {}
           for k, v in pairs(raw) do
             item[k] = v
           end
-          -- Ensure numeric fields
-          if item.amount then item.amount = tonumber(item.amount) end
+
+          -- Merge server-computed fields (parallel array, same index)
+          local comp = computed[i]
+          if type(comp) == "table" then
+            item.display_name  = comp.name
+            item.short_desc    = comp.short
+            item.base_name     = comp.base_name
+            item.equip_status  = comp.equip_status
+            if comp.slot then item.slot = comp.slot end
+            if comp.mod_active then item.mod_active = true end
+            if comp.amount then item.amount = tonumber(comp.amount) end
+          end
+
+          -- Slot from computed already matches PART_ID from equip.h
+
+          -- Fallbacks
+          if not item.display_name then
+            item.display_name = item.name or "???"
+          end
+          if not item.slot or item.slot == "" then
+            item.slot = item.armor_type or item.weapon_type
+          end
+          if not item.base_name then item.base_name = "" end
+
+          -- Ensure numeric fields from dbase
           if item.quality_level then item.quality_level = tonumber(item.quality_level) end
+
           inv.items[#inv.items + 1] = item
         end
       end
