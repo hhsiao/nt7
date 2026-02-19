@@ -699,13 +699,14 @@ function WuxiaGUI3._buildTalents()
 
   local topH = 50   -- top frame height (title bar + dragon)
   local botH = 25   -- bottom frame height (corner ornaments)
+  local fh
 
-  -- ── Layer 1: Background texture (full panel) ──
+  -- ── Layer 1: Background texture (full panel, stretched) ──
   local bgLabel = Geyser.Label:new({
     name = "W3.talent.bg",
-    x = 0, y = 0, width = PW, height = 1200,
+    x = 0, y = 0, width = PW, height = "100%",
   }, p)
-  local fh = io.open(bgPath, "r")
+  fh = io.open(bgPath, "r")
   if fh then
     fh:close()
     bgLabel:setStyleSheet(
@@ -715,51 +716,7 @@ function WuxiaGUI3._buildTalents()
     bgLabel:setStyleSheet("background-color: #0a0806;")
   end
 
-  -- ── Layer 2: Frame pieces (on top of bg) ──
-
-  -- Top frame (fixed height, contains title bar)
-  local topLabel = Geyser.Label:new({
-    name = "W3.talent.frameTop",
-    x = 0, y = 0, width = PW, height = topH,
-  }, p)
-  fh = io.open(topPath, "r")
-  if fh then
-    fh:close()
-    topLabel:setStyleSheet(
-      "background-color: transparent; " ..
-      "border-image: url(" .. topPath .. ") 0 0 0 0 stretch stretch;")
-  end
-  topLabel:raiseAll()
-
-  -- Middle frame (fills between top and bottom, tiled)
-  local midLabel = Geyser.Label:new({
-    name = "W3.talent.frameMid",
-    x = 0, y = topH, width = PW, height = "-" .. botH .. "px",
-  }, p)
-  fh = io.open(midPath, "r")
-  if fh then
-    fh:close()
-    midLabel:setStyleSheet(
-      "background-color: transparent; " ..
-      "border-image: url(" .. midPath .. ") 0 0 0 0 repeat repeat;")
-  end
-  midLabel:raiseAll()
-
-  -- Bottom frame (fixed height, anchored to bottom)
-  local botLabel = Geyser.Label:new({
-    name = "W3.talent.frameBot",
-    x = 0, y = -botH, width = PW, height = botH,
-  }, p)
-  fh = io.open(botPath, "r")
-  if fh then
-    fh:close()
-    botLabel:setStyleSheet(
-      "background-color: transparent; " ..
-      "border-image: url(" .. botPath .. ") 0 0 0 0 stretch stretch;")
-  end
-  botLabel:raiseAll()
-
-  -- ── Layer 3: Content (on top of everything) ──
+  -- ── Layer 2: Content (between top and bottom frame) ──
   local y = topH + 2
 
   -- Points summary bar
@@ -776,8 +733,6 @@ function WuxiaGUI3._buildTalents()
   colHdr:setStyleSheet("background-color:transparent;")
   colHdr:setFontSize(7)
   colHdr:echo(
-    span(TEXT_DIM, "序號") ..
-    "&nbsp;&nbsp;&nbsp;&nbsp;" ..
     span(TEXT_DIM, "天賦名稱") ..
     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ..
     span(TEXT_DIM, "等級") ..
@@ -786,8 +741,200 @@ function WuxiaGUI3._buildTalents()
   )
   y = y + 18
 
-  -- Scrollable talent list (32 talents x ~30px = ~960px)
-  y = makeLabel(p, "talentList", y, 900)
+  -- Talent list label (scrollable, fills remaining minus bottom frame)
+  local talentListLabel = Geyser.Label:new({
+    name = "W3.talentList",
+    x = 15, y = y, width = PW - 42, height = "-" .. (botH + 8) .. "px",
+  }, p)
+  talentListLabel:setStyleSheet(
+    "background-color: transparent; " ..
+    "qproperty-alignment: 'AlignLeft | AlignTop'; padding: 2px;")
+  talentListLabel:setFontSize(10)
+  talentListLabel:echo(span(TEXT_DIM, "等待資料..."))
+  talentListLabel:raiseAll()
+  WuxiaGUI3.talentList = talentListLabel
+  WuxiaGUI3._talentScrollOffset = 0
+  WuxiaGUI3._talentEntries = {}
+  WuxiaGUI3._talentLineH = 18
+
+  -- ── Scrollbar ──
+  local sbTrackX = PW - 18
+  local sbTrack = Geyser.Label:new({
+    name = "W3.talentSbTrack",
+    x = sbTrackX, y = y + 6, width = 10, height = "-" .. (botH + 12) .. "px",
+  }, p)
+  sbTrack:setStyleSheet(
+    "background-color: rgba(30,15,8,0.6); " ..
+    "border: 1px solid #3a2a1a; border-radius: 3px;")
+  sbTrack:raiseAll()
+  WuxiaGUI3._talentSbTrack = sbTrack
+
+  local sbThumb = Geyser.Label:new({
+    name = "W3.talentSbThumb",
+    x = 0, y = 0, width = "100%", height = 30,
+  }, sbTrack)
+  sbThumb:setStyleSheet(
+    "background-color: rgba(160,120,60,0.7); " ..
+    "border: 1px solid #8a6a3a; border-radius: 3px;")
+  sbThumb:raiseAll()
+  WuxiaGUI3._talentSbThumb = sbThumb
+  WuxiaGUI3._talentSbDragging = false
+
+  local function applyThumbY(newThumbY)
+    local trackH = sbTrack:get_height()
+    local thumbH = WuxiaGUI3._talentSbThumbRelH or 30
+    local maxThumbY = trackH - thumbH
+    if maxThumbY <= 0 then return end
+    newThumbY = math.max(0, math.min(maxThumbY, newThumbY))
+    local entries = WuxiaGUI3._talentEntries or {}
+    local labelH = WuxiaGUI3.talentList and WuxiaGUI3.talentList:get_height() or 200
+    local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._talentLineH))
+    local maxOffset = math.max(0, #entries - visibleCount)
+    WuxiaGUI3._talentScrollOffset = math.floor(maxOffset * newThumbY / maxThumbY + 0.5)
+    WuxiaGUI3._renderTalentScroll()
+  end
+
+  sbThumb:setClickCallback(function(event)
+    WuxiaGUI3._talentSbDragging = true
+    WuxiaGUI3._talentSbDragStartGlobalY = event.globalY
+    WuxiaGUI3._talentSbDragStartThumbY = WuxiaGUI3._talentSbThumbRelY or 0
+  end)
+  sbThumb:setMoveCallback(function(event)
+    if not WuxiaGUI3._talentSbDragging then return end
+    local deltaY = event.globalY - WuxiaGUI3._talentSbDragStartGlobalY
+    applyThumbY(WuxiaGUI3._talentSbDragStartThumbY + deltaY)
+  end)
+  sbThumb:setReleaseCallback(function() WuxiaGUI3._talentSbDragging = false end)
+
+  sbTrack:setClickCallback(function(event)
+    local thumbY = WuxiaGUI3._talentSbThumbRelY or 0
+    local thumbH = WuxiaGUI3._talentSbThumbRelH or 30
+    if event.y >= thumbY and event.y <= thumbY + thumbH then return end
+    local labelH = WuxiaGUI3.talentList and WuxiaGUI3.talentList:get_height() or 200
+    local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._talentLineH))
+    local entries = WuxiaGUI3._talentEntries or {}
+    local maxOffset = math.max(0, #entries - visibleCount)
+    if event.y < thumbY then
+      WuxiaGUI3._talentScrollOffset = math.max(0, WuxiaGUI3._talentScrollOffset - visibleCount)
+    else
+      WuxiaGUI3._talentScrollOffset = math.min(maxOffset, WuxiaGUI3._talentScrollOffset + visibleCount)
+    end
+    WuxiaGUI3._renderTalentScroll()
+  end)
+  sbTrack:setReleaseCallback(function() end)
+
+  -- Scroll render
+  function WuxiaGUI3._renderTalentScroll()
+    local entries = WuxiaGUI3._talentEntries or {}
+    local label = WuxiaGUI3.talentList
+    if not label then return end
+    if #entries == 0 then
+      label:echo(span(TEXT_DIM, "等待天賦資料..."))
+      if WuxiaGUI3._talentSbTrack then WuxiaGUI3._talentSbTrack:hide() end
+      return
+    end
+    local lineH = WuxiaGUI3._talentLineH
+    local labelH = label:get_height()
+    local visibleCount = math.max(1, math.floor(labelH / lineH))
+    local maxOffset = math.max(0, #entries - visibleCount)
+    WuxiaGUI3._talentScrollOffset = math.min(WuxiaGUI3._talentScrollOffset, maxOffset)
+    local offset = WuxiaGUI3._talentScrollOffset
+    local lines = {}
+    for i = offset + 1, math.min(offset + visibleCount, #entries) do
+      lines[#lines + 1] = entries[i].html
+    end
+    local html = '<div style="line-height:' .. lineH .. 'px; font-size:10pt;">' ..
+                 table.concat(lines, "<br>") .. '</div>'
+    label:echo(html)
+    if WuxiaGUI3._talentSbTrack then
+      if #entries <= visibleCount then
+        WuxiaGUI3._talentSbTrack:hide()
+      else
+        WuxiaGUI3._talentSbTrack:show()
+        local trackH = WuxiaGUI3._talentSbTrack:get_height()
+        local thumbRatio = visibleCount / #entries
+        local thumbH = math.max(16, math.floor(trackH * thumbRatio))
+        local thumbY = 0
+        if maxOffset > 0 then
+          thumbY = math.floor((trackH - thumbH) * (offset / maxOffset))
+        end
+        WuxiaGUI3._talentSbThumb:resize(nil, thumbH)
+        WuxiaGUI3._talentSbThumb:move(0, thumbY)
+        WuxiaGUI3._talentSbThumbRelY = thumbY
+        WuxiaGUI3._talentSbThumbRelH = thumbH
+      end
+    end
+  end
+
+  -- Mouse wheel
+  local function talentWheelHandler(event)
+    if not event then return end
+    local delta = event.angleDeltaY or 0
+    if delta > 0 then
+      WuxiaGUI3._talentScrollOffset = math.max(0, WuxiaGUI3._talentScrollOffset - 2)
+    elseif delta < 0 then
+      local entries = WuxiaGUI3._talentEntries or {}
+      local labelH = WuxiaGUI3.talentList and WuxiaGUI3.talentList:get_height() or 200
+      local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._talentLineH))
+      local maxOffset = math.max(0, #entries - visibleCount)
+      WuxiaGUI3._talentScrollOffset = math.min(maxOffset, WuxiaGUI3._talentScrollOffset + 2)
+    end
+    WuxiaGUI3._renderTalentScroll()
+  end
+  talentListLabel:setWheelCallback(talentWheelHandler)
+  sbTrack:setWheelCallback(talentWheelHandler)
+  sbThumb:setWheelCallback(talentWheelHandler)
+  WuxiaGUI3._talentWheelHandler = talentWheelHandler
+
+  -- ── Layer 3: Frame pieces (on top of everything) ──
+
+  -- Top frame (fixed height)
+  local topLabel = Geyser.Label:new({
+    name = "W3.talent.frameTop",
+    x = 0, y = 0, width = PW, height = topH,
+  }, p)
+  fh = io.open(topPath, "r")
+  if fh then
+    fh:close()
+    topLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. topPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  topLabel:raiseAll()
+
+  -- Middle frame (side borders, stretched)
+  local midLabel = Geyser.Label:new({
+    name = "W3.talent.frameMid",
+    x = 0, y = topH, width = PW, height = "-" .. botH .. "px",
+  }, p)
+  fh = io.open(midPath, "r")
+  if fh then
+    fh:close()
+    midLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. midPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  midLabel:raiseAll()
+  midLabel:setWheelCallback(function(event)
+    if WuxiaGUI3._talentWheelHandler then WuxiaGUI3._talentWheelHandler(event) end
+  end)
+
+  -- Bottom frame (fixed, anchored to bottom)
+  local botLabel = Geyser.Label:new({
+    name = "W3.talent.frameBot",
+    x = 0, y = -botH, width = PW, height = botH,
+  }, p)
+  fh = io.open(botPath, "r")
+  if fh then
+    fh:close()
+    botLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. botPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  botLabel:raiseAll()
+  botLabel:setWheelCallback(function(event)
+    if WuxiaGUI3._talentWheelHandler then WuxiaGUI3._talentWheelHandler(event) end
+  end)
 end
 
 -- ═══════════════════════════════════════════════
@@ -4582,111 +4729,89 @@ function WuxiaGUI3._refreshTalents()
     end
   end
 
-  -- Talent list
-  if WuxiaGUI3.talentList then
-    if not t or not t.talents then
-      WuxiaGUI3.talentList:echo(
-        span(TEXT_DIM, "輸入 ") .. span(GOLD, "talent") ..
-        span(TEXT_DIM, " 或等待 GMCP 資料"))
-      return
-    end
-
-    local lines = {}
-    local talents = t.talents
-
-    for i, talent in ipairs(talents) do
-      local idx     = tonumber(talent.index) or i
-      local id      = talent.id or "?"
-      local name    = talent.name or id
-      local desc    = talent.description or ""
-      local level   = tonumber(talent.level) or 0
-      local maxLv   = tonumber(talent.max_level) or 1
-      local value   = tonumber(talent.value) or 0
-      local perLv   = tonumber(talent.per_level) or 0
-      local locked  = (tonumber(talent.locked) or 0) == 1
-
-      -- Group separator every 3 talents (matches yuanshen gating)
-      if i > 1 and (i - 1) % 3 == 0 then
-        local tierNum = math.floor((i - 1) / 3)
-        lines[#lines+1] = span(GOLD, string.format(
-          "── 第%d階 (元神Lv%d) ──", tierNum + 1, tierNum * 10))
-      end
-
-      -- Index number
-      local idxColor = locked and TEXT_DIM or WHITE
-      local idxStr = span(idxColor, string.format("(%2d)", idx))
-
-      -- Name — colored by state
-      local nameColor
-      if locked then
-        nameColor = TEXT_DIM
-      elseif level >= maxLv then
-        nameColor = GOLD  -- maxed out
-      elseif level > 0 then
-        nameColor = "#55cc55"  -- partially trained
-      else
-        nameColor = TEXT  -- available but untrained
-      end
-      local nameStr = span(nameColor, name)
-
-      -- Level display with mini text-bar
-      local lvStr
-      if locked then
-        lvStr = span(TEXT_DIM, "🔒")
-      else
-        local filled = ""
-        local empty = ""
-        for j = 1, maxLv do
-          if j <= level then
-            filled = filled .. "■"
-          else
-            empty = empty .. "□"
-          end
-        end
-        lvStr = span("#55cc55", filled) .. span(TEXT_DIM, empty) ..
-                " " .. span(WHITE, tostring(level)) ..
-                span(TEXT_DIM, "/" .. tostring(maxLv))
-      end
-
-      -- Value/effect description
-      local effectStr
-      if locked then
-        effectStr = span(TEXT_DIM, desc)
-      else
-        if value > 0 then
-          effectStr = span("#5588cc", "+" .. tostring(value)) ..
-                      span(TEXT_DIM, " ") .. span(TEXT, desc)
-        else
-          effectStr = span(TEXT_DIM, desc)
-        end
-      end
-
-      -- Upgrade hint
-      local upgradeStr = ""
-      if not locked and level < maxLv then
-        upgradeStr = " " .. span("#aaaa55",
-          "[+" .. tostring(perLv) .. "]")
-      elseif not locked and level >= maxLv then
-        upgradeStr = " " .. span(GOLD, "✓")
-      end
-
-      -- Compose the full row
-      lines[#lines+1] = idxStr .. " " .. nameStr ..
-                         "&nbsp;&nbsp;" .. lvStr ..
-                         upgradeStr ..
-                         "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ..
-                         effectStr
-    end
-
-    -- Upgrade instructions at the bottom
-    lines[#lines+1] = ""
-    lines[#lines+1] = span(TEXT_DIM, "────────────────────")
-    lines[#lines+1] = span(TEXT_DIM, "點擊 ") ..
-                       span(GOLD, "talent + N") ..
-                       span(TEXT_DIM, " 提高第N項天賦等級")
-
-    WuxiaGUI3.talentList:echo(table.concat(lines, "<br>"))
+  -- Talent list → build entries for scroll
+  if not WuxiaGUI3.talentList then return end
+  if not t or not t.talents then
+    WuxiaGUI3._talentEntries = {}
+    WuxiaGUI3._talentScrollOffset = 0
+    WuxiaGUI3._renderTalentScroll()
+    return
   end
+
+  local entries = {}
+  local talents = t.talents
+
+  for i, talent in ipairs(talents) do
+    local idx     = tonumber(talent.index) or i
+    local id      = talent.id or "?"
+    local name    = talent.name or id
+    local desc    = talent.description or ""
+    local level   = tonumber(talent.level) or 0
+    local maxLv   = tonumber(talent.max_level) or 1
+    local value   = tonumber(talent.value) or 0
+    local perLv   = tonumber(talent.per_level) or 0
+    local locked  = (tonumber(talent.locked) or 0) == 1
+
+    -- Group separator every 3 talents
+    if i > 1 and (i - 1) % 3 == 0 then
+      local tierNum = math.floor((i - 1) / 3)
+      entries[#entries+1] = { html = span(GOLD, string.format(
+        "── 第%d階 (元神Lv%d) ──", tierNum + 1, tierNum * 10)) }
+    end
+
+    local idxColor = locked and TEXT_DIM or WHITE
+    local idxStr = span(idxColor, string.format("(%2d)", idx))
+
+    local nameColor
+    if locked then nameColor = TEXT_DIM
+    elseif level >= maxLv then nameColor = GOLD
+    elseif level > 0 then nameColor = "#55cc55"
+    else nameColor = TEXT end
+    local nameStr = span(nameColor, name)
+
+    local lvStr
+    if locked then
+      lvStr = span(TEXT_DIM, "🔒")
+    else
+      local filled, empty = "", ""
+      for j = 1, maxLv do
+        if j <= level then filled = filled .. "■"
+        else empty = empty .. "□" end
+      end
+      lvStr = span("#55cc55", filled) .. span(TEXT_DIM, empty) ..
+              " " .. span(WHITE, tostring(level)) ..
+              span(TEXT_DIM, "/" .. tostring(maxLv))
+    end
+
+    local effectStr
+    if locked then effectStr = span(TEXT_DIM, desc)
+    elseif value > 0 then
+      effectStr = span("#5588cc", "+" .. tostring(value)) ..
+                  span(TEXT_DIM, " ") .. span(TEXT, desc)
+    else effectStr = span(TEXT_DIM, desc) end
+
+    local upgradeStr = ""
+    if not locked and level < maxLv then
+      upgradeStr = " " .. span("#aaaa55", "[+" .. tostring(perLv) .. "]")
+    elseif not locked and level >= maxLv then
+      upgradeStr = " " .. span(GOLD, "✓")
+    end
+
+    -- Name + level line
+    entries[#entries+1] = { html = idxStr .. " " .. nameStr ..
+      "&nbsp;&nbsp;" .. lvStr .. upgradeStr }
+    -- Effect line (indented)
+    entries[#entries+1] = { html = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .. effectStr }
+  end
+
+  -- Footer
+  entries[#entries+1] = { html = span(TEXT_DIM, "────────────────────") }
+  entries[#entries+1] = { html = span(TEXT_DIM, "點擊 ") ..
+    span(GOLD, "talent + N") ..
+    span(TEXT_DIM, " 提高第N項天賦等級") }
+
+  WuxiaGUI3._talentEntries = entries
+  WuxiaGUI3._renderTalentScroll()
 end
 
 -- ─── 裝備 refresh (from Char.Inventory GMCP) ───
