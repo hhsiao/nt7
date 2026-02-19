@@ -321,14 +321,14 @@ void send_talents(object who) {
         colon_pos = strsrch(full_desc, "\xef\xbc\x9a");
         if (colon_pos != -1) {
             short_name = full_desc[0..colon_pos - 1];
-            desc_text  = full_desc[colon_pos + 3..];
+            desc_text  = full_desc[colon_pos + 1..];
         } else {
             short_name = full_desc[0..5];
             desc_text  = full_desc;
         }
 
         // DEBUG: uncomment to verify split result
-        // debug_message(sprintf("GMCP talent[%d] name='%s' desc='%s'\n", i, short_name, desc_text));
+        debug_message(sprintf("GMCP talent[%d] raw='%s'\n", i, full_desc));
 
         cur_level = (int)my["talent_count/" + id];
         cur_value = (int)my["talent/" + id];

@@ -744,24 +744,26 @@ function WuxiaGUI3._buildTalents()
   -- Talent list label (scrollable, fills remaining minus bottom frame)
   local talentListLabel = Geyser.Label:new({
     name = "W3.talentList",
-    x = 15, y = y, width = PW - 42, height = "-" .. (botH + 8) .. "px",
+    x = 10, y = y, width = PW - 28, height = "-" .. (botH + 8) .. "px",
   }, p)
   talentListLabel:setStyleSheet(
     "background-color: transparent; " ..
-    "qproperty-alignment: 'AlignLeft | AlignTop'; padding: 2px;")
+    "qproperty-alignment: 'AlignLeft | AlignTop'; " ..
+    "qproperty-wordWrap: true; padding: 2px;")
   talentListLabel:setFontSize(10)
   talentListLabel:echo(span(TEXT_DIM, "等待資料..."))
   talentListLabel:raiseAll()
   WuxiaGUI3.talentList = talentListLabel
-  WuxiaGUI3._talentScrollOffset = 0
-  WuxiaGUI3._talentEntries = {}
-  WuxiaGUI3._talentLineH = 18
+  WuxiaGUI3._talentScrollPx = 0       -- pixel-based scroll offset
+  WuxiaGUI3._talentEntries = {}        -- { html, h } per entry
+  WuxiaGUI3._talentLineH = 18         -- single visual line height
+  WuxiaGUI3._talentLabelW = PW - 28 - 4  -- usable width after padding
 
   -- ── Scrollbar ──
-  local sbTrackX = PW - 18
+  local sbTrackX = PW - 20
   local sbTrack = Geyser.Label:new({
     name = "W3.talentSbTrack",
-    x = sbTrackX, y = y + 6, width = 10, height = "-" .. (botH + 12) .. "px",
+    x = sbTrackX, y = y + 6, width = 6, height = "-" .. (botH + 2) .. "px",
   }, p)
   sbTrack:setStyleSheet(
     "background-color: rgba(30,15,8,0.6); " ..
@@ -780,17 +782,22 @@ function WuxiaGUI3._buildTalents()
   WuxiaGUI3._talentSbThumb = sbThumb
   WuxiaGUI3._talentSbDragging = false
 
+  -- Helper: compute total content height
+  local function totalContentH()
+    local h = 0
+    for _, e in ipairs(WuxiaGUI3._talentEntries or {}) do h = h + e.h end
+    return h
+  end
+
   local function applyThumbY(newThumbY)
     local trackH = sbTrack:get_height()
     local thumbH = WuxiaGUI3._talentSbThumbRelH or 30
     local maxThumbY = trackH - thumbH
     if maxThumbY <= 0 then return end
     newThumbY = math.max(0, math.min(maxThumbY, newThumbY))
-    local entries = WuxiaGUI3._talentEntries or {}
     local labelH = WuxiaGUI3.talentList and WuxiaGUI3.talentList:get_height() or 200
-    local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._talentLineH))
-    local maxOffset = math.max(0, #entries - visibleCount)
-    WuxiaGUI3._talentScrollOffset = math.floor(maxOffset * newThumbY / maxThumbY + 0.5)
+    local maxPx = math.max(0, totalContentH() - labelH)
+    WuxiaGUI3._talentScrollPx = math.floor(maxPx * newThumbY / maxThumbY + 0.5)
     WuxiaGUI3._renderTalentScroll()
   end
 
@@ -804,26 +811,27 @@ function WuxiaGUI3._buildTalents()
     local deltaY = event.globalY - WuxiaGUI3._talentSbDragStartGlobalY
     applyThumbY(WuxiaGUI3._talentSbDragStartThumbY + deltaY)
   end)
-  sbThumb:setReleaseCallback(function() WuxiaGUI3._talentSbDragging = false end)
+  sbThumb:setReleaseCallback(function()
+    WuxiaGUI3._talentSbDragging = false
+  end)
 
   sbTrack:setClickCallback(function(event)
     local thumbY = WuxiaGUI3._talentSbThumbRelY or 0
     local thumbH = WuxiaGUI3._talentSbThumbRelH or 30
     if event.y >= thumbY and event.y <= thumbY + thumbH then return end
     local labelH = WuxiaGUI3.talentList and WuxiaGUI3.talentList:get_height() or 200
-    local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._talentLineH))
-    local entries = WuxiaGUI3._talentEntries or {}
-    local maxOffset = math.max(0, #entries - visibleCount)
+    local maxPx = math.max(0, totalContentH() - labelH)
+    -- Page up/down by labelH
     if event.y < thumbY then
-      WuxiaGUI3._talentScrollOffset = math.max(0, WuxiaGUI3._talentScrollOffset - visibleCount)
+      WuxiaGUI3._talentScrollPx = math.max(0, WuxiaGUI3._talentScrollPx - labelH)
     else
-      WuxiaGUI3._talentScrollOffset = math.min(maxOffset, WuxiaGUI3._talentScrollOffset + visibleCount)
+      WuxiaGUI3._talentScrollPx = math.min(maxPx, WuxiaGUI3._talentScrollPx + labelH)
     end
     WuxiaGUI3._renderTalentScroll()
   end)
   sbTrack:setReleaseCallback(function() end)
 
-  -- Scroll render
+  -- Scroll render (pixel-based)
   function WuxiaGUI3._renderTalentScroll()
     local entries = WuxiaGUI3._talentEntries or {}
     local label = WuxiaGUI3.talentList
@@ -833,30 +841,45 @@ function WuxiaGUI3._buildTalents()
       if WuxiaGUI3._talentSbTrack then WuxiaGUI3._talentSbTrack:hide() end
       return
     end
-    local lineH = WuxiaGUI3._talentLineH
+
     local labelH = label:get_height()
-    local visibleCount = math.max(1, math.floor(labelH / lineH))
-    local maxOffset = math.max(0, #entries - visibleCount)
-    WuxiaGUI3._talentScrollOffset = math.min(WuxiaGUI3._talentScrollOffset, maxOffset)
-    local offset = WuxiaGUI3._talentScrollOffset
+    local contentH = totalContentH()
+    local maxPx = math.max(0, contentH - labelH)
+    WuxiaGUI3._talentScrollPx = math.min(WuxiaGUI3._talentScrollPx, maxPx)
+    WuxiaGUI3._talentScrollPx = math.max(0, WuxiaGUI3._talentScrollPx)
+    local scrollPx = WuxiaGUI3._talentScrollPx
+
+    -- Find which entries are visible
     local lines = {}
-    for i = offset + 1, math.min(offset + visibleCount, #entries) do
-      lines[#lines + 1] = entries[i].html
+    local cumH = 0
+    for _, e in ipairs(entries) do
+      local entryTop = cumH
+      local entryBot = cumH + e.h
+      -- Entry is visible if it overlaps [scrollPx, scrollPx + labelH]
+      if entryBot > scrollPx and entryTop < scrollPx + labelH then
+        lines[#lines + 1] = e.html
+      end
+      cumH = entryBot
+      if cumH > scrollPx + labelH then break end
     end
-    local html = '<div style="line-height:' .. lineH .. 'px; font-size:10pt;">' ..
+
+    local lineH = WuxiaGUI3._talentLineH
+    local html = '<div style="line-height:' .. lineH .. 'px; font-size:10pt; word-wrap:break-word; text-shadow: 0px 0px 4px #000, 1px 1px 2px #000;">' ..
                  table.concat(lines, "<br>") .. '</div>'
     label:echo(html)
+
+    -- Update scrollbar
     if WuxiaGUI3._talentSbTrack then
-      if #entries <= visibleCount then
+      if contentH <= labelH then
         WuxiaGUI3._talentSbTrack:hide()
       else
         WuxiaGUI3._talentSbTrack:show()
         local trackH = WuxiaGUI3._talentSbTrack:get_height()
-        local thumbRatio = visibleCount / #entries
+        local thumbRatio = labelH / contentH
         local thumbH = math.max(16, math.floor(trackH * thumbRatio))
         local thumbY = 0
-        if maxOffset > 0 then
-          thumbY = math.floor((trackH - thumbH) * (offset / maxOffset))
+        if maxPx > 0 then
+          thumbY = math.floor((trackH - thumbH) * (scrollPx / maxPx))
         end
         WuxiaGUI3._talentSbThumb:resize(nil, thumbH)
         WuxiaGUI3._talentSbThumb:move(0, thumbY)
@@ -866,18 +889,17 @@ function WuxiaGUI3._buildTalents()
     end
   end
 
-  -- Mouse wheel
+  -- Mouse wheel (scroll by ~3 lines worth of pixels)
   local function talentWheelHandler(event)
     if not event then return end
     local delta = event.angleDeltaY or 0
+    local step = WuxiaGUI3._talentLineH * 3
+    local labelH = WuxiaGUI3.talentList and WuxiaGUI3.talentList:get_height() or 200
+    local maxPx = math.max(0, totalContentH() - labelH)
     if delta > 0 then
-      WuxiaGUI3._talentScrollOffset = math.max(0, WuxiaGUI3._talentScrollOffset - 2)
+      WuxiaGUI3._talentScrollPx = math.max(0, WuxiaGUI3._talentScrollPx - step)
     elseif delta < 0 then
-      local entries = WuxiaGUI3._talentEntries or {}
-      local labelH = WuxiaGUI3.talentList and WuxiaGUI3.talentList:get_height() or 200
-      local visibleCount = math.max(1, math.floor(labelH / WuxiaGUI3._talentLineH))
-      local maxOffset = math.max(0, #entries - visibleCount)
-      WuxiaGUI3._talentScrollOffset = math.min(maxOffset, WuxiaGUI3._talentScrollOffset + 2)
+      WuxiaGUI3._talentScrollPx = math.min(maxPx, WuxiaGUI3._talentScrollPx + step)
     end
     WuxiaGUI3._renderTalentScroll()
   end
@@ -935,6 +957,10 @@ function WuxiaGUI3._buildTalents()
   botLabel:setWheelCallback(function(event)
     if WuxiaGUI3._talentWheelHandler then WuxiaGUI3._talentWheelHandler(event) end
   end)
+
+  -- Raise scrollbar above frame layers
+  sbTrack:raiseAll()
+  sbThumb:raiseAll()
 end
 
 -- ═══════════════════════════════════════════════
@@ -2860,6 +2886,9 @@ function WuxiaGUI3._registerChatGMCP()
     if WuxiaGUI3._repositionInvBot then
       tempTimer(0.1, WuxiaGUI3._repositionInvBot)
     end
+    if WuxiaGUI3._renderTalentScroll then
+      tempTimer(0.1, WuxiaGUI3._renderTalentScroll)
+    end
   end)
 end
 
@@ -4729,11 +4758,31 @@ function WuxiaGUI3._refreshTalents()
     end
   end
 
+  -- Helper: estimate visual line count for a plain text string
+  -- Chinese/fullwidth chars count as 2 units, ASCII as 1
+  local function estimateLines(text, widthPx)
+    local charW = 7  -- approximate px per unit at 10pt
+    local charsPerLine = math.floor(widthPx / charW)
+    if charsPerLine < 1 then charsPerLine = 1 end
+    local units = 0
+    for _, code in utf8.codes(text) do
+      if code > 0x7F then
+        units = units + 2  -- CJK / fullwidth
+      else
+        units = units + 1  -- ASCII
+      end
+    end
+    return math.max(1, math.ceil(units / charsPerLine))
+  end
+
+  local lineH = WuxiaGUI3._talentLineH or 18
+  local labelW = WuxiaGUI3._talentLabelW or 280
+
   -- Talent list → build entries for scroll
   if not WuxiaGUI3.talentList then return end
   if not t or not t.talents then
     WuxiaGUI3._talentEntries = {}
-    WuxiaGUI3._talentScrollOffset = 0
+    WuxiaGUI3._talentScrollPx = 0
     WuxiaGUI3._renderTalentScroll()
     return
   end
@@ -4755,8 +4804,11 @@ function WuxiaGUI3._refreshTalents()
     -- Group separator every 3 talents
     if i > 1 and (i - 1) % 3 == 0 then
       local tierNum = math.floor((i - 1) / 3)
-      entries[#entries+1] = { html = span(GOLD, string.format(
-        "── 第%d階 (元神Lv%d) ──", tierNum + 1, tierNum * 10)) }
+      local sepText = string.format("── 第%d階 (元神Lv%d) ──", tierNum + 1, tierNum * 10)
+      entries[#entries+1] = {
+        html = span(GOLD, sepText),
+        h = lineH,
+      }
     end
 
     local idxColor = locked and TEXT_DIM or WHITE
@@ -4797,18 +4849,35 @@ function WuxiaGUI3._refreshTalents()
       upgradeStr = " " .. span(GOLD, "✓")
     end
 
-    -- Name + level line
-    entries[#entries+1] = { html = idxStr .. " " .. nameStr ..
-      "&nbsp;&nbsp;" .. lvStr .. upgradeStr }
-    -- Effect line (indented)
-    entries[#entries+1] = { html = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .. effectStr }
+    -- Name + level line: estimate plain text width
+    local namePlain = string.format("(%2d) %s  %s %d/%d", idx, name,
+      string.rep("■", level) .. string.rep("□", maxLv - level), level, maxLv)
+    local nameLines = estimateLines(namePlain, labelW)
+    entries[#entries+1] = {
+      html = idxStr .. " " .. nameStr .. "&nbsp;&nbsp;" .. lvStr .. upgradeStr,
+      h = nameLines * lineH,
+    }
+
+    -- Effect/description line
+    local descPlain = "      " .. desc
+    local descLines = estimateLines(descPlain, labelW)
+    entries[#entries+1] = {
+      html = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" .. effectStr,
+      h = descLines * lineH,
+    }
   end
 
   -- Footer
-  entries[#entries+1] = { html = span(TEXT_DIM, "────────────────────") }
-  entries[#entries+1] = { html = span(TEXT_DIM, "點擊 ") ..
-    span(GOLD, "talent + N") ..
-    span(TEXT_DIM, " 提高第N項天賦等級") }
+  entries[#entries+1] = {
+    html = span(TEXT_DIM, "────────────────────"),
+    h = lineH,
+  }
+  entries[#entries+1] = {
+    html = span(TEXT_DIM, "點擊 ") ..
+      span(GOLD, "talent + N") ..
+      span(TEXT_DIM, " 提高第N項天賦等級"),
+    h = lineH,
+  }
 
   WuxiaGUI3._talentEntries = entries
   WuxiaGUI3._renderTalentScroll()
