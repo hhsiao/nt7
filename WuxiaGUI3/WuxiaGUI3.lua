@@ -968,6 +968,36 @@ function WuxiaGUI3._buildTalents()
   -- Raise scrollbar above frame layers
   sbTrack:raiseAll()
   sbThumb:raiseAll()
+
+  -- Store references for resize handler
+  local minPanelH = 450
+  local sbTrackY = y + 6  -- track's absolute Y position
+
+  -- Handle window resize: enforce minimum height (clip below 450px)
+  WuxiaGUI3._repositionTalent = function()
+    local containerH = p:get_height()
+    local contentY = topH + 16
+    if containerH < minPanelH then
+      -- Too small: force fixed sizes, content clips off-screen
+      local fixedH = minPanelH - contentY - botH - 8
+      talentListLabel:resize(PW - 28, fixedH)
+      midLabel:resize(PW, minPanelH - topH - botH)
+      botLabel:move(0, minPanelH - botH)
+      overlay:resize(PW, minPanelH)
+      bgLabel:resize(PW, minPanelH)
+      sbTrack:resize(nil, minPanelH - botH - sbTrackY - 4)
+    else
+      -- Normal: restore auto-fill layout
+      local availH = containerH - contentY - botH - 8
+      talentListLabel:resize(PW - 28, availH)
+      midLabel:resize(PW, containerH - topH - botH)
+      botLabel:move(0, containerH - botH)
+      overlay:resize(PW, containerH)
+      bgLabel:resize(PW, containerH)
+      sbTrack:resize(nil, containerH - botH - sbTrackY - 4)
+    end
+    if WuxiaGUI3._renderTalentScroll then WuxiaGUI3._renderTalentScroll() end
+  end
 end
 
 -- ═══════════════════════════════════════════════
@@ -2893,11 +2923,8 @@ function WuxiaGUI3._registerChatGMCP()
     if WuxiaGUI3._repositionInvBot then
       tempTimer(0.1, WuxiaGUI3._repositionInvBot)
     end
-    if WuxiaGUI3._renderTalentScroll then
-      tempTimer(0.1, WuxiaGUI3._renderTalentScroll)
-    end
-    if WuxiaGUI3._renderTalentScroll then
-      tempTimer(0.1, WuxiaGUI3._renderTalentScroll)
+    if WuxiaGUI3._repositionTalent then
+      tempTimer(0.1, WuxiaGUI3._repositionTalent)
     end
   end)
 end
