@@ -690,31 +690,77 @@ end
 -- ═══════════════════════════════════════════════
 function WuxiaGUI3._buildTalents()
   local p = WuxiaGUI3.tabContainers["天賦"]
-  local y = 4
 
-  -- Background image
+  local imgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
+  local bgPath  = imgDir .. "wuxia_talent_bg.png"
+  local topPath = imgDir .. "wuxia_talent_frame_top.png"
+  local midPath = imgDir .. "wuxia_talent_frame_middle.png"
+  local botPath = imgDir .. "wuxia_talent_frame_bottom.png"
+
+  local topH = 50   -- top frame height (title bar + dragon)
+  local botH = 25   -- bottom frame height (corner ornaments)
+
+  -- ── Layer 1: Background texture (full panel) ──
   local bgLabel = Geyser.Label:new({
     name = "W3.talent.bg",
-    x = 0, y = 0,
-    width = PW, height = 1200,
+    x = 0, y = 0, width = PW, height = 1200,
   }, p)
-  local imgPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_talent_bg.png"
-  if io.open(imgPath, "r") then
+  local fh = io.open(bgPath, "r")
+  if fh then
+    fh:close()
     bgLabel:setStyleSheet(
       "background-color: transparent; " ..
-      "border-image: url(" .. imgPath .. ") 0 0 0 0 stretch stretch;")
+      "border-image: url(" .. bgPath .. ") 0 0 0 0 stretch stretch;")
   else
-    bgLabel:setStyleSheet("background-color: transparent; border: none;")
+    bgLabel:setStyleSheet("background-color: #0a0806;")
   end
 
-  -- Header
-  local hdr = Geyser.Label:new({
-    name = "W3.talent.hdr", x = MX, y = y, width = GW, height = 18,
+  -- ── Layer 2: Frame pieces (on top of bg) ──
+
+  -- Top frame (fixed height, contains title bar)
+  local topLabel = Geyser.Label:new({
+    name = "W3.talent.frameTop",
+    x = 0, y = 0, width = PW, height = topH,
   }, p)
-  hdr:setStyleSheet("background-color:transparent;")
-  hdr:setFontSize(10)
-  hdr:echo(span(GOLD, "── 天賦技能 ──"))
-  y = y + 22
+  fh = io.open(topPath, "r")
+  if fh then
+    fh:close()
+    topLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. topPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  topLabel:raiseAll()
+
+  -- Middle frame (fills between top and bottom, tiled)
+  local midLabel = Geyser.Label:new({
+    name = "W3.talent.frameMid",
+    x = 0, y = topH, width = PW, height = "-" .. botH .. "px",
+  }, p)
+  fh = io.open(midPath, "r")
+  if fh then
+    fh:close()
+    midLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. midPath .. ") 0 0 0 0 repeat repeat;")
+  end
+  midLabel:raiseAll()
+
+  -- Bottom frame (fixed height, anchored to bottom)
+  local botLabel = Geyser.Label:new({
+    name = "W3.talent.frameBot",
+    x = 0, y = -botH, width = PW, height = botH,
+  }, p)
+  fh = io.open(botPath, "r")
+  if fh then
+    fh:close()
+    botLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. botPath .. ") 0 0 0 0 stretch stretch;")
+  end
+  botLabel:raiseAll()
+
+  -- ── Layer 3: Content (on top of everything) ──
+  local y = topH + 2
 
   -- Points summary bar
   y = makeLabel(p, "talentPoints", y, 20)
