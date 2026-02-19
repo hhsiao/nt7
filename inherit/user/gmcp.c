@@ -40,6 +40,11 @@ nosave string *BUFFS_DBASE_KEYS = ({
     "ability1", "ability2", "talent",
 });
 
+// Top-level dbase keys whose changes trigger Char.Talents push
+nosave string *TALENTS_DBASE_KEYS = ({
+    "energy", "learned_energy", "talent_count",
+});
+
 // Top-level tmp_dbase keys that affect buff display
 // "buff_cache" deletion means equipment buffs changed
 nosave string *BUFFS_TMP_KEYS = ({
@@ -57,6 +62,7 @@ nosave int __gmcp_vitals_pending = 0;
 nosave int __gmcp_status_pending = 0;
 nosave int __gmcp_buffs_pending = 0;
 nosave int __gmcp_inventory_pending = 0;
+nosave int __gmcp_talents_pending = 0;
 
 // Track which item dbase mappings we've already watched
 // key = file_name(ob), value = item's dbase mapping reference
@@ -104,6 +110,18 @@ void __gmcp_flush_buffs() {
     gd = find_object(GMCP_D);
     if (!gd) gd = load_object(GMCP_D);
     if (gd) gd->send_buffs(this_object());
+}
+
+void __gmcp_flush_talents() {
+    object gd;
+
+    __gmcp_talents_pending = 0;
+    if (!interactive(this_object())) return;
+    if (!has_gmcp(this_object())) return;
+
+    gd = find_object(GMCP_D);
+    if (!gd) gd = load_object(GMCP_D);
+    if (gd) gd->send_talents(this_object());
 }
 
 void __gmcp_flush_inventory() {
@@ -166,6 +184,13 @@ void __gmcp_dbase_changed(mapping m, mixed *keys, mixed old_val, mixed new_val) 
         member_array(key, BUFFS_DBASE_KEYS) != -1) {
         __gmcp_buffs_pending = 1;
         call_out("__gmcp_flush_buffs", 0);
+    }
+
+    // Talent data changed (energy spent, talent upgraded)
+    if (!__gmcp_talents_pending &&
+        member_array(key, TALENTS_DBASE_KEYS) != -1) {
+        __gmcp_talents_pending = 1;
+        call_out("__gmcp_flush_talents", 0);
     }
 
     // Equipment set saved/deleted
@@ -243,6 +268,7 @@ void gmcp_init_burst() {
     gd->send_vitals(this_object());
     gd->send_status(this_object());
     gd->send_buffs(this_object());
+    gd->send_talents(this_object());
     gd->send_inventory(this_object());
     gd->send_channels(this_object());
     gd->send_room(this_object());

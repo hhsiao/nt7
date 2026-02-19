@@ -12,10 +12,11 @@ inherit F_CLEAN_UP;
 #define GUI_README      GUI_DIR "PACKAGE_README.md"
 #define GUI_RES_DIR     GUI_DIR "WuxiaGUI3/"
 #define OUTPUT_FILE     "/www/static/WuxiaGUI3.mpackage"
+#define XML_TMP_FILE    "/www/static/_build_tmp.xml"
 #define PKG_NAME        "WuxiaGUI3"
 #define PKG_AUTHOR      "Henry Hsiao"
 
-// XML-escape: & < > "
+// XML-escape a small string: & < > "
 string xml_escape(string s) {
     s = replace_string(s, "&", "&amp;");
     s = replace_string(s, "<", "&lt;");
@@ -29,6 +30,22 @@ string lua_bracket_escape(string s) {
     return replace_string(s, "]]", "] ]");
 }
 
+// Write large Lua source as XML-escaped text directly to a file,
+// in chunks to avoid FluffOS maximum string length limit.
+void write_escaped_lua_to_file(string dest, string src_file) {
+    int start, nlines;
+    string chunk;
+
+    nlines = 200;
+    start = 1;
+    while (1) {
+        chunk = read_file(src_file, start, nlines);
+        if (!chunk || chunk == "") break;
+        write_file(dest, xml_escape(chunk));
+        start += nlines;
+    }
+}
+
 // Re-send all GMCP data after GUI has time to install
 void _delayed_send_burst(object ob) {
     if (!ob || !interactive(ob) || !has_gmcp(ob)) return;
@@ -36,8 +53,8 @@ void _delayed_send_burst(object ob) {
 }
 
 int main(object me, string arg) {
-    string lua_source, one_line, readme;
-    string xml_content, config_content;
+    string one_line, readme;
+    string config_content;
     string version;
     string *res_files;
     mapping zip_entries;
@@ -73,12 +90,8 @@ int main(object me, string arg) {
         return 1;
     }
 
-    // Always use timestamp as version — guarantees Mudlet sees a new version
-    version = sprintf("%d", time());
-
-    // ── Read source files ──
-    lua_source = read_file(GUI_SCRIPT);
-    if (!lua_source || lua_source == "") {
+    // Verify Lua source exists
+    if (file_size(GUI_SCRIPT) <= 0) {
         write("錯誤：無法讀取 " + GUI_SCRIPT + "\n");
         return 1;
     }
@@ -89,6 +102,9 @@ int main(object me, string arg) {
 
     readme = read_file(GUI_README);
     if (!readme) readme = "";
+
+    // Always use timestamp as version — guarantees Mudlet sees a new version
+    version = sprintf("%d", time());
 
     write(sprintf("正在建構 %s.mpackage (版本: %s)...\n", PKG_NAME, version));
 
@@ -102,8 +118,12 @@ int main(object me, string arg) {
         "version = [[" + version + "]]\n"
         "created = \"" + TIME_D->replace_ctime(time()) + "\"\n";
 
-    // ── Build XML ──
-    xml_content =
+    // ── Build XML via temp file ──
+    // Write XML header, then escaped Lua in chunks, then XML footer.
+    // This avoids assembling a 200KB+ string in memory.
+    rm(XML_TMP_FILE);
+
+    write_file(XML_TMP_FILE,
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
         "<!DOCTYPE MudletPackage>\n"
         "<MudletPackage version=\"1.001\">\n"
@@ -115,17 +135,26 @@ int main(object me, string arg) {
         "\t\t<Script isActive=\"yes\" isFolder=\"no\">\n"
         "\t\t\t<n>" + PKG_NAME + "</n>\n"
         "\t\t\t<packageName></packageName>\n"
-        "\t\t\t<script>" + xml_escape(lua_source) + "</script>\n"
+        "\t\t\t<script>");
+
+    // Append XML-escaped Lua source in 200-line chunks
+    write_escaped_lua_to_file(XML_TMP_FILE, GUI_SCRIPT);
+
+    write_file(XML_TMP_FILE,
+        "</script>\n"
         "\t\t\t<eventHandlerList />\n"
         "\t\t</Script>\n"
         "\t</ScriptPackage>\n"
         "\t<KeyPackage />\n"
-        "</MudletPackage>\n";
+        "</MudletPackage>\n");
+
+    write(sprintf("  XML: %d bytes\n", file_size(XML_TMP_FILE)));
 
     // ── Build ZIP entries ──
+    // XML entry uses file path — create_zip reads it directly from disk
     zip_entries = ([
         "config.lua"         : to_buffer(config_content),
-        PKG_NAME + ".xml"    : to_buffer(xml_content),
+        PKG_NAME + ".xml"    : XML_TMP_FILE,
     ]);
 
     // Add resource files (images etc.) directly from disk
@@ -147,6 +176,10 @@ int main(object me, string arg) {
 
     // ── Create mpackage ──
     err = catch(result = create_zip(OUTPUT_FILE, zip_entries));
+
+    // Clean up temp file
+    rm(XML_TMP_FILE);
+
     if (err) {
         write("錯誤：" + err + "\n");
         return 1;

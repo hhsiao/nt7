@@ -82,6 +82,9 @@ WuxiaGUI3._buffsActiveFilter = "all"
 -- Char.Inventory: items, equipment, sets
 WuxiaGUI3.inventory = {}
 
+-- Char.Talents: talent tree data from server
+WuxiaGUI3.talents = {}
+
 -- ═══════════════════════════════════════════════
 -- § 3  Helpers
 -- ═══════════════════════════════════════════════
@@ -683,12 +686,28 @@ function WuxiaGUI3._buildSkills()
 end
 
 -- ═══════════════════════════════════════════════
--- § 4d  Tab: 天賦 (Talents) - placeholder
+-- § 4d  Tab: 天賦 (Talents)
 -- ═══════════════════════════════════════════════
 function WuxiaGUI3._buildTalents()
   local p = WuxiaGUI3.tabContainers["天賦"]
   local y = 4
 
+  -- Background image
+  local bgLabel = Geyser.Label:new({
+    name = "W3.talent.bg",
+    x = 0, y = 0,
+    width = PW, height = 1200,
+  }, p)
+  local imgPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_talent_bg.png"
+  if io.open(imgPath, "r") then
+    bgLabel:setStyleSheet(
+      "background-color: transparent; " ..
+      "border-image: url(" .. imgPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    bgLabel:setStyleSheet("background-color: transparent; border: none;")
+  end
+
+  -- Header
   local hdr = Geyser.Label:new({
     name = "W3.talent.hdr", x = MX, y = y, width = GW, height = 18,
   }, p)
@@ -697,11 +716,32 @@ function WuxiaGUI3._buildTalents()
   hdr:echo(span(GOLD, "── 天賦技能 ──"))
   y = y + 22
 
-  -- Talent info label (will need a new GMCP package to populate)
-  y = makeLabel(p, "talentInfo", y, 20)
+  -- Points summary bar
+  y = makeLabel(p, "talentPoints", y, 20)
+  y = y + 4
 
-  -- Scrollable talent list area
-  y = makeLabel(p, "talentList", y, 400)
+  -- Separator
+  y = makeSep(p, y)
+
+  -- Column header row
+  local colHdr = Geyser.Label:new({
+    name = "W3.talent.colHdr", x = MX, y = y, width = GW, height = 16,
+  }, p)
+  colHdr:setStyleSheet("background-color:transparent;")
+  colHdr:setFontSize(7)
+  colHdr:echo(
+    span(TEXT_DIM, "序號") ..
+    "&nbsp;&nbsp;&nbsp;&nbsp;" ..
+    span(TEXT_DIM, "天賦名稱") ..
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ..
+    span(TEXT_DIM, "等級") ..
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ..
+    span(TEXT_DIM, "效果")
+  )
+  y = y + 18
+
+  -- Scrollable talent list (32 talents x ~30px = ~960px)
+  y = makeLabel(p, "talentList", y, 900)
 end
 
 -- ═══════════════════════════════════════════════
@@ -731,8 +771,10 @@ function WuxiaGUI3._buildEquipment()
     x = 0, y = y,
     width = PW, height = totalH,
   }, p)
-  local imgPath = getMudletHomeDir() .. "/wuxia_equip_bg.png"
-  if io.open(imgPath, "r") then
+  local imgPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_equip_bg.png"
+  local fh = io.open(imgPath, "r")
+  if fh then
+    fh:close()
     silLabel:setStyleSheet(
       "background-color: transparent; " ..
       "border-image: url(" .. imgPath .. ") 0 0 0 0 stretch stretch;")
@@ -830,7 +872,7 @@ function WuxiaGUI3._buildEquipment()
   local effectFrame = Geyser.Label:new({
     name = "W3.equip.effectFrame", x = 0, y = y, width = PW, height = effectH,
   }, p)
-  local effectImgPath = getMudletHomeDir() .. "/wuxia_effect_bg.png"
+  local effectImgPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_effect_bg.png"
   if io.open(effectImgPath, "r") then
     effectFrame:setStyleSheet(
       "background-color: transparent; " ..
@@ -870,7 +912,7 @@ function WuxiaGUI3._buildEquipment()
   local setFrame = Geyser.Label:new({
     name = "W3.equip.setFrame", x = 0, y = y, width = PW, height = setH,
   }, p)
-  local setImgPath = getMudletHomeDir() .. "/wuxia_equip_set_bg.png"
+  local setImgPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_equip_set_bg.png"
   if io.open(setImgPath, "r") then
     setFrame:setStyleSheet(
       "background-color: transparent; " ..
@@ -951,7 +993,7 @@ function WuxiaGUI3._buildEquipment()
   y = y + setH
 
   -- ═══ Inventory List with 3-part frame ═══
-  local invBgPath = getMudletHomeDir() .. "/wuxia_inventory_bg.png"
+  local invBgPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_inventory_bg.png"
 
   -- Top frame (fixed, contains title banner)
   local invTopH = 34
@@ -971,7 +1013,7 @@ function WuxiaGUI3._buildEquipment()
     name = "W3.equip.invTop", x = 0, y = y,
     width = PW, height = invTopH,
   }, p)
-  local invTopPath = getMudletHomeDir() .. "/wuxia_inventory_frame_top.png"
+  local invTopPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_inventory_frame_top.png"
   if io.open(invTopPath, "r") then
     invTopLabel:setStyleSheet(
       "background-color: transparent; " ..
@@ -997,7 +1039,7 @@ function WuxiaGUI3._buildEquipment()
     name = "W3.equip.invMid", x = 0, y = y,
     width = PW, height = "-19px",
   }, p)
-  local invMidPath = getMudletHomeDir() .. "/wuxia_inventory_frame_middle.png"
+  local invMidPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_inventory_frame_middle.png"
   if io.open(invMidPath, "r") then
     invMidLabel:setStyleSheet(
       "background-color: transparent; " ..
@@ -1217,7 +1259,7 @@ function WuxiaGUI3._buildEquipment()
     name = "W3.equip.invBot", x = 0, y = -invBotH,
     width = PW, height = invBotH,
   }, p)
-  local invBotPath = getMudletHomeDir() .. "/wuxia_inventory_frame_bottom.png"
+  local invBotPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_inventory_frame_bottom.png"
   if io.open(invBotPath, "r") then
     invBotLabel:setStyleSheet(
       "background-color: transparent; " ..
@@ -4463,16 +4505,141 @@ function WuxiaGUI3._refreshSkills()
   end
 end
 
--- ─── 天賦 refresh (placeholder) ───
+-- ─── 天賦 refresh (from Char.Talents GMCP) ───
 function WuxiaGUI3._refreshTalents()
-  if WuxiaGUI3.talentInfo then
-    WuxiaGUI3.talentInfo:echo(
-      span(TEXT_DIM, "天賦資料需要新增 GMCP 封包"))
+  local t = WuxiaGUI3.talents
+
+  -- Points summary
+  if WuxiaGUI3.talentPoints then
+    if not t or not t.energy then
+      WuxiaGUI3.talentPoints:echo(
+        span(TEXT_DIM, "等待天賦資料..."))
+    else
+      local energy    = tonumber(t.energy) or 0
+      local learned   = tonumber(t.learned_energy) or 0
+      local available = tonumber(t.available) or 0
+      local ys        = tonumber(t.yuanshen_level) or 0
+      local maxIdx    = tonumber(t.max_unlocked) or 3
+
+      WuxiaGUI3.talentPoints:echo(
+        span(TEXT_DIM, "天賦點 ") ..
+        span("#55cc55", tostring(available)) ..
+        span(TEXT_DIM, " / " .. tostring(energy)) ..
+        span(TEXT_DIM, "  (已用 ") ..
+        span("#cc5555", tostring(learned)) ..
+        span(TEXT_DIM, ")") ..
+        "&nbsp;&nbsp;" ..
+        span(TEXT_DIM, "元神Lv") ..
+        span(GOLD, tostring(ys)) ..
+        span(TEXT_DIM, " 解鎖至#" .. tostring(maxIdx))
+      )
+    end
   end
+
+  -- Talent list
   if WuxiaGUI3.talentList then
-    WuxiaGUI3.talentList:echo(
-      span(TEXT_DIM, "輸入 ") .. span(GOLD, "talent") ..
-      span(TEXT_DIM, " 查看天賦列表"))
+    if not t or not t.talents then
+      WuxiaGUI3.talentList:echo(
+        span(TEXT_DIM, "輸入 ") .. span(GOLD, "talent") ..
+        span(TEXT_DIM, " 或等待 GMCP 資料"))
+      return
+    end
+
+    local lines = {}
+    local talents = t.talents
+
+    for i, talent in ipairs(talents) do
+      local idx     = tonumber(talent.index) or i
+      local id      = talent.id or "?"
+      local name    = talent.name or id
+      local desc    = talent.description or ""
+      local level   = tonumber(talent.level) or 0
+      local maxLv   = tonumber(talent.max_level) or 1
+      local value   = tonumber(talent.value) or 0
+      local perLv   = tonumber(talent.per_level) or 0
+      local locked  = (tonumber(talent.locked) or 0) == 1
+
+      -- Group separator every 3 talents (matches yuanshen gating)
+      if i > 1 and (i - 1) % 3 == 0 then
+        local tierNum = math.floor((i - 1) / 3)
+        lines[#lines+1] = span(GOLD, string.format(
+          "── 第%d階 (元神Lv%d) ──", tierNum + 1, tierNum * 10))
+      end
+
+      -- Index number
+      local idxColor = locked and TEXT_DIM or WHITE
+      local idxStr = span(idxColor, string.format("(%2d)", idx))
+
+      -- Name — colored by state
+      local nameColor
+      if locked then
+        nameColor = TEXT_DIM
+      elseif level >= maxLv then
+        nameColor = GOLD  -- maxed out
+      elseif level > 0 then
+        nameColor = "#55cc55"  -- partially trained
+      else
+        nameColor = TEXT  -- available but untrained
+      end
+      local nameStr = span(nameColor, name)
+
+      -- Level display with mini text-bar
+      local lvStr
+      if locked then
+        lvStr = span(TEXT_DIM, "🔒")
+      else
+        local filled = ""
+        local empty = ""
+        for j = 1, maxLv do
+          if j <= level then
+            filled = filled .. "■"
+          else
+            empty = empty .. "□"
+          end
+        end
+        lvStr = span("#55cc55", filled) .. span(TEXT_DIM, empty) ..
+                " " .. span(WHITE, tostring(level)) ..
+                span(TEXT_DIM, "/" .. tostring(maxLv))
+      end
+
+      -- Value/effect description
+      local effectStr
+      if locked then
+        effectStr = span(TEXT_DIM, desc)
+      else
+        if value > 0 then
+          effectStr = span("#5588cc", "+" .. tostring(value)) ..
+                      span(TEXT_DIM, " ") .. span(TEXT, desc)
+        else
+          effectStr = span(TEXT_DIM, desc)
+        end
+      end
+
+      -- Upgrade hint
+      local upgradeStr = ""
+      if not locked and level < maxLv then
+        upgradeStr = " " .. span("#aaaa55",
+          "[+" .. tostring(perLv) .. "]")
+      elseif not locked and level >= maxLv then
+        upgradeStr = " " .. span(GOLD, "✓")
+      end
+
+      -- Compose the full row
+      lines[#lines+1] = idxStr .. " " .. nameStr ..
+                         "&nbsp;&nbsp;" .. lvStr ..
+                         upgradeStr ..
+                         "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ..
+                         effectStr
+    end
+
+    -- Upgrade instructions at the bottom
+    lines[#lines+1] = ""
+    lines[#lines+1] = span(TEXT_DIM, "────────────────────")
+    lines[#lines+1] = span(TEXT_DIM, "點擊 ") ..
+                       span(GOLD, "talent + N") ..
+                       span(TEXT_DIM, " 提高第N項天賦等級")
+
+    WuxiaGUI3.talentList:echo(table.concat(lines, "<br>"))
   end
 end
 
@@ -5035,6 +5202,21 @@ function WuxiaGUI3.registerEvents()
     WuxiaGUI3.refresh()
   end)
 
+  -- Char.Talents (talent tree data)
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Talents", function()
+    local gt = gmcp and gmcp.Char and gmcp.Char.Talents
+    if not gt then return end
+
+    WuxiaGUI3.talents = gt
+
+    -- DEBUG: uncomment to verify data arrival
+    -- debugc("WuxiaGUI3: Char.Talents received, " .. tostring(gt.energy or "nil") .. " energy")
+
+    if WuxiaGUI3.activeTab == "天賦" then
+      WuxiaGUI3._refreshTalents()
+    end
+  end)
+
   -- Char.Inventory (items, equipment slots, sets, fullsuit)
   h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Inventory", function()
     local gi = gmcp and gmcp.Char and gmcp.Char.Inventory
@@ -5101,6 +5283,7 @@ function WuxiaGUI3.registerEvents()
   sendGMCP("Char.Vitals.Request")
   sendGMCP("Char.Status.Request")
   sendGMCP("Char.Buffs.Request")
+  sendGMCP("Char.Talents.Request")
   sendGMCP("Char.Inventory.Request")
   sendGMCP("Char.Info.Request")
   sendGMCP("Room.Info.Request")

@@ -7,6 +7,12 @@
 #define GMCP_D "/adm/daemons/gmcp_d"
 #endif
 
+#ifndef F_ABILITY
+#define F_ABILITY "/adm/daemons/abilityd"
+#endif
+
+inherit F_ABILITY;
+
 // ─── Forward declarations ───
 void gmcp_send(object who, string package, mixed data);
 
@@ -262,6 +268,138 @@ void send_buffs(object who) {
     data["temp"] = temp_merged;
 
     gmcp_send(who, "Char.Buffs", data);
+}
+
+// ─── Char.Talents ───
+// Sends the full talent tree with per-talent structured data.
+//
+// Payload:
+// {
+//   "energy": 500, "learned_energy": 320, "available": 180,
+//   "yuanshen_level": 30, "max_unlocked": 12,
+//   "talents": [
+//     { "index": 1, "id": "research_effect", "name": "神研",
+//       "description": "研究效率提高20%",
+//       "level": 1, "max_level": 1, "value": 20, "per_level": 20,
+//       "cost": 1, "locked": 0 },
+//   ]
+// }
+
+void send_talents(object who) {
+    mapping my, data, one_talent;
+    mixed *talents_arr;
+    int energy, learned, ys_level, max_idx;
+    int i, n, cur_level, cur_value, per_lv, max_lv;
+    string id, full_desc, short_name, desc_text;
+    int colon_pos;
+
+    if (!who || !interactive(who) || !has_gmcp(who)) return;
+
+    my = who->query_entire_dbase();
+    if (!my) return;
+
+    // talent_ability[] etc. come from inherit F_ABILITY
+    if (!talent_ability || !sizeof(talent_ability)) return;
+
+    energy   = (int)my["energy"];
+    learned  = (int)my["learned_energy"];
+    ys_level = (int)my["yuanshen_level"];
+    max_idx  = (ys_level / 10 + 1) * 3;
+
+    n = sizeof(talent_ability);
+    talents_arr = allocate(n);
+
+    for (i = 0; i < n; i++) {
+        id = talent_ability[i];
+
+        full_desc = (i < sizeof(talent_ability_info))
+                    ? talent_ability_info[i] : id;
+
+        // DEBUG: uncomment to verify description parsing
+        // debug_message(sprintf("GMCP talent[%d] raw desc: %s\n", i, full_desc));
+
+        colon_pos = strsrch(full_desc, "\xef\xbc\x9a");
+        if (colon_pos != -1) {
+            short_name = full_desc[0..colon_pos - 1];
+            desc_text  = full_desc[colon_pos + 3..];
+        } else {
+            short_name = full_desc[0..5];
+            desc_text  = full_desc;
+        }
+
+        // DEBUG: uncomment to verify split result
+        // debug_message(sprintf("GMCP talent[%d] name='%s' desc='%s'\n", i, short_name, desc_text));
+
+        cur_level = (int)my["talent_count/" + id];
+        cur_value = (int)my["talent/" + id];
+        max_lv    = max_talent_ability[id] || 5;
+        per_lv    = talent_ability_data[id] || 1;
+
+        one_talent = ([
+            "index":       i + 1,
+            "id":          id,
+            "name":        short_name,
+            "description": desc_text,
+            "level":       cur_level,
+            "max_level":   max_lv,
+            "value":       cur_value,
+            "per_level":   per_lv,
+            "cost":        1,
+            "locked":      ((i + 1) > max_idx) ? 1 : 0,
+        ]);
+        talents_arr[i] = one_talent;
+    }
+
+    data = ([
+        "energy":         energy,
+        "learned_energy": learned,
+        "available":      energy - learned,
+        "yuanshen_level": ys_level,
+        "max_unlocked":   max_idx,
+        "talents":        talents_arr,
+    ]);
+
+    gmcp_send(who, "Char.Talents", data);
+}
+
+// ─── Handle Char.Talents.Improve ───
+// Client sends: Char.Talents.Improve {"index": N}
+void handle_talent_improve(object who, mapping params) {
+    int idx, max_idx, ys_level;
+    string id;
+
+    if (!who || !mapp(params)) return;
+
+    idx = (int)params["index"];
+    if (idx < 1 || idx > sizeof(talent_ability)) {
+        tell_object(who, "沒有此代碼的天賦技能。\n");
+        return;
+    }
+
+    id = talent_ability[idx - 1];
+    ys_level = (int)query("yuanshen_level", who);
+    max_idx = (ys_level / 10 + 1) * 3;
+
+    if (idx > max_idx) {
+        tell_object(who, "你的元神境界還不足以掌握更高的天賦技能。\n");
+        return;
+    }
+
+    if (!valid_ability_improve(who, id, 2)) {
+        tell_object(who, "你的元神境界還不足以掌握更高的該項能力。\n");
+        return;
+    }
+
+    if (!do_ability_cost(who, id, 2)) {
+        tell_object(who, "你沒有足夠的天賦點儲蓄來提高此項能力。\n");
+        return;
+    }
+
+    improve_ability(who, id, 2);
+    tell_object(who, "該第" + idx + "天賦技能提高完畢。\n");
+
+    send_talents(who);
+    send_buffs(who);
 }
 
 // ─── Char.Inventory ───
@@ -630,6 +768,16 @@ void handle_gmcp(object who, string raw_message) {
 
         case "Char.Buffs.Request":
             send_buffs(who);
+            break;
+
+        case "Char.Talents.Request":
+            send_talents(who);
+            break;
+
+        case "Char.Talents.Improve":
+            params = parse_json_object(json_str);
+            if (params)
+                handle_talent_improve(who, params);
             break;
 
         case "Char.Inventory.Request":
