@@ -85,6 +85,9 @@ WuxiaGUI3.inventory = {}
 -- Char.Talents: talent tree data from server
 WuxiaGUI3.talents = {}
 
+-- Char.Skills: raw data from server
+WuxiaGUI3.skillData = {}
+
 -- ═══════════════════════════════════════════════
 -- § 3  Helpers
 -- ═══════════════════════════════════════════════
@@ -628,60 +631,603 @@ function WuxiaGUI3._updateBuffsFilterBtns()
   end
 end
 
+
 -- ═══════════════════════════════════════════════
 -- § 4c  Tab: 技能 (Skills)
 -- ═══════════════════════════════════════════════
+
+-- Skill level description tables (match server-side skills.c)
+-- martial/default: every 100 levels
+WuxiaGUI3._skillLevelDesc = {
+  { color = "#4444aa", text = "不堪一擊" },
+  { color = "#4444aa", text = "毫不足慮" },
+  { color = "#4444aa", text = "不足掛齒" },
+  { color = "#4444aa", text = "初學乍練" },
+  { color = "#4444aa", text = "勉勉強強" },
+  { color = "#5555ff", text = "初窺門徑" },
+  { color = "#5555ff", text = "初出茅廬" },
+  { color = "#5555ff", text = "略知一二" },
+  { color = "#5555ff", text = "普普通通" },
+  { color = "#5555ff", text = "平平淡淡" },
+  { color = "#00aaaa", text = "平淡無奇" },
+  { color = "#00aaaa", text = "粗通皮毛" },
+  { color = "#00aaaa", text = "半生不熟" },
+  { color = "#00aaaa", text = "馬馬虎虎" },
+  { color = "#00aaaa", text = "略有小成" },
+  { color = "#55ffff", text = "已有小成" },
+  { color = "#55ffff", text = "鶴立雞群" },
+  { color = "#55ffff", text = "駕輕就熟" },
+  { color = "#55ffff", text = "青出於藍" },
+  { color = "#55ffff", text = "融會貫通" },
+  { color = "#55ff55", text = "心領神會" },
+  { color = "#55ff55", text = "爐火純青" },
+  { color = "#55ff55", text = "瞭然於胸" },
+  { color = "#55ff55", text = "略有大成" },
+  { color = "#55ff55", text = "已有大成" },
+  { color = "#aa5500", text = "豁然貫通" },
+  { color = "#aa5500", text = "出類拔萃" },
+  { color = "#aa5500", text = "無可匹敵" },
+  { color = "#aa5500", text = "技冠群雄" },
+  { color = "#aa5500", text = "神乎其技" },
+  { color = "#ffff55", text = "出神入化" },
+  { color = "#ffff55", text = "非同凡響" },
+  { color = "#ffff55", text = "傲視群雄" },
+  { color = "#ffff55", text = "登峰造極" },
+  { color = "#ffff55", text = "無與倫比" },
+  { color = "#aa0000", text = "所向披靡" },
+  { color = "#aa0000", text = "一代宗師" },
+  { color = "#aa0000", text = "精深奧妙" },
+  { color = "#aa0000", text = "神功蓋世" },
+  { color = "#aa0000", text = "舉世無雙" },
+  { color = "#aaaaaa", text = "驚世駭俗" },
+  { color = "#aaaaaa", text = "撼天動地" },
+  { color = "#aaaaaa", text = "震古鑠今" },
+  { color = "#aaaaaa", text = "超凡入聖" },
+  { color = "#aaaaaa", text = "威鎮寰宇" },
+  { color = "#ffffff", text = "空前絕後" },
+  { color = "#ffffff", text = "天人合一" },
+  { color = "#aa00aa", text = "深藏不露" },
+  { color = "#ff55ff", text = "深不可測" },
+  { color = "#ff5555", text = "返璞歸真" },
+}
+
+WuxiaGUI3._knowledgeLevelDesc = {
+  { color = "#4444aa", text = "新學乍用" },
+  { color = "#4444aa", text = "初窺門徑" },
+  { color = "#5555ff", text = "略知一二" },
+  { color = "#5555ff", text = "半生不熟" },
+  { color = "#00aaaa", text = "馬馬虎虎" },
+  { color = "#00aaaa", text = "已有小成" },
+  { color = "#55ffff", text = "融會貫通" },
+  { color = "#55ffff", text = "心領神會" },
+  { color = "#00aa00", text = "瞭然於胸" },
+  { color = "#00aa00", text = "豁然貫通" },
+  { color = "#aa5500", text = "非同凡響" },
+  { color = "#aa5500", text = "舉世無雙" },
+  { color = "#ffff55", text = "震古鑠今" },
+  { color = "#aa0000", text = "無與倫比" },
+  { color = "#aaaaaa", text = "超凡入聖" },
+  { color = "#ffffff", text = "空前絕後" },
+}
+
+WuxiaGUI3._basicSkills = {
+  force=true, dodge=true, unarmed=true, leg=true,
+  cuff=true, strike=true, finger=true, hand=true,
+  claw=true, sword=true, blade=true, staff=true,
+  hammer=true, club=true, stick=true, whip=true,
+  hook=true, dagger=true, throwing=true, parry=true,
+  magic=true, medical=true, poison=true, array=true,
+  shooting=true, literate=true, training=true,
+  ["martial-arts"]=true,
+  ["chuixiao-jifa"]=true, ["tanqin-jifa"]=true,
+  ["guzheng-jifa"]=true, cooking=true,
+}
+
+WuxiaGUI3._enableTypeNames = {
+  unarmed="拳腳", sword="劍法", arrow="箭法", axe="斧法",
+  blade="刀法", staff="杖法", hammer="錘法", club="棍法",
+  spear="槍法", throwing="暗器", force="內功", parry="招架",
+  dodge="輕功", magic="法術", whip="鞭法", dagger="短兵",
+  finger="指法", hand="手法", cuff="拳法", claw="爪法",
+  strike="掌法", medical="醫術", poison="毒技", cooking="廚藝",
+  array="陣法", taoism="道術", shooting="弓術",
+  leg="腿法", stick="棒法", hook="鉤法",
+  ["chuixiao-jifa"]="吹蕭", ["guzheng-jifa"]="古箏",
+  ["tanqin-jifa"]="彈琴",
+}
+
+function WuxiaGUI3._getSkillLevelInfo(skillType, level)
+  level = tonumber(level) or 0
+  local desc, grade
+  if skillType == "knowledge" then
+    grade = math.floor(level / 200)
+    desc = WuxiaGUI3._knowledgeLevelDesc
+  else
+    grade = math.floor(level / 100)
+    desc = WuxiaGUI3._skillLevelDesc
+  end
+  if grade < 0 then grade = 0 end
+  if grade >= #desc then grade = #desc - 1 end
+  local entry = desc[grade + 1]
+  return entry.text, entry.color
+end
+
+function WuxiaGUI3._computeEffective(slot)
+  -- Effective = floor((add_skill_buff + base_skill) / 2) + (add_skill_buff + special_skill)
+  local sd = WuxiaGUI3.skillData or {}
+  local skillMap = sd.skill_map or {}
+  local allSkills = sd.skills or {}
+
+  local specialId = skillMap[slot]
+  if not specialId then return 0 end
+
+  local baseLvl = tonumber(allSkills[slot]) or 0
+  local specLvl = tonumber(allSkills[specialId]) or 0
+  local addBuff = 0
+  local buffs = WuxiaGUI3.buffs or {}
+  for _, srcData in pairs(buffs) do
+    if type(srcData) == "table" and srcData["add_skill"] then
+      addBuff = addBuff + (tonumber(srcData["add_skill"]) or 0)
+    end
+  end
+  return math.floor((addBuff + baseLvl) / 2) + (addBuff + specLvl)
+end
+
+function WuxiaGUI3._skillCategory(skillId, skillType)
+  if skillType == "knowledge" then return "knowledge"
+  elseif WuxiaGUI3._basicSkills[skillId] then return "basic"
+  elseif skillType == "martial" or skillType == "poison" then return "martial"
+  else return "other" end
+end
+
 function WuxiaGUI3._buildSkills()
   local p = WuxiaGUI3.tabContainers["技能"]
-  local y = 4
+  local imgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
+  local bgPath  = imgDir .. "wuxia_skills_bg.png"
+  local topPath = imgDir .. "wuxia_skills_top.png"
+  local midPath = imgDir .. "wuxia_skills_middle.png"
+  local botPath = imgDir .. "wuxia_skills_bottom.png"
+  local topH, botH = 50, 25
+  local CX = 40
+  local CW = PW - CX * 2
+  local SHADOW = "text-shadow:1px 1px 3px #000, 0px 0px 6px #000;"
+  local fh
 
-  local hdr = Geyser.Label:new({
-    name = "W3.skills.hdr", x = MX, y = y, width = GW, height = 18,
+  -- Store layout constants for reflow
+  WuxiaGUI3._skillCX = CX
+  WuxiaGUI3._skillCW = CW
+  WuxiaGUI3._skillTopH = topH
+  WuxiaGUI3._skillBotH = botH
+  WuxiaGUI3._skillSHADOW = SHADOW
+
+  -- ─── Layer 1: Background ───
+  local bgLabel = Geyser.Label:new({
+    name="W3.skill.bg", x=0, y=0, width=PW, height="100%",
   }, p)
-  hdr:setStyleSheet("background-color:transparent;")
-  hdr:setFontSize(10)
-  hdr:echo(span(GOLD, "── 武功技能 ──"))
-  y = y + 22
+  fh = io.open(bgPath, "r")
+  if fh then fh:close()
+    bgLabel:setStyleSheet("background-color:transparent; border-image:url("..bgPath..") 0 0 0 0 stretch stretch;")
+  else bgLabel:setStyleSheet("background-color:#0a0806;") end
 
-  -- We'll render skill bars as label + gauge pairs
-  local skillList = {
-    { id = "sk_force",   label = "內功" },
-    { id = "sk_dodge",   label = "躲閃" },
-    { id = "sk_parry",   label = "招架" },
-    { id = "sk_unarmed", label = "拳腳" },
-    { id = "sk_sword",   label = "劍法" },
-    { id = "sk_blade",   label = "刀法" },
-    { id = "sk_staff",   label = "棍法" },
-    { id = "sk_whip",    label = "鞭法" },
-    { id = "sk_throw",   label = "暗器" },
-    { id = "sk_shoot",   label = "弓術" },
-    { id = "sk_lit",     label = "讀書" },
-    { id = "sk_martial", label = "武術" },
+  local overlay = Geyser.Label:new({
+    name="W3.skill.overlay", x=0, y=0, width=PW, height="100%",
+  }, p)
+  overlay:setStyleSheet("background-color:rgba(0,0,0,0.45);")
+
+  -- ─── Layer 2: Content widgets (all stored for reflow) ───
+  local y = topH + 8
+  local baseY = y  -- first widget starts here
+
+  -- Summary line
+  local summaryLbl = Geyser.Label:new({
+    name="W3.skill.summary", x=CX, y=y, width=CW, height=18,
+  }, p)
+  summaryLbl:setStyleSheet("background-color:transparent;")
+  summaryLbl:setFontSize(9)
+  summaryLbl:echo(span(TEXT_DIM, "等待技能資料..."))
+  summaryLbl:raiseAll()
+  WuxiaGUI3._skillSummaryLbl = summaryLbl
+
+  -- Enable header
+  local enableHdr = Geyser.Label:new({
+    name="W3.skill.enableHdr", x=CX, y=0, width=CW, height=16,
+  }, p)
+  enableHdr:setStyleSheet("background-color:transparent;")
+  enableHdr:setFontSize(8)
+  enableHdr:echo('<div style="'..SHADOW..'">' .. span(GOLD, "── 激發技能 ──") .. '</div>')
+  enableHdr:raiseAll()
+  WuxiaGUI3._skillEnableHdr = enableHdr
+
+  -- Enable container (height set dynamically during refresh)
+  local enableContainer = Geyser.Label:new({
+    name="W3.skill.enableContainer", x=CX, y=0, width=CW, height=10,
+  }, p)
+  enableContainer:setStyleSheet("background-color:transparent;")
+  enableContainer:raiseAll()
+  WuxiaGUI3._skillEnableContainer = enableContainer
+  WuxiaGUI3._skillEnableBoxes = {}
+
+  -- Prepare header
+  local prepHdr = Geyser.Label:new({
+    name="W3.skill.prepHdr", x=CX, y=0, width=CW, height=16,
+  }, p)
+  prepHdr:setStyleSheet("background-color:transparent;")
+  prepHdr:setFontSize(8)
+  prepHdr:echo('<div style="'..SHADOW..'">' .. span(GOLD, "── 預備技能 ──") .. '</div>')
+  prepHdr:raiseAll()
+  WuxiaGUI3._skillPrepHdr = prepHdr
+
+  -- Prepare container (for prepare boxes)
+  local prepContainer = Geyser.Label:new({
+    name="W3.skill.prepContainer", x=CX, y=0, width=CW, height=10,
+  }, p)
+  prepContainer:setStyleSheet("background-color:transparent;")
+  prepContainer:raiseAll()
+  WuxiaGUI3._skillPrepContainer = prepContainer
+  WuxiaGUI3._skillPrepBoxes = {}
+
+  -- Separator 1
+  local sep1 = Geyser.Label:new({ name="W3.skill.sep1", x=CX, y=0, width=CW, height=1 }, p)
+  sep1:setStyleSheet("background-color:"..BORDER..";")
+  sep1:raiseAll()
+  WuxiaGUI3._skillSep1 = sep1
+
+  -- Category filter tabs
+  local filterCats = {
+    {key="all", label="全部"}, {key="knowledge", label="知識"},
+    {key="basic", label="基本"}, {key="martial", label="特殊"},
+    {key="other", label="其它"},
   }
-
-  WuxiaGUI3._skillList = skillList
-
-  for _, sk in ipairs(skillList) do
-    -- Label
-    local lbl = Geyser.Label:new({
-      name = "W3."..sk.id..".lbl",
-      x = MX, y = y, width = GW, height = 14,
+  WuxiaGUI3._skillFilterCats = filterCats
+  WuxiaGUI3._skillsActiveFilter = "all"
+  WuxiaGUI3._skillFilterBtns = {}
+  local btnW = math.floor(CW / #filterCats)
+  local btnH = 20
+  for i, cat in ipairs(filterCats) do
+    local btn = Geyser.Label:new({
+      name="W3.skillFilter."..cat.key,
+      x=CX+(i-1)*btnW, y=0, width=btnW, height=btnH,
     }, p)
-    lbl:setStyleSheet("background-color:transparent;")
-    lbl:setFontSize(8)
-    WuxiaGUI3[sk.id.."Lbl"] = lbl
+    btn:setFontSize(8)
+    local catKey = cat.key
+    btn:setClickCallback(function() WuxiaGUI3._onSkillFilterClick(catKey) end)
+    btn:raiseAll()
+    WuxiaGUI3._skillFilterBtns[cat.key] = btn
+  end
+  WuxiaGUI3._skillBtnH = btnH
+  WuxiaGUI3._updateSkillFilterBtns()
 
-    -- Gauge
-    local g = Geyser.Gauge:new({
-      name = "W3."..sk.id..".gauge",
-      x = MX, y = y + 14, width = GW, height = 10,
-    }, p)
-    g.front:setStyleSheet("background-color:#5588aa;border-radius:2px;")
-    g.back:setStyleSheet("background-color:#1a2a3a;border-radius:2px;")
-    g:setValue(0, 1)
-    WuxiaGUI3[sk.id.."Gauge"] = g
+  -- Separator 2
+  local sep2 = Geyser.Label:new({ name="W3.skill.sep2", x=CX, y=0, width=CW, height=1 }, p)
+  sep2:setStyleSheet("background-color:"..BORDER..";")
+  sep2:raiseAll()
+  WuxiaGUI3._skillSep2 = sep2
 
-    y = y + 28
+  -- Scrollable skill list
+  local skillListBg = Geyser.Label:new({
+    name="W3.skillListBg", x=CX, y=0, width=CW, height=100,
+  }, p)
+  skillListBg:setStyleSheet("background-color:rgba(0,0,0,0.4); border-radius:3px;")
+  skillListBg:raiseAll()
+  WuxiaGUI3._skillListBg = skillListBg
+
+  local skillListLabel = Geyser.Label:new({
+    name="W3.skillList", x=CX, y=0, width=CW-8, height=100,
+  }, p)
+  skillListLabel:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop'; qproperty-wordWrap:true; padding:2px;")
+  skillListLabel:setFontSize(10)
+  skillListLabel:echo(span(TEXT_DIM, "等待資料..."))
+  skillListLabel:raiseAll()
+  WuxiaGUI3._skillListLabel = skillListLabel
+  WuxiaGUI3._skillScrollPx = 0
+  WuxiaGUI3._skillEntries = {}
+  WuxiaGUI3._skillLineH = 22
+
+  -- Scrollbar track
+  local sbTrack = Geyser.Label:new({
+    name="W3.skillSbTrack", x=PW-CX-4, y=0, width=6, height=100,
+  }, p)
+  sbTrack:setStyleSheet("background-color:rgba(30,15,8,0.6); border:1px solid #3a2a1a; border-radius:3px;")
+  sbTrack:raiseAll()
+  WuxiaGUI3._skillSbTrack = sbTrack
+
+  local sbThumb = Geyser.Label:new({
+    name="W3.skillSbThumb", x=0, y=0, width="100%", height=30,
+  }, sbTrack)
+  sbThumb:setStyleSheet("background-color:rgba(180,140,80,0.7); border-radius:3px;")
+  sbThumb:raiseAll()
+  WuxiaGUI3._skillSbThumb = sbThumb
+  WuxiaGUI3._skillSbDragging = false
+
+  -- ─── Reflow function: positions all widgets based on dynamic enable/prepare heights ───
+  function WuxiaGUI3._reflowSkillLayout()
+    local CX2 = WuxiaGUI3._skillCX
+    local CW2 = WuxiaGUI3._skillCW
+    local tH = WuxiaGUI3._skillTopH
+    local bH = WuxiaGUI3._skillBotH
+    local prepVisible = WuxiaGUI3._skillPrepVisible or false
+
+    -- Simple top-down layout: each section gets its natural height
+    local y2 = tH + 8
+
+    -- Summary (fixed 20px)
+    WuxiaGUI3._skillSummaryLbl:move(CX2, y2); y2 = y2 + 20
+
+    -- Enable header (fixed 18px)
+    WuxiaGUI3._skillEnableHdr:move(CX2, y2); y2 = y2 + 18
+
+    -- Enable container (natural height from refresh)
+    local enableH = WuxiaGUI3._skillEnableContainer:get_height()
+    if enableH <= 0 then enableH = 10 end
+    WuxiaGUI3._skillEnableContainer:move(CX2, y2); y2 = y2 + enableH + 4
+
+    -- Prepare section (only if visible)
+    if prepVisible then
+      WuxiaGUI3._skillPrepHdr:move(CX2, y2); y2 = y2 + 18
+      local prepH = WuxiaGUI3._skillPrepContainer:get_height()
+      if prepH <= 0 then prepH = 10 end
+      WuxiaGUI3._skillPrepContainer:move(CX2, y2); y2 = y2 + prepH + 4
+    end
+
+    -- Sep1
+    WuxiaGUI3._skillSep1:move(CX2, y2); y2 = y2 + 5
+
+    -- Filter buttons
+    local btnW2 = math.floor(CW2 / 5)
+    local btnH2 = WuxiaGUI3._skillBtnH or 20
+    local i2 = 0
+    for _, cat in ipairs(WuxiaGUI3._skillFilterCats) do
+      local btn = WuxiaGUI3._skillFilterBtns[cat.key]
+      if btn then btn:move(CX2 + i2 * btnW2, y2) end
+      i2 = i2 + 1
+    end
+    y2 = y2 + btnH2 + 2
+
+    -- Sep2
+    WuxiaGUI3._skillSep2:move(CX2, y2); y2 = y2 + 4
+
+    -- Skill list: fill remaining space down to bottom frame
+    local containerH = p:get_height()
+    if containerH <= 0 then containerH = 600 end
+    local listH = containerH - y2 - bH - 8
+    if listH < 80 then listH = 80 end
+
+    if WuxiaGUI3._skillListBg then
+      WuxiaGUI3._skillListBg:move(CX2, y2)
+      WuxiaGUI3._skillListBg:resize(CW2, listH)
+    end
+    WuxiaGUI3._skillListLabel:move(CX2, y2)
+    WuxiaGUI3._skillListLabel:resize(CW2 - 8, listH)
+    WuxiaGUI3._skillSbTrack:move(PW - CX2 - 4, y2 + 6)
+    WuxiaGUI3._skillSbTrack:resize(nil, listH - 8)
+
+    if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
+  end
+
+  -- ─── totalContentH (closure for scroll) ───
+  local function totalContentH()
+    local h = 0
+    for _, e in ipairs(WuxiaGUI3._skillEntries or {}) do h = h + e.h end
+    return h
+  end
+
+  -- ─── Scrollbar drag (per SCROLLBAR_PATTERN.md) ───
+  sbThumb:setClickCallback(function(event)
+    WuxiaGUI3._skillSbDragging = true
+    WuxiaGUI3._skillSbDragStartGlobalY = event.globalY
+    WuxiaGUI3._skillSbDragStartThumbY = WuxiaGUI3._skillSbThumbRelY or 0
+  end)
+  sbThumb:setMoveCallback(function(event)
+    if not WuxiaGUI3._skillSbDragging then return end
+    local deltaY = event.globalY - WuxiaGUI3._skillSbDragStartGlobalY
+    local newThumbY = WuxiaGUI3._skillSbDragStartThumbY + deltaY
+    local trackH = sbTrack:get_height()
+    local thumbH = WuxiaGUI3._skillSbThumbRelH or 30
+    local maxThumbY = trackH - thumbH
+    if maxThumbY <= 0 then return end
+    newThumbY = math.max(0, math.min(maxThumbY, newThumbY))
+    local labelH = WuxiaGUI3._skillListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local maxPx = math.max(0, totalContentH() - labelH)
+    WuxiaGUI3._skillScrollPx = math.floor(maxPx * newThumbY / maxThumbY + 0.5)
+    WuxiaGUI3._renderSkillScroll()
+  end)
+  sbThumb:setReleaseCallback(function()
+    WuxiaGUI3._skillSbDragging = false
+  end)
+
+  -- ─── Scroll rendering ───
+  function WuxiaGUI3._renderSkillScroll()
+    local entries = WuxiaGUI3._skillEntries or {}
+    local label = WuxiaGUI3._skillListLabel
+    if not label then return end
+    if #entries == 0 then
+      label:echo(span(TEXT_DIM, "等待資料..."))
+      if WuxiaGUI3._skillSbTrack then WuxiaGUI3._skillSbTrack:hide() end
+      return
+    end
+    local labelH = label:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local contentH = totalContentH()
+    local maxPx = math.max(0, contentH - labelH)
+    WuxiaGUI3._skillScrollPx = math.max(0, math.min(WuxiaGUI3._skillScrollPx, maxPx))
+    local scrollPx = WuxiaGUI3._skillScrollPx
+    local lines = {}
+    local cumH = 0
+    for _, e in ipairs(entries) do
+      local entryTop = cumH
+      local entryBot = cumH + e.h
+      if entryBot > scrollPx and entryTop < scrollPx + labelH then
+        lines[#lines+1] = e.html
+      end
+      cumH = entryBot
+      if cumH > scrollPx + labelH then break end
+    end
+    local lineH = WuxiaGUI3._skillLineH
+    label:echo('<div style="line-height:'..lineH..'px; font-size:9pt; '..SHADOW..' word-wrap:break-word;">'..table.concat(lines, "<br>")..'</div>')
+    if WuxiaGUI3._skillSbTrack then
+      if contentH <= labelH then
+        WuxiaGUI3._skillSbTrack:hide()
+      else
+        WuxiaGUI3._skillSbTrack:show()
+        local trackH = WuxiaGUI3._skillSbTrack:get_height()
+        local thumbRatio = labelH / contentH
+        local tH = math.max(16, math.floor(trackH * thumbRatio))
+        local tY = 0
+        if maxPx > 0 then tY = math.floor((trackH - tH) * (scrollPx / maxPx)) end
+        WuxiaGUI3._skillSbThumb:resize(nil, tH)
+        WuxiaGUI3._skillSbThumb:move(0, tY)
+        WuxiaGUI3._skillSbThumbRelY = tY
+        WuxiaGUI3._skillSbThumbRelH = tH
+      end
+    end
+  end
+
+  -- Mouse wheel on content
+  skillListLabel:setWheelCallback(function(event)
+    if not event then return end
+    local delta = event.angleDeltaY or 0
+    local step = WuxiaGUI3._skillLineH * 3
+    local labelH = WuxiaGUI3._skillListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local maxPx = math.max(0, totalContentH() - labelH)
+    if delta > 0 then
+      WuxiaGUI3._skillScrollPx = math.max(0, WuxiaGUI3._skillScrollPx - step)
+    elseif delta < 0 then
+      WuxiaGUI3._skillScrollPx = math.min(maxPx, WuxiaGUI3._skillScrollPx + step)
+    end
+    WuxiaGUI3._renderSkillScroll()
+  end)
+
+  -- Track click = page up/down
+  sbTrack:setClickCallback(function(event)
+    if not event then return end
+    local thumbY = WuxiaGUI3._skillSbThumbRelY or 0
+    local thumbH = WuxiaGUI3._skillSbThumbRelH or 30
+    if event.y >= thumbY and event.y <= thumbY + thumbH then return end
+    local labelH = WuxiaGUI3._skillListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local maxPx = math.max(0, totalContentH() - labelH)
+    if event.y < thumbY then
+      WuxiaGUI3._skillScrollPx = math.max(0, WuxiaGUI3._skillScrollPx - labelH)
+    else
+      WuxiaGUI3._skillScrollPx = math.min(maxPx, WuxiaGUI3._skillScrollPx + labelH)
+    end
+    WuxiaGUI3._renderSkillScroll()
+  end)
+  sbTrack:setReleaseCallback(function() end)
+
+  -- ─── Layer 3: Frame pieces ───
+  local topLabel = Geyser.Label:new({ name="W3.skill.frameTop", x=0, y=0, width=PW, height=topH }, p)
+  fh = io.open(topPath, "r")
+  if fh then fh:close()
+    topLabel:setStyleSheet("background-color:transparent; border-image:url("..topPath..") 0 0 0 0 stretch stretch;")
+  else topLabel:setStyleSheet("background-color:#1a1008;") end
+  topLabel:raiseAll()
+
+  local midLabel = Geyser.Label:new({ name="W3.skill.frameMid", x=0, y=topH, width=PW, height="-"..botH.."px" }, p)
+  fh = io.open(midPath, "r")
+  if fh then fh:close()
+    midLabel:setStyleSheet("background-color:transparent; border-image:url("..midPath..") 0 0 0 0 stretch stretch;")
+  else midLabel:setStyleSheet("background-color:transparent;") end
+  midLabel:raiseAll()
+
+  local botLabel = Geyser.Label:new({ name="W3.skill.frameBot", x=0, y=-botH, width=PW, height=botH }, p)
+  fh = io.open(botPath, "r")
+  if fh then fh:close()
+    botLabel:setStyleSheet("background-color:transparent; border-image:url("..botPath..") 0 0 0 0 stretch stretch;")
+  else botLabel:setStyleSheet("background-color:#1a1008;") end
+  botLabel:raiseAll()
+
+  -- Forward wheel events from frame to skill scroll handler
+  midLabel:setWheelCallback(function(event)
+    if not WuxiaGUI3._skillListLabel then return end
+    local delta = event and event.angleDeltaY or 0
+    local step = (WuxiaGUI3._skillLineH or 20) * 3
+    local labelH = WuxiaGUI3._skillListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local tch = 0
+    for _, e in ipairs(WuxiaGUI3._skillEntries or {}) do tch = tch + e.h end
+    local maxPx = math.max(0, tch - labelH)
+    if delta > 0 then
+      WuxiaGUI3._skillScrollPx = math.max(0, (WuxiaGUI3._skillScrollPx or 0) - step)
+    elseif delta < 0 then
+      WuxiaGUI3._skillScrollPx = math.min(maxPx, (WuxiaGUI3._skillScrollPx or 0) + step)
+    end
+    if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
+  end)
+  botLabel:setWheelCallback(function(event)
+    if not WuxiaGUI3._skillListLabel then return end
+    local delta = event and event.angleDeltaY or 0
+    local step = (WuxiaGUI3._skillLineH or 20) * 3
+    local labelH = WuxiaGUI3._skillListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local tch = 0
+    for _, e in ipairs(WuxiaGUI3._skillEntries or {}) do tch = tch + e.h end
+    local maxPx = math.max(0, tch - labelH)
+    if delta > 0 then
+      WuxiaGUI3._skillScrollPx = math.max(0, (WuxiaGUI3._skillScrollPx or 0) - step)
+    elseif delta < 0 then
+      WuxiaGUI3._skillScrollPx = math.min(maxPx, (WuxiaGUI3._skillScrollPx or 0) + step)
+    end
+    if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
+  end)
+
+  -- Re-raise interactive widgets ABOVE frame layer
+  summaryLbl:raiseAll()
+  enableHdr:raiseAll()
+  enableContainer:raiseAll()
+  prepHdr:raiseAll()
+  prepContainer:raiseAll()
+  sep1:raiseAll()
+  for _, cat in ipairs(filterCats) do
+    local btn = WuxiaGUI3._skillFilterBtns[cat.key]
+    if btn then btn:raiseAll() end
+  end
+  sep2:raiseAll()
+  skillListBg:raiseAll()
+  skillListLabel:raiseAll()
+  sbTrack:raiseAll()
+  sbThumb:raiseAll()
+
+  -- Resize handler
+  WuxiaGUI3._repositionSkills = function()
+    local containerH = p:get_height()
+    local minH = 506
+    local effH = math.max(containerH, minH)
+    midLabel:resize(PW, effH - topH - botH)
+    botLabel:move(0, effH - botH)
+    overlay:resize(PW, effH)
+    bgLabel:resize(PW, effH)
+    if WuxiaGUI3._reflowSkillLayout then WuxiaGUI3._reflowSkillLayout() end
+  end
+
+  -- Initial reflow
+  WuxiaGUI3.skillData = {}
+  tempTimer(0.2, function() WuxiaGUI3._reflowSkillLayout() end)
+end
+
+
+function WuxiaGUI3._onSkillFilterClick(cat)
+  WuxiaGUI3._skillsActiveFilter = cat
+  WuxiaGUI3._updateSkillFilterBtns()
+  WuxiaGUI3._refreshSkills()
+end
+
+function WuxiaGUI3._updateSkillFilterBtns()
+  if not WuxiaGUI3._skillFilterBtns then return end
+  local active = WuxiaGUI3._skillsActiveFilter or "all"
+  for _, cat in ipairs(WuxiaGUI3._skillFilterCats or {}) do
+    local btn = WuxiaGUI3._skillFilterBtns[cat.key]
+    if btn then
+      if cat.key == active then
+        btn:setStyleSheet(string.format("background-color:%s; border:1px solid %s; qproperty-alignment:AlignCenter;", BG2, GOLD))
+        btn:echo(span(GOLD, "<b>"..cat.label.."</b>"))
+      else
+        btn:setStyleSheet(string.format("background-color:%s; border:1px solid %s; qproperty-alignment:AlignCenter;", BG, BORDER))
+        btn:echo(span(TEXT_DIM, cat.label))
+      end
+    end
   end
 end
 
@@ -2926,6 +3472,9 @@ function WuxiaGUI3._registerChatGMCP()
     if WuxiaGUI3._repositionTalent then
       tempTimer(0.1, WuxiaGUI3._repositionTalent)
     end
+    if WuxiaGUI3._repositionSkills then
+      tempTimer(0.1, WuxiaGUI3._repositionSkills)
+    end
   end)
 end
 
@@ -4731,37 +5280,342 @@ end
 
 -- ─── 技能 refresh ───
 function WuxiaGUI3._refreshSkills()
-  local s = WuxiaGUI3.status
-  local mapping = {
-    sk_force   = "force",
-    sk_dodge   = "dodge",
-    sk_parry   = "parry",
-    sk_unarmed = "unarmed",
-    sk_sword   = "sword",
-    sk_blade   = "blade",
-    sk_staff   = "staff",
-    sk_whip    = "whip",
-    sk_throw   = "throwing",
-    sk_shoot   = "shooting",
-    sk_lit     = "literate",
-    sk_martial = "martial-arts",
-  }
+  local sd = WuxiaGUI3.skillData
+  if not sd or not sd.skills then return end
 
-  for _, sk in ipairs(WuxiaGUI3._skillList or {}) do
-    local g = WuxiaGUI3[sk.id.."Gauge"]
-    local l = WuxiaGUI3[sk.id.."Lbl"]
-    if g and l then
-      local key = mapping[sk.id]
-      local val = tonumber(s[key]) or 0
-      -- Max skill is roughly 1000 for display purposes
-      -- Adjust if your game uses different caps
-      local displayMax = math.max(val, 500)
-      g:setValue(val, displayMax)
+  local skills     = sd.skills or {}
+  local learned    = sd.learned or {}
+  local skillMap   = sd.skill_map or {}
+  local skillPrep  = sd.skill_prepare or {}
+  local wprepare   = sd.wprepare or {}
+  local computed   = sd.computed or {}
+  local filter     = WuxiaGUI3._skillsActiveFilter or "all"
+  local SHADOW     = WuxiaGUI3._skillSHADOW or ""
+  local CX         = WuxiaGUI3._skillCX or 40
+  local CW         = WuxiaGUI3._skillCW or 240
 
-      local color = val > 0 and TEXT or TEXT_DIM
-      l:echo(span(color, string.format("%s %d", sk.label, val)))
+  -- Reverse maps
+  local enabledAs = {}
+  for slot, skId in pairs(skillMap) do
+    if not enabledAs[skId] then enabledAs[skId] = {} end
+    enabledAs[skId][#enabledAs[skId]+1] = slot
+  end
+  local preparedAs = {}
+  for slot, skId in pairs(skillPrep) do
+    if not preparedAs[skId] then preparedAs[skId] = {} end
+    preparedAs[skId][#preparedAs[skId]+1] = slot
+  end
+
+  -- Summary
+  local skillCount = 0
+  for _ in pairs(skills) do skillCount = skillCount + 1 end
+  if WuxiaGUI3._skillSummaryLbl then
+    WuxiaGUI3._skillSummaryLbl:echo(
+      '<div style="'..SHADOW..'">' ..
+      span(GOLD, "技能總覽 ") ..
+      span(TEXT, "共 ") .. span("#55ffff", tostring(skillCount)) ..
+      span(TEXT, " 項技能") .. '</div>')
+  end
+
+  -- ═══ Enable boxes ═══
+  local container = WuxiaGUI3._skillEnableContainer
+  if container then
+    -- Destroy old child widgets
+    for _, box in pairs(WuxiaGUI3._skillEnableBoxes or {}) do
+      if box.lbl then box.lbl:hide() end
+      if box.hdr then box.hdr:hide() end
+    end
+    WuxiaGUI3._skillEnableBoxes = {}
+
+    -- Collect slots where character has the basic skill
+    local availableSlots = {}
+    local allSlotNames = {
+      "force","parry","dodge","cuff","finger","staff","sword","blade",
+      "unarmed","strike","claw","hand","whip","spear","hammer","club",
+      "dagger","axe","throwing","shooting","magic","medical","poison",
+      "cooking","array","taoism","leg",
+      "chuixiao-jifa","guzheng-jifa","tanqin-jifa",
+    }
+    for _, slot in ipairs(allSlotNames) do
+      if skills[slot] and tonumber(skills[slot]) > 0 then
+        availableSlots[#availableSlots+1] = slot
+      end
+    end
+
+    -- Layout: 2 columns
+    local boxW = math.floor(CW / 2) - 2
+    local boxH = 46
+    local gap = 2
+    local bx, by = 0, 0
+    local col = 0
+
+    for _, slot in ipairs(availableSlots) do
+      local slotName = WuxiaGUI3._enableTypeNames[slot] or slot
+      local currentSpecial = skillMap[slot]
+      local specName, eff = "", 0
+      if currentSpecial then
+        specName = (computed[currentSpecial] and computed[currentSpecial].name) or currentSpecial
+        eff = WuxiaGUI3._computeEffective(slot)
+      end
+
+      local boxLbl = Geyser.Label:new({
+        name = "W3.enBox."..slot,
+        x = bx, y = by, width = boxW, height = boxH,
+      }, container)
+
+      if currentSpecial then
+        boxLbl:setStyleSheet(
+          "background-color:rgba(17,17,28,160); border:1px solid "..GOLD.."; "..
+          "padding:14px 4px 2px 4px; qproperty-alignment:'AlignHCenter|AlignVCenter';")
+        boxLbl:echo('<div style="font-size:9pt; '..SHADOW..'">' ..
+          '<span style="color:#ddd;">'..specName..'</span>' ..
+          '<br><span style="color:#55ff55; font-size:8pt;">有效 '..tostring(eff)..'</span></div>')
+      else
+        boxLbl:setStyleSheet(
+          "background-color:rgba(17,17,28,100); border:1px solid "..BORDER.."; "..
+          "padding:14px 4px 2px 4px; qproperty-alignment:'AlignHCenter|AlignVCenter';")
+        boxLbl:echo('<span style="color:#555; '..SHADOW..'">空</span>')
+      end
+      boxLbl:raiseAll()
+
+      -- Click debug
+      local slotKey, slotLabel = slot, slotName
+      boxLbl:setClickCallback(function()
+        debugc("WuxiaGUI3: [Enable Click] slot=" .. slotKey .. " (" .. slotLabel .. ")")
+      end)
+
+      -- Header strip
+      local hdrLbl = Geyser.Label:new({
+        name = "W3.enBox."..slot..".hdr",
+        x = bx + 1, y = by + 1, width = boxW - 2, height = 13,
+      }, container)
+      hdrLbl:setStyleSheet(
+        "background-color:rgba(8,6,4,140); "..
+        "border-bottom:1px solid rgba(80,60,30,80); "..
+        "padding:0px 3px; qproperty-alignment:'AlignLeft|AlignVCenter';")
+      hdrLbl:setFontSize(7)
+      hdrLbl:echo('<span style="color:#999; font-size:8pt; '..SHADOW..'">'..slotName..'</span>')
+      hdrLbl:raiseAll()
+
+      WuxiaGUI3._skillEnableBoxes[slot] = { lbl=boxLbl, hdr=hdrLbl }
+
+      col = col + 1
+      if col >= 2 then col = 0; bx = 0; by = by + boxH + gap
+      else bx = boxW + gap * 2 end
+    end
+
+    -- Resize container to fit all rows
+    local totalRows = math.ceil(#availableSlots / 2)
+    local enableH = totalRows * (boxH + gap)
+    if enableH < 10 then enableH = 10 end
+    container:resize(nil, enableH)
+  end
+
+  -- ═══ Prepare boxes ═══
+  local prepCont = WuxiaGUI3._skillPrepContainer
+  if prepCont then
+    for _, box in pairs(WuxiaGUI3._skillPrepBoxes or {}) do
+      if box.lbl then box.lbl:hide() end
+      if box.hdr then box.hdr:hide() end
+    end
+    WuxiaGUI3._skillPrepBoxes = {}
+
+    local boxW = math.floor(CW / 2) - 2
+    local boxH = 46
+    local gap = 2
+    local bx, by = 0, 0
+    local col = 0
+    local prepCount = 0
+
+    local prepSlots = {}
+    for slot, _ in pairs(skillPrep) do prepSlots[#prepSlots+1] = slot end
+    table.sort(prepSlots)
+
+    for _, slot in ipairs(prepSlots) do
+      local slotName = WuxiaGUI3._enableTypeNames[slot] or slot
+      local skId = skillPrep[slot]
+      local skName = (computed[skId] and computed[skId].name) or skId
+
+      local boxLbl = Geyser.Label:new({
+        name = "W3.prepBox."..slot,
+        x = bx, y = by, width = boxW, height = boxH,
+      }, prepCont)
+      boxLbl:setStyleSheet(
+        "background-color:rgba(17,17,28,160); border:1px solid #8888aa; "..
+        "padding:14px 4px 2px 4px; qproperty-alignment:'AlignHCenter|AlignVCenter';")
+      boxLbl:echo('<div style="font-size:9pt; '..SHADOW..'">' ..
+        '<span style="color:#ccccdd;">'..skName..'</span></div>')
+      boxLbl:raiseAll()
+
+      local hdrLbl = Geyser.Label:new({
+        name = "W3.prepBox."..slot..".hdr",
+        x = bx + 1, y = by + 1, width = boxW - 2, height = 13,
+      }, prepCont)
+      hdrLbl:setStyleSheet(
+        "background-color:rgba(8,6,4,140); "..
+        "border-bottom:1px solid rgba(80,60,30,80); "..
+        "padding:0px 3px; qproperty-alignment:'AlignLeft|AlignVCenter';")
+      hdrLbl:setFontSize(7)
+      hdrLbl:echo('<span style="color:#999; font-size:8pt; '..SHADOW..'">'..slotName..'</span>')
+      hdrLbl:raiseAll()
+
+      WuxiaGUI3._skillPrepBoxes[slot] = { lbl=boxLbl, hdr=hdrLbl }
+
+      prepCount = prepCount + 1
+      col = col + 1
+      if col >= 2 then col = 0; bx = 0; by = by + boxH + gap
+      else bx = boxW + gap * 2 end
+    end
+
+    local totalRows = math.ceil(prepCount / 2)
+    local prepH = totalRows * (boxH + gap)
+    if prepH < 10 then prepH = 10 end
+    prepCont:resize(nil, prepH)
+
+    -- Show/hide prepare section based on whether there are prepared skills
+    if prepCount == 0 then
+      WuxiaGUI3._skillPrepHdr:hide()
+      prepCont:hide()
+      WuxiaGUI3._skillPrepVisible = false
+    else
+      WuxiaGUI3._skillPrepHdr:show()
+      prepCont:show()
+      WuxiaGUI3._skillPrepVisible = true
     end
   end
+
+  -- ═══ Reflow layout after enable/prepare resize ═══
+  if WuxiaGUI3._reflowSkillLayout then
+    WuxiaGUI3._reflowSkillLayout()
+  end
+
+  -- ═══ Filtered skill list ═══
+  local skillList = {}
+  for skId, rawLvl in pairs(skills) do
+    local comp = computed[skId] or {}
+    local skType = comp.type or "unknown"
+    local cat = WuxiaGUI3._skillCategory(skId, skType)
+    if filter == "all" or filter == cat then
+      skillList[#skillList+1] = {
+        id=skId, name=comp.name or skId, type=skType, category=cat,
+        raw=tonumber(rawLvl) or 0, learnedXP=tonumber(learned[skId]) or 0,
+      }
+    end
+  end
+
+  local catOrder = {knowledge=1, basic=2, martial=3, other=4}
+  table.sort(skillList, function(a,b)
+    local ca = catOrder[a.category] or 9
+    local cb = catOrder[b.category] or 9
+    if ca ~= cb then return ca < cb end
+    if a.raw ~= b.raw then return a.raw > b.raw end
+    return a.id < b.id
+  end)
+
+  local catNames = {knowledge="知識類", basic="基本類", martial="特殊類", other="其它"}
+  local entries = {}
+  local lastCat = nil
+  local lineH = WuxiaGUI3._skillLineH
+
+  for _, sk in ipairs(skillList) do
+    if filter == "all" and sk.category ~= lastCat then
+      lastCat = sk.category
+      entries[#entries+1] = {
+        html = span(GOLD, "── "..(catNames[sk.category] or sk.category).." ──"),
+        h = lineH,
+      }
+    end
+
+    local descText, descColor = WuxiaGUI3._getSkillLevelInfo(sk.type, sk.raw)
+    local nextReq = (sk.raw + 1) * (sk.raw + 1)
+    local canLvl = (sk.learnedXP >= nextReq and sk.learnedXP > 0)
+
+    local badges = ""
+    if enabledAs[sk.id] then
+      for _, slot in ipairs(enabledAs[sk.id]) do
+        local sn = WuxiaGUI3._enableTypeNames[slot] or slot
+        badges = badges .. ' <span style="color:#c8a050;">★'..sn..'</span>'
+      end
+    end
+    if preparedAs[sk.id] then
+      for _, slot in ipairs(preparedAs[sk.id]) do
+        local sn = WuxiaGUI3._enableTypeNames[slot] or slot
+        badges = badges .. ' <span style="color:#8888aa;">◇備'..sn..'</span>'
+      end
+    end
+
+    local line1 =
+      '<span style="color:'..descColor..';">'..sk.name..'</span>' ..
+      ' <span style="color:#666;">('..sk.id..')</span>' .. badges
+
+    local lvlUpIcon = canLvl and ' <span style="color:#ffff55;">▲</span>' or ""
+
+    local line2 =
+      '&nbsp;&nbsp;' ..
+      span(TEXT, "等級 "..tostring(sk.raw)) ..
+      '  <span style="color:'..descColor..';">'..descText..'</span>' ..
+      lvlUpIcon
+
+    -- Calculate line1 pixel width to determine how many visual lines it wraps to
+    -- Visible text: sk.name + " (" + sk.id + ")" + badges
+    -- At 9pt: CJK char ~14px, ASCII char ~8px, space ~4px
+    local function measureText(str)
+      local px = 0
+      local i = 1
+      local len = #str
+      while i <= len do
+        local b = string.byte(str, i)
+        if b >= 0xE0 then
+          px = px + 14  -- CJK character (3-byte UTF-8)
+          i = i + 3
+        elseif b >= 0xC0 then
+          px = px + 10  -- 2-byte UTF-8
+          i = i + 2
+        elseif b == 0x20 then
+          px = px + 4   -- space
+          i = i + 1
+        else
+          px = px + 8   -- ASCII letter/digit/punct
+          i = i + 1
+        end
+      end
+      return px
+    end
+
+    -- Build the plain visible text of line1
+    local visText = sk.name .. " (" .. sk.id .. ")"
+    if enabledAs[sk.id] then
+      for _, slot in ipairs(enabledAs[sk.id]) do
+        visText = visText .. " ★" .. (WuxiaGUI3._enableTypeNames[slot] or slot)
+      end
+    end
+    if preparedAs[sk.id] then
+      for _, slot in ipairs(preparedAs[sk.id]) do
+        visText = visText .. " ◇備" .. (WuxiaGUI3._enableTypeNames[slot] or slot)
+      end
+    end
+
+    local contentW = (WuxiaGUI3._skillCW or 240) - 16
+    local textPx = measureText(visText)
+    local wrapLines = math.ceil(textPx / contentW)
+    if wrapLines < 1 then wrapLines = 1 end
+
+    entries[#entries+1] = {html=line1, h=lineH * wrapLines}
+    entries[#entries+1] = {html=line2, h=lineH}
+  end
+
+  if #entries == 0 then
+    entries[#entries+1] = {html=span(TEXT_DIM, "此分類無技能"), h=lineH}
+  end
+
+  -- Add bottom padding entry so last real entry is fully visible when scrolled
+  entries[#entries+1] = {html="", h=lineH}
+
+  WuxiaGUI3._skillEntries = entries
+  WuxiaGUI3._skillScrollPx = math.min(
+    WuxiaGUI3._skillScrollPx or 0,
+    math.max(0, #entries * lineH - 200))
+  WuxiaGUI3._renderSkillScroll()
 end
 
 -- ─── 天賦 refresh (from Char.Talents GMCP) ───
@@ -5479,6 +6333,31 @@ function WuxiaGUI3.registerEvents()
     WuxiaGUI3.refresh()
   end)
 
+  -- Char.Skills (skill data from server)
+  h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Skills", function()
+    local gs = gmcp and gmcp.Char and gmcp.Char.Skills
+    if not gs then return end
+
+    WuxiaGUI3.skillData = {
+      skills        = gs.skills or {},
+      learned       = gs.learned or {},
+      skill_map     = gs.skill_map or {},
+      skill_prepare = gs.skill_prepare or {},
+      wprepare      = gs.wprepare or {},
+      computed      = gs.computed or {},
+    }
+
+    -- DEBUG: uncomment to verify data arrival
+    -- local count = 0
+    -- for _ in pairs(gs.skills or {}) do count = count + 1 end
+    -- debugc("WuxiaGUI3: Char.Skills received, " .. count .. " skills")
+
+    if WuxiaGUI3.activeTab == "技能" then
+      WuxiaGUI3._refreshSkills()
+    end
+  end)
+
+
   -- Char.Talents (talent tree data)
   h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Talents", function()
     local gt = gmcp and gmcp.Char and gmcp.Char.Talents
@@ -5560,6 +6439,7 @@ function WuxiaGUI3.registerEvents()
   sendGMCP("Char.Vitals.Request")
   sendGMCP("Char.Status.Request")
   sendGMCP("Char.Buffs.Request")
+  sendGMCP("Char.Skills.Request")
   sendGMCP("Char.Talents.Request")
   sendGMCP("Char.Inventory.Request")
   sendGMCP("Char.Info.Request")
