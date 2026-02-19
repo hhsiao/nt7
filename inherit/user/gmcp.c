@@ -3,6 +3,7 @@
 //
 // Watches dbase for source mapping changes (skillmix, yuanshen, etc.)
 // and tmp_dbase for temp buff changes (buff/, apply/, bonus/).
+// Watches feature/skill.c mappings for skill data changes.
 // Sends raw source data — GUI computes totals client-side.
 
 #ifndef GMCP_D
@@ -12,6 +13,7 @@
 // Forward declarations
 void __gmcp_watch_item(object ob);
 void __gmcp_schedule_inventory();
+void __gmcp_schedule_skills();
 
 // Keys that trigger Char.Vitals push
 nosave string *VITALS_KEYS = ({
@@ -40,11 +42,6 @@ nosave string *BUFFS_DBASE_KEYS = ({
     "ability1", "ability2", "talent",
 });
 
-// Top-level dbase keys whose changes trigger Char.Talents push
-nosave string *TALENTS_DBASE_KEYS = ({
-    "energy", "learned_energy", "talent_count",
-});
-
 // Top-level tmp_dbase keys that affect buff display
 // "buff_cache" deletion means equipment buffs changed
 nosave string *BUFFS_TMP_KEYS = ({
@@ -62,20 +59,23 @@ nosave int __gmcp_vitals_pending = 0;
 nosave int __gmcp_status_pending = 0;
 nosave int __gmcp_buffs_pending = 0;
 nosave int __gmcp_inventory_pending = 0;
-nosave int __gmcp_talents_pending = 0;
+nosave int __gmcp_skills_pending = 0;
+
+// Track whether we've set up skill mapping watches
+nosave int __gmcp_skills_watch_active = 0;
 
 // Track which item dbase mappings we've already watched
 // key = file_name(ob), value = item's dbase mapping reference
 nosave mapping __gmcp_watched_items = ([]);
 
-// ─── Called by GMCP_D to actually send data ───
+// ——— Called by GMCP_D to actually send data ———
 void receive_gmcp(string payload) {
     if (!interactive(this_object())) return;
     if (!has_gmcp(this_object())) return;
     efun::send_gmcp(payload);
 }
 
-// ─── Deferred sends (coalesce multiple changes in same frame) ───
+// ——— Deferred sends (coalesce multiple changes in same frame) ———
 void __gmcp_flush_vitals() {
     object gd;
 
@@ -112,16 +112,16 @@ void __gmcp_flush_buffs() {
     if (gd) gd->send_buffs(this_object());
 }
 
-void __gmcp_flush_talents() {
+void __gmcp_flush_skills() {
     object gd;
 
-    __gmcp_talents_pending = 0;
+    __gmcp_skills_pending = 0;
     if (!interactive(this_object())) return;
     if (!has_gmcp(this_object())) return;
 
     gd = find_object(GMCP_D);
     if (!gd) gd = load_object(GMCP_D);
-    if (gd) gd->send_talents(this_object());
+    if (gd) gd->send_skills(this_object());
 }
 
 void __gmcp_flush_inventory() {
@@ -136,7 +136,17 @@ void __gmcp_flush_inventory() {
     if (gd) gd->send_inventory(this_object());
 }
 
-// ─── Schedule a deferred inventory push ───
+// ——— Schedule a deferred skills push ———
+void __gmcp_schedule_skills() {
+    if (!interactive(this_object())) return;
+    if (!has_gmcp(this_object())) return;
+    if (__gmcp_skills_pending) return;
+
+    __gmcp_skills_pending = 1;
+    call_out("__gmcp_flush_skills", 0);
+}
+
+// ——— Schedule a deferred inventory push ———
 void __gmcp_schedule_inventory() {
     if (!interactive(this_object())) return;
     if (!has_gmcp(this_object())) return;
@@ -146,7 +156,7 @@ void __gmcp_schedule_inventory() {
     call_out("__gmcp_flush_inventory", 0);
 }
 
-// ─── Equipment set load (called on player object so force_me has permission) ───
+// ——— Equipment set load (called on player object so force_me has permission) ———
 void gmcp_equip_set(int num) {
     if (num < 1 || num > 5) return;
     if (!query("equipment_set/" + num, this_object())) return;
@@ -157,7 +167,55 @@ void __gmcp_do_equip_set(int num) {
     this_object()->force_me("equip " + num);
 }
 
-// ─── dbase watch callback ───
+// ——— Skill mapping watch callback ———
+// Fires when skills, learned, skill_map, skill_prepare, or wprepare
+// mappings change. watch_mapping on the individual sub-mappings from
+// feature/skill.c detects all mutations (improve_skill, map_skill, etc.)
+void __gmcp_skill_data_changed(mapping m, mixed *keys, mixed old_val, mixed new_val) {
+    if (!interactive(this_object())) return;
+    if (!has_gmcp(this_object())) return;
+    __gmcp_schedule_skills();
+}
+
+// Set up watches on the individual skill mappings from feature/skill.c
+// These are standalone variables, NOT inside dbase, so we must watch
+// them separately from the dbase/tmp_dbase watches.
+void __gmcp_setup_skill_watches() {
+    mapping skill_data;
+
+    if (__gmcp_skills_watch_active) return;
+
+    skill_data = this_object()->query_SKILL();
+    if (!mapp(skill_data)) return;
+
+    // Watch each sub-mapping that exists.
+    // watch_mapping works on nested mappings, so watching the top-level
+    // sub-mapping catches all key changes within it.
+
+    // skills mapping — changes on learn/practice/improve_skill
+    if (mapp(skill_data["skills"]))
+        watch_mapping(skill_data["skills"], (: __gmcp_skill_data_changed :));
+
+    // learned mapping — changes on improve_skill (XP accumulation)
+    if (mapp(skill_data["learned"]))
+        watch_mapping(skill_data["learned"], (: __gmcp_skill_data_changed :));
+
+    // skill_map — changes on enable/jifa command
+    if (mapp(skill_data["skill_map"]))
+        watch_mapping(skill_data["skill_map"], (: __gmcp_skill_data_changed :));
+
+    // skill_prepare — changes on prepare/bei command
+    if (mapp(skill_data["skill_prepare"]))
+        watch_mapping(skill_data["skill_prepare"], (: __gmcp_skill_data_changed :));
+
+    // wprepare — weapon prepare
+    if (mapp(skill_data["wprepare"]))
+        watch_mapping(skill_data["wprepare"], (: __gmcp_skill_data_changed :));
+
+    __gmcp_skills_watch_active = 1;
+}
+
+// ——— dbase watch callback ———
 void __gmcp_dbase_changed(mapping m, mixed *keys, mixed old_val, mixed new_val) {
     string key;
 
@@ -186,19 +244,12 @@ void __gmcp_dbase_changed(mapping m, mixed *keys, mixed old_val, mixed new_val) 
         call_out("__gmcp_flush_buffs", 0);
     }
 
-    // Talent data changed (energy spent, talent upgraded)
-    if (!__gmcp_talents_pending &&
-        member_array(key, TALENTS_DBASE_KEYS) != -1) {
-        __gmcp_talents_pending = 1;
-        call_out("__gmcp_flush_talents", 0);
-    }
-
     // Equipment set saved/deleted
     if (key == "equipment_set")
         __gmcp_schedule_inventory();
 }
 
-// ─── tmp_dbase watch callback ───
+// ——— tmp_dbase watch callback ———
 // Watches for:
 //   buff/apply/bonus → Char.Buffs push
 //   weapon/secondary_weapon/handing/fullsuit → Char.Inventory push
@@ -223,7 +274,7 @@ void __gmcp_tmp_dbase_changed(mapping m, mixed *keys, mixed old_val, mixed new_v
         __gmcp_schedule_inventory();
 }
 
-// ─── Register the dbase watches ───
+// ——— Register the dbase watches ———
 void gmcp_setup_watch() {
     mapping my, tmp;
 
@@ -244,7 +295,7 @@ void gmcp_setup_watch() {
     __gmcp_watch_active = 1;
 }
 
-// ─── Delayed Initial Data Push ───
+// ——— Delayed Initial Data Push ———
 void gmcp_init_burst() {
     object gd;
 
@@ -253,6 +304,9 @@ void gmcp_init_burst() {
     if (!this_object()->is_user()) return;
 
     gmcp_setup_watch();
+
+    // Set up skill data watches (separate from dbase)
+    __gmcp_setup_skill_watches();
 
     // Watch all existing inventory items' dbase for changes
     foreach (object ob in all_inventory(this_object())) {
@@ -268,13 +322,13 @@ void gmcp_init_burst() {
     gd->send_vitals(this_object());
     gd->send_status(this_object());
     gd->send_buffs(this_object());
-    gd->send_talents(this_object());
+    gd->send_skills(this_object());
     gd->send_inventory(this_object());
     gd->send_channels(this_object());
     gd->send_room(this_object());
 }
 
-// ─── Item movement detection ───
+// ——— Item movement detection ———
 
 // Callback when any watched item's dbase changes
 void __gmcp_item_dbase_changed(mapping m, mixed *keys, mixed old_val, mixed new_val) {
@@ -332,7 +386,7 @@ void gmcp_release_object(object ob) {
     __gmcp_schedule_inventory();
 }
 
-// ─── Driver Apply: gmcp ───
+// ——— Driver Apply: gmcp ———
 void gmcp(string message) {
     object gd;
 
@@ -343,7 +397,7 @@ void gmcp(string message) {
     gd->handle_gmcp(this_object(), message);
 }
 
-// ─── Public API ───
+// ——— Public API ———
 void gmcp_update_vitals() {
     object gd;
 
@@ -397,6 +451,17 @@ void gmcp_update_inventory() {
     gd = find_object(GMCP_D);
     if (!gd) gd = load_object(GMCP_D);
     if (gd) gd->send_inventory(this_object());
+}
+
+void gmcp_update_skills() {
+    object gd;
+
+    if (!interactive(this_object())) return;
+    if (!has_gmcp(this_object())) return;
+
+    gd = find_object(GMCP_D);
+    if (!gd) gd = load_object(GMCP_D);
+    if (gd) gd->send_skills(this_object());
 }
 
 void gmcp_chat(string channel, string speaker, string message) {

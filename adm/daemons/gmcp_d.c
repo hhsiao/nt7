@@ -7,16 +7,10 @@
 #define GMCP_D "/adm/daemons/gmcp_d"
 #endif
 
-#ifndef F_ABILITY
-#define F_ABILITY "/adm/daemons/abilityd"
-#endif
-
-inherit F_ABILITY;
-
-// ─── Forward declarations ───
+// ——— Forward declarations ———
 void gmcp_send(object who, string package, mixed data);
 
-// ─── GUI Package Auto-Install Config ───
+// ——— GUI Package Auto-Install Config ———
 // Mudlet will auto-install/update the package when version changes.
 // Set via: GMCP_D->set_gui_url("http://yourhost:port/static/WuxiaGUI3.mpackage")
 // Set via: GMCP_D->set_gui_version("1.0.0")
@@ -40,7 +34,7 @@ void send_gui(object who) {
     ]));
 }
 
-// ─── JSON helpers ───
+// ——— JSON helpers ———
 // Using native FluffOS yyjson: json_encode() and json_decode()
 // No custom implementations needed.
 
@@ -58,7 +52,7 @@ mapping parse_json_object(string s) {
     return result;
 }
 
-// ─── Core Send ───
+// ——— Core Send ———
 
 void gmcp_send(object who, string package, mixed data) {
     string payload;
@@ -68,7 +62,7 @@ void gmcp_send(object who, string package, mixed data) {
     who->receive_gmcp(payload);
 }
 
-// ─── Helper: extract integer-valued keys from a mapping ───
+// ——— Helper: extract integer-valued keys from a mapping ———
 // Filters out sub-mappings and non-integer values, returns
 // a clean mapping of string->int suitable for JSON.
 
@@ -85,7 +79,105 @@ mapping extract_int_map(mapping src) {
     return result;
 }
 
-// ─── Char.Vitals ───
+// ——— Char.Skills ———
+// Sends raw skill data (skills, learned, skill_map, skill_prepare, wprepare)
+// plus a computed mapping with server-only data per skill (name, type).
+//
+// Design: raw mappings are sent as-is (rule: send all data, no copies).
+// computed contains only data that requires server-side SKILL_D calls
+// and cannot be derived client-side.
+//
+// Effective level is computed CLIENT-SIDE using:
+//   buff(skill) from Char.Buffs temp[skill]
+//   add_skill from Char.Buffs temp["add_skill"]
+//   raw level from skills[id]
+//   mapped skill from skill_map[id] -> skills[mapped_id]
+//   Formula: buff + (add_skill + raw) / 2 + (add_skill + mapped_raw)
+//
+// Payload:
+// {
+//   "skills":        { "force": 130, "hamagong": 130, ... },
+//   "learned":       { "force": 0, ... },
+//   "skill_map":     { "force": "hamagong", ... },
+//   "skill_prepare": { "cuff": "lingshe-quan", ... },
+//   "wprepare":      { ... },
+//   "computed": {
+//     "force":    { "name": "基本內功", "type": "martial" },
+//     "hamagong": { "name": "蛤蟆功",  "type": "martial" },
+//     ...
+//   }
+// }
+
+void send_skills(object who) {
+    mapping data, skl, lrn, smap, sprep, wprep, computed;
+    mapping skill_data, entry;
+    string *snames, sk, type, chi_name;
+    object skill_ob;
+    int i;
+
+    if (!who || !interactive(who) || !has_gmcp(who)) return;
+
+    // Get raw skill data from feature/skill.c
+    skill_data = who->query_SKILL();
+    if (!mapp(skill_data)) return;
+
+    skl   = skill_data["skills"];
+    lrn   = skill_data["learned"];
+    smap  = skill_data["skill_map"];
+    sprep = skill_data["skill_prepare"];
+    wprep = skill_data["wprepare"];
+
+    if (!mapp(skl) || !sizeof(skl)) {
+        // Player has no skills yet — send empty
+        gmcp_send(who, "Char.Skills", ([
+            "skills":        ([]),
+            "learned":       ([]),
+            "skill_map":     ([]),
+            "skill_prepare": ([]),
+            "wprepare":      ([]),
+            "computed":      ([]),
+        ]));
+        return;
+    }
+
+    // Build computed data for each skill (server-only: name + type)
+    snames = keys(skl);
+    computed = ([]);
+
+    for (i = 0; i < sizeof(snames); i++) {
+        sk = snames[i];
+        entry = ([]);
+
+        // Chinese name via to_chinese (CHINESE_D)
+        chi_name = to_chinese(sk);
+        entry["name"] = stringp(chi_name) ? chi_name : sk;
+
+        // Skill type from SKILL_D
+        skill_ob = find_object(SKILL_D(sk));
+        if (!skill_ob) skill_ob = load_object(SKILL_D(sk));
+        if (skill_ob) {
+            type = skill_ob->type();
+            entry["type"] = stringp(type) ? type : "unknown";
+        } else {
+            entry["type"] = "unknown";
+        }
+
+        computed[sk] = entry;
+    }
+
+    // Assemble payload — raw mappings sent directly, no copies
+    data = ([]);
+    data["skills"]        = skl;
+    data["learned"]       = mapp(lrn) ? lrn : ([]);
+    data["skill_map"]     = mapp(smap) ? smap : ([]);
+    data["skill_prepare"] = mapp(sprep) ? sprep : ([]);
+    data["wprepare"]      = mapp(wprep) ? wprep : ([]);
+    data["computed"]      = computed;
+
+    gmcp_send(who, "Char.Skills", data);
+}
+
+// ——— Char.Vitals ———
 
 void send_vitals(object who) {
     mapping my, data;
@@ -134,7 +226,7 @@ void send_vitals(object who) {
     gmcp_send(who, "Char.Vitals", data);
 }
 
-// ─── Char.Status ───
+// ——— Char.Status ———
 
 void send_status(object who) {
     mapping my, data;
@@ -199,7 +291,7 @@ void send_status(object who) {
     gmcp_send(who, "Char.Status", data);
 }
 
-// ─── Char.Buffs ───
+// ——— Char.Buffs ———
 // Sends raw source mappings. GUI computes totals client-side.
 //
 // Payload structure:
@@ -270,139 +362,7 @@ void send_buffs(object who) {
     gmcp_send(who, "Char.Buffs", data);
 }
 
-// ─── Char.Talents ───
-// Sends the full talent tree with per-talent structured data.
-//
-// Payload:
-// {
-//   "energy": 500, "learned_energy": 320, "available": 180,
-//   "yuanshen_level": 30, "max_unlocked": 12,
-//   "talents": [
-//     { "index": 1, "id": "research_effect", "name": "神研",
-//       "description": "研究效率提高20%",
-//       "level": 1, "max_level": 1, "value": 20, "per_level": 20,
-//       "cost": 1, "locked": 0 },
-//   ]
-// }
-
-void send_talents(object who) {
-    mapping my, data, one_talent;
-    mixed *talents_arr;
-    int energy, learned, ys_level, max_idx;
-    int i, n, cur_level, cur_value, per_lv, max_lv;
-    string id, full_desc, short_name, desc_text;
-    int colon_pos;
-
-    if (!who || !interactive(who) || !has_gmcp(who)) return;
-
-    my = who->query_entire_dbase();
-    if (!my) return;
-
-    // talent_ability[] etc. come from inherit F_ABILITY
-    if (!talent_ability || !sizeof(talent_ability)) return;
-
-    energy   = (int)my["energy"];
-    learned  = (int)my["learned_energy"];
-    ys_level = (int)my["yuanshen_level"];
-    max_idx  = (ys_level / 10 + 1) * 3;
-
-    n = sizeof(talent_ability);
-    talents_arr = allocate(n);
-
-    for (i = 0; i < n; i++) {
-        id = talent_ability[i];
-
-        full_desc = (i < sizeof(talent_ability_info))
-                    ? talent_ability_info[i] : id;
-
-        // DEBUG: uncomment to verify description parsing
-        // debug_message(sprintf("GMCP talent[%d] raw desc: %s\n", i, full_desc));
-
-        colon_pos = strsrch(full_desc, "\xef\xbc\x9a");
-        if (colon_pos != -1) {
-            short_name = full_desc[0..colon_pos - 1];
-            desc_text  = full_desc[colon_pos + 1..];
-        } else {
-            short_name = full_desc[0..5];
-            desc_text  = full_desc;
-        }
-
-        // DEBUG: uncomment to verify split result
-        debug_message(sprintf("GMCP talent[%d] raw='%s'\n", i, full_desc));
-
-        cur_level = (int)my["talent_count/" + id];
-        cur_value = (int)my["talent/" + id];
-        max_lv    = max_talent_ability[id] || 5;
-        per_lv    = talent_ability_data[id] || 1;
-
-        one_talent = ([
-            "index":       i + 1,
-            "id":          id,
-            "name":        short_name,
-            "description": desc_text,
-            "level":       cur_level,
-            "max_level":   max_lv,
-            "value":       cur_value,
-            "per_level":   per_lv,
-            "cost":        1,
-            "locked":      ((i + 1) > max_idx) ? 1 : 0,
-        ]);
-        talents_arr[i] = one_talent;
-    }
-
-    data = ([
-        "energy":         energy,
-        "learned_energy": learned,
-        "available":      energy - learned,
-        "yuanshen_level": ys_level,
-        "max_unlocked":   max_idx,
-        "talents":        talents_arr,
-    ]);
-
-    gmcp_send(who, "Char.Talents", data);
-}
-
-// ─── Handle Char.Talents.Improve ───
-// Client sends: Char.Talents.Improve {"index": N}
-void handle_talent_improve(object who, mapping params) {
-    int idx, max_idx, ys_level;
-    string id;
-
-    if (!who || !mapp(params)) return;
-
-    idx = (int)params["index"];
-    if (idx < 1 || idx > sizeof(talent_ability)) {
-        tell_object(who, "沒有此代碼的天賦技能。\n");
-        return;
-    }
-
-    id = talent_ability[idx - 1];
-    ys_level = (int)query("yuanshen_level", who);
-    max_idx = (ys_level / 10 + 1) * 3;
-
-    if (idx > max_idx) {
-        tell_object(who, "你的元神境界還不足以掌握更高的天賦技能。\n");
-        return;
-    }
-
-    if (!valid_ability_improve(who, id, 2)) {
-        tell_object(who, "你的元神境界還不足以掌握更高的該項能力。\n");
-        return;
-    }
-
-    if (!do_ability_cost(who, id, 2)) {
-        tell_object(who, "你沒有足夠的天賦點儲蓄來提高此項能力。\n");
-        return;
-    }
-
-    improve_ability(who, id, 2);
-    tell_object(who, "該第" + idx + "天賦技能提高完畢。\n");
-
-    send_talents(who);
-    send_buffs(who);
-}
-
-// ─── Char.Inventory ───
+// ——— Char.Inventory ———
 // Sends full inventory + equipment slots + equipment sets + fullsuit data.
 //
 // Payload:
@@ -523,7 +483,7 @@ void send_inventory(object who) {
     gmcp_send(who, "Char.Inventory", data);
 }
 
-// ─── Char.Info ───
+// ——— Char.Info ———
 
 void send_info(object who) {
     mapping data;
@@ -540,7 +500,7 @@ void send_info(object who) {
     gmcp_send(who, "Char.Info", data);
 }
 
-// ─── Chat.Line ───
+// ——— Chat.Line ———
 
 varargs void send_chat(object who, string channel, string speaker,
     string message, string raw_text)
@@ -562,7 +522,7 @@ varargs void send_chat(object who, string channel, string speaker,
     gmcp_send(who, "Chat.Line", data);
 }
 
-// ─── Chat.Channels ───
+// ——— Chat.Channels ———
 
 void send_channels(object who) {
     mixed *channel_info, *channel_list, *using_ch;
@@ -598,7 +558,7 @@ void send_channels(object who) {
     gmcp_send(who, "Chat.Channels", data);
 }
 
-// ─── Chat.Channels.Tune ───
+// ——— Chat.Channels.Tune ———
 
 void handle_tune(object who, string channel_cmd) {
     mixed *channel_info, *using_ch;
@@ -652,7 +612,7 @@ void handle_tune(object who, string channel_cmd) {
     send_channels(who);
 }
 
-// ─── Chat.Channels.Send ───
+// ——— Chat.Channels.Send ———
 
 void handle_chat_send(object who, string channel_cmd, string message) {
     if (!who || !stringp(channel_cmd) || !stringp(message)) return;
@@ -660,7 +620,7 @@ void handle_chat_send(object who, string channel_cmd, string message) {
     CHANNEL_D->do_channel(who, channel_cmd, message);
 }
 
-// ─── Room.Info ───
+// ——— Room.Info ———
 
 void send_room(object who) {
     object env;
@@ -684,7 +644,7 @@ void send_room(object who) {
     gmcp_send(who, "Room.Info", data);
 }
 
-// ─── Equipment Set Handlers (silent, no console output) ───
+// ——— Equipment Set Handlers (silent, no console output) ———
 
 // Save current equipment as set N
 void handle_equip_save_set(object who, mapping params) {
@@ -730,7 +690,7 @@ void handle_equip_load_set(object who, mapping params) {
     who->gmcp_equip_set(to_int(num));
 }
 
-// ─── Handle Incoming GMCP ───
+// ——— Handle Incoming GMCP ———
 
 void handle_gmcp(object who, string raw_message) {
     string package, json_str, ch_cmd, msg;
@@ -770,14 +730,8 @@ void handle_gmcp(object who, string raw_message) {
             send_buffs(who);
             break;
 
-        case "Char.Talents.Request":
-            send_talents(who);
-            break;
-
-        case "Char.Talents.Improve":
-            params = parse_json_object(json_str);
-            if (params)
-                handle_talent_improve(who, params);
+        case "Char.Skills.Request":
+            send_skills(who);
             break;
 
         case "Char.Inventory.Request":
