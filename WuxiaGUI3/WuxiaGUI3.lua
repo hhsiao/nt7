@@ -716,8 +716,15 @@ function WuxiaGUI3._buildTalents()
     bgLabel:setStyleSheet("background-color: #0a0806;")
   end
 
+  -- Dark overlay for text readability
+  local overlay = Geyser.Label:new({
+    name = "W3.talent.overlay",
+    x = 0, y = 0, width = PW, height = "100%",
+  }, p)
+  overlay:setStyleSheet("background-color: rgba(0,0,0,0.45);")
+
   -- ── Layer 2: Content (between top and bottom frame) ──
-  local y = topH + 2
+  local y = topH + 16
 
   -- Points summary bar
   y = makeLabel(p, "talentPoints", y, 20)
@@ -728,10 +735,10 @@ function WuxiaGUI3._buildTalents()
 
   -- Column header row
   local colHdr = Geyser.Label:new({
-    name = "W3.talent.colHdr", x = MX, y = y, width = GW, height = 16,
+    name = "W3.talent.colHdr", x = 16, y = y, width = GW, height = 16,
   }, p)
   colHdr:setStyleSheet("background-color:transparent;")
-  colHdr:setFontSize(7)
+  colHdr:setFontSize(8)
   colHdr:echo(
     span(TEXT_DIM, "天賦名稱") ..
     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ..
@@ -2885,6 +2892,9 @@ function WuxiaGUI3._registerChatGMCP()
     end
     if WuxiaGUI3._repositionInvBot then
       tempTimer(0.1, WuxiaGUI3._repositionInvBot)
+    end
+    if WuxiaGUI3._renderTalentScroll then
+      tempTimer(0.1, WuxiaGUI3._renderTalentScroll)
     end
     if WuxiaGUI3._renderTalentScroll then
       tempTimer(0.1, WuxiaGUI3._renderTalentScroll)
