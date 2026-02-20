@@ -5317,8 +5317,10 @@ function WuxiaGUI3._renderRadarChart()
     { name = "福緣", val = tonumber(s.kar) or 0,  angle = 210 },
   }
 
+  local attrKeys = { "str", "int", "con", "dex", "per", "kar" }
   local dataPts = {}
   local labelPositions = {}
+  local vertexPoints = {}  -- actual polygon vertex positions for hover zones
 
   for idx, a in ipairs(attrs) do
     local rad = math.rad(a.angle)
@@ -5326,15 +5328,16 @@ function WuxiaGUI3._renderRadarChart()
     local ratio = a.val / perfectVal
     local dr = R * ratio
     local voff = vertexOffsets[idx] or { dx = 0, dy = 0 }
-    dataPts[#dataPts+1] = string.format("%.1f,%.1f",
-      cx + dr * math.cos(rad) + voff.dx * ratio,
-      cy + dr * math.sin(rad) + voff.dy * ratio)
+    local vx = cx + dr * math.cos(rad) + voff.dx * ratio
+    local vy = cy + dr * math.sin(rad) + voff.dy * ratio
+    dataPts[#dataPts+1] = string.format("%.1f,%.1f", vx, vy)
+    vertexPoints[#vertexPoints+1] = { x = vx, y = vy, key = attrKeys[idx] }
 
     local off = labelOffsets[idx] or { dx = 0, dy = 0 }
     labelPositions[#labelPositions+1] = {
       x = cx + labelR * math.cos(rad) + off.dx,
       y = cy + labelR * math.sin(rad) + off.dy,
-      name = a.name, val = a.val
+      name = a.name, val = a.val, key = attrKeys[idx]
     }
   end
 
@@ -5380,10 +5383,233 @@ function WuxiaGUI3._renderRadarChart()
       '<div style="text-align:center;%s"><span style="color:#e8c170;font-size:12px;">%s</span><br>' ..
       '<span style="color:%s;font-size:11px;font-weight:bold;">%d</span></div>',
       SHADOW, lp.name, vc, lp.val))
+
+    -- Invisible hover catch layer covers the full label area
+    -- Prevents tooltip flickering when cursor falls between text lines
+    if not WuxiaGUI3._radarHoverCatch then
+      WuxiaGUI3._radarHoverCatch = {}
+    end
+    local hName = "W3.attr.rhov" .. i
+    local hov = WuxiaGUI3._radarHoverCatch[i]
+    if not hov then
+      hov = Geyser.Label:new({
+        name = hName, x = 0, y = 0, width = 70, height = 30,
+      }, parent)
+      hov:setStyleSheet("background-color:transparent;")
+      WuxiaGUI3._radarHoverCatch[i] = hov
+    end
+    hov:move(lx, ly)
+    hov:raiseAll()
+    hov:setOnEnter("WuxiaGUI3._onAttrLabelEnter", lp.key)
+    hov:setOnLeave("WuxiaGUI3._onAttrLabelLeave")
+  end
+
+  -- Store vertex points for highlight functions
+  WuxiaGUI3._lastVertexPoints = vertexPoints
+
+  -- Vertex hover zones (invisible 30x30 squares at each polygon vertex)
+  if not WuxiaGUI3._radarVertexZones then
+    WuxiaGUI3._radarVertexZones = {}
+  end
+  local vtxParent = label
+  for i, dp in ipairs(vertexPoints) do
+    local zName = "W3.attr.vtx" .. i
+    local z = WuxiaGUI3._radarVertexZones[i]
+    if not z then
+      z = Geyser.Label:new({
+        name = zName, x = 0, y = 0, width = 30, height = 30,
+      }, vtxParent)
+      z:setStyleSheet("background-color:transparent;")
+      WuxiaGUI3._radarVertexZones[i] = z
+    end
+    z:move(math.floor(dp.x - 15), math.floor(dp.y - 15))
+    z:raiseAll()
+    z:setOnEnter("WuxiaGUI3._onAttrLabelEnter", dp.key)
+    z:setOnLeave("WuxiaGUI3._onAttrLabelLeave")
   end
 
   label:setStyleSheet("background-color:transparent;")
   label:echo("")
+end
+
+-- ─── Attribute hover tooltip ───
+-- Maps attribute key to its "故事" (story) gift key
+WuxiaGUI3._attrStoryKey = {
+  str = "sun",       -- gift/sun
+  int = "water",     -- gift/water
+  con = "lighting",  -- gift/lighting
+  dex = "feng",      -- gift/feng
+  per = "pergive",   -- gift/pergive
+  kar = "kargive",   -- gift/kargive
+}
+
+WuxiaGUI3._attrKeyToCN = {
+  str = "膂力", int = "悟性", con = "根骨",
+  dex = "身法", per = "容貌", kar = "福緣",
+}
+
+function WuxiaGUI3._showAttrTooltip(attrKey)
+  local s = WuxiaGUI3.status
+  if not s then return end
+
+  -- Create tooltip label if not exists (parented to main container, not radar)
+  if not WuxiaGUI3._attrTooltip then
+    WuxiaGUI3._attrTooltip = Geyser.Label:new({
+      name = "W3.attr.tooltip",
+      x = 0, y = 0, width = 200, height = 120,
+    }, WuxiaGUI3._attrRadarLabel)
+    WuxiaGUI3._attrTooltip:setStyleSheet([[
+      background-color: rgba(10,8,16,0.92);
+      border: 1px solid #8b7340;
+      border-radius: 4px;
+    ]])
+    WuxiaGUI3._attrTooltip:setFontSize(9)
+    WuxiaGUI3._attrTooltip:hide()
+  end
+  local tip = WuxiaGUI3._attrTooltip
+
+  -- Get raw data from GMCP status
+  local gift = s.gift or {}
+  local jm   = s.jm or {}
+  local ys   = s.ys or {}
+
+  local cnName = WuxiaGUI3._attrKeyToCN[attrKey] or attrKey
+  local storyKey = WuxiaGUI3._attrStoryKey[attrKey]
+
+  local giftSub = gift[attrKey] or {}
+  local succeed = tonumber(giftSub.succeed) or 0
+  local fail    = tonumber(giftSub.fail) or 0
+  local story   = 0
+  if storyKey then
+    story = tonumber(gift[storyKey]) or 0
+  end
+  local jmVal  = tonumber(jm[attrKey]) or 0
+  local ysVal  = tonumber(ys[attrKey]) or 0
+
+  local sKey = (attrKey == "int") and "int_" or attrKey
+  local total = tonumber(s[sKey]) or 0
+  local base = total - succeed - story - jmVal - ysVal
+
+  local S = "text-shadow:1px 1px 2px #000;"
+  local GOLD = "#e8c170"
+  local DIM  = "#777"
+
+  local function cv(val, color)
+    local c2 = (val == 0) and DIM or color
+    return string.format('<span style="color:%s;">%d</span>', c2, val)
+  end
+
+  local html = string.format(
+    '<div style="padding:6px;%s">' ..
+    '<div style="text-align:center;color:%s;font-size:13px;font-weight:bold;margin-bottom:3px;">%s</div>' ..
+    '<table style="width:100%%;color:#ccc;font-size:10px;border-spacing:2px 1px;">' ..
+    '<tr><td style="color:#999;">初始</td><td align="right">%s</td>' ..
+        '<td width="12"></td>' ..
+        '<td style="color:#999;">先天</td><td align="right">%s</td></tr>' ..
+    '<tr><td style="color:#999;">成功</td><td align="right">%s</td>' ..
+        '<td></td>' ..
+        '<td style="color:#999;">失敗</td><td align="right">%s</td></tr>' ..
+    '<tr><td style="color:#999;">故事</td><td align="right">%s</td>' ..
+        '<td></td>' ..
+        '<td style="color:#999;">經脈</td><td align="right">%s</td></tr>' ..
+    '<tr><td style="color:#999;">元神</td><td align="right">%s</td>' ..
+        '<td></td><td></td><td></td></tr>' ..
+    '</table></div>',
+    S, GOLD, cnName,
+    cv(base, "#ddd"), cv(total, "#55cc55"),
+    cv(succeed, "#ddd"), cv(fail, "#cc5555"),
+    cv(story, "#cc88ee"), cv(jmVal, "#5599ee"),
+    cv(ysVal, "#eedd55")
+  )
+
+  tip:echo(html)
+  tip:show()
+  tip:raiseAll()
+
+  -- Position tooltip near mouse cursor
+  local mx, my = getMousePosition()
+  local radarLabel = WuxiaGUI3._attrRadarLabel
+  if radarLabel and mx and my then
+    -- Convert screen coords to radarLabel-relative coords
+    local rx, ry = radarLabel:get_x(), radarLabel:get_y()
+    local localX = mx - rx + 15
+    local localY = my - ry + 15
+    -- Keep within radar area
+    if localX + 200 > 320 then localX = localX - 230 end
+    if localX < 0 then localX = 0 end
+    if localY + 120 > 320 then localY = localY - 150 end
+    if localY < 0 then localY = 0 end
+    tip:move(localX, localY)
+  end
+
+  -- Highlight the hovered attribute label
+  WuxiaGUI3._highlightAttrLabel(attrKey)
+end
+
+function WuxiaGUI3._hideAttrTooltip()
+  if WuxiaGUI3._attrTooltip then
+    WuxiaGUI3._attrTooltip:hide()
+  end
+  WuxiaGUI3._unhighlightAttrLabels()
+end
+
+function WuxiaGUI3._highlightAttrLabel(attrKey)
+  local attrOrder = { "str", "int", "con", "dex", "per", "kar" }
+  local widgets = WuxiaGUI3._radarLabelWidgets
+  if not widgets then return end
+
+  -- Highlight text label
+  for i, k in ipairs(attrOrder) do
+    local w = widgets[i]
+    if w then
+      if k == attrKey then
+        w:setStyleSheet("background-color:rgba(232,193,112,0.15); border:1px solid rgba(232,193,112,0.4); border-radius:3px;")
+      else
+        w:setStyleSheet("background-color:transparent;")
+      end
+    end
+  end
+
+  -- Radial glow on hovered vertex zone
+  local zones = WuxiaGUI3._radarVertexZones
+  if zones then
+    for i, k in ipairs(attrOrder) do
+      local z = zones[i]
+      if z then
+        if k == attrKey then
+          z:setStyleSheet("background-color:transparent; border-radius:15px; border:2px solid rgba(100,255,100,0.6); background:qradialgradient(cx:0.5,cy:0.5,radius:0.5,fx:0.5,fy:0.5,stop:0 rgba(100,255,100,0.4),stop:1 rgba(100,255,100,0));")
+        else
+          z:setStyleSheet("background-color:transparent;")
+        end
+      end
+    end
+  end
+end
+
+function WuxiaGUI3._unhighlightAttrLabels()
+  local widgets = WuxiaGUI3._radarLabelWidgets
+  if not widgets then return end
+  for i = 1, 6 do
+    local w = widgets[i]
+    if w then
+      w:setStyleSheet("background-color:transparent;")
+    end
+  end
+  local zones = WuxiaGUI3._radarVertexZones
+  if zones then
+    for i = 1, 6 do
+      local z = zones[i]
+      if z then z:setStyleSheet("background-color:transparent;") end
+    end
+  end
+end
+
+function WuxiaGUI3._onAttrLabelEnter(attrKey)
+  WuxiaGUI3._showAttrTooltip(attrKey)
+end
+
+function WuxiaGUI3._onAttrLabelLeave()
+  WuxiaGUI3._hideAttrTooltip()
 end
 
 function WuxiaGUI3._refreshAttributes()
@@ -6617,6 +6843,11 @@ function WuxiaGUI3.registerEvents()
     s.yuanshen_next   = tonumber(gs.yuanshen_next) or s.yuanshen_next
     s.death_protect   = tonumber(gs.death_protect) or s.death_protect
     s.kill_protect    = tonumber(gs.kill_protect) or s.kill_protect
+
+    -- Attribute breakdown (nested tables - assign directly)
+    if type(gs.gift) == "table" then s.gift = gs.gift end
+    if type(gs.jm) == "table" then s.jm = gs.jm end
+    if type(gs.ys) == "table" then s.ys = gs.ys end
 
     -- Skills
     s.force          = tonumber(gs.force) or s.force

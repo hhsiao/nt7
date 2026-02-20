@@ -36,6 +36,7 @@ nosave string *STATUS_KEYS = ({
     "combat_exp", "special_skill", "xuemai",
     "die_protect", "no_newbie", "newbie",
     "yuanshen_exp", "energy", "learned_energy",
+    "gift", "jm", "ys",
 });
 
 // Top-level dbase keys whose changes trigger Char.Buffs push

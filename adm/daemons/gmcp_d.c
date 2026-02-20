@@ -306,6 +306,9 @@ void send_status(object who) {
                             (my["newbie"] || my["combat_exp"] < 20000000) ? 1 : 0,
         "kill_protect":     (mapp(my["die_protect"]) &&
                             (int)my["die_protect"]["last_dead"] + (int)my["die_protect"]["duration"] >= time()) ? 1 : 0,
+        "gift":             mapp(my["gift"]) ? my["gift"] : ([]),
+        "jm":               mapp(my["jm"]) ? my["jm"] : ([]),
+        "ys":               mapp(my["ys"]) ? my["ys"] : ([]),
     ]);
 
     gmcp_send(who, "Char.Status", data);
