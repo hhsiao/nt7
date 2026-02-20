@@ -918,6 +918,25 @@ string get_ability_idf(object me, string arg, int flag) {
     return (tough_level_desc[lev] + "（"+ desc + "）");
 }
 
+
+// ——— GMCP query helpers for send_talents ———
+
+string *query_talent_ids() {
+    return talent_ability;
+}
+
+string *query_talent_infos() {
+    return talent_ability_info;
+}
+
+mapping query_talent_max() {
+    return max_talent_ability;
+}
+
+mapping query_talent_per_level() {
+    return talent_ability_data;
+}
+
 /*
  * 天賦系修改 設置，已完成幸運系。
  * 攻擊系

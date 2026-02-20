@@ -230,7 +230,8 @@ void send_vitals(object who) {
 
 void send_status(object who) {
     mapping my, data;
-    int exp, wugong_level, lv, next_level_exp;
+    int exp, wugong_level, lv, next_level_exp, lv2;
+    int max_jiali, max_jianu, need2;
 
     if (!who || !interactive(who) || !has_gmcp(who)) return;
 
@@ -243,6 +244,28 @@ void send_status(object who) {
     if (lv < 1) lv = 1;
     next_level_exp = (lv + 1) * (lv + 1) * (lv + 1) * 10000 - my["combat_exp"];
     if (next_level_exp < 1) next_level_exp = 1;
+
+    // Max jiali (from hp -m logic)
+    max_jiali = (int)who->query_skill("force") / 2;
+    if (mapp(my["special_skill"]) && my["special_skill"]["might"])
+        max_jiali += max_jiali * 20 / 100;
+    max_jiali += (int)who->query_all_buff("jiali");
+
+    // Max jianu (from hp -m logic)
+    if (mapp(my["special_skill"]) && my["special_skill"]["wrath"])
+        max_jianu = (int)who->query_max_craze() / 70;
+    else
+        max_jianu = (int)who->query_max_craze() / 100;
+    if (max_jianu < 0) max_jianu = 0;
+
+    // Yuanshen progress (from hp -m logic)
+    lv2 = (int)my["yuanshen_level"];
+    if (lv2 < 1)
+        need2 = 10000000000 - my["combat_exp"];
+    else if (lv2 == 100)
+        need2 = 0;
+    else
+        need2 = (lv2 + 1) * (lv2 + 1) * (lv2 + 1) * 10000 - (int)my["yuanshen_exp"];
 
     data = ([
         "name":         who->name(1),
@@ -270,22 +293,19 @@ void send_status(object who) {
         "active":       my["active"],
         "xuemai_level": my["xuemai_level"],
         "yuanshen_level": my["yuanshen_level"],
-        "force":        (int)who->query_skill("force"),
-        "dodge":        (int)who->query_skill("dodge"),
-        "parry":        (int)who->query_skill("parry"),
-        "unarmed":      (int)who->query_skill("unarmed"),
-        "sword":        (int)who->query_skill("sword"),
-        "blade":        (int)who->query_skill("blade"),
-        "staff":        (int)who->query_skill("staff"),
-        "whip":         (int)who->query_skill("whip"),
-        "throwing":     (int)who->query_skill("throwing"),
-        "shooting":     (int)who->query_skill("shooting"),
-        "literate":     (int)who->query_skill("literate"),
-        "martial-arts": (int)who->query_skill("martial-arts"),
         "raw_potential":    my["potential"],
         "learned_points":   my["learned_points"],
         "raw_experience":   my["experience"],
         "learned_experience": my["learned_experience"],
+        "max_jiali":        max_jiali,
+        "max_jianu":        max_jianu,
+        "xuemai_progress":  mapp(my["xuemai"]) ? 100 - (int)my["xuemai"]["points"] : 100,
+        "yuanshen_next":    need2,
+        "death_protect":    (!mapp(my["combat"]) || !my["combat"]["WPK"]) &&
+                            !my["no_newbie"] &&
+                            (my["newbie"] || my["combat_exp"] < 20000000) ? 1 : 0,
+        "kill_protect":     (mapp(my["die_protect"]) &&
+                            (int)my["die_protect"]["last_dead"] + (int)my["die_protect"]["duration"] >= time()) ? 1 : 0,
     ]);
 
     gmcp_send(who, "Char.Status", data);
@@ -692,6 +712,102 @@ void handle_equip_load_set(object who, mapping params) {
 
 // ——— Handle Incoming GMCP ———
 
+
+// ——— Char.Talents ———
+#ifndef ABILITY_D
+#define ABILITY_D "/adm/daemons/abilityd"
+#endif
+
+void send_talents(object who) {
+    mapping my, data;
+    mixed *talents;
+    string *talent_ids, *talent_infos;
+    mapping talent_max, talent_per_lv;
+    int i, n, energy, learned_energy, yuanshen_level, max_unlocked;
+    object ability_d;
+
+    if (!who || !interactive(who) || !has_gmcp(who)) return;
+
+    my = who->query_entire_dbase();
+    if (!my) return;
+
+    ability_d = find_object(ABILITY_D);
+    if (!ability_d) ability_d = load_object(ABILITY_D);
+    if (!ability_d) return;
+
+    talent_ids    = ability_d->query_talent_ids();
+    talent_infos  = ability_d->query_talent_infos();
+    talent_max    = ability_d->query_talent_max();
+    talent_per_lv = ability_d->query_talent_per_level();
+
+    if (!arrayp(talent_ids) || !sizeof(talent_ids)) return;
+
+    n = sizeof(talent_ids);
+    energy = (int)my["energy"];
+    learned_energy = (int)my["learned_energy"];
+    yuanshen_level = (int)my["yuanshen_level"];
+
+    // Talents unlock in tiers of 3
+    max_unlocked = 0;
+    for (i = 0; i < n; i++) {
+        if (yuanshen_level >= (i / 3) * 10)
+            max_unlocked = i + 1;
+    }
+
+    talents = ({});
+    for (i = 0; i < n; i++) {
+        string id, info_text, name, description;
+        int level, max_level, value, per_level, locked, colon_pos;
+        mapping talent_entry;
+
+        id = talent_ids[i];
+        level = (int)my["talent_count/" + id];
+        max_level = talent_max[id] || 5;
+        value = (int)my["talent/" + id];
+        per_level = talent_per_lv[id] || 0;
+        locked = (yuanshen_level < (i / 3) * 10) ? 1 : 0;
+
+        name = id;
+        description = "";
+        if (arrayp(talent_infos) && i < sizeof(talent_infos)) {
+            info_text = talent_infos[i];
+            if (stringp(info_text)) {
+                colon_pos = strsrch(info_text, "：");
+                if (colon_pos > 0) {
+                    name = info_text[0..colon_pos - 1];
+                    description = info_text[colon_pos + 1..];
+                } else {
+                    name = info_text;
+                }
+            }
+        }
+
+        talent_entry = ([
+            "index":       i + 1,
+            "id":          id,
+            "name":        name,
+            "description": description,
+            "level":       level,
+            "max_level":   max_level,
+            "value":       value,
+            "per_level":   per_level,
+            "locked":      locked,
+        ]);
+        talents += ({ talent_entry });
+    }
+
+    data = ([
+        "energy":         energy,
+        "learned_energy": learned_energy,
+        "available":      energy - learned_energy,
+        "yuanshen_level": yuanshen_level,
+        "max_unlocked":   max_unlocked,
+        "talents":        talents,
+    ]);
+
+    gmcp_send(who, "Char.Talents", data);
+}
+
 void handle_gmcp(object who, string raw_message) {
     string package, json_str, ch_cmd, msg;
     int space_pos;
@@ -732,6 +848,10 @@ void handle_gmcp(object who, string raw_message) {
 
         case "Char.Skills.Request":
             send_skills(who);
+            break;
+
+        case "Char.Talents.Request":
+            send_talents(who);
             break;
 
         case "Char.Inventory.Request":

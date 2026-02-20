@@ -73,6 +73,9 @@ WuxiaGUI3.status = {
   force=0, dodge=0, parry=0, unarmed=0,
   sword=0, blade=0, staff=0, whip=0,
   throwing=0, shooting=0, literate=0,
+  max_jiali=0, max_jianu=0,
+  xuemai_progress=100, yuanshen_next=0,
+  death_protect=0, kill_protect=0,
 }
 
 -- Char.Buffs: raw source data from server
@@ -506,69 +509,123 @@ end
 -- ═══════════════════════════════════════════════
 function WuxiaGUI3._buildAttributes()
   local p = WuxiaGUI3.tabContainers["屬性"]
-  local y = 4
+  local imgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
+  local bannerPath = imgDir .. "wuxia_attr_banner.png"
+  local bgPath     = imgDir .. "wuxia_attr_bg.png"
+  local fh
+  local y = 0
 
-  -- Section: 六大屬性
-  local hdr = Geyser.Label:new({
-    name = "W3.attr.hdr", x = MX, y = y, width = GW, height = 18,
+  -- Zone 1: Decorative Top Banner
+  local banner1 = Geyser.Label:new({
+    name = "W3.attr.banner1", x = 0, y = y, width = PW, height = 40,
   }, p)
-  hdr:setStyleSheet("background-color:transparent;")
-  hdr:setFontSize(10)
-  hdr:echo(span(GOLD, "── 六大屬性 ──"))
-  y = y + 22
+  fh = io.open(bannerPath, "r")
+  if fh then fh:close()
+    banner1:setStyleSheet("background-color:transparent; border-image:url("..bannerPath..") 0 0 0 0 stretch stretch;")
+  else
+    banner1:setStyleSheet("background-color:#0a0806;")
+  end
+  y = y + 40
 
-  -- 6 attributes displayed as a 2-column grid
-  y = makeLabel(p, "attrGrid", y, 80)
+  -- Zone 2: Radar Chart
+  -- Background image offset (pixels) to center the bagua image.
+  -- Adjust these if the bagua hexagon isn't centered in the 320x320 area.
+  local bgOffsetX = 0   -- positive = shift image right
+  local bgOffsetY = 0   -- positive = shift image down
+  local radarBg = Geyser.Label:new({
+    name = "W3.attr.radarBg", x = bgOffsetX, y = y + bgOffsetY,
+    width = PW, height = 320,
+  }, p)
+  fh = io.open(bgPath, "r")
+  if fh then fh:close()
+    radarBg:setStyleSheet("background-color:transparent; border-image:url("..bgPath..") 0 0 0 0 stretch stretch;")
+  else
+    radarBg:setStyleSheet("background-color:#0a0810;")
+  end
+  WuxiaGUI3._attrRadarBg = radarBg
+
+  local radarOverlay = Geyser.Label:new({
+    name = "W3.attr.radarOverlay", x = 0, y = y, width = PW, height = 320,
+  }, p)
+  radarOverlay:setStyleSheet("background-color:rgba(0,0,0,0.15);")
+
+  local radarLabel = Geyser.Label:new({
+    name = "W3.attr.radar", x = 0, y = y, width = PW, height = 320,
+  }, p)
+  radarLabel:setStyleSheet("background-color:transparent;")
+  WuxiaGUI3._attrRadarLabel = radarLabel
+
+  local radarPoly = Geyser.Label:new({
+    name = "W3.attr.radarPoly", x = 0, y = y, width = PW, height = 320,
+  }, p)
+  radarPoly:setStyleSheet("background-color:transparent;")
+  radarPoly:raiseAll()
+  WuxiaGUI3._attrRadarPoly = radarPoly
+
+  -- Raise text label above polygon
+  radarLabel:raiseAll()
+  -- Radar zone height for layout. Reduce to move everything below upward.
+  -- Default 320; e.g. set to 300 to pull the 等級 section up by 20px.
+  local radarZoneH = 295
+  y = y + radarZoneH
+
+  -- Banner separator
+  local banner2 = Geyser.Label:new({
+    name = "W3.attr.banner2", x = 0, y = y, width = PW, height = 30,
+  }, p)
+  fh = io.open(bannerPath, "r")
+  if fh then fh:close()
+    banner2:setStyleSheet("background-color:transparent; border-image:url("..bannerPath..") 0 0 0 0 stretch stretch;")
+  else
+    banner2:setStyleSheet("background-color:#0a0806;")
+  end
+  y = y + 30
+
+  -- Zone 3: Progression Grid
+  local SHADOW = "text-shadow:1px 1px 3px #000, 0px 0px 6px #000;"
+  local hdr1 = Geyser.Label:new({
+    name = "W3.attr.progHdr1", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  hdr1:setStyleSheet("background-color:transparent;")
+  hdr1:setFontSize(8)
+  hdr1:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 等級 & 修煉 ──") .. '</div>')
+  y = y + 20
+
+  y = makeLabel(p, "attrProgBlock", y, 160)
   y = y + 4
 
-  -- Section: 等級 & 戰鬥
   y = makeSep(p, y)
   local hdr2 = Geyser.Label:new({
-    name = "W3.level.hdr", x = MX, y = y, width = GW, height = 18,
+    name = "W3.attr.progHdr2", x = MX, y = y, width = GW, height = 18,
   }, p)
   hdr2:setStyleSheet("background-color:transparent;")
-  hdr2:setFontSize(10)
-  hdr2:echo(span(GOLD, "── 等級 ──"))
-  y = y + 22
+  hdr2:setFontSize(8)
+  hdr2:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 上限 & 狀態 ──") .. '</div>')
+  y = y + 20
 
-  y = makeLabel(p, "levelBlock", y, 80)
+  y = makeLabel(p, "attrLimitsBlock", y, 120)
   y = y + 4
 
-  -- Section: 上限
-  y = makeSep(p, y)
+  -- Banner separator
+  local banner3 = Geyser.Label:new({
+    name = "W3.attr.banner3", x = 0, y = y, width = PW, height = 30,
+  }, p)
+  fh = io.open(bannerPath, "r")
+  if fh then fh:close()
+    banner3:setStyleSheet("background-color:transparent; border-image:url("..bannerPath..") 0 0 0 0 stretch stretch;")
+  else
+    banner3:setStyleSheet("background-color:#0a0806;")
+  end
+  y = y + 30
+
+  -- Zone 4: Bonus stats with scrollbar
   local hdr3 = Geyser.Label:new({
-    name = "W3.limits.hdr", x = MX, y = y, width = GW, height = 18,
+    name = "W3.attr.bonusHdr", x = MX, y = y, width = GW, height = 18,
   }, p)
   hdr3:setStyleSheet("background-color:transparent;")
-  hdr3:setFontSize(10)
-  hdr3:echo(span(GOLD, "── 上限 ──"))
-  y = y + 22
-
-  y = makeLabel(p, "limitsBlock", y, 80)
-
-  -- Section: 血脈 / 元神
-  y = y + 4
-  y = makeSep(p, y)
-  local hdr4 = Geyser.Label:new({
-    name = "W3.special.hdr", x = MX, y = y, width = GW, height = 18,
-  }, p)
-  hdr4:setStyleSheet("background-color:transparent;")
-  hdr4:setFontSize(10)
-  hdr4:echo(span(GOLD, "── 修煉 ──"))
-  y = y + 22
-
-  y = makeLabel(p, "specialBlock", y, 60)
-
-  -- Section: 附加屬性 (full istat, client-side filtering)
-  y = y + 4
-  y = makeSep(p, y)
-  local hdr5 = Geyser.Label:new({
-    name = "W3.bonusStats.hdr", x = MX, y = y, width = GW, height = 18,
-  }, p)
-  hdr5:setStyleSheet("background-color:transparent;")
-  hdr5:setFontSize(10)
-  hdr5:echo(span(GOLD, "── 附加屬性 ──"))
-  y = y + 22
+  hdr3:setFontSize(8)
+  hdr3:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 附加屬性 ──") .. '</div>')
+  y = y + 20
 
   local filterSources = {
     { key = "all",       label = "總計" },
@@ -600,8 +657,106 @@ function WuxiaGUI3._buildAttributes()
   y = y + math.ceil(#filterSources / 4) * btnH + 4
   WuxiaGUI3._updateBuffsFilterBtns()
 
-  y = makeLabel(p, "bonusStatsInfo", y, 20)
-  y = makeLabel(p, "bonusStatsList", y, 700)
+  y = makeLabel(p, "bonusStatsInfo", y, 18)
+
+  local bonusListY = y
+  local bonusListH = 500
+
+  local bonusListLabel = Geyser.Label:new({
+    name = "W3.attr.bonusList",
+    x = MX, y = bonusListY, width = GW - 10, height = bonusListH,
+  }, p)
+  bonusListLabel:setStyleSheet("background-color:transparent; qproperty-alignment: 'AlignLeft | AlignTop';")
+  bonusListLabel:setFontSize(9)
+  WuxiaGUI3._bonusListLabel = bonusListLabel
+
+  local sbTrack = Geyser.Label:new({
+    name = "W3.attr.bonusSbTrack",
+    x = PW - MX - 8, y = bonusListY + 2,
+    width = 6, height = bonusListH - 4,
+  }, p)
+  sbTrack:setStyleSheet("background-color:rgba(30,15,8,0.6); border:1px solid #3a2a1a; border-radius:3px;")
+  sbTrack:raiseAll()
+  WuxiaGUI3._bonusSbTrack = sbTrack
+
+  local sbThumb = Geyser.Label:new({
+    name = "W3.attr.bonusSbThumb",
+    x = 0, y = 0, width = "100%", height = 30,
+  }, sbTrack)
+  sbThumb:setStyleSheet("background-color:rgba(180,140,80,0.7); border-radius:3px;")
+  sbThumb:raiseAll()
+  WuxiaGUI3._bonusSbThumb = sbThumb
+
+  WuxiaGUI3._bonusEntries = {}
+  WuxiaGUI3._bonusScrollPx = 0
+  WuxiaGUI3._bonusLineH = 18
+  WuxiaGUI3._bonusSbThumbRelY = 0
+  WuxiaGUI3._bonusSbThumbRelH = 30
+  WuxiaGUI3._bonusSbDragging = false
+
+  local function totalContentH()
+    local h = 0
+    for _, e in ipairs(WuxiaGUI3._bonusEntries or {}) do h = h + e.h end
+    return h
+  end
+
+  local function applyThumbY(newThumbY)
+    local trackH = sbTrack:get_height()
+    local thumbH = WuxiaGUI3._bonusSbThumbRelH or 30
+    local maxThumbY = trackH - thumbH
+    if maxThumbY <= 0 then return end
+    newThumbY = math.max(0, math.min(maxThumbY, newThumbY))
+    local labelH = bonusListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local maxPx = math.max(0, totalContentH() - labelH)
+    WuxiaGUI3._bonusScrollPx = math.floor(maxPx * newThumbY / maxThumbY + 0.5)
+    WuxiaGUI3._renderBonusScroll()
+  end
+
+  sbThumb:setClickCallback(function(event)
+    WuxiaGUI3._bonusSbDragging = true
+    WuxiaGUI3._bonusSbDragStartGlobalY = event.globalY
+    WuxiaGUI3._bonusSbDragStartThumbY = WuxiaGUI3._bonusSbThumbRelY or 0
+  end)
+  sbThumb:setMoveCallback(function(event)
+    if not WuxiaGUI3._bonusSbDragging then return end
+    local deltaY = event.globalY - WuxiaGUI3._bonusSbDragStartGlobalY
+    applyThumbY(WuxiaGUI3._bonusSbDragStartThumbY + deltaY)
+  end)
+  sbThumb:setReleaseCallback(function()
+    WuxiaGUI3._bonusSbDragging = false
+  end)
+
+  sbTrack:setClickCallback(function(event)
+    local thumbY = WuxiaGUI3._bonusSbThumbRelY or 0
+    local thumbH = WuxiaGUI3._bonusSbThumbRelH or 30
+    if event.y >= thumbY and event.y <= thumbY + thumbH then return end
+    local labelH = bonusListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local maxPx = math.max(0, totalContentH() - labelH)
+    if event.y < thumbY then
+      WuxiaGUI3._bonusScrollPx = math.max(0, WuxiaGUI3._bonusScrollPx - labelH)
+    else
+      WuxiaGUI3._bonusScrollPx = math.min(maxPx, WuxiaGUI3._bonusScrollPx + labelH)
+    end
+    WuxiaGUI3._renderBonusScroll()
+  end)
+  sbTrack:setReleaseCallback(function() end)
+
+  bonusListLabel:setWheelCallback(function(event)
+    if not event then return end
+    local delta = event.angleDeltaY or 0
+    local step = WuxiaGUI3._bonusLineH * 3
+    local labelH = bonusListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local maxPx = math.max(0, totalContentH() - labelH)
+    if delta > 0 then
+      WuxiaGUI3._bonusScrollPx = math.max(0, WuxiaGUI3._bonusScrollPx - step)
+    elseif delta < 0 then
+      WuxiaGUI3._bonusScrollPx = math.min(maxPx, WuxiaGUI3._bonusScrollPx + step)
+    end
+    WuxiaGUI3._renderBonusScroll()
+  end)
 end
 
 function WuxiaGUI3._onBuffsFilterClick(source)
@@ -1274,6 +1429,8 @@ function WuxiaGUI3._buildTalents()
 
   -- Points summary bar
   y = makeLabel(p, "talentPoints", y, 20)
+  WuxiaGUI3.talentPoints:setStyleSheet(
+    "background-color: transparent; padding-left: 6px; qproperty-alignment: 'AlignLeft | AlignVCenter';")
   y = y + 4
 
   -- Separator
@@ -5099,60 +5256,191 @@ function WuxiaGUI3._refreshChatVitals()
 end
 
 -- ─── 屬性 refresh ───
+function WuxiaGUI3._renderRadarChart()
+  local label = WuxiaGUI3._attrRadarLabel
+  if not label then return end
+
+  -- ============================================================
+  -- TUNING SECTION
+  -- ============================================================
+  -- Hexagon/polygon center within the 320x320 radar area.
+  local cx = 160
+  local cy = 148
+
+  -- Perfect hexagon value: when an attribute equals this value,
+  -- its vertex sits exactly at radius R from center.
+  -- Values below this shrink inward proportionally.
+  -- Values above this extend beyond R (no capping).
+  local perfectVal = 40
+
+  -- Radius at perfectVal (distance from center to vertex)
+  local R = 97
+
+  -- Label distance from center
+  local labelR = R + 30
+
+  -- Per-label fine-tune offsets {dx, dy}
+  -- Order: 膂力(top), 悟性(upper-right), 根骨(lower-right),
+  --        身法(bottom), 容貌(lower-left), 福緣(upper-left)
+  local labelOffsets = {
+    { dx = 0, dy = -5 },   -- 膂力 (top)
+    { dx = 5, dy = 0 },    -- 悟性 (upper-right)
+    { dx = 5, dy = 0 },    -- 根骨 (lower-right)
+    { dx = 0, dy = 5 },    -- 身法 (bottom)
+    { dx = -5, dy = 0 },   -- 容貌 (lower-left)
+    { dx = -5, dy = 0 },   -- 福緣 (upper-left)
+  }
+  -- Per-vertex fine-tune offsets {dx, dy} for polygon points.
+  -- Added ON TOP of the computed hexagon vertex position to
+  -- align with the golden dots in the background image.
+  -- Order: 膂力(top), 悟性(upper-right), 根骨(lower-right),
+  --        身法(bottom), 容貌(lower-left), 福緣(upper-left)
+  local vertexOffsets = {
+    { dx = 0, dy = 5 },    -- 膂力 (top)
+    { dx = 1, dy = 2 },    -- 悟性 (upper-right)
+    { dx = 1, dy = -2 },   -- 根骨 (lower-right)
+    { dx = 0, dy = -5 },   -- 身法 (bottom)
+    { dx = -1, dy = -2 },  -- 容貌 (lower-left)
+    { dx = -1, dy = 2 },   -- 福緣 (upper-left)
+  }
+  -- ============================================================
+
+  local W, H = 320, 320
+
+  local s = WuxiaGUI3.status
+  local attrs = {
+    { name = "膂力", val = tonumber(s.str) or 0,  angle = -90 },
+    { name = "悟性", val = tonumber(s.int_) or 0, angle = -30 },
+    { name = "根骨", val = tonumber(s.con) or 0,  angle = 30 },
+    { name = "身法", val = tonumber(s.dex) or 0,  angle = 90 },
+    { name = "容貌", val = tonumber(s.per) or 0,  angle = 150 },
+    { name = "福緣", val = tonumber(s.kar) or 0,  angle = 210 },
+  }
+
+  local dataPts = {}
+  local labelPositions = {}
+
+  for idx, a in ipairs(attrs) do
+    local rad = math.rad(a.angle)
+    -- ratio = val / perfectVal, no capping — can exceed 1.0
+    local ratio = a.val / perfectVal
+    local dr = R * ratio
+    local voff = vertexOffsets[idx] or { dx = 0, dy = 0 }
+    dataPts[#dataPts+1] = string.format("%.1f,%.1f",
+      cx + dr * math.cos(rad) + voff.dx * ratio,
+      cy + dr * math.sin(rad) + voff.dy * ratio)
+
+    local off = labelOffsets[idx] or { dx = 0, dy = 0 }
+    labelPositions[#labelPositions+1] = {
+      x = cx + labelR * math.cos(rad) + off.dx,
+      y = cy + labelR * math.sin(rad) + off.dy,
+      name = a.name, val = a.val
+    }
+  end
+
+  -- SVG polygon
+  local svgStr = '<svg xmlns="http://www.w3.org/2000/svg" width="' .. W .. '" height="' .. H .. '">' ..
+    '<polygon points="' .. table.concat(dataPts, " ") .. '" ' ..
+    'fill="#3cc850" fill-opacity="0.2" stroke="#64ff64" stroke-opacity="0.6" stroke-width="1.5"/>' ..
+    '</svg>'
+
+  local svgPath = getMudletHomeDir() .. "/WuxiaGUI3/radar_poly.svg"
+  local fh = io.open(svgPath, "w")
+  if fh then fh:write(svgStr); fh:close() end
+
+  local polyLabel = WuxiaGUI3._attrRadarPoly
+  if polyLabel then
+    polyLabel:setStyleSheet("background-color:transparent; image:url(" .. svgPath .. ");")
+  end
+
+  -- Text labels
+  if not WuxiaGUI3._radarLabelWidgets then
+    WuxiaGUI3._radarLabelWidgets = {}
+  end
+  local parent = label
+  for i, lp in ipairs(labelPositions) do
+    local wName = "W3.attr.rlbl" .. i
+    local w = WuxiaGUI3._radarLabelWidgets[i]
+    if not w then
+      w = Geyser.Label:new({
+        name = wName, x = 0, y = 0, width = 70, height = 30,
+      }, parent)
+      w:setStyleSheet("background-color:transparent;")
+      w:setFontSize(9)
+      WuxiaGUI3._radarLabelWidgets[i] = w
+    end
+    local lx = math.floor(lp.x - 35)
+    local ly = math.floor(lp.y - 15)
+    w:move(lx, ly)
+    w:raiseAll()
+
+    local vc = lp.val > 0 and "#55cc55" or "#777790"
+    local SHADOW = "text-shadow:1px 1px 3px #000, 0 0 5px #000;"
+    w:echo(string.format(
+      '<div style="text-align:center;%s"><span style="color:#e8c170;font-size:12px;">%s</span><br>' ..
+      '<span style="color:%s;font-size:11px;font-weight:bold;">%d</span></div>',
+      SHADOW, lp.name, vc, lp.val))
+  end
+
+  label:setStyleSheet("background-color:transparent;")
+  label:echo("")
+end
+
 function WuxiaGUI3._refreshAttributes()
   local s = WuxiaGUI3.status
+  local v = WuxiaGUI3.vitals
 
-  -- Attribute grid (2 columns)
-  if WuxiaGUI3.attrGrid then
-    local str = tonumber(s.str) or 0
-    local int_ = tonumber(s.int_) or 0
-    local con = tonumber(s.con) or 0
-    local dex = tonumber(s.dex) or 0
-    local per = tonumber(s.per) or 0
-    local kar = tonumber(s.kar) or 0
+  WuxiaGUI3._renderRadarChart()
 
-    WuxiaGUI3.attrGrid:echo(
-      kv("膂力", str) .. "&nbsp;&nbsp;&nbsp;&nbsp;" .. kv("悟性", int_) .. "<br>" ..
-      kv("根骨", con) .. "&nbsp;&nbsp;&nbsp;&nbsp;" .. kv("身法", dex) .. "<br>" ..
-      kv("容貌", per) .. "&nbsp;&nbsp;&nbsp;&nbsp;" .. kv("福緣", kar)
-    )
+  if WuxiaGUI3.attrProgBlock then
+    local function kv2(l, val, c)
+      return span(TEXT_DIM, l .. " ") .. span(c or WHITE, tostring(val))
+    end
+    local function row(l1, v1, l2, v2)
+      return kv2(l1, v1) .. "&nbsp;&nbsp;&nbsp;" .. kv2(l2, v2)
+    end
+    local t = {}
+    t[#t+1] = row("當前等級", s.level or 1, "升級所需", fmtNum(s.next_level or 0))
+    t[#t+1] = row("武功等級", s.wugong_level or 1, "戰鬥經驗", fmtNum(s.combat_exp or 0))
+    t[#t+1] = row("血脈等級", s.xuemai_level or 0, "升級進度", (s.xuemai_progress or 100) .. "%")
+    t[#t+1] = row("元神等級", s.yuanshen_level or 0, "升級所需", fmtNum(s.yuanshen_next or 0))
+    t[#t+1] = ""
+    t[#t+1] = row("能力點數", s.ability or 0, "成就點數", s.achievement or 0)
+    t[#t+1] = row("活躍點數", s.active or 0, "最大加力", s.max_jiali or 0)
+    t[#t+1] = kv2("最大加怒", s.max_jianu or 0)
+    t[#t+1] = ""
+    local dp = (s.death_protect or 0) == 1 and span("#55cc55", "保護中") or span("#cc5555", "無保護")
+    local kp = (s.kill_protect or 0) == 1 and span("#55cc55", "保護中") or span("#cc5555", "無保護")
+    t[#t+1] = span(TEXT_DIM, "死亡保護 ") .. dp .. "&nbsp;&nbsp;&nbsp;" .. span(TEXT_DIM, "殺戮保護 ") .. kp
+    WuxiaGUI3.attrProgBlock:echo(table.concat(t, "<br>"))
   end
 
-  -- Level block
-  if WuxiaGUI3.levelBlock then
-    WuxiaGUI3.levelBlock:echo(
-      kv("當前等級", s.level or 1) .. "<br>" ..
-      kv("武功等級", s.wugong_level or 1) .. "<br>" ..
-      kv("升級所需", fmtNum(s.next_level or 0)) .. "<br>" ..
-      kv("戰鬥經驗", fmtNum(s.combat_exp or 0))
-    )
+  if WuxiaGUI3.attrLimitsBlock then
+    local function kv2(l, val, c)
+      return span(TEXT_DIM, l .. " ") .. span(c or WHITE, tostring(val))
+    end
+    local function row(l1, v1, l2, v2)
+      return kv2(l1, v1) .. "&nbsp;&nbsp;&nbsp;" .. kv2(l2, v2)
+    end
+    local function miniStat(l, cur, mx, c)
+      cur = tonumber(cur) or 0; mx = tonumber(mx) or 1
+      if mx < 1 then mx = 1 end
+      return span(TEXT_DIM, l .. " ") .. span(c or WHITE, fmtNum(cur) .. "/" .. fmtNum(mx)) .. span(TEXT_DIM, " (" .. math.floor(cur/mx*100) .. "%)")
+    end
+    local t = {}
+    t[#t+1] = row("精力上限", fmtNum(s.jingli_limit or 0), "內力上限", fmtNum(s.neili_limit or 0))
+    t[#t+1] = row("潛能上限", fmtNum(s.potential_limit or 0), "體會上限", fmtNum(s.experience_limit or 0))
+    t[#t+1] = ""
+    t[#t+1] = miniStat("精氣", v.jing, v.eff_jing, "#cc3333")
+    t[#t+1] = miniStat("氣血", v.qi, v.eff_qi, "#33aa44")
+    t[#t+1] = miniStat("精力", v.jingli, v.max_jingli, "#3388cc")
+    t[#t+1] = miniStat("內力", v.neili, v.max_neili, "#aa44cc")
+    WuxiaGUI3.attrLimitsBlock:echo(table.concat(t, "<br>"))
   end
 
-  -- Limits block
-  if WuxiaGUI3.limitsBlock then
-    WuxiaGUI3.limitsBlock:echo(
-      kv("精力上限", fmtNum(s.jingli_limit or 0)) .. "<br>" ..
-      kv("內力上限", fmtNum(s.neili_limit or 0)) .. "<br>" ..
-      kv("潛能上限", fmtNum(s.potential_limit or 0)) .. "<br>" ..
-      kv("體會上限", fmtNum(s.experience_limit or 0))
-    )
-  end
-
-  -- Special block (bloodline, yuanshen)
-  if WuxiaGUI3.specialBlock then
-    WuxiaGUI3.specialBlock:echo(
-      kv("血脈等級", s.xuemai_level or 0) .. "<br>" ..
-      kv("元神等級", s.yuanshen_level or 0) .. "<br>" ..
-      kv("能力點數", s.ability or 0) .. " " ..
-      kv("成就點數", s.achievement or 0)
-    )
-  end
-
-  -- Bonus stats (from Char.Buffs GMCP — raw sources, client-side computed)
   WuxiaGUI3._refreshBonusStats()
 end
 
--- ─── Bonus stats renderer ───
 function WuxiaGUI3._refreshBonusStats()
   local b = WuxiaGUI3.buffs
   if not b then return end
@@ -5161,16 +5449,14 @@ function WuxiaGUI3._refreshBonusStats()
     if WuxiaGUI3.bonusStatsInfo then
       WuxiaGUI3.bonusStatsInfo:echo(span(TEXT_DIM, "等待資料..."))
     end
-    if WuxiaGUI3.bonusStatsList then
-      WuxiaGUI3.bonusStatsList:echo(span(TEXT_DIM, "連線後自動更新"))
-    end
+    WuxiaGUI3._bonusEntries = {}
+    WuxiaGUI3._renderBonusScroll()
     return
   end
 
   local filter = WuxiaGUI3._buffsActiveFilter or "all"
+  local lineH = WuxiaGUI3._bonusLineH or 18
 
-  -- Read value for a key from the active filter source
-  -- "equipment" source comes from inventory data
   local function val(key)
     if filter == "all" then
       local sum = 0
@@ -5208,8 +5494,8 @@ function WuxiaGUI3._refreshBonusStats()
     return span(color or GOLD, "── " .. title .. " ──")
   end
 
-  local lines = {}
-  local function add(s) lines[#lines+1] = s end
+  local entries = {}
+  local function add(html) entries[#entries + 1] = { html = html, h = lineH } end
 
   add(hdr("天賦加成"))
   add(row2("臂力", colorVal(val("str"), 2000), "悟性", colorVal(val("int"), 2000)))
@@ -5264,21 +5550,70 @@ function WuxiaGUI3._refreshBonusStats()
   add(row2("反  噬", colorPct(val("counter_damage"), "90%"), "浴重生", colorPct(val("avoid_die"), "90%")))
   add(row2("致命擊", colorPct(val("fatal_blow"), "90%"), "提技能", colorVal(val("add_skill"), 1200)))
 
+
+  WuxiaGUI3._bonusEntries = entries
+
   if WuxiaGUI3.bonusStatsInfo then
-    local srcNames = {
-      all = "總計", equipment = "裝備", skillmix = "技能組合",
-      jingmai = "經脈", yuanshen = "元神",
-      ability = "能力進階", talent = "天賦", temp = "暫時",
-    }
-    WuxiaGUI3.bonusStatsInfo:echo(
-      span(TEXT_DIM, "附加屬性 ") .. span(GOLD, srcNames[filter] or filter))
+      WuxiaGUI3.bonusStatsInfo:echo(span(TEXT_DIM, "等待資料..."))
+    end
+
+  WuxiaGUI3._renderBonusScroll()
+end
+
+function WuxiaGUI3._renderBonusScroll()
+  local entries = WuxiaGUI3._bonusEntries or {}
+  local label = WuxiaGUI3._bonusListLabel
+  if not label then return end
+  -- DEBUG: uncomment to check scroll values
+  -- debugc(string.format("bonusScroll: entries=%d scrollPx=%d labelH=%d", #entries, WuxiaGUI3._bonusScrollPx or 0, label:get_height()))
+  local track = WuxiaGUI3._bonusSbTrack
+  local thumb = WuxiaGUI3._bonusSbThumb
+  local lineH = WuxiaGUI3._bonusLineH or 18
+
+  if #entries == 0 then
+    label:echo(span(TEXT_DIM, "等待資料..."))
+    if track then track:hide() end
+    return
   end
-  if WuxiaGUI3.bonusStatsList then
-    WuxiaGUI3.bonusStatsList:echo(table.concat(lines, "<br>"))
+
+  local labelH = label:get_height()
+  if labelH <= 0 then labelH = 300 end
+  local contentH = 0
+  for _, e in ipairs(entries) do contentH = contentH + e.h end
+  local maxPx = math.max(0, contentH - labelH)
+  WuxiaGUI3._bonusScrollPx = math.max(0, math.min(WuxiaGUI3._bonusScrollPx or 0, maxPx))
+  local scrollPx = WuxiaGUI3._bonusScrollPx
+
+  local lines = {}
+  local cumH = 0
+  for _, e in ipairs(entries) do
+    local entryTop = cumH
+    local entryBot = cumH + e.h
+    if entryBot > scrollPx and entryTop < scrollPx + labelH then
+      lines[#lines + 1] = e.html
+    end
+    cumH = entryBot
+    if cumH > scrollPx + labelH then break end
+  end
+
+  label:echo('<div style="line-height:' .. lineH .. 'px; font-size:10pt; text-shadow:1px 1px 2px #000;">' .. table.concat(lines, "<br>") .. '</div>')
+
+  if not track then return end
+  if contentH <= labelH then
+    track:hide()
+  else
+    track:show()
+    local trackH = track:get_height()
+    if trackH <= 0 then trackH = 200 end
+    local tH = math.max(16, math.floor(trackH * labelH / contentH))
+    local tY = maxPx > 0 and math.floor((trackH - tH) * scrollPx / maxPx) or 0
+    thumb:resize(nil, tH)
+    thumb:move(0, tY)
+    WuxiaGUI3._bonusSbThumbRelY = tY
+    WuxiaGUI3._bonusSbThumbRelH = tH
   end
 end
 
--- ─── 技能 refresh ───
 function WuxiaGUI3._refreshSkills()
   local sd = WuxiaGUI3.skillData
   if not sd or not sd.skills then return end
@@ -6274,6 +6609,14 @@ function WuxiaGUI3.registerEvents()
     -- Special
     s.xuemai_level   = tonumber(gs.xuemai_level) or s.xuemai_level
     s.yuanshen_level = tonumber(gs.yuanshen_level) or s.yuanshen_level
+
+    -- Computed hp -m fields
+    s.max_jiali       = tonumber(gs.max_jiali) or s.max_jiali
+    s.max_jianu       = tonumber(gs.max_jianu) or s.max_jianu
+    s.xuemai_progress = tonumber(gs.xuemai_progress) or s.xuemai_progress
+    s.yuanshen_next   = tonumber(gs.yuanshen_next) or s.yuanshen_next
+    s.death_protect   = tonumber(gs.death_protect) or s.death_protect
+    s.kill_protect    = tonumber(gs.kill_protect) or s.kill_protect
 
     -- Skills
     s.force          = tonumber(gs.force) or s.force
