@@ -581,8 +581,16 @@ function WuxiaGUI3._buildAttributes()
   end
   y = y + 30
 
-  -- Zone 3: Progression Grid
+  -- Zone 3: Progression Cards (merged 等級 & 修煉 + 上限)
   local SHADOW = "text-shadow:1px 1px 3px #000, 0px 0px 6px #000;"
+  local CARD_BORDER = "border:1px solid rgba(138,106,58,0.5); border-radius:3px;"
+  local CARD_BG = "background-color:rgba(20,15,10,0.5);"
+  local CARD_CSS = CARD_BG .. CARD_BORDER
+  local CARD_HDR_CSS = "background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';"
+  local cardX = MX + 2
+  local cardW = GW - 4
+
+  -- ── Section header ──
   local hdr1 = Geyser.Label:new({
     name = "W3.attr.progHdr1", x = MX, y = y, width = GW, height = 18,
   }, p)
@@ -591,20 +599,107 @@ function WuxiaGUI3._buildAttributes()
   hdr1:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 等級 & 修煉 ──") .. '</div>')
   y = y + 20
 
-  y = makeLabel(p, "attrProgBlock", y, 160)
-  y = y + 4
-
-  y = makeSep(p, y)
-  local hdr2 = Geyser.Label:new({
-    name = "W3.attr.progHdr2", x = MX, y = y, width = GW, height = 18,
+  -- Card 1: 等級 (Tabbed: 等級 / 血脈 / 元神)
+  local card1H = 56
+  local card1 = Geyser.Label:new({
+    name = "W3.attr.card1", x = cardX, y = y, width = cardW, height = card1H,
   }, p)
-  hdr2:setStyleSheet("background-color:transparent;")
-  hdr2:setFontSize(8)
-  hdr2:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 上限 & 狀態 ──") .. '</div>')
-  y = y + 20
+  card1:setStyleSheet(CARD_CSS)
 
-  y = makeLabel(p, "attrLimitsBlock", y, 120)
-  y = y + 4
+  -- Tab buttons
+  local lvlTabs = { "等級", "血脈", "元神" }
+  local tabW = 40
+  local tabH = 14
+  WuxiaGUI3._lvlTabBtns = {}
+  WuxiaGUI3._lvlActiveTab = "等級"
+  for ti, tname in ipairs(lvlTabs) do
+    local tx = 4 + (ti - 1) * (tabW + 2)
+    local tbtn = Geyser.Label:new({
+      name = "W3.attr.lvlTab" .. ti, x = tx, y = 2, width = tabW, height = tabH,
+    }, card1)
+    tbtn:setFontSize(7)
+    tbtn:setStyleSheet("background-color:transparent; qproperty-alignment:AlignCenter;")
+    tbtn:setClickCallback("WuxiaGUI3._onLvlTabClick", tname)
+    WuxiaGUI3._lvlTabBtns[tname] = tbtn
+  end
+
+  -- Body area
+  local card1Body = Geyser.Label:new({
+    name = "W3.attr.card1body", x = 4, y = 16, width = cardW - 8, height = 20,
+  }, card1)
+  card1Body:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
+  card1Body:setFontSize(9)
+  WuxiaGUI3.attrCard1Body = card1Body
+
+  -- Progress bar
+  local barY = 38
+  local barH = 12
+  local barW = cardW - 8
+  local barBg = Geyser.Label:new({
+    name = "W3.attr.xpBarBg", x = 4, y = barY, width = barW, height = barH,
+  }, card1)
+  barBg:setStyleSheet("background-color:rgba(10,8,6,0.8); border:1px solid rgba(80,60,30,0.4); border-radius:2px;")
+
+  local barFill = Geyser.Label:new({
+    name = "W3.attr.xpBarFill", x = 1, y = 1, width = "0%", height = barH - 2,
+  }, barBg)
+  barFill:setStyleSheet("background-color:#8b6914; border-radius:1px;")
+  WuxiaGUI3._xpBarFill = barFill
+
+  local barLbl = Geyser.Label:new({
+    name = "W3.attr.xpBarLbl", x = 0, y = 0, width = barW, height = barH,
+  }, barBg)
+  barLbl:setStyleSheet("background-color:transparent;")
+  barLbl:setFontSize(7)
+  WuxiaGUI3._xpBarLbl = barLbl
+
+  y = y + card1H + 4
+
+  -- Card 2: 點數 (Ability, Achievement, Active, Jiali, Jianu, Protections)
+  local card2H = 48
+  local card2 = Geyser.Label:new({
+    name = "W3.attr.card2", x = cardX, y = y, width = cardW, height = card2H,
+  }, p)
+  card2:setStyleSheet(CARD_CSS)
+
+  local card2Hdr = Geyser.Label:new({
+    name = "W3.attr.card2hdr", x = 4, y = 1, width = 40, height = 13,
+  }, card2)
+  card2Hdr:setStyleSheet(CARD_HDR_CSS)
+  card2Hdr:setFontSize(7)
+  card2Hdr:echo(span(GOLD, "點數"))
+
+  local card2Body = Geyser.Label:new({
+    name = "W3.attr.card2body", x = 4, y = 14, width = cardW - 8, height = 32,
+  }, card2)
+  card2Body:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
+  card2Body:setFontSize(9)
+  WuxiaGUI3.attrCard2Body = card2Body
+
+  y = y + card2H + 4
+
+  -- Card 3: 上限 (Limits + protection status)
+  local card3H = 48
+  local card3 = Geyser.Label:new({
+    name = "W3.attr.card3", x = cardX, y = y, width = cardW, height = card3H,
+  }, p)
+  card3:setStyleSheet(CARD_CSS)
+
+  local card3Hdr = Geyser.Label:new({
+    name = "W3.attr.card3hdr", x = 4, y = 1, width = 40, height = 13,
+  }, card3)
+  card3Hdr:setStyleSheet(CARD_HDR_CSS)
+  card3Hdr:setFontSize(7)
+  card3Hdr:echo(span(GOLD, "上限"))
+
+  local card3Body = Geyser.Label:new({
+    name = "W3.attr.card3body", x = 4, y = 14, width = cardW - 8, height = 32,
+  }, card3)
+  card3Body:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
+  card3Body:setFontSize(9)
+  WuxiaGUI3.attrCard3Body = card3Body
+
+  y = y + card3H + 4
 
   -- Banner separator
   local banner3 = Geyser.Label:new({
@@ -5612,56 +5707,149 @@ function WuxiaGUI3._onAttrLabelLeave()
   WuxiaGUI3._hideAttrTooltip()
 end
 
+-- ─── Level card tab system ───
+function WuxiaGUI3._onLvlTabClick(tabName)
+  WuxiaGUI3._lvlActiveTab = tabName
+  WuxiaGUI3._refreshLvlCard()
+end
+
+function WuxiaGUI3._refreshLvlCard()
+  local s = WuxiaGUI3.status
+  if not s then return end
+  local tab = WuxiaGUI3._lvlActiveTab or "等級"
+
+  -- Update tab button styles
+  local TAB_ACTIVE_CSS = "background-color:rgba(138,106,58,0.3); border:1px solid rgba(232,193,112,0.5); border-radius:2px; qproperty-alignment:AlignCenter;"
+  local TAB_INACTIVE_CSS = "background-color:transparent; border:1px solid rgba(80,60,30,0.3); border-radius:2px; qproperty-alignment:AlignCenter;"
+  for tname, btn in pairs(WuxiaGUI3._lvlTabBtns or {}) do
+    if tname == tab then
+      btn:setStyleSheet(TAB_ACTIVE_CSS)
+      btn:echo(span(GOLD, "<b>" .. tname .. "</b>"))
+    else
+      btn:setStyleSheet(TAB_INACTIVE_CSS)
+      btn:echo(span(TEXT_DIM, tname))
+    end
+  end
+
+  local body = WuxiaGUI3.attrCard1Body
+  local barFill = WuxiaGUI3._xpBarFill
+  local barLbl = WuxiaGUI3._xpBarLbl
+  if not body then return end
+
+  local function kv2(l, val, c2)
+    return span(TEXT_DIM, l .. " ") .. span(c2 or WHITE, tostring(val))
+  end
+  local S2 = "text-shadow:1px 1px 2px #000;"
+
+  if tab == "等級" then
+    local lvl = s.level or 1
+    local wg = s.wugong_level or 1
+    local exp = s.combat_exp or 0
+    local nextExp = s.next_level or 1
+    body:echo(kv2("等級", lvl) .. "  " .. kv2("武功", wg))
+
+    -- Progress bar: XP to next level
+    local curThresh = lvl * lvl * lvl * 10000
+    local nextThresh = curThresh + nextExp
+    local progInLevel = exp - curThresh
+    if progInLevel < 0 then progInLevel = 0 end
+    local levelRange = nextThresh - curThresh
+    if levelRange < 1 then levelRange = 1 end
+    local pct = math.floor(progInLevel / levelRange * 100)
+    if pct > 100 then pct = 100 end
+    if pct < 0 then pct = 0 end
+    if barFill then
+      barFill:setStyleSheet("background-color:#8b6914; border-radius:1px;")
+      barFill:resize(pct .. "%", nil)
+    end
+    if barLbl then
+      barLbl:echo(string.format(
+        '<div style="text-align:center;%s">' ..
+        '<span style="color:#ccc;font-size:8px;">經驗 %s  升級需 %s</span></div>',
+        S2, fmtNum(exp), fmtNum(nextExp)))
+    end
+
+  elseif tab == "血脈" then
+    local xm = s.xuemai_level or 0
+    local xmProg = s.xuemai_progress or 100
+    local pct = 100 - xmProg  -- xuemai_progress is remaining %, so done = 100 - remaining
+    if pct < 0 then pct = 0 end
+    if pct > 100 then pct = 100 end
+    body:echo(kv2("血脈等級", xm) .. "  " .. kv2("進度", pct .. "%"))
+
+    if barFill then
+      barFill:setStyleSheet("background-color:#8b2020; border-radius:1px;")
+      barFill:resize(pct .. "%", nil)
+    end
+    if barLbl then
+      barLbl:echo(string.format(
+        '<div style="text-align:center;%s">' ..
+        '<span style="color:#ccc;font-size:8px;">升級進度 %d%%</span></div>',
+        S2, pct))
+    end
+
+  elseif tab == "元神" then
+    local ys2 = s.yuanshen_level or 0
+    local ysNext = s.yuanshen_next or 0
+    body:echo(kv2("元神等級", ys2) .. "  " .. kv2("升級需", fmtNum(ysNext)))
+
+    -- Compute progress from yuanshen_next:
+    -- total for next level = (lv+1)^3 * 10000
+    -- yuanshen_next = total - current_exp, so progress = 1 - (next / total)
+    local totalForNext = (ys2 + 1) * (ys2 + 1) * (ys2 + 1) * 10000
+    local pct = 0
+    if totalForNext > 0 and ysNext >= 0 then
+      pct = math.floor((1 - ysNext / totalForNext) * 100)
+    end
+    if pct > 100 then pct = 100 end
+    if pct < 0 then pct = 0 end
+    if barFill then
+      barFill:setStyleSheet("background-color:#8b8b14; border-radius:1px;")
+      barFill:resize(pct .. "%", nil)
+    end
+    if barLbl then
+      barLbl:echo(string.format(
+        '<div style="text-align:center;%s">' ..
+        '<span style="color:#ccc;font-size:8px;">升級需 %s</span></div>',
+        S2, fmtNum(ysNext)))
+    end
+  end
+end
+
 function WuxiaGUI3._refreshAttributes()
   local s = WuxiaGUI3.status
   local v = WuxiaGUI3.vitals
 
   WuxiaGUI3._renderRadarChart()
 
-  if WuxiaGUI3.attrProgBlock then
-    local function kv2(l, val, c)
-      return span(TEXT_DIM, l .. " ") .. span(c or WHITE, tostring(val))
-    end
-    local function row(l1, v1, l2, v2)
-      return kv2(l1, v1) .. "&nbsp;&nbsp;&nbsp;" .. kv2(l2, v2)
-    end
-    local t = {}
-    t[#t+1] = row("當前等級", s.level or 1, "升級所需", fmtNum(s.next_level or 0))
-    t[#t+1] = row("武功等級", s.wugong_level or 1, "戰鬥經驗", fmtNum(s.combat_exp or 0))
-    t[#t+1] = row("血脈等級", s.xuemai_level or 0, "升級進度", (s.xuemai_progress or 100) .. "%")
-    t[#t+1] = row("元神等級", s.yuanshen_level or 0, "升級所需", fmtNum(s.yuanshen_next or 0))
-    t[#t+1] = ""
-    t[#t+1] = row("能力點數", s.ability or 0, "成就點數", s.achievement or 0)
-    t[#t+1] = row("活躍點數", s.active or 0, "最大加力", s.max_jiali or 0)
-    t[#t+1] = kv2("最大加怒", s.max_jianu or 0)
-    t[#t+1] = ""
-    local dp = (s.death_protect or 0) == 1 and span("#55cc55", "保護中") or span("#cc5555", "無保護")
-    local kp = (s.kill_protect or 0) == 1 and span("#55cc55", "保護中") or span("#cc5555", "無保護")
-    t[#t+1] = span(TEXT_DIM, "死亡保護 ") .. dp .. "&nbsp;&nbsp;&nbsp;" .. span(TEXT_DIM, "殺戮保護 ") .. kp
-    WuxiaGUI3.attrProgBlock:echo(table.concat(t, "<br>"))
+  -- Card 1: 等級
+  local function kv2(l, val, c)
+    return span(TEXT_DIM, l .. " ") .. span(c or WHITE, tostring(val))
   end
 
-  if WuxiaGUI3.attrLimitsBlock then
-    local function kv2(l, val, c)
-      return span(TEXT_DIM, l .. " ") .. span(c or WHITE, tostring(val))
-    end
-    local function row(l1, v1, l2, v2)
-      return kv2(l1, v1) .. "&nbsp;&nbsp;&nbsp;" .. kv2(l2, v2)
-    end
-    local function miniStat(l, cur, mx, c)
-      cur = tonumber(cur) or 0; mx = tonumber(mx) or 1
-      if mx < 1 then mx = 1 end
-      return span(TEXT_DIM, l .. " ") .. span(c or WHITE, fmtNum(cur) .. "/" .. fmtNum(mx)) .. span(TEXT_DIM, " (" .. math.floor(cur/mx*100) .. "%)")
-    end
-    local t = {}
-    t[#t+1] = row("精力上限", fmtNum(s.jingli_limit or 0), "內力上限", fmtNum(s.neili_limit or 0))
-    t[#t+1] = row("潛能上限", fmtNum(s.potential_limit or 0), "體會上限", fmtNum(s.experience_limit or 0))
-    t[#t+1] = ""
-    t[#t+1] = miniStat("精氣", v.jing, v.eff_jing, "#cc3333")
-    t[#t+1] = miniStat("氣血", v.qi, v.eff_qi, "#33aa44")
-    t[#t+1] = miniStat("精力", v.jingli, v.max_jingli, "#3388cc")
-    t[#t+1] = miniStat("內力", v.neili, v.max_neili, "#aa44cc")
-    WuxiaGUI3.attrLimitsBlock:echo(table.concat(t, "<br>"))
+  WuxiaGUI3._refreshLvlCard()
+
+  -- Card 2: 點數
+  if WuxiaGUI3.attrCard2Body then
+    local dp = (s.death_protect or 0) == 1 and span("#55cc55", "護") or span("#cc5555", "無")
+    local kp = (s.kill_protect or 0) == 1 and span("#55cc55", "護") or span("#cc5555", "無")
+    WuxiaGUI3.attrCard2Body:echo(
+      kv2("能力", s.ability or 0) .. "  " ..
+      kv2("成就", s.achievement or 0) .. "  " ..
+      kv2("活躍", s.active or 0) .. "<br>" ..
+      kv2("最大加力", s.max_jiali or 0) .. "  " ..
+      kv2("最大加怒", s.max_jianu or 0) .. "  " ..
+      span(TEXT_DIM, "死亡") .. dp .. " " ..
+      span(TEXT_DIM, "殺戮") .. kp)
+  end
+
+  -- Card 3: 上限
+  if WuxiaGUI3.attrCard3Body then
+    WuxiaGUI3.attrCard3Body:echo(
+      kv2("精力上限", fmtNum(s.jingli_limit or 0)) .. "  " ..
+      kv2("內力上限", fmtNum(s.neili_limit or 0)) .. "<br>" ..
+      kv2("潛能上限", fmtNum(s.potential_limit or 0)) .. "  " ..
+      kv2("體會上限", fmtNum(s.experience_limit or 0)))
   end
 
   WuxiaGUI3._refreshBonusStats()
