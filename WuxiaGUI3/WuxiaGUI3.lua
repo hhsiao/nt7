@@ -755,7 +755,9 @@ function WuxiaGUI3._buildAttributes()
   y = makeLabel(p, "bonusStatsInfo", y, 18)
 
   local bonusListY = y
-  local bonusListH = 500
+  WuxiaGUI3._bonusListY = bonusListY
+  WuxiaGUI3._attrParent = p
+  local bonusListH = 300
 
   local bonusListLabel = Geyser.Label:new({
     name = "W3.attr.bonusList",
@@ -788,6 +790,30 @@ function WuxiaGUI3._buildAttributes()
   WuxiaGUI3._bonusSbThumbRelY = 0
   WuxiaGUI3._bonusSbThumbRelH = 30
   WuxiaGUI3._bonusSbDragging = false
+
+  -- Dynamic resize handler for attributes tab
+  WuxiaGUI3._repositionAttributes = function()
+    local ap = WuxiaGUI3._attrParent
+    if not ap then return end
+    local containerH = ap:get_height()
+    if containerH <= 0 then containerH = 800 end
+    local bListY = WuxiaGUI3._bonusListY or 0
+    local listH = containerH - bListY - 8
+    if listH < 80 then listH = 80 end
+    local bl = WuxiaGUI3._bonusListLabel
+    local st = WuxiaGUI3._bonusSbTrack
+    if bl then bl:resize(nil, listH) end
+    if st then
+      st:move(nil, bListY + 2)
+      st:resize(nil, listH - 4)
+    end
+    if WuxiaGUI3._renderBonusScroll then WuxiaGUI3._renderBonusScroll() end
+  end
+
+  -- Initial resize after layout settles
+  tempTimer(0.2, function()
+    if WuxiaGUI3._repositionAttributes then WuxiaGUI3._repositionAttributes() end
+  end)
 
   local function totalContentH()
     local h = 0
@@ -3727,6 +3753,9 @@ function WuxiaGUI3._registerChatGMCP()
     if WuxiaGUI3._repositionSkills then
       tempTimer(0.1, WuxiaGUI3._repositionSkills)
     end
+    if WuxiaGUI3._repositionAttributes then
+      tempTimer(0.1, WuxiaGUI3._repositionAttributes)
+    end
   end)
 end
 
@@ -5968,8 +5997,8 @@ function WuxiaGUI3._refreshBonusStats()
   WuxiaGUI3._bonusEntries = entries
 
   if WuxiaGUI3.bonusStatsInfo then
-      WuxiaGUI3.bonusStatsInfo:echo(span(TEXT_DIM, "等待資料..."))
-    end
+    WuxiaGUI3.bonusStatsInfo:echo("")
+  end
 
   WuxiaGUI3._renderBonusScroll()
 end
