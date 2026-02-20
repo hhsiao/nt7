@@ -5215,6 +5215,17 @@ function WuxiaGUI3.switchTab(tabName)
     end
   end
 
+  -- Show/hide primitive scroll elements (not managed by Geyser)
+  if tabName == "屬性" then
+    pcall(showWindow, "W3.attr.bonusInnerPrim")
+    pcall(showWindow, "W3.attr.coverTop")
+    pcall(showWindow, "W3.attr.coverBot")
+  else
+    pcall(hideWindow, "W3.attr.bonusInnerPrim")
+    pcall(hideWindow, "W3.attr.coverTop")
+    pcall(hideWindow, "W3.attr.coverBot")
+  end
+
   -- Refresh the active tab content
   WuxiaGUI3.refresh()
 end
@@ -6253,6 +6264,9 @@ function WuxiaGUI3._renderBonusScroll()
     ]])
     -- Raise it above the parent label
     raiseWindow(innerName)
+    if WuxiaGUI3.activeTab ~= "屬性" then
+      hideWindow(innerName)
+    end
     WuxiaGUI3._bonusInnerPrim = true
 
     -- Wheel callback
@@ -6297,6 +6311,10 @@ function WuxiaGUI3._renderBonusScroll()
     setBackgroundColor(botCover, 17, 17, 34, 255)
     raiseWindow(topCover)
     raiseWindow(botCover)
+    if WuxiaGUI3.activeTab ~= "屬性" then
+      hideWindow(topCover)
+      hideWindow(botCover)
+    end
     WuxiaGUI3._bonusCoversReady = true
   end
   -- Top cover: from well above the list down to exactly the list top edge
