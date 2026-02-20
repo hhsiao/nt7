@@ -5215,17 +5215,6 @@ function WuxiaGUI3.switchTab(tabName)
     end
   end
 
-  -- Show/hide primitive scroll elements (not managed by Geyser)
-  if tabName == "屬性" then
-    pcall(showWindow, "W3.attr.bonusInnerPrim")
-    pcall(showWindow, "W3.attr.coverTop")
-    pcall(showWindow, "W3.attr.coverBot")
-  else
-    pcall(hideWindow, "W3.attr.bonusInnerPrim")
-    pcall(hideWindow, "W3.attr.coverTop")
-    pcall(hideWindow, "W3.attr.coverBot")
-  end
-
   -- Refresh the active tab content
   WuxiaGUI3.refresh()
 end
@@ -5963,7 +5952,7 @@ function WuxiaGUI3._refreshBonusStats()
   end
 
   local entries = {}
-  local tileH = 26
+  local tileH = 22
   local function add(html, h) entries[#entries + 1] = { html = html, h = h or tileH } end
 
   local tileBuf = {}
@@ -6248,29 +6237,17 @@ function WuxiaGUI3._renderBonusScroll()
   WuxiaGUI3._bonusScrollPx = math.max(0, math.min(WuxiaGUI3._bonusScrollPx or 0, maxPx))
   local scrollPx = WuxiaGUI3._bonusScrollPx
 
-  -- Create primitive inner label (NOT Geyser, so moveWindow works)
-  local innerName = "W3.attr.bonusInnerPrim"
-  if not WuxiaGUI3._bonusInnerPrim then
-    pcall(deleteLabel, innerName)
-    -- Create WITHOUT parent - as a top-level label
-    createLabel(innerName, 0, 0, labelW, contentH, 0)
-    setBackgroundColor(innerName, 0, 0, 0, 0)
-    -- Force top-left alignment and transparent background
-    setLabelStyleSheet(innerName, [[
-      QLabel {
-        qproperty-alignment: 'AlignLeft | AlignTop';
-        background-color: transparent;
-      }
-    ]])
-    -- Raise it above the parent label
-    raiseWindow(innerName)
-    if WuxiaGUI3.activeTab ~= "屬性" then
-      hideWindow(innerName)
-    end
-    WuxiaGUI3._bonusInnerPrim = true
+  -- Create Geyser inner label as child of bonusList (Qt clips at parent boundary)
+  if not WuxiaGUI3._bonusInnerLabel then
+    WuxiaGUI3._bonusInnerLabel = Geyser.Label:new({
+      name = "W3.attr.bonusInner",
+      x = 0, y = 0, width = "100%", height = contentH,
+    }, label)
+    WuxiaGUI3._bonusInnerLabel:setStyleSheet("background-color:transparent; qproperty-alignment: 'AlignLeft | AlignTop';")
+    WuxiaGUI3._bonusInnerLabel:setFontSize(9)
 
-    -- Wheel callback
-    setLabelWheelCallback(innerName, function(event)
+    -- Wheel callback on inner label
+    WuxiaGUI3._bonusInnerLabel:setWheelCallback(function(event)
       if not event then return end
       local delta = event.angleDeltaY or 0
       local step = 8
@@ -6288,43 +6265,13 @@ function WuxiaGUI3._renderBonusScroll()
     end)
 
     label:echo("")
-
-    cecho(string.format("\n<red>PRIM_CREATE: parentAbsX=%d parentAbsY=%d w=%d h=%d cH=%d<reset>\n",
-      label:get_x(), label:get_y(), labelW, labelH, contentH))
   end
 
-  -- Absolute position: parent position + offset
-  local absX = label:get_x()
-  local absY = label:get_y()
-  moveWindow(innerName, absX, absY - scrollPx)
-  resizeWindow(innerName, labelW, contentH)
+  local inner = WuxiaGUI3._bonusInnerLabel
 
-  -- Top/bottom cover labels to mask overflow above and below the viewport
-  local topCover = "W3.attr.coverTop"
-  local botCover = "W3.attr.coverBot"
-  if not WuxiaGUI3._bonusCoversReady then
-    pcall(deleteLabel, topCover)
-    pcall(deleteLabel, botCover)
-    createLabel(topCover, 0, 0, 10, 10, 0)
-    createLabel(botCover, 0, 0, 10, 10, 0)
-    setBackgroundColor(topCover, 17, 17, 34, 255)  -- #111122 = BG
-    setBackgroundColor(botCover, 17, 17, 34, 255)
-    raiseWindow(topCover)
-    raiseWindow(botCover)
-    if WuxiaGUI3.activeTab ~= "屬性" then
-      hideWindow(topCover)
-      hideWindow(botCover)
-    end
-    WuxiaGUI3._bonusCoversReady = true
-  end
-  -- Top cover: from well above the list down to exactly the list top edge
-  moveWindow(topCover, absX, absY - 800)
-  resizeWindow(topCover, labelW, 800)
-  raiseWindow(topCover)
-  -- Bottom cover: from exactly the list bottom edge downward
-  moveWindow(botCover, absX, absY + labelH)
-  resizeWindow(botCover, labelW, 800)
-  raiseWindow(botCover)
+  -- Scroll by moving inner label within parent
+  inner:move(0, -labelH - scrollPx)
+  inner:resize("100%", contentH)
 
   -- Re-echo if entries changed
   if WuxiaGUI3._bonusRenderedHash ~= #entries then
@@ -6332,14 +6279,8 @@ function WuxiaGUI3._renderBonusScroll()
     for _, e in ipairs(entries) do
       allLines[#allLines + 1] = e.html
     end
-    echo(innerName, '<div style="font-size:9px; text-shadow:1px 1px 2px #000;">' .. table.concat(allLines, "") .. '</div>')
+    inner:echo('<div style="font-size:9px; text-shadow:1px 1px 2px #000;">' .. table.concat(allLines, "") .. '</div>')
     WuxiaGUI3._bonusRenderedHash = #entries
-  end
-
-  -- DEBUG (only on scroll)
-  if scrollPx > 0 then
-    cecho(string.format("\n<yellow>PRIM_POS: absX=%d absY=%d scrollPx=%d targetY=%d<reset>\n",
-      absX, absY, scrollPx, absY - scrollPx))
   end
 
   -- Scrollbar
