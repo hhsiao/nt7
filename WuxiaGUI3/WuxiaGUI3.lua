@@ -867,7 +867,8 @@ function WuxiaGUI3._buildAttributes()
   bonusListLabel:setWheelCallback(function(event)
     if not event then return end
     local delta = event.angleDeltaY or 0
-    local step = WuxiaGUI3._bonusLineH * 3
+    cecho("\n<cyan>BONUS_PARENT_WHEEL: delta=" .. tostring(delta) .. "<reset>\n")
+    local step = 8  -- smooth pixel scroll step
     local labelH = bonusListLabel:get_height()
     if labelH <= 0 then labelH = 200 end
     local maxPx = math.max(0, totalContentH() - labelH)
@@ -5900,7 +5901,20 @@ function WuxiaGUI3._refreshBonusStats()
   local filter = WuxiaGUI3._buffsActiveFilter or "all"
   local lineH = WuxiaGUI3._bonusLineH or 18
 
+  -- MOCK DATA FOR TESTING (remove after verification)
+  local _mockData = {
+    str = 180, int = 250, con = 120, dex = 90,
+    max_potential = 500000, max_neili = 80000, max_jingli = 30000, max_qi = 60000,
+    research_times = 400, research_effect = 15, practice_times = 300, practice_effect = 12,
+    add_poison = 8, reduce_poison = 5, add_fire = 12, reduce_fire = 3,
+    attack = 1200, defense = 800, dodge = 600, parry = 900, armor = 20,
+    ap_power = 15, damage = 5000, avoid_parry = 10,
+    reduce_busy = 12, magic_find = 25, double_damage = 8,
+    add_freeze = 5, avoid_forget = 3, fatal_blow = 2, add_skill = 150,
+  }
+
   local function val(key)
+    if _mockData[key] then return _mockData[key] end
     if filter == "all" then
       local sum = 0
       for _, src in ipairs({"skillmix","yuanshen","ability1","ability2","talent","jingmai","temp"}) do
@@ -5938,63 +5952,261 @@ function WuxiaGUI3._refreshBonusStats()
   end
 
   local entries = {}
-  local function add(html) entries[#entries + 1] = { html = html, h = lineH } end
+  local tileH = 26
+  local function add(html, h) entries[#entries + 1] = { html = html, h = h or tileH } end
 
-  add(hdr("天賦加成"))
-  add(row2("臂力", colorVal(val("str"), 2000), "悟性", colorVal(val("int"), 2000)))
-  add(row2("根骨", colorVal(val("con"), 2000), "身法", colorVal(val("dex"), 2000)))
+  local tileBuf = {}
+  local _tileRowIdx = 0
+  local _svgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
 
-  add(hdr("上限加成"))
-  add(row2("潛能", colorVal(val("max_potential"), 10000000), "體會", colorVal(val("max_experience"), 10000000)))
-  add(row2("內力", colorVal(val("max_neili"), 2000000), "精力", colorVal(val("max_jingli"), 1000000)))
-  add(row2("氣血", colorVal(val("max_qi"), 2000000), "精氣", colorVal(val("max_jing"), 1000000)))
+  local function tile(label, v, maxV, isPct, color)
+    local ratio = (maxV > 0) and math.min(v / maxV, 1) or 0
+    local isZero = (v == 0)
+    local dv
+    if isPct then
+      dv = v .. "%"
+    else
+      if v >= 1000000 then dv = string.format("%.1fM", v / 1000000)
+      elseif v >= 10000 then dv = math.floor(v / 1000) .. "k"
+      else dv = tostring(v) end
+    end
+    local dm
+    if isPct then
+      dm = maxV .. "%"
+    else
+      if maxV >= 1000000 then dm = math.floor(maxV / 1000000) .. "M"
+      elseif maxV >= 10000 then dm = math.floor(maxV / 1000) .. "k"
+      else dm = tostring(maxV) end
+    end
 
-  add(hdr("練功加成"))
-  add(row2("研究次", colorVal(val("research_times"), 2000), "研究效", colorPct(val("research_effect"), "2000%")))
-  add(row2("練習次", colorVal(val("practice_times"), 2000), "練習效", colorPct(val("practice_effect"), "2000%")))
-  add(row2("學習次", colorVal(val("learn_times"), 2000), "學習效", colorPct(val("learn_effect"), "2000%")))
-  add(row2("汲取消", colorVal(val("derive_times"), 2000), "汲取效", colorPct(val("derive_effect"), "2000%")))
+    tileBuf[#tileBuf + 1] = {
+      label = label, dv = dv, dm = dm,
+      ratio = ratio, isZero = isZero, color = color,
+    }
 
-  add(hdr("五行加成", "#cc4444"))
-  for _, e in ipairs({
-    {"毒","add_poison","reduce_poison"}, {"魔","add_magic","reduce_magic"},
-    {"金","add_metal","reduce_metal"},   {"木","add_wood","reduce_wood"},
-    {"水","add_water","reduce_water"},   {"火","add_fire","reduce_fire"},
-    {"土","add_earth","reduce_earth"},
-  }) do
-    add(row2(e[1].."傷", colorPct(val(e[2]), "100%"), "抗"..e[1], colorPct(val(e[3]), "100%")))
+    if #tileBuf == 2 then
+      _tileRowIdx = _tileRowIdx + 1
+      local usableW = GW - 18
+      local gap = 4
+      local tw = math.floor((usableW - gap) / 2)
+      local totalW = tw * 2 + gap
+      local th = 22
+
+      local svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' .. totalW .. '" height="' .. th .. '">'
+
+      for ti = 1, 2 do
+        local t = tileBuf[ti]
+        local ox = (ti - 1) * (tw + gap)
+
+        -- Parse color
+        local r2, g2, b2 = t.color:match("#(%x%x)(%x%x)(%x%x)")
+        local cr = r2 and tonumber(r2, 16) or 180
+        local cg = g2 and tonumber(g2, 16) or 140
+        local cb = b2 and tonumber(b2, 16) or 80
+
+        local borderC, fillOpacity, lblC, valC, valWeight
+        if t.isZero then
+          borderC = string.format("rgb(%d,%d,%d)", math.floor(cr*0.2), math.floor(cg*0.2), math.floor(cb*0.2))
+          fillOpacity = "0"
+          lblC = "#555"
+          valC = "#555"
+          valWeight = "normal"
+        else
+          borderC = t.color
+          fillOpacity = "1"
+          lblC = "#aaa"
+          valC = "#ddd"
+          valWeight = "bold"
+        end
+
+        -- Outer rounded rect (border)
+        svg = svg .. '<rect x="' .. (ox + 0.5) .. '" y="0.5" width="' .. (tw - 1) .. '" height="' .. (th - 1) .. '" rx="3" ry="3" fill="#0a0806" stroke="' .. borderC .. '" stroke-width="1"/>'
+
+        -- Fill bar (gradient)
+        if t.ratio > 0 then
+          local fillW = math.max(2, math.floor((tw - 2) * t.ratio))
+          local gradId = "g" .. _tileRowIdx .. "t" .. ti
+          svg = svg .. '<defs><linearGradient id="' .. gradId .. '" x1="0" y1="0" x2="1" y2="0">'
+          svg = svg .. '<stop offset="0%" stop-color="' .. t.color .. '" stop-opacity="0.08"/>'
+          svg = svg .. '<stop offset="100%" stop-color="' .. t.color .. '" stop-opacity="0.35"/>'
+          svg = svg .. '</linearGradient></defs>'
+          svg = svg .. '<rect x="' .. (ox + 1) .. '" y="1" width="' .. fillW .. '" height="' .. (th - 2) .. '" rx="2" ry="2" fill="url(#' .. gradId .. ')" opacity="' .. fillOpacity .. '"/>'
+        end
+
+      end
+
+      svg = svg .. '</svg>'
+
+      -- Write SVG to file
+      local fname = "tile_row_" .. _tileRowIdx .. ".svg"
+      local fpath = _svgDir .. fname
+      local fh = io.open(fpath, "w")
+      if fh then
+        fh:write(svg)
+        fh:close()
+      end
+
+      add('<div><img src="' .. fpath .. '" width="' .. totalW .. '" height="' .. th .. '"></div>', tileH)
+      tileBuf = {}
+    end
   end
 
-  add(hdr("狀態恢復", "#5588cc"))
-  add(row2("偷內力", colorPct(val("leech_neili"), "90%"), "偷生命", colorPct(val("leech_qi"), "90%")))
+  local function flushTiles()
+    if #tileBuf == 1 then
+      _tileRowIdx = _tileRowIdx + 1
+      local tw = math.floor((GW - 18 - 4) / 2)
+      local th = 22
+      local t = tileBuf[1]
 
-  add(hdr("戰鬥加成"))
-  add(row2("攻擊", colorVal(val("attack"), 9000), "防禦", colorVal(val("defense"), 9000)))
-  add(row2("躲閃", colorVal(val("dodge"), 9000), "招架", colorVal(val("parry"), 9000)))
-  add(row2("絕命中", colorPct(val("ap_power"), "120%"), "絕防禦", colorPct(val("dp_power"), "120%")))
-  add(row2("兵傷害", colorVal(val("damage"), 200000), "拳傷害", colorVal(val("unarmed_damage"), 200000)))
-  add(row2("絕傷害", colorPct(val("da_power"), "120%"), "戰保護", colorVal(val("armor"), 200000)))
-  add(row2("忽招架", colorPct(val("avoid_parry"), "90%"), "忽躲閃", colorPct(val("avoid_dodge"), "90%")))
-  add(row2("忽特攻", colorPct(val("avoid_attack"), "90%"), "忽內防", colorPct(val("avoid_force"), "90%")))
+      local r2, g2, b2 = t.color:match("#(%x%x)(%x%x)(%x%x)")
+      local cr = r2 and tonumber(r2, 16) or 180
+      local cg = g2 and tonumber(g2, 16) or 180
+      local cb = b2 and tonumber(b2, 16) or 80
 
-  add(hdr("高級屬性", "#aa55cc"))
-  add(row2("化忙亂", colorVal(val("reduce_busy"), 90), "尋寶率", colorPct(val("magic_find"), "300%")))
-  add(row2("雙傷害", colorPct(val("double_damage"), "200%"), "傷轉內", colorPct(val("qi_abs_neili"), "90%")))
-  add(row2("致  盲", colorPct(val("add_blind"), "90%"), "忽致盲", colorPct(val("avoid_blind"), "90%")))
-  add(row2("穿破甲", colorPct(val("through_armor"), "90%"), "百毒侵", colorPct(val("avoid_poison"), "100%")))
-  add(span(TEXT_DIM, "戰神 ") .. colorPct(val("full_self"), "90%"))
+      local borderC, fillOpacity, lblC, valC, valWeight
+      if t.isZero then
+        borderC = string.format("rgb(%d,%d,%d)", math.floor(cr*0.2), math.floor(cg*0.2), math.floor(cb*0.2))
+        fillOpacity = "0"
+        lblC = "#555"
+        valC = "#555"
+        valWeight = "normal"
+      else
+        borderC = t.color
+        fillOpacity = "1"
+        lblC = "#aaa"
+        valC = "#ddd"
+        valWeight = "bold"
+      end
 
-  add(hdr("終極屬性", "#ccaa33"))
-  add(row2("冰  凍", colorPct(val("add_freeze"), "90%"), "忽冰凍", colorPct(val("avoid_freeze"), "90%")))
-  add(row2("遺  忘", colorPct(val("add_forget"), "90%"), "忽遺忘", colorPct(val("avoid_forget"), "90%")))
-  add(row2("忙  亂", colorVal(val("add_busy"), 90), "忽忙亂", colorPct(val("avoid_busy"), "90%")))
-  add(row2("虛  弱", colorPct(val("add_weak"), "90%"), "忽虛弱", colorPct(val("avoid_weak"), "90%")))
-  add(row2("追傷害", colorPct(val("add_damage"), "200%"), "化傷害", colorPct(val("reduce_damage"), "90%")))
-  add(row2("反  噬", colorPct(val("counter_damage"), "90%"), "浴重生", colorPct(val("avoid_die"), "90%")))
-  add(row2("致命擊", colorPct(val("fatal_blow"), "90%"), "提技能", colorVal(val("add_skill"), 1200)))
+      local svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' .. tw .. '" height="' .. th .. '">'
+      svg = svg .. '<rect x="0.5" y="0.5" width="' .. (tw - 1) .. '" height="' .. (th - 1) .. '" rx="3" ry="3" fill="#0a0806" stroke="' .. borderC .. '" stroke-width="1"/>'
 
+      if t.ratio > 0 then
+        local fillW = math.max(2, math.floor((tw - 2) * t.ratio))
+        local gradId = "g" .. _tileRowIdx .. "t1"
+        svg = svg .. '<defs><linearGradient id="' .. gradId .. '" x1="0" y1="0" x2="1" y2="0">'
+        svg = svg .. '<stop offset="0%" stop-color="' .. t.color .. '" stop-opacity="0.08"/>'
+        svg = svg .. '<stop offset="100%" stop-color="' .. t.color .. '" stop-opacity="0.35"/>'
+        svg = svg .. '</linearGradient></defs>'
+        svg = svg .. '<rect x="1" y="1" width="' .. fillW .. '" height="' .. (th - 2) .. '" rx="2" ry="2" fill="url(#' .. gradId .. ')" opacity="' .. fillOpacity .. '"/>'
+      end
+
+      svg = svg .. '</svg>'
+
+      local fname = "tile_row_" .. _tileRowIdx .. ".svg"
+      local fpath = _svgDir .. fname
+      local fh = io.open(fpath, "w")
+      if fh then fh:write(svg); fh:close() end
+
+      add('<div><img src="' .. fpath .. '" width="' .. tw .. '" height="' .. th .. '"></div>', tileH)
+      tileBuf = {}
+    end
+  end
+
+  local function catHdr(title, color2)
+    flushTiles()
+    local c2 = color2 or GOLD
+    add('<div style="color:' .. c2 .. '; font-size:10px; font-weight:bold; ' ..
+      'text-shadow:1px 1px 2px #000; border-bottom:1px solid ' .. c2 .. '30; ' ..
+      'padding-bottom:1px; margin-top:2px;">── ' .. title .. ' ──</div>', 16)
+  end
+
+  -- ── 天賦加成 ──
+  catHdr("天賦加成")
+  tile("膂力", val("str"), 2000, false, "#e8c170")
+  tile("悟性", val("int"), 2000, false, "#e8c170")
+  tile("根骨", val("con"), 2000, false, "#e8c170")
+  tile("身法", val("dex"), 2000, false, "#e8c170")
+  flushTiles()
+
+  catHdr("上限加成")
+  tile("潛能", val("max_potential"), 10000000, false, "#e8c170")
+  tile("體會", val("max_experience"), 10000000, false, "#e8c170")
+  tile("內力", val("max_neili"), 2000000, false, "#e8c170")
+  tile("精力", val("max_jingli"), 1000000, false, "#e8c170")
+  tile("氣血", val("max_qi"), 2000000, false, "#e8c170")
+  tile("精氣", val("max_jing"), 1000000, false, "#e8c170")
+  flushTiles()
+
+  catHdr("練功加成")
+  tile("研究次", val("research_times"), 2000, false, "#e8c170")
+  tile("研究效", val("research_effect"), 2000, true, "#e8c170")
+  tile("練習次", val("practice_times"), 2000, false, "#e8c170")
+  tile("練習效", val("practice_effect"), 2000, true, "#e8c170")
+  tile("學習次", val("learn_times"), 2000, false, "#e8c170")
+  tile("學習效", val("learn_effect"), 2000, true, "#e8c170")
+  tile("汲取消", val("derive_times"), 2000, false, "#e8c170")
+  tile("汲取效", val("derive_effect"), 2000, true, "#e8c170")
+  flushTiles()
+
+  catHdr("五行加成", "#cc4444")
+  for _, e in ipairs({
+    {"毒傷","add_poison","抗毒","reduce_poison"},
+    {"魔傷","add_magic","抗魔","reduce_magic"},
+    {"金傷","add_metal","抗金","reduce_metal"},
+    {"木傷","add_wood","抗木","reduce_wood"},
+    {"水傷","add_water","抗水","reduce_water"},
+    {"火傷","add_fire","抗火","reduce_fire"},
+    {"土傷","add_earth","抗土","reduce_earth"},
+  }) do
+    tile(e[1], val(e[2]), 100, true, "#cc4444")
+    tile(e[3], val(e[4]), 100, true, "#cc4444")
+  end
+  flushTiles()
+
+  catHdr("狀態恢復", "#5588cc")
+  tile("偷內力", val("leech_neili"), 90, true, "#5588cc")
+  tile("偷生命", val("leech_qi"), 90, true, "#5588cc")
+  flushTiles()
+
+  catHdr("戰鬥加成")
+  tile("攻擊", val("attack"), 9000, false, "#e8c170")
+  tile("防禦", val("defense"), 9000, false, "#e8c170")
+  tile("躲閃", val("dodge"), 9000, false, "#e8c170")
+  tile("招架", val("parry"), 9000, false, "#e8c170")
+  tile("絕命中", val("ap_power"), 120, true, "#e8c170")
+  tile("絕防禦", val("dp_power"), 120, true, "#e8c170")
+  tile("兵傷害", val("damage"), 200000, false, "#e8c170")
+  tile("拳傷害", val("unarmed_damage"), 200000, false, "#e8c170")
+  tile("絕傷害", val("da_power"), 120, true, "#e8c170")
+  tile("戰保護", val("armor"), 200000, false, "#e8c170")
+  tile("忽招架", val("avoid_parry"), 90, true, "#e8c170")
+  tile("忽躲閃", val("avoid_dodge"), 90, true, "#e8c170")
+  tile("忽特攻", val("avoid_attack"), 90, true, "#e8c170")
+  tile("忽內防", val("avoid_force"), 90, true, "#e8c170")
+  flushTiles()
+
+  catHdr("高級屬性", "#aa55cc")
+  tile("化忙亂", val("reduce_busy"), 90, false, "#aa55cc")
+  tile("尋寶率", val("magic_find"), 300, true, "#aa55cc")
+  tile("雙傷害", val("double_damage"), 200, true, "#aa55cc")
+  tile("傷轉內", val("qi_abs_neili"), 90, true, "#aa55cc")
+  tile("致盲", val("add_blind"), 90, true, "#aa55cc")
+  tile("忽致盲", val("avoid_blind"), 90, true, "#aa55cc")
+  tile("穿破甲", val("through_armor"), 90, true, "#aa55cc")
+  tile("百毒侵", val("avoid_poison"), 100, true, "#aa55cc")
+  tile("戰神", val("full_self"), 90, true, "#aa55cc")
+  flushTiles()
+
+  catHdr("終極屬性", "#ccaa33")
+  tile("冰凍", val("add_freeze"), 90, true, "#ccaa33")
+  tile("忽冰凍", val("avoid_freeze"), 90, true, "#ccaa33")
+  tile("遺忘", val("add_forget"), 90, true, "#ccaa33")
+  tile("忽遺忘", val("avoid_forget"), 90, true, "#ccaa33")
+  tile("忙亂", val("add_busy"), 90, false, "#ccaa33")
+  tile("忽忙亂", val("avoid_busy"), 90, true, "#ccaa33")
+  tile("虛弱", val("add_weak"), 90, true, "#ccaa33")
+  tile("忽虛弱", val("avoid_weak"), 90, true, "#ccaa33")
+  tile("追傷害", val("add_damage"), 200, true, "#ccaa33")
+  tile("化傷害", val("reduce_damage"), 90, true, "#ccaa33")
+  tile("反噬", val("counter_damage"), 90, true, "#ccaa33")
+  tile("浴重生", val("avoid_die"), 90, true, "#ccaa33")
+  tile("致命擊", val("fatal_blow"), 90, true, "#ccaa33")
+  tile("提技能", val("add_skill"), 1200, false, "#ccaa33")
+  flushTiles()
 
   WuxiaGUI3._bonusEntries = entries
+
 
   if WuxiaGUI3.bonusStatsInfo then
     WuxiaGUI3.bonusStatsInfo:echo("")
@@ -6007,11 +6219,8 @@ function WuxiaGUI3._renderBonusScroll()
   local entries = WuxiaGUI3._bonusEntries or {}
   local label = WuxiaGUI3._bonusListLabel
   if not label then return end
-  -- DEBUG: uncomment to check scroll values
-  -- debugc(string.format("bonusScroll: entries=%d scrollPx=%d labelH=%d", #entries, WuxiaGUI3._bonusScrollPx or 0, label:get_height()))
   local track = WuxiaGUI3._bonusSbTrack
   local thumb = WuxiaGUI3._bonusSbThumb
-  local lineH = WuxiaGUI3._bonusLineH or 18
 
   if #entries == 0 then
     label:echo(span(TEXT_DIM, "等待資料..."))
@@ -6021,26 +6230,101 @@ function WuxiaGUI3._renderBonusScroll()
 
   local labelH = label:get_height()
   if labelH <= 0 then labelH = 300 end
+  local labelW = label:get_width()
   local contentH = 0
   for _, e in ipairs(entries) do contentH = contentH + e.h end
   local maxPx = math.max(0, contentH - labelH)
   WuxiaGUI3._bonusScrollPx = math.max(0, math.min(WuxiaGUI3._bonusScrollPx or 0, maxPx))
   local scrollPx = WuxiaGUI3._bonusScrollPx
 
-  local lines = {}
-  local cumH = 0
-  for _, e in ipairs(entries) do
-    local entryTop = cumH
-    local entryBot = cumH + e.h
-    if entryBot > scrollPx and entryTop < scrollPx + labelH then
-      lines[#lines + 1] = e.html
-    end
-    cumH = entryBot
-    if cumH > scrollPx + labelH then break end
+  -- Create primitive inner label (NOT Geyser, so moveWindow works)
+  local innerName = "W3.attr.bonusInnerPrim"
+  if not WuxiaGUI3._bonusInnerPrim then
+    pcall(deleteLabel, innerName)
+    -- Create WITHOUT parent - as a top-level label
+    createLabel(innerName, 0, 0, labelW, contentH, 0)
+    setBackgroundColor(innerName, 0, 0, 0, 0)
+    -- Force top-left alignment and transparent background
+    setLabelStyleSheet(innerName, [[
+      QLabel {
+        qproperty-alignment: 'AlignLeft | AlignTop';
+        background-color: transparent;
+      }
+    ]])
+    -- Raise it above the parent label
+    raiseWindow(innerName)
+    WuxiaGUI3._bonusInnerPrim = true
+
+    -- Wheel callback
+    setLabelWheelCallback(innerName, function(event)
+      if not event then return end
+      local delta = event.angleDeltaY or 0
+      local step = 8
+      local lH = label:get_height()
+      if lH <= 0 then lH = 200 end
+      local cH = 0
+      for _, e2 in ipairs(WuxiaGUI3._bonusEntries or {}) do cH = cH + e2.h end
+      local mPx = math.max(0, cH - lH)
+      if delta > 0 then
+        WuxiaGUI3._bonusScrollPx = math.max(0, (WuxiaGUI3._bonusScrollPx or 0) - step)
+      elseif delta < 0 then
+        WuxiaGUI3._bonusScrollPx = math.min(mPx, (WuxiaGUI3._bonusScrollPx or 0) + step)
+      end
+      WuxiaGUI3._renderBonusScroll()
+    end)
+
+    label:echo("")
+
+    cecho(string.format("\n<red>PRIM_CREATE: parentAbsX=%d parentAbsY=%d w=%d h=%d cH=%d<reset>\n",
+      label:get_x(), label:get_y(), labelW, labelH, contentH))
   end
 
-  label:echo('<div style="line-height:' .. lineH .. 'px; font-size:10pt; text-shadow:1px 1px 2px #000;">' .. table.concat(lines, "<br>") .. '</div>')
+  -- Absolute position: parent position + offset
+  local absX = label:get_x()
+  local absY = label:get_y()
+  moveWindow(innerName, absX, absY - scrollPx)
+  resizeWindow(innerName, labelW, contentH)
 
+  -- Top/bottom cover labels to mask overflow above and below the viewport
+  local topCover = "W3.attr.coverTop"
+  local botCover = "W3.attr.coverBot"
+  if not WuxiaGUI3._bonusCoversReady then
+    pcall(deleteLabel, topCover)
+    pcall(deleteLabel, botCover)
+    createLabel(topCover, 0, 0, 10, 10, 0)
+    createLabel(botCover, 0, 0, 10, 10, 0)
+    setBackgroundColor(topCover, 17, 17, 34, 255)  -- #111122 = BG
+    setBackgroundColor(botCover, 17, 17, 34, 255)
+    raiseWindow(topCover)
+    raiseWindow(botCover)
+    WuxiaGUI3._bonusCoversReady = true
+  end
+  -- Top cover: from well above the list down to exactly the list top edge
+  moveWindow(topCover, absX, absY - 800)
+  resizeWindow(topCover, labelW, 800)
+  raiseWindow(topCover)
+  -- Bottom cover: from exactly the list bottom edge downward
+  moveWindow(botCover, absX, absY + labelH)
+  resizeWindow(botCover, labelW, 800)
+  raiseWindow(botCover)
+
+  -- Re-echo if entries changed
+  if WuxiaGUI3._bonusRenderedHash ~= #entries then
+    local allLines = {}
+    for _, e in ipairs(entries) do
+      allLines[#allLines + 1] = e.html
+    end
+    echo(innerName, '<div style="font-size:9px; text-shadow:1px 1px 2px #000;">' .. table.concat(allLines, "") .. '</div>')
+    WuxiaGUI3._bonusRenderedHash = #entries
+  end
+
+  -- DEBUG (only on scroll)
+  if scrollPx > 0 then
+    cecho(string.format("\n<yellow>PRIM_POS: absX=%d absY=%d scrollPx=%d targetY=%d<reset>\n",
+      absX, absY, scrollPx, absY - scrollPx))
+  end
+
+  -- Scrollbar
   if not track then return end
   if contentH <= labelH then
     track:hide()
