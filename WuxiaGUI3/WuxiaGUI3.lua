@@ -784,6 +784,14 @@ function WuxiaGUI3._buildAttributes()
   sbThumb:raiseAll()
   WuxiaGUI3._bonusSbThumb = sbThumb
 
+  -- Raise all elements above bonusList so scrolled content goes behind them
+  for _, elem in ipairs({
+    banner1, radarBg, radarOverlay, radarLabel, radarPoly,
+    banner2, hdr1, card1, card2, card3, banner3, hdr3,
+  }) do
+    elem:raiseAll()
+  end
+
   WuxiaGUI3._bonusEntries = {}
   WuxiaGUI3._bonusScrollPx = 0
   WuxiaGUI3._bonusLineH = 18
