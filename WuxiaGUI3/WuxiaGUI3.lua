@@ -97,6 +97,21 @@ WuxiaGUI3.skillData = {}
 local MX = 10                       -- horizontal margin
 local GW = PW - MX * 2             -- gauge / content width
 
+-- Base64 encoder for inline SVG data URIs
+local function _b64(data)
+  local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+  return ((data:gsub('.', function(x)
+    local r, byte = '', x:byte()
+    for i = 8, 1, -1 do r = r .. (byte % 2^i - byte % 2^(i-1) > 0 and '1' or '0') end
+    return r
+  end) .. '0000'):gsub('%d%d%d?%d?%d?%d?', function(x)
+    if #x < 6 then return '' end
+    local c = 0
+    for i = 1, 6 do c = c + (x:sub(i,i) == '1' and 2^(6-i) or 0) end
+    return b:sub(c+1, c+1)
+  end) .. ({'', '==', '='})[#data % 3 + 1])
+end
+
 -- Format large numbers: 12345 → "12,345"
 local function fmtNum(n)
   n = tonumber(n) or 0
@@ -823,10 +838,12 @@ function WuxiaGUI3._buildAttributes()
   WuxiaGUI3._bonusSbThumb = sbThumb
 
   -- Raise all elements above bonusList so scrolled content goes behind them
-  for _, elem in ipairs({
+  local raiseList = {
     banner1, radarBg, radarOverlay, radarLabel, radarPoly,
     banner2, cardZoneBg, hdr1, card1, card2, card3, banner3, filterZoneBg, hdr3,
-  }) do
+  }
+  WuxiaGUI3._bonusRaiseList = raiseList
+  for _, elem in ipairs(raiseList) do
     elem:raiseAll()
   end
   for _, btn in pairs(WuxiaGUI3._buffsFilterBtns) do
@@ -5521,13 +5538,11 @@ function WuxiaGUI3._renderRadarChart()
     'fill="#3cc850" fill-opacity="0.2" stroke="#64ff64" stroke-opacity="0.6" stroke-width="1.5"/>' ..
     '</svg>'
 
-  local svgPath = getMudletHomeDir() .. "/WuxiaGUI3/radar_poly.svg"
-  local fh = io.open(svgPath, "w")
-  if fh then fh:write(svgStr); fh:close() end
+  local svgDataUri = "data:image/svg+xml;base64," .. _b64(svgStr)
 
   local polyLabel = WuxiaGUI3._attrRadarPoly
   if polyLabel then
-    polyLabel:setStyleSheet("background-color:transparent; image:url(" .. svgPath .. ");")
+    polyLabel:echo('<img src="' .. svgDataUri .. '" width="320" height="320">')
   end
 
   -- Text labels
@@ -6002,11 +6017,14 @@ function WuxiaGUI3._refreshBonusStats()
 
   local entries = {}
   local tileH = 22
+  local tileGap = 2  -- px gap between bar rows
+  local sectionGap = 6  -- px gap before section headers
+  local _spacerSvg = "data:image/svg+xml;base64," .. _b64('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>')
   local function add(html, h) entries[#entries + 1] = { html = html, h = h or tileH } end
+  local function addSpacer(h) add('<img src="' .. _spacerSvg .. '" width="1" height="' .. h .. '">', h) end
 
   local tileBuf = {}
   local _tileRowIdx = 0
-  local _svgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
 
   local function tile(label, v, maxV, isPct, color)
     local ratio = (maxV > 0) and math.min(v / maxV, 1) or 0
@@ -6086,19 +6104,14 @@ function WuxiaGUI3._refreshBonusStats()
 
       svg = svg .. '</svg>'
 
-      -- Write SVG to file
-      local fname = "tile_row_" .. _tileRowIdx .. ".svg"
-      local fpath = _svgDir .. fname
-      local fh = io.open(fpath, "w")
-      if fh then
-        fh:write(svg)
-        fh:close()
-      end
+      local svgData = "data:image/svg+xml;base64," .. _b64(svg)
 
-      -- Use table with SVG background so text sits on top of bar via table layout
+      -- SVG bar as inline <img>, then text table with negative margin to overlap
       local hp = {}
       local padT = math.floor((th - 12) / 2)
-      hp[#hp+1] = '<table background="' .. fpath .. '" width="' .. totalW .. '" height="' .. th .. '" cellspacing="0" cellpadding="0"><tr>'
+      hp[#hp+1] = '<div style="height:' .. th .. 'px; overflow:hidden;">'
+      hp[#hp+1] = '<img src="' .. svgData .. '" width="' .. totalW .. '" height="' .. th .. '">'
+      hp[#hp+1] = '<table width="' .. totalW .. '" height="' .. th .. '" cellspacing="0" cellpadding="0" style="margin-top:-' .. th .. 'px;"><tr>'
       for ti2 = 1, 2 do
         local t2 = tileBuf[ti2]
         local lC = t2.isZero and "#555" or "#aaa"
@@ -6111,8 +6124,9 @@ function WuxiaGUI3._refreshBonusStats()
         hp[#hp+1] = '<td align="right" style="padding-right:5px; padding-top:' .. padT .. 'px; font-size:9px; font-weight:' .. vW .. '; color:' .. vC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText2 .. '</td>'
         hp[#hp+1] = '</tr></table></td>'
       end
-      hp[#hp+1] = '</tr></table>'
+      hp[#hp+1] = '</tr></table></div>'
       add(table.concat(hp), tileH)
+      addSpacer(tileGap)
       tileBuf = {}
     end
   end
@@ -6159,17 +6173,17 @@ function WuxiaGUI3._refreshBonusStats()
 
       svg = svg .. '</svg>'
 
-      local fname = "tile_row_" .. _tileRowIdx .. ".svg"
-      local fpath = _svgDir .. fname
-      local fh = io.open(fpath, "w")
-      if fh then fh:write(svg); fh:close() end
+      local svgData = "data:image/svg+xml;base64," .. _b64(svg)
 
       local valText = t.dv .. "/" .. t.dm
       local padT = math.floor((th - 12) / 2)
-      add('<table background="' .. fpath .. '" width="' .. tw .. '" height="' .. th .. '" cellspacing="0" cellpadding="0"><tr>'
+      add('<div style="height:' .. th .. 'px; overflow:hidden;">'
+        .. '<img src="' .. svgData .. '" width="' .. tw .. '" height="' .. th .. '">'
+        .. '<table width="' .. tw .. '" height="' .. th .. '" cellspacing="0" cellpadding="0" style="margin-top:-' .. th .. 'px;"><tr>'
         .. '<td style="padding-left:5px; padding-top:' .. padT .. 'px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000;">' .. t.label .. '</td>'
         .. '<td align="right" style="padding-right:5px; padding-top:' .. padT .. 'px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText .. '</td>'
-        .. '</tr></table>', tileH)
+        .. '</tr></table></div>', tileH)
+      addSpacer(tileGap)
       tileBuf = {}
     end
   end
@@ -6177,9 +6191,10 @@ function WuxiaGUI3._refreshBonusStats()
   local function catHdr(title, color2)
     flushTiles()
     local c2 = color2 or GOLD
+    addSpacer(sectionGap)
     add('<div style="color:' .. c2 .. '; font-size:10px; font-weight:bold; ' ..
       'text-shadow:1px 1px 2px #000; border-bottom:1px solid ' .. c2 .. '30; ' ..
-      'padding-bottom:1px; margin-top:2px;">── ' .. title .. ' ──</div>', 16)
+      'padding-bottom:1px;">── ' .. title .. ' ──</div>', 16)
   end
 
   -- ── 天賦加成 ──
@@ -6277,7 +6292,7 @@ function WuxiaGUI3._refreshBonusStats()
   flushTiles()
 
   WuxiaGUI3._bonusEntries = entries
-
+  WuxiaGUI3._bonusRenderedHash = nil  -- force re-render on reload
 
   if WuxiaGUI3.bonusStatsInfo then
     WuxiaGUI3.bonusStatsInfo:echo("")
@@ -6287,6 +6302,11 @@ function WuxiaGUI3._refreshBonusStats()
 end
 
 function WuxiaGUI3._renderBonusScroll()
+  -- Only create/render inner label when 屬性 tab is active to avoid z-order issues
+  if WuxiaGUI3.activeTab ~= "屬性" then
+    WuxiaGUI3._bonusRenderedHash = nil  -- force re-render when tab becomes active
+    return
+  end
   local entries = WuxiaGUI3._bonusEntries or {}
   local label = WuxiaGUI3._bonusListLabel
   if not label then return end
@@ -6336,6 +6356,15 @@ function WuxiaGUI3._renderBonusScroll()
     end)
 
     label:echo("")
+
+    -- Re-raise elements that should be above the bonus scroll area (z-order)
+    local raiseList = WuxiaGUI3._bonusRaiseList or {}
+    for _, elem in ipairs(raiseList) do
+      if elem and elem.raiseAll then elem:raiseAll() end
+    end
+    for _, btn in pairs(WuxiaGUI3._buffsFilterBtns or {}) do
+      if btn and btn.raiseAll then btn:raiseAll() end
+    end
   end
 
   local inner = WuxiaGUI3._bonusInnerLabel
