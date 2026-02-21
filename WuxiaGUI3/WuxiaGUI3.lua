@@ -469,9 +469,33 @@ end
 -- ═══════════════════════════════════════════════
 function WuxiaGUI3._buildOverview()
   local p = WuxiaGUI3.tabContainers["總覽"]
-  local y = 4
+  local imgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
+  local bgPath     = imgDir .. "wuxia_overview_bg.png"
+  local bannerPath = imgDir .. "wuxia_overview_banner.png"
+  local SHADOW = "text-shadow:1px 1px 3px #000, 0px 0px 6px #000;"
+  local CARD_CSS = "background-color:rgba(20,15,10,0.5); border:1px solid rgba(138,106,58,0.5); border-radius:3px;"
+  local fh
+  local y = 0
 
-  -- Vitals gauges
+  -- ── Layer 1: Background texture ──
+  local bgLabel = Geyser.Label:new({
+    name = "W3.overview.bg", x = 0, y = 0, width = PW, height = "100%",
+  }, p)
+  fh = io.open(bgPath, "r")
+  if fh then fh:close()
+    bgLabel:setStyleSheet("background-color:transparent; border-image:url(" .. bgPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    bgLabel:setStyleSheet("background-color:#0a0810;")
+  end
+
+  -- Dark overlay for text readability
+  local overlay = Geyser.Label:new({
+    name = "W3.overview.overlay", x = 0, y = 0, width = PW, height = "100%",
+  }, p)
+  overlay:setStyleSheet("background-color:rgba(0,0,0,0.45);")
+
+  -- ── Zone A: Vitals ──
+  y = 4
   y = makeGauge(p, "jing",   y, 18, C_JING[1],   C_JING[2])
   y = makeGauge(p, "qi",     y, 18, C_QI[1],     C_QI[2])
   y = makeGauge(p, "jingli", y, 18, C_JINGLI[1], C_JINGLI[2])
@@ -479,7 +503,6 @@ function WuxiaGUI3._buildOverview()
 
   -- Food / Water small gauges
   y = y + 2
-  -- Food gauge (half width)
   local halfW = math.floor((GW - 6) / 2)
   local foodG = Geyser.Gauge:new({
     name = "W3.food.gauge",
@@ -497,7 +520,6 @@ function WuxiaGUI3._buildOverview()
   foodLbl:setFontSize(8)
   WuxiaGUI3.foodLbl = foodLbl
 
-  -- Water gauge (half width, right side)
   local waterG = Geyser.Gauge:new({
     name = "W3.water.gauge",
     x = MX + halfW + 6, y = y + 14, width = halfW, height = 10,
@@ -520,18 +542,94 @@ function WuxiaGUI3._buildOverview()
   y = makeLabel(p, "crazeLbl", y, 16)
   y = y + 2
 
-  -- Separator
-  y = makeSep(p, y)
+  -- ── Banner divider 1 ──
+  local banner1 = Geyser.Label:new({
+    name = "W3.overview.banner1", x = 0, y = y, width = PW, height = 30,
+  }, p)
+  fh = io.open(bannerPath, "r")
+  if fh then fh:close()
+    banner1:setStyleSheet("background-color:transparent; border-image:url(" .. bannerPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    banner1:setStyleSheet("background-color:#0a0806;")
+  end
+  y = y + 30
 
-  -- Experience / Potential / Tihui block
-  y = makeLabel(p, "expBlock", y, 52)
-  y = y + 2
+  -- ── Zone B: Experience ──
+  local expHdr = Geyser.Label:new({
+    name = "W3.overview.expHdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  expHdr:setStyleSheet("background-color:transparent;")
+  expHdr:setFontSize(8)
+  expHdr:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 修煉 ──") .. '</div>')
+  y = y + 20
 
-  -- Separator
-  y = makeSep(p, y)
+  local expCard = Geyser.Label:new({
+    name = "W3.overview.expCard", x = MX + 2, y = y, width = GW - 4, height = 52,
+  }, p)
+  expCard:setStyleSheet(CARD_CSS)
 
-  -- Identity quick view
-  y = makeLabel(p, "identityBlock", y, 80)
+  local expBlock = Geyser.Label:new({
+    name = "W3.expBlock", x = 4, y = 2, width = GW - 12, height = 48,
+  }, expCard)
+  expBlock:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
+  expBlock:setFontSize(9)
+  WuxiaGUI3.expBlock = expBlock
+  y = y + 56
+
+  -- ── Banner divider 2 ──
+  local banner2 = Geyser.Label:new({
+    name = "W3.overview.banner2", x = 0, y = y, width = PW, height = 30,
+  }, p)
+  fh = io.open(bannerPath, "r")
+  if fh then fh:close()
+    banner2:setStyleSheet("background-color:transparent; border-image:url(" .. bannerPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    banner2:setStyleSheet("background-color:#0a0806;")
+  end
+  y = y + 30
+
+  -- ── Zone C: Identity ──
+  local idHdr = Geyser.Label:new({
+    name = "W3.overview.idHdr", x = MX, y = y, width = GW, height = 18,
+  }, p)
+  idHdr:setStyleSheet("background-color:transparent;")
+  idHdr:setFontSize(8)
+  idHdr:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 身份 ──") .. '</div>')
+  y = y + 20
+
+  local idCard = Geyser.Label:new({
+    name = "W3.overview.idCard", x = MX + 2, y = y, width = GW - 4, height = 80,
+  }, p)
+  idCard:setStyleSheet(CARD_CSS)
+
+  local identityBlock = Geyser.Label:new({
+    name = "W3.identityBlock", x = 4, y = 2, width = GW - 12, height = 76,
+  }, idCard)
+  identityBlock:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
+  identityBlock:setFontSize(9)
+  WuxiaGUI3.identityBlock = identityBlock
+
+  -- Store shadow for refresh function
+  WuxiaGUI3._overviewShadow = SHADOW
+
+  -- ── Raise all content above bg/overlay (z-order) ──
+  for _, id in ipairs({"jing", "qi", "jingli", "neili"}) do
+    local l = WuxiaGUI3[id.."Lbl"]
+    local g = WuxiaGUI3[id.."Gauge"]
+    if l then l:raiseAll() end
+    if g and g.container then g.container:raiseAll() end
+  end
+  if WuxiaGUI3.foodLbl    then WuxiaGUI3.foodLbl:raiseAll() end
+  if WuxiaGUI3.foodGauge  then WuxiaGUI3.foodGauge:raiseAll() end
+  if WuxiaGUI3.waterLbl   then WuxiaGUI3.waterLbl:raiseAll() end
+  if WuxiaGUI3.waterGauge then WuxiaGUI3.waterGauge:raiseAll() end
+  if WuxiaGUI3.crazeLbl   then WuxiaGUI3.crazeLbl:raiseAll() end
+  banner1:raiseAll()
+  expHdr:raiseAll()
+  expCard:raiseAll()
+  banner2:raiseAll()
+  idHdr:raiseAll()
+  idCard:raiseAll()
 end
 
 -- ═══════════════════════════════════════════════
@@ -5371,7 +5469,8 @@ function WuxiaGUI3._refreshOverview()
 
     local txt = string.format("%s %d/%d (%d%%)", label, cur, max, pctInt)
     if suffix and suffix ~= "" then txt = txt .. " " .. suffix end
-    l:echo(span(TEXT, txt))
+    local sh = WuxiaGUI3._overviewShadow or ""
+    l:echo('<div style="' .. sh .. '">' .. span(TEXT, txt) .. '</div>')
   end
 
   ug("jing",   "【精氣】", v.jing, v.max_jing)
@@ -5385,47 +5484,56 @@ function WuxiaGUI3._refreshOverview()
   if WuxiaGUI3.foodGauge then
     local fc, fm = v.food or 0, v.max_food or 300
     WuxiaGUI3.foodGauge:setValue(fc, fm)
-    WuxiaGUI3.foodLbl:echo(span(C_FOOD[1], string.format("食 %d/%d", fc, fm)))
+    local sh = WuxiaGUI3._overviewShadow or ""
+    WuxiaGUI3.foodLbl:echo('<div style="' .. sh .. '">' .. span(C_FOOD[1], string.format("食 %d/%d", fc, fm)) .. '</div>')
   end
   if WuxiaGUI3.waterGauge then
     local wc, wm = v.water or 0, v.max_water or 300
     WuxiaGUI3.waterGauge:setValue(wc, wm)
-    WuxiaGUI3.waterLbl:echo(span(C_WATER[1], string.format("水 %d/%d", wc, wm)))
+    local sh = WuxiaGUI3._overviewShadow or ""
+    WuxiaGUI3.waterLbl:echo('<div style="' .. sh .. '">' .. span(C_WATER[1], string.format("水 %d/%d", wc, wm)) .. '</div>')
   end
 
   -- Craze / Pinghe
   if WuxiaGUI3.crazeLbl then
+    local sh = WuxiaGUI3._overviewShadow or ""
     local craze = tonumber(v.craze) or 0
     if craze > 0 then
       local maxc = tonumber(v.max_craze) or 1
       WuxiaGUI3.crazeLbl:echo(
-        span("#cc4444", string.format("【憤怒】%d/%d", craze, maxc)))
+        '<div style="' .. sh .. '">' .. span("#cc4444", string.format("【憤怒】%d/%d", craze, maxc)) .. '</div>')
     else
-      WuxiaGUI3.crazeLbl:echo(span(TEXT_DIM, "【平和】————————————"))
+      WuxiaGUI3.crazeLbl:echo('<div style="' .. sh .. '">' .. span(TEXT_DIM, "【平和】————————————") .. '</div>')
     end
   end
 
   -- Experience block
   if WuxiaGUI3.expBlock then
+    local sh = WuxiaGUI3._overviewShadow or ""
     WuxiaGUI3.expBlock:echo(
+      '<div style="' .. sh .. '">' ..
       kv("潛能", fmtNum(v.potential)) .. "<br>" ..
       kv("體會", fmtNum(v.experience)) .. "<br>" ..
-      kv("經驗", fmtNum(v.combat_exp))
+      kv("經驗", fmtNum(v.combat_exp)) ..
+      '</div>'
     )
   end
 
   -- Identity block
   if WuxiaGUI3.identityBlock then
+    local sh = WuxiaGUI3._overviewShadow or ""
     local name = s.name or ""
     local title = s.title or ""
     local lvl = s.level or 1
     local guild = s.guild or ""
     WuxiaGUI3.identityBlock:echo(
+      '<div style="' .. sh .. '">' ..
       span(GOLD, "<b>" .. name .. "</b>") .. "<br>" ..
       span(TEXT_DIM, title) .. "<br>" ..
       kv("等級", lvl) .. " " .. kv("武功", s.wugong_level or 1) .. "<br>" ..
       kv("能力", s.ability or 0) .. " " .. kv("成就", s.achievement or 0) .. "<br>" ..
-      kv("活躍", s.active or 0)
+      kv("活躍", s.active or 0) ..
+      '</div>'
     )
   end
 
