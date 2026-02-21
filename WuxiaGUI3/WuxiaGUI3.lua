@@ -590,6 +590,19 @@ function WuxiaGUI3._buildAttributes()
   local cardX = MX + 2
   local cardW = GW - 4
 
+  -- Background for cards zone (covers hdr1 through filter buttons)
+  local cardZoneY = y
+  local cardZoneBg = Geyser.Label:new({
+    name = "W3.attr.cardZoneBg", x = 0, y = y, width = PW, height = 10,
+  }, p)
+  local bgPath2 = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_attr_bg2.png"
+  local fh2 = io.open(bgPath2, "r")
+  if fh2 then fh2:close()
+    cardZoneBg:setStyleSheet("border-image:url(" .. bgPath2 .. ") 0 0 0 0 stretch stretch;")
+  else
+    cardZoneBg:setStyleSheet("background-color:#111122;")
+  end
+
   -- ── Section header ──
   local hdr1 = Geyser.Label:new({
     name = "W3.attr.progHdr1", x = MX, y = y, width = GW, height = 18,
@@ -712,8 +725,21 @@ function WuxiaGUI3._buildAttributes()
     banner3:setStyleSheet("background-color:#0a0806;")
   end
   y = y + 30
+  local cardZoneEndY = y
 
   -- Zone 4: Bonus stats with scrollbar
+  local filterZoneY = y
+  local filterZoneBg = Geyser.Label:new({
+    name = "W3.attr.filterZoneBg", x = 0, y = y, width = PW, height = 10,
+  }, p)
+  local bgPath3top = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_attr_bg3_top.png"
+  local fh3t = io.open(bgPath3top, "r")
+  if fh3t then fh3t:close()
+    filterZoneBg:setStyleSheet("border-image:url(" .. bgPath3top .. ") 0 0 0 0 stretch stretch;")
+  else
+    filterZoneBg:setStyleSheet("background-color:#1e1e35;")
+  end
+
   local hdr3 = Geyser.Label:new({
     name = "W3.attr.bonusHdr", x = MX, y = y, width = GW, height = 18,
   }, p)
@@ -756,6 +782,12 @@ function WuxiaGUI3._buildAttributes()
 
   local bonusListY = y
   WuxiaGUI3._bonusListY = bonusListY
+
+  -- Resize card zone background to cover from hdr1 to banner3
+  cardZoneBg:resize(PW, cardZoneEndY - cardZoneY)
+
+  -- Resize filter zone background to cover from hdr3 to bonusList
+  filterZoneBg:resize(PW, bonusListY - filterZoneY)
   WuxiaGUI3._attrParent = p
   local bonusListH = 300
 
@@ -763,7 +795,13 @@ function WuxiaGUI3._buildAttributes()
     name = "W3.attr.bonusList",
     x = MX, y = bonusListY, width = GW - 10, height = bonusListH,
   }, p)
-  bonusListLabel:setStyleSheet("background-color:transparent; qproperty-alignment: 'AlignLeft | AlignTop';")
+  local bgPath3bot = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_attr_bg3_bot.png"
+  local fh3b = io.open(bgPath3bot, "r")
+  if fh3b then fh3b:close()
+    bonusListLabel:setStyleSheet("border-image:url(" .. bgPath3bot .. ") 0 0 0 0 stretch stretch; qproperty-alignment: 'AlignLeft | AlignTop';")
+  else
+    bonusListLabel:setStyleSheet("background-color:#181830; qproperty-alignment: 'AlignLeft | AlignTop';")
+  end
   bonusListLabel:setFontSize(9)
   WuxiaGUI3._bonusListLabel = bonusListLabel
 
@@ -787,7 +825,7 @@ function WuxiaGUI3._buildAttributes()
   -- Raise all elements above bonusList so scrolled content goes behind them
   for _, elem in ipairs({
     banner1, radarBg, radarOverlay, radarLabel, radarPoly,
-    banner2, hdr1, card1, card2, card3, banner3, hdr3,
+    banner2, cardZoneBg, hdr1, card1, card2, card3, banner3, filterZoneBg, hdr3,
   }) do
     elem:raiseAll()
   end
