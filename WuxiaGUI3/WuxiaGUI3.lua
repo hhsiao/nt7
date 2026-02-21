@@ -6105,8 +6105,8 @@ function WuxiaGUI3._refreshBonusStats()
         local vW = t2.isZero and "normal" or "bold"
         local valText2 = t2.dv .. "/" .. t2.dm
         if ti2 == 2 then hp[#hp+1] = '<td width="' .. gap .. '"></td>' end
-        hp[#hp+1] = '<td style="padding-left:5px; font-size:9px; color:' .. lC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px;">' .. t2.label .. '</td>'
-        hp[#hp+1] = '<td align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. vW .. '; color:' .. vC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px; white-space:nowrap;">' .. valText2 .. '</td>'
+        hp[#hp+1] = '<td valign="middle" style="padding-left:5px; font-size:9px; color:' .. lC .. '; text-shadow:1px 1px 2px #000;">' .. t2.label .. '</td>'
+        hp[#hp+1] = '<td valign="middle" align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. vW .. '; color:' .. vC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText2 .. '</td>'
       end
       hp[#hp+1] = '</tr></table>'
       add(table.concat(hp), tileH)
@@ -6163,8 +6163,8 @@ function WuxiaGUI3._refreshBonusStats()
 
       local valText = t.dv .. "/" .. t.dm
       add('<table background="' .. fpath .. '" width="' .. tw .. '" height="' .. th .. '" cellspacing="0" cellpadding="0"><tr>'
-        .. '<td style="padding-left:5px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px;">' .. t.label .. '</td>'
-        .. '<td align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px; white-space:nowrap;">' .. valText .. '</td>'
+        .. '<td valign="middle" style="padding-left:5px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000;">' .. t.label .. '</td>'
+        .. '<td valign="middle" align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText .. '</td>'
         .. '</tr></table>', tileH)
       tileBuf = {}
     end
@@ -6180,41 +6180,41 @@ function WuxiaGUI3._refreshBonusStats()
 
   -- ── 天賦加成 ──
   catHdr("天賦加成")
-  tile("膂力", val("str"), 2000, false, "#e8c170")
-  tile("悟性", val("int"), 2000, false, "#e8c170")
-  tile("根骨", val("con"), 2000, false, "#e8c170")
-  tile("身法", val("dex"), 2000, false, "#e8c170")
+  tile("臂力附加", val("str"), 2000, false, "#e8c170")
+  tile("悟性附加", val("int"), 2000, false, "#e8c170")
+  tile("根骨附加", val("con"), 2000, false, "#e8c170")
+  tile("身法附加", val("dex"), 2000, false, "#e8c170")
   flushTiles()
 
   catHdr("上限加成")
-  tile("潛能", val("max_potential"), 10000000, false, "#e8c170")
-  tile("體會", val("max_experience"), 10000000, false, "#e8c170")
-  tile("內力", val("max_neili"), 2000000, false, "#e8c170")
-  tile("精力", val("max_jingli"), 1000000, false, "#e8c170")
-  tile("氣血", val("max_qi"), 2000000, false, "#e8c170")
-  tile("精氣", val("max_jing"), 1000000, false, "#e8c170")
+  tile("潛能上限", val("max_potential"), 10000000, false, "#e8c170")
+  tile("體會上限", val("max_experience"), 10000000, false, "#e8c170")
+  tile("內力上限", val("max_neili"), 2000000, false, "#e8c170")
+  tile("精力上限", val("max_jingli"), 1000000, false, "#e8c170")
+  tile("氣血上限", val("max_qi"), 2000000, false, "#e8c170")
+  tile("精氣上限", val("max_jing"), 1000000, false, "#e8c170")
   flushTiles()
 
   catHdr("練功加成")
-  tile("研究次", val("research_times"), 2000, false, "#e8c170")
-  tile("研究效", val("research_effect"), 2000, true, "#e8c170")
-  tile("練習次", val("practice_times"), 2000, false, "#e8c170")
-  tile("練習效", val("practice_effect"), 2000, true, "#e8c170")
-  tile("學習次", val("learn_times"), 2000, false, "#e8c170")
-  tile("學習效", val("learn_effect"), 2000, true, "#e8c170")
-  tile("汲取消", val("derive_times"), 2000, false, "#e8c170")
-  tile("汲取效", val("derive_effect"), 2000, true, "#e8c170")
+  tile("研究次數", val("research_times"), 2000, false, "#e8c170")
+  tile("研究效果", val("research_effect"), 2000, true, "#e8c170")
+  tile("練習次數", val("practice_times"), 2000, false, "#e8c170")
+  tile("練習效果", val("practice_effect"), 2000, true, "#e8c170")
+  tile("學習次數", val("learn_times"), 2000, false, "#e8c170")
+  tile("學習效果", val("learn_effect"), 2000, true, "#e8c170")
+  tile("汲取消耗", val("derive_times"), 2000, false, "#e8c170")
+  tile("汲取效果", val("derive_effect"), 2000, true, "#e8c170")
   flushTiles()
 
   catHdr("五行加成", "#cc4444")
   for _, e in ipairs({
-    {"毒傷","add_poison","抗毒","reduce_poison"},
-    {"魔傷","add_magic","抗魔","reduce_magic"},
-    {"金傷","add_metal","抗金","reduce_metal"},
-    {"木傷","add_wood","抗木","reduce_wood"},
-    {"水傷","add_water","抗水","reduce_water"},
-    {"火傷","add_fire","抗火","reduce_fire"},
-    {"土傷","add_earth","抗土","reduce_earth"},
+    {"毒傷害","add_poison","抗毒","reduce_poison"},
+    {"魔傷害","add_magic","抗魔","reduce_magic"},
+    {"金傷害","add_metal","抗金","reduce_metal"},
+    {"木傷害","add_wood","抗木","reduce_wood"},
+    {"水傷害","add_water","抗水","reduce_water"},
+    {"火傷害","add_fire","抗火","reduce_fire"},
+    {"土傷害","add_earth","抗土","reduce_earth"},
   }) do
     tile(e[1], val(e[2]), 100, true, "#cc4444")
     tile(e[3], val(e[4]), 100, true, "#cc4444")
@@ -6222,54 +6222,54 @@ function WuxiaGUI3._refreshBonusStats()
   flushTiles()
 
   catHdr("狀態恢復", "#5588cc")
-  tile("偷內力", val("leech_neili"), 90, true, "#5588cc")
-  tile("偷生命", val("leech_qi"), 90, true, "#5588cc")
+  tile("偷取內力", val("leech_neili"), 90, true, "#5588cc")
+  tile("偷取生命", val("leech_qi"), 90, true, "#5588cc")
   flushTiles()
 
   catHdr("戰鬥加成")
-  tile("攻擊", val("attack"), 9000, false, "#e8c170")
-  tile("防禦", val("defense"), 9000, false, "#e8c170")
-  tile("躲閃", val("dodge"), 9000, false, "#e8c170")
-  tile("招架", val("parry"), 9000, false, "#e8c170")
-  tile("絕命中", val("ap_power"), 120, true, "#e8c170")
-  tile("絕防禦", val("dp_power"), 120, true, "#e8c170")
-  tile("兵傷害", val("damage"), 200000, false, "#e8c170")
-  tile("拳傷害", val("unarmed_damage"), 200000, false, "#e8c170")
-  tile("絕傷害", val("da_power"), 120, true, "#e8c170")
-  tile("戰保護", val("armor"), 200000, false, "#e8c170")
-  tile("忽招架", val("avoid_parry"), 90, true, "#e8c170")
-  tile("忽躲閃", val("avoid_dodge"), 90, true, "#e8c170")
-  tile("忽特攻", val("avoid_attack"), 90, true, "#e8c170")
-  tile("忽內防", val("avoid_force"), 90, true, "#e8c170")
+  tile("攻擊等級", val("attack"), 9000, false, "#e8c170")
+  tile("防禦等級", val("defense"), 9000, false, "#e8c170")
+  tile("躲閃等級", val("dodge"), 9000, false, "#e8c170")
+  tile("招架等級", val("parry"), 9000, false, "#e8c170")
+  tile("絕招命中", val("ap_power"), 120, true, "#e8c170")
+  tile("絕招防禦", val("dp_power"), 120, true, "#e8c170")
+  tile("兵器傷害", val("damage"), 200000, false, "#e8c170")
+  tile("空手傷害", val("unarmed_damage"), 200000, false, "#e8c170")
+  tile("絕招傷害", val("da_power"), 120, true, "#e8c170")
+  tile("戰鬥保護", val("armor"), 200000, false, "#e8c170")
+  tile("忽視招架", val("avoid_parry"), 90, true, "#e8c170")
+  tile("忽視躲閃", val("avoid_dodge"), 90, true, "#e8c170")
+  tile("忽視特攻", val("avoid_attack"), 90, true, "#e8c170")
+  tile("忽視內防", val("avoid_force"), 90, true, "#e8c170")
   flushTiles()
 
   catHdr("高級屬性", "#aa55cc")
-  tile("化忙亂", val("reduce_busy"), 90, false, "#aa55cc")
+  tile("化解忙亂", val("reduce_busy"), 90, false, "#aa55cc")
   tile("尋寶率", val("magic_find"), 300, true, "#aa55cc")
-  tile("雙傷害", val("double_damage"), 200, true, "#aa55cc")
-  tile("傷轉內", val("qi_abs_neili"), 90, true, "#aa55cc")
+  tile("雙倍傷害", val("double_damage"), 200, true, "#aa55cc")
+  tile("傷轉內力", val("qi_abs_neili"), 90, true, "#aa55cc")
   tile("致盲", val("add_blind"), 90, true, "#aa55cc")
-  tile("忽致盲", val("avoid_blind"), 90, true, "#aa55cc")
-  tile("穿破甲", val("through_armor"), 90, true, "#aa55cc")
-  tile("百毒侵", val("avoid_poison"), 100, true, "#aa55cc")
-  tile("戰神", val("full_self"), 90, true, "#aa55cc")
+  tile("忽視致盲", val("avoid_blind"), 90, true, "#aa55cc")
+  tile("穿透破甲", val("through_armor"), 90, true, "#aa55cc")
+  tile("百毒不侵", val("avoid_poison"), 100, true, "#aa55cc")
+  tile("戰神附體", val("full_self"), 90, true, "#aa55cc")
   flushTiles()
 
   catHdr("終極屬性", "#ccaa33")
   tile("冰凍", val("add_freeze"), 90, true, "#ccaa33")
-  tile("忽冰凍", val("avoid_freeze"), 90, true, "#ccaa33")
+  tile("忽視冰凍", val("avoid_freeze"), 90, true, "#ccaa33")
   tile("遺忘", val("add_forget"), 90, true, "#ccaa33")
-  tile("忽遺忘", val("avoid_forget"), 90, true, "#ccaa33")
+  tile("忽視遺忘", val("avoid_forget"), 90, true, "#ccaa33")
   tile("忙亂", val("add_busy"), 90, false, "#ccaa33")
-  tile("忽忙亂", val("avoid_busy"), 90, true, "#ccaa33")
+  tile("忽視忙亂", val("avoid_busy"), 90, true, "#ccaa33")
   tile("虛弱", val("add_weak"), 90, true, "#ccaa33")
-  tile("忽虛弱", val("avoid_weak"), 90, true, "#ccaa33")
-  tile("追傷害", val("add_damage"), 200, true, "#ccaa33")
-  tile("化傷害", val("reduce_damage"), 90, true, "#ccaa33")
-  tile("反噬", val("counter_damage"), 90, true, "#ccaa33")
-  tile("浴重生", val("avoid_die"), 90, true, "#ccaa33")
-  tile("致命擊", val("fatal_blow"), 90, true, "#ccaa33")
-  tile("提技能", val("add_skill"), 1200, false, "#ccaa33")
+  tile("忽視虛弱", val("avoid_weak"), 90, true, "#ccaa33")
+  tile("追加傷害", val("add_damage"), 200, true, "#ccaa33")
+  tile("化解傷害", val("reduce_damage"), 90, true, "#ccaa33")
+  tile("傷害反噬", val("counter_damage"), 90, true, "#ccaa33")
+  tile("浴血重生", val("avoid_die"), 90, true, "#ccaa33")
+  tile("致命一擊", val("fatal_blow"), 90, true, "#ccaa33")
+  tile("提升技能", val("add_skill"), 1200, false, "#ccaa33")
   flushTiles()
 
   WuxiaGUI3._bonusEntries = entries
