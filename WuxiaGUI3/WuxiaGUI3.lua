@@ -598,12 +598,12 @@ function WuxiaGUI3._buildOverview()
   y = y + 20
 
   local idCard = Geyser.Label:new({
-    name = "W3.overview.idCard", x = MX + 2, y = y, width = GW - 4, height = 80,
+    name = "W3.overview.idCard", x = MX + 2, y = y, width = GW - 4, height = 86,
   }, p)
   idCard:setStyleSheet(CARD_CSS)
 
   local identityBlock = Geyser.Label:new({
-    name = "W3.identityBlock", x = 4, y = 2, width = GW - 12, height = 76,
+    name = "W3.identityBlock", x = 4, y = 2, width = GW - 12, height = 82,
   }, idCard)
   identityBlock:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
   identityBlock:setFontSize(9)
@@ -820,7 +820,7 @@ function WuxiaGUI3._buildAttributes()
   y = y + card2H + 4
 
   -- Card 3: 上限 (Limits + protection status)
-  local card3H = 48
+  local card3H = 52
   local card3 = Geyser.Label:new({
     name = "W3.attr.card3", x = cardX, y = y, width = cardW, height = card3H,
   }, p)
@@ -834,7 +834,7 @@ function WuxiaGUI3._buildAttributes()
   card3Hdr:echo(span(GOLD, "上限"))
 
   local card3Body = Geyser.Label:new({
-    name = "W3.attr.card3body", x = 4, y = 14, width = cardW - 8, height = 32,
+    name = "W3.attr.card3body", x = 4, y = 14, width = cardW - 8, height = 36,
   }, card3)
   card3Body:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
   card3Body:setFontSize(9)
@@ -1727,7 +1727,7 @@ function WuxiaGUI3._buildTalents()
   overlay:setStyleSheet("background-color: rgba(0,0,0,0.45);")
 
   -- ── Layer 2: Content (between top and bottom frame) ──
-  local y = topH + 16
+  local y = topH + 4
 
   -- Points summary bar
   y = makeLabel(p, "talentPoints", y, 20)
@@ -5530,7 +5530,7 @@ function WuxiaGUI3._refreshOverview()
       '<div style="' .. sh .. '">' ..
       span(GOLD, "<b>" .. name .. "</b>") .. "<br>" ..
       span(TEXT_DIM, title) .. "<br>" ..
-      kv("等級", lvl) .. " " .. kv("武功", s.wugong_level or 1) .. "<br>" ..
+      kv("等級", lvl) .. " " .. kv("武功上限", s.wugong_level or 1) .. "<br>" ..
       kv("能力", s.ability or 0) .. " " .. kv("成就", s.achievement or 0) .. "<br>" ..
       kv("活躍", s.active or 0) ..
       '</div>'
@@ -5964,7 +5964,7 @@ function WuxiaGUI3._refreshLvlCard()
     local wg = s.wugong_level or 1
     local exp = s.combat_exp or 0
     local nextExp = s.next_level or 1
-    body:echo(kv2("等級", lvl) .. "  " .. kv2("武功", wg))
+    body:echo(kv2("等級", lvl) .. "  " .. kv2("武功上限", wg))
 
     -- Progress bar: XP to next level
     local curThresh = lvl * lvl * lvl * 10000
@@ -6089,20 +6089,7 @@ function WuxiaGUI3._refreshBonusStats()
   local filter = WuxiaGUI3._buffsActiveFilter or "all"
   local lineH = WuxiaGUI3._bonusLineH or 18
 
-  -- MOCK DATA FOR TESTING (remove after verification)
-  local _mockData = {
-    str = 180, int = 250, con = 120, dex = 90,
-    max_potential = 500000, max_neili = 80000, max_jingli = 30000, max_qi = 60000,
-    research_times = 400, research_effect = 15, practice_times = 300, practice_effect = 12,
-    add_poison = 8, reduce_poison = 5, add_fire = 12, reduce_fire = 3,
-    attack = 1200, defense = 800, dodge = 600, parry = 900, armor = 20,
-    ap_power = 15, damage = 5000, avoid_parry = 10,
-    reduce_busy = 12, magic_find = 25, double_damage = 8,
-    add_freeze = 5, avoid_forget = 3, fatal_blow = 2, add_skill = 150,
-  }
-
   local function val(key)
-    if _mockData[key] then return _mockData[key] end
     if filter == "all" then
       local sum = 0
       for _, src in ipairs({"skillmix","yuanshen","ability1","ability2","talent","jingmai","temp"}) do
