@@ -6095,7 +6095,21 @@ function WuxiaGUI3._refreshBonusStats()
         fh:close()
       end
 
-      add('<div><img src="' .. fpath .. '" width="' .. totalW .. '" height="' .. th .. '"></div>', tileH)
+      -- Use table with SVG background so text sits on top of bar via table layout
+      local hp = {}
+      hp[#hp+1] = '<table background="' .. fpath .. '" width="' .. totalW .. '" height="' .. th .. '" cellspacing="0" cellpadding="0"><tr>'
+      for ti2 = 1, 2 do
+        local t2 = tileBuf[ti2]
+        local lC = t2.isZero and "#555" or "#aaa"
+        local vC = t2.isZero and "#555" or "#ddd"
+        local vW = t2.isZero and "normal" or "bold"
+        local valText2 = t2.dv .. "/" .. t2.dm
+        if ti2 == 2 then hp[#hp+1] = '<td width="' .. gap .. '"></td>' end
+        hp[#hp+1] = '<td style="padding-left:5px; font-size:9px; color:' .. lC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px;">' .. t2.label .. '</td>'
+        hp[#hp+1] = '<td align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. vW .. '; color:' .. vC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px; white-space:nowrap;">' .. valText2 .. '</td>'
+      end
+      hp[#hp+1] = '</tr></table>'
+      add(table.concat(hp), tileH)
       tileBuf = {}
     end
   end
@@ -6147,7 +6161,11 @@ function WuxiaGUI3._refreshBonusStats()
       local fh = io.open(fpath, "w")
       if fh then fh:write(svg); fh:close() end
 
-      add('<div><img src="' .. fpath .. '" width="' .. tw .. '" height="' .. th .. '"></div>', tileH)
+      local valText = t.dv .. "/" .. t.dm
+      add('<table background="' .. fpath .. '" width="' .. tw .. '" height="' .. th .. '" cellspacing="0" cellpadding="0"><tr>'
+        .. '<td style="padding-left:5px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px;">' .. t.label .. '</td>'
+        .. '<td align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; line-height:' .. th .. 'px; white-space:nowrap;">' .. valText .. '</td>'
+        .. '</tr></table>', tileH)
       tileBuf = {}
     end
   end
