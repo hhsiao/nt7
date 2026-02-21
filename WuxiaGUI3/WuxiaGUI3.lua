@@ -371,6 +371,21 @@ function WuxiaGUI3.build()
   WuxiaGUI3.bgLabel:setStyleSheet(string.format(
     "background-color: %s; border-left: 1px solid %s;", BG, BORDER))
 
+  -- ─── Header background image ───
+  -- Adjust headerBgH to stretch/shrink the title background on Y axis
+  local headerBgH = 54
+  local headerBgPath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_panel_title.png"
+  WuxiaGUI3.headerBg = Geyser.Label:new({
+    name = "W3.headerBg", x = 0, y = 0,
+    width = PW, height = headerBgH,
+  }, WuxiaGUI3.main)
+  local fhHdr = io.open(headerBgPath, "r")
+  if fhHdr then fhHdr:close()
+    WuxiaGUI3.headerBg:setStyleSheet("border-image:url(" .. headerBgPath .. ") 0 0 0 0 stretch stretch;")
+  else
+    WuxiaGUI3.headerBg:setStyleSheet("background-color:" .. BG .. ";")
+  end
+
   -- ─── Title bar ───
   WuxiaGUI3.titleLbl = Geyser.Label:new({
     name = "W3.titleLbl", x = 0, y = 2,
@@ -777,7 +792,7 @@ function WuxiaGUI3._buildAttributes()
   WuxiaGUI3._buffsFilterBtns = {}
 
   local btnW = math.floor(GW / 4)
-  local btnH = 18
+  local btnH = 15
   for i, src in ipairs(filterSources) do
     local row = math.floor((i - 1) / 4)
     local col = (i - 1) % 4
@@ -790,10 +805,10 @@ function WuxiaGUI3._buildAttributes()
     btn:setClickCallback("WuxiaGUI3._onBuffsFilterClick", src.key)
     WuxiaGUI3._buffsFilterBtns[src.key] = btn
   end
-  y = y + math.ceil(#filterSources / 4) * btnH + 4
+  y = y + math.ceil(#filterSources / 4) * btnH + 2
   WuxiaGUI3._updateBuffsFilterBtns()
 
-  y = makeLabel(p, "bonusStatsInfo", y, 18)
+  y = makeLabel(p, "bonusStatsInfo", y, 14)
 
   local bonusListY = y
   WuxiaGUI3._bonusListY = bonusListY
@@ -808,7 +823,7 @@ function WuxiaGUI3._buildAttributes()
 
   local bonusListLabel = Geyser.Label:new({
     name = "W3.attr.bonusList",
-    x = MX, y = bonusListY, width = GW - 10, height = bonusListH,
+    x = 0, y = bonusListY, width = PW, height = bonusListH,
   }, p)
   local bgPath3bot = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_attr_bg3_bot.png"
   local fh3b = io.open(bgPath3bot, "r")
@@ -841,6 +856,7 @@ function WuxiaGUI3._buildAttributes()
   local raiseList = {
     banner1, radarBg, radarOverlay, radarLabel, radarPoly,
     banner2, cardZoneBg, hdr1, card1, card2, card3, banner3, filterZoneBg, hdr3,
+    sbTrack, sbThumb,
   }
   WuxiaGUI3._bonusRaiseList = raiseList
   for _, elem in ipairs(raiseList) do
@@ -864,7 +880,7 @@ function WuxiaGUI3._buildAttributes()
     local containerH = ap:get_height()
     if containerH <= 0 then containerH = 800 end
     local bListY = WuxiaGUI3._bonusListY or 0
-    local listH = containerH - bListY - 8
+    local listH = containerH - bListY
     if listH < 80 then listH = 80 end
     local bl = WuxiaGUI3._bonusListLabel
     local st = WuxiaGUI3._bonusSbTrack
@@ -5257,17 +5273,17 @@ function WuxiaGUI3.switchTab(tabName)
   for name, btn in pairs(WuxiaGUI3.tabButtons) do
     if name == tabName then
       btn:setStyleSheet(string.format([[
-        background-color: %s;
+        background-color: rgba(22,22,48,0.1);
         border-bottom: 2px solid %s;
         qproperty-alignment: AlignCenter;
-      ]], BG2, GOLD))
+      ]], GOLD))
       btn:echo(span(GOLD, "<b>"..name.."</b>"))
     else
-      btn:setStyleSheet(string.format([[
-        background-color: %s;
-        border-bottom: 1px solid %s;
+      btn:setStyleSheet([[
+        background-color: transparent;
+        border-bottom: 1px solid ]] .. BORDER .. [[;
         qproperty-alignment: AlignCenter;
-      ]], BG, BORDER))
+      ]])
       btn:echo(span(GOLD_DIM, name))
     end
   end
@@ -6019,9 +6035,8 @@ function WuxiaGUI3._refreshBonusStats()
   local tileH = 22
   local tileGap = 2  -- px gap between bar rows
   local sectionGap = 6  -- px gap before section headers
-  local _spacerSvg = "data:image/svg+xml;base64," .. _b64('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>')
   local function add(html, h) entries[#entries + 1] = { html = html, h = h or tileH } end
-  local function addSpacer(h) add('<img src="' .. _spacerSvg .. '" width="1" height="' .. h .. '">', h) end
+  local function addSpacer(h) add('', h) end
 
   local tileBuf = {}
   local _tileRowIdx = 0
@@ -6087,7 +6102,7 @@ function WuxiaGUI3._refreshBonusStats()
         end
 
         -- Outer rounded rect (border)
-        svg = svg .. '<rect x="' .. (ox + 0.5) .. '" y="0.5" width="' .. (tw - 1) .. '" height="' .. (th - 1) .. '" rx="3" ry="3" fill="#0a0806" stroke="' .. borderC .. '" stroke-width="1"/>'
+        svg = svg .. '<rect x="' .. (ox + 0.5) .. '" y="0.5" width="' .. (tw - 1) .. '" height="' .. (th - 1) .. '" rx="3" ry="3" fill="#0a0806" fill-opacity="0.5" stroke="' .. borderC .. '" stroke-width="1"/>'
 
         -- Fill bar (gradient)
         if t.ratio > 0 then
@@ -6159,7 +6174,7 @@ function WuxiaGUI3._refreshBonusStats()
       end
 
       local svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' .. tw .. '" height="' .. th .. '">'
-      svg = svg .. '<rect x="0.5" y="0.5" width="' .. (tw - 1) .. '" height="' .. (th - 1) .. '" rx="3" ry="3" fill="#0a0806" stroke="' .. borderC .. '" stroke-width="1"/>'
+      svg = svg .. '<rect x="0.5" y="0.5" width="' .. (tw - 1) .. '" height="' .. (th - 1) .. '" rx="3" ry="3" fill="#0a0806" fill-opacity="0.5" stroke="' .. borderC .. '" stroke-width="1"/>'
 
       if t.ratio > 0 then
         local fillW = math.max(2, math.floor((tw - 2) * t.ratio))
@@ -6177,12 +6192,16 @@ function WuxiaGUI3._refreshBonusStats()
 
       local valText = t.dv .. "/" .. t.dm
       local padT = math.floor((th - 12) / 2)
-      add('<div style="height:' .. th .. 'px; overflow:hidden;">'
-        .. '<img src="' .. svgData .. '" width="' .. tw .. '" height="' .. th .. '">'
-        .. '<table width="' .. tw .. '" height="' .. th .. '" cellspacing="0" cellpadding="0" style="margin-top:-' .. th .. 'px;"><tr>'
-        .. '<td style="padding-left:5px; padding-top:' .. padT .. 'px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000;">' .. t.label .. '</td>'
-        .. '<td align="right" style="padding-right:5px; padding-top:' .. padT .. 'px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText .. '</td>'
-        .. '</tr></table></div>', tileH)
+      local hp = {}
+      hp[#hp+1] = '<div style="height:' .. th .. 'px; overflow:hidden;">'
+      hp[#hp+1] = '<img src="' .. svgData .. '" width="' .. tw .. '" height="' .. th .. '">'
+      hp[#hp+1] = '<table width="' .. tw .. '" height="' .. th .. '" cellspacing="0" cellpadding="0" style="margin-top:-' .. th .. 'px;"><tr>'
+      hp[#hp+1] = '<td width="' .. tw .. '"><table width="' .. tw .. '" cellspacing="0" cellpadding="0"><tr>'
+      hp[#hp+1] = '<td style="padding-left:5px; padding-top:' .. padT .. 'px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000;">' .. t.label .. '</td>'
+      hp[#hp+1] = '<td align="right" style="padding-right:5px; padding-top:' .. padT .. 'px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText .. '</td>'
+      hp[#hp+1] = '</tr></table></td>'
+      hp[#hp+1] = '</tr></table></div>'
+      add(table.concat(hp), tileH)
       addSpacer(tileGap)
       tileBuf = {}
     end
@@ -6332,7 +6351,7 @@ function WuxiaGUI3._renderBonusScroll()
   if not WuxiaGUI3._bonusInnerLabel then
     WuxiaGUI3._bonusInnerLabel = Geyser.Label:new({
       name = "W3.attr.bonusInner",
-      x = 0, y = 0, width = "100%", height = contentH,
+      x = MX, y = 0, width = GW, height = contentH,
     }, label)
     WuxiaGUI3._bonusInnerLabel:setStyleSheet("background-color:transparent; qproperty-alignment: 'AlignLeft | AlignTop';")
     WuxiaGUI3._bonusInnerLabel:setFontSize(9)
@@ -6362,6 +6381,12 @@ function WuxiaGUI3._renderBonusScroll()
     for _, elem in ipairs(raiseList) do
       if elem and elem.raiseAll then elem:raiseAll() end
     end
+    -- Re-raise header area (bg, title, tab buttons — they're in main, not the tab container)
+    if WuxiaGUI3.headerBg then WuxiaGUI3.headerBg:raiseAll() end
+    if WuxiaGUI3.titleLbl then WuxiaGUI3.titleLbl:raiseAll() end
+    for _, btn in pairs(WuxiaGUI3.tabButtons or {}) do
+      if btn and btn.raiseAll then btn:raiseAll() end
+    end
     for _, btn in pairs(WuxiaGUI3._buffsFilterBtns or {}) do
       if btn and btn.raiseAll then btn:raiseAll() end
     end
@@ -6370,16 +6395,18 @@ function WuxiaGUI3._renderBonusScroll()
   local inner = WuxiaGUI3._bonusInnerLabel
 
   -- Scroll by moving inner label within parent
-  inner:move(0, -labelH - scrollPx)
-  inner:resize("100%", contentH)
+  inner:move(MX, -labelH - scrollPx)
+  inner:resize(GW, contentH)
 
   -- Re-echo if entries changed
   if WuxiaGUI3._bonusRenderedHash ~= #entries then
     local allLines = {}
+    allLines[#allLines + 1] = '<table cellspacing="0" cellpadding="0" width="100%" style="font-size:9px; text-shadow:1px 1px 2px #000;">'
     for _, e in ipairs(entries) do
-      allLines[#allLines + 1] = e.html
+      allLines[#allLines + 1] = '<tr><td height="' .. e.h .. '">' .. e.html .. '</td></tr>'
     end
-    inner:echo('<div style="font-size:9px; text-shadow:1px 1px 2px #000;">' .. table.concat(allLines, "") .. '</div>')
+    allLines[#allLines + 1] = '</table>'
+    inner:echo(table.concat(allLines, ""))
     WuxiaGUI3._bonusRenderedHash = #entries
   end
 
