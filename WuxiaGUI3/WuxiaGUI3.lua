@@ -791,6 +791,9 @@ function WuxiaGUI3._buildAttributes()
   }) do
     elem:raiseAll()
   end
+  for _, btn in pairs(WuxiaGUI3._buffsFilterBtns) do
+    btn:raiseAll()
+  end
 
   WuxiaGUI3._bonusEntries = {}
   WuxiaGUI3._bonusScrollPx = 0
