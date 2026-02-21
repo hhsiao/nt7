@@ -6097,6 +6097,7 @@ function WuxiaGUI3._refreshBonusStats()
 
       -- Use table with SVG background so text sits on top of bar via table layout
       local hp = {}
+      local padT = math.floor((th - 12) / 2)
       hp[#hp+1] = '<table background="' .. fpath .. '" width="' .. totalW .. '" height="' .. th .. '" cellspacing="0" cellpadding="0"><tr>'
       for ti2 = 1, 2 do
         local t2 = tileBuf[ti2]
@@ -6105,8 +6106,10 @@ function WuxiaGUI3._refreshBonusStats()
         local vW = t2.isZero and "normal" or "bold"
         local valText2 = t2.dv .. "/" .. t2.dm
         if ti2 == 2 then hp[#hp+1] = '<td width="' .. gap .. '"></td>' end
-        hp[#hp+1] = '<td valign="middle" style="padding-left:5px; font-size:9px; color:' .. lC .. '; text-shadow:1px 1px 2px #000;">' .. t2.label .. '</td>'
-        hp[#hp+1] = '<td valign="middle" align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. vW .. '; color:' .. vC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText2 .. '</td>'
+        hp[#hp+1] = '<td width="' .. tw .. '"><table width="' .. tw .. '" cellspacing="0" cellpadding="0"><tr>'
+        hp[#hp+1] = '<td style="padding-left:5px; padding-top:' .. padT .. 'px; font-size:9px; color:' .. lC .. '; text-shadow:1px 1px 2px #000;">' .. t2.label .. '</td>'
+        hp[#hp+1] = '<td align="right" style="padding-right:5px; padding-top:' .. padT .. 'px; font-size:9px; font-weight:' .. vW .. '; color:' .. vC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText2 .. '</td>'
+        hp[#hp+1] = '</tr></table></td>'
       end
       hp[#hp+1] = '</tr></table>'
       add(table.concat(hp), tileH)
@@ -6162,9 +6165,10 @@ function WuxiaGUI3._refreshBonusStats()
       if fh then fh:write(svg); fh:close() end
 
       local valText = t.dv .. "/" .. t.dm
+      local padT = math.floor((th - 12) / 2)
       add('<table background="' .. fpath .. '" width="' .. tw .. '" height="' .. th .. '" cellspacing="0" cellpadding="0"><tr>'
-        .. '<td valign="middle" style="padding-left:5px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000;">' .. t.label .. '</td>'
-        .. '<td valign="middle" align="right" width="' .. math.floor(tw * 0.55) .. '" style="padding-right:5px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText .. '</td>'
+        .. '<td style="padding-left:5px; padding-top:' .. padT .. 'px; font-size:9px; color:' .. lblC .. '; text-shadow:1px 1px 2px #000;">' .. t.label .. '</td>'
+        .. '<td align="right" style="padding-right:5px; padding-top:' .. padT .. 'px; font-size:9px; font-weight:' .. valWeight .. '; color:' .. valC .. '; text-shadow:1px 1px 2px #000; white-space:nowrap;">' .. valText .. '</td>'
         .. '</tr></table>', tileH)
       tileBuf = {}
     end
