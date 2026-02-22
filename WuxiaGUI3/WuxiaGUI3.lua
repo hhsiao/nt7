@@ -1376,7 +1376,7 @@ function WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs, progressOverri
 
   local lvlUpIcon = canLvl and ' <span style="color:#ffff55;">▲</span>' or ""
 
-  local cardBg = flashBg or "#161630"
+  local cardBg = flashBg or "rgba(17,17,28,160)"
   local cardBorder = flashBg and "#e8c170" or "#2a2a50"
   local barColor = descColor
 
@@ -1391,7 +1391,7 @@ function WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs, progressOverri
               '<td width="'..(100-progressPct)..'%" bgcolor="#1a1a30" height="5"><span style="font-size:1px;">&nbsp;</span></td>'
   end
 
-  return '<table width="100%" cellspacing="0" cellpadding="4" bgcolor="'..cardBg..'" style="border:1px solid '..cardBorder..'; margin-bottom:3px;">' ..
+  return '<table width="100%" cellspacing="0" cellpadding="4" style="background-color:'..cardBg..'; border:1px solid '..cardBorder..'; margin-bottom:3px;">' ..
          '<tr><td style="line-height:14px;">' ..
          '<span style="color:'..descColor..';">'..sk.name..'</span>' ..
          ' <span style="color:#666;">('..sk.id..')</span>'..badges..'<br>' ..
@@ -1403,117 +1403,172 @@ function WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs, progressOverri
 end
 
 -- ─── Skill card animation system ───
--- Kill all active skill card animations
+-- Kill all active skill card animations and clear queue
 function WuxiaGUI3._killSkillAnims()
   if WuxiaGUI3._skillAnimTimer then
     killTimer(WuxiaGUI3._skillAnimTimer)
     WuxiaGUI3._skillAnimTimer = nil
   end
-  WuxiaGUI3._skillAnimState = {}
+  WuxiaGUI3._skillAnimQueue = nil
+  WuxiaGUI3._skillAnimIdx = nil
+  WuxiaGUI3._skillAnimCurrent = nil
 end
 
--- Start skill card level-up animations for upgraded entries
+-- Scroll the skill list so that entry at entryIdx is visible (instant scroll)
+function WuxiaGUI3._scrollSkillEntryIntoView(entryIdx)
+  local entries = WuxiaGUI3._skillEntries or {}
+  if not entries[entryIdx] then return end
+  local label = WuxiaGUI3._skillListLabel
+  if not label then return end
+  local labelH = label:get_height()
+  if labelH <= 0 then labelH = 200 end
+
+  -- Calculate cumulative height to the target entry
+  local cumH = 0
+  for i = 1, entryIdx - 1 do
+    cumH = cumH + (entries[i] and entries[i].h or 0)
+  end
+  local entryH = entries[entryIdx].h or 0
+
+  -- Calculate total content height
+  local totalH = 0
+  for _, e in ipairs(entries) do totalH = totalH + e.h end
+  local maxPx = math.max(0, totalH - labelH)
+
+  -- Try to center the entry in the viewport; clamp to valid range
+  local targetPx = cumH - math.floor((labelH - entryH) / 2)
+  targetPx = math.max(0, math.min(maxPx, targetPx))
+  WuxiaGUI3._skillScrollPx = targetPx
+end
+
+-- Start skill card level-up animations for upgraded entries (sequential, top-to-bottom)
 -- upgradedEntries: array of { skId, entryIdx, skData, enabledAs, preparedAs, oldLevel, oldLearned, newLevel, newLearned }
 function WuxiaGUI3._startSkillAnims(upgradedEntries)
   WuxiaGUI3._killSkillAnims()
   if not upgradedEntries or #upgradedEntries == 0 then return end
 
-  WuxiaGUI3._skillAnimState = {}
-  for _, info in ipairs(upgradedEntries) do
-    WuxiaGUI3._skillAnimState[info.skId] = {
-      entryIdx   = info.entryIdx,
-      skData     = info.skData,
-      enabledAs  = info.enabledAs,
-      preparedAs = info.preparedAs,
-      oldLevel   = info.oldLevel,
-      oldLearned = info.oldLearned,
-      newLevel   = info.newLevel,
-      newLearned = info.newLearned,
-      phase      = "fill",    -- "fill" -> "flash" -> "refill" -> "done"
-      startTime  = os.clock(),
-    }
+  -- Sort by entryIdx (top-to-bottom order)
+  table.sort(upgradedEntries, function(a, b) return a.entryIdx < b.entryIdx end)
+
+  WuxiaGUI3._skillAnimQueue = upgradedEntries
+  WuxiaGUI3._skillAnimIdx = 1
+
+  -- Begin the first animation
+  WuxiaGUI3._beginNextSkillAnim()
+end
+
+-- Begin animating the next entry in the queue
+function WuxiaGUI3._beginNextSkillAnim()
+  local queue = WuxiaGUI3._skillAnimQueue
+  local idx = WuxiaGUI3._skillAnimIdx
+  if not queue or not idx or idx > #queue then
+    -- All done
+    WuxiaGUI3._killSkillAnims()
+    if WuxiaGUI3._renderSkillScroll then
+      WuxiaGUI3._renderSkillScroll()
+    end
+    return
   end
 
-  -- Start animation tick
+  local info = queue[idx]
+  -- Scroll this entry into view
+  WuxiaGUI3._scrollSkillEntryIntoView(info.entryIdx)
+
+  -- Set up current animation state
+  WuxiaGUI3._skillAnimCurrent = {
+    entryIdx   = info.entryIdx,
+    skData     = info.skData,
+    enabledAs  = info.enabledAs,
+    preparedAs = info.preparedAs,
+    oldLevel   = info.oldLevel,
+    oldLearned = info.oldLearned,
+    newLevel   = info.newLevel,
+    newLearned = info.newLearned,
+    phase      = "fill",    -- "fill" -> "flash" -> "refill" -> "done"
+    startTime  = os.clock(),
+  }
+
+  -- Start tick loop
   WuxiaGUI3._tickSkillAnims()
 end
 
 -- Animation tick function (called at ~60fps during animation)
+-- Processes ONE entry at a time; advances queue when done.
 function WuxiaGUI3._tickSkillAnims()
-  local anims = WuxiaGUI3._skillAnimState
-  if not anims then return end
+  local anim = WuxiaGUI3._skillAnimCurrent
+  if not anim then return end
 
-  local now = os.clock()
-  local anyActive = false
   local entries = WuxiaGUI3._skillEntries or {}
+  local entry = entries[anim.entryIdx]
 
-  for skId, anim in pairs(anims) do
-    if anim.phase ~= "done" then
-      local entry = entries[anim.entryIdx]
-      if not entry then
-        anim.phase = "done"
+  if not entry then
+    -- Entry disappeared; skip to next
+    anim.phase = "done"
+  end
+
+  if anim.phase ~= "done" then
+    local now = os.clock()
+    local elapsed = now - anim.startTime
+    local sk = anim.skData
+
+    if anim.phase == "fill" then
+      -- Phase 1: Fill progress bar from old progress to 100% (0.3s)
+      local oldNextReq = (anim.oldLevel + 1) * (anim.oldLevel + 1)
+      local t = math.min(elapsed / 0.3, 1)
+      t = 1 - (1 - t) ^ 3  -- ease-out cubic
+      local progress = anim.oldLearned + (oldNextReq - anim.oldLearned) * t
+      entry.html = WuxiaGUI3._buildSkillCardHtml(
+        sk, anim.enabledAs, anim.preparedAs, progress, nil, anim.oldLevel)
+      if elapsed >= 0.3 then
+        anim.phase = "flash"
+        anim.startTime = now
+      end
+
+    elseif anim.phase == "flash" then
+      -- Phase 2: Flash card background golden, show new level (0.3s)
+      local t = math.min(elapsed / 0.3, 1)
+      local flashBg
+      if t < 0.5 then
+        flashBg = "rgba(42,37,16,200)"  -- golden tint
       else
-        anyActive = true
-        local elapsed = now - anim.startTime
-        local sk = anim.skData
+        flashBg = nil  -- fade back to normal
+      end
+      entry.html = WuxiaGUI3._buildSkillCardHtml(
+        sk, anim.enabledAs, anim.preparedAs, 0, flashBg, anim.newLevel)
+      if elapsed >= 0.3 then
+        anim.phase = "refill"
+        anim.startTime = now
+      end
 
-        if anim.phase == "fill" then
-          -- Phase 1: Fill progress bar from old progress to 100% (0.3s)
-          local oldNextReq = (anim.oldLevel + 1) * (anim.oldLevel + 1)
-          local t = math.min(elapsed / 0.3, 1)
-          t = 1 - (1 - t) ^ 3  -- ease-out cubic
-          local progress = anim.oldLearned + (oldNextReq - anim.oldLearned) * t
-          entry.html = WuxiaGUI3._buildSkillCardHtml(
-            sk, anim.enabledAs, anim.preparedAs, progress, nil, anim.oldLevel)
-          if elapsed >= 0.3 then
-            anim.phase = "flash"
-            anim.startTime = now
-          end
-
-        elseif anim.phase == "flash" then
-          -- Phase 2: Flash card background golden, show new level (0.3s)
-          local t = math.min(elapsed / 0.3, 1)
-          local flashBg
-          if t < 0.5 then
-            flashBg = "#2a2510"  -- golden tint
-          else
-            flashBg = nil  -- fade back to normal
-          end
-          entry.html = WuxiaGUI3._buildSkillCardHtml(
-            sk, anim.enabledAs, anim.preparedAs, 0, flashBg, anim.newLevel)
-          if elapsed >= 0.3 then
-            anim.phase = "refill"
-            anim.startTime = now
-          end
-
-        elseif anim.phase == "refill" then
-          -- Phase 3: Fill progress bar from 0 to new progress (0.3s)
-          local t = math.min(elapsed / 0.3, 1)
-          t = 1 - (1 - t) ^ 3  -- ease-out cubic
-          local progress = anim.newLearned * t
-          entry.html = WuxiaGUI3._buildSkillCardHtml(
-            sk, anim.enabledAs, anim.preparedAs, progress)
-          if elapsed >= 0.3 then
-            -- Final state with actual values
-            entry.html = WuxiaGUI3._buildSkillCardHtml(
-              sk, anim.enabledAs, anim.preparedAs)
-            anim.phase = "done"
-          end
-        end
+    elseif anim.phase == "refill" then
+      -- Phase 3: Fill progress bar from 0 to new progress (0.3s)
+      local t = math.min(elapsed / 0.3, 1)
+      t = 1 - (1 - t) ^ 3  -- ease-out cubic
+      local progress = anim.newLearned * t
+      entry.html = WuxiaGUI3._buildSkillCardHtml(
+        sk, anim.enabledAs, anim.preparedAs, progress)
+      if elapsed >= 0.3 then
+        -- Final state with actual values
+        entry.html = WuxiaGUI3._buildSkillCardHtml(
+          sk, anim.enabledAs, anim.preparedAs)
+        anim.phase = "done"
       end
     end
   end
 
-  -- Re-render the scroll to show updated cards
+  -- Re-render the scroll to show updated card
   if WuxiaGUI3._renderSkillScroll then
     WuxiaGUI3._renderSkillScroll()
   end
 
-  if anyActive then
+  if anim.phase ~= "done" then
     WuxiaGUI3._skillAnimTimer = tempTimer(0.016, WuxiaGUI3._tickSkillAnims)
   else
+    -- Current entry done, advance to next in queue
     WuxiaGUI3._skillAnimTimer = nil
-    WuxiaGUI3._skillAnimState = {}
+    WuxiaGUI3._skillAnimCurrent = nil
+    WuxiaGUI3._skillAnimIdx = (WuxiaGUI3._skillAnimIdx or 1) + 1
+    WuxiaGUI3._beginNextSkillAnim()
   end
 end
 
@@ -5644,7 +5699,19 @@ function WuxiaGUI3._registerChatAlias()
 end
 -- ═══════════════════════════════════════════════
 function WuxiaGUI3.switchTab(tabName)
+  local prevTab = WuxiaGUI3.activeTab
   WuxiaGUI3.activeTab = tabName
+
+  -- If leaving 技能 tab during animation, cancel and mark as seen
+  if prevTab == "技能" and tabName ~= "技能" then
+    WuxiaGUI3._killSkillAnims()
+    WuxiaGUI3._pendingSkillUpgrades = nil
+    WuxiaGUI3._prevSkillState = nil
+    -- Re-render with final (non-animated) state
+    if WuxiaGUI3._renderSkillScroll then
+      WuxiaGUI3._renderSkillScroll()
+    end
+  end
 
   -- Style all tab buttons
   for name, btn in pairs(WuxiaGUI3.tabButtons) do
@@ -5676,6 +5743,13 @@ function WuxiaGUI3.switchTab(tabName)
 
   -- Refresh the active tab content
   WuxiaGUI3.refresh()
+
+  -- If arriving at 技能 tab with pending upgrades, refresh will detect and animate
+  if tabName == "技能" and WuxiaGUI3._pendingSkillUpgrades then
+    WuxiaGUI3._pendingSkillUpgrades = nil
+    -- _refreshSkills() was already called by refresh() above;
+    -- it will detect level-ups via _prevSkillState and start animation
+  end
 end
 
 -- ═══════════════════════════════════════════════
@@ -7064,6 +7138,9 @@ function WuxiaGUI3._refreshSkills()
     end
   end
 
+  -- Clear prev state so filter changes don't replay the same animations
+  WuxiaGUI3._prevSkillState = nil
+
   -- Start animations if any skills leveled up
   if #upgradedEntries > 0 then
     WuxiaGUI3._startSkillAnims(upgradedEntries)
@@ -7805,17 +7882,21 @@ function WuxiaGUI3.registerEvents()
     local gs = gmcp and gmcp.Char and gmcp.Char.Skills
     if not gs then return end
 
-    -- Save previous state for level-up detection
-    local prevSD = WuxiaGUI3.skillData
-    if prevSD and prevSD.skills then
-      local newPrevState = {}
-      for skId, rawLvl in pairs(prevSD.skills) do
-        newPrevState[skId] = {
-          level   = tonumber(rawLvl) or 0,
-          learned = tonumber((prevSD.learned or {})[skId]) or 0,
-        }
+    -- Save previous state for level-up detection.
+    -- Only update if no pending upgrades exist — preserve the baseline from
+    -- when the user last saw the tab so the full delta is animated.
+    if not WuxiaGUI3._pendingSkillUpgrades then
+      local prevSD = WuxiaGUI3.skillData
+      if prevSD and prevSD.skills then
+        local newPrevState = {}
+        for skId, rawLvl in pairs(prevSD.skills) do
+          newPrevState[skId] = {
+            level   = tonumber(rawLvl) or 0,
+            learned = tonumber((prevSD.learned or {})[skId]) or 0,
+          }
+        end
+        WuxiaGUI3._prevSkillState = newPrevState
       end
-      WuxiaGUI3._prevSkillState = newPrevState
     end
 
     WuxiaGUI3.skillData = {
@@ -7828,7 +7909,28 @@ function WuxiaGUI3.registerEvents()
     }
 
     if WuxiaGUI3.activeTab == "技能" then
+      -- User is on the tab: refresh immediately (will detect upgrades and animate)
       WuxiaGUI3._refreshSkills()
+    else
+      -- User is NOT on the tab: check for level-ups and mark as pending
+      local prevState = WuxiaGUI3._prevSkillState or {}
+      local newSkills = WuxiaGUI3.skillData.skills or {}
+      local hasUpgrade = false
+      for skId, rawLvl in pairs(newSkills) do
+        local prev = prevState[skId]
+        if prev and (tonumber(rawLvl) or 0) > prev.level then
+          hasUpgrade = true
+          break
+        end
+      end
+      if hasUpgrade then
+        WuxiaGUI3._pendingSkillUpgrades = true
+        -- Add gold indicator dot to the 技能 tab button
+        local btn = WuxiaGUI3.tabButtons and WuxiaGUI3.tabButtons["技能"]
+        if btn then
+          btn:echo(span(GOLD_DIM, "技能") .. ' <span style="color:#e8c170;">●</span>')
+        end
+      end
     end
   end)
 
