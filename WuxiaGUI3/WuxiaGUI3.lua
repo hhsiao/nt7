@@ -141,74 +141,71 @@ local function makeGauge(parent, id, y, h, fgColor, bgColor)
     x = MX, y = y + 15, width = GW, height = h,
   }, parent)
 
-  -- Background
+  -- Single gradient label (never resized — preserves border-radius)
   local back = Geyser.Label:new({
     name = "W3."..id..".back",
     x = 0, y = 0, width = "100%", height = "100%",
   }, gc)
   back:setStyleSheet(string.format(
-    "background-color: %s; border-radius: 2px; border: 1px solid rgba(80,70,50,0.4);", bgColor))
+    "background-color: %s; border-radius: 5px;", bgColor))
 
-  -- Normal fill (0–100%)
-  local fill = Geyser.Label:new({
-    name = "W3."..id..".fill",
-    x = 0, y = 0, width = "0%", height = "100%",
-  }, gc)
-  fill:setStyleSheet(string.format(
-    "background-color: %s; border-radius: 2px;", fgColor))
-
-  -- Overflow fill (100%+ portion, brighter color)
-  local overflow = Geyser.Label:new({
-    name = "W3."..id..".overflow",
-    x = 0, y = 0, width = "0%", height = "100%",
-  }, gc)
-  overflow:setStyleSheet(string.format(
-    "background-color: %s; border-radius: 0px 2px 2px 0px;", fgColor))
-  overflow:hide()
-
-  -- 100% marker line (thin vertical line)
+  -- 100% marker line (thin vertical line, overflow only)
   local marker = Geyser.Label:new({
     name = "W3."..id..".marker",
     x = "50%", y = 0, width = 2, height = "100%",
   }, gc)
-  marker:setStyleSheet("background-color: #ffffff;")
+  marker:setStyleSheet("background-color: rgba(255,255,255,0.6);")
   marker:hide()
 
-  WuxiaGUI3[id.."Gauge"]    = { container = gc, back = back, fill = fill,
-                                 overflow = overflow, marker = marker,
-                                 fgColor = fgColor }
+  -- Precompute brighter overflow color
+  local brightColor = fgColor
+  local r, gr2, b = fgColor:match("#(%x%x)(%x%x)(%x%x)")
+  if r then
+    brightColor = string.format("rgb(%d,%d,%d)",
+      math.min(255, tonumber(r, 16) + 60),
+      math.min(255, tonumber(gr2, 16) + 60),
+      math.min(255, tonumber(b, 16) + 60))
+  end
+
+  WuxiaGUI3[id.."Gauge"] = {
+    container = gc, back = back, marker = marker,
+    fgColor = fgColor, bgColor = bgColor, brightColor = brightColor,
+  }
 
   return y + 15 + h + 4
 end
 
--- Apply gauge fill visual for a given ratio (cur/max, can be > 1 for overflow)
+-- Apply gauge fill via CSS gradient on the back label (no resize — preserves border-radius)
+-- Uses tiny offset between stops to avoid duplicate-position ambiguity in Qt.
 local function applyGaugeFill(g, ratio)
-  local pctInt = math.floor(ratio * 100)
-  if ratio <= 1.0 then
-    local wPct = math.max(0, math.min(100, pctInt))
-    g.fill:resize(wPct.."%", nil)
-    g.fill:setStyleSheet(string.format(
-      "background-color: %s; border-radius: 2px;", g.fgColor))
-    g.overflow:hide()
+  local fg, bg, bright = g.fgColor, g.bgColor, g.brightColor
+  if ratio <= 0.001 then
+    g.back:setStyleSheet(string.format(
+      "background-color: %s; border-radius: 5px;", bg))
+    g.marker:hide()
+  elseif ratio >= 0.999 and ratio <= 1.001 then
+    -- At or very near 100%: show solid fill color
+    g.back:setStyleSheet(string.format(
+      "background-color: %s; border-radius: 5px;", fg))
+    g.marker:hide()
+  elseif ratio < 1.0 then
+    local s1 = string.format("%.4f", ratio)
+    local s2 = string.format("%.4f", ratio + 0.001)
+    g.back:setStyleSheet(string.format(
+      "border-radius: 5px; background: qlineargradient(x1:0,y1:0,x2:1,y2:0," ..
+      "stop:0 %s, stop:%s %s, stop:%s %s, stop:1 %s);",
+      fg, s1, fg, s2, bg, bg))
     g.marker:hide()
   else
-    local basePct = math.floor(1.0 / ratio * 100)
-    local overW   = 100 - basePct
-    g.fill:resize(basePct.."%", nil)
-    g.fill:setStyleSheet(string.format(
-      "background-color: %s; border-radius: 2px 0px 0px 2px;", g.fgColor))
-    g.overflow:move(basePct.."%", 0)
-    g.overflow:resize(overW.."%", nil)
-    local r, gr, b = g.fgColor:match("#(%x%x)(%x%x)(%x%x)")
-    if r then
-      r = math.min(255, tonumber(r, 16) + 60)
-      gr = math.min(255, tonumber(gr, 16) + 60)
-      b = math.min(255, tonumber(b, 16) + 60)
-      g.overflow:setStyleSheet(string.format(
-        "background-color: rgb(%d,%d,%d); border-radius: 0px 2px 2px 0px;", r, gr, b))
-    end
-    g.overflow:show()
-    g.marker:move(basePct.."%", 0)
+    -- Overflow (ratio > 1)
+    local base = math.max(0.01, math.min(0.98, 1.0 / ratio))
+    local s1 = string.format("%.4f", base)
+    local s2 = string.format("%.4f", base + 0.001)
+    g.back:setStyleSheet(string.format(
+      "border-radius: 5px; background: qlineargradient(x1:0,y1:0,x2:1,y2:0," ..
+      "stop:0 %s, stop:%s %s, stop:%s %s, stop:1 %s);",
+      fg, s1, fg, s2, bright, bright))
+    g.marker:move(math.floor(base * 100).."%", 0)
     g.marker:show()
   end
 end
@@ -247,6 +244,44 @@ local function animateGauge(g, targetRatio)
       return
     end
     g._animTimer = tempTimer(GAUGE_ANIM_STEP, tick)
+  end
+
+  tick()
+end
+
+-- Animate a Geyser.Gauge (food/water) from current to target value
+local function animateGeyserGauge(gauge, targetCur, targetMax)
+  if gauge._animTimer then
+    killTimer(gauge._animTimer)
+    gauge._animTimer = nil
+  end
+
+  local startCur = gauge._animCur or 0
+  if targetMax < 1 then targetMax = 1 end
+  local startRatio = startCur / targetMax
+  local targetRatio = targetCur / targetMax
+
+  if math.abs(startRatio - targetRatio) < 0.005 then
+    gauge._animCur = targetCur
+    gauge:setValue(targetCur, targetMax)
+    return
+  end
+
+  local steps = math.ceil(GAUGE_ANIM_DURATION / GAUGE_ANIM_STEP)
+  local step = 0
+
+  local function tick()
+    step = step + 1
+    local t = math.min(step / steps, 1)
+    t = 1 - (1 - t) ^ 3  -- ease-out cubic
+    local current = startCur + (targetCur - startCur) * t
+    gauge._animCur = current
+    gauge:setValue(current, targetMax)
+    if t >= 1 then
+      gauge._animTimer = nil
+      return
+    end
+    gauge._animTimer = tempTimer(GAUGE_ANIM_STEP, tick)
   end
 
   tick()
@@ -5518,15 +5553,15 @@ function WuxiaGUI3._refreshOverview()
   -- Food / Water
   if WuxiaGUI3.foodGauge then
     local fc, fm = v.food or 0, v.max_food or 300
-    WuxiaGUI3.foodGauge:setValue(fc, fm)
+    animateGeyserGauge(WuxiaGUI3.foodGauge, fc, fm)
     local sh = WuxiaGUI3._overviewShadow or ""
-    WuxiaGUI3.foodLbl:echo('<div style="' .. sh .. '">' .. span(C_FOOD[1], string.format("食 %d/%d", fc, fm)) .. '</div>')
+    WuxiaGUI3.foodLbl:echo('<div style="' .. sh .. '">' .. span(C_FOOD[1], string.format("食物 %d/%d", fc, fm)) .. '</div>')
   end
   if WuxiaGUI3.waterGauge then
     local wc, wm = v.water or 0, v.max_water or 300
-    WuxiaGUI3.waterGauge:setValue(wc, wm)
+    animateGeyserGauge(WuxiaGUI3.waterGauge, wc, wm)
     local sh = WuxiaGUI3._overviewShadow or ""
-    WuxiaGUI3.waterLbl:echo('<div style="' .. sh .. '">' .. span(C_WATER[1], string.format("水 %d/%d", wc, wm)) .. '</div>')
+    WuxiaGUI3.waterLbl:echo('<div style="' .. sh .. '">' .. span(C_WATER[1], string.format("飲水 %d/%d", wc, wm)) .. '</div>')
   end
 
   -- Craze / Pinghe
