@@ -1343,6 +1343,180 @@ function WuxiaGUI3._skillCategory(skillId, skillType)
   else return "other" end
 end
 
+-- ─── Skill card HTML builder ───
+-- Builds HTML for a single skill card in the scrollable list.
+-- sk: {id, name, type, raw, learnedXP, category}
+-- enabledAs, preparedAs: reverse maps (skId -> {slot1, slot2, ...})
+-- progressOverride: if set, use this value for progress bar instead of sk.learnedXP
+-- flashBg: if set, use as card background color (for upgrade flash effect)
+-- levelOverride: if set, display this level instead of sk.raw (for animation)
+function WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs, progressOverride, flashBg, levelOverride)
+  local displayLevel = levelOverride or sk.raw
+  local descText, descColor = WuxiaGUI3._getSkillLevelInfo(sk.type, displayLevel)
+  local nextReq = (displayLevel + 1) * (displayLevel + 1)
+  local progress = progressOverride or sk.learnedXP
+  local progressPct = 0
+  if nextReq > 0 then progressPct = math.floor(progress / nextReq * 100) end
+  progressPct = math.max(0, math.min(100, progressPct))
+  local canLvl = (sk.learnedXP > (sk.raw + 1) * (sk.raw + 1))
+
+  local badges = ""
+  if enabledAs and enabledAs[sk.id] then
+    for _, slot in ipairs(enabledAs[sk.id]) do
+      local sn = WuxiaGUI3._enableTypeNames[slot] or slot
+      badges = badges .. ' <span style="color:#c8a050;">★'..sn..'</span>'
+    end
+  end
+  if preparedAs and preparedAs[sk.id] then
+    for _, slot in ipairs(preparedAs[sk.id]) do
+      local sn = WuxiaGUI3._enableTypeNames[slot] or slot
+      badges = badges .. ' <span style="color:#8888aa;">◇備'..sn..'</span>'
+    end
+  end
+
+  local lvlUpIcon = canLvl and ' <span style="color:#ffff55;">▲</span>' or ""
+
+  local cardBg = flashBg or "#161630"
+  local cardBorder = flashBg and "#e8c170" or "#2a2a50"
+  local barColor = descColor
+
+  -- Build progress bar HTML
+  local barHtml
+  if progressPct <= 0 then
+    barHtml = '<td bgcolor="#1a1a30" height="5"><span style="font-size:1px;">&nbsp;</span></td>'
+  elseif progressPct >= 100 then
+    barHtml = '<td bgcolor="'..barColor..'" height="5"><span style="font-size:1px;">&nbsp;</span></td>'
+  else
+    barHtml = '<td width="'..progressPct..'%" bgcolor="'..barColor..'" height="5"><span style="font-size:1px;">&nbsp;</span></td>' ..
+              '<td width="'..(100-progressPct)..'%" bgcolor="#1a1a30" height="5"><span style="font-size:1px;">&nbsp;</span></td>'
+  end
+
+  return '<table width="100%" cellspacing="0" cellpadding="4" bgcolor="'..cardBg..'" style="border:1px solid '..cardBorder..'; margin-bottom:3px;">' ..
+         '<tr><td style="line-height:14px;">' ..
+         '<span style="color:'..descColor..';">'..sk.name..'</span>' ..
+         ' <span style="color:#666;">('..sk.id..')</span>'..badges..'<br>' ..
+         '&nbsp;&nbsp;<span style="color:#cccccc;">等級 '..tostring(displayLevel)..'</span>' ..
+         ' <span style="color:'..descColor..';">'..descText..'</span>'..lvlUpIcon ..
+         '<table width="100%" cellspacing="0" cellpadding="0"><tr>'..barHtml..'</tr></table>' ..
+         '<span style="font-size:7pt; color:#777790;">'..tostring(math.floor(progress))..' / '..tostring(nextReq)..'</span>' ..
+         '</td></tr></table>'
+end
+
+-- ─── Skill card animation system ───
+-- Kill all active skill card animations
+function WuxiaGUI3._killSkillAnims()
+  if WuxiaGUI3._skillAnimTimer then
+    killTimer(WuxiaGUI3._skillAnimTimer)
+    WuxiaGUI3._skillAnimTimer = nil
+  end
+  WuxiaGUI3._skillAnimState = {}
+end
+
+-- Start skill card level-up animations for upgraded entries
+-- upgradedEntries: array of { skId, entryIdx, skData, enabledAs, preparedAs, oldLevel, oldLearned, newLevel, newLearned }
+function WuxiaGUI3._startSkillAnims(upgradedEntries)
+  WuxiaGUI3._killSkillAnims()
+  if not upgradedEntries or #upgradedEntries == 0 then return end
+
+  WuxiaGUI3._skillAnimState = {}
+  for _, info in ipairs(upgradedEntries) do
+    WuxiaGUI3._skillAnimState[info.skId] = {
+      entryIdx   = info.entryIdx,
+      skData     = info.skData,
+      enabledAs  = info.enabledAs,
+      preparedAs = info.preparedAs,
+      oldLevel   = info.oldLevel,
+      oldLearned = info.oldLearned,
+      newLevel   = info.newLevel,
+      newLearned = info.newLearned,
+      phase      = "fill",    -- "fill" -> "flash" -> "refill" -> "done"
+      startTime  = os.clock(),
+    }
+  end
+
+  -- Start animation tick
+  WuxiaGUI3._tickSkillAnims()
+end
+
+-- Animation tick function (called at ~60fps during animation)
+function WuxiaGUI3._tickSkillAnims()
+  local anims = WuxiaGUI3._skillAnimState
+  if not anims then return end
+
+  local now = os.clock()
+  local anyActive = false
+  local entries = WuxiaGUI3._skillEntries or {}
+
+  for skId, anim in pairs(anims) do
+    if anim.phase ~= "done" then
+      local entry = entries[anim.entryIdx]
+      if not entry then
+        anim.phase = "done"
+      else
+        anyActive = true
+        local elapsed = now - anim.startTime
+        local sk = anim.skData
+
+        if anim.phase == "fill" then
+          -- Phase 1: Fill progress bar from old progress to 100% (0.3s)
+          local oldNextReq = (anim.oldLevel + 1) * (anim.oldLevel + 1)
+          local t = math.min(elapsed / 0.3, 1)
+          t = 1 - (1 - t) ^ 3  -- ease-out cubic
+          local progress = anim.oldLearned + (oldNextReq - anim.oldLearned) * t
+          entry.html = WuxiaGUI3._buildSkillCardHtml(
+            sk, anim.enabledAs, anim.preparedAs, progress, nil, anim.oldLevel)
+          if elapsed >= 0.3 then
+            anim.phase = "flash"
+            anim.startTime = now
+          end
+
+        elseif anim.phase == "flash" then
+          -- Phase 2: Flash card background golden, show new level (0.3s)
+          local t = math.min(elapsed / 0.3, 1)
+          local flashBg
+          if t < 0.5 then
+            flashBg = "#2a2510"  -- golden tint
+          else
+            flashBg = nil  -- fade back to normal
+          end
+          entry.html = WuxiaGUI3._buildSkillCardHtml(
+            sk, anim.enabledAs, anim.preparedAs, 0, flashBg, anim.newLevel)
+          if elapsed >= 0.3 then
+            anim.phase = "refill"
+            anim.startTime = now
+          end
+
+        elseif anim.phase == "refill" then
+          -- Phase 3: Fill progress bar from 0 to new progress (0.3s)
+          local t = math.min(elapsed / 0.3, 1)
+          t = 1 - (1 - t) ^ 3  -- ease-out cubic
+          local progress = anim.newLearned * t
+          entry.html = WuxiaGUI3._buildSkillCardHtml(
+            sk, anim.enabledAs, anim.preparedAs, progress)
+          if elapsed >= 0.3 then
+            -- Final state with actual values
+            entry.html = WuxiaGUI3._buildSkillCardHtml(
+              sk, anim.enabledAs, anim.preparedAs)
+            anim.phase = "done"
+          end
+        end
+      end
+    end
+  end
+
+  -- Re-render the scroll to show updated cards
+  if WuxiaGUI3._renderSkillScroll then
+    WuxiaGUI3._renderSkillScroll()
+  end
+
+  if anyActive then
+    WuxiaGUI3._skillAnimTimer = tempTimer(0.016, WuxiaGUI3._tickSkillAnims)
+  else
+    WuxiaGUI3._skillAnimTimer = nil
+    WuxiaGUI3._skillAnimState = {}
+  end
+end
+
 function WuxiaGUI3._buildSkills()
   local p = WuxiaGUI3.tabContainers["技能"]
   local imgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
@@ -1626,8 +1800,7 @@ function WuxiaGUI3._buildSkills()
       cumH = entryBot
       if cumH > scrollPx + labelH then break end
     end
-    local lineH = WuxiaGUI3._skillLineH
-    label:echo('<div style="line-height:'..lineH..'px; font-size:9pt; '..SHADOW..' word-wrap:break-word;">'..table.concat(lines, "<br>")..'</div>')
+    label:echo('<div style="font-size:9pt; '..SHADOW..' word-wrap:break-word;">'..table.concat(lines)..'</div>')
     if WuxiaGUI3._skillSbTrack then
       if contentH <= labelH then
         WuxiaGUI3._skillSbTrack:hide()
@@ -6802,7 +6975,7 @@ function WuxiaGUI3._refreshSkills()
     WuxiaGUI3._reflowSkillLayout()
   end
 
-  -- ═══ Filtered skill list ═══
+  -- ═══ Filtered skill list (card-based) ═══
   local skillList = {}
   for skId, rawLvl in pairs(skills) do
     local comp = computed[skId] or {}
@@ -6829,92 +7002,28 @@ function WuxiaGUI3._refreshSkills()
   local entries = {}
   local lastCat = nil
   local lineH = WuxiaGUI3._skillLineH
+  local cardH = 64  -- approximate rendered height per skill card
+
+  -- Kill any previous animations
+  WuxiaGUI3._killSkillAnims()
 
   for _, sk in ipairs(skillList) do
     if filter == "all" and sk.category ~= lastCat then
       lastCat = sk.category
       entries[#entries+1] = {
-        html = span(GOLD, "── "..(catNames[sk.category] or sk.category).." ──"),
-        h = lineH,
+        html = '<table width="100%" cellspacing="0" cellpadding="0"><tr><td height="'..lineH..'" style="line-height:'..lineH..'px;">' ..
+               span(GOLD, "── "..(catNames[sk.category] or sk.category).." ──") ..
+               '</td></tr></table>',
+        h = lineH + 4,
       }
     end
 
-    local descText, descColor = WuxiaGUI3._getSkillLevelInfo(sk.type, sk.raw)
-    local nextReq = (sk.raw + 1) * (sk.raw + 1)
-    local canLvl = (sk.learnedXP >= nextReq and sk.learnedXP > 0)
-
-    local badges = ""
-    if enabledAs[sk.id] then
-      for _, slot in ipairs(enabledAs[sk.id]) do
-        local sn = WuxiaGUI3._enableTypeNames[slot] or slot
-        badges = badges .. ' <span style="color:#c8a050;">★'..sn..'</span>'
-      end
-    end
-    if preparedAs[sk.id] then
-      for _, slot in ipairs(preparedAs[sk.id]) do
-        local sn = WuxiaGUI3._enableTypeNames[slot] or slot
-        badges = badges .. ' <span style="color:#8888aa;">◇備'..sn..'</span>'
-      end
-    end
-
-    local line1 =
-      '<span style="color:'..descColor..';">'..sk.name..'</span>' ..
-      ' <span style="color:#666;">('..sk.id..')</span>' .. badges
-
-    local lvlUpIcon = canLvl and ' <span style="color:#ffff55;">▲</span>' or ""
-
-    local line2 =
-      '&nbsp;&nbsp;' ..
-      span(TEXT, "等級 "..tostring(sk.raw)) ..
-      '  <span style="color:'..descColor..';">'..descText..'</span>' ..
-      lvlUpIcon
-
-    -- Calculate line1 pixel width to determine how many visual lines it wraps to
-    -- Visible text: sk.name + " (" + sk.id + ")" + badges
-    -- At 9pt: CJK char ~14px, ASCII char ~8px, space ~4px
-    local function measureText(str)
-      local px = 0
-      local i = 1
-      local len = #str
-      while i <= len do
-        local b = string.byte(str, i)
-        if b >= 0xE0 then
-          px = px + 14  -- CJK character (3-byte UTF-8)
-          i = i + 3
-        elseif b >= 0xC0 then
-          px = px + 10  -- 2-byte UTF-8
-          i = i + 2
-        elseif b == 0x20 then
-          px = px + 4   -- space
-          i = i + 1
-        else
-          px = px + 8   -- ASCII letter/digit/punct
-          i = i + 1
-        end
-      end
-      return px
-    end
-
-    -- Build the plain visible text of line1
-    local visText = sk.name .. " (" .. sk.id .. ")"
-    if enabledAs[sk.id] then
-      for _, slot in ipairs(enabledAs[sk.id]) do
-        visText = visText .. " ★" .. (WuxiaGUI3._enableTypeNames[slot] or slot)
-      end
-    end
-    if preparedAs[sk.id] then
-      for _, slot in ipairs(preparedAs[sk.id]) do
-        visText = visText .. " ◇備" .. (WuxiaGUI3._enableTypeNames[slot] or slot)
-      end
-    end
-
-    local contentW = (WuxiaGUI3._skillCW or 240) - 16
-    local textPx = measureText(visText)
-    local wrapLines = math.ceil(textPx / contentW)
-    if wrapLines < 1 then wrapLines = 1 end
-
-    entries[#entries+1] = {html=line1, h=lineH * wrapLines}
-    entries[#entries+1] = {html=line2, h=lineH}
+    entries[#entries+1] = {
+      html = WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs),
+      h = cardH,
+      skId = sk.id,
+      skData = sk,
+    }
   end
 
   if #entries == 0 then
@@ -6925,10 +7034,42 @@ function WuxiaGUI3._refreshSkills()
   entries[#entries+1] = {html="", h=lineH}
 
   WuxiaGUI3._skillEntries = entries
+
+  -- Clamp scroll position
+  local totalH = 0
+  for _, e in ipairs(entries) do totalH = totalH + e.h end
   WuxiaGUI3._skillScrollPx = math.min(
     WuxiaGUI3._skillScrollPx or 0,
-    math.max(0, #entries * lineH - 200))
-  WuxiaGUI3._renderSkillScroll()
+    math.max(0, totalH - 200))
+
+  -- Detect level-ups and start animations
+  local prevState = WuxiaGUI3._prevSkillState or {}
+  local upgradedEntries = {}
+  for i, entry in ipairs(entries) do
+    if entry.skId and entry.skData then
+      local prev = prevState[entry.skId]
+      if prev and entry.skData.raw > prev.level then
+        upgradedEntries[#upgradedEntries+1] = {
+          skId       = entry.skId,
+          entryIdx   = i,
+          skData     = entry.skData,
+          enabledAs  = enabledAs,
+          preparedAs = preparedAs,
+          oldLevel   = prev.level,
+          oldLearned = prev.learned,
+          newLevel   = entry.skData.raw,
+          newLearned = entry.skData.learnedXP,
+        }
+      end
+    end
+  end
+
+  -- Start animations if any skills leveled up
+  if #upgradedEntries > 0 then
+    WuxiaGUI3._startSkillAnims(upgradedEntries)
+  else
+    WuxiaGUI3._renderSkillScroll()
+  end
 end
 
 -- ─── 天賦 refresh (from Char.Talents GMCP) ───
@@ -7664,6 +7805,19 @@ function WuxiaGUI3.registerEvents()
     local gs = gmcp and gmcp.Char and gmcp.Char.Skills
     if not gs then return end
 
+    -- Save previous state for level-up detection
+    local prevSD = WuxiaGUI3.skillData
+    if prevSD and prevSD.skills then
+      local newPrevState = {}
+      for skId, rawLvl in pairs(prevSD.skills) do
+        newPrevState[skId] = {
+          level   = tonumber(rawLvl) or 0,
+          learned = tonumber((prevSD.learned or {})[skId]) or 0,
+        }
+      end
+      WuxiaGUI3._prevSkillState = newPrevState
+    end
+
     WuxiaGUI3.skillData = {
       skills        = gs.skills or {},
       learned       = gs.learned or {},
@@ -7672,11 +7826,6 @@ function WuxiaGUI3.registerEvents()
       wprepare      = gs.wprepare or {},
       computed      = gs.computed or {},
     }
-
-    -- DEBUG: uncomment to verify data arrival
-    -- local count = 0
-    -- for _ in pairs(gs.skills or {}) do count = count + 1 end
-    -- debugc("WuxiaGUI3: Char.Skills received, " .. count .. " skills")
 
     if WuxiaGUI3.activeTab == "技能" then
       WuxiaGUI3._refreshSkills()
