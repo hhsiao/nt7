@@ -16,7 +16,7 @@ void create()
 	set("age", 27);
 	set("long",
 "一個白淨面皮的漢子。\n"
-"他是嶽飛麾下名將楊再興的後代。\n");
+"他是岳飛麾下名將楊再興的後代。\n");
 	set("str", 25);
 	set("dex", 25);
 	set("con", 25);
@@ -29,7 +29,7 @@ void create()
 	set_skill("dodge", 200);
 	set_skill("parry", 200);
 	set_skill("spear", 200);
-	set_skill("cuff",200); 
+	set_skill("cuff",200);
 	set_skill("jinyan-gong",200);
 	set_skill("taizu-quan",200);
 	set_skill("xiantian-gong",200);
@@ -68,7 +68,7 @@ void create()
 	carry_object("/clone/weapon/spear.c")->wield();
 	carry_object("/clone/weapon/spear.c");
 	carry_object("/clone/armor/cloth.c")->wear();
-} 
+}
 
 void init()
 {
@@ -77,7 +77,7 @@ void init()
   if (interactive(me = this_player()) ) {
   	   me->start_busy(1);
        call_out("greeting", 2, me);
-  }       
+  }
 }
 
 void greeting(object me)
@@ -108,27 +108,27 @@ void greeting(object me)
 		me->set("quest/射鵰英雄傳/combat_exp",me->query("combat_exp"));
     i=180+random(40);
    	me->add("mana",i);
-  	tell_object(me,HBYEL"\n你於"+NATURE_D->game_time()+"解開射鵰英雄傳風雪驚變篇，獲得"+p+"點最大內力、"+((int)me->query_skill("force")+500)+"點經驗獎勵、"+i+"點聲望。\n\n"NOR); 
+  	tell_object(me,HBYEL"\n你於"+NATURE_D->game_time()+"解開射鵰英雄傳風雪驚變篇，獲得"+p+"點最大內力、"+((int)me->query_skill("force")+500)+"點經驗獎勵、"+i+"點聲望。\n\n"NOR);
     log_file("quest/SheDiao", sprintf("%s(%s) 風雪驚變完成。獎勵：%d點最大內力，%d點經驗，%d點聲望。\n", me->name(1),me->query("id"), p,(me->query_skill("force")+500),i ) );
 
     return;
-  }  	
+  }
 
 }
 
 
-int ask_yangjiaqiang() 
+int ask_yangjiaqiang()
 {
 	object me = this_player();
 	object ob = this_object();
-   
+
 if(me->query(QUESTDIR6+"pass"))
   {
 	  command("disapp "+me->query("id"));
 	  command("say 你不學已經學會楊家槍了嗎。");
 	  return 1;
-  } 
-    
+  }
+
  //武功學習之間需要間隔一天，經驗需要間隔500K
 	if(me->query(QUESTDIR6+"time") && time()-me->query(QUESTDIR6+"time")<86400)
 	{
@@ -142,11 +142,11 @@ if(me->query(QUESTDIR6+"pass"))
 	  command("say 以你當前的經驗恐怕還是難以領悟，還是抓緊去練功去吧。");
 	  return 1;
   }
-  
+
   if(me->query(QUESTDIR+"over") > 0)
     {
     command("pat "+me->query("id"));
-    message_vision(HIC"\n$n微笑著對$N說道：「可要看仔細了!」,伸手拿起牆上的鐵槍舞動起來\n"NOR,me,ob); 
+    message_vision(HIC"\n$n微笑著對$N說道：「可要看仔細了!」,伸手拿起牆上的鐵槍舞動起來\n"NOR,me,ob);
     me->set(QUESTDIR6+"time",time());
     me->set(QUESTDIR6+"combat_exp",me->query("combat_exp"));
     remove_call_out("thinking");
@@ -156,7 +156,7 @@ if(me->query(QUESTDIR6+"pass"))
 	  return 1;
 	  }
 	  else
-	 {  
+	 {
 	  command("? "+me->query("id"));
          command("say 你問這個做什麼?");
     return 1;
@@ -167,7 +167,7 @@ int thinking(object me, object ob)
 {
 	int p;
 	if(!me) return 0;
-	
+
   if(me->query_temp("yjq_thinking")<(3+random(3)))
 	{
 		me->add_temp("yjq_thinking",1);
@@ -186,17 +186,17 @@ int thinking(object me, object ob)
        if(p = 3 &&  random(me->query("kar"))>28  && me->query("pur")>25  && me->query("kar")<31 )
     {
        tell_object(me,HIG"\n你此時生怕將剛才的精妙招式忘了，當即跟著楊鐵心的招式比劃著。\n"NOR);
-       message_vision(HIC"\n$N「哈哈哈」大笑幾聲，說道：“原來如此，原來如此。”\n"NOR,me); 
+       message_vision(HIC"\n$N「哈哈哈」大笑幾聲，說道：“原來如此，原來如此。”\n"NOR,me);
        tell_object(me,HIR"你聽了楊鐵心的指點,終於領悟了楊家槍的精華所在。\n"NOR);
        me->set(QUESTDIR6+"pass",1);
        me->set_skill("yangjia-qiang",11);
-       message_vision(HIC"\n你的「楊家槍」進步了！”\n"NOR,me); 
+       message_vision(HIC"\n你的「楊家槍」進步了！”\n"NOR,me);
 	log_file("quest/SheDiao", sprintf("%s(%s) 失敗%d次成功解開楊家槍。富源：%d；經驗：%d。", me->name(1),me->query("id"), me->query(QUESTDIR6+"fail"),me->query("kar"),me->query("combat_exp")) );
     }
     else
     {
        tell_object(me,HIG"\n你腦海裡似乎抓住了什麼，可是依然不是很明白。\n"NOR);
-       message_vision(HIC"\n$N搖了搖頭，道：“好像還是很困難的。”說罷，深深地嘆了口氣。\n"NOR,me); 
+       message_vision(HIC"\n$N搖了搖頭，道：“好像還是很困難的。”說罷，深深地嘆了口氣。\n"NOR,me);
        command("poor "+me->query("id"));
        me->add(QUESTDIR6+"fail",1);
 	log_file("quest/SheDiao", sprintf("%s(%s) 解楊家槍：%d次。富源：%d；經驗：%d。", me->name(1),me->query("id"), me->query(QUESTDIR6+"fail"),me->query("kar"),me->query("combat_exp")) );

@@ -26,7 +26,7 @@ mapping sword_obj = ([
         "/d/meizhuang/obj/qin":1,                     //暫時無處獲取
         "/d/jinshe/obj/jinshe-jian":32,               //金蛇洞
         "/d/huashan/obj/longquan":30,                 //華山居室
-        "/d/huashan/npc/obj/green_water_sword":35,    //嶽靈珊
+        "/d/huashan/npc/obj/green_water_sword":35,    //岳靈珊
         "/d/heimuya/obj/yuxiao":35,                   //東方不敗
         "/d/heimuya/npc/obj/zhen":1,                  //暫時無處獲取
         "/d/heimuya/npc/obj/changjian":30,            //桑三娘、任盈盈

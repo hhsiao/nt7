@@ -259,7 +259,7 @@ mapping *quest = ({
         ]),
         ([
                 "id":          "yue wife",
-                "name":        "嶽夫人",
+                "name":        "岳夫人",
                 "type":        "殺",
                 "bonus":       92,
                 "msg":        "",

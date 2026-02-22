@@ -141,7 +141,7 @@ mapping cn_sname = ([
         "英" : "ying",
         "仇" : "qiu",
         "侯" : "hou",
-        "嶽" : "yue",
+        "岳" : "yue",
         "帥" : "shuai",
         "寧" : "ning",
         "谷" : "gu",

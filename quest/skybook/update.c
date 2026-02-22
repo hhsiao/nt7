@@ -506,12 +506,12 @@
 老者$npcen=lao zhe;rd beijing;w;w;n;n;w;w;w;w;w;w;w;sw;ok$
 勞德諾$npcen=lao denuo;rd huashan;su;su;eu;eu;su;eu;eu;ok$
 梁發$npcen=liang fa;rd huashan;su;su;eu;eu;su;eu;eu;su;su;wu;ok$
-嶽靈珊|碧水劍$npcen=yue lingshan;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;ok$
+岳靈珊|碧水劍$npcen=yue lingshan;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;ok$
 高根明$npcen=gao genming;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;ok$
 令狐沖$npcen=linghu chong;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;sd;su;su;enter;ok$
 陸大有$npcen=lu dayou;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;ok$
 小師妹$npcen=lu dayou;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;w;w;ok$
-嶽夫人$npcen=yue wife;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;w;n;w;ok$
+岳夫人$npcen=yue wife;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;w;n;w;ok$
 施戴子$npcen=shi daizi;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;nw;ne;ok$
 高老者$npcen=shi daizi;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;nw;ne;ok|npcen=gao laozhe;nu;ok$
 矮老者$npcen=shi daizi;rd huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;nw;ne;ok|npcen=ai laozhe;nu;ok$
@@ -1235,8 +1235,8 @@ give 1 gold to chuanfu，到達桃花島海灘後，n進入桃花林，
 
 喬三槐$r nanyang;n;n;w;w;w;nu;w;nw;move stone
 
-龍泉劍$r huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;w;n;w 非華山弟子砍死嶽夫人, pick sword
-玉女劍譜$r huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;w;n;w 非華山弟子砍死嶽夫人,move tai;get all
+龍泉劍$r huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;w;n;w 非華山弟子砍死岳夫人, pick sword
+玉女劍譜$r huashan;su;su;eu;eu;su;eu;eu;su;su;su;su;eu;n;n;n;w;n;w 非華山弟子砍死岳夫人,move tai;get all
 
 饅頭|清水$衡山廚房或者嵩山廚房 r nanyang;n;n;w;#3 n;nu;ne;u;#5 nu;e;s;serve
 米飯|水碗$逍遙廚房或者全真廚房 r xiaoyao;#3 w;s;order

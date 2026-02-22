@@ -38,7 +38,7 @@ mapping sur_name = ([
 "樊":"fan",     "胡":"hu",      "凌":"ling",    "霍":"huo",
 "虞":"yu",      "萬":"wan",     "支":"zhi",     "柯":"ke",
 "昝":"jiu",     "管":"guan",    "盧":"lu",      "英":"ying",
-"仇":"qiu",     "候":"hou",     "嶽":"yue",     "帥":"shuai",
+"仇":"qiu",     "候":"hou",     "岳":"yue",     "帥":"shuai",
 "緱":"gou",     "亢":"kang",    "況":"kuang",   "後":"hou",
 "有":"you",     "琴":"qin",     "商":"shang",   "牟":"mo",
 "佘":"she",     "耳":"er",      "墨":"mo",      "哈":"ha",

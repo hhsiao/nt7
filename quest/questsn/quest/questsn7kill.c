@@ -419,7 +419,7 @@ mapping *quest = ({
         ]),
         ([
                 "id":          "yue lingshan",
-                "name":        "嶽靈珊",
+                "name":        "岳靈珊",
                 "type":        "殺",
                 "bonus":       71,
                 "msg":        "",
