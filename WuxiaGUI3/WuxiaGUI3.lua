@@ -1566,13 +1566,21 @@ end
 function WuxiaGUI3._buildSkills()
   local p = WuxiaGUI3.tabContainers["技能"]
   local imgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
-  local bgPath  = imgDir .. "wuxia_skills_bg.png"
   local topPath = imgDir .. "wuxia_skills_top.png"
-  local midPath = imgDir .. "wuxia_skills_middle.png"
+  local bg1Path = imgDir .. "wuxia_skills_1.png"
+  local bg2Path = imgDir .. "wuxia_skills_2.png"
+  local bg3Path = imgDir .. "wuxia_skills_3.png"
   local botPath = imgDir .. "wuxia_skills_bottom.png"
-  local topH, botH = 50, 25
-  local CX = 40
+  local topH = 50     -- top frame height (unchanged)
+  local bg1H = 330    -- fixed height for top section (激發技能 + 預備技能)
+  local bg2H = 30     -- fixed height for filter section
+  local bg3H = 800    -- minimum height for skill cards bg (stretches if more space)
+  local botH = 25     -- bottom frame height
+  local MIN_LIST_H = 120  -- minimum skill card list height before clipping
+  local CX = 20
   local CW = PW - CX * 2
+  local SB_RIGHT = 18    -- scrollbar right-edge inset from panel edge (increase to shift right)
+  local SB_SHRINK = 20  -- total pixels shorter than list (split top/bottom)
   local SHADOW = "text-shadow:1px 1px 3px #000, 0px 0px 6px #000;"
   local fh
 
@@ -1580,22 +1588,55 @@ function WuxiaGUI3._buildSkills()
   WuxiaGUI3._skillCX = CX
   WuxiaGUI3._skillCW = CW
   WuxiaGUI3._skillTopH = topH
+  WuxiaGUI3._skillBg1H = bg1H
+  WuxiaGUI3._skillBg2H = bg2H
+  WuxiaGUI3._skillBg3H = bg3H
   WuxiaGUI3._skillBotH = botH
+  WuxiaGUI3._skillMinListH = MIN_LIST_H
+  WuxiaGUI3._skillSbRight = SB_RIGHT
+  WuxiaGUI3._skillSbShrink = SB_SHRINK
   WuxiaGUI3._skillSHADOW = SHADOW
 
-  -- ─── Layer 1: Background ───
-  local bgLabel = Geyser.Label:new({
-    name="W3.skill.bg", x=0, y=0, width=PW, height="100%",
+  -- ─── Layer 1: Three distinct backgrounds (below the top frame) ───
+  -- bg1: top section (激發技能 + 預備技能) – fixed height
+  local bg1Label = Geyser.Label:new({
+    name="W3.skill.bg1", x=0, y=topH, width=PW, height=bg1H,
   }, p)
-  fh = io.open(bgPath, "r")
+  fh = io.open(bg1Path, "r")
   if fh then fh:close()
-    bgLabel:setStyleSheet("background-color:transparent; border-image:url("..bgPath..") 0 0 0 0 stretch stretch;")
-  else bgLabel:setStyleSheet("background-color:#0a0806;") end
+    bg1Label:setStyleSheet("background-color:transparent; border-image:url("..bg1Path..") 0 0 0 0 stretch stretch;")
+  else bg1Label:setStyleSheet("background-color:#0a0806;") end
+  WuxiaGUI3._skillBg1 = bg1Label
 
-  local overlay = Geyser.Label:new({
-    name="W3.skill.overlay", x=0, y=0, width=PW, height="100%",
+  -- bg2: filter section – fixed height
+  local bg2Label = Geyser.Label:new({
+    name="W3.skill.bg2", x=0, y=topH+bg1H, width=PW, height=bg2H,
   }, p)
-  overlay:setStyleSheet("background-color:rgba(0,0,0,0.45);")
+  fh = io.open(bg2Path, "r")
+  if fh then fh:close()
+    bg2Label:setStyleSheet("background-color:transparent; border-image:url("..bg2Path..") 0 0 0 0 stretch stretch;")
+  else bg2Label:setStyleSheet("background-color:#0a0806;") end
+  WuxiaGUI3._skillBg2 = bg2Label
+
+  -- bg3: skill cards list – fixed height
+  local bg3Label = Geyser.Label:new({
+    name="W3.skill.bg3", x=0, y=topH+bg1H+bg2H, width=PW, height=bg3H,
+  }, p)
+  fh = io.open(bg3Path, "r")
+  if fh then fh:close()
+    bg3Label:setStyleSheet("background-color:transparent; border-image:url("..bg3Path..") 0 0 0 0 stretch stretch;")
+  else bg3Label:setStyleSheet("background-color:#0a0806;") end
+  WuxiaGUI3._skillBg3 = bg3Label
+
+  -- Bottom frame – sits on top of cards, fixed at bottom of available space
+  local botLabel = Geyser.Label:new({
+    name="W3.skill.frameBot", x=0, y=0, width=PW, height=botH,
+  }, p)
+  fh = io.open(botPath, "r")
+  if fh then fh:close()
+    botLabel:setStyleSheet("background-color:transparent; border-image:url("..botPath..") 0 0 0 0 stretch stretch;")
+  else botLabel:setStyleSheet("background-color:#1a1008;") end
+  WuxiaGUI3._skillBotLabel = botLabel
 
   -- ─── Layer 2: Content widgets (all stored for reflow) ───
   local y = topH + 8
@@ -1649,12 +1690,6 @@ function WuxiaGUI3._buildSkills()
   WuxiaGUI3._skillPrepContainer = prepContainer
   WuxiaGUI3._skillPrepBoxes = {}
 
-  -- Separator 1
-  local sep1 = Geyser.Label:new({ name="W3.skill.sep1", x=CX, y=0, width=CW, height=1 }, p)
-  sep1:setStyleSheet("background-color:"..BORDER..";")
-  sep1:raiseAll()
-  WuxiaGUI3._skillSep1 = sep1
-
   -- Category filter tabs
   local filterCats = {
     {key="all", label="全部"}, {key="knowledge", label="知識"},
@@ -1680,17 +1715,11 @@ function WuxiaGUI3._buildSkills()
   WuxiaGUI3._skillBtnH = btnH
   WuxiaGUI3._updateSkillFilterBtns()
 
-  -- Separator 2
-  local sep2 = Geyser.Label:new({ name="W3.skill.sep2", x=CX, y=0, width=CW, height=1 }, p)
-  sep2:setStyleSheet("background-color:"..BORDER..";")
-  sep2:raiseAll()
-  WuxiaGUI3._skillSep2 = sep2
-
   -- Scrollable skill list
   local skillListBg = Geyser.Label:new({
     name="W3.skillListBg", x=CX, y=0, width=CW, height=100,
   }, p)
-  skillListBg:setStyleSheet("background-color:rgba(0,0,0,0.4); border-radius:3px;")
+  skillListBg:setStyleSheet("background-color:transparent;")
   skillListBg:raiseAll()
   WuxiaGUI3._skillListBg = skillListBg
 
@@ -1779,7 +1808,6 @@ function WuxiaGUI3._buildSkills()
     local CX2 = WuxiaGUI3._skillCX
     local CW2 = WuxiaGUI3._skillCW
     local tH = WuxiaGUI3._skillTopH
-    local bH = WuxiaGUI3._skillBotH
     local prepVisible = WuxiaGUI3._skillPrepVisible or false
 
     -- Simple top-down layout: each section gets its natural height
@@ -1804,9 +1832,8 @@ function WuxiaGUI3._buildSkills()
       WuxiaGUI3._skillPrepContainer:move(CX2, y2); y2 = y2 + prepH + 4
     end
 
-    -- Sep1
-    WuxiaGUI3._skillSep1:move(CX2, y2); y2 = y2 + 5
-
+    -- Move the filter buttons down to compensate for the separator bar in bg1
+    y2 = y2 + 19
     -- Filter buttons
     local btnW2 = math.floor(CW2 / 5)
     local btnH2 = WuxiaGUI3._skillBtnH or 20
@@ -1818,14 +1845,29 @@ function WuxiaGUI3._buildSkills()
     end
     y2 = y2 + btnH2 + 2
 
-    -- Sep2
-    WuxiaGUI3._skillSep2:move(CX2, y2); y2 = y2 + 4
-
-    -- Skill list: fill remaining space down to bottom frame
+    -- Skill list area
     local containerH = p:get_height()
     if containerH <= 0 then containerH = 600 end
-    local listH = containerH - y2 - bH + 8  -- extend under bottom frame so cards scroll behind it
-    if listH < 80 then listH = 80 end
+    local b3H = WuxiaGUI3._skillBg3H
+    local bH = WuxiaGUI3._skillBotH
+    local minLH = WuxiaGUI3._skillMinListH
+
+    -- bg3: minimum b3H, stretch if more space available
+    local availBg3 = containerH - y2
+    local effBg3H = math.max(b3H, availBg3)
+    if WuxiaGUI3._skillBg3 then
+      WuxiaGUI3._skillBg3:move(0, y2)
+      WuxiaGUI3._skillBg3:resize(PW, effBg3H)
+    end
+
+    -- Push skill card content down within bg3
+    local CARD_TOP_PAD = 8  -- extra top padding for card list inside bg3
+    y2 = y2 + CARD_TOP_PAD
+
+    -- Available space for cards: from y2 to container bottom
+    local naturalListH = containerH - y2
+    -- Enforce minimum: if too small, content extends past container (clips)
+    local listH = math.max(minLH, naturalListH)
 
     if WuxiaGUI3._skillListBg then
       WuxiaGUI3._skillListBg:move(CX2, y2)
@@ -1833,8 +1875,17 @@ function WuxiaGUI3._buildSkills()
     end
     WuxiaGUI3._skillListLabel:move(CX2, y2)
     WuxiaGUI3._skillListLabel:resize(CW2 - 8, listH)
-    WuxiaGUI3._skillSbTrack:move(PW - CX2 - 4, y2 + 6)
-    WuxiaGUI3._skillSbTrack:resize(nil, listH - 8)
+    local sbR = WuxiaGUI3._skillSbRight or 6
+    local sbSh = WuxiaGUI3._skillSbShrink or 20
+    local sbPad = math.floor(sbSh / 2)
+    WuxiaGUI3._skillSbTrack:move(PW - sbR, y2 + sbPad)
+    WuxiaGUI3._skillSbTrack:resize(nil, listH - sbSh)
+
+    -- Bottom frame: decorative, at bottom of container (clips with content)
+    if WuxiaGUI3._skillBotLabel then
+      WuxiaGUI3._skillBotLabel:move(0, containerH - bH)
+      WuxiaGUI3._skillBotLabel:resize(PW, bH)
+    end
 
     if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
   end
@@ -1981,7 +2032,7 @@ function WuxiaGUI3._buildSkills()
           pl._barText:echo(
             '<div style="font-size:8pt; '..SHADOW..'">' ..
             '<table width="100%" cellspacing="0" cellpadding="0"><tr>' ..
-              '<td style="padding-left:4px;"><span style="color:#cccccc;">' .. bi.levelText .. '</span></td>' ..
+              '<td style="padding-left:6px;"><span style="color:#cccccc;">' .. bi.levelText .. '</span></td>' ..
               '<td align="right" style="padding-right:4px;"><span style="color:#999999; font-size:7pt;">' .. bi.xpText .. '</span></td>' ..
             '</tr></table></div>')
           pl._barText:show()
@@ -1998,6 +2049,22 @@ function WuxiaGUI3._buildSkills()
     for i = poolIdx + 1, #pool do
       pool[i]:hide()
       if pool[i]._barBg then pool[i]._barBg:hide() end
+    end
+
+    -- Re-raise mask layers above cards so they cover overflow
+    if WuxiaGUI3._skillBg1 then WuxiaGUI3._skillBg1:raiseAll() end
+    if WuxiaGUI3._skillBg2 then WuxiaGUI3._skillBg2:raiseAll() end
+    if WuxiaGUI3._skillBotLabel then WuxiaGUI3._skillBotLabel:raiseAll() end
+    if WuxiaGUI3._skillTopLabel then WuxiaGUI3._skillTopLabel:raiseAll() end
+    -- Re-raise interactive widgets above masks
+    if WuxiaGUI3._skillSummaryLbl then WuxiaGUI3._skillSummaryLbl:raiseAll() end
+    if WuxiaGUI3._skillEnableHdr then WuxiaGUI3._skillEnableHdr:raiseAll() end
+    if WuxiaGUI3._skillEnableContainer then WuxiaGUI3._skillEnableContainer:raiseAll() end
+    if WuxiaGUI3._skillPrepHdr then WuxiaGUI3._skillPrepHdr:raiseAll() end
+    if WuxiaGUI3._skillPrepContainer then WuxiaGUI3._skillPrepContainer:raiseAll() end
+    for _, cat in ipairs(WuxiaGUI3._skillFilterCats or {}) do
+      local btn = WuxiaGUI3._skillFilterBtns[cat.key]
+      if btn then btn:raiseAll() end
     end
 
     -- Scrollbar
@@ -2061,95 +2128,64 @@ function WuxiaGUI3._buildSkills()
   end)
   sbTrack:setReleaseCallback(function() end)
 
-  -- ─── Layer 3: Frame pieces ───
+  -- Forward wheel events from bg labels to skill scroll handler
+  local function _skillWheelHandler(event)
+    if not WuxiaGUI3._skillListLabel then return end
+    local delta = event and event.angleDeltaY or 0
+    local step = (WuxiaGUI3._skillLineH or 20) * 3
+    local labelH = WuxiaGUI3._skillListLabel:get_height()
+    if labelH <= 0 then labelH = 200 end
+    local tch = 0
+    for _, e in ipairs(WuxiaGUI3._skillEntries or {}) do tch = tch + e.h end
+    local maxPx = math.max(0, tch - labelH)
+    if delta > 0 then
+      WuxiaGUI3._skillScrollPx = math.max(0, (WuxiaGUI3._skillScrollPx or 0) - step)
+    elseif delta < 0 then
+      WuxiaGUI3._skillScrollPx = math.min(maxPx, (WuxiaGUI3._skillScrollPx or 0) + step)
+    end
+    if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
+  end
+  bg1Label:setWheelCallback(_skillWheelHandler)
+  bg2Label:setWheelCallback(_skillWheelHandler)
+  bg3Label:setWheelCallback(_skillWheelHandler)
+  botLabel:setWheelCallback(_skillWheelHandler)
+
+  -- ─── Top frame (drawn above everything else to mask content at top edge) ───
   local topLabel = Geyser.Label:new({ name="W3.skill.frameTop", x=0, y=0, width=PW, height=topH }, p)
   fh = io.open(topPath, "r")
   if fh then fh:close()
     topLabel:setStyleSheet("background-color:transparent; border-image:url("..topPath..") 0 0 0 0 stretch stretch;")
   else topLabel:setStyleSheet("background-color:#1a1008;") end
-  topLabel:raiseAll()
-
-  local midLabel = Geyser.Label:new({ name="W3.skill.frameMid", x=0, y=topH, width=PW, height="-"..botH.."px" }, p)
-  fh = io.open(midPath, "r")
-  if fh then fh:close()
-    midLabel:setStyleSheet("background-color:transparent; border-image:url("..midPath..") 0 0 0 0 stretch stretch;")
-  else midLabel:setStyleSheet("background-color:transparent;") end
-  midLabel:raiseAll()
-
-  local botLabel = Geyser.Label:new({ name="W3.skill.frameBot", x=0, y=-botH, width=PW, height=botH }, p)
-  fh = io.open(botPath, "r")
-  if fh then fh:close()
-    botLabel:setStyleSheet("background-color:#1a1008; border-image:url("..botPath..") 0 0 0 0 stretch stretch;")
-  else botLabel:setStyleSheet("background-color:#1a1008;") end
-  botLabel:raiseAll()
-
-  -- Forward wheel events from frame to skill scroll handler
-  midLabel:setWheelCallback(function(event)
-    if not WuxiaGUI3._skillListLabel then return end
-    local delta = event and event.angleDeltaY or 0
-    local step = (WuxiaGUI3._skillLineH or 20) * 3
-    local labelH = WuxiaGUI3._skillListLabel:get_height()
-    if labelH <= 0 then labelH = 200 end
-    local tch = 0
-    for _, e in ipairs(WuxiaGUI3._skillEntries or {}) do tch = tch + e.h end
-    local maxPx = math.max(0, tch - labelH)
-    if delta > 0 then
-      WuxiaGUI3._skillScrollPx = math.max(0, (WuxiaGUI3._skillScrollPx or 0) - step)
-    elseif delta < 0 then
-      WuxiaGUI3._skillScrollPx = math.min(maxPx, (WuxiaGUI3._skillScrollPx or 0) + step)
-    end
-    if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
-  end)
-  botLabel:setWheelCallback(function(event)
-    if not WuxiaGUI3._skillListLabel then return end
-    local delta = event and event.angleDeltaY or 0
-    local step = (WuxiaGUI3._skillLineH or 20) * 3
-    local labelH = WuxiaGUI3._skillListLabel:get_height()
-    if labelH <= 0 then labelH = 200 end
-    local tch = 0
-    for _, e in ipairs(WuxiaGUI3._skillEntries or {}) do tch = tch + e.h end
-    local maxPx = math.max(0, tch - labelH)
-    if delta > 0 then
-      WuxiaGUI3._skillScrollPx = math.max(0, (WuxiaGUI3._skillScrollPx or 0) - step)
-    elseif delta < 0 then
-      WuxiaGUI3._skillScrollPx = math.min(maxPx, (WuxiaGUI3._skillScrollPx or 0) + step)
-    end
-    if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
-  end)
+  WuxiaGUI3._skillTopLabel = topLabel
 
   -- Z-order layers (bottom to top):
-  -- 1. Scroll area background and container (pool labels are children of skillListLabel)
+  -- 1. Background images (lowest)
+  bg1Label:raiseAll()
+  bg3Label:raiseAll()
+  -- 2. Scroll area overlay and container
   skillListBg:raiseAll()
   skillListLabel:raiseAll()
-  -- 2. Frame overlays ABOVE scroll area (masks any pool label overflow at edges)
-  topLabel:raiseAll()
-  midLabel:raiseAll()
+  -- 3. Masking layers ABOVE scroll content
+  bg1Label:raiseAll()
+  bg2Label:raiseAll()
   botLabel:raiseAll()
-  -- 3. Interactive widgets ABOVE frame (clickable)
+  topLabel:raiseAll()
+  -- 4. Interactive widgets ABOVE masks (clickable)
   summaryLbl:raiseAll()
   enableHdr:raiseAll()
   enableContainer:raiseAll()
   prepHdr:raiseAll()
   prepContainer:raiseAll()
-  sep1:raiseAll()
   for _, cat in ipairs(filterCats) do
     local btn = WuxiaGUI3._skillFilterBtns[cat.key]
     if btn then btn:raiseAll() end
   end
-  sep2:raiseAll()
-  -- 4. Scrollbar (topmost)
+  -- 5. Scrollbar (topmost)
   sbTrack:raiseAll()
   sbThumb:raiseAll()
 
   -- Resize handler
   WuxiaGUI3._repositionSkills = function()
-    local containerH = p:get_height()
-    local minH = 506
-    local effH = math.max(containerH, minH)
-    midLabel:resize(PW, effH - topH - botH)
-    botLabel:move(0, effH - botH)
-    overlay:resize(PW, effH)
-    bgLabel:resize(PW, effH)
     if WuxiaGUI3._reflowSkillLayout then WuxiaGUI3._reflowSkillLayout() end
   end
 
@@ -7236,7 +7272,7 @@ function WuxiaGUI3._refreshSkills()
   local entries = {}
   local lastCat = nil
   local lineH = WuxiaGUI3._skillLineH
-  local cardH = 48  -- name line (~20px) + bar (18px) + padding (~10px)
+  local cardH = 51  -- name line (~20px) + bar (18px) + padding/gap (~18px)
 
   -- Kill any previous animations
   WuxiaGUI3._killSkillAnims()
