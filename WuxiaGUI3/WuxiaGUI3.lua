@@ -181,6 +181,77 @@ local function makeGauge(parent, id, y, h, fgColor, bgColor)
   return y + 15 + h + 4
 end
 
+-- Apply gauge fill visual for a given ratio (cur/max, can be > 1 for overflow)
+local function applyGaugeFill(g, ratio)
+  local pctInt = math.floor(ratio * 100)
+  if ratio <= 1.0 then
+    local wPct = math.max(0, math.min(100, pctInt))
+    g.fill:resize(wPct.."%", nil)
+    g.fill:setStyleSheet(string.format(
+      "background-color: %s; border-radius: 2px;", g.fgColor))
+    g.overflow:hide()
+    g.marker:hide()
+  else
+    local basePct = math.floor(1.0 / ratio * 100)
+    local overW   = 100 - basePct
+    g.fill:resize(basePct.."%", nil)
+    g.fill:setStyleSheet(string.format(
+      "background-color: %s; border-radius: 2px 0px 0px 2px;", g.fgColor))
+    g.overflow:move(basePct.."%", 0)
+    g.overflow:resize(overW.."%", nil)
+    local r, gr, b = g.fgColor:match("#(%x%x)(%x%x)(%x%x)")
+    if r then
+      r = math.min(255, tonumber(r, 16) + 60)
+      gr = math.min(255, tonumber(gr, 16) + 60)
+      b = math.min(255, tonumber(b, 16) + 60)
+      g.overflow:setStyleSheet(string.format(
+        "background-color: rgb(%d,%d,%d); border-radius: 0px 2px 2px 0px;", r, gr, b))
+    end
+    g.overflow:show()
+    g.marker:move(basePct.."%", 0)
+    g.marker:show()
+  end
+end
+
+-- Animate gauge from current displayed ratio to target ratio
+local GAUGE_ANIM_DURATION = 0.3
+local GAUGE_ANIM_STEP = 0.016
+
+local function animateGauge(g, targetRatio)
+  if g._animTimer then
+    killTimer(g._animTimer)
+    g._animTimer = nil
+  end
+
+  local startRatio = g._animRatio or 0
+  g._animRatio = targetRatio  -- record target in case of rapid updates
+
+  if math.abs(startRatio - targetRatio) < 0.005 then
+    g._animRatio = targetRatio
+    applyGaugeFill(g, targetRatio)
+    return
+  end
+
+  local steps = math.ceil(GAUGE_ANIM_DURATION / GAUGE_ANIM_STEP)
+  local step = 0
+
+  local function tick()
+    step = step + 1
+    local t = math.min(step / steps, 1)
+    t = 1 - (1 - t) ^ 3  -- ease-out cubic
+    local current = startRatio + (targetRatio - startRatio) * t
+    g._animRatio = current
+    applyGaugeFill(g, current)
+    if t >= 1 then
+      g._animTimer = nil
+      return
+    end
+    g._animTimer = tempTimer(GAUGE_ANIM_STEP, tick)
+  end
+
+  tick()
+end
+
 -- Create a horizontal separator line
 local function makeSep(parent, y)
   local s = Geyser.Label:new({
@@ -5429,43 +5500,7 @@ function WuxiaGUI3._refreshOverview()
     local pct = cur / max
     local pctInt = math.floor(pct * 100)
 
-    if pct <= 1.0 then
-      -- Normal: single fill, no overflow
-      local wPct = math.max(0, math.min(100, pctInt))
-      g.fill:resize(wPct.."%", nil)
-      g.fill:setStyleSheet(string.format(
-        "background-color: %s; border-radius: 2px;", g.fgColor))
-      g.overflow:hide()
-      g.marker:hide()
-    else
-      -- Overflow: base fill to 100% mark, overflow fill beyond
-      -- Scale: total bar = cur, so 100% mark is at (max/cur) of bar width
-      local basePct = math.floor(max / cur * 100)  -- where 100% mark falls
-      local overW   = 100 - basePct                 -- overflow portion width
-
-      -- Base fill: from 0 to basePct (normal color)
-      g.fill:resize(basePct.."%", nil)
-      g.fill:setStyleSheet(string.format(
-        "background-color: %s; border-radius: 2px 0px 0px 2px;", g.fgColor))
-
-      -- Overflow fill: brighter color from basePct to 100%
-      g.overflow:move(basePct.."%", 0)
-      g.overflow:resize(overW.."%", nil)
-      -- Lighten the color for overflow portion
-      local r, gr, b = g.fgColor:match("#(%x%x)(%x%x)(%x%x)")
-      if r then
-        r = math.min(255, tonumber(r, 16) + 60)
-        gr = math.min(255, tonumber(gr, 16) + 60)
-        b = math.min(255, tonumber(b, 16) + 60)
-        g.overflow:setStyleSheet(string.format(
-          "background-color: rgb(%d,%d,%d); border-radius: 0px 2px 2px 0px;", r, gr, b))
-      end
-      g.overflow:show()
-
-      -- 100% marker line at basePct
-      g.marker:move(basePct.."%", 0)
-      g.marker:show()
-    end
+    animateGauge(g, pct)
 
     local txt = string.format("%s %d/%d (%d%%)", label, cur, max, pctInt)
     if suffix and suffix ~= "" then txt = txt .. " " .. suffix end
