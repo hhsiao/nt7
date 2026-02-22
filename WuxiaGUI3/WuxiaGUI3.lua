@@ -1343,13 +1343,10 @@ function WuxiaGUI3._skillCategory(skillId, skillType)
   else return "other" end
 end
 
--- ─── Skill card HTML builder ───
--- Builds HTML for a single skill card in the scrollable list.
--- sk: {id, name, type, raw, learnedXP, category}
--- enabledAs, preparedAs: reverse maps (skId -> {slot1, slot2, ...})
--- progressOverride: if set, use this value for progress bar instead of sk.learnedXP
--- flashBg: if set, use as card background color (for upgrade flash effect)
--- levelOverride: if set, display this level instead of sk.raw (for animation)
+-- ─── Skill card builder ───
+-- Returns: innerHtml, cardBg, cardBorder, barInfo
+-- innerHtml: name line only (bar is rendered via Geyser sub-labels)
+-- barInfo: {color, pct, levelText, xpText} for the progress bar sub-labels
 function WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs, progressOverride, flashBg, levelOverride)
   local displayLevel = levelOverride or sk.raw
   local descText, descColor = WuxiaGUI3._getSkillLevelInfo(sk.type, displayLevel)
@@ -1378,28 +1375,22 @@ function WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs, progressOverri
 
   local cardBg = flashBg or "rgba(17,17,28,160)"
   local cardBorder = flashBg and "#e8c170" or "#2a2a50"
-  local barColor = descColor
 
-  -- Build progress bar HTML
-  local barHtml
-  if progressPct <= 0 then
-    barHtml = '<td bgcolor="#1a1a30" height="5"><span style="font-size:1px;">&nbsp;</span></td>'
-  elseif progressPct >= 100 then
-    barHtml = '<td bgcolor="'..barColor..'" height="5"><span style="font-size:1px;">&nbsp;</span></td>'
-  else
-    barHtml = '<td width="'..progressPct..'%" bgcolor="'..barColor..'" height="5"><span style="font-size:1px;">&nbsp;</span></td>' ..
-              '<td width="'..(100-progressPct)..'%" bgcolor="#1a1a30" height="5"><span style="font-size:1px;">&nbsp;</span></td>'
-  end
+  local levelText = '等級 '..tostring(displayLevel)..' '..descText..lvlUpIcon
+  local xpText = tostring(math.floor(progress))..' / '..tostring(nextReq)
 
-  return '<table width="100%" cellspacing="0" cellpadding="4" style="background-color:'..cardBg..'; border:1px solid '..cardBorder..'; margin-bottom:3px;">' ..
-         '<tr><td style="line-height:14px;">' ..
+  local innerHtml =
          '<span style="color:'..descColor..';">'..sk.name..'</span>' ..
-         ' <span style="color:#666;">('..sk.id..')</span>'..badges..'<br>' ..
-         '&nbsp;&nbsp;<span style="color:#cccccc;">等級 '..tostring(displayLevel)..'</span>' ..
-         ' <span style="color:'..descColor..';">'..descText..'</span>'..lvlUpIcon ..
-         '<table width="100%" cellspacing="0" cellpadding="0"><tr>'..barHtml..'</tr></table>' ..
-         '<span style="font-size:7pt; color:#777790;">'..tostring(math.floor(progress))..' / '..tostring(nextReq)..'</span>' ..
-         '</td></tr></table>'
+         ' <span style="color:#666;">('..sk.id..')</span>'..badges
+
+  local barInfo = {
+    color = descColor,
+    pct = progressPct,
+    levelText = levelText,
+    xpText = xpText,
+  }
+
+  return innerHtml, cardBg, cardBorder, barInfo
 end
 
 -- ─── Skill card animation system ───
@@ -1512,44 +1503,44 @@ function WuxiaGUI3._tickSkillAnims()
     local sk = anim.skData
 
     if anim.phase == "fill" then
-      -- Phase 1: Fill progress bar from old progress to 100% (0.3s)
+      -- Phase 1: Fill progress bar from old progress to 100% (0.6s)
       local oldNextReq = (anim.oldLevel + 1) * (anim.oldLevel + 1)
-      local t = math.min(elapsed / 0.3, 1)
+      local t = math.min(elapsed / 0.6, 1)
       t = 1 - (1 - t) ^ 3  -- ease-out cubic
       local progress = anim.oldLearned + (oldNextReq - anim.oldLearned) * t
-      entry.html = WuxiaGUI3._buildSkillCardHtml(
+      entry.html, entry.cardBg, entry.cardBorder, entry.barInfo = WuxiaGUI3._buildSkillCardHtml(
         sk, anim.enabledAs, anim.preparedAs, progress, nil, anim.oldLevel)
-      if elapsed >= 0.3 then
+      if elapsed >= 0.6 then
         anim.phase = "flash"
         anim.startTime = now
       end
 
     elseif anim.phase == "flash" then
-      -- Phase 2: Flash card background golden, show new level (0.3s)
-      local t = math.min(elapsed / 0.3, 1)
+      -- Phase 2: Flash card background golden, show new level (0.4s)
+      local t = math.min(elapsed / 0.4, 1)
       local flashBg
       if t < 0.5 then
         flashBg = "rgba(42,37,16,200)"  -- golden tint
       else
         flashBg = nil  -- fade back to normal
       end
-      entry.html = WuxiaGUI3._buildSkillCardHtml(
+      entry.html, entry.cardBg, entry.cardBorder, entry.barInfo = WuxiaGUI3._buildSkillCardHtml(
         sk, anim.enabledAs, anim.preparedAs, 0, flashBg, anim.newLevel)
-      if elapsed >= 0.3 then
+      if elapsed >= 0.4 then
         anim.phase = "refill"
         anim.startTime = now
       end
 
     elseif anim.phase == "refill" then
-      -- Phase 3: Fill progress bar from 0 to new progress (0.3s)
-      local t = math.min(elapsed / 0.3, 1)
+      -- Phase 3: Fill progress bar from 0 to new progress (0.6s)
+      local t = math.min(elapsed / 0.6, 1)
       t = 1 - (1 - t) ^ 3  -- ease-out cubic
       local progress = anim.newLearned * t
-      entry.html = WuxiaGUI3._buildSkillCardHtml(
+      entry.html, entry.cardBg, entry.cardBorder, entry.barInfo = WuxiaGUI3._buildSkillCardHtml(
         sk, anim.enabledAs, anim.preparedAs, progress)
-      if elapsed >= 0.3 then
+      if elapsed >= 0.6 then
         -- Final state with actual values
-        entry.html = WuxiaGUI3._buildSkillCardHtml(
+        entry.html, entry.cardBg, entry.cardBorder, entry.barInfo = WuxiaGUI3._buildSkillCardHtml(
           sk, anim.enabledAs, anim.preparedAs)
         anim.phase = "done"
       end
@@ -1706,14 +1697,66 @@ function WuxiaGUI3._buildSkills()
   local skillListLabel = Geyser.Label:new({
     name="W3.skillList", x=CX, y=0, width=CW-8, height=100,
   }, p)
-  skillListLabel:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop'; qproperty-wordWrap:true; padding:2px;")
-  skillListLabel:setFontSize(10)
-  skillListLabel:echo(span(TEXT_DIM, "等待資料..."))
+  skillListLabel:setStyleSheet("background-color:transparent;")
   skillListLabel:raiseAll()
   WuxiaGUI3._skillListLabel = skillListLabel
   WuxiaGUI3._skillScrollPx = 0
   WuxiaGUI3._skillEntries = {}
   WuxiaGUI3._skillLineH = 22
+
+  -- Inner label for smooth scroll clipping (same technique as 屬性 bonus scroll)
+  -- Parent (skillListLabel) clips this inner label at its boundary edges
+  local skillInnerLabel = Geyser.Label:new({
+    name = "W3.skillInner",
+    x = 0, y = 0, width = "100%", height = 100,
+  }, skillListLabel)
+  skillInnerLabel:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignTop';")
+  skillListLabel:echo("")
+  WuxiaGUI3._skillInnerLabel = skillInnerLabel
+
+  -- Card label pool: individual Geyser Labels for each visible card (enables border-radius)
+  -- Each card gets 3 bar sub-labels: barBg, barFill, barText (for rounded progress bar)
+  local POOL_SIZE = 20
+  local BAR_H = 18
+  local cardPool = {}
+  for ci = 1, POOL_SIZE do
+    local cl = Geyser.Label:new({
+      name = "W3.skillCard."..ci, x = 0, y = 0, width = "100%", height = 20,
+    }, skillInnerLabel)
+    cl:setStyleSheet("background-color:transparent;")
+    cl:setFontSize(9)
+    cl:hide()
+
+    -- Bar background (full width, sits at bottom of card)
+    local barBg = Geyser.Label:new({
+      name = "W3.skillCard."..ci..".barBg", x = 2, y = 0, width = "-4px", height = BAR_H,
+    }, cl)
+    barBg:setStyleSheet("background-color:#1a1a30; border-radius:3px;")
+    barBg:hide()
+
+    -- Bar fill (left-aligned, variable width)
+    local barFill = Geyser.Label:new({
+      name = "W3.skillCard."..ci..".barFill", x = 0, y = 0, width = 0, height = "100%",
+    }, barBg)
+    barFill:setStyleSheet("background-color:#4488ff; border-radius:3px;")
+    barFill:hide()
+
+    -- Bar text overlay (transparent, full width, on top)
+    local barText = Geyser.Label:new({
+      name = "W3.skillCard."..ci..".barText", x = 0, y = 0, width = "100%", height = "100%",
+    }, barBg)
+    barText:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignLeft|AlignVCenter';")
+    barText:setFontSize(8)
+    barText:raiseAll()
+    barText:hide()
+
+    cl._barBg = barBg
+    cl._barFill = barFill
+    cl._barText = barText
+    cardPool[ci] = cl
+  end
+  WuxiaGUI3._skillCardPool = cardPool
+  WuxiaGUI3._skillBarH = BAR_H
 
   -- Scrollbar track
   local sbTrack = Geyser.Label:new({
@@ -1781,7 +1824,7 @@ function WuxiaGUI3._buildSkills()
     -- Skill list: fill remaining space down to bottom frame
     local containerH = p:get_height()
     if containerH <= 0 then containerH = 600 end
-    local listH = containerH - y2 - bH - 8
+    local listH = containerH - y2 - bH + 8  -- extend under bottom frame so cards scroll behind it
     if listH < 80 then listH = 80 end
 
     if WuxiaGUI3._skillListBg then
@@ -1828,34 +1871,136 @@ function WuxiaGUI3._buildSkills()
     WuxiaGUI3._skillSbDragging = false
   end)
 
-  -- ─── Scroll rendering ───
+  -- ─── Scroll rendering (inner-label technique, same as 屬性 bonus scroll) ───
+  -- Pool labels are children of skillInnerLabel, which is a child of skillListLabel.
+  -- Scrolling moves skillInnerLabel; skillListLabel clips at its boundary.
   function WuxiaGUI3._renderSkillScroll()
     local entries = WuxiaGUI3._skillEntries or {}
     local label = WuxiaGUI3._skillListLabel
-    if not label then return end
+    local inner = WuxiaGUI3._skillInnerLabel
+    local pool = WuxiaGUI3._skillCardPool or {}
+    if not label or not inner then return end
+
+    local labelH = label:get_height()
+    if labelH <= 0 then labelH = 200 end
+
     if #entries == 0 then
-      label:echo(span(TEXT_DIM, "等待資料..."))
+      for _, pl in ipairs(pool) do
+        pl:hide()
+        if pl._barBg then pl._barBg:hide() end
+      end
+      -- Show placeholder via first pool label
+      if pool[1] then
+        pool[1]:setStyleSheet("background-color:transparent; qproperty-alignment:'AlignHCenter|AlignVCenter';")
+        pool[1]:echo(span(TEXT_DIM, "等待資料..."))
+        pool[1]:move(0, 0)
+        pool[1]:resize("100%", labelH)
+        pool[1]:show()
+      end
+      inner:move(0, -labelH)
+      inner:resize("100%", labelH)
       if WuxiaGUI3._skillSbTrack then WuxiaGUI3._skillSbTrack:hide() end
       return
     end
-    local labelH = label:get_height()
-    if labelH <= 0 then labelH = 200 end
+
     local contentH = totalContentH()
     local maxPx = math.max(0, contentH - labelH)
     WuxiaGUI3._skillScrollPx = math.max(0, math.min(WuxiaGUI3._skillScrollPx, maxPx))
     local scrollPx = WuxiaGUI3._skillScrollPx
-    local lines = {}
+
+    -- Move and resize inner label (negative Y = from bottom of parent in Geyser)
+    -- y = -labelH means top of inner = top of parent; subtracting scrollPx shifts up
+    inner:move(0, -labelH - scrollPx)
+    inner:resize("100%", contentH)
+
+    local poolIdx = 0
     local cumH = 0
+    local GAP = 3  -- gap between cards
+    local barH = WuxiaGUI3._skillBarH or 18
+
     for _, e in ipairs(entries) do
       local entryTop = cumH
       local entryBot = cumH + e.h
       if entryBot > scrollPx and entryTop < scrollPx + labelH then
-        lines[#lines+1] = e.html
+        poolIdx = poolIdx + 1
+        if poolIdx > #pool then break end
+        local pl = pool[poolIdx]
+
+        -- Natural card height (excluding inter-card gap)
+        local naturalH = e.cardBg and (e.h - GAP) or e.h
+
+        local newSS
+        if e.cardBg then
+          newSS = "background-color:" .. e.cardBg .. "; " ..
+            "border:1px solid " .. e.cardBorder .. "; " ..
+            "border-radius:3px; " ..
+            "padding:4px 4px 2px 4px; " ..
+            "qproperty-alignment:'AlignLeft|AlignTop'; qproperty-wordWrap:true;"
+        else
+          newSS = "background-color:transparent; " ..
+            "qproperty-alignment:'AlignLeft|AlignTop'; qproperty-wordWrap:true;"
+        end
+
+        -- Position at absolute entryTop within inner label (not relative to viewport)
+        -- Parent clipping handles the partial visibility at scroll edges
+        pl:move(0, entryTop)
+        pl:resize("100%", naturalH)
+        if pl._lastSS ~= newSS then
+          pl:setStyleSheet(newSS)
+          pl._lastSS = newSS
+        end
+        pl:echo('<div style="font-size:9pt; '..SHADOW..' line-height:14px; word-wrap:break-word;">' .. (e.html or "") .. '</div>')
+        pl:show()
+
+        -- Bar sub-labels at natural positions (always within card bounds)
+        if e.barInfo and pl._barBg then
+          local bi = e.barInfo
+          local barY = naturalH - barH - 4
+          if barY < 0 then barY = 0 end
+          pl._barBg:move(2, barY)
+          pl._barBg:resize("-6px", barH)
+          pl._barBg:setStyleSheet("background-color:#1a1a30; border-radius:3px;")
+          pl._barBg:show()
+
+          -- Fill width
+          local fillW = math.max(0, math.min(100, bi.pct))
+          if fillW > 0 then
+            pl._barFill:resize(tostring(fillW).."%", "100%")
+            pl._barFill:move(0, 0)
+            local fillSS = "background-color:" .. bi.color .. "; border-radius:3px;"
+            if pl._barFill._lastSS ~= fillSS then
+              pl._barFill:setStyleSheet(fillSS)
+              pl._barFill._lastSS = fillSS
+            end
+            pl._barFill:show()
+          else
+            pl._barFill:hide()
+          end
+
+          -- Text overlay
+          pl._barText:echo(
+            '<div style="font-size:8pt; '..SHADOW..'">' ..
+            '<table width="100%" cellspacing="0" cellpadding="0"><tr>' ..
+              '<td style="padding-left:4px;"><span style="color:#cccccc;">' .. bi.levelText .. '</span></td>' ..
+              '<td align="right" style="padding-right:4px;"><span style="color:#999999; font-size:7pt;">' .. bi.xpText .. '</span></td>' ..
+            '</tr></table></div>')
+          pl._barText:show()
+          pl._barText:raiseAll()
+        elseif pl._barBg then
+          pl._barBg:hide()
+        end
       end
       cumH = entryBot
       if cumH > scrollPx + labelH then break end
     end
-    label:echo('<div style="font-size:9pt; '..SHADOW..' word-wrap:break-word;">'..table.concat(lines)..'</div>')
+
+    -- Hide unused pool labels
+    for i = poolIdx + 1, #pool do
+      pool[i]:hide()
+      if pool[i]._barBg then pool[i]._barBg:hide() end
+    end
+
+    -- Scrollbar
     if WuxiaGUI3._skillSbTrack then
       if contentH <= labelH then
         WuxiaGUI3._skillSbTrack:hide()
@@ -1874,8 +2019,8 @@ function WuxiaGUI3._buildSkills()
     end
   end
 
-  -- Mouse wheel on content
-  skillListLabel:setWheelCallback(function(event)
+  -- Mouse wheel handler (shared by container and all pool cards)
+  local function skillWheelHandler(event)
     if not event then return end
     local delta = event.angleDeltaY or 0
     local step = WuxiaGUI3._skillLineH * 3
@@ -1888,7 +2033,15 @@ function WuxiaGUI3._buildSkills()
       WuxiaGUI3._skillScrollPx = math.min(maxPx, WuxiaGUI3._skillScrollPx + step)
     end
     WuxiaGUI3._renderSkillScroll()
-  end)
+  end
+  skillListLabel:setWheelCallback(skillWheelHandler)
+  skillInnerLabel:setWheelCallback(skillWheelHandler)
+  for _, cl in ipairs(cardPool) do
+    cl:setWheelCallback(skillWheelHandler)
+    if cl._barBg then cl._barBg:setWheelCallback(skillWheelHandler) end
+    if cl._barFill then cl._barFill:setWheelCallback(skillWheelHandler) end
+    if cl._barText then cl._barText:setWheelCallback(skillWheelHandler) end
+  end
 
   -- Track click = page up/down
   sbTrack:setClickCallback(function(event)
@@ -1926,7 +2079,7 @@ function WuxiaGUI3._buildSkills()
   local botLabel = Geyser.Label:new({ name="W3.skill.frameBot", x=0, y=-botH, width=PW, height=botH }, p)
   fh = io.open(botPath, "r")
   if fh then fh:close()
-    botLabel:setStyleSheet("background-color:transparent; border-image:url("..botPath..") 0 0 0 0 stretch stretch;")
+    botLabel:setStyleSheet("background-color:#1a1008; border-image:url("..botPath..") 0 0 0 0 stretch stretch;")
   else botLabel:setStyleSheet("background-color:#1a1008;") end
   botLabel:raiseAll()
 
@@ -1964,7 +2117,15 @@ function WuxiaGUI3._buildSkills()
     if WuxiaGUI3._renderSkillScroll then WuxiaGUI3._renderSkillScroll() end
   end)
 
-  -- Re-raise interactive widgets ABOVE frame layer
+  -- Z-order layers (bottom to top):
+  -- 1. Scroll area background and container (pool labels are children of skillListLabel)
+  skillListBg:raiseAll()
+  skillListLabel:raiseAll()
+  -- 2. Frame overlays ABOVE scroll area (masks any pool label overflow at edges)
+  topLabel:raiseAll()
+  midLabel:raiseAll()
+  botLabel:raiseAll()
+  -- 3. Interactive widgets ABOVE frame (clickable)
   summaryLbl:raiseAll()
   enableHdr:raiseAll()
   enableContainer:raiseAll()
@@ -1976,8 +2137,7 @@ function WuxiaGUI3._buildSkills()
     if btn then btn:raiseAll() end
   end
   sep2:raiseAll()
-  skillListBg:raiseAll()
-  skillListLabel:raiseAll()
+  -- 4. Scrollbar (topmost)
   sbTrack:raiseAll()
   sbThumb:raiseAll()
 
@@ -6925,14 +7085,14 @@ function WuxiaGUI3._refreshSkills()
 
       if currentSpecial then
         boxLbl:setStyleSheet(
-          "background-color:rgba(17,17,28,160); border:1px solid "..GOLD.."; "..
+          "background-color:rgba(17,17,28,160); border:1px solid "..GOLD.."; border-radius:3px; "..
           "padding:14px 4px 2px 4px; qproperty-alignment:'AlignHCenter|AlignVCenter';")
         boxLbl:echo('<div style="font-size:9pt; '..SHADOW..'">' ..
           '<span style="color:#ddd;">'..specName..'</span>' ..
           '<br><span style="color:#55ff55; font-size:8pt;">有效 '..tostring(eff)..'</span></div>')
       else
         boxLbl:setStyleSheet(
-          "background-color:rgba(17,17,28,100); border:1px solid "..BORDER.."; "..
+          "background-color:rgba(17,17,28,100); border:1px solid "..BORDER.."; border-radius:3px; "..
           "padding:14px 4px 2px 4px; qproperty-alignment:'AlignHCenter|AlignVCenter';")
         boxLbl:echo('<span style="color:#555; '..SHADOW..'">空</span>')
       end
@@ -7001,7 +7161,7 @@ function WuxiaGUI3._refreshSkills()
         x = bx, y = by, width = boxW, height = boxH,
       }, prepCont)
       boxLbl:setStyleSheet(
-        "background-color:rgba(17,17,28,160); border:1px solid #8888aa; "..
+        "background-color:rgba(17,17,28,160); border:1px solid #8888aa; border-radius:3px; "..
         "padding:14px 4px 2px 4px; qproperty-alignment:'AlignHCenter|AlignVCenter';")
       boxLbl:echo('<div style="font-size:9pt; '..SHADOW..'">' ..
         '<span style="color:#ccccdd;">'..skName..'</span></div>')
@@ -7076,7 +7236,7 @@ function WuxiaGUI3._refreshSkills()
   local entries = {}
   local lastCat = nil
   local lineH = WuxiaGUI3._skillLineH
-  local cardH = 64  -- approximate rendered height per skill card
+  local cardH = 48  -- name line (~20px) + bar (18px) + padding (~10px)
 
   -- Kill any previous animations
   WuxiaGUI3._killSkillAnims()
@@ -7092,8 +7252,12 @@ function WuxiaGUI3._refreshSkills()
       }
     end
 
+    local cardHtml, cardBg, cardBorder, barInfo = WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs)
     entries[#entries+1] = {
-      html = WuxiaGUI3._buildSkillCardHtml(sk, enabledAs, preparedAs),
+      html = cardHtml,
+      cardBg = cardBg,
+      cardBorder = cardBorder,
+      barInfo = barInfo,
       h = cardH,
       skId = sk.id,
       skData = sk,
@@ -7104,8 +7268,6 @@ function WuxiaGUI3._refreshSkills()
     entries[#entries+1] = {html=span(TEXT_DIM, "此分類無技能"), h=lineH}
   end
 
-  -- Add bottom padding entry so last real entry is fully visible when scrolled
-  entries[#entries+1] = {html="", h=lineH}
 
   WuxiaGUI3._skillEntries = entries
 
