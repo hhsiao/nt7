@@ -351,8 +351,22 @@ varargs void message(mixed arg, string message, mixed target, mixed exclude) {
 }
 
 void message_system(string message) {
+    object *users, *gmcp_users, ob;
+
+    users = all_interactive();
+    gmcp_users = ({});
+
+    foreach (ob in users) {
+        if (has_gmcp(ob)) {
+            gmcp_users += ({ ob });
+            "/adm/daemons/gmcp_d"->send_chat(ob, "sys", "系統",
+                "【系統】" + message,
+                HIW "【系統】" + message + NOR);
+        }
+    }
+
     message("system", HIW "\n【系統】" + message + "\n" NOR,
-        all_interactive());
+        users, gmcp_users);
 }
 
 int notify_fail(string msg) {
