@@ -1,3 +1,0 @@
-#/clone/shop/quanzhou_shop.c
-dbase (["objects":(["/clone/shop/waiter":1,]),"no_fight":1,"no_steal":1,"exits":(["down":"/d/quanzhou/majiu",]),"shop_type":0,"no_clean_up":0,"owner":"VOID_SHOP","no_beg":1,"long":"這裡是泉州城裡的一家店鋪。泉州城雖小，清源山卻甚為著名。從店鋪紅木雕窗放眼望去，整個泉州古城熙熙攘攘的街道盡收眼底。不過店裡的貨櫃上卻空無一物，看樣子已經很久沒人來打理了。","short":"福人頤",])
-all_goods ({})
