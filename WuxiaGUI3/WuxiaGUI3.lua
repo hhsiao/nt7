@@ -3276,7 +3276,7 @@ function WuxiaGUI3._buildLeftPanel()
   local imgDir = getMudletHomeDir() .. "/WuxiaGUI3/"
   local w = LPW - 8
   local mapH = w          -- square map area (matches width)
-  local battleH = 160
+  local battleH = 200
   local hotkeyH = 42
   local bannerH = 20
   local SHADOW = "text-shadow:1px 1px 3px #000, 0px 0px 6px #000;"
@@ -3324,48 +3324,130 @@ function WuxiaGUI3._buildLeftPanel()
 
   -- ─── Banner divider 1 (between map and scene) ───
   local bannerPath = imgDir .. "wuxia_left_section_divider.png"
+  local bannerCSS
+  fh = io.open(bannerPath, "r")
+  if fh then fh:close()
+    bannerCSS = "background-color:transparent; border-image:url(" .. bannerPath .. ") 0 0 0 0 stretch stretch;"
+  else
+    bannerCSS = "background-color:transparent;"
+  end
+
   local banner1 = Geyser.Label:new({
     name = "W3.left.banner1", x = 0, y = sceneTopY, width = LPW, height = bannerH,
   }, p)
-  fh = io.open(bannerPath, "r")
-  if fh then fh:close()
-    banner1:setStyleSheet("background-color:transparent; border-image:url(" .. bannerPath .. ") 0 0 0 0 stretch stretch;")
-  else
-    banner1:setStyleSheet("background-color:transparent;")
-  end
+  banner1:setStyleSheet(bannerCSS)
   sceneTopY = sceneTopY + bannerH
 
-  -- ─── Bottom stack layout (from bottom up) ───
-  -- Hotkey bar: bottom hotkeyH px
-  -- Combat: above hotkey, battleH px
-  -- Banner2: above combat, bannerH px
-  local bottomReserve = hotkeyH + battleH + bannerH  -- total from bottom
-  local battleListH = battleH - 38
+  -- ═══ Store layout constants for dynamic repositioning ═══
+  WuxiaGUI3._sceneTopY = sceneTopY  -- absolute Y where scene content starts
+  WuxiaGUI3._battleH   = battleH
+  WuxiaGUI3._hotkeyH   = hotkeyH
+  WuxiaGUI3._bannerH   = bannerH
 
-  -- Banner divider 2 (between scene and combat)
-  local banner2 = Geyser.Label:new({
-    name = "W3.left.banner2", x = 0, y = -(bottomReserve), width = LPW, height = bannerH,
+  -- ─── Section 2: 場景 (all direct children of p, top-down flow) ───
+  local sceneHdr = Geyser.Label:new({
+    name = "W3.left.sceneHdr", x = 4, y = sceneTopY, width = w, height = 18,
   }, p)
-  fh = io.open(bannerPath, "r")
-  if fh then fh:close()
-    banner2:setStyleSheet("background-color:transparent; border-image:url(" .. bannerPath .. ") 0 0 0 0 stretch stretch;")
-  else
-    banner2:setStyleSheet("background-color:transparent;")
-  end
+  sceneHdr:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
+  sceneHdr:setFontSize(9)
+  sceneHdr:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 場景 ──") .. '</div>')
+  WuxiaGUI3._sceneHdr = sceneHdr
 
-  -- ─── Section 3: 戰鬥 (above hotkey bar) ───
-  local bHdrY = -(hotkeyH + battleH)
-
-  local battleHdr = Geyser.Label:new({
-    name = "W3.left.battleHdr", x = 4, y = bHdrY, width = w, height = 18,
+  -- Sub-section 1: Room name + long description (scales to fit)
+  WuxiaGUI3.sceneRoomDesc = Geyser.Label:new({
+    name = "W3.left.roomDesc",
+    x = 4, y = sceneTopY + 18, width = w, height = 40,
   }, p)
-  battleHdr:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
-  battleHdr:setFontSize(9)
-  battleHdr:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 戰鬥 ──") .. '</div>')
+  WuxiaGUI3.sceneRoomDesc:setStyleSheet(CARD_CSS .. " qproperty-wordWrap: true;")
+  WuxiaGUI3.sceneRoomDesc:setFontSize(8)
+  WuxiaGUI3.sceneRoomDesc:echo(span(TEXT_DIM, "未知位置"))
+
+  -- Sub-section 2: Exits (scales to fit)
+  WuxiaGUI3.sceneExits = Geyser.Label:new({
+    name = "W3.left.exits",
+    x = 4, y = sceneTopY + 60, width = w, height = 24,
+  }, p)
+  WuxiaGUI3.sceneExits:setStyleSheet(CARD_CSS)
+  WuxiaGUI3.sceneExits:setFontSize(8)
+  WuxiaGUI3.sceneExits:echo(span(TEXT_DIM, "無出口"))
+
+  -- Sub-section 3: Entities (fills remaining, scrollable)
+  WuxiaGUI3.sceneEntities = Geyser.Label:new({
+    name = "W3.left.entities",
+    x = 4, y = sceneTopY + 86, width = w, height = 60,
+  }, p)
+  WuxiaGUI3.sceneEntities:setStyleSheet(CARD_CSS)
+  WuxiaGUI3.sceneEntities:setFontSize(8)
+  WuxiaGUI3.sceneEntities:echo("")
+
+  -- Entity scroll: inner label (child of sceneEntities, clipped by parent)
+  WuxiaGUI3._entInner = Geyser.Label:new({
+    name = "W3.left.entInner",
+    x = 0, y = 0, width = "100%", height = "100%",
+  }, WuxiaGUI3.sceneEntities)
+  WuxiaGUI3._entInner:setStyleSheet(
+    "background-color:transparent; padding:4px; qproperty-wordWrap:true; qproperty-alignment:'AlignLeft | AlignTop';")
+  WuxiaGUI3._entInner:setFontSize(8)
+  WuxiaGUI3._entInner:echo(span(TEXT_DIM, "空無一物"))
+
+  -- Entity scrollbar track
+  WuxiaGUI3._entSbTrack = Geyser.Label:new({
+    name = "W3.left.entSbTrack",
+    x = w - 12, y = 2, width = 6, height = 56,
+  }, WuxiaGUI3.sceneEntities)
+  WuxiaGUI3._entSbTrack:setStyleSheet(
+    "background-color:rgba(30,15,8,0.6); border:1px solid #3a2a1a; border-radius:3px;")
+  WuxiaGUI3._entSbTrack:hide()
+
+  -- Entity scrollbar thumb
+  WuxiaGUI3._entSbThumb = Geyser.Label:new({
+    name = "W3.left.entSbThumb",
+    x = 0, y = 0, width = "100%", height = 20,
+  }, WuxiaGUI3._entSbTrack)
+  WuxiaGUI3._entSbThumb:setStyleSheet(
+    "background-color:rgba(180,140,80,0.7); border-radius:3px;")
+
+  -- Entity scroll state
+  WuxiaGUI3._entScrollPx = 0
+
+  -- Wheel callback on entity inner label
+  WuxiaGUI3._entInner:setWheelCallback(function(event)
+    if not event then return end
+    local delta = event.angleDeltaY or 0
+    local step = 8
+    local ent = WuxiaGUI3.sceneEntities
+    if not ent then return end
+    local visH = ent:get_height()
+    if visH <= 0 then visH = 60 end
+    local contentH = WuxiaGUI3._entContentH or 0
+    local maxPx = math.max(0, contentH - visH)
+    if delta > 0 then
+      WuxiaGUI3._entScrollPx = math.max(0, (WuxiaGUI3._entScrollPx or 0) - step)
+    elseif delta < 0 then
+      WuxiaGUI3._entScrollPx = math.min(maxPx, (WuxiaGUI3._entScrollPx or 0) + step)
+    end
+    WuxiaGUI3._renderEntScroll()
+  end)
+
+  -- ─── Banner divider 2 (between scene and combat) — placeholder Y ───
+  WuxiaGUI3._banner2 = Geyser.Label:new({
+    name = "W3.left.banner2", x = 0, y = 500, width = LPW, height = bannerH,
+  }, p)
+  WuxiaGUI3._banner2:setStyleSheet(bannerCSS)
+
+  -- ─── Section 3: 戰鬥 (fixed 200px, positioned by layout) ───
+  local battleListH = battleH - 36  -- header(18) + target(18) = 36
+
+  WuxiaGUI3._battleHdr = Geyser.Label:new({
+    name = "W3.left.battleHdr", x = 4, y = 520, width = w, height = 18,
+  }, p)
+  WuxiaGUI3._battleHdr:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
+  WuxiaGUI3._battleHdr:setFontSize(9)
+  WuxiaGUI3._battleHdr:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 戰鬥 ──") .. '</div>')
 
   WuxiaGUI3.battleTargetInfo = Geyser.Label:new({
     name = "W3.left.target",
-    x = 4, y = bHdrY + 18, width = w, height = 18,
+    x = 4, y = 538, width = w, height = 18,
   }, p)
   WuxiaGUI3.battleTargetInfo:setStyleSheet("background-color: transparent; padding-left: 2px;")
   WuxiaGUI3.battleTargetInfo:setFontSize(8)
@@ -3373,7 +3455,7 @@ function WuxiaGUI3._buildLeftPanel()
 
   WuxiaGUI3.battleEnemyList = Geyser.Label:new({
     name = "W3.left.enemies",
-    x = 4, y = bHdrY + 38, width = w, height = battleListH,
+    x = 4, y = 556, width = w, height = battleListH,
   }, p)
   WuxiaGUI3.battleEnemyList:setStyleSheet(CARD_CSS .. " qproperty-wordWrap: true;")
   WuxiaGUI3.battleEnemyList:setFontSize(8)
@@ -3381,14 +3463,13 @@ function WuxiaGUI3._buildLeftPanel()
     span(TEXT_DIM, "需要 GMCP 封包") .. "<br>" ..
     span(TEXT_DIM, "戰鬥系統開發中"))
 
-  -- ─── Section 4: Hotkey Bar (very bottom) ───
+  -- ─── Section 4: Hotkey Bar (fixed height, positioned by layout) ───
   local btnSize = 28
   local navW = 18
   local gap = 2
   local totalBtnsW = 8 * btnSize + 7 * gap  -- 238
   local barW = navW + gap + totalBtnsW + gap + navW  -- 278
   local barX = math.floor((LPW - barW) / 2)
-  local btnY = -(hotkeyH - 4)  -- buttons 4px from hotkey top
   local btnPath = imgDir .. "wuxia_left_hotkey_button.png"
   local btnFh = io.open(btnPath, "r")
   local BTN_CSS
@@ -3398,22 +3479,20 @@ function WuxiaGUI3._buildLeftPanel()
     BTN_CSS = "background-color:rgba(25,25,45,0.5); border:1px solid rgba(80,80,100,0.4); border-radius:3px; qproperty-alignment:AlignCenter;"
   end
 
-  -- Left nav arrow
   WuxiaGUI3._hotkeyPrev = Geyser.Label:new({
-    name = "W3.left.hkPrev", x = barX, y = btnY, width = navW, height = btnSize,
+    name = "W3.left.hkPrev", x = barX, y = 760, width = navW, height = btnSize,
   }, p)
   WuxiaGUI3._hotkeyPrev:setStyleSheet("background-color:transparent; qproperty-alignment:AlignCenter;")
   WuxiaGUI3._hotkeyPrev:setFontSize(8)
   WuxiaGUI3._hotkeyPrev:echo('<div style="' .. SHADOW .. '">' .. span("#555555", "◀") .. '</div>')
 
-  -- 8 hotkey buttons (grayed out)
   WuxiaGUI3._hotkeyBtns = {}
   local btnStartX = barX + navW + gap
   for i = 1, 8 do
     local bx = btnStartX + (i - 1) * (btnSize + gap)
     local btn = Geyser.Label:new({
       name = "W3.left.hkBtn" .. i,
-      x = bx, y = btnY, width = btnSize, height = btnSize,
+      x = bx, y = 760, width = btnSize, height = btnSize,
     }, p)
     btn:setStyleSheet(BTN_CSS)
     btn:setFontSize(7)
@@ -3421,76 +3500,80 @@ function WuxiaGUI3._buildLeftPanel()
     WuxiaGUI3._hotkeyBtns[i] = btn
   end
 
-  -- Right nav arrow
   WuxiaGUI3._hotkeyNext = Geyser.Label:new({
     name = "W3.left.hkNext",
-    x = btnStartX + 8 * (btnSize + gap), y = btnY, width = navW, height = btnSize,
+    x = btnStartX + 8 * (btnSize + gap), y = 760, width = navW, height = btnSize,
   }, p)
   WuxiaGUI3._hotkeyNext:setStyleSheet("background-color:transparent; qproperty-alignment:AlignCenter;")
   WuxiaGUI3._hotkeyNext:setFontSize(8)
   WuxiaGUI3._hotkeyNext:echo('<div style="' .. SHADOW .. '">' .. span("#555555", "▶") .. '</div>')
 
-  -- Page indicator dots
   WuxiaGUI3._hotkeyPageLbl = Geyser.Label:new({
     name = "W3.left.hkPage",
-    x = 0, y = -8, width = LPW, height = 8,
+    x = 0, y = 790, width = LPW, height = 8,
   }, p)
   WuxiaGUI3._hotkeyPageLbl:setStyleSheet("background-color:transparent; qproperty-alignment:AlignCenter;")
   WuxiaGUI3._hotkeyPageLbl:setFontSize(5)
   WuxiaGUI3._hotkeyPageLbl:echo(span("#555555", "● ○ ○"))
 
-  -- Hotkey state
   WuxiaGUI3._hotkeyState = { page = 1, totalPages = 3 }
-
-  -- ─── Section 2: 場景 (middle, fills remaining space) ───
-  local sceneContainer = Geyser.Container:new({
-    name = "W3.left.sceneCont",
-    x = 0, y = sceneTopY,
-    width = LPW, height = "-" .. (sceneTopY + bottomReserve) .. "px",
-  }, p)
-
-  local sceneHdr = Geyser.Label:new({
-    name = "W3.left.sceneHdr", x = 4, y = 0, width = w, height = 18,
-  }, sceneContainer)
-  sceneHdr:setStyleSheet("background-color:transparent; qproperty-alignment: AlignCenter;")
-  sceneHdr:setFontSize(9)
-  sceneHdr:echo('<div style="' .. SHADOW .. '">' .. span(GOLD, "── 場景 ──") .. '</div>')
-
-  WuxiaGUI3.sceneRoomName = Geyser.Label:new({
-    name = "W3.left.roomName",
-    x = 4, y = 20, width = w, height = 18,
-  }, sceneContainer)
-  WuxiaGUI3.sceneRoomName:setStyleSheet("background-color: transparent; padding-left: 2px;")
-  WuxiaGUI3.sceneRoomName:setFontSize(8)
-  WuxiaGUI3.sceneRoomName:echo(span(TEXT_DIM, "未知位置"))
-
-  -- Content list: fills rest of scene container
-  WuxiaGUI3.sceneContentList = Geyser.Label:new({
-    name = "W3.left.content",
-    x = 4, y = 40,
-    width = w, height = "-4px",
-  }, sceneContainer)
-  WuxiaGUI3.sceneContentList:setStyleSheet(CARD_CSS .. " qproperty-wordWrap: true;")
-  WuxiaGUI3.sceneContentList:setFontSize(8)
-  WuxiaGUI3.sceneContentList:echo(
-    span(TEXT_DIM, "需要 GMCP 封包") .. "<br>" ..
-    span(TEXT_DIM, "輸入 ") .. span(GOLD, "look") ..
-    span(TEXT_DIM, " 來查看"))
 
   -- ─── Z-order: raise all content above bg/overlay ───
   mapHdr:raiseAll()
   WuxiaGUI3.mapArea:raiseAll()
   if WuxiaGUI3._mapFrame then WuxiaGUI3._mapFrame:raiseAll() end
   banner1:raiseAll()
-  sceneContainer:raiseAll()
-  banner2:raiseAll()
-  battleHdr:raiseAll()
+  sceneHdr:raiseAll()
+  WuxiaGUI3.sceneRoomDesc:raiseAll()
+  WuxiaGUI3.sceneExits:raiseAll()
+  WuxiaGUI3.sceneEntities:raiseAll()
+  WuxiaGUI3._entSbTrack:raiseAll()
+  WuxiaGUI3._entSbThumb:raiseAll()
+  WuxiaGUI3._banner2:raiseAll()
+  WuxiaGUI3._battleHdr:raiseAll()
   WuxiaGUI3.battleTargetInfo:raiseAll()
   WuxiaGUI3.battleEnemyList:raiseAll()
   WuxiaGUI3._hotkeyPrev:raiseAll()
   for i = 1, 8 do WuxiaGUI3._hotkeyBtns[i]:raiseAll() end
   WuxiaGUI3._hotkeyNext:raiseAll()
   WuxiaGUI3._hotkeyPageLbl:raiseAll()
+
+  -- ─── Initial layout pass ───
+  WuxiaGUI3._layoutLeftPanel()
+end
+
+-- Render entity scroll (inner label position + scrollbar)
+function WuxiaGUI3._renderEntScroll()
+  local ent = WuxiaGUI3.sceneEntities
+  local inner = WuxiaGUI3._entInner
+  if not ent or not inner then return end
+
+  local visH = ent:get_height()
+  if visH <= 0 then visH = 60 end
+  local contentH = WuxiaGUI3._entContentH or 0
+  local maxPx = math.max(0, contentH - visH)
+  local scrollPx = math.max(0, math.min(WuxiaGUI3._entScrollPx or 0, maxPx))
+  WuxiaGUI3._entScrollPx = scrollPx
+
+  -- Position inner label (scroll pattern: y = -visH - scrollPx)
+  inner:move(0, -visH - scrollPx)
+  inner:resize(nil, math.max(visH, contentH))
+
+  -- Scrollbar
+  local track = WuxiaGUI3._entSbTrack
+  local thumb = WuxiaGUI3._entSbThumb
+  if not track or not thumb then return end
+  if contentH <= visH then
+    track:hide()
+  else
+    track:show()
+    track:resize(nil, visH - 4)
+    local trackH = visH - 4
+    local tH = math.max(16, math.floor(trackH * visH / contentH))
+    local tY = maxPx > 0 and math.floor((trackH - tH) * scrollPx / maxPx) or 0
+    thumb:resize(nil, tH)
+    thumb:move(0, tY)
+  end
 end
 
 -- ─── Scene panel updater ───
@@ -3511,6 +3594,154 @@ local function _stripAnsi(s)
   return (s:gsub("\27%[[%d;]*m", ""))
 end
 
+-- Count UTF-8 characters (not bytes) in a string.
+local function _utf8len(s)
+  local n = 0
+  for _ in s:gmatch("[%z\1-\127\194-\244]") do n = n + 1 end
+  return n
+end
+
+-- Estimate pixel width of a UTF-8 string at font size 8.
+-- CJK chars (~14px fullwidth), ASCII chars (~7px).
+local function _estimateTextW(s)
+  local w = 0
+  local i = 1
+  local len = #s
+  while i <= len do
+    local b = s:byte(i)
+    if b >= 0xE0 then
+      w = w + 14  -- 3/4-byte CJK character (fullwidth in Qt)
+      if b >= 0xF0 then i = i + 4 else i = i + 3 end
+    elseif b >= 0xC0 then
+      w = w + 9   -- 2-byte character (accented, etc.)
+      i = i + 2
+    else
+      w = w + 7   -- ASCII
+      i = i + 1
+    end
+  end
+  return w
+end
+
+-- Estimate pixel height for rich-text content inside a label.
+-- lineH = approximate line height in px, labelW = usable pixel width.
+local function _estimateTextH(htmlStr, labelW, lineH)
+  lineH = lineH or 18
+  -- Replace <br> with marker, then strip HTML, then collapse embedded \n to spaces
+  local marked = htmlStr:gsub("<br ?/?>", "\1")
+  local plain = marked:gsub("<[^>]+>", "")
+  plain = plain:gsub("[\r\n]+", " ")  -- embedded newlines are just whitespace in Qt rich text
+  local total = 0
+  for seg in (plain .. "\1"):gmatch("([^\1]*)\1") do
+    seg = seg:gsub("^%s+", ""):gsub("%s+$", "")
+    if #seg == 0 then
+      total = total + 1  -- empty line from consecutive <br>
+    else
+      local segW = _estimateTextW(seg)
+      total = total + math.max(1, math.ceil(segW / labelW))
+    end
+  end
+  return total * lineH
+end
+
+-- ─── Layout engine: positions all left-panel elements top-down ───
+function WuxiaGUI3._layoutLeftPanel()
+  local p = WuxiaGUI3.leftMain
+  if not p then return end
+  local parentH = p:get_height()
+  if parentH <= 0 then parentH = 800 end
+  local w = LPW - 8
+  local gap = 2
+
+  local sceneTopY = WuxiaGUI3._sceneTopY or 316
+  local battleH   = WuxiaGUI3._battleH or 200
+  local hotkeyH   = WuxiaGUI3._hotkeyH or 42
+  local bannerH   = WuxiaGUI3._bannerH or 20
+
+  -- Use cached content heights from _updateScenePanel, or defaults
+  local descH = WuxiaGUI3._descH or 40
+  local exitH = WuxiaGUI3._exitH or 24
+
+  -- Scene header
+  local y = sceneTopY + 18  -- after sceneHdr (sceneHdr is at sceneTopY, fixed)
+
+  -- Room description
+  if WuxiaGUI3.sceneRoomDesc then
+    WuxiaGUI3.sceneRoomDesc:move(4, y)
+    WuxiaGUI3.sceneRoomDesc:resize(w, descH)
+  end
+  y = y + descH + gap
+
+  -- Exits
+  if WuxiaGUI3.sceneExits then
+    WuxiaGUI3.sceneExits:move(4, y)
+    WuxiaGUI3.sceneExits:resize(w, exitH)
+  end
+  y = y + exitH + gap
+
+  -- Entities: fills remaining space before banner2
+  -- Bottom stack: banner2(bannerH) + combat(battleH) + hotkey(hotkeyH)
+  local bottomFixedH = bannerH + battleH + hotkeyH
+  local entH = math.max(200, parentH - y - bottomFixedH)
+  if WuxiaGUI3.sceneEntities then
+    WuxiaGUI3.sceneEntities:move(4, y)
+    WuxiaGUI3.sceneEntities:resize(w, entH)
+  end
+  y = y + entH
+
+  -- Banner 2 (between entities and combat)
+  if WuxiaGUI3._banner2 then
+    WuxiaGUI3._banner2:move(0, y)
+  end
+  y = y + bannerH
+
+  -- Combat header
+  if WuxiaGUI3._battleHdr then
+    WuxiaGUI3._battleHdr:move(4, y)
+  end
+  -- Combat target info
+  if WuxiaGUI3.battleTargetInfo then
+    WuxiaGUI3.battleTargetInfo:move(4, y + 18)
+  end
+  -- Combat enemy list
+  local battleListH = battleH - 36
+  if WuxiaGUI3.battleEnemyList then
+    WuxiaGUI3.battleEnemyList:move(4, y + 36)
+    WuxiaGUI3.battleEnemyList:resize(w, battleListH)
+  end
+  y = y + battleH
+
+  -- Hotkey bar
+  local btnSize = 28
+  local navW = 18
+  local totalBtnsW = 8 * btnSize + 7 * gap
+  local barW = navW + gap + totalBtnsW + gap + navW
+  local barX = math.floor((LPW - barW) / 2)
+  local btnY = y + 4  -- 4px padding from hotkey top
+
+  if WuxiaGUI3._hotkeyPrev then
+    WuxiaGUI3._hotkeyPrev:move(barX, btnY)
+  end
+  local btnStartX = barX + navW + gap
+  if WuxiaGUI3._hotkeyBtns then
+    for i = 1, 8 do
+      local bx = btnStartX + (i - 1) * (btnSize + gap)
+      if WuxiaGUI3._hotkeyBtns[i] then
+        WuxiaGUI3._hotkeyBtns[i]:move(bx, btnY)
+      end
+    end
+  end
+  if WuxiaGUI3._hotkeyNext then
+    WuxiaGUI3._hotkeyNext:move(btnStartX + 8 * (btnSize + gap), btnY)
+  end
+  if WuxiaGUI3._hotkeyPageLbl then
+    WuxiaGUI3._hotkeyPageLbl:move(0, y + hotkeyH - 10)
+  end
+
+  -- Update entity scroll after resize
+  WuxiaGUI3._renderEntScroll()
+end
+
 function WuxiaGUI3._updateScenePanel()
   local gm = WuxiaGUI3.graphMap
   if not gm or not gm.currentRoom then return end
@@ -3518,31 +3749,34 @@ function WuxiaGUI3._updateScenePanel()
   local rid = gm.currentRoom
   local room = gm.rooms[rid]
   local roomName = (room and room.name) or "未知位置"
+  local w = LPW - 8
+  local pad = 12  -- vertical padding (CSS padding:4px top+bottom + extra breathing room)
 
-  -- Room name + type tag
+  -- ═══ Section 1: Room name + description ═══
+  local descLines = {}
   local typeTag = ""
   if room and room.room_type then
     local tn = SCENE_TYPE_NAMES[room.room_type]
     if tn then typeTag = " " .. span("#888888", "(" .. tn .. ")") end
   end
-  if WuxiaGUI3.sceneRoomName then
-    WuxiaGUI3.sceneRoomName:echo(span(WHITE, roomName) .. typeTag)
-  end
+  descLines[#descLines + 1] = span(WHITE, roomName) .. typeTag
 
-  -- Build content lines
-  local lines = {}
-
-  -- Long description (from Room.Info)
   local ri = WuxiaGUI3.room
   if ri and ri.long and ri.long ~= "" then
     local desc = _stripAnsi(ri.long)
-    desc = desc:gsub("^%s+", ""):gsub("%s+$", "")  -- trim
+    desc = desc:gsub("^%s+", ""):gsub("%s+$", "")
     if desc ~= "" then
-      lines[#lines + 1] = span("#bbbbbb", desc)
+      descLines[#descLines + 1] = span("#bbbbbb", desc)
     end
   end
 
-  -- Exits (from graph edges)
+  local descHtml = table.concat(descLines, "<br>")
+  if WuxiaGUI3.sceneRoomDesc then
+    WuxiaGUI3.sceneRoomDesc:echo(descHtml)
+  end
+  WuxiaGUI3._descH = _estimateTextH(descHtml, w - 8, 14) + pad
+
+  -- ═══ Section 2: Exits ═══
   local exitDirs = {}
   for _, edge in pairs(gm.edges) do
     if edge.from == rid then
@@ -3551,13 +3785,20 @@ function WuxiaGUI3._updateScenePanel()
       exitDirs[#exitDirs + 1] = cdir
     end
   end
+  local exitHtml
   if #exitDirs > 0 then
     table.sort(exitDirs)
-    lines[#lines + 1] = span(GOLD_DIM, "出口：") ..
-      span("#cccccc", table.concat(exitDirs, " "))
+    exitHtml = span(GOLD_DIM, "出口：") .. span("#cccccc", table.concat(exitDirs, " "))
+  else
+    exitHtml = span(TEXT_DIM, "無出口")
   end
+  if WuxiaGUI3.sceneExits then
+    WuxiaGUI3.sceneExits:echo(exitHtml)
+  end
+  WuxiaGUI3._exitH = _estimateTextH(exitHtml, w - 8, 14) + pad
 
-  -- Entities in current room
+  -- ═══ Section 3: Entities ═══
+  local entLines = {}
   local npcs, players, items = {}, {}, {}
   for _, edata in pairs(gm.entities) do
     if edata.room == rid then
@@ -3581,24 +3822,32 @@ function WuxiaGUI3._updateScenePanel()
       end
     end
   end
-
   if #npcs > 0 then
-    lines[#lines + 1] = span(GOLD_DIM, "NPC：") .. table.concat(npcs, "、")
+    entLines[#entLines + 1] = span(GOLD_DIM, "NPC：") .. table.concat(npcs, "、")
   end
   if #players > 0 then
-    lines[#lines + 1] = span(GOLD_DIM, "玩家：") .. table.concat(players, "、")
+    entLines[#entLines + 1] = span(GOLD_DIM, "玩家：") .. table.concat(players, "、")
   end
   if #items > 0 then
-    lines[#lines + 1] = span(GOLD_DIM, "物品：") .. table.concat(items, "、")
+    entLines[#entLines + 1] = span(GOLD_DIM, "物品：") .. table.concat(items, "、")
   end
 
-  if WuxiaGUI3.sceneContentList then
-    if #lines > 0 then
-      WuxiaGUI3.sceneContentList:echo(table.concat(lines, "<br>"))
-    else
-      WuxiaGUI3.sceneContentList:echo(span(TEXT_DIM, "空無一物"))
-    end
+  local entHtml
+  if #entLines > 0 then
+    entHtml = table.concat(entLines, "<br>")
+  else
+    entHtml = span(TEXT_DIM, "空無一物")
   end
+
+  -- Update entity inner label content
+  if WuxiaGUI3._entInner then
+    WuxiaGUI3._entInner:echo(entHtml)
+  end
+  WuxiaGUI3._entContentH = _estimateTextH(entHtml, w - 16, 14) + pad
+  WuxiaGUI3._entScrollPx = 0  -- reset scroll on room change
+
+  -- ═══ Re-layout everything ═══
+  WuxiaGUI3._layoutLeftPanel()
 end
 
 -- ═══════════════════════════════════════════════
@@ -5609,6 +5858,9 @@ function WuxiaGUI3._registerChatGMCP()
     end
     if WuxiaGUI3._repositionAttributes then
       tempTimer(0.1, WuxiaGUI3._repositionAttributes)
+    end
+    if WuxiaGUI3._layoutLeftPanel then
+      tempTimer(0.1, WuxiaGUI3._layoutLeftPanel)
     end
   end)
 end
