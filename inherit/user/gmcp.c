@@ -356,6 +356,16 @@ void gmcp_init_burst() {
     gd->send_inventory(this_object());
     gd->send_channels(this_object());
     gd->send_room(this_object());
+
+    // Graph Map: pre-index current room for fast Map.Hello response
+#ifdef GRAPH_MAP_D
+    {
+        object map_d;
+        map_d = find_object(GRAPH_MAP_D);
+        if (!map_d) map_d = load_object(GRAPH_MAP_D);
+        if (map_d) map_d->on_player_login(this_object());
+    }
+#endif
 }
 
 // ——— Item movement detection ———

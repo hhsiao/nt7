@@ -649,6 +649,7 @@ void send_room(object who) {
     object env;
     mapping data;
     mixed exits;
+    string desc;
 
     if (!who || !interactive(who) || !has_gmcp(who)) return;
 
@@ -659,6 +660,10 @@ void send_room(object who) {
         "name":     env->short() || "未知",
         "path":     file_name(env),
     ]);
+
+    desc = (string)env->long();
+    if (stringp(desc))
+        data["long"] = desc;
 
     exits = env->query("exits");
     if (mapp(exits))
@@ -904,6 +909,12 @@ void handle_gmcp(object who, string raw_message) {
             msg    = params["message"];
             if (stringp(ch_cmd) && stringp(msg))
                 handle_chat_send(who, ch_cmd, msg);
+            break;
+
+        // ═══ Map System ═══
+        case "Map.Hello":
+            params = parse_json_object(json_str);
+            GRAPH_MAP_D->handle_hello(who, params);
             break;
 
         default:

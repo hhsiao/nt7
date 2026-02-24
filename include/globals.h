@@ -163,6 +163,7 @@
 #define XINRUI_D                "/adm/daemons/xinruid"
 #define ZHOUTIAN_D              "/adm/daemons/zhoutiand"
 #define GMCP_D                  "/adm/daemons/gmcp_d"
+#define GRAPH_MAP_D             "/adm/daemons/graph_mapd"
 
 
 #define CLASS_D(x)              ("/kungfu/class/" + x)
@@ -312,6 +313,7 @@
 #define F_UNIQUE                "/feature/unique.c"
 #define F_XIAO                  "/inherit/misc/_xiao.c"
 #define F_GMCP                  "/inherit/user/gmcp.c"
+#define F_GRAPH_MAP             "/inherit/user/graph_map.c"
 // Profiling switches
 //
 // If you changed any of these defines, you'll need reboot to make it

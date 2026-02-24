@@ -327,6 +327,16 @@ int main(object me, string arg) {
             all_inventory(env)->follow_me(me, arg);
         me->test_array();
         // me->check_team();
+
+        // ═══ Graph Map notification ═══
+#ifdef GRAPH_MAP_D
+        if (interactive(me) && has_gmcp(me))
+            GRAPH_MAP_D->on_player_move(me, env, environment(me), arg);
+#endif
+
+        // Update Room.Info GMCP (name, exits, long desc)
+        if (interactive(me) && has_gmcp(me))
+            me->gmcp_update_room();
     }
 
     if (me->query_weak())

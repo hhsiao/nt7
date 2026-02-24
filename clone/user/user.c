@@ -17,6 +17,7 @@ inherit F_BUSINESS;
 #endif
 
 inherit F_GMCP;
+inherit F_GRAPH_MAP;
 // 死亡保護
 protected int die_protect(object ob);
 protected void cancle_die_protect(object ob);
