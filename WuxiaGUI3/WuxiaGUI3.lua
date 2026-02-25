@@ -3429,6 +3429,17 @@ function WuxiaGUI3._buildLeftPanel()
     WuxiaGUI3._renderEntScroll()
   end)
 
+  -- ─── Scene preview highlight overlay (covers entire scene section) ───
+  WuxiaGUI3._sceneHighlight = Geyser.Label:new({
+    name = "W3.left.sceneHL",
+    x = 2, y = sceneTopY, width = LPW - 4, height = 100,
+  }, p)
+  WuxiaGUI3._sceneHighlight:setStyleSheet(
+    "background-color:transparent; border:2px solid rgba(68,170,255,0.7); border-radius:4px;")
+  WuxiaGUI3._sceneHighlight:echo("")
+  WuxiaGUI3._sceneHighlight:hide()
+  if WuxiaGUI3._sceneHighlight.enableClickthrough then WuxiaGUI3._sceneHighlight:enableClickthrough() end
+
   -- ─── Banner divider 2 (between scene and combat) — placeholder Y ───
   WuxiaGUI3._banner2 = Geyser.Label:new({
     name = "W3.left.banner2", x = 0, y = 500, width = LPW, height = bannerH,
@@ -3689,6 +3700,12 @@ function WuxiaGUI3._layoutLeftPanel()
   end
   y = y + entH
 
+  -- Scene preview highlight overlay: spans from sceneHdr to bottom of entities
+  if WuxiaGUI3._sceneHighlight then
+    WuxiaGUI3._sceneHighlight:move(2, sceneTopY)
+    WuxiaGUI3._sceneHighlight:resize(LPW - 4, y - sceneTopY)
+  end
+
   -- Banner 2 (between entities and combat)
   if WuxiaGUI3._banner2 then
     WuxiaGUI3._banner2:move(0, y)
@@ -3742,15 +3759,36 @@ function WuxiaGUI3._layoutLeftPanel()
   WuxiaGUI3._renderEntScroll()
 end
 
-function WuxiaGUI3._updateScenePanel()
+function WuxiaGUI3._updateScenePanel(overrideRid)
   local gm = WuxiaGUI3.graphMap
   if not gm or not gm.currentRoom then return end
 
-  local rid = gm.currentRoom
+  local rid = overrideRid or gm.currentRoom
+  local isPreview = (overrideRid ~= nil and overrideRid ~= gm.currentRoom)
   local room = gm.rooms[rid]
   local roomName = (room and room.name) or "未知位置"
   local w = LPW - 8
   local pad = 12  -- vertical padding (CSS padding:4px top+bottom + extra breathing room)
+
+  -- ═══ Header: show (預覽) indicator when previewing another room ═══
+  local shadow = "text-shadow:1px 1px 3px #000, 0px 0px 6px #000;"
+  if isPreview then
+    WuxiaGUI3._sceneHdr:echo('<div style="' .. shadow .. '">'
+      .. span(GOLD, "── 場景 ──") .. " " .. span(TEXT_DIM, "(預覽)") .. '</div>')
+  else
+    WuxiaGUI3._sceneHdr:echo('<div style="' .. shadow .. '">'
+      .. span(GOLD, "── 場景 ──") .. '</div>')
+  end
+
+  -- ═══ Scene panel highlight overlay ═══
+  if WuxiaGUI3._sceneHighlight then
+    if isPreview then
+      WuxiaGUI3._sceneHighlight:show()
+      WuxiaGUI3._sceneHighlight:raiseAll()
+    else
+      WuxiaGUI3._sceneHighlight:hide()
+    end
+  end
 
   -- ═══ Section 1: Room name + description ═══
   local descLines = {}
@@ -3761,12 +3799,15 @@ function WuxiaGUI3._updateScenePanel()
   end
   descLines[#descLines + 1] = span(WHITE, roomName) .. typeTag
 
-  local ri = WuxiaGUI3.room
-  if ri and ri.long and ri.long ~= "" then
-    local desc = _stripAnsi(ri.long)
-    desc = desc:gsub("^%s+", ""):gsub("%s+$", "")
-    if desc ~= "" then
-      descLines[#descLines + 1] = span("#bbbbbb", desc)
+  -- Long description only available for current room (from gmcp.Room.Info)
+  if not isPreview then
+    local ri = WuxiaGUI3.room
+    if ri and ri.long and ri.long ~= "" then
+      local desc = _stripAnsi(ri.long)
+      desc = desc:gsub("^%s+", ""):gsub("%s+$", "")
+      if desc ~= "" then
+        descLines[#descLines + 1] = span("#bbbbbb", desc)
+      end
     end
   end
 
@@ -3802,7 +3843,7 @@ function WuxiaGUI3._updateScenePanel()
   local npcs, players, items = {}, {}, {}
   for _, edata in pairs(gm.entities) do
     if edata.room == rid then
-      local lbl = edata.label or edata.id or ""
+      local lbl = ansiToHtml(edata.label or edata.id or "")
       if edata.type == "npc" then
         local clr = "#FFFF44"
         local flags = edata.flags
@@ -3844,7 +3885,9 @@ function WuxiaGUI3._updateScenePanel()
     WuxiaGUI3._entInner:echo(entHtml)
   end
   WuxiaGUI3._entContentH = _estimateTextH(entHtml, w - 16, 14) + pad
-  WuxiaGUI3._entScrollPx = 0  -- reset scroll on room change
+  if not isPreview then
+    WuxiaGUI3._entScrollPx = 0  -- reset scroll on room change (not on hover preview)
+  end
 
   -- ═══ Re-layout everything ═══
   WuxiaGUI3._layoutLeftPanel()
@@ -3867,6 +3910,7 @@ local MAP_EDGE_COLOR     = "rgba(200,200,200,0.55)"
 local MAP_EDGE_COLOR_DIM = "rgba(120,120,120,0.30)"
 local MAP_ENTITY_POOL    = 30
 local MAP_ENTITY_SIZE    = 10     -- dot diameter at zoom=1.0
+local MAP_HOVER_COLOR    = "rgba(68,170,255,0.7)"  -- hover highlight border
 
 -- Entity type → dot color
 local MAP_ENTITY_COLORS = {
@@ -3938,6 +3982,8 @@ WuxiaGUI3.graphMap = {
   pois = {},            -- [poi_id] = { id, room, category, label }
   entityPool = {},
   nextEntityPool = 1,
+  -- Hover state
+  hoveredRoom = nil,
   -- Filter toggles
   filterNPCs    = true,
   initialized = false,
@@ -3988,6 +4034,16 @@ function WuxiaGUI3._graphMapInitPool()
     if lbl.enableClickthrough then lbl:enableClickthrough() end
     gm.entityPool[i] = lbl
   end
+
+  -- Hover highlight overlay (transparent with colored border, positioned over hovered room)
+  gm.hoverHL = Geyser.Label:new({
+    name = "W3.mapHoverHL",
+    x = 0, y = 0, width = 1, height = 1,
+  }, mapArea)
+  gm.hoverHL:setStyleSheet("background-color:transparent; border:2px solid " .. MAP_HOVER_COLOR .. ";")
+  gm.hoverHL:echo("")
+  gm.hoverHL:hide()
+  if gm.hoverHL.enableClickthrough then gm.hoverHL:enableClickthrough() end
 
   -- Z-layer controls (top-right corner)
   local w = mapArea:get_width()
@@ -4112,29 +4168,61 @@ function WuxiaGUI3._graphMapInitPool()
       WuxiaGUI3._renderGraphMap()
     end
 
-    -- Dynamic tooltip: hit-test rooms under cursor
+    -- Hit-test rooms under cursor → update 場景 panel preview
+    -- event.x/y is relative to mapArea; lbl:get_x/y() is absolute screen coords
     local mx = event.x or 0
     local my = event.y or 0
-    local hitName = ""
+    local mapAbsX = WuxiaGUI3.mapArea:get_x()
+    local mapAbsY = WuxiaGUI3.mapArea:get_y()
+    local hitRid = nil
     for rid, pi in pairs(gm2.roomPoolMap) do
       local lbl = gm2.roomPool[pi]
       if lbl then
-        local rx = lbl:get_x()
-        local ry = lbl:get_y()
+        local rx = lbl:get_x() - mapAbsX
+        local ry = lbl:get_y() - mapAbsY
         local rw = lbl:get_width()
         local rh = lbl:get_height()
         if mx >= rx and mx < rx + rw and my >= ry and my < ry + rh then
-          local room = gm2.rooms[rid]
-          hitName = room and room.name or rid
+          hitRid = rid
           break
         end
       end
     end
-    WuxiaGUI3.mapArea:setToolTip(hitName)
+
+    if hitRid ~= gm2.hoveredRoom then
+      gm2.hoveredRoom = hitRid
+      if hitRid and hitRid ~= gm2.currentRoom then
+        -- Position highlight overlay on hovered room
+        local pi = gm2.roomPoolMap[hitRid]
+        local hl = gm2.hoverHL
+        if pi and hl then
+          local rlbl = gm2.roomPool[pi]
+          hl:move(rlbl:get_x() - mapAbsX, rlbl:get_y() - mapAbsY)
+          hl:resize(rlbl:get_width(), rlbl:get_height())
+          hl:show()
+          hl:raiseAll()
+        end
+        WuxiaGUI3._updateScenePanel(hitRid)
+      else
+        -- Hide highlight overlay
+        if gm2.hoverHL then gm2.hoverHL:hide() end
+        WuxiaGUI3._updateScenePanel()  -- revert to current room
+      end
+    end
   end)
 
   mapArea:setReleaseCallback(function(event)
     WuxiaGUI3.graphMap.dragging = false
+  end)
+
+  -- ─── Leave: revert 場景 panel + hide highlight ───
+  mapArea:setOnLeave(function()
+    local gm2 = WuxiaGUI3.graphMap
+    if gm2.hoveredRoom then
+      gm2.hoveredRoom = nil
+      if gm2.hoverHL then gm2.hoverHL:hide() end
+      WuxiaGUI3._updateScenePanel()
+    end
   end)
 
   -- ─── Double-click: re-center on player ───
@@ -4462,7 +4550,7 @@ local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, open
   -- Entities in this room (from pre-built lookup)
   if roomEnts then
     for _, edata in ipairs(roomEnts) do
-      local lbl = edata.label or edata.id or ""
+      local lbl = ansiToHtml(edata.label or edata.id or "")
       if edata.type == "npc" then
         local clr = "#FFFF44"
         local flags = edata.flags
