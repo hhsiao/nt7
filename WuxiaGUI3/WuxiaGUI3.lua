@@ -4048,31 +4048,80 @@ function WuxiaGUI3._graphMapInitPool()
   -- Z-layer controls (top-right corner)
   local w = mapArea:get_width()
   if w <= 0 then w = 272 end
+  local btnCSS     = "background-color:rgba(20,20,40,0.7); border:1px solid #555; border-radius:2px; qproperty-alignment:AlignCenter;"
+  local btnHoverCSS = "background-color:rgba(40,40,80,0.9); border:1px solid #aaa; border-radius:2px; qproperty-alignment:AlignCenter;"
+  local tipCSS = "background-color:rgba(10,10,20,0.92); border:1px solid #888; border-radius:3px; padding:2px 6px; qproperty-alignment:'AlignRight|AlignVCenter';"
+
+  -- Shared instant tooltip for toolbar buttons (positioned left of button on hover)
+  WuxiaGUI3._mapBtnTip = Geyser.Label:new({
+    name = "W3.mapBtnTip",
+    x = 0, y = 0, width = 100, height = 18,
+  }, mapArea)
+  WuxiaGUI3._mapBtnTip:setStyleSheet(tipCSS)
+  WuxiaGUI3._mapBtnTip:setFontSize(7)
+  WuxiaGUI3._mapBtnTip:echo("")
+  WuxiaGUI3._mapBtnTip:hide()
+  if WuxiaGUI3._mapBtnTip.enableClickthrough then WuxiaGUI3._mapBtnTip:enableClickthrough() end
+
+  -- Helper: show shared tooltip left of a button
+  local function showBtnTip(btn, text)
+    local tip = WuxiaGUI3._mapBtnTip
+    local bx = btn:get_x() - mapArea:get_x()
+    local by = btn:get_y() - mapArea:get_y()
+    local bh = btn:get_height()
+    tip:move(bx - 104, by + math.floor((bh - 18) / 2))
+    tip:echo("<font color='#cccccc'>" .. text .. "</font>")
+    tip:show()
+    tip:raiseAll()
+  end
+  local function hideBtnTip()
+    WuxiaGUI3._mapBtnTip:hide()
+  end
 
   WuxiaGUI3._mapZUp = Geyser.Label:new({
     name = "W3.mapZUp",
     x = w - 24, y = 40, width = 20, height = 14,
   }, mapArea)
-  WuxiaGUI3._mapZUp:setStyleSheet("background-color:rgba(20,20,40,0.7); border:1px solid #555; border-radius:2px; qproperty-alignment:AlignCenter;")
+  WuxiaGUI3._mapZUp:setStyleSheet(btnCSS)
   WuxiaGUI3._mapZUp:setFontSize(7)
   WuxiaGUI3._mapZUp:echo("<font color='#cccccc'>&#9650;</font>")
   WuxiaGUI3._mapZUp:setClickCallback(function()
     WuxiaGUI3.graphMap.currentZ = WuxiaGUI3.graphMap.currentZ + 1
     WuxiaGUI3._renderGraphMap()
   end)
+  WuxiaGUI3._mapZUp:setOnEnter(function()
+    WuxiaGUI3._mapZUp:setStyleSheet(btnHoverCSS)
+    WuxiaGUI3._mapZUp:echo("<font color='#ffffff'>&#9650;</font>")
+    showBtnTip(WuxiaGUI3._mapZUp, "上一層")
+  end, WuxiaGUI3._mapZUp)
+  WuxiaGUI3._mapZUp:setOnLeave(function()
+    WuxiaGUI3._mapZUp:setStyleSheet(btnCSS)
+    WuxiaGUI3._mapZUp:echo("<font color='#cccccc'>&#9650;</font>")
+    hideBtnTip()
+  end, WuxiaGUI3._mapZUp)
   WuxiaGUI3._mapZUp:raiseAll()
 
   WuxiaGUI3._mapZDown = Geyser.Label:new({
     name = "W3.mapZDown",
     x = w - 24, y = 56, width = 20, height = 14,
   }, mapArea)
-  WuxiaGUI3._mapZDown:setStyleSheet("background-color:rgba(20,20,40,0.7); border:1px solid #555; border-radius:2px; qproperty-alignment:AlignCenter;")
+  WuxiaGUI3._mapZDown:setStyleSheet(btnCSS)
   WuxiaGUI3._mapZDown:setFontSize(7)
   WuxiaGUI3._mapZDown:echo("<font color='#cccccc'>&#9660;</font>")
   WuxiaGUI3._mapZDown:setClickCallback(function()
     WuxiaGUI3.graphMap.currentZ = WuxiaGUI3.graphMap.currentZ - 1
     WuxiaGUI3._renderGraphMap()
   end)
+  WuxiaGUI3._mapZDown:setOnEnter(function()
+    WuxiaGUI3._mapZDown:setStyleSheet(btnHoverCSS)
+    WuxiaGUI3._mapZDown:echo("<font color='#ffffff'>&#9660;</font>")
+    showBtnTip(WuxiaGUI3._mapZDown, "下一層")
+  end, WuxiaGUI3._mapZDown)
+  WuxiaGUI3._mapZDown:setOnLeave(function()
+    WuxiaGUI3._mapZDown:setStyleSheet(btnCSS)
+    WuxiaGUI3._mapZDown:echo("<font color='#cccccc'>&#9660;</font>")
+    hideBtnTip()
+  end, WuxiaGUI3._mapZDown)
   WuxiaGUI3._mapZDown:raiseAll()
 
   WuxiaGUI3._mapZDisp = Geyser.Label:new({
@@ -4089,7 +4138,7 @@ function WuxiaGUI3._graphMapInitPool()
     name = "W3.mapCenterBtn",
     x = w - 24, y = 74, width = 20, height = 18,
   }, mapArea)
-  WuxiaGUI3._mapCenterBtn:setStyleSheet("background-color:rgba(20,20,40,0.7); border:1px solid #555; border-radius:2px; qproperty-alignment:AlignCenter;")
+  WuxiaGUI3._mapCenterBtn:setStyleSheet(btnCSS)
   WuxiaGUI3._mapCenterBtn:setFontSize(8)
   WuxiaGUI3._mapCenterBtn:echo("<font color='#cccccc'>⊕</font>")
   WuxiaGUI3._mapCenterBtn:setClickCallback(function()
@@ -4101,7 +4150,16 @@ function WuxiaGUI3._graphMapInitPool()
     if cur then gm2.currentZ = cur.z or 0 end
     WuxiaGUI3._renderGraphMap()
   end)
-  WuxiaGUI3._mapCenterBtn:setToolTip("Center on current room")
+  WuxiaGUI3._mapCenterBtn:setOnEnter(function()
+    WuxiaGUI3._mapCenterBtn:setStyleSheet(btnHoverCSS)
+    WuxiaGUI3._mapCenterBtn:echo("<font color='#ffffff'>⊕</font>")
+    showBtnTip(WuxiaGUI3._mapCenterBtn, "回到當前位置")
+  end, WuxiaGUI3._mapCenterBtn)
+  WuxiaGUI3._mapCenterBtn:setOnLeave(function()
+    WuxiaGUI3._mapCenterBtn:setStyleSheet(btnCSS)
+    WuxiaGUI3._mapCenterBtn:echo("<font color='#cccccc'>⊕</font>")
+    hideBtnTip()
+  end, WuxiaGUI3._mapCenterBtn)
   WuxiaGUI3._mapCenterBtn:raiseAll()
 
   -- NPC toggle (below center button)
@@ -4116,9 +4174,81 @@ function WuxiaGUI3._graphMapInitPool()
     WuxiaGUI3._updateNpcToggle()
     WuxiaGUI3._renderGraphMap()
   end)
-  WuxiaGUI3._mapNpcToggle:setToolTip("Toggle NPC markers")
+  WuxiaGUI3._mapNpcToggle:setOnEnter(function()
+    local state = WuxiaGUI3.graphMap.filterNPCs and "開" or "關"
+    showBtnTip(WuxiaGUI3._mapNpcToggle, "NPC 標記 (" .. state .. ")")
+  end, WuxiaGUI3._mapNpcToggle)
+  WuxiaGUI3._mapNpcToggle:setOnLeave(function()
+    hideBtnTip()
+  end, WuxiaGUI3._mapNpcToggle)
   WuxiaGUI3._mapNpcToggle:raiseAll()
   WuxiaGUI3._updateNpcToggle()
+
+  -- Help button (below NPC toggle in right-side toolbar)
+  WuxiaGUI3._mapHelpBtn = Geyser.Label:new({
+    name = "W3.mapHelp",
+    x = w - 24, y = 114, width = 20, height = 18,
+  }, mapArea)
+  WuxiaGUI3._mapHelpBtn:setStyleSheet(btnCSS)
+  WuxiaGUI3._mapHelpBtn:setFontSize(8)
+  WuxiaGUI3._mapHelpBtn:echo("<font color='#cccccc'>?</font>")
+  WuxiaGUI3._mapHelpBtn:raiseAll()
+
+  -- Help tooltip panel (overlays map area, hidden by default)
+  local helpContent =
+    "<b>地圖說明</b><br><br>"
+    .. "<b>操作：</b><br>"
+    .. "滾輪 ─ 縮放<br>"
+    .. "拖曳 ─ 平移<br>"
+    .. "雙擊 ─ 回到當前位置<br>"
+    .. "懸停房間 ─ 場景面板預覽<br>"
+    .. "<br><b>按鈕：</b><br>"
+    .. "▲ ▼ ─ 切換樓層 (Z軸)<br>"
+    .. "⊕ ─ 回到當前位置<br>"
+    .. "👤 ─ 顯示/隱藏 NPC 標記<br>"
+    .. "<br><b>房間標記：</b><br>"
+    .. '<font color="#44FF44">★N</font> ─ 玩家數量<br>'
+    .. '<font color="#FFFF44">●N</font> ─ NPC 數量<br>'
+    .. '<font color="#AAAAAA">◆N</font> ─ 物品數量<br>'
+    .. "📍 ─ 當前位置<br>"
+    .. "▲ ▼ ─ 有上/下出口<br>"
+    .. "<br><b>房間顏色：</b><br>"
+    .. '<font color="#C8B89A">■</font> 戶外　'
+    .. '<font color="#D4A017">■</font> 商店　'
+    .. '<font color="#5B8DBE">■</font> 客棧<br>'
+    .. '<font color="#B8860B">■</font> 銀行　'
+    .. '<font color="#8B7355">■</font> 室內　'
+    .. '<font color="#4A90D9">■</font> 渡口<br>'
+    .. '<font color="#7B4F9D">■</font> 地下城　'
+    .. '<font color="#2CA58D">■</font> 聊天室<br>'
+    .. "<br>亮色 ＝ 可見範圍　暗色 ＝ 已探索"
+  -- Parent is leftMain so tooltip can extend below the map
+  local mapAbsY = mapArea:get_y() - (WuxiaGUI3.leftMain and WuxiaGUI3.leftMain:get_y() or 0)
+  WuxiaGUI3._mapHelpTip = Geyser.Label:new({
+    name = "W3.mapHelpTip",
+    x = 14, y = mapAbsY, width = w - 40, height = 440,
+  }, WuxiaGUI3.leftMain)
+  WuxiaGUI3._mapHelpTip:setStyleSheet(
+    "background-color:rgba(10,10,20,0.92); border:1px solid #888; border-radius:4px;"
+    .. " padding:8px; qproperty-wordWrap:true; qproperty-alignment:'AlignLeft|AlignTop';")
+  WuxiaGUI3._mapHelpTip:setFontSize(8)
+  WuxiaGUI3._mapHelpTip:echo(helpContent)
+  WuxiaGUI3._mapHelpTip:hide()
+  if WuxiaGUI3._mapHelpTip.enableClickthrough then WuxiaGUI3._mapHelpTip:enableClickthrough() end
+
+  -- Help button hover: instant show/hide + highlight
+  WuxiaGUI3._mapHelpBtn:setOnEnter(function()
+    WuxiaGUI3._mapHelpBtn:setStyleSheet(btnHoverCSS)
+    WuxiaGUI3._mapHelpBtn:echo("<font color='#ffffff'>?</font>")
+    WuxiaGUI3._mapHelpTip:show()
+    WuxiaGUI3._mapHelpTip:raiseAll()
+    WuxiaGUI3._mapHelpBtn:raiseAll()
+  end, WuxiaGUI3._mapHelpBtn)
+  WuxiaGUI3._mapHelpBtn:setOnLeave(function()
+    WuxiaGUI3._mapHelpBtn:setStyleSheet(btnCSS)
+    WuxiaGUI3._mapHelpBtn:echo("<font color='#cccccc'>?</font>")
+    WuxiaGUI3._mapHelpTip:hide()
+  end, WuxiaGUI3._mapHelpBtn)
 
   -- ─── Zoom: mouse wheel ───
   mapArea:setWheelCallback(function(event)
