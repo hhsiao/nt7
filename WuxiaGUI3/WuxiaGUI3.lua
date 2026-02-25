@@ -4484,15 +4484,57 @@ local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, open
   end
   label:setToolTip(table.concat(tipLines, "<br>"))
 
-  -- Current room pin + up/down exit indicators (▲/▼)
+  -- Current room pin + up/down exit indicators (▲/▼) + entity count badges
   local txt = ""
   if rid == gm.currentRoom then
-    txt = '<font size="2">📍</font>'
+    txt = '<span style="font-size:8pt;">📍</span>'
   end
   if upDownInfo then
-    if upDownInfo.up then txt = txt .. '<font color="#E0E0E0" size="1">▲</font>' end
-    if upDownInfo.down then txt = txt .. '<font color="#E0E0E0" size="1">▼</font>' end
+    if upDownInfo.up then txt = txt .. '<span style="color:#E0E0E0; font-size:6pt;">▲</span>' end
+    if upDownInfo.down then txt = txt .. '<span style="color:#E0E0E0; font-size:6pt;">▼</span>' end
   end
+
+  -- Entity count badges (only for visible rooms)
+  if roomEnts and gm.visibleRooms[rid] then
+    local npcCount, playerCount, itemCount = 0, 0, 0
+    local npcPriColor = MAP_ENTITY_COLORS.npc_normal  -- default NPC color
+    for _, edata in ipairs(roomEnts) do
+      if edata.type == "npc" and gm.filterNPCs then
+        npcCount = npcCount + 1
+        local flags = edata.flags
+        if flags then
+          for _, f in ipairs(flags) do
+            if f == "hostile"  then npcPriColor = MAP_ENTITY_COLORS.npc_hostile end
+            if f == "vendor"   then npcPriColor = MAP_ENTITY_COLORS.npc_vendor end
+            if f == "quest"    then npcPriColor = MAP_ENTITY_COLORS.npc_quest end
+            if f == "trainer"  then npcPriColor = MAP_ENTITY_COLORS.npc_trainer end
+          end
+        end
+      elseif edata.type == "player" and rid ~= gm.currentRoom then
+        playerCount = playerCount + 1
+      elseif edata.type == "item" then
+        itemCount = itemCount + 1
+      end
+    end
+    local badges = ""
+    local bStyle = "font-size:6pt;"
+    if playerCount > 0 then
+      badges = badges .. '<span style="color:#' .. MAP_ENTITY_COLORS.player .. '; ' .. bStyle .. '">★' .. playerCount .. '</span>'
+    end
+    if npcCount > 0 then
+      if badges ~= "" then badges = badges .. " " end
+      badges = badges .. '<span style="color:#' .. npcPriColor .. '; ' .. bStyle .. '">●' .. npcCount .. '</span>'
+    end
+    if itemCount > 0 then
+      if badges ~= "" then badges = badges .. " " end
+      badges = badges .. '<span style="color:#' .. MAP_ENTITY_COLORS.item .. '; ' .. bStyle .. '">◆' .. itemCount .. '</span>'
+    end
+    if badges ~= "" then
+      if txt ~= "" then txt = txt .. "<br>" end
+      txt = txt .. badges
+    end
+  end
+
   if txt ~= "" then
     -- Only show text if room's true center is within the visible (clamped) portion
     local trueCX = origLw / 2 - clipL
@@ -4510,71 +4552,6 @@ local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, open
   return true
 end
 
--- ─── Render entity dots for a room (returns # pool labels consumed) ───
-local function _mapRenderEntitiesForRoom(gm, rid, screenCX, screenCY)
-  -- Collect visible entities in this room that pass current filters
-  -- Skip players on currentRoom (📍 already marks it), skip items entirely
-  local ents = {}
-  for eid, edata in pairs(gm.entities) do
-    if edata.room == rid then
-      local show = false
-      if edata.type == "player" and rid ~= gm.currentRoom then show = true
-      elseif edata.type == "npc" and gm.filterNPCs then show = true
-      end
-      if show then
-        ents[#ents + 1] = edata
-      end
-    end
-  end
-
-  if #ents == 0 then return 0 end
-
-  local shown = math.min(#ents, 5)
-  local dotSz = math.max(4, math.floor(MAP_ENTITY_SIZE * gm.zoom))
-  local gap   = 1
-  local totalW = shown * dotSz + (shown - 1) * gap
-  local used = 0
-
-  for i = 1, shown do
-    local pi = gm.nextEntityPool
-    if pi > MAP_ENTITY_POOL then break end
-    gm.nextEntityPool = pi + 1
-    used = used + 1
-
-    local edata = ents[i]
-    local color = MAP_ENTITY_COLORS.item  -- default
-
-    if edata.type == "player" then
-      color = MAP_ENTITY_COLORS.player
-    elseif edata.type == "npc" then
-      color = MAP_ENTITY_COLORS.npc_normal
-      local flags = edata.flags
-      if flags then
-        for _, f in ipairs(flags) do
-          if f == "hostile"  then color = MAP_ENTITY_COLORS.npc_hostile  break end
-          if f == "vendor"   then color = MAP_ENTITY_COLORS.npc_vendor  break end
-          if f == "quest"    then color = MAP_ENTITY_COLORS.npc_quest   break end
-          if f == "trainer"  then color = MAP_ENTITY_COLORS.npc_trainer break end
-        end
-      end
-    end
-
-    local lbl = gm.entityPool[pi]
-    local ex = math.floor(screenCX - totalW / 2 + (i - 1) * (dotSz + gap))
-    local ey = math.floor(screenCY - dotSz / 2)
-    local radius = math.floor(dotSz / 2)
-
-    lbl:move(ex + MAP_INSET, ey + MAP_INSET)
-    lbl:resize(dotSz, dotSz)
-    lbl:setStyleSheet(string.format(
-      "background-color:%s; border-radius:%dpx;", color, radius))
-    lbl:setToolTip(edata.label or edata.id or "")
-    lbl:echo("")
-    lbl:show()
-  end
-
-  return used
-end
 
 -- ─── Main render function ───
 function WuxiaGUI3._renderGraphMap()
@@ -4607,11 +4584,6 @@ function WuxiaGUI3._renderGraphMap()
   end
   gm.roomPoolMap = {}
   gm.nextRoomPool = 1
-  for i = 1, MAP_ENTITY_POOL do
-    if gm.entityPool[i] then gm.entityPool[i]:hide() end
-  end
-  gm.nextEntityPool = 1
-
   -- Render edges first (behind rooms in z-order)
   local drawnPairs = {}
   for eid, edge in pairs(gm.edges) do
@@ -4708,27 +4680,6 @@ function WuxiaGUI3._renderGraphMap()
   for rid, room in pairs(gm.rooms) do
     _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch,
       roomUpDown[rid], roomOpenSides[rid], roomPOI[rid], roomEnts[rid])
-  end
-
-  -- Render entity dots (on top of rooms, only for visible rooms)
-  -- Compute screen center from world coords (not clamped label bounds)
-  local G = MAP_GRID_PX * gm.zoom
-  for rid, pi in pairs(gm.roomPoolMap) do
-    if gm.visibleRooms[rid] then
-      local room = gm.rooms[rid]
-      if room then
-        local rx = room.x or 0
-        local ry = room.y or 0
-        local rl = room.len or 1
-        local rw = room.wid or 1
-        local sx = ((rx + rl / 2) - cx) * G + gm.panX + cw / 2
-        local sy = -((ry + rw / 2) - cy) * G + gm.panY + ch / 2
-        -- Only render if center is on-screen
-        if sx > 0 and sx < cw and sy > 0 and sy < ch then
-          _mapRenderEntitiesForRoom(gm, rid, sx, sy)
-        end
-      end
-    end
   end
 
   -- Update terrain background
