@@ -4519,15 +4519,15 @@ local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, open
     local badges = ""
     local bStyle = "font-size:6pt;"
     if playerCount > 0 then
-      badges = badges .. '<span style="color:#' .. MAP_ENTITY_COLORS.player .. '; ' .. bStyle .. '">★' .. playerCount .. '</span>'
+      badges = badges .. '<span style="color:' .. MAP_ENTITY_COLORS.player .. '; ' .. bStyle .. '">★' .. playerCount .. '</span>'
     end
     if npcCount > 0 then
       if badges ~= "" then badges = badges .. " " end
-      badges = badges .. '<span style="color:#' .. npcPriColor .. '; ' .. bStyle .. '">●' .. npcCount .. '</span>'
+      badges = badges .. '<span style="color:' .. npcPriColor .. '; ' .. bStyle .. '">●' .. npcCount .. '</span>'
     end
     if itemCount > 0 then
       if badges ~= "" then badges = badges .. " " end
-      badges = badges .. '<span style="color:#' .. MAP_ENTITY_COLORS.item .. '; ' .. bStyle .. '">◆' .. itemCount .. '</span>'
+      badges = badges .. '<span style="color:' .. MAP_ENTITY_COLORS.item .. '; ' .. bStyle .. '">◆' .. itemCount .. '</span>'
     end
     if badges ~= "" then
       if txt ~= "" then txt = txt .. "<br>" end
