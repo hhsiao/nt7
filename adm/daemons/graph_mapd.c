@@ -19,16 +19,22 @@ inherit F_CLEAN_UP;
 #define BASE_VIS_RADIUS 3    // BFS depth for visibility
 
 // ═══ Forward declarations ═══
+void send_map(object who, string sub_package, mixed data);
 void send_map_init(object who);
 void send_map_viewstate(object who, string room_id, string room_name,
                         string *vis_add, string *vis_remove, string *explored_add);
 void send_map_topology_add(object who, string *room_ids);
 void index_room(object room);
+void on_room_content_change(object room, object entity, int entering);
 
 // ═══ Global topology DB (nosave — rebuilt from live rooms) ═══
 nosave mapping topology_rooms;   // room_id → room data mapping
 nosave mapping topology_edges;   // edge_id → edge data mapping
 nosave mapping adjacency;        // room_id → ({ edge_id, ... })
+
+// ═══ Entity tracking: room watchers ═══
+nosave mapping room_watchers;    // room_id → ({ player_ob, ... })
+nosave function room_watch_cb;   // single callback funptr, reused for all rooms
 
 // ═══ Phase 0: Manual coordinates ({ x, y, z, len, wid, hgt }) ═══
 // Layout: cross-grid (十) pattern, guangchang at origin.
@@ -212,6 +218,8 @@ void create() {
     topology_rooms = ([]);
     topology_edges = ([]);
     adjacency = ([]);
+    room_watchers = ([]);
+    room_watch_cb = (: on_room_content_change :);
 }
 
 // ═══════════════════════════════════════
@@ -363,6 +371,130 @@ mapping enumerate_visible_entities(string *visible_rooms) {
         }
     }
     return all_entities;
+}
+
+// ═══════════════════════════════════════
+// Entity tracking: build single entity record
+// ═══════════════════════════════════════
+
+mapping build_single_entity_record(object ob, string room_id) {
+    string eid, label;
+    mapping ent_data;
+    string *nflags;
+
+    if (userp(ob)) {
+        eid = "player:" + (string)query("id", ob);
+        label = (string)ob->name(1);
+        if (!stringp(label)) label = (string)query("id", ob);
+        if (!stringp(label)) label = "player";
+        return ([ "id": eid, "type": "player", "room": room_id, "label": label ]);
+    } else if (living(ob)) {
+        eid = "npc:" + base_name(ob);
+        label = (string)ob->short();
+        if (!stringp(label)) label = (string)ob->name();
+        if (!stringp(label)) label = "NPC";
+        ent_data = ([ "id": eid, "type": "npc", "room": room_id, "label": label ]);
+        nflags = get_npc_flags(ob);
+        if (sizeof(nflags) > 0) ent_data["flags"] = nflags;
+        return ent_data;
+    } else {
+        label = (string)ob->short();
+        if (!stringp(label) || label == "") return 0;
+        eid = "item:" + file_name(ob);
+        return ([ "id": eid, "type": "item", "room": room_id, "label": label ]);
+    }
+}
+
+// ═══════════════════════════════════════
+// Entity tracking: room watch management
+// ═══════════════════════════════════════
+
+void register_room_watch(object room) {
+    if (!objectp(room)) return;
+    watch_object(room, room_watch_cb);
+}
+
+void unregister_room_watch(string rid) {
+    object room = find_object(rid);
+    if (objectp(room))
+        unwatch_object(room, room_watch_cb);
+}
+
+void update_room_watchers(object player, string *old_visible, string *new_visible) {
+    string *removed, *added;
+
+    removed = old_visible - new_visible;
+    added   = new_visible - old_visible;
+
+    foreach (string rid in removed) {
+        if (room_watchers[rid]) {
+            room_watchers[rid] -= ({ player });
+            if (!sizeof(room_watchers[rid])) {
+                map_delete(room_watchers, rid);
+                unregister_room_watch(rid);
+            }
+        }
+    }
+
+    foreach (string rid in added) {
+        if (!room_watchers[rid]) {
+            room_watchers[rid] = ({});
+            register_room_watch(find_object(rid));
+        }
+        room_watchers[rid] += ({ player });
+    }
+}
+
+void remove_player_from_watchers(object player) {
+    string *visible = player->query_graph_map_visible();
+    foreach (string rid in visible) {
+        if (room_watchers[rid]) {
+            room_watchers[rid] -= ({ player });
+            if (!sizeof(room_watchers[rid])) {
+                map_delete(room_watchers, rid);
+                unregister_room_watch(rid);
+            }
+        }
+    }
+}
+
+// ═══════════════════════════════════════
+// Entity tracking: driver callback
+// ═══════════════════════════════════════
+
+void on_room_content_change(object room, object entity, int entering) {
+    string rid, ent_id;
+    mapping ent_record;
+    object *watchers;
+
+    if (!objectp(room) || !objectp(entity)) return;
+    rid = base_name(room);
+    watchers = room_watchers[rid];
+    if (!arrayp(watchers) || !sizeof(watchers)) return;
+
+    // Build entity record — skip untrackable entities
+    ent_record = build_single_entity_record(entity, rid);
+    if (!mapp(ent_record)) return;
+    ent_id = ent_record["id"];
+
+    foreach (object player in watchers) {
+        if (!objectp(player) || !interactive(player)) continue;
+        if (player == entity) continue;  // moving player handles own map via on_player_move
+
+        mapping known = player->query_graph_map_known_entities();
+        mapping delta;
+
+        if (entering) {
+            known[ent_id] = copy(ent_record);
+            delta = ([ "add": ({ copy(ent_record) }), "update": ({}), "remove": ({}) ]);
+        } else {
+            map_delete(known, ent_id);
+            delta = ([ "add": ({}), "update": ({}), "remove": ({ ent_id }) ]);
+        }
+
+        player->set_graph_map_known_entities(known);
+        send_map(player, "EntitiesDelta", delta);
+    }
 }
 
 // ═══════════════════════════════════════
@@ -675,6 +807,15 @@ void handle_hello(object who, mapping params) {
     send_map_init(who);
 }
 
+// Called when a player disconnects or map subscription ends
+void handle_goodbye(object who) {
+    if (!who) return;
+    remove_player_from_watchers(who);
+    who->set_graph_map_subscribed(0);
+    who->set_graph_map_visible(({ }));
+    who->set_graph_map_known_entities(([  ]));
+}
+
 // ═══════════════════════════════════════
 // Map.Init — full state push
 // ═══════════════════════════════════════
@@ -694,6 +835,7 @@ void send_map_init(object who) {
 
     // Compute initial visibility
     visible = compute_visible(current_id);
+    update_room_watchers(who, ({}), visible);
     who->set_graph_map_visible(visible);
 
     // Mark all visible as explored
@@ -855,6 +997,8 @@ void on_player_move(object player, object old_room, object new_room, string dir)
         }
     }
 
+    // Update room watchers before changing visible set
+    update_room_watchers(player, old_visible, new_visible);
     player->set_graph_map_visible(new_visible);
 
     // Push GMCP updates

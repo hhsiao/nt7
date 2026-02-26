@@ -29,7 +29,16 @@ string *query_graph_map_visible() {
 }
 
 void set_graph_map_visible(string *rooms) {
+    mapping vis_set = ([]);
     set_temp("graph_map/visible", rooms);
+    foreach (string rid in rooms) vis_set[rid] = 1;
+    set_temp("graph_map/visible_set", vis_set);
+}
+
+mapping query_graph_map_visible_set() {
+    mixed m = query_temp("graph_map/visible_set");
+    if (!mapp(m)) return ([]);
+    return m;
 }
 
 // ═══ Discovered edges (persistent, for hidden/special exits) ═══

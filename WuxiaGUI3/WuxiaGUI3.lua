@@ -10254,6 +10254,20 @@ function WuxiaGUI3.start()
     end
   end)
 
+  -- Re-apply borders on reconnect (same timing fix as initial load)
+  WuxiaGUI3._sysHandlers[#WuxiaGUI3._sysHandlers+1] =
+    registerAnonymousEventHandler("sysConnectionEvent", function()
+      tempTimer(0.1, function()
+        if WuxiaGUI3.initialized then
+          local chatH = WuxiaGUI3._currentChatH or CHAT_H
+          setBorderRight(PW)
+          setBorderLeft(LPW)
+          setBorderTop(chatH)
+          setBorderBottom(18)
+        end
+      end)
+    end)
+
   -- Cleanup on profile exit
   WuxiaGUI3._sysHandlers[#WuxiaGUI3._sysHandlers+1] =
     registerAnonymousEventHandler("sysExitEvent", function()
