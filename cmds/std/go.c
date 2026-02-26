@@ -300,9 +300,15 @@ int main(object me, string arg) {
             message("tell_object", min, user);
     }
 
+#ifdef GRAPH_MAP_D
+    set_temp("graph_map/_go_move", 1, me);
+#endif
     me->move(dest);
     if (! objectp(me))
         return 1;
+#ifdef GRAPH_MAP_D
+    delete_temp("graph_map/_go_move", me);
+#endif
 
     if (objectp(riding))
     {

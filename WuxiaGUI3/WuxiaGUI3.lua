@@ -10242,6 +10242,18 @@ function WuxiaGUI3.start()
     WuxiaGUI3._toggleBigMap()
   end
 
+  -- Fix initial layout timing: re-apply borders after Mudlet finishes its
+  -- own window geometry setup (avoids main console hidden behind left panel)
+  tempTimer(0.1, function()
+    if WuxiaGUI3.initialized then
+      local chatH = WuxiaGUI3._currentChatH or CHAT_H
+      setBorderRight(PW)
+      setBorderLeft(LPW)
+      setBorderTop(chatH)
+      setBorderBottom(18)
+    end
+  end)
+
   -- Cleanup on profile exit
   WuxiaGUI3._sysHandlers[#WuxiaGUI3._sysHandlers+1] =
     registerAnonymousEventHandler("sysExitEvent", function()

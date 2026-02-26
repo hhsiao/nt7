@@ -227,6 +227,16 @@ varargs int move(mixed dest, int raw)
     // Move & run INIT function
     move_object(ob);
 
+#ifdef GRAPH_MAP_D
+    // Graph map: track room-to-room character movement not handled by go.c
+    // (ferry, climb, swim, transport, etc. that call move() directly)
+    if (is_char && interactive(me) && has_gmcp(me) &&
+        objectp(env) && env != ob &&
+        env->is_room() && ob->is_room() &&
+        !query_temp("graph_map/_go_move", me))
+        GRAPH_MAP_D->on_raw_move(me, env, ob, "special");
+#endif
+
 #ifdef GMCP_D
     if (!is_char) {
         if (objectp(env) && userp(env) && interactive(env) && has_gmcp(env))
