@@ -917,6 +917,10 @@ void handle_gmcp(object who, string raw_message) {
             GRAPH_MAP_D->handle_hello(who, params);
             break;
 
+        case "Map.EntitiesRefresh":
+            GRAPH_MAP_D->handle_entities_refresh(who);
+            break;
+
         default:
             break;
     }

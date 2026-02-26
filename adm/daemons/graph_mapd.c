@@ -26,6 +26,7 @@ void send_map_viewstate(object who, string room_id, string room_name,
 void send_map_topology_add(object who, string *room_ids);
 void index_room(object room);
 void on_room_content_change(object room, object entity, int entering);
+void handle_entities_refresh(object who);
 
 // ═══ Global topology DB (nosave — rebuilt from live rooms) ═══
 nosave mapping topology_rooms;   // room_id → room data mapping
@@ -326,7 +327,7 @@ mapping get_room_entities(object room) {
                 "label": label,
             ]);
         } else if (living(ob)) {
-            eid = "npc:" + base_name(ob);
+            eid = "npc:" + file_name(ob);
             label = (string)ob->short();
             if (!stringp(label)) label = (string)ob->name();
             if (!stringp(label)) label = "NPC";
@@ -389,7 +390,7 @@ mapping build_single_entity_record(object ob, string room_id) {
         if (!stringp(label)) label = "player";
         return ([ "id": eid, "type": "player", "room": room_id, "label": label ]);
     } else if (living(ob)) {
-        eid = "npc:" + base_name(ob);
+        eid = "npc:" + file_name(ob);
         label = (string)ob->short();
         if (!stringp(label)) label = (string)ob->name();
         if (!stringp(label)) label = "NPC";
@@ -807,6 +808,23 @@ void handle_hello(object who, mapping params) {
     send_map_init(who);
 }
 
+// Map.EntitiesRefresh handler — client requests full entity resync
+void handle_entities_refresh(object who) {
+    mapping old_entities, new_entities;
+    string *visible;
+
+    if (!who || !interactive(who)) return;
+    if (!who->has_graph_map()) return;
+
+    visible = who->query_graph_map_visible();
+    if (!arrayp(visible) || !sizeof(visible)) return;
+
+    old_entities = who->query_graph_map_known_entities();
+    new_entities = enumerate_visible_entities(visible);
+    who->set_graph_map_known_entities(new_entities);
+    send_entities_delta(who, old_entities, new_entities);
+}
+
 // Called when a player disconnects or map subscription ends
 void handle_goodbye(object who) {
     if (!who) return;
@@ -865,6 +883,7 @@ void send_map_init(object who) {
         "character": ([
             "room_id":        current_id,
             "room_name":      env->short() || "未知",
+            "entity_id":      "player:" + (string)query("id", who),
             "explored_count": sizeof(explored),
         ]),
         "topology": ([

@@ -3854,7 +3854,7 @@ function WuxiaGUI3._updateScenePanel(overrideRid)
     if edata.room == rid then
       local lbl = ansiToHtml(edata.label or edata.id or "")
       if edata.type == "npc" then
-        local clr = "#FFFF44"
+        local clr = "#DDDDDD"
         local flags = edata.flags
         if flags then
           for _, f in ipairs(flags) do
@@ -3920,17 +3920,49 @@ local MAP_EDGE_COLOR_DIM = "rgba(120,120,120,0.30)"
 local MAP_ENTITY_POOL    = 30
 local MAP_ENTITY_SIZE    = 10     -- dot diameter at zoom=1.0
 local MAP_HOVER_COLOR    = "rgba(68,170,255,0.7)"  -- hover highlight border
+local MAP_ENTITY_ANIM_DURATION = 0.3    -- seconds for move animation
+local MAP_ENTITY_ANIM_STEP     = 0.016  -- ~60fps timer interval
 
 -- Entity type → dot color
 local MAP_ENTITY_COLORS = {
   player      = "#44FF44",  -- bright green
-  npc_normal  = "#FFFF44",  -- yellow
+  npc_normal  = "#000000",  -- black
   npc_hostile = "#FF4444",  -- red
   npc_vendor  = "#FFAA22",  -- orange
   npc_quest   = "#44AAFF",  -- cyan-blue
   npc_trainer = "#AA44FF",  -- purple
   item        = "#AAAAAA",  -- grey
 }
+
+-- Convert world grid coords → screen pixel coords for a mapCtx
+local function mapWorldToScreen(mapCtx, wx, wy)
+  local gm = WuxiaGUI3.graphMap
+  if not mapCtx or not mapCtx.container then return nil, nil end
+  local cw = mapCtx.container:get_width() - 2 * MAP_INSET
+  local ch = mapCtx.container:get_height() - 2 * MAP_INSET
+  if cw <= 0 then cw = 268 end
+  if ch <= 0 then ch = 156 end
+  local cx, cy = 0, 0
+  local cur = gm and gm.rooms[gm.currentRoom]
+  if cur then
+    cx = (cur.x or 0) + (cur.len or 1) / 2
+    cy = (cur.y or 0) + (cur.wid or 1) / 2
+  end
+  local G = MAP_GRID_PX * mapCtx.zoom
+  return (wx - cx) * G + mapCtx.panX + cw/2 + MAP_INSET,
+         -(wy - cy) * G + mapCtx.panY + ch/2 + MAP_INSET
+end
+
+-- Compute screen-space center of a room for a mapCtx
+local function mapRoomScreenCenter(mapCtx, roomId)
+  local gm = WuxiaGUI3.graphMap
+  local room = gm and gm.rooms[roomId]
+  if not room or not mapCtx or not mapCtx.container then return nil, nil end
+  if (room.z or 0) ~= mapCtx.currentZ then return nil, nil end
+  return mapWorldToScreen(mapCtx,
+    (room.x or 0) + (room.len or 1) / 2,
+    (room.y or 0) + (room.wid or 1) / 2)
+end
 
 -- Room type → fill color
 local MAP_ROOM_COLORS = {
@@ -3976,6 +4008,8 @@ WuxiaGUI3.graphMap = {
   exploredRooms = {},   -- set: [room_id] = true
   -- Entity / POI state
   entities = {},        -- [entity_id] = { id, type, room, label, flags }
+  entityPending = {},   -- [eid] = { room=rid, t=os.clock() } — recently removed, for move detection
+  entityAnimQueue = {}, -- [eid] = { waypoints={r1,r2,...}, ent=data } — coalesced moves pending flush
   pois = {},            -- [poi_id] = { id, room, category, label }
   -- Filter toggles (shared across views)
   filterNPCs    = true,
@@ -4235,7 +4269,7 @@ function WuxiaGUI3._createMapCtx(id, container, helpTipParent, poolSizes)
        or  "&#9673; ─ 跟隨玩家 開/關<br>")
     .. "<br><b>房間標記：</b><br>"
     .. '<font color="#44FF44">★N</font> ─ 玩家數量<br>'
-    .. '<font color="#FFFF44">●N</font> ─ NPC 數量<br>'
+    .. '<font color="#CCCCCC">●N</font> ─ NPC 數量<br>'
     .. '<font color="#AAAAAA">◆N</font> ─ 物品數量<br>'
     .. "📍 ─ 當前位置<br>"
     .. "▲ ▼ ─ 有上/下出口<br>"
@@ -4768,7 +4802,7 @@ function WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch, upDo
     for _, edata in ipairs(roomEnts) do
       local lbl = ansiToHtml(edata.label or edata.id or "")
       if edata.type == "npc" then
-        local clr = "#FFFF44"
+        local clr = "#DDDDDD"
         local flags = edata.flags
         if flags then
           for _, f in ipairs(flags) do
@@ -4814,8 +4848,11 @@ function WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch, upDo
             if f == "trainer"  then npcPriColor = MAP_ENTITY_COLORS.npc_trainer end
           end
         end
-      elseif edata.type == "player" and rid ~= gm.currentRoom then
-        playerCount = playerCount + 1
+      elseif edata.type == "player" then
+        -- Skip self: use entity_id if available, else fall back to current room check
+        local isSelf = gm.selfEntityId and (edata.id == gm.selfEntityId)
+            or not gm.selfEntityId and (rid == gm.currentRoom)
+        if not isSelf then playerCount = playerCount + 1 end
       elseif edata.type == "item" then
         itemCount = itemCount + 1
       end
@@ -5003,6 +5040,170 @@ function WuxiaGUI3._renderGraphMap()
   end
   if WuxiaGUI3.bigMapCtx and WuxiaGUI3._bigMapVisible then
     WuxiaGUI3._renderMapCtx(WuxiaGUI3.bigMapCtx)
+  end
+end
+
+-- ─── Animate entity dot sliding between rooms ───
+-- Interpolation in world space, converted to screen each tick (handles map pan/zoom).
+local _animSeq = 0
+local _activeAnims = {}  -- [eid] = { alive=bool, dotInfos={{dot,mapCtx,curWX,curWY},...} }
+
+function WuxiaGUI3._animateEntityMove(eid, waypoints, entData)
+  local gm = WuxiaGUI3.graphMap
+
+  -- Cancel any existing animation — capture world-space position for seamless resume
+  local resumeWorldPos = nil  -- { wx, wy }
+  local existing = _activeAnims[eid]
+  if existing then
+    existing.alive = false
+    for _, info in ipairs(existing.dotInfos) do
+      if not resumeWorldPos then
+        resumeWorldPos = { wx = info.curWX, wy = info.curWY }
+      end
+      info.dot:delete()
+    end
+    _activeAnims[eid] = nil
+  end
+
+  -- Build world-space waypoint list (resume point + room centers)
+  local worldPts = {}
+  if resumeWorldPos then
+    worldPts[1] = resumeWorldPos
+  end
+  for _, roomId in ipairs(waypoints) do
+    local room = gm and gm.rooms[roomId]
+    if room then
+      worldPts[#worldPts+1] = {
+        wx = (room.x or 0) + (room.len or 1) / 2,
+        wy = (room.y or 0) + (room.wid or 1) / 2,
+      }
+    end
+  end
+  if #worldPts < 2 then return end
+
+  -- Pre-compute breakpoints from world-space distances (stable across pan/zoom)
+  local totalDist = 0
+  local segDists = {}
+  for i = 1, #worldPts - 1 do
+    local dx = worldPts[i+1].wx - worldPts[i].wx
+    local dy = worldPts[i+1].wy - worldPts[i].wy
+    segDists[i] = math.sqrt(dx*dx + dy*dy)
+    totalDist = totalDist + segDists[i]
+  end
+  if totalDist <= 0 then return end
+
+  local breakpoints = { 0 }
+  local cumDist = 0
+  for i = 1, #segDists do
+    cumDist = cumDist + segDists[i]
+    breakpoints[i+1] = cumDist / totalDist
+  end
+
+  -- Duration scales sub-linearly: 0.3s base + 0.08s per extra segment
+  local numSeg = #worldPts - 1
+  local totalDuration = MAP_ENTITY_ANIM_DURATION + 0.08 * (numSeg - 1)
+
+  -- Determine dot color from entity type + flags
+  local dotColor = MAP_ENTITY_COLORS.npc_normal
+  if entData.type == "player" then
+    dotColor = MAP_ENTITY_COLORS.player
+  elseif entData.type == "npc" and entData.flags then
+    for _, f in ipairs(entData.flags) do
+      if MAP_ENTITY_COLORS["npc_" .. f] then
+        dotColor = MAP_ENTITY_COLORS["npc_" .. f]
+      end
+    end
+  end
+
+  -- Animate on each active mapCtx
+  local ctxList = {}
+  if WuxiaGUI3.miniMapCtx then ctxList[#ctxList+1] = WuxiaGUI3.miniMapCtx end
+  if WuxiaGUI3.bigMapCtx and WuxiaGUI3._bigMapVisible then
+    ctxList[#ctxList+1] = WuxiaGUI3.bigMapCtx
+  end
+
+  local animRecord = { alive = true, dotInfos = {} }
+  _activeAnims[eid] = animRecord
+
+  for _, mapCtx in ipairs(ctxList) do
+    local initSX, initSY = mapWorldToScreen(mapCtx, worldPts[1].wx, worldPts[1].wy)
+    if initSX then
+      local ds = math.max(6, math.floor(MAP_ENTITY_SIZE * mapCtx.zoom))
+      local halfDs = math.floor(ds / 2)
+
+      _animSeq = _animSeq + 1
+      local dot = Geyser.Label:new({
+        name = "W3.entAnim." .. _animSeq,
+        x = math.floor(initSX - halfDs), y = math.floor(initSY - halfDs),
+        width = ds, height = ds,
+      }, mapCtx.container)
+      dot:setStyleSheet(string.format(
+        "background-color:%s; border-radius:%dpx;", dotColor, math.ceil(ds / 2)))
+      dot:echo("")
+      if dot.enableClickthrough then dot:enableClickthrough() end
+      dot:raiseAll()
+      local cw0 = mapCtx.container:get_width()
+      local ch0 = mapCtx.container:get_height()
+      if initSX >= 0 and initSX <= cw0 and initSY >= 0 and initSY <= ch0 then
+        dot:show()
+      else
+        dot:hide()
+      end
+
+      local dotInfo = {
+        dot = dot, mapCtx = mapCtx,
+        curWX = worldPts[1].wx, curWY = worldPts[1].wy,
+      }
+      animRecord.dotInfos[#animRecord.dotInfos+1] = dotInfo
+
+      local steps = math.ceil(totalDuration / MAP_ENTITY_ANIM_STEP)
+      local step = 0
+      local function tick()
+        if not animRecord.alive then return end
+        step = step + 1
+        local t = math.min(step / steps, 1)
+        t = 1 - (1 - t) ^ 3  -- ease-out cubic over whole path
+
+        -- Find which segment the eased t falls into
+        local seg = #worldPts - 1
+        for i = 1, #worldPts - 1 do
+          if t <= breakpoints[i+1] then
+            seg = i
+            break
+          end
+        end
+        local segStart = breakpoints[seg]
+        local segEnd = breakpoints[seg+1] or 1
+        local localT = (segEnd > segStart) and ((t - segStart) / (segEnd - segStart)) or 1
+
+        -- Interpolate in world space
+        local wx = worldPts[seg].wx + (worldPts[seg+1].wx - worldPts[seg].wx) * localT
+        local wy = worldPts[seg].wy + (worldPts[seg+1].wy - worldPts[seg].wy) * localT
+        dotInfo.curWX = wx
+        dotInfo.curWY = wy
+
+        -- Convert to screen (accounts for current pan/zoom/player position)
+        local sx, sy = mapWorldToScreen(mapCtx, wx, wy)
+        if sx then
+          local cw = mapCtx.container:get_width()
+          local ch = mapCtx.container:get_height()
+          if sx >= 0 and sx <= cw and sy >= 0 and sy <= ch then
+            dot:move(math.floor(sx - halfDs), math.floor(sy - halfDs))
+            dot:show()
+          else
+            dot:hide()
+          end
+        end
+
+        if t >= 1 then
+          dot:delete()
+          if _activeAnims[eid] == animRecord then _activeAnims[eid] = nil end
+          return
+        end
+        tempTimer(MAP_ENTITY_ANIM_STEP, tick)
+      end
+      tick()
+    end
   end
 end
 
@@ -9825,6 +10026,7 @@ function WuxiaGUI3.registerEvents()
 
     gm.config = data.config or {}
     gm.currentRoom = data.character and data.character.room_id
+    gm.selfEntityId = data.character and data.character.entity_id
 
     -- Load topology
     if data.topology then
@@ -9943,32 +10145,96 @@ function WuxiaGUI3.registerEvents()
     local data = gmcp and gmcp.Map and gmcp.Map.EntitiesDelta
     if not data then return end
     local gm = WuxiaGUI3.graphMap
+    local pending = gm.entityPending or {}
+    local queue = gm.entityAnimQueue or {}
+    local now = os.clock()
 
-    -- Process adds
-    for _, ent in ipairs(data.add or {}) do
-      if ent.id then gm.entities[ent.id] = ent end
+    local selfEid = gm.selfEntityId
+
+    -- Process removes — save old room for move detection
+    for _, eid in ipairs(data.remove or {}) do
+      local old = gm.entities[eid]
+      if old and old.room and eid ~= selfEid
+          and (old.type == "npc" or old.type == "player") then
+        pending[eid] = { room = old.room, t = now }
+      end
+      gm.entities[eid] = nil
     end
 
-    -- Process updates (entity moved room, or data changed)
-    for _, ent in ipairs(data.update or {}) do
+    -- Process adds — check for room-change, append waypoint
+    for _, ent in ipairs(data.add or {}) do
       if ent.id then
-        if gm.entities[ent.id] then
-          for k, v in pairs(ent) do
-            gm.entities[ent.id][k] = v
+        local p = pending[ent.id]
+        if p and (now - p.t) < 2 and p.room ~= ent.room then
+          local q = queue[ent.id]
+          if not q then
+            q = { waypoints = { p.room }, ent = ent }
+            queue[ent.id] = q
           end
+          q.waypoints[#q.waypoints+1] = ent.room
+          q.ent = ent
+          pending[ent.id] = nil
+        end
+        gm.entities[ent.id] = ent
+      end
+    end
+
+    -- Process updates — detect room change, append waypoint
+    for _, ent in ipairs(data.update or {}) do
+      if ent.id and ent.id ~= selfEid then
+        local old = gm.entities[ent.id]
+        if old then
+          local oldRoom = old.room
+          for k, v in pairs(ent) do old[k] = v end
+          if ent.room and oldRoom and ent.room ~= oldRoom
+              and (old.type == "npc" or old.type == "player") then
+            local q = queue[ent.id]
+            if not q then
+              q = { waypoints = { oldRoom }, ent = old }
+              queue[ent.id] = q
+            end
+            q.waypoints[#q.waypoints+1] = ent.room
+            q.ent = old
+          end
+        else
+          gm.entities[ent.id] = ent
+        end
+      elseif ent.id then
+        -- Still update self entity data, just don't animate
+        local old = gm.entities[ent.id]
+        if old then
+          for k, v in pairs(ent) do old[k] = v end
         else
           gm.entities[ent.id] = ent
         end
       end
     end
 
-    -- Process removes
-    for _, eid in ipairs(data.remove or {}) do
-      gm.entities[eid] = nil
+    -- Clean stale pending entries (>2s)
+    for eid, p in pairs(pending) do
+      if (now - p.t) > 2 then pending[eid] = nil end
     end
+    gm.entityPending = pending
+    gm.entityAnimQueue = queue
 
+    -- Re-render (badges update instantly)
     WuxiaGUI3._renderGraphMap()
     WuxiaGUI3._updateScenePanel()
+
+    -- Schedule deferred animation flush — coalesces all GMCP events in this tick
+    if not gm._animFlushScheduled then
+      gm._animFlushScheduled = true
+      tempTimer(0, function()
+        gm._animFlushScheduled = false
+        local q = gm.entityAnimQueue or {}
+        gm.entityAnimQueue = {}
+        for eid, data in pairs(q) do
+          if #data.waypoints >= 2 then
+            WuxiaGUI3._animateEntityMove(eid, data.waypoints, data.ent)
+          end
+        end
+      end)
+    end
   end)
 
   h[#h+1] = registerAnonymousEventHandler("gmcp.Map.POIDelta", function()
