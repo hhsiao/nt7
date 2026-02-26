@@ -407,6 +407,7 @@ function WuxiaGUI3._saveSettings()
     tabOrder = WuxiaGUI3._tabOrder or {},
     allTabSendChannel = WuxiaGUI3._allTabSendChannel or "閒聊",
     chatHeight = WuxiaGUI3._currentChatH or CHAT_H,
+    bigMapOpen = WuxiaGUI3._bigMapVisible or false,
   }
   table.save(WuxiaGUI3._saveFile, data)
 end
@@ -425,6 +426,7 @@ function WuxiaGUI3._loadSettings()
       WuxiaGUI3._currentChatH = h
     end
   end
+  WuxiaGUI3._savedBigMapOpen = data.bigMapOpen or false
 end
 
 -- ═══════════════════════════════════════════════
@@ -3300,8 +3302,15 @@ function WuxiaGUI3._buildLeftPanel()
   WuxiaGUI3.mapArea:setStyleSheet("background-color: #2A2A2A;")
   WuxiaGUI3.mapArea:echo("")
 
-  -- ─── Graph Map: Label Pool ───
-  local mapOk, mapErr = pcall(WuxiaGUI3._graphMapInitPool)
+  -- ─── Graph Map: Create minimap context ───
+  local mapOk, mapErr = pcall(function()
+    WuxiaGUI3.miniMapCtx = WuxiaGUI3._createMapCtx(
+      "mini", WuxiaGUI3.mapArea, WuxiaGUI3.leftMain,
+      { room = 120, edge = 200, entity = 30 }
+    )
+    WuxiaGUI3.miniMapCtx.drivesScenePanel = true
+    WuxiaGUI3.miniMapCtx.followPlayer = true
+  end)
   if not mapOk then
     debugc(string.format("WuxiaGUI3: Graph Map init error: %s", tostring(mapErr)))
   end
@@ -3957,117 +3966,132 @@ local MAP_ZONE_TO_TERRAIN = {
   gaochang = "desert", mobei = "desert",
 }
 
--- Client-side map state
+-- Client-side map state (shared across all map views)
 WuxiaGUI3.graphMap = {
   config = {},
   rooms = {},           -- [room_id] = { name, zone, x, y, z, len, wid, hgt, room_type, flags }
   edges = {},           -- [edge_id] = { from, to, cmd, type }
   currentRoom = nil,
-  currentZ = 0,
   visibleRooms = {},    -- set: [room_id] = true
   exploredRooms = {},   -- set: [room_id] = true
-  zoom = 1.0,
-  panX = 0,
-  panY = 0,
-  dragging = false,
-  dragStartX = 0,
-  dragStartY = 0,
-  roomPool = {},
-  roomPoolMap = {},
-  nextRoomPool = 1,
-  edgePool = {},
-  nextEdgePool = 1,
   -- Entity / POI state
   entities = {},        -- [entity_id] = { id, type, room, label, flags }
   pois = {},            -- [poi_id] = { id, room, category, label }
-  entityPool = {},
-  nextEntityPool = 1,
-  -- Hover state
-  hoveredRoom = nil,
-  -- Filter toggles
+  -- Filter toggles (shared across views)
   filterNPCs    = true,
   initialized = false,
 }
 
--- ─── Pool initialization ───
-function WuxiaGUI3._graphMapInitPool()
+-- ─── Map View Context Factory ───
+-- Creates a map view context with its own pools, toolbar, and callbacks.
+-- id: "mini" or "big" (used for label naming)
+-- container: Geyser.Label to render into
+-- helpTipParent: parent for help tooltip (leftMain for mini, container for big)
+-- poolSizes: { room=N, edge=N, entity=N }
+function WuxiaGUI3._createMapCtx(id, container, helpTipParent, poolSizes)
   local gm = WuxiaGUI3.graphMap
-  local mapArea = WuxiaGUI3.mapArea
-  if not mapArea then return end
+  if not container then return nil end
+
+  local mapCtx = {
+    id            = id,
+    container     = container,
+    -- Per-view state
+    zoom          = 1.0,
+    panX          = 0,
+    panY          = 0,
+    currentZ      = 0,
+    dragging      = false,
+    dragStartX    = 0,
+    dragStartY    = 0,
+    hoveredRoom   = nil,
+    -- Pool sizes
+    roomPoolSize   = poolSizes.room or MAP_POOL_SIZE,
+    edgePoolSize   = poolSizes.edge or MAP_EDGE_POOL,
+    entityPoolSize = poolSizes.entity or MAP_ENTITY_POOL,
+    -- Pools
+    roomPool      = {},
+    roomPoolMap   = {},
+    nextRoomPool  = 1,
+    edgePool      = {},
+    nextEdgePool  = 1,
+    entityPool    = {},
+    nextEntityPool = 1,
+    -- Toolbar widgets
+    zUp = nil, zDown = nil, zDisp = nil,
+    centerBtn = nil, npcToggle = nil,
+    helpBtn = nil, btnTip = nil, helpTip = nil,
+    -- Behavior
+    drivesScenePanel = false,
+    followPlayer     = true,
+  }
+
+  local prefix = "W3.map." .. id .. "."
 
   -- Edge pool (created first → lower z-order, behind rooms)
-  for i = 1, MAP_EDGE_POOL do
+  for i = 1, mapCtx.edgePoolSize do
     local lbl = Geyser.Label:new({
-      name = "W3.mapEdge." .. i,
+      name = prefix .. "edge." .. i,
       x = 0, y = 0, width = 1, height = 1,
-    }, mapArea)
+    }, container)
     lbl:setStyleSheet("background-color:transparent;")
     lbl:echo("")
     lbl:hide()
     if lbl.enableClickthrough then lbl:enableClickthrough() end
-    gm.edgePool[i] = lbl
+    mapCtx.edgePool[i] = lbl
   end
 
   -- Room pool (created after edges → higher z-order, on top)
-  for i = 1, MAP_POOL_SIZE do
+  for i = 1, mapCtx.roomPoolSize do
     local lbl = Geyser.Label:new({
-      name = "W3.mapRoom." .. i,
+      name = prefix .. "room." .. i,
       x = 0, y = 0, width = 1, height = 1,
-    }, mapArea)
+    }, container)
     lbl:setStyleSheet("background-color:transparent;")
     lbl:setFontSize(6)
     lbl:echo("")
     lbl:hide()
     if lbl.enableClickthrough then lbl:enableClickthrough() end
-    gm.roomPool[i] = lbl
+    mapCtx.roomPool[i] = lbl
   end
 
-  -- Entity pool (created after room pool → higher z-order, on top of rooms)
-  for i = 1, MAP_ENTITY_POOL do
+  -- Entity pool (above room pool)
+  for i = 1, mapCtx.entityPoolSize do
     local lbl = Geyser.Label:new({
-      name = "W3.mapEntity." .. i,
+      name = prefix .. "entity." .. i,
       x = 0, y = 0, width = MAP_ENTITY_SIZE, height = MAP_ENTITY_SIZE,
-    }, mapArea)
+    }, container)
     lbl:setStyleSheet("background-color:transparent; border-radius:5px;")
     lbl:echo("")
     lbl:hide()
     if lbl.enableClickthrough then lbl:enableClickthrough() end
-    gm.entityPool[i] = lbl
+    mapCtx.entityPool[i] = lbl
   end
 
-  -- Hover highlight overlay (transparent with colored border, positioned over hovered room)
-  gm.hoverHL = Geyser.Label:new({
-    name = "W3.mapHoverHL",
-    x = 0, y = 0, width = 1, height = 1,
-  }, mapArea)
-  gm.hoverHL:setStyleSheet("background-color:transparent; border:2px solid " .. MAP_HOVER_COLOR .. ";")
-  gm.hoverHL:echo("")
-  gm.hoverHL:hide()
-  if gm.hoverHL.enableClickthrough then gm.hoverHL:enableClickthrough() end
-
-  -- Z-layer controls (top-right corner)
-  local w = mapArea:get_width()
-  if w <= 0 then w = 272 end
+  -- ─── Toolbar ───
+  local cw = container:get_width()
+  if cw <= 0 then cw = 272 end
+  -- Use negative x for right-edge anchoring (Geyser: negative = offset from opposite edge)
+  local btnX = -24      -- left edge 24px from container right → right edge 4px from right
+  local dispX = -46     -- Z display label offset
   local btnCSS     = "background-color:rgba(20,20,40,0.7); border:1px solid #555; border-radius:2px; qproperty-alignment:AlignCenter;"
   local btnHoverCSS = "background-color:rgba(40,40,80,0.9); border:1px solid #aaa; border-radius:2px; qproperty-alignment:AlignCenter;"
   local tipCSS = "background-color:rgba(10,10,20,0.92); border:1px solid #888; border-radius:3px; padding:2px 6px; qproperty-alignment:'AlignRight|AlignVCenter';"
 
-  -- Shared instant tooltip for toolbar buttons (positioned left of button on hover)
-  WuxiaGUI3._mapBtnTip = Geyser.Label:new({
-    name = "W3.mapBtnTip",
+  -- Shared instant tooltip
+  mapCtx.btnTip = Geyser.Label:new({
+    name = prefix .. "btnTip",
     x = 0, y = 0, width = 100, height = 18,
-  }, mapArea)
-  WuxiaGUI3._mapBtnTip:setStyleSheet(tipCSS)
-  WuxiaGUI3._mapBtnTip:setFontSize(7)
-  WuxiaGUI3._mapBtnTip:echo("")
-  WuxiaGUI3._mapBtnTip:hide()
-  if WuxiaGUI3._mapBtnTip.enableClickthrough then WuxiaGUI3._mapBtnTip:enableClickthrough() end
+  }, container)
+  mapCtx.btnTip:setStyleSheet(tipCSS)
+  mapCtx.btnTip:setFontSize(7)
+  mapCtx.btnTip:echo("")
+  mapCtx.btnTip:hide()
+  if mapCtx.btnTip.enableClickthrough then mapCtx.btnTip:enableClickthrough() end
 
-  -- Helper: show shared tooltip left of a button
   local function showBtnTip(btn, text)
-    local tip = WuxiaGUI3._mapBtnTip
-    local bx = btn:get_x() - mapArea:get_x()
-    local by = btn:get_y() - mapArea:get_y()
+    local tip = mapCtx.btnTip
+    local bx = btn:get_x() - container:get_x()
+    local by = btn:get_y() - container:get_y()
     local bh = btn:get_height()
     tip:move(bx - 104, by + math.floor((bh - 18) / 2))
     tip:echo("<font color='#cccccc'>" .. text .. "</font>")
@@ -4075,137 +4099,140 @@ function WuxiaGUI3._graphMapInitPool()
     tip:raiseAll()
   end
   local function hideBtnTip()
-    WuxiaGUI3._mapBtnTip:hide()
+    mapCtx.btnTip:hide()
   end
 
-  WuxiaGUI3._mapZUp = Geyser.Label:new({
-    name = "W3.mapZUp",
-    x = w - 24, y = 40, width = 20, height = 14,
-  }, mapArea)
-  WuxiaGUI3._mapZUp:setStyleSheet(btnCSS)
-  WuxiaGUI3._mapZUp:setFontSize(7)
-  WuxiaGUI3._mapZUp:echo("<font color='#cccccc'>&#9650;</font>")
-  WuxiaGUI3._mapZUp:setClickCallback(function()
-    WuxiaGUI3.graphMap.currentZ = WuxiaGUI3.graphMap.currentZ + 1
-    WuxiaGUI3._renderGraphMap()
+  -- Z Up
+  mapCtx.zUp = Geyser.Label:new({
+    name = prefix .. "zUp",
+    x = btnX, y = 40, width = 20, height = 14,
+  }, container)
+  mapCtx.zUp:setStyleSheet(btnCSS)
+  mapCtx.zUp:setFontSize(7)
+  mapCtx.zUp:echo("<font color='#cccccc'>&#9650;</font>")
+  mapCtx.zUp:setClickCallback(function()
+    mapCtx.currentZ = mapCtx.currentZ + 1
+    WuxiaGUI3._renderMapCtx(mapCtx)
   end)
-  WuxiaGUI3._mapZUp:setOnEnter(function()
-    WuxiaGUI3._mapZUp:setStyleSheet(btnHoverCSS)
-    WuxiaGUI3._mapZUp:echo("<font color='#ffffff'>&#9650;</font>")
-    showBtnTip(WuxiaGUI3._mapZUp, "上一層")
-  end, WuxiaGUI3._mapZUp)
-  WuxiaGUI3._mapZUp:setOnLeave(function()
-    WuxiaGUI3._mapZUp:setStyleSheet(btnCSS)
-    WuxiaGUI3._mapZUp:echo("<font color='#cccccc'>&#9650;</font>")
+  mapCtx.zUp:setOnEnter(function()
+    mapCtx.zUp:setStyleSheet(btnHoverCSS)
+    mapCtx.zUp:echo("<font color='#ffffff'>&#9650;</font>")
+    showBtnTip(mapCtx.zUp, "上一層")
+  end, mapCtx.zUp)
+  mapCtx.zUp:setOnLeave(function()
+    mapCtx.zUp:setStyleSheet(btnCSS)
+    mapCtx.zUp:echo("<font color='#cccccc'>&#9650;</font>")
     hideBtnTip()
-  end, WuxiaGUI3._mapZUp)
-  WuxiaGUI3._mapZUp:raiseAll()
+  end, mapCtx.zUp)
+  mapCtx.zUp:raiseAll()
 
-  WuxiaGUI3._mapZDown = Geyser.Label:new({
-    name = "W3.mapZDown",
-    x = w - 24, y = 56, width = 20, height = 14,
-  }, mapArea)
-  WuxiaGUI3._mapZDown:setStyleSheet(btnCSS)
-  WuxiaGUI3._mapZDown:setFontSize(7)
-  WuxiaGUI3._mapZDown:echo("<font color='#cccccc'>&#9660;</font>")
-  WuxiaGUI3._mapZDown:setClickCallback(function()
-    WuxiaGUI3.graphMap.currentZ = WuxiaGUI3.graphMap.currentZ - 1
-    WuxiaGUI3._renderGraphMap()
+  -- Z Down
+  mapCtx.zDown = Geyser.Label:new({
+    name = prefix .. "zDown",
+    x = btnX, y = 56, width = 20, height = 14,
+  }, container)
+  mapCtx.zDown:setStyleSheet(btnCSS)
+  mapCtx.zDown:setFontSize(7)
+  mapCtx.zDown:echo("<font color='#cccccc'>&#9660;</font>")
+  mapCtx.zDown:setClickCallback(function()
+    mapCtx.currentZ = mapCtx.currentZ - 1
+    WuxiaGUI3._renderMapCtx(mapCtx)
   end)
-  WuxiaGUI3._mapZDown:setOnEnter(function()
-    WuxiaGUI3._mapZDown:setStyleSheet(btnHoverCSS)
-    WuxiaGUI3._mapZDown:echo("<font color='#ffffff'>&#9660;</font>")
-    showBtnTip(WuxiaGUI3._mapZDown, "下一層")
-  end, WuxiaGUI3._mapZDown)
-  WuxiaGUI3._mapZDown:setOnLeave(function()
-    WuxiaGUI3._mapZDown:setStyleSheet(btnCSS)
-    WuxiaGUI3._mapZDown:echo("<font color='#cccccc'>&#9660;</font>")
+  mapCtx.zDown:setOnEnter(function()
+    mapCtx.zDown:setStyleSheet(btnHoverCSS)
+    mapCtx.zDown:echo("<font color='#ffffff'>&#9660;</font>")
+    showBtnTip(mapCtx.zDown, "下一層")
+  end, mapCtx.zDown)
+  mapCtx.zDown:setOnLeave(function()
+    mapCtx.zDown:setStyleSheet(btnCSS)
+    mapCtx.zDown:echo("<font color='#cccccc'>&#9660;</font>")
     hideBtnTip()
-  end, WuxiaGUI3._mapZDown)
-  WuxiaGUI3._mapZDown:raiseAll()
+  end, mapCtx.zDown)
+  mapCtx.zDown:raiseAll()
 
-  WuxiaGUI3._mapZDisp = Geyser.Label:new({
-    name = "W3.mapZDisp",
-    x = w - 46, y = 40, width = 20, height = 30,
-  }, mapArea)
-  WuxiaGUI3._mapZDisp:setStyleSheet("background-color:transparent; qproperty-alignment:AlignCenter;")
-  WuxiaGUI3._mapZDisp:setFontSize(7)
-  WuxiaGUI3._mapZDisp:echo("<font color='#666666'>Z0</font>")
-  WuxiaGUI3._mapZDisp:raiseAll()
+  -- Z Display
+  mapCtx.zDisp = Geyser.Label:new({
+    name = prefix .. "zDisp",
+    x = dispX, y = 40, width = 20, height = 30,
+  }, container)
+  mapCtx.zDisp:setStyleSheet("background-color:transparent; qproperty-alignment:AlignCenter;")
+  mapCtx.zDisp:setFontSize(7)
+  mapCtx.zDisp:echo("<font color='#666666'>Z0</font>")
+  mapCtx.zDisp:raiseAll()
 
-  -- Center-on-current-location button (below Z controls)
-  WuxiaGUI3._mapCenterBtn = Geyser.Label:new({
-    name = "W3.mapCenterBtn",
-    x = w - 24, y = 74, width = 20, height = 18,
-  }, mapArea)
-  WuxiaGUI3._mapCenterBtn:setStyleSheet(btnCSS)
-  WuxiaGUI3._mapCenterBtn:setFontSize(8)
-  WuxiaGUI3._mapCenterBtn:echo("<font color='#cccccc'>⊕</font>")
-  WuxiaGUI3._mapCenterBtn:setClickCallback(function()
-    local gm2 = WuxiaGUI3.graphMap
-    gm2.panX = 0
-    gm2.panY = 0
-    -- Also reset Z to current room's Z
-    local cur = gm2.rooms[gm2.currentRoom]
-    if cur then gm2.currentZ = cur.z or 0 end
-    WuxiaGUI3._renderGraphMap()
+  -- Center button
+  mapCtx.centerBtn = Geyser.Label:new({
+    name = prefix .. "center",
+    x = btnX, y = 74, width = 20, height = 18,
+  }, container)
+  mapCtx.centerBtn:setStyleSheet(btnCSS)
+  mapCtx.centerBtn:setFontSize(8)
+  mapCtx.centerBtn:echo("<font color='#cccccc'>⊕</font>")
+  mapCtx.centerBtn:setClickCallback(function()
+    mapCtx.panX = 0
+    mapCtx.panY = 0
+    local cur = gm.rooms[gm.currentRoom]
+    if cur then mapCtx.currentZ = cur.z or 0 end
+    WuxiaGUI3._renderMapCtx(mapCtx)
   end)
-  WuxiaGUI3._mapCenterBtn:setOnEnter(function()
-    WuxiaGUI3._mapCenterBtn:setStyleSheet(btnHoverCSS)
-    WuxiaGUI3._mapCenterBtn:echo("<font color='#ffffff'>⊕</font>")
-    showBtnTip(WuxiaGUI3._mapCenterBtn, "回到當前位置")
-  end, WuxiaGUI3._mapCenterBtn)
-  WuxiaGUI3._mapCenterBtn:setOnLeave(function()
-    WuxiaGUI3._mapCenterBtn:setStyleSheet(btnCSS)
-    WuxiaGUI3._mapCenterBtn:echo("<font color='#cccccc'>⊕</font>")
+  mapCtx.centerBtn:setOnEnter(function()
+    mapCtx.centerBtn:setStyleSheet(btnHoverCSS)
+    mapCtx.centerBtn:echo("<font color='#ffffff'>⊕</font>")
+    showBtnTip(mapCtx.centerBtn, "回到當前位置")
+  end, mapCtx.centerBtn)
+  mapCtx.centerBtn:setOnLeave(function()
+    mapCtx.centerBtn:setStyleSheet(btnCSS)
+    mapCtx.centerBtn:echo("<font color='#cccccc'>⊕</font>")
     hideBtnTip()
-  end, WuxiaGUI3._mapCenterBtn)
-  WuxiaGUI3._mapCenterBtn:raiseAll()
+  end, mapCtx.centerBtn)
+  mapCtx.centerBtn:raiseAll()
 
-  -- NPC toggle (below center button)
-  WuxiaGUI3._mapNpcToggle = Geyser.Label:new({
-    name = "W3.mapNpcToggle",
-    x = w - 24, y = 94, width = 20, height = 18,
-  }, mapArea)
-  WuxiaGUI3._mapNpcToggle:setFontSize(8)
-  WuxiaGUI3._mapNpcToggle:setClickCallback(function()
-    local gm2 = WuxiaGUI3.graphMap
-    gm2.filterNPCs = not gm2.filterNPCs
+  -- NPC Toggle
+  mapCtx.npcToggle = Geyser.Label:new({
+    name = prefix .. "npcToggle",
+    x = btnX, y = 94, width = 20, height = 18,
+  }, container)
+  mapCtx.npcToggle:setFontSize(8)
+  mapCtx.npcToggle:setClickCallback(function()
+    gm.filterNPCs = not gm.filterNPCs
     WuxiaGUI3._updateNpcToggle()
     WuxiaGUI3._renderGraphMap()
   end)
-  WuxiaGUI3._mapNpcToggle:setOnEnter(function()
-    local state = WuxiaGUI3.graphMap.filterNPCs and "開" or "關"
-    showBtnTip(WuxiaGUI3._mapNpcToggle, "NPC 標記 (" .. state .. ")")
-  end, WuxiaGUI3._mapNpcToggle)
-  WuxiaGUI3._mapNpcToggle:setOnLeave(function()
+  mapCtx.npcToggle:setOnEnter(function()
+    local state = gm.filterNPCs and "開" or "關"
+    showBtnTip(mapCtx.npcToggle, "NPC 標記 (" .. state .. ")")
+  end, mapCtx.npcToggle)
+  mapCtx.npcToggle:setOnLeave(function()
     hideBtnTip()
-  end, WuxiaGUI3._mapNpcToggle)
-  WuxiaGUI3._mapNpcToggle:raiseAll()
-  WuxiaGUI3._updateNpcToggle()
+  end, mapCtx.npcToggle)
+  mapCtx.npcToggle:raiseAll()
+  WuxiaGUI3._updateNpcToggleForCtx(mapCtx)
 
-  -- Help button (below NPC toggle in right-side toolbar)
-  WuxiaGUI3._mapHelpBtn = Geyser.Label:new({
-    name = "W3.mapHelp",
-    x = w - 24, y = 114, width = 20, height = 18,
-  }, mapArea)
-  WuxiaGUI3._mapHelpBtn:setStyleSheet(btnCSS)
-  WuxiaGUI3._mapHelpBtn:setFontSize(8)
-  WuxiaGUI3._mapHelpBtn:echo("<font color='#cccccc'>?</font>")
-  WuxiaGUI3._mapHelpBtn:raiseAll()
+  -- Help button
+  mapCtx.helpBtn = Geyser.Label:new({
+    name = prefix .. "help",
+    x = btnX, y = 114, width = 20, height = 18,
+  }, container)
+  mapCtx.helpBtn:setStyleSheet(btnCSS)
+  mapCtx.helpBtn:setFontSize(8)
+  mapCtx.helpBtn:echo("<font color='#cccccc'>?</font>")
+  mapCtx.helpBtn:raiseAll()
 
-  -- Help tooltip panel (overlays map area, hidden by default)
+  -- Help tooltip panel
   local helpContent =
     "<b>地圖說明</b><br><br>"
     .. "<b>操作：</b><br>"
     .. "滾輪 ─ 縮放<br>"
     .. "拖曳 ─ 平移<br>"
     .. "雙擊 ─ 回到當前位置<br>"
-    .. "懸停房間 ─ 場景面板預覽<br>"
+    .. (id == "mini" and "懸停房間 ─ 場景面板預覽<br>" or "")
     .. "<br><b>按鈕：</b><br>"
     .. "▲ ▼ ─ 切換樓層 (Z軸)<br>"
     .. "⊕ ─ 回到當前位置<br>"
     .. "👤 ─ 顯示/隱藏 NPC 標記<br>"
+    .. (id == "mini"
+       and "&#8862; ─ 開啟/關閉大地圖 (F9)<br>"
+       or  "&#9673; ─ 跟隨玩家 開/關<br>")
     .. "<br><b>房間標記：</b><br>"
     .. '<font color="#44FF44">★N</font> ─ 玩家數量<br>'
     .. '<font color="#FFFF44">●N</font> ─ NPC 數量<br>'
@@ -4222,94 +4249,145 @@ function WuxiaGUI3._graphMapInitPool()
     .. '<font color="#7B4F9D">■</font> 地下城　'
     .. '<font color="#2CA58D">■</font> 聊天室<br>'
     .. "<br>亮色 ＝ 可見範圍　暗色 ＝ 已探索"
-  -- Parent is leftMain so tooltip can extend below the map
-  local mapAbsY = mapArea:get_y() - (WuxiaGUI3.leftMain and WuxiaGUI3.leftMain:get_y() or 0)
-  WuxiaGUI3._mapHelpTip = Geyser.Label:new({
-    name = "W3.mapHelpTip",
-    x = 14, y = mapAbsY, width = w - 40, height = 440,
-  }, WuxiaGUI3.leftMain)
-  WuxiaGUI3._mapHelpTip:setStyleSheet(
+
+  local tipY = 0
+  if helpTipParent ~= container then
+    tipY = container:get_y() - (helpTipParent and helpTipParent:get_y() or 0)
+  end
+  mapCtx.helpTip = Geyser.Label:new({
+    name = prefix .. "helpTip",
+    x = 14, y = tipY, width = cw - 40, height = 440,
+  }, helpTipParent)
+  mapCtx.helpTip:setStyleSheet(
     "background-color:rgba(10,10,20,0.92); border:1px solid #888; border-radius:4px;"
     .. " padding:8px; qproperty-wordWrap:true; qproperty-alignment:'AlignLeft|AlignTop';")
-  WuxiaGUI3._mapHelpTip:setFontSize(8)
-  WuxiaGUI3._mapHelpTip:echo(helpContent)
-  WuxiaGUI3._mapHelpTip:hide()
-  if WuxiaGUI3._mapHelpTip.enableClickthrough then WuxiaGUI3._mapHelpTip:enableClickthrough() end
+  mapCtx.helpTip:setFontSize(8)
+  mapCtx.helpTip:echo(helpContent)
+  mapCtx.helpTip:hide()
+  if mapCtx.helpTip.enableClickthrough then mapCtx.helpTip:enableClickthrough() end
 
-  -- Help button hover: instant show/hide + highlight
-  WuxiaGUI3._mapHelpBtn:setOnEnter(function()
-    WuxiaGUI3._mapHelpBtn:setStyleSheet(btnHoverCSS)
-    WuxiaGUI3._mapHelpBtn:echo("<font color='#ffffff'>?</font>")
-    WuxiaGUI3._mapHelpTip:show()
-    WuxiaGUI3._mapHelpTip:raiseAll()
-    WuxiaGUI3._mapHelpBtn:raiseAll()
-  end, WuxiaGUI3._mapHelpBtn)
-  WuxiaGUI3._mapHelpBtn:setOnLeave(function()
-    WuxiaGUI3._mapHelpBtn:setStyleSheet(btnCSS)
-    WuxiaGUI3._mapHelpBtn:echo("<font color='#cccccc'>?</font>")
-    WuxiaGUI3._mapHelpTip:hide()
-  end, WuxiaGUI3._mapHelpBtn)
+  mapCtx.helpBtn:setOnEnter(function()
+    mapCtx.helpBtn:setStyleSheet(btnHoverCSS)
+    mapCtx.helpBtn:echo("<font color='#ffffff'>?</font>")
+    mapCtx.helpTip:show()
+    mapCtx.helpTip:raiseAll()
+    mapCtx.helpBtn:raiseAll()
+  end, mapCtx.helpBtn)
+  mapCtx.helpBtn:setOnLeave(function()
+    mapCtx.helpBtn:setStyleSheet(btnCSS)
+    mapCtx.helpBtn:echo("<font color='#cccccc'>?</font>")
+    mapCtx.helpTip:hide()
+  end, mapCtx.helpBtn)
+
+  -- ─── Context-specific button at y=134 ───
+  if id == "mini" then
+    -- Big map toggle button (minimap only)
+    mapCtx.bigMapBtn = Geyser.Label:new({
+      name = prefix .. "bigMapBtn",
+      x = btnX, y = 134, width = 20, height = 18,
+    }, container)
+    mapCtx.bigMapBtn:setStyleSheet(btnCSS)
+    mapCtx.bigMapBtn:setFontSize(8)
+    mapCtx.bigMapBtn:echo("<font color='#cccccc'>&#8862;</font>")
+    mapCtx.bigMapBtn:setClickCallback(function()
+      WuxiaGUI3._toggleBigMap()
+    end)
+    mapCtx.bigMapBtn:setOnEnter(function()
+      mapCtx.bigMapBtn:setStyleSheet(btnHoverCSS)
+      mapCtx.bigMapBtn:echo("<font color='#ffffff'>&#8862;</font>")
+      showBtnTip(mapCtx.bigMapBtn, "大地圖 (F9)")
+    end, mapCtx.bigMapBtn)
+    mapCtx.bigMapBtn:setOnLeave(function()
+      mapCtx.bigMapBtn:setStyleSheet(btnCSS)
+      mapCtx.bigMapBtn:echo("<font color='#cccccc'>&#8862;</font>")
+      hideBtnTip()
+    end, mapCtx.bigMapBtn)
+    mapCtx.bigMapBtn:raiseAll()
+  elseif id == "big" then
+    -- Follow-player toggle button (big map only)
+    mapCtx.followBtn = Geyser.Label:new({
+      name = prefix .. "followBtn",
+      x = btnX, y = 134, width = 20, height = 18,
+    }, container)
+    mapCtx.followBtn:setFontSize(8)
+    mapCtx.followBtn:setClickCallback(function()
+      mapCtx.followPlayer = not mapCtx.followPlayer
+      WuxiaGUI3._updateFollowToggleForCtx(mapCtx)
+      if mapCtx.followPlayer then
+        mapCtx.panX = 0
+        mapCtx.panY = 0
+        local cur = gm.rooms[gm.currentRoom]
+        if cur then mapCtx.currentZ = cur.z or 0 end
+        WuxiaGUI3._renderMapCtx(mapCtx)
+      end
+    end)
+    mapCtx.followBtn:setOnEnter(function()
+      local state = mapCtx.followPlayer and "開" or "關"
+      showBtnTip(mapCtx.followBtn, "跟隨玩家 (" .. state .. ")")
+    end, mapCtx.followBtn)
+    mapCtx.followBtn:setOnLeave(function()
+      hideBtnTip()
+    end, mapCtx.followBtn)
+    mapCtx.followBtn:raiseAll()
+    WuxiaGUI3._updateFollowToggleForCtx(mapCtx)
+  end
 
   -- ─── Zoom: mouse wheel ───
-  mapArea:setWheelCallback(function(event)
+  container:setWheelCallback(function(event)
     if not event then return end
-    local gm2 = WuxiaGUI3.graphMap
     local delta = event.angleDeltaY or 0
-    local oldZoom = gm2.zoom
+    local oldZoom = mapCtx.zoom
 
     if delta > 0 then
-      gm2.zoom = math.min(MAP_MAX_ZOOM, gm2.zoom * MAP_ZOOM_FACTOR)
+      mapCtx.zoom = math.min(MAP_MAX_ZOOM, mapCtx.zoom * MAP_ZOOM_FACTOR)
     elseif delta < 0 then
-      gm2.zoom = math.max(MAP_MIN_ZOOM, gm2.zoom / MAP_ZOOM_FACTOR)
+      mapCtx.zoom = math.max(MAP_MIN_ZOOM, mapCtx.zoom / MAP_ZOOM_FACTOR)
     end
 
-    -- Zoom toward cursor
-    local ratio = gm2.zoom / oldZoom
-    local cw2 = mapArea:get_width()
-    local ch2 = mapArea:get_height()
+    local ratio = mapCtx.zoom / oldZoom
+    local cw2 = container:get_width()
+    local ch2 = container:get_height()
     local mx = event.x or (cw2 / 2)
     local my = event.y or (ch2 / 2)
-    gm2.panX = mx - ratio * (mx - gm2.panX)
-    gm2.panY = my - ratio * (my - gm2.panY)
+    mapCtx.panX = mx - ratio * (mx - mapCtx.panX)
+    mapCtx.panY = my - ratio * (my - mapCtx.panY)
 
-    WuxiaGUI3._renderGraphMap()
+    WuxiaGUI3._renderMapCtx(mapCtx)
   end)
 
   -- ─── Pan: click + drag ───
-  mapArea:setClickCallback(function(event)
+  container:setClickCallback(function(event)
     if not event then return end
-    local gm2 = WuxiaGUI3.graphMap
-    gm2.dragging = true
-    gm2.dragStartX = event.x or 0
-    gm2.dragStartY = event.y or 0
+    mapCtx.dragging = true
+    mapCtx.dragStartX = event.x or 0
+    mapCtx.dragStartY = event.y or 0
   end)
 
-  mapArea:setMoveCallback(function(event)
+  container:setMoveCallback(function(event)
     if not event then return end
-    local gm2 = WuxiaGUI3.graphMap
 
-    if gm2.dragging then
-      local dx = (event.x or 0) - gm2.dragStartX
-      local dy = (event.y or 0) - gm2.dragStartY
-      gm2.panX = gm2.panX + dx
-      gm2.panY = gm2.panY + dy
-      gm2.dragStartX = event.x or 0
-      gm2.dragStartY = event.y or 0
-      WuxiaGUI3._renderGraphMap()
+    if mapCtx.dragging then
+      local dx = (event.x or 0) - mapCtx.dragStartX
+      local dy = (event.y or 0) - mapCtx.dragStartY
+      mapCtx.panX = mapCtx.panX + dx
+      mapCtx.panY = mapCtx.panY + dy
+      mapCtx.dragStartX = event.x or 0
+      mapCtx.dragStartY = event.y or 0
+      WuxiaGUI3._renderMapCtx(mapCtx)
+      return
     end
 
-    -- Hit-test rooms under cursor → update 場景 panel preview
-    -- event.x/y is relative to mapArea; lbl:get_x/y() is absolute screen coords
+    -- Hit-test rooms under cursor
     local mx = event.x or 0
     local my = event.y or 0
-    local mapAbsX = WuxiaGUI3.mapArea:get_x()
-    local mapAbsY = WuxiaGUI3.mapArea:get_y()
+    local cAbsX = container:get_x()
+    local cAbsY = container:get_y()
     local hitRid = nil
-    for rid, pi in pairs(gm2.roomPoolMap) do
-      local lbl = gm2.roomPool[pi]
+    for rid, pi in pairs(mapCtx.roomPoolMap) do
+      local lbl = mapCtx.roomPool[pi]
       if lbl then
-        local rx = lbl:get_x() - mapAbsX
-        local ry = lbl:get_y() - mapAbsY
+        local rx = lbl:get_x() - cAbsX
+        local ry = lbl:get_y() - cAbsY
         local rw = lbl:get_width()
         local rh = lbl:get_height()
         if mx >= rx and mx < rx + rw and my >= ry and my < ry + rh then
@@ -4319,60 +4397,54 @@ function WuxiaGUI3._graphMapInitPool()
       end
     end
 
-    if hitRid ~= gm2.hoveredRoom then
-      gm2.hoveredRoom = hitRid
-      if hitRid and hitRid ~= gm2.currentRoom then
-        -- Position highlight overlay on hovered room
-        local pi = gm2.roomPoolMap[hitRid]
-        local hl = gm2.hoverHL
-        if pi and hl then
-          local rlbl = gm2.roomPool[pi]
-          hl:move(rlbl:get_x() - mapAbsX, rlbl:get_y() - mapAbsY)
-          hl:resize(rlbl:get_width(), rlbl:get_height())
-          hl:show()
-          hl:raiseAll()
+    if hitRid ~= mapCtx.hoveredRoom then
+      mapCtx.hoveredRoom = hitRid
+      WuxiaGUI3._renderMapCtx(mapCtx)
+      if hitRid and hitRid ~= gm.currentRoom then
+        if mapCtx.drivesScenePanel then
+          WuxiaGUI3._updateScenePanel(hitRid)
         end
-        WuxiaGUI3._updateScenePanel(hitRid)
       else
-        -- Hide highlight overlay
-        if gm2.hoverHL then gm2.hoverHL:hide() end
-        WuxiaGUI3._updateScenePanel()  -- revert to current room
+        if mapCtx.drivesScenePanel then
+          WuxiaGUI3._updateScenePanel()
+        end
       end
     end
   end)
 
-  mapArea:setReleaseCallback(function(event)
-    WuxiaGUI3.graphMap.dragging = false
+  container:setReleaseCallback(function(event)
+    mapCtx.dragging = false
   end)
 
-  -- ─── Leave: revert 場景 panel + hide highlight ───
-  mapArea:setOnLeave(function()
-    local gm2 = WuxiaGUI3.graphMap
-    if gm2.hoveredRoom then
-      gm2.hoveredRoom = nil
-      if gm2.hoverHL then gm2.hoverHL:hide() end
-      WuxiaGUI3._updateScenePanel()
+  -- ─── Leave: revert hover state ───
+  container:setOnLeave(function()
+    if mapCtx.hoveredRoom then
+      mapCtx.hoveredRoom = nil
+      WuxiaGUI3._renderMapCtx(mapCtx)
+      if mapCtx.drivesScenePanel then
+        WuxiaGUI3._updateScenePanel()
+      end
     end
   end)
 
   -- ─── Double-click: re-center on player ───
-  -- (wrapped in pcall — setDoubleClickCallback may not exist in all Mudlet versions)
-  if mapArea.setDoubleClickCallback then
-    mapArea:setDoubleClickCallback(function()
-      local gm2 = WuxiaGUI3.graphMap
-      gm2.panX = 0
-      gm2.panY = 0
-      local room = gm2.rooms[gm2.currentRoom]
-      if room then gm2.currentZ = room.z or 0 end
-      WuxiaGUI3._renderGraphMap()
+  if container.setDoubleClickCallback then
+    container:setDoubleClickCallback(function()
+      mapCtx.panX = 0
+      mapCtx.panY = 0
+      local room = gm.rooms[gm.currentRoom]
+      if room then mapCtx.currentZ = room.z or 0 end
+      WuxiaGUI3._renderMapCtx(mapCtx)
     end)
   end
+
+  return mapCtx
 end
 
--- ─── NPC toggle style update ───
-function WuxiaGUI3._updateNpcToggle()
-  local btn = WuxiaGUI3._mapNpcToggle
-  if not btn then return end
+-- ─── NPC toggle style update (per-context) ───
+function WuxiaGUI3._updateNpcToggleForCtx(mapCtx)
+  if not mapCtx or not mapCtx.npcToggle then return end
+  local btn = mapCtx.npcToggle
   if WuxiaGUI3.graphMap.filterNPCs then
     btn:setStyleSheet(
       "background-color:rgba(40,40,60,0.85); border:1px solid #C8A84E; border-radius:2px; qproperty-alignment:AlignCenter;")
@@ -4384,15 +4456,21 @@ function WuxiaGUI3._updateNpcToggle()
   end
 end
 
+-- ─── NPC toggle wrapper (updates all contexts) ───
+function WuxiaGUI3._updateNpcToggle()
+  WuxiaGUI3._updateNpcToggleForCtx(WuxiaGUI3.miniMapCtx)
+  WuxiaGUI3._updateNpcToggleForCtx(WuxiaGUI3.bigMapCtx)
+end
+
 -- ─── Render single edge (1 or 2 segments for diagonal; returns # pool labels used) ───
-local function _mapTryRenderEdge(gm, edge, cx, cy, cw, ch)
+function WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
   local roomA = gm.rooms[edge.from]
   local roomB = gm.rooms[edge.to]
   if not roomA or not roomB then return 0 end
 
   -- Both must be on current Z
-  if (roomA.z or 0) ~= gm.currentZ then return 0 end
-  if (roomB.z or 0) ~= gm.currentZ then return 0 end
+  if (roomA.z or 0) ~= mapCtx.currentZ then return 0 end
+  if (roomB.z or 0) ~= mapCtx.currentZ then return 0 end
 
   -- Both ends must be explored or visible
   local aKnown = gm.visibleRooms[edge.from] or gm.exploredRooms[edge.from]
@@ -4441,20 +4519,20 @@ local function _mapTryRenderEdge(gm, edge, cx, cy, cw, ch)
     bCy = byMin + (roomB.wid or 1) / 2
   end
 
-  local ax = (aCx - cx) * MAP_GRID_PX * gm.zoom + gm.panX + cw / 2
-  local ay = -((aCy - cy) * MAP_GRID_PX * gm.zoom) + gm.panY + ch / 2
-  local bx = (bCx - cx) * MAP_GRID_PX * gm.zoom + gm.panX + cw / 2
-  local by = -((bCy - cy) * MAP_GRID_PX * gm.zoom) + gm.panY + ch / 2
+  local ax = (aCx - cx) * MAP_GRID_PX * mapCtx.zoom + mapCtx.panX + cw / 2
+  local ay = -((aCy - cy) * MAP_GRID_PX * mapCtx.zoom) + mapCtx.panY + ch / 2
+  local bx = (bCx - cx) * MAP_GRID_PX * mapCtx.zoom + mapCtx.panX + cw / 2
+  local by = -((bCy - cy) * MAP_GRID_PX * mapCtx.zoom) + mapCtx.panY + ch / 2
 
   -- Viewport cull: both points off same side → skip
   if (ax < 0 and bx < 0) or (ax > cw and bx > cw) then return 0 end
   if (ay < 0 and by < 0) or (ay > ch and by > ch) then return 0 end
 
   -- Room half-sizes in screen pixels (for boundary offset)
-  local aHW = (roomA.len or 1) * MAP_GRID_PX * gm.zoom / 2
-  local aHH = (roomA.wid or 1) * MAP_GRID_PX * gm.zoom / 2
-  local bHW = (roomB.len or 1) * MAP_GRID_PX * gm.zoom / 2
-  local bHH = (roomB.wid or 1) * MAP_GRID_PX * gm.zoom / 2
+  local aHW = (roomA.len or 1) * MAP_GRID_PX * mapCtx.zoom / 2
+  local aHH = (roomA.wid or 1) * MAP_GRID_PX * mapCtx.zoom / 2
+  local bHW = (roomB.len or 1) * MAP_GRID_PX * mapCtx.zoom / 2
+  local bHH = (roomB.wid or 1) * MAP_GRID_PX * mapCtx.zoom / 2
 
   -- Color: bright if both visible, dim otherwise
   local bothVis = gm.visibleRooms[edge.from] and gm.visibleRooms[edge.to]
@@ -4488,10 +4566,10 @@ local function _mapTryRenderEdge(gm, edge, cx, cy, cw, ch)
     if ey + eh > ch then eh = ch - ey end
     if ew < 1 or eh < 1 then return 0 end
 
-    local pi = gm.nextEdgePool
-    if pi > MAP_EDGE_POOL then return used end
-    gm.nextEdgePool = pi + 1
-    local lbl = gm.edgePool[pi]
+    local pi = mapCtx.nextEdgePool
+    if pi > mapCtx.edgePoolSize then return used end
+    mapCtx.nextEdgePool = pi + 1
+    local lbl = mapCtx.edgePool[pi]
     lbl:move(ex + MAP_INSET, ey + MAP_INSET)
     lbl:resize(ew, eh)
     lbl:setStyleSheet(string.format("background-color: %s;", color))
@@ -4521,10 +4599,10 @@ local function _mapTryRenderEdge(gm, edge, cx, cy, cw, ch)
     if ey + eh > ch then eh = ch - ey end
     if ew < 1 or eh < 1 then return 0 end
 
-    local pi = gm.nextEdgePool
-    if pi > MAP_EDGE_POOL then return used end
-    gm.nextEdgePool = pi + 1
-    local lbl = gm.edgePool[pi]
+    local pi = mapCtx.nextEdgePool
+    if pi > mapCtx.edgePoolSize then return used end
+    mapCtx.nextEdgePool = pi + 1
+    local lbl = mapCtx.edgePool[pi]
     lbl:move(ex + MAP_INSET, ey + MAP_INSET)
     lbl:resize(ew, eh)
     lbl:setStyleSheet(string.format("background-color: %s;", color))
@@ -4569,10 +4647,10 @@ local function _mapTryRenderEdge(gm, edge, cx, cy, cw, ch)
       gx1, gy1, gx2, gy2 = 1, 0, 0, 1
     end
 
-    local pi = gm.nextEdgePool
-    if pi > MAP_EDGE_POOL then return used end
-    gm.nextEdgePool = pi + 1
-    local lbl = gm.edgePool[pi]
+    local pi = mapCtx.nextEdgePool
+    if pi > mapCtx.edgePoolSize then return used end
+    mapCtx.nextEdgePool = pi + 1
+    local lbl = mapCtx.edgePool[pi]
     lbl:move(lx + MAP_INSET, ly + MAP_INSET)
     lbl:resize(lw, lh)
     lbl:setStyleSheet(string.format(
@@ -4594,9 +4672,9 @@ local function _mapTryRenderEdge(gm, edge, cx, cy, cw, ch)
 end
 
 -- ─── Render single room (returns true if rendered, avoids goto/continue) ───
-local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, openSidesInfo, poiCategory, roomEnts)
+function WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch, upDownInfo, openSidesInfo, poiCategory, roomEnts)
   -- Z-layer filter
-  if (room.z or 0) ~= gm.currentZ then return false end
+  if (room.z or 0) ~= mapCtx.currentZ then return false end
 
   -- Must be explored or visible
   if not gm.exploredRooms[rid] and not gm.visibleRooms[rid] then return false end
@@ -4606,11 +4684,11 @@ local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, open
   local ry = room.y or 0
   local rl = room.len or 1
   local rw = room.wid or 1
-  local G = MAP_GRID_PX * gm.zoom
-  local screenL = (rx - cx) * G + gm.panX + cw / 2
-  local screenR = (rx + rl - cx) * G + gm.panX + cw / 2
-  local screenT = -((ry + rw - cy) * G) + gm.panY + ch / 2
-  local screenB = -((ry - cy) * G) + gm.panY + ch / 2
+  local G = MAP_GRID_PX * mapCtx.zoom
+  local screenL = (rx - cx) * G + mapCtx.panX + cw / 2
+  local screenR = (rx + rl - cx) * G + mapCtx.panX + cw / 2
+  local screenT = -((ry + rw - cy) * G) + mapCtx.panY + ch / 2
+  local screenB = -((ry - cy) * G) + mapCtx.panY + ch / 2
 
   local lx = math.floor(screenL)
   local ly = math.floor(screenT)
@@ -4630,17 +4708,18 @@ local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, open
   if lw < 2 or lh < 2 then return false end
 
   -- Assign a pool label
-  local pi = gm.nextRoomPool
-  if pi > MAP_POOL_SIZE then return false end
-  gm.nextRoomPool = pi + 1
-  gm.roomPoolMap[rid] = pi
+  local pi = mapCtx.nextRoomPool
+  if pi > mapCtx.roomPoolSize then return false end
+  mapCtx.nextRoomPool = pi + 1
+  mapCtx.roomPoolMap[rid] = pi
 
-  local label = gm.roomPool[pi]
+  local label = mapCtx.roomPool[pi]
   label:move(lx + MAP_INSET, ly + MAP_INSET)
   label:resize(lw, lh)
 
   -- Determine color + border based on visibility state
   local rtype = room.room_type or "default"
+  local isHovered = (rid == mapCtx.hoveredRoom)
   local color, bWall, bPass
   if gm.visibleRooms[rid] or rid == gm.currentRoom then
     color = MAP_ROOM_COLORS[rtype] or MAP_ROOM_COLORS.default
@@ -4650,6 +4729,13 @@ local function _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch, upDownInfo, open
     color = MAP_ROOM_COLORS_DIM[rtype] or MAP_ROOM_COLORS_DIM.default
     bWall = "2px solid rgba(0,0,0,0.70)"
     bPass = "1px solid rgba(0,0,0,0.25)"
+  end
+
+  -- Hover: override all borders with highlight color
+  if isHovered then
+    local hb = "2px solid " .. MAP_HOVER_COLOR
+    bWall = hb
+    bPass = hb
   end
 
   -- Per-side borders: bold wall on non-connected sides, subtle divider on connected
@@ -4772,15 +4858,15 @@ end
 
 
 -- ─── Main render function ───
-function WuxiaGUI3._renderGraphMap()
+-- ─── Render a single map view context ───
+function WuxiaGUI3._renderMapCtx(mapCtx)
+  if not mapCtx or not mapCtx.container then return end
   local gm = WuxiaGUI3.graphMap
   if not gm then return end
-  local mapArea = WuxiaGUI3.mapArea
-  if not mapArea then return end
 
   -- Container dimensions (reduced by inset to keep rooms inside border)
-  local cw = mapArea:get_width() - 2 * MAP_INSET
-  local ch = mapArea:get_height() - 2 * MAP_INSET
+  local cw = mapCtx.container:get_width() - 2 * MAP_INSET
+  local ch = mapCtx.container:get_height() - 2 * MAP_INSET
   if cw <= 0 then cw = 268 end
   if ch <= 0 then ch = 156 end
 
@@ -4793,19 +4879,19 @@ function WuxiaGUI3._renderGraphMap()
   end
 
   -- Reset pools: hide all labels
-  for i = 1, MAP_EDGE_POOL do
-    if gm.edgePool[i] then gm.edgePool[i]:hide() end
+  for i = 1, mapCtx.edgePoolSize do
+    if mapCtx.edgePool[i] then mapCtx.edgePool[i]:hide() end
   end
-  gm.nextEdgePool = 1
-  for i = 1, MAP_POOL_SIZE do
-    if gm.roomPool[i] then gm.roomPool[i]:hide() end
+  mapCtx.nextEdgePool = 1
+  for i = 1, mapCtx.roomPoolSize do
+    if mapCtx.roomPool[i] then mapCtx.roomPool[i]:hide() end
   end
-  gm.roomPoolMap = {}
-  gm.nextRoomPool = 1
+  mapCtx.roomPoolMap = {}
+  mapCtx.nextRoomPool = 1
+
   -- Render edges first (behind rooms in z-order)
   local drawnPairs = {}
   for eid, edge in pairs(gm.edges) do
-    -- Deduplicate: A→B and B→A are the same visual line
     local pairKey
     if edge.from < edge.to then
       pairKey = edge.from .. "|" .. edge.to
@@ -4814,7 +4900,7 @@ function WuxiaGUI3._renderGraphMap()
     end
     if not drawnPairs[pairKey] then
       drawnPairs[pairKey] = true
-      _mapTryRenderEdge(gm, edge, cx, cy, cw, ch)
+      WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
     end
   end
 
@@ -4829,10 +4915,9 @@ function WuxiaGUI3._renderGraphMap()
       roomUpDown[rid][cmd] = true
     end
 
-    -- Detect touching connected rooms → mark shared boundary as open (no border)
     local rA = gm.rooms[edge.from]
     local rB = gm.rooms[edge.to]
-    if rA and rB and (rA.z or 0) == gm.currentZ and (rB.z or 0) == gm.currentZ then
+    if rA and rB and (rA.z or 0) == mapCtx.currentZ and (rB.z or 0) == mapCtx.currentZ then
       local aKnown = gm.visibleRooms[edge.from] or gm.exploredRooms[edge.from]
       local bKnown = gm.visibleRooms[edge.to] or gm.exploredRooms[edge.to]
       if aKnown and bKnown then
@@ -4844,13 +4929,11 @@ function WuxiaGUI3._renderGraphMap()
         local xOverlap = math.max(ax2, bx2) < math.min(ax2 + al, bx2 + bl)
         if yOverlap then
           if ax2 + al == bx2 then
-            -- A's right touches B's left
             if not roomOpenSides[edge.from] then roomOpenSides[edge.from] = {} end
             roomOpenSides[edge.from].right = true
             if not roomOpenSides[edge.to] then roomOpenSides[edge.to] = {} end
             roomOpenSides[edge.to].left = true
           elseif bx2 + bl == ax2 then
-            -- B's right touches A's left
             if not roomOpenSides[edge.from] then roomOpenSides[edge.from] = {} end
             roomOpenSides[edge.from].left = true
             if not roomOpenSides[edge.to] then roomOpenSides[edge.to] = {} end
@@ -4859,13 +4942,11 @@ function WuxiaGUI3._renderGraphMap()
         end
         if xOverlap then
           if ay2 + aw2 == by2 then
-            -- A's top(north) touches B's bottom(south)
             if not roomOpenSides[edge.from] then roomOpenSides[edge.from] = {} end
             roomOpenSides[edge.from].top = true
             if not roomOpenSides[edge.to] then roomOpenSides[edge.to] = {} end
             roomOpenSides[edge.to].bottom = true
           elseif by2 + bw2 == ay2 then
-            -- B's top(north) touches A's bottom(south)
             if not roomOpenSides[edge.from] then roomOpenSides[edge.from] = {} end
             roomOpenSides[edge.from].bottom = true
             if not roomOpenSides[edge.to] then roomOpenSides[edge.to] = {} end
@@ -4876,7 +4957,7 @@ function WuxiaGUI3._renderGraphMap()
     end
   end
 
-  -- Pre-compute POI categories per room (for tooltips)
+  -- Pre-compute POI categories per room
   local roomPOI = {}
   for _, pdata in pairs(gm.pois) do
     if pdata.room and pdata.category then
@@ -4884,7 +4965,7 @@ function WuxiaGUI3._renderGraphMap()
     end
   end
 
-  -- Pre-compute entities per room (for tooltips)
+  -- Pre-compute entities per room
   local roomEnts = {}
   for _, edata in pairs(gm.entities) do
     if edata.room then
@@ -4896,27 +4977,38 @@ function WuxiaGUI3._renderGraphMap()
 
   -- Render rooms (on top of edges)
   for rid, room in pairs(gm.rooms) do
-    _mapTryRenderRoom(gm, rid, room, cx, cy, cw, ch,
+    WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch,
       roomUpDown[rid], roomOpenSides[rid], roomPOI[rid], roomEnts[rid])
   end
 
   -- Update terrain background
-  WuxiaGUI3._updateMapTerrain()
+  WuxiaGUI3._updateMapTerrainForCtx(mapCtx)
 
-  -- Update Z display
-  if WuxiaGUI3._mapZDisp then
-    WuxiaGUI3._mapZDisp:echo(
-      string.format("<font color='#888888'>Z%d</font>", gm.currentZ))
-    WuxiaGUI3._mapZDisp:raiseAll()
+  -- Update Z display and raise toolbar
+  if mapCtx.zDisp then
+    mapCtx.zDisp:echo(
+      string.format("<font color='#888888'>Z%d</font>", mapCtx.currentZ))
+    mapCtx.zDisp:raiseAll()
   end
-  if WuxiaGUI3._mapZUp then WuxiaGUI3._mapZUp:raiseAll() end
-  if WuxiaGUI3._mapZDown then WuxiaGUI3._mapZDown:raiseAll() end
-  if WuxiaGUI3._mapCenterBtn then WuxiaGUI3._mapCenterBtn:raiseAll() end
-  if WuxiaGUI3._mapNpcToggle then WuxiaGUI3._mapNpcToggle:raiseAll() end
+  if mapCtx.zUp then mapCtx.zUp:raiseAll() end
+  if mapCtx.zDown then mapCtx.zDown:raiseAll() end
+  if mapCtx.centerBtn then mapCtx.centerBtn:raiseAll() end
+  if mapCtx.npcToggle then mapCtx.npcToggle:raiseAll() end
 end
 
--- ─── Terrain background color ───
-function WuxiaGUI3._updateMapTerrain()
+-- ─── Render all active map views (wrapper) ───
+function WuxiaGUI3._renderGraphMap()
+  if WuxiaGUI3.miniMapCtx then
+    WuxiaGUI3._renderMapCtx(WuxiaGUI3.miniMapCtx)
+  end
+  if WuxiaGUI3.bigMapCtx and WuxiaGUI3._bigMapVisible then
+    WuxiaGUI3._renderMapCtx(WuxiaGUI3.bigMapCtx)
+  end
+end
+
+-- ─── Terrain background color (per-context) ───
+function WuxiaGUI3._updateMapTerrainForCtx(mapCtx)
+  if not mapCtx or not mapCtx.container then return end
   local gm = WuxiaGUI3.graphMap
   local room = gm.rooms[gm.currentRoom]
   if not room then return end
@@ -4925,10 +5017,105 @@ function WuxiaGUI3._updateMapTerrain()
   local terrain = MAP_ZONE_TO_TERRAIN[zone] or "default"
   local bgColor = MAP_ZONE_TERRAIN[terrain] or MAP_ZONE_TERRAIN.default
 
-  WuxiaGUI3.mapArea:setStyleSheet(string.format(
+  mapCtx.container:setStyleSheet(string.format(
     "background-color: %s; border: 1px solid %s;",
     bgColor, BORDER
   ))
+end
+
+-- ─── Follow-player toggle visual update ───
+function WuxiaGUI3._updateFollowToggleForCtx(mapCtx)
+  if not mapCtx or not mapCtx.followBtn then return end
+  local btnCSS_on  = "background-color:rgba(60,50,20,0.85); border:1px solid #B8860B; border-radius:2px; qproperty-alignment:AlignCenter;"
+  local btnCSS_off = "background-color:rgba(20,20,40,0.7); border:1px solid #555; border-radius:2px; qproperty-alignment:AlignCenter;"
+  if mapCtx.followPlayer then
+    mapCtx.followBtn:setStyleSheet(btnCSS_on)
+    mapCtx.followBtn:echo("<font color='#FFD700'>&#9673;</font>")
+  else
+    mapCtx.followBtn:setStyleSheet(btnCSS_off)
+    mapCtx.followBtn:echo("<font color='#666666'>&#9673;</font>")
+  end
+end
+
+-- ─── Big Map Window ───
+function WuxiaGUI3._createBigMapWindow()
+  WuxiaGUI3._bigMapWin = Geyser.UserWindow:new({
+    name = "W3.bigMap.window",
+    titleText = "地圖",
+    x = 100, y = 100, width = 800, height = 600,
+  })
+  if WuxiaGUI3._bigMapWin.disableAutoDock then
+    WuxiaGUI3._bigMapWin:disableAutoDock()
+  end
+  -- Enforce minimum size (1.5x minimap = 408x408)
+  if setUserWindowMinSize then
+    setUserWindowMinSize("W3.bigMap.window", 408, 408)
+  end
+  local bmContainer = Geyser.Label:new({
+    name = "W3.bigMap.area",
+    x = 0, y = 0, width = "100%", height = "100%",
+  }, WuxiaGUI3._bigMapWin)
+  bmContainer:setStyleSheet("background-color: #2A2A2A;")
+  bmContainer:echo("")
+
+  WuxiaGUI3.bigMapCtx = WuxiaGUI3._createMapCtx(
+    "big", bmContainer, bmContainer,
+    { room = 300, edge = 500, entity = 60 }
+  )
+  WuxiaGUI3.bigMapCtx.drivesScenePanel = false
+  WuxiaGUI3.bigMapCtx.followPlayer = true
+
+  -- 9-slice frame overlay (same as minimap)
+  local framePath = getMudletHomeDir() .. "/WuxiaGUI3/wuxia_left_map_frame.png"
+  local fh = io.open(framePath, "r")
+  if fh then
+    fh:close()
+    WuxiaGUI3._bigMapFrame = Geyser.Label:new({
+      name = "W3.bigMap.frame",
+      x = 0, y = 0, width = "100%", height = "100%",
+    }, WuxiaGUI3._bigMapWin)
+    WuxiaGUI3._bigMapFrame:setStyleSheet(
+      "background-color:transparent;"
+      .. " border-width: 35px 60px 38px 60px;"
+      .. " border-image:url(" .. framePath .. ") 135 200 155 200 stretch stretch;")
+    if WuxiaGUI3._bigMapFrame.enableClickthrough then
+      WuxiaGUI3._bigMapFrame:enableClickthrough()
+    end
+  end
+
+  -- Sync Z to current room
+  local gm = WuxiaGUI3.graphMap
+  local cur = gm.rooms[gm.currentRoom]
+  if cur then WuxiaGUI3.bigMapCtx.currentZ = cur.z or 0 end
+
+  -- Restore window position from previous session
+  loadWindowLayout()
+
+  WuxiaGUI3._bigMapVisible = false
+  WuxiaGUI3._bigMapWin:hide()
+end
+
+function WuxiaGUI3._toggleBigMap()
+  if not WuxiaGUI3._bigMapWin then
+    WuxiaGUI3._createBigMapWindow()
+  end
+  WuxiaGUI3._bigMapVisible = not WuxiaGUI3._bigMapVisible
+  if WuxiaGUI3._bigMapVisible then
+    WuxiaGUI3._bigMapWin:show()
+    if WuxiaGUI3.bigMapCtx.followPlayer then
+      WuxiaGUI3.bigMapCtx.panX = 0
+      WuxiaGUI3.bigMapCtx.panY = 0
+      local gm = WuxiaGUI3.graphMap
+      local cur = gm.rooms[gm.currentRoom]
+      if cur then WuxiaGUI3.bigMapCtx.currentZ = cur.z or 0 end
+    end
+    WuxiaGUI3._renderMapCtx(WuxiaGUI3.bigMapCtx)
+  else
+    WuxiaGUI3._bigMapWin:hide()
+  end
+  -- Persist open/closed state
+  saveWindowLayout()
+  WuxiaGUI3._saveSettings()
 end
 
 -- ═══════════════════════════════════════════════
@@ -9494,6 +9681,9 @@ end
 function WuxiaGUI3.registerEvents()
   local h = WuxiaGUI3._handlers
 
+  -- F9 hotkey: toggle big map
+  WuxiaGUI3._bigMapHotkey = tempKey(mudlet.key.F9, [[WuxiaGUI3._toggleBigMap()]])
+
   -- Char.Vitals
   h[#h+1] = registerAnonymousEventHandler("gmcp.Char.Vitals", function()
     local gv = gmcp and gmcp.Char and gmcp.Char.Vitals
@@ -9653,10 +9843,6 @@ function WuxiaGUI3.registerEvents()
       gm.visibleRooms[rid] = true
     end
 
-    -- Auto Z-layer
-    local room = gm.rooms[gm.currentRoom]
-    if room then gm.currentZ = room.z or 0 end
-
     -- Load entities
     gm.entities = {}
     for _, ent in ipairs(data.entities or {}) do
@@ -9669,9 +9855,19 @@ function WuxiaGUI3.registerEvents()
       if poi.id then gm.pois[poi.id] = poi end
     end
 
-    -- Reset view
-    gm.panX = 0
-    gm.panY = 0
+    -- Reset all map view contexts
+    local room = gm.rooms[gm.currentRoom]
+    local rz = room and (room.z or 0) or 0
+    if WuxiaGUI3.miniMapCtx then
+      WuxiaGUI3.miniMapCtx.currentZ = rz
+      WuxiaGUI3.miniMapCtx.panX = 0
+      WuxiaGUI3.miniMapCtx.panY = 0
+    end
+    if WuxiaGUI3.bigMapCtx then
+      WuxiaGUI3.bigMapCtx.currentZ = rz
+      WuxiaGUI3.bigMapCtx.panX = 0
+      WuxiaGUI3.bigMapCtx.panY = 0
+    end
 
     WuxiaGUI3._renderGraphMap()
     WuxiaGUI3._updateScenePanel()
@@ -9716,13 +9912,21 @@ function WuxiaGUI3.registerEvents()
       gm.exploredRooms[rid] = true
     end
 
-    -- Auto Z-layer follow
+    -- Auto-follow for each map view context
     local room = gm.rooms[gm.currentRoom]
-    if room then gm.currentZ = room.z or 0 end
-
-    -- Re-center on player
-    gm.panX = 0
-    gm.panY = 0
+    local rz = room and (room.z or 0) or 0
+    if WuxiaGUI3.miniMapCtx then
+      WuxiaGUI3.miniMapCtx.currentZ = rz
+      WuxiaGUI3.miniMapCtx.panX = 0
+      WuxiaGUI3.miniMapCtx.panY = 0
+    end
+    if WuxiaGUI3.bigMapCtx and WuxiaGUI3._bigMapVisible then
+      WuxiaGUI3.bigMapCtx.currentZ = rz
+      if WuxiaGUI3.bigMapCtx.followPlayer then
+        WuxiaGUI3.bigMapCtx.panX = 0
+        WuxiaGUI3.bigMapCtx.panY = 0
+      end
+    end
 
     WuxiaGUI3._renderGraphMap()
     WuxiaGUI3._updateScenePanel()
@@ -9968,6 +10172,24 @@ function WuxiaGUI3.destroy()
     WuxiaGUI3._sysHandlers = {}
   end
 
+  -- Save state and kill big map hotkey and window
+  WuxiaGUI3._saveSettings()
+  if WuxiaGUI3._bigMapWin then
+    saveWindowLayout()
+  end
+  if WuxiaGUI3._bigMapHotkey then
+    killKey(WuxiaGUI3._bigMapHotkey)
+    WuxiaGUI3._bigMapHotkey = nil
+  end
+  if WuxiaGUI3._bigMapWin then
+    WuxiaGUI3._bigMapWin:hide()
+    WuxiaGUI3._bigMapWin = nil
+  end
+  WuxiaGUI3._bigMapFrame = nil
+  WuxiaGUI3.bigMapCtx = nil
+  WuxiaGUI3.miniMapCtx = nil
+  WuxiaGUI3._bigMapVisible = false
+
   -- Kill chat aliases
   if WuxiaGUI3._chatAliasID then
     killAlias(WuxiaGUI3._chatAliasID)
@@ -10014,6 +10236,11 @@ function WuxiaGUI3.start()
   WuxiaGUI3.build()
   WuxiaGUI3.registerEvents()
   WuxiaGUI3.refresh()
+
+  -- Restore big map if it was open last session
+  if WuxiaGUI3._savedBigMapOpen then
+    WuxiaGUI3._toggleBigMap()
+  end
 
   -- Cleanup on profile exit
   WuxiaGUI3._sysHandlers[#WuxiaGUI3._sysHandlers+1] =
