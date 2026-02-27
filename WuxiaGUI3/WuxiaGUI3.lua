@@ -3922,6 +3922,8 @@ local MAP_ENTITY_SIZE    = 10     -- dot diameter at zoom=1.0
 local MAP_HOVER_COLOR    = "rgba(68,170,255,0.7)"  -- hover highlight border
 local MAP_ENTITY_ANIM_DURATION = 0.3    -- seconds for move animation
 local MAP_ENTITY_ANIM_STEP     = 0.016  -- ~60fps timer interval
+local MAP_ADJ_Z_ALPHA   = 0.45   -- opacity for non-current z-level ghost rooms/edges
+local MAP_ISO_Z_SCALE   = 0.75   -- vertical screen offset per z-level (in grid cells)
 
 -- Entity type → dot color
 local MAP_ENTITY_COLORS = {
@@ -3933,6 +3935,21 @@ local MAP_ENTITY_COLORS = {
   npc_trainer = "#AA44FF",  -- purple
   item        = "#AAAAAA",  -- grey
 }
+
+-- Hex color → rgba string with alpha
+local function hexToRgba(hex, alpha)
+  local r = tonumber(hex:sub(2,3), 16)
+  local g = tonumber(hex:sub(4,5), 16)
+  local b = tonumber(hex:sub(6,7), 16)
+  return string.format("rgba(%d,%d,%d,%.2f)", r, g, b, alpha)
+end
+
+-- Scale the alpha component of an rgba() color string
+local function scaleRgbaAlpha(rgba, scale)
+  local r, g, b, a = rgba:match("rgba%((%d+),(%d+),(%d+),([%d%.]+)%)")
+  if not r then return rgba end
+  return string.format("rgba(%s,%s,%s,%.2f)", r, g, b, tonumber(a) * scale)
+end
 
 -- Convert world grid coords → screen pixel coords for a mapCtx
 local function mapWorldToScreen(mapCtx, wx, wy)
@@ -4184,6 +4201,9 @@ function WuxiaGUI3._createMapCtx(id, container, helpTipParent, poolSizes)
   end, mapCtx.zDown)
   mapCtx.zDown:raiseAll()
 
+  -- 2.5D toggle (hidden — feature tabled for now)
+  mapCtx.show25D = false
+
   -- Z Display
   mapCtx.zDisp = Geyser.Label:new({
     name = prefix .. "zDisp",
@@ -4263,6 +4283,7 @@ function WuxiaGUI3._createMapCtx(id, container, helpTipParent, poolSizes)
     .. "<br><b>按鈕：</b><br>"
     .. "▲ ▼ ─ 切換樓層 (Z軸)<br>"
     .. "⊕ ─ 回到當前位置<br>"
+    .. "&plusmn; ─ 顯示相鄰層<br>"
     .. "👤 ─ 顯示/隱藏 NPC 標記<br>"
     .. (id == "mini"
        and "&#8862; ─ 開啟/關閉大地圖 (F9)<br>"
@@ -4497,14 +4518,15 @@ function WuxiaGUI3._updateNpcToggle()
 end
 
 -- ─── Render single edge (1 or 2 segments for diagonal; returns # pool labels used) ───
-function WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
+function WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch, passZ, xOff, yOff, passAlpha)
   local roomA = gm.rooms[edge.from]
   local roomB = gm.rooms[edge.to]
   if not roomA or not roomB then return 0 end
 
-  -- Both must be on current Z
-  if (roomA.z or 0) ~= mapCtx.currentZ then return 0 end
-  if (roomB.z or 0) ~= mapCtx.currentZ then return 0 end
+  -- Both must be on target Z (compound direction cross-z edges handled separately)
+  local targetZ = passZ or mapCtx.currentZ
+  if (roomA.z or 0) ~= targetZ then return 0 end
+  if (roomB.z or 0) ~= targetZ then return 0 end
 
   -- Both ends must be explored or visible
   local aKnown = gm.visibleRooms[edge.from] or gm.exploredRooms[edge.from]
@@ -4553,24 +4575,52 @@ function WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
     bCy = byMin + (roomB.wid or 1) / 2
   end
 
-  local ax = (aCx - cx) * MAP_GRID_PX * mapCtx.zoom + mapCtx.panX + cw / 2
-  local ay = -((aCy - cy) * MAP_GRID_PX * mapCtx.zoom) + mapCtx.panY + ch / 2
-  local bx = (bCx - cx) * MAP_GRID_PX * mapCtx.zoom + mapCtx.panX + cw / 2
-  local by = -((bCy - cy) * MAP_GRID_PX * mapCtx.zoom) + mapCtx.panY + ch / 2
+  local G = MAP_GRID_PX * mapCtx.zoom
+  local ax, ay, bx, by
+  local aHW, aHH, bHW, bHH
+
+  if mapCtx.isoMode then
+    -- Isometric projection: screenX = relX - relY, screenY = -(relX+relY)*0.5 - dz*zScale
+    local aRelX = (aCx - cx) * G
+    local aRelY = (aCy - cy) * G
+    local bRelX = (bCx - cx) * G
+    local bRelY = (bCy - cy) * G
+    local zScale = mapCtx.isoZScale or 0
+    local dz = (roomA.z or 0) - mapCtx.currentZ
+
+    ax = (aRelX - aRelY) + mapCtx.panX + cw / 2
+    ay = -(aRelX + aRelY) * 0.5 - dz * zScale + mapCtx.panY + ch / 2
+    bx = (bRelX - bRelY) + mapCtx.panX + cw / 2
+    by = -(bRelX + bRelY) * 0.5 - dz * zScale + mapCtx.panY + ch / 2
+
+    aHW = (roomA.len or 1) * G / 2
+    aHH = (roomA.wid or 1) * G / 2 * 0.5  -- Y-compressed
+    bHW = (roomB.len or 1) * G / 2
+    bHH = (roomB.wid or 1) * G / 2 * 0.5
+  else
+    ax = (aCx - cx) * G + mapCtx.panX + cw / 2
+    ay = -((aCy - cy) * G) + mapCtx.panY + ch / 2
+    bx = (bCx - cx) * G + mapCtx.panX + cw / 2
+    by = -((bCy - cy) * G) + mapCtx.panY + ch / 2
+
+    -- Ghost layer offset (non-iso mode only)
+    if xOff then ax = ax + xOff; bx = bx + xOff end
+    if yOff then ay = ay + yOff; by = by + yOff end
+
+    aHW = (roomA.len or 1) * G / 2
+    aHH = (roomA.wid or 1) * G / 2
+    bHW = (roomB.len or 1) * G / 2
+    bHH = (roomB.wid or 1) * G / 2
+  end
 
   -- Viewport cull: both points off same side → skip
   if (ax < 0 and bx < 0) or (ax > cw and bx > cw) then return 0 end
   if (ay < 0 and by < 0) or (ay > ch and by > ch) then return 0 end
 
-  -- Room half-sizes in screen pixels (for boundary offset)
-  local aHW = (roomA.len or 1) * MAP_GRID_PX * mapCtx.zoom / 2
-  local aHH = (roomA.wid or 1) * MAP_GRID_PX * mapCtx.zoom / 2
-  local bHW = (roomB.len or 1) * MAP_GRID_PX * mapCtx.zoom / 2
-  local bHH = (roomB.wid or 1) * MAP_GRID_PX * mapCtx.zoom / 2
-
   -- Color: bright if both visible, dim otherwise
   local bothVis = gm.visibleRooms[edge.from] and gm.visibleRooms[edge.to]
   local color = bothVis and MAP_EDGE_COLOR or MAP_EDGE_COLOR_DIM
+  if passAlpha then color = scaleRgbaAlpha(color, passAlpha / 0.55) end
   local thick = MAP_EDGE_THICK
   local used = 0
 
@@ -4644,18 +4694,13 @@ function WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
     lbl:show()
     used = 1
   else
-    -- Diagonal connection: offset endpoints to room boundaries
-    local signX = (dx > 0) and 1 or -1
-    local signY = (dy > 0) and 1 or -1
-    local x1 = ax + signX * aHW
-    local y1 = ay + signY * aHH
-    local x2 = bx - signX * bHW
-    local y2 = by - signY * bHH
-
+    -- Diagonal connection: semi-transparent rectangle at 45° overlay
+    -- Draw center-to-center, raised above rooms
+    local x1, y1 = ax, ay
+    local x2, y2 = bx, by
     local adx = math.abs(x2 - x1)
     local ady = math.abs(y2 - y1)
-
-    if adx < 2 and ady < 2 then return 0 end  -- rooms touch at corner; skip
+    if adx < 2 and ady < 2 then return 0 end
 
     local lx = math.floor(math.min(x1, x2))
     local ly = math.floor(math.min(y1, y2))
@@ -4669,16 +4714,20 @@ function WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
     if ly + lh > ch then lh = ch - ly end
     if lw < 1 or lh < 1 then return 0 end
 
-    -- Adaptive gradient: compute stops for constant-width diagonal line
+    -- Corridor width: ~40% of a grid cell, sharp-edged band
+    local corridorW = G * 0.4
     local diag = math.sqrt(adx * adx + ady * ady)
-    local halfStop = thick / math.max(4, diag)
-    halfStop = math.max(0.02, math.min(0.20, halfStop))
+    local halfStop = corridorW / math.max(4, diag) / 2
+    halfStop = math.max(0.05, math.min(0.35, halfStop))
 
+    -- Gradient perpendicular to connection direction
+    -- SE/NW (\ line): gradient along / so band runs \
+    -- NE/SW (/ line): gradient along \ so band runs /
     local gx1, gy1, gx2, gy2
     if (dx > 0) == (dy > 0) then
-      gx1, gy1, gx2, gy2 = 0, 0, 1, 1
-    else
       gx1, gy1, gx2, gy2 = 1, 0, 0, 1
+    else
+      gx1, gy1, gx2, gy2 = 0, 0, 1, 1
     end
 
     local pi = mapCtx.nextEdgePool
@@ -4694,35 +4743,172 @@ function WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
       "stop:%.4f transparent, stop:1 transparent);",
       gx1, gy1, gx2, gy2,
       0.5 - halfStop,
-      0.5 - halfStop * 0.3, color, 0.5 + halfStop * 0.3, color,
+      0.5 - halfStop * 0.9, color, 0.5 + halfStop * 0.9, color,
       0.5 + halfStop
     ))
     lbl:echo("")
     lbl:show()
+    lbl:raiseAll()
     used = 1
   end
 
   return used
 end
 
+-- ─── Render compound direction cross-z bar (nu/su/eu/wu/nd/sd/ed/wd) ───
+-- Draws a semi-transparent bar in the cardinal direction with ▲/▼ on top.
+-- Only renders from the `from` room's z-level to avoid duplicates.
+function WuxiaGUI3._mapRenderCrossZBar(mapCtx, gm, edge, cx, cy, cw, ch)
+  local cmd = edge.cmd
+  if not cmd then return 0 end
+
+  -- Only compound directions (ends with "up"/"down" but not plain "up"/"down")
+  local isUp   = cmd ~= "up"   and cmd:sub(-2) == "up"
+  local isDown = cmd ~= "down" and cmd:sub(-4) == "down"
+  if not isUp and not isDown then return 0 end
+
+  local roomA = gm.rooms[edge.from]
+  local roomB = gm.rooms[edge.to]
+  if not roomA or not roomB then return 0 end
+
+  -- Must be cross-z (same-z compound dirs are handled by regular edges)
+  if (roomA.z or 0) == (roomB.z or 0) then return 0 end
+
+  -- Only render from the `from` room when it's on current z
+  if (roomA.z or 0) ~= mapCtx.currentZ then return 0 end
+  if not gm.visibleRooms[edge.from] and not gm.exploredRooms[edge.from] then return 0 end
+
+  -- Parse cardinal component
+  local cardinal
+  if isUp then cardinal = cmd:sub(1, -3) else cardinal = cmd:sub(1, -5) end
+
+  local dirDx, dirDy = 0, 0
+  if cardinal == "north" then dirDy = 1
+  elseif cardinal == "south" then dirDy = -1
+  elseif cardinal == "east" then dirDx = 1
+  elseif cardinal == "west" then dirDx = -1
+  else return 0 end
+
+  local G = MAP_GRID_PX * mapCtx.zoom
+  local rx = (roomA.x or 0) + (roomA.len or 1) / 2
+  local ry = (roomA.y or 0) + (roomA.wid or 1) / 2
+  local sx, sy, halfW, halfH
+
+  if mapCtx.isoMode then
+    local relX = (rx - cx) * G
+    local relY = (ry - cy) * G
+    sx = (relX - relY) + mapCtx.panX + cw / 2
+    sy = -(relX + relY) * 0.5 + mapCtx.panY + ch / 2
+    halfW = (roomA.len or 1) * G / 2
+    halfH = (roomA.wid or 1) * G / 2 * 0.5  -- Y-compressed
+  else
+    sx = (rx - cx) * G + mapCtx.panX + cw / 2
+    sy = -(ry - cy) * G + mapCtx.panY + ch / 2
+    halfW = (roomA.len or 1) * G / 2
+    halfH = (roomA.wid or 1) * G / 2
+  end
+
+  -- Bar: extends from room boundary outward, wide enough for ▲/▼ text
+  local barLen = math.max(10, math.floor(G * 0.5))
+  local barThick = math.max(12, math.floor(G * 0.5))
+  local bx, by, bw, bh
+
+  if dirDy ~= 0 then
+    -- Vertical (north/south)
+    bw = barThick
+    bh = barLen
+    bx = sx - barThick / 2
+    if dirDy > 0 then
+      by = sy - halfH - barLen  -- north = up on screen
+    else
+      by = sy + halfH           -- south = down on screen
+    end
+  else
+    -- Horizontal (east/west)
+    bw = barLen
+    bh = barThick
+    by = sy - barThick / 2
+    if dirDx > 0 then
+      bx = sx + halfW           -- east = right
+    else
+      bx = sx - halfW - barLen  -- west = left
+    end
+  end
+
+  -- Viewport cull
+  local ibx = math.floor(bx)
+  local iby = math.floor(by)
+  local ibw = math.max(1, math.floor(bw))
+  local ibh = math.max(1, math.floor(bh))
+  if ibx + ibw < 0 or iby + ibh < 0 or ibx > cw or iby > ch then return 0 end
+
+  -- Draw using edge pool
+  local pi = mapCtx.nextEdgePool
+  if pi > mapCtx.edgePoolSize then return 0 end
+  mapCtx.nextEdgePool = pi + 1
+  local lbl = mapCtx.edgePool[pi]
+  lbl:move(ibx + MAP_INSET, iby + MAP_INSET)
+  lbl:resize(ibw, ibh)
+
+  local symbol = isUp and "▲" or "▼"
+  local vis = gm.visibleRooms[edge.from]
+  local bgAlpha = vis and 0.45 or 0.25
+  local tColor = vis and "#DDD" or "#888"
+  local fontSize = math.max(6, math.floor(G * 0.25))
+  lbl:setStyleSheet(string.format(
+    "background-color:rgba(80,80,100,%.2f); color:%s; font-size:%dpt;"
+    .. " border:none; border-radius:2px; qproperty-alignment:AlignCenter;",
+    bgAlpha, tColor, fontSize))
+  lbl:echo(string.format("<center>%s</center>", symbol))
+  lbl:show()
+  lbl:raiseAll()
+
+  return 1
+end
+
 -- ─── Render single room (returns true if rendered, avoids goto/continue) ───
-function WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch, upDownInfo, openSidesInfo, poiCategory, roomEnts)
+function WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch, upDownInfo, openSidesInfo, poiCategory, roomEnts, passZ, xOff, yOff, passAlpha)
   -- Z-layer filter
-  if (room.z or 0) ~= mapCtx.currentZ then return false end
+  local targetZ = passZ or mapCtx.currentZ
+  if (room.z or 0) ~= targetZ then return false end
 
   -- Must be explored or visible
   if not gm.exploredRooms[rid] and not gm.visibleRooms[rid] then return false end
 
-  -- World → screen: compute each boundary edge directly (avoids rounding gaps)
+  -- World → screen
   local rx = room.x or 0
   local ry = room.y or 0
   local rl = room.len or 1
   local rw = room.wid or 1
   local G = MAP_GRID_PX * mapCtx.zoom
-  local screenL = (rx - cx) * G + mapCtx.panX + cw / 2
-  local screenR = (rx + rl - cx) * G + mapCtx.panX + cw / 2
-  local screenT = -((ry + rw - cy) * G) + mapCtx.panY + ch / 2
-  local screenB = -((ry - cy) * G) + mapCtx.panY + ch / 2
+  local screenL, screenR, screenT, screenB
+
+  if mapCtx.isoMode then
+    -- Isometric: center transform + compressed height
+    local relCX = (rx + rl / 2 - cx) * G
+    local relCY = (ry + rw / 2 - cy) * G
+    local isoCX = (relCX - relCY) + mapCtx.panX + cw / 2
+    local isoCY = -(relCX + relCY) * 0.5 + mapCtx.panY + ch / 2
+    -- Z offset: each z-level shifts up on screen
+    local dz = (room.z or 0) - mapCtx.currentZ
+    isoCY = isoCY - dz * (mapCtx.isoZScale or 0)
+    -- Room dimensions: width same, height compressed by 0.5
+    local halfW = rl * G / 2
+    local halfH = rw * G * 0.5 / 2  -- 0.5 = iso Y compression
+    screenL = isoCX - halfW
+    screenR = isoCX + halfW
+    screenT = isoCY - halfH
+    screenB = isoCY + halfH
+  else
+    -- Normal top-down
+    screenL = (rx - cx) * G + mapCtx.panX + cw / 2
+    screenR = (rx + rl - cx) * G + mapCtx.panX + cw / 2
+    screenT = -((ry + rw - cy) * G) + mapCtx.panY + ch / 2
+    screenB = -((ry - cy) * G) + mapCtx.panY + ch / 2
+    -- Ghost layer offset (non-iso mode only)
+    if xOff then screenL = screenL + xOff; screenR = screenR + xOff end
+    if yOff then screenT = screenT + yOff; screenB = screenB + yOff end
+  end
 
   local lx = math.floor(screenL)
   local ly = math.floor(screenT)
@@ -4753,9 +4939,17 @@ function WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch, upDo
 
   -- Determine color + border based on visibility state
   local rtype = room.room_type or "default"
-  local isHovered = (rid == mapCtx.hoveredRoom)
+  local isHovered = not passAlpha and (rid == mapCtx.hoveredRoom)
   local color, bWall, bPass
-  if gm.visibleRooms[rid] or rid == gm.currentRoom then
+
+  if passAlpha then
+    -- Adjacent z-level: transparent ghost styling
+    local baseColor = MAP_ROOM_COLORS_DIM[rtype] or MAP_ROOM_COLORS_DIM.default
+    color = hexToRgba(baseColor, passAlpha)
+    bWall = string.format("1px solid rgba(0,0,0,%.2f)", passAlpha * 0.7)
+    label:setStyleSheet(string.format(
+      "background-color: %s; border: %s; border-radius: 2px;", color, bWall))
+  elseif gm.visibleRooms[rid] or rid == gm.currentRoom then
     color = MAP_ROOM_COLORS[rtype] or MAP_ROOM_COLORS.default
     bWall = "2px solid rgba(0,0,0,0.85)"
     bPass = "1px solid rgba(255,255,255,0.25)"
@@ -4765,29 +4959,39 @@ function WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch, upDo
     bPass = "1px solid rgba(0,0,0,0.25)"
   end
 
-  -- Hover: override all borders with highlight color
-  if isHovered then
-    local hb = "2px solid " .. MAP_HOVER_COLOR
-    bWall = hb
-    bPass = hb
+  if not passAlpha then
+    -- Hover: override all borders with highlight color
+    if isHovered then
+      local hb = "2px solid " .. MAP_HOVER_COLOR
+      bWall = hb
+      bPass = hb
+    end
+
+    -- Per-side borders: bold wall on non-connected sides, subtle divider on connected
+    if openSidesInfo then
+      local os = openSidesInfo
+      local bT = os.top and bPass or bWall
+      local bR = os.right and bPass or bWall
+      local bB = os.bottom and bPass or bWall
+      local bL = os.left and bPass or bWall
+      label:setStyleSheet(string.format(
+        "background-color: %s; border-top: %s; border-right: %s; border-bottom: %s; border-left: %s;",
+        color, bT, bR, bB, bL
+      ))
+    else
+      label:setStyleSheet(string.format(
+        "background-color: %s; border: %s; border-radius: 2px;",
+        color, bWall
+      ))
+    end
   end
 
-  -- Per-side borders: bold wall on non-connected sides, subtle divider on connected
-  if openSidesInfo then
-    local os = openSidesInfo
-    local bT = os.top and bPass or bWall
-    local bR = os.right and bPass or bWall
-    local bB = os.bottom and bPass or bWall
-    local bL = os.left and bPass or bWall
-    label:setStyleSheet(string.format(
-      "background-color: %s; border-top: %s; border-right: %s; border-bottom: %s; border-left: %s;",
-      color, bT, bR, bB, bL
-    ))
-  else
-    label:setStyleSheet(string.format(
-      "background-color: %s; border: %s; border-radius: 2px;",
-      color, bWall
-    ))
+  -- Adjacent z-level ghost rooms: no tooltip, no text
+  if passAlpha then
+    label:setToolTip("")
+    label:echo("")
+    label:show()
+    return true
   end
 
   -- Rich tooltip: room name + services + NPCs + players
@@ -4926,7 +5130,63 @@ function WuxiaGUI3._renderMapCtx(mapCtx)
   mapCtx.roomPoolMap = {}
   mapCtx.nextRoomPool = 1
 
-  -- Render edges first (behind rooms in z-order)
+  -- 2.5D isometric mode
+  if mapCtx.show25D then
+    mapCtx.isoMode = true
+    mapCtx.isoZScale = MAP_ISO_Z_SCALE * MAP_GRID_PX * mapCtx.zoom
+  else
+    mapCtx.isoMode = false
+    mapCtx.isoZScale = 0
+  end
+
+  -- Helper: render ghost edges for a z-level pass
+  local function renderEdgePass(passZ, xOff, yOff, passAlpha)
+    local pairs2 = {}
+    for eid, edge in pairs(gm.edges) do
+      local pk = edge.from < edge.to
+        and (edge.from .. "|" .. edge.to) or (edge.to .. "|" .. edge.from)
+      if not pairs2[pk] then
+        pairs2[pk] = true
+        WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch,
+          passZ, xOff, yOff, passAlpha)
+      end
+    end
+  end
+
+  -- Helper: render ghost rooms for a z-level pass (no text/interactivity)
+  local function renderRoomPass(passZ, xOff, yOff, passAlpha)
+    for rid, room in pairs(gm.rooms) do
+      WuxiaGUI3._mapTryRenderRoom(mapCtx, gm, rid, room, cx, cy, cw, ch,
+        nil, nil, nil, nil, passZ, xOff, yOff, passAlpha)
+    end
+  end
+
+  -- ─── 2.5D: collect and sort all z-levels ───
+  local sortedZLevels
+  if mapCtx.show25D then
+    local zSet = {}
+    for rid, room in pairs(gm.rooms) do
+      zSet[room.z or 0] = true
+    end
+    sortedZLevels = {}
+    for z in pairs(zSet) do
+      sortedZLevels[#sortedZLevels + 1] = z
+    end
+    table.sort(sortedZLevels)
+  end
+
+  -- ─── 2.5D: ghost passes for z < currentZ (lowest first = drawn behind) ───
+  if sortedZLevels then
+    for _, z in ipairs(sortedZLevels) do
+      if z < mapCtx.currentZ then
+        renderEdgePass(z, nil, nil, MAP_ADJ_Z_ALPHA)
+        renderRoomPass(z, nil, nil, MAP_ADJ_Z_ALPHA)
+      end
+    end
+  end
+
+  -- ─── Current Z (NORMAL) — full interactivity ───
+  -- Render edges (behind rooms in z-order)
   local drawnPairs = {}
   for eid, edge in pairs(gm.edges) do
     local pairKey
@@ -4939,6 +5199,11 @@ function WuxiaGUI3._renderMapCtx(mapCtx)
       drawnPairs[pairKey] = true
       WuxiaGUI3._mapTryRenderEdge(mapCtx, gm, edge, cx, cy, cw, ch)
     end
+  end
+
+  -- Render compound direction cross-z bars (nu/su/eu/wu/nd/sd/ed/wd)
+  for eid, edge in pairs(gm.edges) do
+    WuxiaGUI3._mapRenderCrossZBar(mapCtx, gm, edge, cx, cy, cw, ch)
   end
 
   -- Pre-compute up/down indicators AND open-sides from edges
@@ -5018,13 +5283,28 @@ function WuxiaGUI3._renderMapCtx(mapCtx)
       roomUpDown[rid], roomOpenSides[rid], roomPOI[rid], roomEnts[rid])
   end
 
+  -- ─── 2.5D: ghost passes for z > currentZ (ascending = layered on top) ───
+  if sortedZLevels then
+    for _, z in ipairs(sortedZLevels) do
+      if z > mapCtx.currentZ then
+        renderEdgePass(z, nil, nil, MAP_ADJ_Z_ALPHA)
+        renderRoomPass(z, nil, nil, MAP_ADJ_Z_ALPHA)
+      end
+    end
+  end
+
   -- Update terrain background
   WuxiaGUI3._updateMapTerrainForCtx(mapCtx)
 
   -- Update Z display and raise toolbar
   if mapCtx.zDisp then
-    mapCtx.zDisp:echo(
-      string.format("<font color='#888888'>Z%d</font>", mapCtx.currentZ))
+    if mapCtx.show25D then
+      mapCtx.zDisp:echo(
+        string.format("<font color='#6699BB'>Z%d 2.5D</font>", mapCtx.currentZ))
+    else
+      mapCtx.zDisp:echo(
+        string.format("<font color='#888888'>Z%d</font>", mapCtx.currentZ))
+    end
     mapCtx.zDisp:raiseAll()
   end
   if mapCtx.zUp then mapCtx.zUp:raiseAll() end
@@ -5138,7 +5418,7 @@ function WuxiaGUI3._animateEntityMove(eid, waypoints, entData)
         width = ds, height = ds,
       }, mapCtx.container)
       dot:setStyleSheet(string.format(
-        "background-color:%s; border-radius:%dpx;", dotColor, math.ceil(ds / 2)))
+        "background-color:%s; border:none; border-radius:%dpx;", dotColor, math.ceil(ds / 2)))
       dot:echo("")
       if dot.enableClickthrough then dot:enableClickthrough() end
       dot:raiseAll()
