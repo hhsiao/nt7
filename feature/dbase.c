@@ -74,6 +74,21 @@ int delete_db(string prop) {
     }
 }
 
+varargs mixed set(string prop, mixed data, object ob) {
+    if (objectp(ob)) return ob->set_db(prop, data);
+    return set_db(prop, data);
+}
+
+varargs mixed query(string prop, object ob) {
+    if (objectp(ob)) return ob->query_db(prop);
+    return query_db(prop);
+}
+
+varargs int delete(string prop, object ob) {
+    if (objectp(ob)) return ob->delete_db(prop);
+    return delete_db(prop);
+}
+
 mixed add(string prop, mixed data) {
     mixed old;
 
@@ -139,6 +154,21 @@ int delete_temp_db(string prop) {
         map_delete(tmp_dbase, prop);
         return 1;
     }
+}
+
+varargs mixed set_temp(string prop, mixed data, object ob) {
+    if (objectp(ob)) return ob->set_temp_db(prop, data);
+    return set_temp_db(prop, data);
+}
+
+varargs mixed query_temp(string prop, object ob) {
+    if (objectp(ob)) return ob->query_temp_db(prop);
+    return query_temp_db(prop);
+}
+
+varargs int delete_temp(string prop, object ob) {
+    if (objectp(ob)) return ob->delete_temp_db(prop);
+    return delete_temp_db(prop);
 }
 
 mixed add_temp(string prop, mixed data) {
