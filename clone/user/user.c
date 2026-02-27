@@ -370,7 +370,7 @@ varargs int delete(string prop, object ob)
             sprintf("%s delete %s %s with %s at %s.\n",
                 me->query_idname(), ob->query_idname(), prop, base_name(pob), ctime(time())) );
 
-    return ob->delete(prop);
+    return delete_db(prop);
 }
 
 // override add function by Lonely

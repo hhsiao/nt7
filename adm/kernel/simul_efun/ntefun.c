@@ -16,7 +16,7 @@ varargs mixed query(string prop, object ob)
     // debug_message("ob = " + ob);
     // debug_message("prop = " + prop);
 
-    return ob->query_db(prop);
+    return ob->query(prop);
 }
 
 varargs mixed delete(string prop, object ob)
@@ -26,7 +26,7 @@ varargs mixed delete(string prop, object ob)
         ob = previous_object();
     }
 
-    return ob->delete_db(prop);
+    return ob->delete(prop);
 }
 
 varargs mixed set(string prop, string msg, object ob)
@@ -36,7 +36,7 @@ varargs mixed set(string prop, string msg, object ob)
         ob = previous_object();
     }
 
-    return ob->set_db(prop, msg);
+    return ob->set(prop, msg);
 }
 
 varargs mixed addn(string prop, string msg, object ob)
@@ -56,7 +56,7 @@ varargs mixed query_temp(string prop, object ob)
         ob = previous_object();
     }
 
-    return ob->query_temp_db(prop);
+    return ob->query_temp(prop);
 }
 
 varargs mixed delete_temp(string prop, object ob)
@@ -66,7 +66,7 @@ varargs mixed delete_temp(string prop, object ob)
         ob = previous_object();
     }
 
-    return ob->delete_temp_db(prop);
+    return ob->delete_temp(prop);
 }
 
 varargs mixed set_temp(string prop, string msg, object ob)
@@ -76,7 +76,7 @@ varargs mixed set_temp(string prop, string msg, object ob)
         ob = previous_object();
     }
 
-    return ob->set_temp_db(prop, msg);
+    return ob->set_temp(prop, msg);
 }
 
 varargs mixed addn_temp(string prop, string msg, object ob)
@@ -86,7 +86,7 @@ varargs mixed addn_temp(string prop, string msg, object ob)
         ob = previous_object();
     }
 
-    return ob->add_temp_db(prop, msg);
+    return ob->add_temp(prop, msg);
 }
 #endif
 
